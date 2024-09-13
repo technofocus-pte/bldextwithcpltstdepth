@@ -14,8 +14,7 @@ create a new copilot in a team and test it.
     From a browser. Click on **Download the new Teams app** -\>
     **Download for Windows (64-bit)**
 
-       ![](./media/image1.png
-)
+       ![](./media/image1.png)
 
 2.  **Double click** on the **downloaded file** to install the Teams for
     School app.
@@ -33,15 +32,13 @@ create a new copilot in a team and test it.
 **Note:** If you are not able to find Copilot Studio, you will have to
 search for and select **Power Virtual agent** and add it.
 
-       ![](./media/image3.png
-)
+       ![](./media/image3.png)
 
-       ![](./media/image4.png />
+       ![](./media/image4.png)
 
 6.  Click on **Start now**.
 
-       ![](./media/image5.png
-)
+       ![](./media/image5.png)
 
 ## **Exercise 2: Create a new copilot in a team**
 
@@ -54,42 +51,37 @@ search for and select **Power Virtual agent** and add it.
 2.  In the Create a copilot pane, provide the name of the Copilot as
     +++**HR Support Copilot**+++ and click on **Create**.
 
-       ![](./media/image8.png
-)
+       ![](./media/image8.png)
 
 3.  A success message stating, **Your chatbot is provisioned** is
     obtained.
 
-       ![](./media/image9.png />
+       ![](./media/image9.png)
 
 ## **Exercise 3: Build an employee time-off topic for common time-off queries**
 
 1.  Click on **Topics** from the left pane. Click on **+ New topic -\>
     From blank.**
 
-       ![](./media/image10.png
-)
+       ![](./media/image10.png)
 
 2.  Click on the **Details** icon.
 
-       ![](./media/image11.png
-)
+       ![](./media/image11.png)
 
 3.  In the Details pane, provide the name as +++**Employee time off**+++
     and Description as +++**Employee time off topic for common time-off
     queries**+++.
 
-       ![](./media/image12.png
-)
+       ![](./media/image12.png)
 
 4.  Click on **Save**.
 
-       ![](./media/image13.png />
+       ![](./media/image13.png)
 
 5.  Click on the **Trigger phases.**
 
-       ![](./media/image14.png
-)
+       ![](./media/image14.png)
 
 6.  Add in a trigger phrase, +++**I need help with time off**+++ and
     click on **+.**
