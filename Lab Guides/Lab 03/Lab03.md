@@ -213,12 +213,12 @@ the copilot to generate answers.
     Contributor**](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-contributor)
     in the search box and select it. Click **Next**.
 
-    ![](./media/image26.png />
+    ![](./media/image26.png)
 
 13. In the **Add role assignment** tab, select Assign access to User
     group or service principal. Under Members, click **+Select members**
 
-    ![](./media/image27.png />
+    ![](./media/image27.png)
 
 14. On the Select members tab , search your Azure OpenAI subscription
     and click **Select.**
@@ -229,9 +229,9 @@ the copilot to generate answers.
 15. In the **Add role assignment** page, Click **Review + Assign**, you
     will get a notification once the role assignment is complete.
 
-    ![](./media/image28.png />
+    ![](./media/image28.png)
 
-    ![](./media/image29.png />
+    ![](./media/image29.png)
 
 16. You will see a notification – added as Cognitive Services Usage
     Reader for Azure Pass-Sponsorship.
@@ -347,22 +347,22 @@ the copilot to generate answers.
 10. On **azureopenaistorageXX \| Containers** page, click on
     **+Container.**
 
-    ![](./media/image45.png />
+    ![](./media/image45.png)
 
 11. On the New container pane that appear on the right side, enter the
     container **Name** as +++ **source**+++ and click on **Create**
     button.
 
-    ![](./media/image46.png />
+    ![](./media/image46.png)
 
 12. On **azureopenaistorageXX \| Containers** page, select **source**
     container.
 
-    ![](./media/image47.png />
+    ![](./media/image47.png)
 
 13. On **source** container page, click on **Upload** button.
 
-    ![](./media/image48.png />
+    ![](./media/image48.png)
 
 14. In the **Upload blob** pane, click on **Browse for file**, navigate
     to **C:\Labfiles** location and select **TF-AzureOpenAI.pdf**, then
@@ -381,7 +381,7 @@ the copilot to generate answers.
 
     ![](./media/image52.png")
 
-    ![](./media/image53.png />
+    ![](./media/image53.png)
 
 ### **Task 3: Create an Azure Cognitive Search service in the portal**
 
@@ -420,7 +420,7 @@ the copilot to generate answers.
 
     ![](./media/image59.png")
 
-    ![](./media/image60.png />
+    ![](./media/image60.png)
 
     ![](./media/image61.png")
 
@@ -439,7 +439,7 @@ the copilot to generate answers.
     navigation pane, under **Settings** section, select **Semantic
     ranker**.
 
-    ![](./media/image65.png />
+    ![](./media/image65.png)
 
 10. On the **Semantic ranker** tab**,** select **Free** tile and click
     on the **Select plan.**
@@ -555,7 +555,7 @@ time, as mentioned in Lab \#1, Task \#1.*
     **Keyword** under **Search type,** select the chunk size as
     **1024(default).**Then, click on **Next.**
 
-    ![](./media/image81.png />
+    ![](./media/image81.png)
 
 5.  In **Review and Finish** pane, review the details that you’ve
     entered, and click on **Save and close** button**.**
@@ -583,13 +583,13 @@ the font size.*
 8.  **Deploy to a copilot in Copilot Studio(preview)** dialog box
     appears, then click on the **Continue in Copilot Studio** button.
 
-    ![](./media/image86.png />
+    ![](./media/image86.png)
 
 9.  you are prompted to **Choose your country/region**, then click on
     the dropdown and select your region, then click on **Start free
     trail** button.
 
-    ![](./media/image87.png />
+    ![](./media/image87.png)
 
     ![](./media/image88.png")
 
@@ -607,13 +607,13 @@ the font size.*
 12. In the **New features in Copilot Studio** dialog box, click on the
     **Skip** button.
 
-    ![](./media/image91.png />
+    ![](./media/image91.png)
 
     ![](./media/image92.png")
 
 13. In the Copilot Studio, select **Topics** under the **Overview .**
 
-    ![](./media/image93.png />
+    ![](./media/image93.png)
 
 15. Select **Edit** under the **Data sources.**
 
@@ -637,7 +637,7 @@ the font size.*
 
 **<span class="mark">How do I get access to Azure OpenAI?</span>**
 
-    ![](./media/image98.png />
+    ![](./media/image98.png)
 
 19. Similarly, paste the following text in the text box and click on the
     **Send** icon.
@@ -696,7 +696,7 @@ the font size.*
     type **Resource groups** in the Azure portal search bar, navigate
     and click on **Resource groups** under **Services**.
 
-    ![](./media/image107.png />
+    ![](./media/image107.png)
 
 2.  Click on the assigned resource group.
 
