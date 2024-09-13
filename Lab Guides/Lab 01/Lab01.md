@@ -1,4 +1,4 @@
-﻿# Lab 01: Creating and using Copilot from Copilot Studio for managing a Real Estate Application
+# Lab 01: Creating and using Copilot from Copilot Studio for managing a Real Estate Application
 
 **Lab Duration** – 120 minutes
 
@@ -45,7 +45,7 @@ booking requests online.
 ### Task 1: Sign up for Dynamics 365 Customer Service trial
 
 1.  Login to
-    +++<https://dynamics.microsoft.com/en-us/customer-service/overview)+++
+    +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++
     and click on **Try for free**
 
 ![](./media/image1.png)
@@ -80,7 +80,7 @@ booking requests online.
 
 ![](./media/image8.png)
 
-9.  On the **Service Configuration Settings** page under **Unified
+9.  On the **Service Configuration Settings** page under **Unified
     routing**, make sure that the **Turn on unified routing** toggle is
     set to **Yes**.
 
@@ -94,10 +94,10 @@ if consent is already provided by the tenant administrator.
 ### **Task 2: Manage a user in Omnichannel for Customer Service**
 
 1.  In **Dynamics 365 Customer Service admin center**, in the site map,
-    select **User management** under **Customer support** group.
+    select **User management** under **Customer support** group.
 
-2.  On the **User management** page, select **Manage** next
-    to **Users**.
+2.  On the **User management** page, select **Manage** next
+    to **Users**.
 
 ![](./media/image10.png)
 
@@ -106,12 +106,12 @@ if consent is already provided by the tenant administrator.
 
 ![](./media/image11.png)
 
-4.  On the **Omnichannel Users** page, select a user **MOD
+4.  On the **Omnichannel Users** page, select a user **MOD
     Administrator** in the list.
 
 ![](./media/image12.png)
 
-5.  On the **MOD Administrator** page, select the **Omnichannel** tab.
+5.  On the **MOD Administrator** page, select the **Omnichannel** tab.
 
 ![](./media/image13.png)
 
@@ -131,7 +131,7 @@ if consent is already provided by the tenant administrator.
 ### Task 3: Configure Omnichannel Power Virtual Agent Extension
 
 1.  Open the link,
-    +++<https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com>+++
+    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++
     and click on Get it now in the Omnichannel Power Virtual Agent
     Extension page.
 
@@ -200,15 +200,15 @@ Scroll down and click on the **Save** button at the bottom right.
 
 ![](./media/image28.png)
 
-2.  Under **Let's get started**, enter your **email address** in the
-    text box, check the agreement box and select **Start free**.
+2.  Under **Let's get started**, enter your **email address** in the
+    text box, check the agreement box and select **Start free**.
 
 ![](./media/image29.png)
 
 3.  If you see a prompt that you have an existing account with
-    Microsoft. Select **Sign in**. Enter your password.
+    Microsoft. Select **Sign in**. Enter your password.
 
-4.  If prompted, Select **Yes** to stay signed in.
+4.  If prompted, Select **Yes** to stay signed in.
 
 5.  Click on **Environment** in the top-right corner of the screen and
     select **CustomerService Trial**.
@@ -258,8 +258,8 @@ Scroll down and click on the **Save** button at the bottom right.
 
 ![](./media/image37.png)
 
-2.  Select **Bookings (contoso)** under **Unless otherwise specified,
-    save my changes in** and select **Apply**.
+2.  Select **Bookings (contoso)** under **Unless otherwise specified,
+    save my changes in** and select **Apply**.
 
 ![](./media/image38.png)
 
@@ -270,8 +270,8 @@ Scroll down and click on the **Save** button at the bottom right.
 Follow these steps to create a new custom table in Dataverse for Real
 Estate Properties.
 
-1.  From the left navigation pane, select **Tables**, select **New
-    table**, and then select **Add columns and data**.
+1.  From the left navigation pane, select **Tables**, select **New
+    table**, and then select **Add columns and data**.
 
 ![](./media/image40.png)
 
@@ -304,86 +304,86 @@ Estate Properties.
 
 6.  Add another column with the below values
 
-    - **Display name**: +++Bedrooms+++
+    - **Display name**: +++Bedrooms+++
 
     - **Data type**: Choice
 
 Create the choice values:
 
-- Under **Choices** you see two entry fields
-  titled **Label** and **Value**. Enter **1** under the label. Power
+- Under **Choices** you see two entry fields
+  titled **Label** and **Value**. Enter **1** under the label. Power
   Apps assigns a value automatically but you can change the value
-  to **1**.
+  to **1**.
 
 <!-- -->
 
-- Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
+- Select **+ New choice** and make **2** the new entry for Label
+  and **2** for Value.
 
 <!-- -->
 
-- Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
+- Select **+ New choice** and make **3** the new entry for Label
+  and **3** for Value.
 
 <!-- -->
 
-- Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
+- Select **+ New choice** and make **4** the new entry for Label
+  and **4** for Value.
 
 <!-- -->
 
-- Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
+- Select **+ New choice** and make **5** the new entry for Label
+  and **5** for Value.
 
 <!-- -->
 
-- Select **Save**.
+- Select **Save**.
 
 ![](./media/image44.png)
 
-7.  Select the **+ New column** button to add a new column in the
+7.  Select the **+ New column** button to add a new column in the
     columns and data pane.
 
 8.  In the New column pane, enter the following values, and then
-    select **Save**:
+    select **Save**:
 
-    - **Display name**: +++Bathrooms+++
+    - **Display name**: +++Bathrooms+++
 
     - **Data type**: Choice
 
 Create the choice values
 
-- Under **Choices** you see two entry fields
-  titled **Label** and **Value**. Enter **1** under the label. Power
-  Apps assigns a value automatically but you can change it to **1**.
+- Under **Choices** you see two entry fields
+  titled **Label** and **Value**. Enter **1** under the label. Power
+  Apps assigns a value automatically but you can change it to **1**.
 
-- Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
+- Select **+ New choice** and make **2** the new entry for Label
+  and **2** for Value.
 
-- Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
+- Select **+ New choice** and make **3** the new entry for Label
+  and **3** for Value.
 
-- Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
+- Select **+ New choice** and make **4** the new entry for Label
+  and **4** for Value.
 
-- Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
+- Select **+ New choice** and make **5** the new entry for Label
+  and **5** for Value.
 
-- Select **Save**.
+- Select **Save**.
 
 ![](./media/image45.png)
 
-9.  Add another column by selecting the **+ New column** button again in
+9.  Add another column by selecting the **+ New column** button again in
     the columns and data pane.
 
 In the New column pane, enter the following values, and then
-select **Save**:
+select **Save**:
 
-- **Display name**: +++**Client**+++
+- **Display name**: +++**Client**+++
 
 - **Data type**: Lookup -\> Lookup
 
-- **Related Table**: Contact
+- **Related Table**: Contact
 
 ![](./media/image46.png)
 
@@ -391,22 +391,22 @@ select **Save**:
 
 ![](./media/image47.png)
 
-11. Once the table is created, under **Real Estate Property columns and
+11. Once the table is created, under **Real Estate Property columns and
     data**, enter the following test data:
 
-    - Property Name: +++**1100 High Villas**+++
+    - Property Name: +++**1100 High Villas**+++
 
-    - Asking Price: +++**250,000**+++
+    - Asking Price: +++**250,000**+++
 
-    - Bathrooms: **3**
+    - Bathrooms: **3**
 
-    - Bedrooms: **2**
+    - Bedrooms: **2**
 
-    - City: +++**Redmond**+++
+    - City: +++**Redmond**+++
 
-    - Street: +++**Main Avenue**+++
+    - Street: +++**Main Avenue**+++
 
-    - Client: **Select any contact**
+    - Client: **Select any contact**
 
 ![](./media/image48.png)
 
@@ -415,16 +415,16 @@ select **Save**:
 Follow these steps to create a new custom table in Dataverse for Real
 Estate Property Bookings.
 
-1.  From the left navigation pane, select **Tables**, select **New
-    table**, and then select **Add columns and data**.
+1.  From the left navigation pane, select **Tables**, select **New
+    table**, and then select **Add columns and data**.
 
 ![](./media/image49.png)
 
-2.  Rename the table as +++**Booking Request**+++.
+2.  Rename the table as +++**Booking Request**+++.
 
 ![](./media/image50.png)
 
-3.  Change the name of the column called **New Column** to +++**Booking
+3.  Change the name of the column called **New Column** to +++**Booking
     Name**+++.
 
 ![](./media/image51.png)
@@ -486,7 +486,7 @@ Estate Property Bookings.
 ![](./media/image55.png
 )
 
-5.  At the bottom of the pane, select **Create**.
+5.  At the bottom of the pane, select **Create**.
 
 >![](./media/image56.png)
 
@@ -514,12 +514,12 @@ Estate Property Bookings.
 
 ### Task 2: Create the Real Estate Booking Service Copilot
 
-1.  Select **Create** from the left navigation pane and select the **New
-    copilot** tile.
+1.  Select **Create** from the left navigation pane and select the **New
+    copilot** tile.
 
 ![](./media/image60.png)
 
-2.  Select **Skip to configure**.
+2.  Select **Skip to configure**.
 
 ![](./media/image61.png)
 
@@ -527,9 +527,9 @@ Estate Property Bookings.
 
 - Name - +++**Real Estate Booking Service**+++
 
-- Description - +++**Create bookings for real estate properties**+++
+- Description - +++**Create bookings for real estate properties**+++
 
-- Instructions - +++**Create a copilot for topics relating to creating
+- Instructions - +++**Create a copilot for topics relating to creating
   bookings for real estate properties+++**
 
 - Language **–** Select **English**
@@ -557,20 +557,20 @@ Estate Property Bookings.
 
 ### Task 3: Configure Security
 
-1.  Select **Settings** in the top-right of the screen.
+1.  Select **Settings** in the top-right of the screen.
 
 ![](./media/image67.png)
 
-2.  Select the **Security** tab and then select
-    the **Authentication** tile.
+2.  Select the **Security** tab and then select
+    the **Authentication** tile.
 
 ![](./media/image68.png)
 
-3.  Select **No authentication** and click on **Save**.
+3.  Select **No authentication** and click on **Save**.
 
 ![](./media/image69.png)
 
-4.  Select **Save** in the **Save this configuration** prompt.
+4.  Select **Save** in the **Save this configuration** prompt.
 
 ![](./media/image70.png)
 
@@ -626,12 +626,12 @@ topics. Disable system topics that you don't require.
 The Demo website allows users without a license to test your copilot.
 You can provide them with the URL to the demo website.
 
-1.  Select the **three dots** next to the **Settings** button in the
-    top-right of the screen and select **Go to demo website**.
+1.  Select the **three dots** next to the **Settings** button in the
+    top-right of the screen and select **Go to demo website**.
 
 ![](./media/image80.png)
 
-2.  In the **Type your message** text box, enter **What information is
+2.  In the **Type your message** text box, enter **What information is
     needed to book a viewing for a real estate property?** and observe
     the response from the copilot.
 
@@ -665,26 +665,26 @@ Topics can be created and edited using natural language.
 4.  A new topic displays with the generated trigger phrases and question
     nodes.
 
-5.  Select **Save**.
+5.  Select **Save**.
 
 ![](./media/image85.png)
 
 ### Task 2: Update nodes with natural language
 
-1.  If the **Edit with copilot** pane isn't shown on the right-hand side
-    of the screen, select the **Copilot** icon in the upper part of the
+1.  If the **Edit with copilot** pane isn't shown on the right-hand side
+    of the screen, select the **Copilot** icon in the upper part of the
     authoring canvas.
 
-2.  Select the second question node, **What is your email address?**
+2.  Select the second question node, **What is your email address?**
 
-3.  In the **Edit with Copilot** panel, in the **What do you want to
-    do?** field, enter the following text:
+3.  In the **Edit with Copilot** panel, in the **What do you want to
+    do?** field, enter the following text:
 
 > +++**Update the message in this question node to say thank you to the
 > Name variable from the previous node and then proceed to ask the email
 > address question**+++
 
-4.  Select **Update**.
+4.  Select **Update**.
 
 ![](./media/image86.png)
 
@@ -700,12 +700,12 @@ add new ones.
 1.  Make sure that no node is selected by clicking in the empty space
     around the nodes.
 
-2.  In the **Edit with Copilot** panel, in the **What do you want to
-    do?** field, enter the following text:
+2.  In the **Edit with Copilot** panel, in the **What do you want to
+    do?** field, enter the following text:
 
 +++**Summarize the information collected in an adaptive card**+++
 
-3.  Select **Update**.
+3.  Select **Update**.
 
 ![](./media/image88.png)
 
@@ -791,7 +791,7 @@ add new ones.
 8.  Make sure that no node is selected by clicking in the empty space
     around the nodes.
 
-9.  In the **What do you want to do?** field, enter the following text
+9.  In the **What do you want to do?** field, enter the following text
     and then select **Update.**
 
 > **Add a new multiple-choice question to prompt the user if the details
@@ -802,13 +802,13 @@ add new ones.
 10. A new question node is added to the end of the topic with options
     for the user to select.
 
-11. Select **Save**.
+11. Select **Save**.
 
 ![](./media/image93.png)
 
 ### Task 4: Configure the scope of the variables
 
-1.  Select **Variables** to open the Variables pane.
+1.  Select **Variables** to open the Variables pane.
 
 ![](./media/image94.png)
 
@@ -821,36 +821,36 @@ add new ones.
 
 ### Task 1: Create a topic from blank
 
-1.  Select the **Topics** tab.
+1.  Select the **Topics** tab.
 
-2.  Select **Add a topic** and select **From blank**.
+2.  Select **Add a topic** and select **From blank**.
 
 ![](./media/image96.png)
 
-3.  Select **Details** to open the Topic details dialog.
+3.  Select **Details** to open the Topic details dialog.
 
 ![](./media/image97.png)
 
 4.  Fill in the below details and click on **Save**.
 
-- **Name** - +++Book a Real Estate Showing+++
+- **Name** - +++Book a Real Estate Showing+++
 
 - **Display Name –** +++**Book**+++
 
-- **Description**  - +++Select the property and requested date and
+- **Description**  - +++Select the property and requested date and
   create a booking request+++
 
 ![](./media/image98.png)
 
-5.  Select **Details** to close the Topic details dialog.
+5.  Select **Details** to close the Topic details dialog.
 
 ![](./media/image99.png)
 
 ### Task 2: Add trigger phrases
 
-1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I
-    want to book a real estate showing**+++ under **Add Phrases** and
-    select the **+** icon.
+1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I
+    want to book a real estate showing**+++ under **Add Phrases** and
+    select the **+** icon.
 
 ![](./media/image100.png)
 
@@ -864,99 +864,99 @@ add new ones.
 
 - +++**Plan a property viewing**+++
 
-3.  Once all the phrases are added, select **Save**.
+3.  Once all the phrases are added, select **Save**.
 
 ![](./media/image101.png)
 
 ### Task 3: Add a message node
 
-1.  Select the **+** icon under the Trigger node and select **Send a
+1.  Select the **+** icon under the Trigger node and select **Send a
     message**.
 
 ![](./media/image102.png)
 
-2.  In the **Enter a message** field, enter the following text:
+2.  In the **Enter a message** field, enter the following text:
 
 +++Hi, I can help you with booking a real estate property showing.+++
 
-3.  Select **Save**.
+3.  Select **Save**.
 
 ![](./media/image103.png)
 
 ### Task 4: Add a Topic management node
 
-1.  Select the the **+** icon under the send a message node and
-    select **Topic management -\> Go to another topic**.
+1.  Select the the **+** icon under the send a message node and
+    select **Topic management -\> Go to another topic**.
 
 ![](./media/image104.png)
 
-2.  Select the **Customer Details** topic.
+2.  Select the **Customer Details** topic.
 
 ![](./media/image105.png)
 
-3.  Select **Save**.
+3.  Select **Save**.
 
 ![](./media/image106.png)
 
 ### Task 5: Add condition node 
 
-1.  Select the **+** icon under the topic management node and
-    select **Add a condition**.
+1.  Select the **+** icon under the topic management node and
+    select **Add a condition**.
 
 ![](./media/image107.png)
 
-2.  Select **DetailsCorrect** for variable.
+2.  Select **DetailsCorrect** for variable.
 
 ![](./media/image108.png")
 
-3.  Select the **Condition** as **is equal to**
+3.  Select the **Condition** as **is equal to**
 
-4.  Select the **value** as **Yes**.
+4.  Select the **value** as **Yes**.
 
 ![](./media/image109.png)
 
-5.  Select **Save**.
+5.  Select **Save**.
 
 ![](./media/image110.png)
 
 ### Task 6: Add question nodes
 
-1.  Select the **+** icon under the left-hand condition node and
-    select **Ask a question**. Fill in the below details and click on
+1.  Select the **+** icon under the left-hand condition node and
+    select **Ask a question**. Fill in the below details and click on
     **Save**.
 
-- Enter a message  - +++Which property do you want to see?+++
+- Enter a message  - +++Which property do you want to see?+++
 
 - **Identify** - Select **User's entire response**.
 
-- **Save user response as** -
-  Enter +++**PropertyName**+++ for **Variable name**
+- **Save user response as** -
+  Enter +++**PropertyName**+++ for **Variable name**
 
 ![](./media/image111.png)
 
-2.  Select the the **+** icon under the question node and select **Ask a
+2.  Select the the **+** icon under the question node and select **Ask a
     question**. Fill in the below details and click on **Save.**
 
-- **Enter a message** - +++What date and time do you want to see the
+- **Enter a message** - +++What date and time do you want to see the
   property?+++
 
-- Identify - Select **Date and Time**
+- Identify - Select **Date and Time**
 
-- **Save user response as** - Enter +++**DateTime**+++ for **Variable
+- **Save user response as** - Enter +++**DateTime**+++ for **Variable
   name**
 
 ![](./media/image112.png)
 
 ### Task 7: Test the copilot
 
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
+1.  Select the **Test** button in the top-right of the screen to open
+    the testing panel. Select the **three dots** at the top of the
+    testing panel in the top-right of the screen. Select **Track between
     topics**.
 
 ![](./media/image113.png)
 
-2.  When the **Conversation Start** message appears, your copilot starts
+2.  When the **Conversation Start** message appears, your copilot starts
     a conversation.
 
 3.  In response, enter a trigger phrase for the topic that you created:
@@ -972,15 +972,15 @@ add new ones.
 6.  Then enter your email when it prompts for the email. After you enter
     the details, an Adaptive Card displays the information that you
     entered, a question asking if the information is correct, and
-    options to select **Yes** or **No**. Select **Yes**.
+    options to select **Yes** or **No**. Select **Yes**.
 
 ![](./media/image115.png")
 
-7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property
-    to you want to see?** prompt.
+7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property
+    to you want to see?** prompt.
 
-8.  Enter **Tomorrow 10:00 AM** to the **What date and time do you want
-    to see the property?** prompt.
+8.  Enter **Tomorrow 10:00 AM** to the **What date and time do you want
+    to see the property?** prompt.
 
 ![](./media/image116.png)
 
@@ -1048,7 +1048,7 @@ add new ones.
 
 ### Task 1: Configure workstream 
 
-1.  Login to +++<https://www.office.com>+++ using your admin tenant id.
+1.  Login to +++https://www.office.com+++ using your admin tenant id.
 
 2.  Select **Apps** from the left pane.
 
