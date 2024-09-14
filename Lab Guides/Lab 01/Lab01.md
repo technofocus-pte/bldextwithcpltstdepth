@@ -166,7 +166,7 @@ if consent is already provided by the tenant administrator.
 
     ![](./media/image17.png)
 
-2.  Select the **CustomerService Trial** under **Select an environment**
+2.  Select the **CustomerService Trial** under **Select an environment**, select the check boxes 
     and click on **Install**.
 
     ![](./media/image18.png)
@@ -184,8 +184,8 @@ if consent is already provided by the tenant administrator.
 
 ### Task 4: Configure search settings in the Power Platform admin center
 
-1.  Login to +++<https://admin.powerplatform.microsoft.com)+++ using
-    your tenant details. Select **Environments** -\> **CustomerService
+1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
+    your tenant details. Select **Environments** -> **CustomerService
     Trial**.
 
     ![](./media/image21.png)
@@ -214,7 +214,7 @@ if consent is already provided by the tenant administrator.
 
     ![](./media/image26.png)
 
-Scroll down and click on the **Save** button at the bottom right.
+    Scroll down and click on the **Save** button at the bottom right.
 
     ![](./media/image27.png)
 
@@ -227,7 +227,7 @@ Scroll down and click on the **Save** button at the bottom right.
 
     ![](./media/image28.png)
 
-2.  Under **Let's get started**, enter your **email address** in the
+2.  Under **Let's get started**, enter the **tenant id** in the
     text box, check the agreement box and select **Start free**.
 
     ![](./media/image29.png)
@@ -245,7 +245,7 @@ Scroll down and click on the **Save** button at the bottom right.
 ### Task 2: Create a solution
 
 1.  From the Power Apps Maker
-    Portal(+++<https://make.powerapps.com)+++), select **Solutions**
+    Portal +++https://make.powerapps.com/+++, select **Solutions**
     form the left pane.
 
     ![](./media/image31.png)
@@ -449,56 +449,45 @@ Estate Property Bookings.
 4.  Create the following columns with the name and data type as
     specified in the table below. Select **Save**.
 
-    > Display name – +++**Property**+++
-    >
-    > Data type – **Lookup** -\> **Lookup**
-    >
-    > Related Table – **Real Estate Property**
-    >
-    > ![](./media/image52.png
-    > )
-    >
-    > Display name – +++**Viewer Name**+++
-    >
-    > Data type – **Single line of text**
-    >
-    > Display name – +++**Viewer Email**+++
-    >
-    > Data type – **Single line of text**
-    >
-    > Format – **Email**
-    >
-    > Display name – +++**Booking Date**+++
-    >
-    > Data type – **Date and time**
-    >
-    > Display name – +++**Notes**+++
-    >
-    > Data type – **Multiple lines of text**
-    >
-    > ![](./media/image53.png
-    > )
-    >
-    > ![](./media/image54.png
-    > )
-    >
-    > Display name – +++**Decision**+++
-    >
-    > Data type – **Choice**
+     -  Display name – +++**Property**+++
+     -  Data type – **Lookup** -> **Lookup**
+     -  Related Table – **Real Estate Property**
 
-    - Label – +++**Undecided**+++
+      ![](./media/image52.png) 
     
-    - Value – 1
+      -  Display name – +++**Viewer Name**+++
+      -  Data type – **Single line of text**
     
-    - Label – +++**Accepted**+++
+      -  Display name – +++**Viewer Email**+++
+      -  Data type – **Single line of text**
+      -  Format – **Email**
+  
+      -  Display name – +++**Booking Date**+++
+      -  Data type – **Date and time**
+   
+      -  Display name – +++**Notes**+++
+      -  Data type – **Multiple lines of text**
+
+      ![](./media/image53.png 
+   
+    ![](./media/image54.png)
     
-    - Value – 2
+      -  Display name – +++**Decision**+++
+      -  Data type – **Choice**
+
+          - Label – +++**Undecided**+++
+          
+          - Value – 1
+          
+          - Label – +++**Accepted**+++
+          
+          - Value – 2
+          
+          - Label – +++**Declined**+++
+          
+          - Value – 3
     
-    - Label – +++**Declined**+++
-    
-    - Value – 3
-    
-    > Designate **Undecided** as the **Default choice**.
+    -  Designate **Undecided** as the **Default choice**.
 
     ![](./media/image55.png)
 
