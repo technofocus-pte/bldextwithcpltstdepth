@@ -46,7 +46,7 @@ booking requests online.
 
 1.	Login to the VM using the **Username** and **Password** from the **Resources** tab.
    
-    ![](./media/Picture1.jpg)
+    ![](./media/Picture1.png)
   	
 ### Task 2: Synchronize the VM clock
 
