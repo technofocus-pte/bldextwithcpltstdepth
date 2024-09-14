@@ -40,6 +40,35 @@ booking requests online.
 
 - Test the escalation to live agent functionality from the web page.
 
+## Exercise 0: Setting up your environment
+
+### Task 1: Login to VM
+
+1.	Login to the VM using the **Username** and **Password** from the **Resources** tab.
+   
+    ![](./media/Picture1.jpg)
+  	
+### Task 2: Synchronize the VM clock
+
+1.	After logging into the VM, right click on the clock at the bottom right corner of the screen.
+   
+2.	Select **Adjust date and time**.
+   
+    ![](./media/image1.png)
+  	
+3.	On the Settings screen that opens up, click on **Sync now** under Additional settings.
+
+    ![](./media/image1.png)
+ 
+4.	This takes care of synchronizing the time just in case the automatic synchronization does not work.
+
+    ![](./media/image1.png)
+ 
+5.	**Close** the Settings pane.
+
+    ![](./media/image1.png)
+ 
+
 ## Exercise 1: Setting up the Dynamics 365 Customer Service
 
 ### Task 1: Sign up for Dynamics 365 Customer Service trial
