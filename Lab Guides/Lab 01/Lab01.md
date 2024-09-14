@@ -75,48 +75,48 @@ booking requests online.
     +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++
     and click on **Try for free**
 
-![](./media/image1.png)
+    ![](./media/image1.png)
 
 2.  Enter your Tenant id and click on **Start your free trial**.
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
 3.  Enter the region as **United States**, enter your **Phone number**
     and click on **Submit**.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 4.  The **Dynamics 365 Customer Service workspace** opens.
 
-![](./media/image4.png)
+  ![](./media/image4.png)
 
 5.  Click on Customer Service workspace to open the **Apps**.
 
-![](./media/image5.png)
+  ![](./media/image5.png)
 
 6.  Click on **Customer Service admin center** to open it.
 
-![](./media/image6.png)
+    ![](./media/image6.png)
 
 7.  Select **Routing** under **Customer Support** group.
 
-![](./media/image7.png)
+    ![](./media/image7.png)
 
 8.  On the **Routing** page, under **Record routing**, click **Manage**
     next to **Turn on Unified Routing for Records**.
 
-![](./media/image8.png)
+    ![](./media/image8.png)
 
 9.  On the **Service Configuration Settings** page under **Unified
     routing**, make sure that the **Turn on unified routing** toggle is
     set to **Yes**.
 
-**Note**: The **Turn on unified routing** toggle is set to **Yes** only
+  >[!Note] **Note**: The **Turn on unified routing** toggle is set to **Yes** only
 if consent is already provided by the tenant administrator.
 
 10. Click **Save**.
 
-![](./media/image9.png)
+  ![](./media/image9.png)
 
 ### **Task 2: Manage a user in Omnichannel for Customer Service**
 
@@ -126,34 +126,34 @@ if consent is already provided by the tenant administrator.
 2.  On the **User management** page, select **Manage** next
     to **Users**.
 
-![](./media/image10.png)
+    ![](./media/image10.png)
 
 3.  Click the dropdown next to **Enabled Users** and select
     **Omnichannel Users**.
 
-![](./media/image11.png)
+    ![](./media/image11.png)
 
 4.  On the **Omnichannel Users** page, select a user **MOD
     Administrator** in the list.
 
-![](./media/image12.png)
+    ![](./media/image12.png)
 
 5.  On the **MOD Administrator** page, select the **Omnichannel** tab.
 
-![](./media/image13.png)
+    ![](./media/image13.png)
 
 6.  Specify the following in the user page.
 
-| **Setting**      | **Value** |
-|------------------|-----------|
-| Capacity         | 100       |
-| Default Presence | available |
+    | **Setting**      | **Value** |
+    |------------------|-----------|
+    | Capacity         | 100       |
+    | Default Presence | available |
 
-![](./media/image14.png)
+    ![](./media/image14.png)
 
 7.  Select **Save and close**.
 
-![](./media/image15.png)
+    ![](./media/image15.png)
 
 ### Task 3: Configure Omnichannel Power Virtual Agent Extension
 
@@ -162,25 +162,25 @@ if consent is already provided by the tenant administrator.
     and click on Get it now in the Omnichannel Power Virtual Agent
     Extension page.
 
-![](./media/image16.png)
+    ![](./media/image16.png)
 
-![](./media/image17.png)
+    ![](./media/image17.png)
 
 2.  Select the **CustomerService Trial** under **Select an environment**
     and click on **Install**.
 
-![](./media/image18.png)
+    ![](./media/image18.png)
 
 3.  In the Dynamics 365 apps page, click on the entries that shows
     **Update available**, **select** the **check box** to agree to the
     terms and click on **Update**.
 
-Make sure to do this for **all** the entries with **Update available**
-as the Status.
+    Make sure to do this for **all** the entries with **Update available**
+    as the Status.
 
-![](./media/image19.png)
+    ![](./media/image19.png)
 
-![](./media/image20.png)
+    ![](./media/image20.png)
 
 ### Task 4: Configure search settings in the Power Platform admin center
 
@@ -188,35 +188,35 @@ as the Status.
     your tenant details. Select **Environments** -\> **CustomerService
     Trial**.
 
-![](./media/image21.png)
+    ![](./media/image21.png)
 
 2.  Select the drop down next to **Resource** (in the top pane) and
     select **Dynamics 365 apps**.
 
-![](./media/image22.png)
+    ![](./media/image22.png)
 
 3.  Make sure that **Omnichannel for Customer Service** is
     **Installed**.
 
-![](./media/image23.png)
+    ![](./media/image23.png)
 
 4.  Navigate back to the **Environments -\> CustomerService** **Trial**
     page in the admin center. Select **Settings** from the top pane.
 
-![](./media/image24.png)
+    ![](./media/image24.png)
 
 5.  Select **Product** -\> **Features**.
 
-![](./media/image25.png)
+    ![](./media/image25.png)
 
 6.  Toggle **Dataverse Search** and **Single table search** option to
     **ON.**
 
-![](./media/image26.png)
+    ![](./media/image26.png)
 
 Scroll down and click on the **Save** button at the bottom right.
 
-![](./media/image27.png)
+    ![](./media/image27.png)
 
 ## Exercise 2: Setting up Power Apps and Dataverse
 
@@ -225,12 +225,12 @@ Scroll down and click on the **Save** button at the bottom right.
 1.  Navigate to +++https://powerapps.microsoft.com/free/+++ and select
     **Start free**.
 
-![](./media/image28.png)
+    ![](./media/image28.png)
 
 2.  Under **Let's get started**, enter your **email address** in the
     text box, check the agreement box and select **Start free**.
 
-![](./media/image29.png)
+    ![](./media/image29.png)
 
 3.  If you see a prompt that you have an existing account with
     Microsoft. Select **Sign in**. Enter your password.
@@ -240,7 +240,7 @@ Scroll down and click on the **Save** button at the bottom right.
 5.  Click on **Environment** in the top-right corner of the screen and
     select **CustomerService Trial**.
 
-![](./media/image30.png)
+    ![](./media/image30.png)
 
 ### Task 2: Create a solution
 
@@ -248,49 +248,49 @@ Scroll down and click on the **Save** button at the bottom right.
     Portal(+++<https://make.powerapps.com)+++), select **Solutions**
     form the left pane.
 
-![](./media/image31.png)
+    ![](./media/image31.png)
 
 2.  Click on **+ New solution**.
 
-![](./media/image32.png)
+    ![](./media/image32.png)
 
 3.  Enter +++**Bookings**+++ for the Display name and click on **+ New
     publisher**.
 
-![](./media/image33.png)
+    ![](./media/image33.png)
 
 4.  Enter the below details and then click on **Save**.
 
-| **Property**     | **Value**     |
-|------------------|---------------|
-| **Display name** | +++Contoso+++ |
-| **Name**         | +++contoso+++ |
-| **Prefix**       | +++contoso+++ |
+    | **Property**     | **Value**     |
+    |------------------|---------------|
+    | **Display name** | +++Contoso+++ |
+    | **Name**         | +++contoso+++ |
+    | **Prefix**       | +++contoso+++ |
 
-![](./media/image34.png)
+    ![](./media/image34.png)
 
 5.  Select **Contoso (contoso)** under Publisher and then click on
     **Create**.
 
-![](./media/image35.png)
+    ![](./media/image35.png)
 
 6.  Select **Back to solutions** in the top-left of the screen.
 
-![](./media/image36.png)
+    ![](./media/image36.png)
 
 ### Task 3: Set the preferred solution
 
 1.  Under Solutions in the Maker portal, select **Manage** for **Set
     your preferred solution**.
 
-![](./media/image37.png)
+    ![](./media/image37.png)
 
 2.  Select **Bookings (contoso)** under **Unless otherwise specified,
     save my changes in** and select **Apply**.
 
-![](./media/image38.png)
+    ![](./media/image38.png)
 
-![](./media/image39.png)
+    ![](./media/image39.png)
 
 ### Task 4: Create the Real Estate Properties custom table
 
@@ -300,73 +300,63 @@ Estate Properties.
 1.  From the left navigation pane, select **Tables**, select **New
     table**, and then select **Add columns and data**.
 
-![](./media/image40.png)
+    ![](./media/image40.png)
 
 2.  Rename the table from **New Table** to +++**Real Estate
     Property**+++.
 
-![](./media/image41.png)
+    ![](./media/image41.png)
 
 3.  Change the name of the column called **New Column** to +++**Property
     Name**+++.
 
-![](./media/image42.png)
+    ![](./media/image42.png)
 
 4.  Select the **+ New column** button to add a new column in the
     columns and data pane. In the New column pane, enter the following
     values, and then select **Save**.
 
-    - Display name: +++**Asking Price**+++
+      - Display name: +++**Asking Price**+++
+  
+      - Data type: Currency
 
-    - Data type: Currency
-
-![](./media/image43.png)
+    ![](./media/image43.png)
 
 5.  Add the following two columns.
 
-| **Display name** | **Data type**                                   |
-|------------------|-------------------------------------------------|
-| +++Street+++     | Single line of text (this value is the default) |
-| +++City+++       | Single line of text (this value is the default) |
+    | **Display name** | **Data type**                                   |
+    |------------------|-------------------------------------------------|
+    | +++Street+++     | Single line of text (this value is the default) |
+    | +++City+++       | Single line of text (this value is the default) |
 
 6.  Add another column with the below values
 
     - **Display name**: +++Bedrooms+++
-
+  
     - **Data type**: Choice
 
-Create the choice values:
+    Create the choice values:
 
-- Under **Choices** you see two entry fields
-  titled **Label** and **Value**. Enter **1** under the label. Power
-  Apps assigns a value automatically but you can change the value
-  to **1**.
+    - Under **Choices** you see two entry fields
+    titled **Label** and **Value**. Enter **1** under the label. Power
+    Apps assigns a value automatically but you can change the value
+    to **1**.
 
-<!-- -->
-
-- Select **+ New choice** and make **2** the new entry for Label
+    - Select **+ New choice** and make **2** the new entry for Label
   and **2** for Value.
 
-<!-- -->
-
-- Select **+ New choice** and make **3** the new entry for Label
+  - Select **+ New choice** and make **3** the new entry for Label
   and **3** for Value.
 
-<!-- -->
-
-- Select **+ New choice** and make **4** the new entry for Label
+  - Select **+ New choice** and make **4** the new entry for Label
   and **4** for Value.
 
-<!-- -->
-
-- Select **+ New choice** and make **5** the new entry for Label
+  - Select **+ New choice** and make **5** the new entry for Label
   and **5** for Value.
 
-<!-- -->
+  - Select **Save**.
 
-- Select **Save**.
-
-![](./media/image44.png)
+  ![](./media/image44.png)
 
 7.  Select the **+ New column** button to add a new column in the
     columns and data pane.
@@ -378,45 +368,45 @@ Create the choice values:
 
     - **Data type**: Choice
 
-Create the choice values
+  Create the choice values
 
-- Under **Choices** you see two entry fields
+  - Under **Choices** you see two entry fields
   titled **Label** and **Value**. Enter **1** under the label. Power
   Apps assigns a value automatically but you can change it to **1**.
 
-- Select **+ New choice** and make **2** the new entry for Label
+  - Select **+ New choice** and make **2** the new entry for Label
   and **2** for Value.
 
-- Select **+ New choice** and make **3** the new entry for Label
+  - Select **+ New choice** and make **3** the new entry for Label
   and **3** for Value.
 
-- Select **+ New choice** and make **4** the new entry for Label
+  - Select **+ New choice** and make **4** the new entry for Label
   and **4** for Value.
 
-- Select **+ New choice** and make **5** the new entry for Label
+  - Select **+ New choice** and make **5** the new entry for Label
   and **5** for Value.
 
-- Select **Save**.
+  - Select **Save**.
 
-![](./media/image45.png)
+  ![](./media/image45.png)
 
 9.  Add another column by selecting the **+ New column** button again in
     the columns and data pane.
 
-In the New column pane, enter the following values, and then
+  In the New column pane, enter the following values, and then
 select **Save**:
 
-- **Display name**: +++**Client**+++
+  - **Display name**: +++**Client**+++
+  
+  - **Data type**: Lookup -\> Lookup
+  
+  - **Related Table**: Contact
 
-- **Data type**: Lookup -\> Lookup
-
-- **Related Table**: Contact
-
-![](./media/image46.png)
+    ![](./media/image46.png)
 
 10. At the bottom of the pane, select **Create**.
 
-![](./media/image47.png)
+    ![](./media/image47.png)
 
 11. Once the table is created, under **Real Estate Property columns and
     data**, enter the following test data:
@@ -435,7 +425,7 @@ select **Save**:
 
     - Client: **Select any contact**
 
-![](./media/image48.png)
+  ![](./media/image48.png)
 
 ### Task 5: Create the Bookings table
 
@@ -445,77 +435,76 @@ Estate Property Bookings.
 1.  From the left navigation pane, select **Tables**, select **New
     table**, and then select **Add columns and data**.
 
-![](./media/image49.png)
+    ![](./media/image49.png)
 
 2.  Rename the table as +++**Booking Request**+++.
 
-![](./media/image50.png)
+    ![](./media/image50.png)
 
 3.  Change the name of the column called **New Column** to +++**Booking
     Name**+++.
 
-![](./media/image51.png)
+    ![](./media/image51.png)
 
 4.  Create the following columns with the name and data type as
     specified in the table below. Select **Save**.
 
-> Display name – +++**Property**+++
->
-> Data type – **Lookup** -\> **Lookup**
->
-> Related Table – **Real Estate Property**
->
-> ![](./media/image52.png
-> )
->
-> Display name – +++**Viewer Name**+++
->
-> Data type – **Single line of text**
->
-> Display name – +++**Viewer Email**+++
->
-> Data type – **Single line of text**
->
-> Format – **Email**
->
-> Display name – +++**Booking Date**+++
->
-> Data type – **Date and time**
->
-> Display name – +++**Notes**+++
->
-> Data type – **Multiple lines of text**
->
-> ![](./media/image53.png
-> )
->
-> ![](./media/image54.png
-> )
->
-> Display name – +++**Decision**+++
->
-> Data type – **Choice**
+    > Display name – +++**Property**+++
+    >
+    > Data type – **Lookup** -\> **Lookup**
+    >
+    > Related Table – **Real Estate Property**
+    >
+    > ![](./media/image52.png
+    > )
+    >
+    > Display name – +++**Viewer Name**+++
+    >
+    > Data type – **Single line of text**
+    >
+    > Display name – +++**Viewer Email**+++
+    >
+    > Data type – **Single line of text**
+    >
+    > Format – **Email**
+    >
+    > Display name – +++**Booking Date**+++
+    >
+    > Data type – **Date and time**
+    >
+    > Display name – +++**Notes**+++
+    >
+    > Data type – **Multiple lines of text**
+    >
+    > ![](./media/image53.png
+    > )
+    >
+    > ![](./media/image54.png
+    > )
+    >
+    > Display name – +++**Decision**+++
+    >
+    > Data type – **Choice**
 
-- Label – +++**Undecided**+++
+    - Label – +++**Undecided**+++
+    
+    - Value – 1
+    
+    - Label – +++**Accepted**+++
+    
+    - Value – 2
+    
+    - Label – +++**Declined**+++
+    
+    - Value – 3
+    
+    > Designate **Undecided** as the **Default choice**.
 
-- Value – 1
-
-- Label – +++**Accepted**+++
-
-- Value – 2
-
-- Label – +++**Declined**+++
-
-- Value – 3
-
-> Designate **Undecided** as the **Default choice**.
-
-![](./media/image55.png
-)
+    ![](./media/image55.png)
 
 5.  At the bottom of the pane, select **Create**.
 
->![](./media/image56.png)
+    ![](./media/image56.png)
 
 6.  Ensure that the table is created successfully.
 
