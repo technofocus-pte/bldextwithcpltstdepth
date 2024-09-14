@@ -77,7 +77,7 @@ booking requests online.
 
     ![](./media/image1.png)
 
-2.  Enter your Tenant id and click on **Start your free trial**.
+2.  Enter your Office 365 Tenant id from the Resources tab, select the check box and click on **Start your free trial**.
 
     ![](./media/image2.png)
 
