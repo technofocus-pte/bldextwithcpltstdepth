@@ -7,8 +7,75 @@
 In this lab, we will learn how to use the Azure Open AI connection in
 the copilot to generate answers.
 
-## Exercise 0: Register the required Resource providers
+## Exercise 0: Set up the environment
 
+### Task 1: Redeem Azure Pass
+1.	Open a new tab on your browser and browse to the **Microsoft Azure Pass** website using the given link +++https://www.microsoftazurepass.com/+++.
+   
+2.	Click on **Start**.
+   
+    ![](./media/pic1.png)
+  	
+3.	Enter the **Office 365 Tenant Administrative credentials** from the Lab VM(**Resources tab**) and **Sign In**.
+
+    ![](./media/pic2.png)
+
+    ![](./media/pic3.png)
+ 
+4.	Click on **Yes** in the Stay Signed in window.
+   
+5.	Verify email id and then click on **Confirm Microsoft Account**.
+   
+    ![](./media/pic4.png)
+  	
+6.	Paste the **promo code** from the **Resources** tab in the **Enter Promo code** box, enter the characters you see and then click **Submit**.
+
+   ![](./media/pic5.png)
+   
+   ![](./media/pic6.png)
+ 
+7.	It may take few seconds to process the redemption.
+8.	Fill in the details appropriately on the **Sign up** page.
+9.	On the **Agreement** window, select the check box - I agree to the subscription agreement, offer details, and privacy statement, and then click on **Sign up**.
+
+    ![](./media/pic7.png)
+
+10.	Click on **Next** in the Protect your account dialog.
+
+    ![](./media/pic8.png)
+   	
+11.	Click on **Next** in the More information required screen to configure the **Authenticator app**.
+
+    ![](./media/pic9.png)
+ 
+12.	Click on **Next** if you already have the Microsoft Authenticator app in your phone.
+    
+    ![](./media/pic10.png)
+   	
+    >[!Note] **Note:** If you do not have the Authenticator app in your phone, to download the authenticator app and then continue with the next steps.
+
+13.	Click on **Next** on the **Keep your account secure** screen.
+
+    ![](./media/pic11.png)
+ 
+14.	Scan the QR code displayed on the screen from your phone and then click on **Next**.
+
+    ![](./media/pic12.png)
+
+15.	A **number** will be displayed on the screen. Enter the **number** in the **Authenticator app** of your phone and then you will get **Notification approved** message on the **VM**. Click on **Next**.
+
+    ![](./media/pic13.png)
+ 
+16.	Click **Done** on the Success screen.
+
+    ![](./media/pic14.png)
+ 
+17.	You will now be redirected to the Azure portal. **Close** the Welcome to Azure screen and then the Azure portal for now.
+
+    ![](./media/pic15.png)
+
+ 
+### Task 2: Register the required Resource providers
 1.  Login to +++<u><https://portal.azure.com/>+++</u>, using the Azure
     account credentials from the Resources tab of the VM.
 
