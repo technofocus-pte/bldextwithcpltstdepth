@@ -64,7 +64,7 @@ booking requests online.
  
 5.	**Close** the Settings pane.
 
-    ![](./media/picture5.png)
+    ![](./media/picture4.png)
  
 
 ## Exercise 1: Setting up the Dynamics 365 Customer Service
