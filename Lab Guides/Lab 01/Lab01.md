@@ -54,19 +54,17 @@ booking requests online.
    
 2.	Select **Adjust date and time**.
    
-    ![](./media/image1.png)
+    ![](./media/picture2.png)
   	
 3.	On the Settings screen that opens up, click on **Sync now** under Additional settings.
 
-    ![](./media/image1.png)
+    ![](./media/picture3.png)
  
 4.	This takes care of synchronizing the time just in case the automatic synchronization does not work.
-
-    ![](./media/image1.png)
  
 5.	**Close** the Settings pane.
 
-    ![](./media/image1.png)
+    ![](./media/picture5.png)
  
 
 ## Exercise 1: Setting up the Dynamics 365 Customer Service
