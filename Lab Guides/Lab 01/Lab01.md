@@ -700,69 +700,9 @@ Topics can be created and edited using natural language.
 In addition to adding updating existing nodes, you can use Copilot to
 add new ones.
 
-1.  Make sure that no node is selected by clicking in the empty space
-    around the nodes.
-
-2.  In the **Edit with Copilot** panel, in the **What do you want to
-    do?** field, enter the following text:
-
-    +++**Summarize the information collected in an adaptive card**+++
-
-3.  Select **Update**.
-
-    ![](./media/image88.png)
-
-4.  A message node with an Adaptive Card is added to the end of the
-    topic.
-
-    ![](./media/image89.png)
-
-5.  Select the Adaptive Card. The Adaptive Card properties should appear
-    on the right of the screen.
-
-6.  Copy the below content and paste it as the Adaptive card formula if
-    it is not already populated properly.
-
-    ```
-    {
-     type: "AdaptiveCard", 
-         body: 
-         [
-             {
-                 type: "TextBlock",
-                 size: "Medium",
-                 weight: "Bolder",
-                 text: "Summary"    
-             },
-             {
-                 type: "FactSet",
-                 facts: 
-                 [
-                     {
-                         title: "Full Name",
-                         value: Text(Topic.Name)
-                     },
-                     {
-                         title: "Email Address",
-                         value: Text(Topic.EmailAddress)
-                     }
-                 ]
-             },
-             {
-                 type: "TextBlock",
-                 text: "Thank you for providing the information."
-             }
-         ]
-     }
-
-    ```
-> Your card content should now look like the one in the below image.
->
-![](./media/image90.png)
-
 7.  Open the **Edit with Copilot** icon.
 
-![](./media/image91.png")
+    ![](./media/image91.png)
 
 8.  Make sure that no node is selected by clicking in the empty space
     around the nodes.
@@ -770,28 +710,27 @@ add new ones.
 9.  In the **What do you want to do?** field, enter the following text
     and then select **Update.**
 
-> **Add a new multiple-choice question to prompt the user if the details
-> are correct with two options Yes or No**
+    +++**Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**+++
 
-![](./media/image92.png)
+    ![](./media/image92.png)
 
 10. A new question node is added to the end of the topic with options
     for the user to select.
 
 11. Select **Save**.
 
-![](./media/image93.png)
+    ![](./media/image93.png)
 
 ### Task 4: Configure the scope of the variables
 
 1.  Select **Variables** to open the Variables pane.
 
-![](./media/image94.png)
+    ![](./media/image94.png)
 
 2.  Select the right-hand check boxes for the topic variables and click
     on **Save**.
 
-![](./media/image95.png)
+    ![](./media/image95.png)
 
 ## Exercise 5: Create and manage topics manually
 
@@ -801,26 +740,26 @@ add new ones.
 
 2.  Select **Add a topic** and select **From blank**.
 
-![](./media/image96.png)
+    ![](./media/image96.png)
 
 3.  Select **Details** to open the Topic details dialog.
 
-![](./media/image97.png)
+    ![](./media/image97.png)
 
 4.  Fill in the below details and click on **Save**.
 
-- **Name** - +++Book a Real Estate Showing+++
+    - **Name** - +++Book a Real Estate Showing+++
+    
+    - **Display Name –** +++**Book**+++
+    
+    - **Description**  - +++Select the property and requested date and
+      create a booking request+++
 
-- **Display Name –** +++**Book**+++
-
-- **Description**  - +++Select the property and requested date and
-  create a booking request+++
-
-![](./media/image98.png)
+    ![](./media/image98.png)
 
 5.  Select **Details** to close the Topic details dialog.
 
-![](./media/image99.png)
+    ![](./media/image99.png)
 
 ### Task 2: Add trigger phrases
 
@@ -828,7 +767,7 @@ add new ones.
     want to book a real estate showing**+++ under **Add Phrases** and
     select the **+** icon.
 
-![](./media/image100.png)
+    ![](./media/image100.png)
 
 2.  Enter the below phrases one by one.
 
