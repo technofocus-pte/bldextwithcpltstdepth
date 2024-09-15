@@ -751,7 +751,7 @@ add new ones.
     
    Your card content should now look like the one in the below image.
    
-   ![](./media/image89.png)
+   ![](./media/image90.png)
 
 7.  Open the **Edit with Copilot** icon.
 
