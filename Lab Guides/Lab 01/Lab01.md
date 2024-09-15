@@ -700,6 +700,59 @@ Topics can be created and edited using natural language.
 In addition to adding updating existing nodes, you can use Copilot to
 add new ones.
 
+1.	Make sure that no node is selected by clicking in the empty space around the nodes.
+   
+2.	In the **Edit with Copilot** panel, in the **What do you want to do?** field, enter the following text:
+    +++**Summarize the information collected in an adaptive card**+++
+  	
+3.	Select **Update**.
+
+    ![](./media/image88.png)
+  	
+4.	A message node with an Adaptive Card is added to the end of the topic.
+
+    ![](./media/image89.png)
+  	
+5.	Select the Adaptive Card. The Adaptive Card properties should appear on the right of the screen.
+6.	Copy the below content and paste it as the Adaptive card formula if it is not already populated properly.
+
+    ```
+    {
+    "type": "AdaptiveCard", 
+      "body": 
+      [
+        {
+          "type": "TextBlock",
+          "size": "Medium",
+          "weight": "Bolder",
+          "text": "Summary"    
+        },
+        {
+          "type": "FactSet",
+          "facts": 
+          [
+            {
+              "title": "Full Name",
+              "value": "Text(Topic.Name)"
+            },
+            {
+              "title": "Email Address",
+              "value": "Text(Topic.EmailAddress)"
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "Thank you for providing the information."
+        }
+      ]
+    }
+    ```
+    
+   Your card content should now look like the one in the below image.
+   
+   ![](./media/image89.png)
+
 7.  Open the **Edit with Copilot** icon.
 
     ![](./media/image91.png)
