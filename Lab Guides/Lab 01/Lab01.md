@@ -116,7 +116,7 @@ if consent is already provided by the tenant administrator.
 
 10. Click **Save**.
 
-  ![](./media/image9.png)
+    ![](./media/image9.png)
 
 ### **Task 2: Manage a user in Omnichannel for Customer Service**
 
@@ -388,7 +388,7 @@ Estate Properties.
 
   - Select **Save**.
 
-  ![](./media/image45.png)
+    ![](./media/image45.png)
 
 9.  Add another column by selecting the **+ New column** button again in
     the columns and data pane.
@@ -425,7 +425,7 @@ select **Save**:
 
     - Client: **Select any contact**
 
-  ![](./media/image48.png)
+      ![](./media/image48.png)
 
 ### Task 5: Create the Bookings table
 
@@ -506,83 +506,83 @@ Estate Property Bookings.
 2.  Leave the **Choose your country/region** with the **default** value
     and click on **Get Started**.
 
-![](./media/image57.png)
+    ![](./media/image57.png)
 
 3.  Click on **Environments** on the top left and select
     **CustomerService Trial**.
 
-![](./media/image58.png)
+    ![](./media/image58.png)
 
-4.  Select **Skip** if you get a Welcome to Copilot Studio! Prompt**.**
+4.  Select **Skip** if you get a Welcome to Copilot Studio! Prompt.
 
-![](./media/image59.png)
+    ![](./media/image59.png)
 
 ### Task 2: Create the Real Estate Booking Service Copilot
 
 1.  Select **Create** from the left navigation pane and select the **New
     copilot** tile.
 
-![](./media/image60.png)
+    ![](./media/image60.png)
 
 2.  Select **Skip to configure**.
 
-![](./media/image61.png)
+    ![](./media/image61.png)
 
 3.  Fill in the below details.
 
-- Name - +++**Real Estate Booking Service**+++
+    - Name - +++**Real Estate Booking Service**+++
+    
+    - Description - +++**Create bookings for real estate properties**+++
+    
+    - Instructions - +++**Create a copilot for topics relating to creating
+      bookings for real estate properties+++**
+    
+    - Language **–** Select **English**
 
-- Description - +++**Create bookings for real estate properties**+++
-
-- Instructions - +++**Create a copilot for topics relating to creating
-  bookings for real estate properties+++**
-
-- Language **–** Select **English**
-
-![](./media/image62.png)
+    ![](./media/image62.png)
 
 4.  Select the three dots next to the Create button in the top-right of
     the screen and select **Edit advanced settings**.
 
-![](./media/image63.png)
+     ![](./media/image63.png)
 
 5.  Select the **Bookings** solution and select **Save**.
 
-![](./media/image64.png)
+     ![](./media/image64.png)
 
 6.  In the top-right of the screen, select **Create**.
 
-![](./media/image65.png)
+     ![](./media/image65.png)
 
 7.  Once the copilot is created, in the Test your copilot pane, enter
-    **How do I make a booking?** and click **Enter** and observe the
+    +++**How do I make a booking?**+++ and click **Enter** and observe the
     response.
 
-![](./media/image66.png)
+    ![](./media/image66.png)
 
 ### Task 3: Configure Security
 
 1.  Select **Settings** in the top-right of the screen.
 
-![](./media/image67.png)
+    ![](./media/image67.png)
 
 2.  Select the **Security** tab and then select
     the **Authentication** tile.
 
-![](./media/image68.png)
+    ![](./media/image68.png)
 
 3.  Select **No authentication** and click on **Save**.
 
-![](./media/image69.png)
+    ![](./media/image69.png)
 
 4.  Select **Save** in the **Save this configuration** prompt.
 
-![](./media/image70.png)
+    ![](./media/image70.png)
 
 5.  Once the Authentication settings are saved, click on the **Close**
     option to close the **Settings** pane.
 
-![](./media/image71.png)
+    ![](./media/image71.png)
 
 ### Task 4: Remove topics
 
@@ -592,39 +592,39 @@ topics. Disable system topics that you don't require.
 1.  Select the **Topics** tab from the top menu of the Copilot Overview
     page.
 
-![](./media/image72.png)
+    ![](./media/image72.png)
 
 2.  You will land in the **Custom** Topics page.
 
 3.  Select the **three dots** next to the **Lesson 1** topic and select
     **Delete**.
 
-![](./media/image73.png)
+    ![](./media/image73.png)
 
 4.  Select **Save** in the confirmation window.
 
-![](./media/image74.png)
+    ![](./media/image74.png)
 
 5.  Repeat the delete for Lesson 2 and Lesson 3.
 
-![](./media/image75.png)
+    ![](./media/image75.png)
 
-![](./media/image76.png)
+    ![](./media/image76.png)
 
 6.  Select the **System** tab. Toggle **Enabled** to **Off** for the
     **Sign in** topic.
 
-![](./media/image77.png)
+    ![](./media/image77.png)
 
 ### Task 5: Publish and test the copilot
 
 1.  Select **Publish** and select **Publish** again.
 
-![](./media/image78.png)
+    ![](./media/image78.png)
 
 2.  Select **Publish** in the **Publish this copilot** dialog.
 
-![](./media/image79.png)
+    ![](./media/image79.png)
 
 ### Task 6: Demo Website
 
@@ -634,13 +634,13 @@ You can provide them with the URL to the demo website.
 1.  Select the **three dots** next to the **Settings** button in the
     top-right of the screen and select **Go to demo website**.
 
-![](./media/image80.png)
+    ![](./media/image80.png)
 
-2.  In the **Type your message** text box, enter **What information is
-    needed to book a viewing for a real estate property?** and observe
+2.  In the **Type your message** text box, enter +++**What information is
+    needed to book a viewing for a real estate property?**+++ and observe
     the response from the copilot.
 
-![](./media/image81.png)
+    ![](./media/image81.png)
 
 ## Exercise 4: Create and manage topics using Copilot
 
@@ -651,28 +651,28 @@ Topics can be created and edited using natural language.
 1.  Select your copilot, **Real Estate Booking Service** in the Copilot
     pane on the left-hand side of the Copilot Studio.
 
-![](./media/image82.png)
+    ![](./media/image82.png)
 
 2.  Select the **Topics** tab. Select **Add a topic** and select
     **Create from description with Copilot**.
 
-![](./media/image83.png)
+    ![](./media/image83.png)
 
 3.  Enter the below details and click on **Create**.
 
-- Name your topic - +++**Customer Details**+++
+    - Name your topic - +++**Customer Details**+++
+    
+    - Create a topic to... - +++**Ask the customer for their name and email
+      address**+++
 
-- Create a topic to... - +++**Ask the customer for their name and email
-  address**+++
-
-![](./media/image84.png)
+      ![](./media/image84.png)
 
 4.  A new topic displays with the generated trigger phrases and question
     nodes.
 
 5.  Select **Save**.
 
-![](./media/image85.png)
+    ![](./media/image85.png)
 
 ### Task 2: Update nodes with natural language
 
@@ -685,17 +685,15 @@ Topics can be created and edited using natural language.
 3.  In the **Edit with Copilot** panel, in the **What do you want to
     do?** field, enter the following text:
 
-> +++**Update the message in this question node to say thank you to the
-> Name variable from the previous node and then proceed to ask the email
-> address question**+++
+    +++**Update the message in this question node to say thank you to the Name variable from the previous node and then proceed to ask the email address question**+++
 
 4.  Select **Update**.
 
-![](./media/image86.png)
+    ![](./media/image86.png)
 
 5.  Select **Save**.
 
-![](./media/image87.png)
+    ![](./media/image87.png)
 
 ### Task 3: Add nodes with natural language
 
@@ -708,16 +706,16 @@ add new ones.
 2.  In the **Edit with Copilot** panel, in the **What do you want to
     do?** field, enter the following text:
 
-+++**Summarize the information collected in an adaptive card**+++
+    +++**Summarize the information collected in an adaptive card**+++
 
 3.  Select **Update**.
 
-![](./media/image88.png)
+    ![](./media/image88.png)
 
 4.  A message node with an Adaptive Card is added to the end of the
     topic.
 
-![](./media/image89.png)
+    ![](./media/image89.png)
 
 5.  Select the Adaptive Card. The Adaptive Card properties should appear
     on the right of the screen.
@@ -725,66 +723,39 @@ add new ones.
 6.  Copy the below content and paste it as the Adaptive card formula if
     it is not already populated properly.
 
-> **{**
->
-> **type: "AdaptiveCard",**
->
-> **body:**
->
-> **\[**
->
-> **{**
->
-> **type: "TextBlock",**
->
-> **size: "Medium",**
->
-> **weight: "Bolder",**
->
-> **text: "Summary"**
->
-> **},**
->
-> **{**
->
-> **type: "FactSet",**
->
-> **facts:**
->
-> **\[**
->
-> **{**
->
-> **title: "Full Name",**
->
-> **value: Text(Topic.Name)**
->
-> **},**
->
-> **{**
->
-> **title: "Email Address",**
->
-> **value: Text(Topic.EmailAddress)**
->
-> **}**
->
-> **\]**
->
-> **},**
->
-> **{**
->
-> **type: "TextBlock",**
->
-> **text: "Thank you for providing the information."**
->
-> **}**
->
-> **\]**
->
-> **}**
->
+    ```
+    {
+     type: "AdaptiveCard", 
+         body: 
+         [
+             {
+                 type: "TextBlock",
+                 size: "Medium",
+                 weight: "Bolder",
+                 text: "Summary"    
+             },
+             {
+                 type: "FactSet",
+                 facts: 
+                 [
+                     {
+                         title: "Full Name",
+                         value: Text(Topic.Name)
+                     },
+                     {
+                         title: "Email Address",
+                         value: Text(Topic.EmailAddress)
+                     }
+                 ]
+             },
+             {
+                 type: "TextBlock",
+                 text: "Thank you for providing the information."
+             }
+         ]
+     }
+
+    ```
 > Your card content should now look like the one in the below image.
 >
 ![](./media/image90.png)
