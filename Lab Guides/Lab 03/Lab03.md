@@ -62,15 +62,21 @@ the copilot to generate answers.
 
     ![](./media/pic12.png)
 
-15.	A **number** will be displayed on the screen. Enter the **number** in the **Authenticator app** of your phone and then you will get **Notification approved** message on the **VM**. Click on **Next**.
+15. A **number** will be displayed on the screen.
+
+    ![](./media/img1.png)
+    
+16. Enter the **number** in the **Authenticator app** of your phone and
+    then you will get **Notification approved** message on the **VM**.
+    Click on **Next**.
 
     ![](./media/pic13.png)
  
-16.	Click **Done** on the Success screen.
+17.	Click **Done** on the Success screen.
 
     ![](./media/pic14.png)
  
-17.	You will now be redirected to the Azure portal. **Close** the Welcome to Azure screen and then the Azure portal for now.
+18.	You will now be redirected to the Azure portal. **Close** the Welcome to Azure screen and then the Azure portal for now.
 
     ![](./media/pic15.png)
 
@@ -101,13 +107,7 @@ the copilot to generate answers.
 
     ![](./media/image4.png
 )
-
-6.  In the search bar, type +++**Microsoft.Storage**+++, select
-    **Microsoft.Storage** from the list below. Click on the three dots
-    and select **Register**.
-
-    ![](./media/image5.png
-)
+6.   In the search bar, type +++**Microsoft.Storage**+++, and identify **Microsoft.Storage** from the list that get populated. Click on the three dots next to **Microsoft.Storage** and select **Register**.
 
     ![](./media/image6.png
 )
@@ -117,15 +117,15 @@ the copilot to generate answers.
 
 8.  Repeat steps 6 and 7 to register the following Resource providers.
 
-    - **Microsoft.Security**
+    - +++**Microsoft.Security**+++
 
-    - **Microsoft.Search**
+    - +++**Microsoft.Search**+++
 
-    - **Microsoft.CognitiveServices**
+    - +++**Microsoft.CognitiveServices**+++
 
-    - **Microsoft.Sql**
+    - +++**Microsoft.Sql**+++
 
-    - **Microsoft.Web**
+    - +++**Microsoft.Web**+++
 
     - **Microsoft.ManagedIdentity**
 
@@ -192,7 +192,7 @@ the copilot to generate answers.
     ![](./media/image14.png
 )
 
-8.  In the **Review+submit** tab, once the Validation is Passed, click
+8.  In the **Review+submit** tab, click
     on the **Create** button.
 
     ![](./media/image15.png
@@ -393,7 +393,7 @@ the copilot to generate answers.
     | **Performance** | **Standard: **Recommended for most scenarios (general-purpose v2 account) |
     | **Redundancy** | **Locally-redundant storage (LRS)** |
 
-    ![](./media/image41.png")
+    ![](./media/img2.png")
 
 7.  On the **Review** tab, click on the **Create** button.
 
@@ -461,8 +461,7 @@ the copilot to generate answers.
 
     ![](./media/image55.png")
 
-3.  In the **Create a resource** page search bar, type **Azure AI
-    Search** and click on the appeared **azure ai search**.
+3.  In the **Create a resource** page search bar, type and select +++azure ai search+++.
 
     ![](./media/image56.png)
 
@@ -508,15 +507,9 @@ the copilot to generate answers.
 
     ![](./media/image65.png)
 
-10. On the **Semantic ranker** tab**,** select **Free** tile and click
-    on the **Select plan.**
+10. On the **Semantic ranker** tab**, ensure that **Free** plan is selected. 
 
-    ![](./media/image66.png")
-
-11. You will see a notification -**Successfully updated semantic ranker
-    to free plan**
-
-    ![](./media/image67.png />
+    ![](./media/img3.png")
 
 ## Exercise-3: Add your data using Azure OpenAI Studio
 
@@ -547,21 +540,24 @@ the copilot to generate answers.
 
     ![](./media/image71.png)
 
+5.  Select **May be later** option.
+
+    ![](./media/image30.png)
+
 5.  On the **Welcome to Azure OpenAI Studio** dialog box, under the
     **Subscription** field, enter the subscription assigned to you, and
     in the **Resource** field, select the existing AOAI Resource name,
     and then click on the **Use resource** button.
 
-    ![](./media/image72.png
+    ![](./media/img4.png
 )
 
-6.  Within few minutes **Azure OpenAI Studio** page will appear.
+6.   The **Azure OpenAI Studio home** page appears.
 
     ![](./media/image73.png
 )
 
-7.  On the **Azure OpenAI Studio** homepage, click on **Create new
-    deployment** button.
+7.	On the **Azure OpenAI Studio** homepage, click on **Create new deployment**.
 
     ![](./media/image74.png
 )
@@ -571,20 +567,21 @@ the copilot to generate answers.
     ![](./media/image75.png
 )
 
-9.  Enter the below details and click on the **Create** button. 
+10.	Enter the below details and click on the Create button.
+      -   Deployment name - +++gpt4+++
+      -   Select a model – gpt-4
+      -   Model version – 0125-Preview
+       -    ployment type - Standard
 
-    -	Model – Select **gpt-35-turbo**
-    
-    -	Deployment type – **Standard**
-    
-    -	Deployment name - +++**gpt-35-turbo**+++
+    ![](./media/img5.png)
+   	
+11.	Scroll down to click on **Create**.
 
-    ![](./media/image76.png) 
+    ![](./media/img6.png)
+   	
+12.   You will get a **success** notification under **Notifications** and the created deployment details will be listed on the **Deployments** page.
 
-You will see a notification – **Successfully Created deployment** when the deployment is succeeded. (You can also view the notification by clicking on the bell icon beside **Azure AI \| Azure AI Studio)**.
-
-    ![](./media/image77.png
-)
+   ![](./media/img7.png)
 
 ## Exercise 4: Create a Copilot app with custom data
 
@@ -592,13 +589,11 @@ You will see a notification – **Successfully Created deployment** when the dep
 
 1.  Select **Chat** to open the Chat playground.
 
-    ![](./media/image78.png
-)
+    ![](./media/image78.png)
 
-2.  In **Chat playground pane** , under the Assistant setup select **Add
-    your data** and then select the **+Add data source** .
+2.	In **Chat playground** pane, select **+Add data source** under **Add your data**.
 
-    ![](./media/image79.png)
+    ![](./media/image8.png)
 
 3.  In the **Add data** page, under **Select or add data source** enter
     the following details and select **Next.**
@@ -614,198 +609,146 @@ You will see a notification – **Successfully Created deployment** when the dep
 
     ![](./media/image80.png")
 
-***Note**: In case, you encounter an error – **Can‘t manage CORS on this
+   >[!Note] **Note**: In case, you encounter an error – **Can‘t manage CORS on this
 resource. Please select another storage resource**, then syn your VM
-time, as mentioned in Lab \#1, Task \#1.*
+time.*
 
 4.  In the **Add data** page, on the **Data management** tab select
-    **Keyword** under **Search type,** select the chunk size as
+    **Semantic** under **Search type,** select the chunk size as
     **1024(default).**Then, click on **Next.**
 
-    ![](./media/image81.png)
+    ![](./media/img9.png)
 
-5.  In **Review and Finish** pane, review the details that you’ve
-    entered, and click on **Save and close** button**.**
+5.	In the **Data connection pane**, select **API key** and click on **Next** button.
+   
+6. In **Review and Finish** pane, review the details that you’ve entered, and click on **Save and close** button**.**
 
     ![](./media/image82.png")
 
-6.  The data will be added in your Chat Playground. This will take
-    approximately 4-5 minutes.
+7.	The data will be added in your Chat Playground. This process will take a few minutes to complete.
 
-    ![](./media/image83.png
-)
+   ![](./media/image83.png)
 
-    ![](./media/image84.png")
+8.	Once added, the data details are displayed under the **Add your data tab**.
+   
+   ![](./media/image84.png")
 
-7.  In Azure AI Studio **Chat playground**, click on the V chevron
-    button beside **Deploy to**, then navigate and click on **A new
-    copilot in Copilot Studio(preview)**
+9.	Click on the drop down next to the **Deploy to** option and select **A new copilot in Copilot Studio(preview)**.
 
-***Note:** In case, you did not see **Deploy to** button on your VM,
-then use Ctrl+- or Ctrl+minus keyboard shortcut to zoom out and decrease
-the font size.*
+   ![](./media/img10.png")
 
-    ![](./media/image85.png")
+10.  **Deploy to a copilot in Copilot Studio(preview)** dialog box appears, then click on the **Continue in Copilot Studio** button.
 
-8.  **Deploy to a copilot in Copilot Studio(preview)** dialog box
-    appears, then click on the **Continue in Copilot Studio** button.
+   ![](./media/image86.png)
 
-    ![](./media/image86.png)
+11.   Login using your tenant details if prompted.
+12.   Click on **Skip** in the Welcome screen.
 
-9.  you are prompted to **Choose your country/region**, then click on
-    the dropdown and select your region, then click on **Start free
-    trail** button.
+       ![](./media/img11.png)
 
-    ![](./media/image87.png)
+13.   Select the environment CustomerService Trial and click on **Next**.
 
-    ![](./media/image88.png")
+       ![](./media/img12.png)
+   	
+14.	In the **Create a copilot** pane, enter **Copilot name** as +++**CopilotForAOAI**+++ and click on **Create** button.
 
-10. In the **Create a copilot pane,** enter **Copilot name** as
-    **TF-Copilot** and click on **Create** button.
+       ![](./media/img13.png)
 
-    ![](./media/image89.png")
+15.	Once deployed, click on **Topics**. Select **System** under Topics and then select the **Conversational boosting**.
 
-11. Wait for the deployment to complete. The deployment will take around
-    **15-16** minutes.
+       ![](./media/img14.png)
 
-    ![](./media/image90.png
-)
+16.	Select **Edit** under the **Data sources**. 
 
-12. In the **New features in Copilot Studio** dialog box, click on the
-    **Skip** button.
+       ![](./media/img15.png)
 
-    ![](./media/image91.png)
+17.	In the **Create generative answers properties** pane, toggle **Allow the AI to use is own general knowledge (preview)** to **off** and then click on the **Classic data** option to expand it.
+    
+       ![](./media/img16.png)
 
-    ![](./media/image92.png")
+18. Under the **Data sources -> Azure OpenAI Services on your data**, click on **+ Add connection** and select **Azure OpenAI**.
 
-13. In the Copilot Studio, select **Topics** under the **Overview .**
+       ![](./media/img17.png)
 
-    ![](./media/image93.png)
+19. Click on the **Connection properties** option.
 
-15. Select **Edit** under the **Data sources.**
+       ![](./media/img18.png)
+    
+21. Enter the below details in the **General** tab.
 
-    ![](./media/image95.png")
+    -   Deployment - +++gpt4+++
+    -   Api version - +++2023-06-01-preview+++
+    -   Maximum tokens in response - +++800+++
+    -   Temperature - 0
+    -   Top P - 1
 
-16. In the **Create generative answers properties** pane, under Azure
-    OpenAI Services on your data select **Connection properties** .
+       ![](./media/img19.png)
 
-    ![](./media/image96.png")
+21. Click on the **Model data** tab under **Connection properties** and
+    then select **+ Add**.
 
-17. Under the **Data sources**, in the **Connect data** field enter
-    +++**content+++** and click on the **plus(+)** symbol.
+   ![](./media/image20.png)
 
-    ![](./media/image97.png)
+22. Enter the below details for **Data sources** and click on **Save**.
 
-18. In your **Copilot Studio \| TF-Copilot** window, navigate to the
-    **Test copilot** pane enter the following text and click on the
-    **Submit icon** as shown in the below image.
+   - **Index name -** +++copilot-index+++
+   
+   - **Semantic search configuration** – default
+   
+   - **Query type – semantic**
 
-**TextCopy**
+   ![](./media/image21.png)
 
-**<span class="mark">How do I get access to Azure OpenAI?</span>**
+   ![](./media/image22.png)
 
-    ![](./media/image98.png)
+23. Close the **Create generative answers properties**.
 
-19. Similarly, paste the following text in the text box and click on the
-    **Send** icon.
+   ![](./media/image23.png)
+   
+24. Click on the **Test** icon to test the copilot.
 
+   ![](./media/image24.png)
 
-    +++**What is the expiry date of GPT-35-Turbo version 0301 and GPT-4 version 0314?**+++
+25. In the chat, type +++**What is Azure OpenAI?**+++ and hit **Enter**.
+    Observe that the output that the copilot gives is from the pdf file
+    that we uploaded in the Azure OpenAI Studio. This result is
+    generated by creating a connection to the Azure OpenAI deployment,
+    from the Copilot Studio copilot.
 
-    ![](./media/image99.png")
+   ![](./media/image25.png)
 
-    ![](./media/image100.png")
+26. Ask few more questions that are relevant to the uploaded document to
+    see how the integration works.
+
 
 ### **Task 2: Delete the deployed models**
 
 1.  In Azure OpenAI Studio, on the left pane, under the **Management**
     section, click on **Deployments**.
 
-    ![](./media/image101.png
-)
+    ![](./media/image101.png)
 
-2.  Select **gpt-35-turbo0301** deployment name and click on **Delete
-    deployment**.
+2.	Select **gpt4** and click on **Delete deployment**.
 
-    ![](./media/image102.png")
+    ![](./media/img26.png")
 
-3.  In the **Confirm delete** dialog box, click on the **Delete**
-    button. You will see the notification – **Successfully Deleted
-    deployment** (In case, you did not see the notification, then click
-    on the bell icon beside **Azure AI \| Azure AI Studio**).
+3.	In the **Confirm delete** dialog box, click on the **Delete** button. You will see the notification – **Successfully Deleted deployment**.
 
-    ![](./media/image103.png
-)
+    ![](./media/img27.png")
 
-    ![](./media/image104.png")
 
-4.  In Azure OpenAI Studio, on the left pane, under the **Management**
-    section, click on **Deployments**.
+### **Task 3: Delete the Resource group**
 
-    ![](./media/image101.png")
+1.  From the Azure portal, select the **Resource group** you created in
+    Exercise 1(AOAI-RGXX). Select **Delete resource group**.
 
-5.  Select **text-embedding-ada-002** deployment name and click on
-    **Delete deployment**.
+    ![](./media/img28.png")
 
-    ![](./media/image105.png")
+2.  Enter the name of the Resource group and click on **Delete**.
 
-6.  In the **Confirm delete** dialog box, click on the **Delete**
-    button. You will see the notification – **Successfully Deleted
-    deployment** (In case, you did not see the notification, then click
-    on the bell icon beside **Cognitive Services \| Azure OpenAI
-    Studio**).
+    ![](./media/img29.png")
 
-    ![](./media/image106.png")
+**Summary**
 
-### **Task 3: Delete the Azure storage account, Azure cognitive search and Azure Web app**
+You've created a storage account, container, and Azure cognitive service in Azure portal, then you've deployed gpt-4 model in Azure OpenAI Studio. You’ve added data in Chat Playground, deployed it as a copilot in Copilot studio, configured the connection parameters from the Copilot Studio and integrated Azure OpenAI on your data in the Copilot Studio. 
 
-1.  To delete the storage account, navigate to Azure portal home page,
-    type **Resource groups** in the Azure portal search bar, navigate
-    and click on **Resource groups** under **Services**.
-
-    ![](./media/image107.png)
-
-2.  Click on the assigned resource group.
-
-    ![](./media/image108.png")
-
-3.  Carefully select storage account, Azure Cognitive Search, Azure web
-    app, CosmosDB that you’ve created.
-
-**Note**: Don’t select Azure OpenAI service.
-
-    ![](./media/image109.png")
-
-4.  In the Resource group page, navigate to
-    <span class="mark">the</span> command bar and click on **Delete**.
-
-    **Important Note**: Don’t click on **Delete resource group**. If you
-    don’t see the **Delete** option in the command bar, then click on the
-    horizontal ellipsis.
-
-    ![](./media/image110.png)
-
-5.  In the **Delete Resources** pane that appears on the right side,
-    enter the **delete** and click on **Delete** button.
-
-    ![](./media/image111.png")
-
-6.  On **Delete confirmation** dialog box, click on D**elete** button.
-
-    ![](./media/image112.png")
-
-7.  Click on the bell icon, you’ll see the notification – **Executed
-    delete command on 4 selected items.**
-
-    ![](./media/image113.png")
-
-> **Summary**
->
-> You've created a storage account, container, and Azure cognitive
-> service in Azure portal, then you've deployed gpt-3-turbo model in
-> Azure AI Studio. You’ve added data in Chat Playground and tested the
-> Assistant setup by sending queries in a chat session. Then, you've
-> launched a new app and started conversation with the chatbot. You've
-> deleted the gpt-3-turbo model, Azure storage account, cognitive search
-> service, and the new web app to effectively and efficiently manage the
-> Azure OpenAI resources.
