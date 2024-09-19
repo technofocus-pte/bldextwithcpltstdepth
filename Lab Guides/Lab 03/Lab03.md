@@ -52,7 +52,7 @@ the copilot to generate answers.
     
     ![](./media/pic10.png)
    	
-    >[!Note] **Note:** If you do not have the Authenticator app in your phone, to download the authenticator app and then continue with the next steps.
+    >[!Note] **Note:** If you do not have the Authenticator app in your phone, download the authenticator app on your phone and then continue with the next steps.
 
 13.	Click on **Next** on the **Keep your account secure** screen.
 
