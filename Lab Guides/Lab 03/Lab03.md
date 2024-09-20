@@ -105,12 +105,11 @@ the copilot to generate answers.
 5.  From the left menu, click on the **Resource Providers** under
     Settings.
 
-    ![](./media/image4.png
-)
-6.   In the search bar, type +++**Microsoft.Storage**+++, and identify **Microsoft.Storage** from the list that get populated. Click on the three dots next to **Microsoft.Storage** and select **Register**.
+    ![](./media/image4.png)
+    
+7.   In the search bar, type +++**Microsoft.Storage**+++, and identify **Microsoft.Storage** from the list that get populated. Click on the three dots next to **Microsoft.Storage** and select **Register**.
 
-    ![](./media/image6.png
-)
+    ![](./media/image6.png)
 
 7.  A notification stating **Successfully registered resource provider**
     is obtained once the registration is successful.
@@ -268,17 +267,15 @@ the copilot to generate answers.
 10. In Azure subscription page from the left menu, click on the **Access
     control(IAM).**
 
-    ![](./media/image18.png")
+    ![](./media/image18.png)
 
 
 11. On the Access control(IAM) page, Click +**Add** and select **Add
     role assignments.**
 
-    ![](./media/image19.png")
+    ![](./media/image19.png)
 
-12. Type the [**Cognitive Services
-    Contributor**](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-contributor)
-    in the search box and select it. Click **Next**.
+12. Type +++**Cognitive Services Contributor**+++ in the search box and select it. Click **Next**.
 
     ![](./media/image26.png)
 
@@ -303,7 +300,7 @@ the copilot to generate answers.
 16. You will see a notification – added as Cognitive Services Usage
     Reader for Azure Pass-Sponsorship.
 
-    ![](./media/image30.png")
+    ![](./media/image30.png)
 
 17. Click on **Home**, search for +++**Azure OpenAI**+++ in the search
     bar and select **Azure OpenAI.**
@@ -321,9 +318,7 @@ the copilot to generate answers.
     ![](./media/image33.png
 )
 
-21. Type the [**Cognitive Services
-    Contributor**](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-contributor)
-    in the search box and select it. Click **Next**.
+21. Type +++**Cognitive Services Contributor**+++ in the search box and select it. Click **Next**.
 
     ![](./media/image35.png
 )
@@ -383,8 +378,6 @@ the copilot to generate answers.
     enter the below details to create a storage account and then click
     on **Review + create**
 
-- 
-
     | **Subscription** | Select your Azure OpenAI subscription |
     |----|----|
     | **Resource group** | Select AOAI-RGXX |
@@ -409,7 +402,7 @@ the copilot to generate answers.
     pane, navigate to **Data storage** section, then click on
     **Containers**.
 
-    ![](./media/image44.png")
+    ![](./media/image44.png)
 
 10. On **azureopenaistorageXX \| Containers** page, click on
     **+Container.**
@@ -417,7 +410,7 @@ the copilot to generate answers.
     ![](./media/image45.png)
 
 11. On the New container pane that appear on the right side, enter the
-    container **Name** as +++ **source**+++ and click on **Create**
+    container **Name** as +++**source**+++ and click on **Create**
     button.
 
     ![](./media/image46.png)
@@ -459,7 +452,7 @@ the copilot to generate answers.
 
 2.  In Azure portal home page, click on **+ Create Resource**.
 
-    ![](./media/image55.png")
+    ![](./media/image55.png)
 
 3.  In the **Create a resource** page search bar, type and select +++azure ai search+++.
 
@@ -467,7 +460,7 @@ the copilot to generate answers.
 
 4.  Click on **azure ai search** section.
 
-    ![](./media/image57.png")
+    ![](./media/image57.png)
 
 5.  In the **Azure AI Search** page, click on the **Create** button.
 
@@ -492,14 +485,14 @@ the copilot to generate answers.
 
 7.  Once the Validation is passed, click on the **Create** button.
 
-    ![](./media/image62.png")
+    ![](./media/image62.png)
 
     ![](./media/image63.png)
 
 8.  After the deployment is completed, click on the **Go to resource**
     button.
 
-    ![](./media/image64.png")
+    ![](./media/image64.png)
 
 9.  In the **mysearchserviceXX** Overview page. In the left-side
     navigation pane, under **Settings** section, select **Semantic
@@ -507,7 +500,7 @@ the copilot to generate answers.
 
     ![](./media/image65.png)
 
-10. On the **Semantic ranker** tab**, ensure that **Free** plan is selected. 
+10. On the **Semantic ranker** tab, ensure that **Free** plan is selected. 
 
     ![](./media/img3.png")
 
@@ -523,16 +516,14 @@ the copilot to generate answers.
     ![](./media/image68.png
 )
 
-> **Note**: If you are directed to the **Azure OpenAI Studio** home
-> page, then skip steps from \#2 to \#4, else continue.
+>[!Note] **Note**: If you are directed to the **Azure OpenAI Studio** home page, then skip steps from \#2 to \#4, else continue.
 
 2.  In the **Microsoft Azure** window, enter your **Sign-in**
     credentials, and click on the **Next** button.
 
-    ![](./media/image69.png
-)
+    ![](./media/image69.png)
 
-3.  Then, enter the password and click on the **Sign in** button**.**
+3.  Then, enter the password and click on the **Sign in** button.
 
     ![](./media/image70.png)
 
@@ -571,7 +562,7 @@ the copilot to generate answers.
       -   Deployment name - +++gpt4+++
       -   Select a model – gpt-4
       -   Model version – 0125-Preview
-       -    ployment type - Standard
+      -   Deployment type - Standard
 
     ![](./media/img5.png)
    	
@@ -607,11 +598,11 @@ the copilot to generate answers.
     | **Enter the index name** | **copilot-index** |
     | **Indexer schedule** | Once |
 
-    ![](./media/image80.png")
+    ![](./media/image80.png)
 
    >[!Note] **Note**: In case, you encounter an error – **Can‘t manage CORS on this
-resource. Please select another storage resource**, then syn your VM
-time.*
+resource. Please select another storage resource**, then sync your VM
+time.
 
 4.  In the **Add data** page, on the **Data management** tab select
     **Semantic** under **Search type,** select the chunk size as
@@ -623,7 +614,7 @@ time.*
    
 6. In **Review and Finish** pane, review the details that you’ve entered, and click on **Save and close** button**.**
 
-    ![](./media/image82.png")
+    ![](./media/image82.png)
 
 7.	The data will be added in your Chat Playground. This process will take a few minutes to complete.
 
@@ -631,11 +622,11 @@ time.*
 
 8.	Once added, the data details are displayed under the **Add your data tab**.
    
-   ![](./media/image84.png")
+   ![](./media/image84.png)
 
 9.	Click on the drop down next to the **Deploy to** option and select **A new copilot in Copilot Studio(preview)**.
 
-   ![](./media/img10.png")
+   ![](./media/img10.png)
 
 10.  **Deploy to a copilot in Copilot Studio(preview)** dialog box appears, then click on the **Continue in Copilot Studio** button.
 
@@ -734,7 +725,7 @@ time.*
 
 3.	In the **Confirm delete** dialog box, click on the **Delete** button. You will see the notification – **Successfully Deleted deployment**.
 
-    ![](./media/img27.png")
+    ![](./media/img27.png)
 
 
 ### **Task 3: Delete the Resource group**
@@ -742,11 +733,11 @@ time.*
 1.  From the Azure portal, select the **Resource group** you created in
     Exercise 1(AOAI-RGXX). Select **Delete resource group**.
 
-    ![](./media/img28.png")
+    ![](./media/img28.png)
 
 2.  Enter the name of the Resource group and click on **Delete**.
 
-    ![](./media/img29.png")
+    ![](./media/img29.png)
 
 **Summary**
 
