@@ -128,7 +128,7 @@ search for and select +++**Power Virtual agent**+++ and add it.
     to edit the variable properties.
 
 16. The **Variable properties** pane opens. Rename the variable
-    to +++TimeoffType*+++*. Close the **Variable properties** pane and
+    to +++**TimeoffType**+++. Close the **Variable properties** pane and
     you see the changes reflected in the authoring canvas.
 
     ![](./media/image19.png)
