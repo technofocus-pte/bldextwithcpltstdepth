@@ -7,10 +7,10 @@
 In this lab, we will send message from a Copilot to a Teams channel by
 invoking a flow.
 
-## **Exercise 1: Add channel and Team**
+## **Exercise 1: Add channel and Team in Microsoft Teams**
 
-1.  Open Microsoft Teams from the VM and login using your tenant
-    credentials if not done already. Select Teams option.
+1.  Open **Microsoft Teams** from the VM and login using your tenant
+    credentials if have closed it already. Select **Teams** option.
 
        ![](./media/image1.png
 )
@@ -21,26 +21,13 @@ invoking a flow.
        ![](./media/image2.png
 )
 
-3.  Name the team as +++**HR Team**+++ and select **Create**.
+3.  Name the team as +++**HR Team**+++, channel as +++**HR Experts**+++ and select **Create**.
 
-       ![](./media/image3.png
-)
+       ![](./media/image44.png)
 
 4.  Select **Skip** on ‘Add members to HR Team’ window.
 
-       ![](./media/image4.png
-)
-
-5.  Select **More options** (…) infront of the **HR Team** and then
-    select under **Add channel.**
-
-       ![](./media/image5.png")
-
-6.  Provide the Channel name as +++**HR Experts**+++. Choose the Privacy
-    as **Private** and click on **Create**.
-
-       ![](./media/image6.png
-)
+       ![](./media/image4.png)
 
 7.  Select **Skip** on ‘Add members to the HR Experts channel’ window.
 
@@ -53,17 +40,20 @@ invoking a flow.
     Agents), select **Copilots** tab and open the **HR Support
     Copilot**.
 
-       ![](./media/image8.png />
->
-       >[!Note] **Note:** If Copilot Studio shortcut is not found, search for **Copilot Studio/Power Virtual Agents under Apps** and select **Open**)
+       ![](./media/image8.png)
+
+     >[!Note] **Note:** If Copilot Studio shortcut is not found, search for **Copilot Studio/Power Virtual Agents under Apps** and select **Open**)
+     >
+     >![](./media/image45.png)
+
 
 2.  Select **Topics** from left pane and return to the topic you created
     earlier(**Employee time off**) and go to the authoring canvas.
 
        ![](./media/image9.png)
 
-3.  In the **Ask a question node**, add an option named **Extended
-    leave**.
+3.  In the **Ask a question node**, add an option named +++**Extended
+    leave**+++.
 
        ![](./media/image10.png
 )
@@ -72,7 +62,7 @@ invoking a flow.
     asking for a description for the issue and add the text +++**How
     would you describe the issue?***+++*
 
-       ![](./media/image11.png />
+       ![](./media/image11.png)
 
 5.  Select **User’s entire response** under Identity and save the
     description in a variable named +++**Description**+++.
@@ -93,25 +83,19 @@ invoking a flow.
 
 8.  Choose the **Power Virtual Agents Flow** Template option.
 
-       ![](./media/image15.png />
+       ![](./media/image15.png)
 
        ![](./media/image16.png
 )
 
 9.  Add a **Text** input field by clicking on **+ Add an input** in the
-    first step. Replace the Input by **Description**.
+    first step. Replace the Input by +++**Description**+++.
 
        ![](./media/image17.png)
 
 10. Insert a **new step** and select **Add an action**.
 
        ![](./media/image18.png)
-
-       ![](./media/image19.png
-)
-
-       ![](./media/image20.png
-)
 
 11. Select **Microsoft Teams** under **Choose an operation**.
 
@@ -225,7 +209,7 @@ invoking a flow.
 
 3.  Click on **Publish**.
 
-       ![](./media/image40.png />
+       ![](./media/image40.png)
 
 4.  Select Publish in the **Publish latest content?**
 
