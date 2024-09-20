@@ -56,34 +56,40 @@ search for and select +++**Power Virtual agent**+++ and add it.
 
     ![](./media/image10.png)
 
-2.  Click on the **Details** icon.
+2.	**Close** the Trigger phrases pane for now.
+   
+   ![](./media/img33.png)
+   
+3.  Click on the **Details** icon.
 
      ![](./media/image11.png)
 
-3.  In the Details pane, provide the name as +++**Employee time off**+++
+4.  In the Details pane, provide the name as +++**Employee time off**+++
     and Description as +++**Employee time off topic for common time-off
     queries**+++.
 
      ![](./media/image12.png)
+    
+5.	**Close** the Details pane.
 
-4.  Click on **Save**.
+    ![](./media/img36.png)
+   
+6.  Click on **Save**.
 
-     ![](./media/image13.png)
+    ![](./media/img34.png)
 
-5.  Click on the **Trigger phases.**
+7.  Click on the **Trigger phases.**
 
      ![](./media/image14.png)
 
-6.  Add in a trigger phrase, +++**I need help with time off**+++ and
+8.  Add in a trigger phrase, +++**I need help with time off**+++ and
     click on **+.**
 
-    ![](./media/image15.png")
+    ![](./media/image15.png)
 
-7.  Add in the below trigger phrases.
+9.  Add in the below trigger phrases.
 
     - +++**Need information on time off**+++
-    
-    - +++**I need help with time off**+++
     
     - +++**How many days of paid vacation do I have**+++
     
@@ -93,55 +99,49 @@ search for and select +++**Power Virtual agent**+++ and add it.
 
     ![](./media/image16.png)
 
+    **Close** the Trigger phrases pane.
+
 8.  Add a Message node and enter the text, +++**I can help with questions
     related to time-off**+++.
 
-9.  As an HR employee, you know the most common time-off questions are
-    about paid vacation time and national holidays. When a question node
+    ![](./media/img35.png)
+
+10.  As an HR employee, you know the most common time-off questions are
+    about **paid vacation** time and **national holidays**. When a question node
     with user response options is added, the topic automatically gets a
     forked branch for each response.
 
-10. Select the (**+**) icon below the message node, then select **Ask a
-    question** to add a question node to the topic.
+11. Select the (**+**) icon below the message node, then select **Ask a
+    question** to add a question node to the topic. Enter +++**What information are you looking for?**+++ in the **Ask a question** text box. 
 
-11. Enter +++**What information are you looking for?**+++ in the **Ask a
-    question** text box. The employee might ask this question.
+    ![](./media/img37.png)
 
-    ![](./media/image17.png)
-
-12. Under **Options for user**, add +++**Paid
-    vacation**+++ and +++**National Holidays**+++ as two options.
+13. Under **Options for user**, add +++**Paid vacation**+++ and +++**National Holidays**+++ as two options.
 
     ![](./media/image18.png)
        
-13. User choices are stored in a variable and the topic branches off,
+14. User choices are stored in a variable and the topic branches off,
     based on the option the user chooses. You can rename the variable to
     track it better in the topic.
 
-14. On the variable, under **Save response as**, select the pencil icon
+15. On the variable, under **Save response as**, select the pencil icon
     to edit the variable properties.
 
-15. The **Variable properties** pane opens. Rename the variable
+16. The **Variable properties** pane opens. Rename the variable
     to +++TimeoffType*+++*. Close the **Variable properties** pane and
     you see the changes reflected in the authoring canvas.
 
     ![](./media/image19.png)
 
-16. Add a message node for the Paid vacation branch with this message to
+17. Add a message node for the Paid vacation branch with this message to
     the user: +++**For paid vacation time-off, go to
     www.contoso.com/HR/PaidTimeOff**+++ to submit time-off requests.
 
     ![](./media/image20.png)
 
-17. Add a node by selecting the (**+**) icon to end the conversation
-    with a survey. Select **End the conversation**, then **End with
-    survey**. This survey is the customer satisfaction survey prebuilt
-    in the copilot for use in topics.
-
-       ![](./media/image21.png)
-
-18. In the **National Holidays** path, add a message node with the
+19. In the **National Holidays** path, add a message node with the
     following text:
+    
         ```
         National holidays for 2020:
         
@@ -158,9 +158,9 @@ search for and select +++**Power Virtual agent**+++ and add it.
         -  Christmas Eve and Christmas Day: December 24th - 25th
         ```
 
-       ![](./media/image22.png)
+       ![](./media/img38.png)
 
-20. Click on **Save**.
+21. Click on **Save**.
 
        ![](./media/image23.png)
 
@@ -179,7 +179,6 @@ search for and select +++**Power Virtual agent**+++ and add it.
 
        ![](./media/image25.png)
        
-       ![](./media/image26.png)
 
 **Summary:**
 
