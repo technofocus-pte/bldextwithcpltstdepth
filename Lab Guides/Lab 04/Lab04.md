@@ -143,20 +143,16 @@ search for and select +++**Power Virtual agent**+++ and add it.
     following text:
     
     ```
-        National holidays for 2020:
-        
-        -    New Year's Day: January 1st
-        
-        -  Memorial Day: May 25th
-        
-        -  Independence day: July 4th
-        
-        -  Labor Day: September 7th
-        
-        -  Thanksgiving: November 26th - 27th
-        
-        -  Christmas Eve and Christmas Day: December 24th - 25th
+    National holidays for 2020:
+
+    -   New Year's Day: January 1st
+    -   Memorial Day: May 25th
+    -   Independence day: July 4th
+    -   Labor Day: September 7th
+    -   Thanksgiving: November 26th - 27th
+    -   Christmas Eve and Christmas Day: December 24th - 25th
     ```
+
 
        ![](./media/img38.png)
 
