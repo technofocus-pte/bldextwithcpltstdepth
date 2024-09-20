@@ -37,7 +37,7 @@ search for and select +++**Power Virtual agent**+++ and add it.
 
     ![](./media/image7.png)
 
-        >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too long, close it, select Copilot Studio or Power Virtual Agents from Apps in the left pane and redo step 4.
+    >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too long, close it, select Copilot Studio or Power Virtual Agents from Apps in the left pane and redo step 4.
 
 7.  In the Create a copilot pane, provide the name of the Copilot as
     +++**HR Support Copilot**+++ and click on **Create**.
@@ -142,7 +142,7 @@ search for and select +++**Power Virtual agent**+++ and add it.
 19. In the **National Holidays** path, add a message node with the
     following text:
     
-        ```
+    ```
         National holidays for 2020:
         
         -    New Year's Day: January 1st
@@ -156,7 +156,7 @@ search for and select +++**Power Virtual agent**+++ and add it.
         -  Thanksgiving: November 26th - 27th
         
         -  Christmas Eve and Christmas Day: December 24th - 25th
-        ```
+    ```
 
        ![](./media/img38.png)
 
@@ -164,18 +164,19 @@ search for and select +++**Power Virtual agent**+++ and add it.
 
        ![](./media/image23.png)
 
-       ![](./media/image24.png)
+       ![](./media/img39.png)
 
 ## **Exercise 4: Test copilot for expected behavior**
 
-1.  Select the copilot icon at the bottom of the screen to launch the
-    test copilot canvas.
+1.	Select the **Copilot/Power Virtual Agent** icon at the top of the screen to launch the test copilot canvas.
 
-2.  Type +++**I need time off information**+++ into the copilot chat.
+    ![](./media/img40.png)
 
-3.  Select **Paid vacation**.
+3.  Type +++**I need time off information**+++ into the copilot chat.
 
-4.  You receive the response as per our configuration.
+4.  Select **Paid vacation**.
+
+5.  You receive the response as per our configuration.
 
        ![](./media/image25.png)
        
