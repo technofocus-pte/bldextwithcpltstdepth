@@ -7,103 +7,92 @@
 In this lab, you will Install the Copilot Studio app in Microsoft Teams,
 create a new copilot in a team and test it.
 
-## **Exercise 1: Install the Copilot Studio app in Microsoft Teams**
+## **Exercise 1: Create a new copilot in a team**
 
-1.  Open the link
-    +++https://www.microsoft.com/en-in/microsoft-teams/download-app+++
-    From a browser. Click on **Download the new Teams app** -\>
-    **Download for Windows (64-bit)**
+1.  **Sign in** to **Teams** using your **office 365 tenant credentials**.
 
-       ![](./media/image1.png)
+   ![](./media/image2.png)
 
-2.  **Double click** on the **downloaded file** to install the Teams for
-    School app.
-
-3.  Follow the prompts to install.
-
-4.  Once installed, **Sign in** using your **office 365 tenant
-    credentials**.
-
-       ![](./media/image2.png)
-
-5.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
+2.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
     **Microsoft Copilot Studio** and click on **Add**.
 
-**Note:** If you are not able to find Copilot Studio, you will have to
-search for and select **Power Virtual agent** and add it.
+   ![](./media/image3.png)
 
-       ![](./media/image3.png)
+   ![](./media/image4.png)
 
-       ![](./media/image4.png)
+    >[!Alert] **Important:** If you are not able to find Copilot Studio, you will have to
+search for and select +++**Power Virtual agent**+++ and add it.
+    >
+    >![](./media/img31.png)
+    >
+    >[](./media/img32.png)
 
-6.  Click on **Start now**.
+3.  Click on **Start now**.
 
-       ![](./media/image5.png)
+    ![](./media/image5.png)
+    
+4.  Select **Contoso** and click on **Continue**.
 
-## **Exercise 2: Create a new copilot in a team**
+    ![](./media/image6.png)
 
-1.  Select **Contoso** and click on **Continue**.
+    ![](./media/image7.png)
 
-       ![](./media/image6.png)
-
-       ![](./media/image7.png)
-
-2.  In the Create a copilot pane, provide the name of the Copilot as
+5.  In the Create a copilot pane, provide the name of the Copilot as
     +++**HR Support Copilot**+++ and click on **Create**.
 
-       ![](./media/image8.png)
+    ![](./media/image8.png)
 
-3.  A success message stating, **Your chatbot is provisioned** is
+6.  A success message stating, **Your chatbot is provisioned** is
     obtained.
 
-       ![](./media/image9.png)
+    ![](./media/image9.png)
 
-## **Exercise 3: Build an employee time-off topic for common time-off queries**
+## **Exercise 2: Build an employee time-off topic for common time-off queries**
 
 1.  Click on **Topics** from the left pane. Click on **+ New topic -\>
     From blank.**
 
-       ![](./media/image10.png)
+    ![](./media/image10.png)
 
 2.  Click on the **Details** icon.
 
-       ![](./media/image11.png)
+     ![](./media/image11.png)
 
 3.  In the Details pane, provide the name as +++**Employee time off**+++
     and Description as +++**Employee time off topic for common time-off
     queries**+++.
 
-       ![](./media/image12.png)
+     ![](./media/image12.png)
 
 4.  Click on **Save**.
 
-       ![](./media/image13.png)
+     ![](./media/image13.png)
 
 5.  Click on the **Trigger phases.**
 
-       ![](./media/image14.png)
+     ![](./media/image14.png)
 
 6.  Add in a trigger phrase, +++**I need help with time off**+++ and
     click on **+.**
 
-       ![](./media/image15.png")
+    ![](./media/image15.png")
 
 7.  Add in the below trigger phrases.
 
-- +++**Need information on time off**+++
+    - +++**Need information on time off**+++
+    
+    - +++**I need help with time off**+++
+    
+    - +++**How many days of paid vacation do I have**+++
+    
+    - +++**What are the national holidays**+++
+    
+    - +++**I need extended leave**+++
 
-- +++**I need help with time off**+++
+    ![](./media/image16.png)
 
-- +++**How many days of paid vacation do I have**+++
-
-- +++**What are the national holidays**+++
-
-- +++**I need extended leave**+++
-
-       ![](./media/image16.png)
-
-8.  Add a Message node and enter the text, +++I can help with questions
-    related to time-off*+++*.
+8.  Add a Message node and enter the text, +++**I can help with questions
+    related to time-off**+++.
 
 9.  As an HR employee, you know the most common time-off questions are
     about paid vacation time and national holidays. When a question node
@@ -113,15 +102,15 @@ search for and select **Power Virtual agent** and add it.
 10. Select the (**+**) icon below the message node, then select **Ask a
     question** to add a question node to the topic.
 
-11. Enter *What information are you looking for?* in the **Ask a
+11. Enter +++**What information are you looking for?**+++ in the **Ask a
     question** text box. The employee might ask this question.
 
-       ![](./media/image17.png)
+    ![](./media/image17.png)
 
-12. Under **Options for user**, add +++Paid
-    vacation*+++* and +++National Holidays*+++* as two options.
+12. Under **Options for user**, add +++**Paid
+    vacation**+++ and +++**National Holidays**+++ as two options.
 
-       ![](./media/image18.png)
+    ![](./media/image18.png)
        
 13. User choices are stored in a variable and the topic branches off,
     based on the option the user chooses. You can rename the variable to
@@ -134,13 +123,13 @@ search for and select **Power Virtual agent** and add it.
     to +++TimeoffType*+++*. Close the **Variable properties** pane and
     you see the changes reflected in the authoring canvas.
 
-       ![](./media/image19.png)
+    ![](./media/image19.png)
 
 16. Add a message node for the Paid vacation branch with this message to
     the user: +++**For paid vacation time-off, go to
     www.contoso.com/HR/PaidTimeOff**+++ to submit time-off requests.
 
-       ![](./media/image20.png)
+    ![](./media/image20.png)
 
 17. Add a node by selecting the (**+**) icon to end the conversation
     with a survey. Select **End the conversation**, then **End with
@@ -151,36 +140,36 @@ search for and select **Power Virtual agent** and add it.
 
 18. In the **National Holidays** path, add a message node with the
     following text:
-
-> National holidays for 2020:
-
-1.  New Year's Day: January 1st
-
-2.  Memorial Day: May 25th
-
-3.  Independence day: July 4th
-
-4.  Labor Day: September 7th
-
-5.  Thanksgiving: November 26th - 27th
-
-6.  Christmas Eve and Christmas Day: December 24th - 25th
+        ```
+        National holidays for 2020:
+        
+        -    New Year's Day: January 1st
+        
+        -  Memorial Day: May 25th
+        
+        -  Independence day: July 4th
+        
+        -  Labor Day: September 7th
+        
+        -  Thanksgiving: November 26th - 27th
+        
+        -  Christmas Eve and Christmas Day: December 24th - 25th
+        ```
 
        ![](./media/image22.png)
 
-19. Click on **Save**.
+20. Click on **Save**.
 
-       ![](./media/image23.png
-)
+       ![](./media/image23.png)
 
-       ![](./media/image24.png")
+       ![](./media/image24.png)
 
 ## **Exercise 4: Test copilot for expected behavior**
 
 1.  Select the copilot icon at the bottom of the screen to launch the
     test copilot canvas.
 
-2.  Type **I need time off information** into the copilot chat.
+2.  Type +++**I need time off information**+++ into the copilot chat.
 
 3.  Select **Paid vacation**.
 
@@ -190,7 +179,6 @@ search for and select **Power Virtual agent** and add it.
        
        ![](./media/image26.png)
 
-> **Summary:**
->
-> In this lab, we have learnt to add the Copilot Studio app to Teams and
-> create a classic bot in Teams.
+**Summary:**
+
+In this lab, we have learnt to add the Copilot Studio app to Teams and create a classic bot in Teams.
