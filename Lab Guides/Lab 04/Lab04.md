@@ -25,7 +25,7 @@ search for and select +++**Power Virtual agent**+++ and add it.
     >
     >![](./media/img31.png)
     >
-    >[](./media/img32.png)
+    >![](./media/img32.png)
 
 3.  Click on **Start now**.
 
@@ -37,12 +37,14 @@ search for and select +++**Power Virtual agent**+++ and add it.
 
     ![](./media/image7.png)
 
-5.  In the Create a copilot pane, provide the name of the Copilot as
+        >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too long, close it, select Copilot Studio or Power Virtual Agents from Apps in the left pane and redo step 4.
+
+7.  In the Create a copilot pane, provide the name of the Copilot as
     +++**HR Support Copilot**+++ and click on **Create**.
 
     ![](./media/image8.png)
 
-6.  A success message stating, **Your chatbot is provisioned** is
+8.  A success message stating, **Your chatbot is provisioned** is
     obtained.
 
     ![](./media/image9.png)
