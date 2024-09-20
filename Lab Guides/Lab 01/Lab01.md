@@ -111,7 +111,7 @@ booking requests online.
     routing**, make sure that the **Turn on unified routing** toggle is
     set to **Yes**.
 
-  >[!Note] **Note**: The **Turn on unified routing** toggle is set to **Yes** only
+    >[!Note] **Note**: The **Turn on unified routing** toggle is set to **Yes** only
 if consent is already provided by the tenant administrator.
 
 10. Click **Save**.
@@ -480,9 +480,9 @@ Estate Property Bookings.
       -  Display name – +++**Notes**+++
       -  Data type – **Multiple lines of text**
 
-      ![](./media/image53.png 
+      ![](./media/image53.png)
    
-    ![](./media/image54.png)
+      ![](./media/image54.png)
     
       -  Display name – +++**Decision**+++
       -  Data type – **Choice**
@@ -499,7 +499,7 @@ Estate Property Bookings.
           
           - Value – 3
     
-    -  Designate **Undecided** as the **Default choice**.
+      -  Designate **Undecided** as the **Default choice**.
 
     ![](./media/image55.png)
 
@@ -766,9 +766,9 @@ add new ones.
    ![](./media/image90.png)
 
    >[!Alert] **Important:** The Copilot output will not be the same as per the screenshots in the lab guide. Each time and for each user, the output might vary. There will be times when you might get a error message stating “Your update request dint go through. Try again” as in the screen shot below.
->
->![](./media/picture9.png)
->In such a case, you will have to try again until you succeed. You can also try to execute the same from a private window. If there are still issues, you can omit this step, since this is only to show the Adaptive node addition and you can proceed with the next steps.
+  >
+  >![](./media/picture9.png)
+  >In such a case, you will have to try again until you succeed. You can also try to execute the same from a private window. If there are still issues, you can omit this step, since this is only to show the Adaptive node addition and you can proceed with the next steps.
 
 7.  Open the **Edit with Copilot** icon.
 
@@ -892,7 +892,7 @@ add new ones.
 
 2.  Select **DetailsCorrect** for variable.
 
-    ![](./media/image108.png")
+    ![](./media/image108.png)
 
 3.  Select the **Condition** as **is equal to**
 
@@ -959,7 +959,7 @@ add new ones.
     entered, a question asking if the information is correct, and
     options to select **Yes** or **No**. Select **Yes**.
 
-    ![](./media/image115.png")
+    ![](./media/image115.png)
 
 7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property
     to you want to see?** prompt.
