@@ -143,13 +143,13 @@ search for and select +++**Power Virtual agent**+++ and add it.
     following text:
     
     ```
-    National holidays for 2020:
+    National holidays for 2024:
 
     -   New Year's Day: January 1st
-    -   Memorial Day: May 25th
+    -   Memorial Day: May 27th
     -   Independence day: July 4th
-    -   Labor Day: September 7th
-    -   Thanksgiving: November 26th - 27th
+    -   Labor Day: September 2nd
+    -   Thanksgiving: November 28th
     -   Christmas Eve and Christmas Day: December 24th - 25th
     ```
 
