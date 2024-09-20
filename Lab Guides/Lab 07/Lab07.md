@@ -77,7 +77,7 @@ the organization has valid license for the same.
 
 6.  Notice that the Prompt response, summarizing the text is generated.
 
-![](./media/image10.png)
+    ![](./media/image10.png)
 
 7.  Click on **Save custom prompt**.
 
