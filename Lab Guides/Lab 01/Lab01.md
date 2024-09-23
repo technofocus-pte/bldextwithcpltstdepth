@@ -72,21 +72,26 @@ booking requests online.
 ### Task 1: Sign up for Dynamics 365 Customer Service trial
 
 1.  Login to
-    +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++
-    and click on **Try for free**
+    +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++.
+    
+2.	Login using the **Office 365 Tenant details** from the **Resources** tab if prompted.
+
+    ![](./media/im01.png)
+  	
+3.  Click on **Try for free**
 
     ![](./media/image1.png)
 
-2.  Enter your Office 365 Tenant id from the Resources tab, select the check box and click on **Start your free trial**.
+4.	Enter your **Office 365 Administrative Username** from the **Resources** tab, select the check box and click on **Start your free trial**.
 
     ![](./media/image2.png)
 
-3.  Enter the region as **United States**, enter your **Phone number**
+6.  Enter the region as **United States**, enter your **Phone number**
     and click on **Submit**.
 
     ![](./media/image3.png)
 
-4.  The **Dynamics 365 Customer Service workspace** opens.
+7.  The **Dynamics 365 Customer Service workspace** opens.
 
   ![](./media/image4.png)
 
@@ -297,7 +302,7 @@ if consent is already provided by the tenant administrator.
 Follow these steps to create a new custom table in Dataverse for Real
 Estate Properties.
 
-1.  From the left navigation pane, select **Tables**, select **Create new tables (preview)**.
+1.  From the left navigation pane, select **Tables**, select the drop down next to + New table and then select **Create new tables (preview)**.
 
     ![](./media/picture5.png)
 
@@ -305,14 +310,13 @@ Estate Properties.
    
     ![](./media/picture6.png)
   	
-3.  Rename the table from **Table** to +++**Real Estate
-    Property**+++ and then click on Save and exit.
+3.  Rename the table from **Table** to +++**Real Estate Property**+++ and then click on **Save and exit**.
 
     ![](./media/picture7.png)
 
 4.	Once saved, click on **Custom** to find the newly created table there. Click on the **Real Estate Property** table.
 
-   ![](./media/picture5.png)
+   ![](./media/picture8.png)
    
 5.	Under the **Real Estate Property columns and data**, change the name of the column called **New Column** to +++**Property Name**+++.
 
