@@ -394,27 +394,27 @@ Estate Properties.
 
         ![](./media/im8.png)
 
-  >[!Note] **Note:** Repeat the step 8 process with the Value **Bathrooms**.
+  **Note:** Repeat the step 8 process with the Value **Bathrooms**.
 
   Create the choice values
   
-  -  Under **Choices**, provide the Display name as +++Bathrooms+++.
+    -  Under **Choices**, provide the Display name as +++Bathrooms+++.
+    
+    -  You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power Apps assigns a value automatically but you can change it to **1**.
   
-  -  You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power Apps assigns a value automatically but you can change it to **1**.
-
-  - Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
-
-  - Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
-
-  - Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
-
-  - Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
-
-  - Select **Save**.
+    - Select **+ New choice** and make **2** the new entry for Label
+    and **2** for Value.
+  
+    - Select **+ New choice** and make **3** the new entry for Label
+    and **3** for Value.
+  
+    - Select **+ New choice** and make **4** the new entry for Label
+    and **4** for Value.
+  
+    - Select **+ New choice** and make **5** the new entry for Label
+    and **5** for Value.
+  
+    - Select **Save**.
 
     ![](./media/im9.png)
 
@@ -518,17 +518,17 @@ Estate Property Bookings.
          
     Click on **+ New Choice – Display name** – +++Decision+++, enter the below details and click on **Save**.
     
-          - Label – +++**Undecided**+++
-          
-          - Value – 1
-          
-          - Label – +++**Accepted**+++
-          
-          - Value – 2
-          
-          - Label – +++**Declined**+++
-          
-          - Value – 3
+     - Label – +++**Undecided**+++
+            
+     - Value – 1
+            
+     - Label – +++**Accepted**+++
+            
+     - Value – 2
+            
+     - Label – +++**Declined**+++
+            
+     - Value – 3
 
       ![](./media/im14.png)
 
