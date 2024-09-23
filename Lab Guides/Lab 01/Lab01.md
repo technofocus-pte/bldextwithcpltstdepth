@@ -316,21 +316,21 @@ Estate Properties.
 
 4.	Once saved, click on **Custom** to find the newly created table there. Click on the **Real Estate Property** table.
 
-   ![](./media/picture8.png)
+     ![](./media/picture8.png)
    
-5.	Under the **Real Estate Property columns and data**, change the name of the column called **New Column** to +++**Property Name**+++.
+5.	Under the **Real Estate Property columns and data**, change the name of the column called **New Column** (Click on the drop down next to **New Column** and select **Edit Column** and update the **Display name**) to +++**Property Name**+++.
 
     ![](./media/image42.png)
 
-6.  Select the **+ New column** button to add a new column in the
-    columns and data pane. In the New column pane, enter the following
-    values, and then select **Save**.
+6.	Select the **+** button to add a new column in the columns and data pane. In the New column pane, enter the following values, and then select **Save**.
 
       - Display name: +++**Asking Price**+++
   
       - Data type: Currency
 
-    ![](./media/image43.png)
+    ![](./media/im2.png)
+  	
+    ![](./media/im3.png)
 
 7.  Add the following two columns.
 
@@ -343,12 +343,18 @@ Estate Properties.
 
     - **Display name**: +++Bedrooms+++
   
-    - **Data type**: Choice
+    - **Data type**: Choice -> Choice
 
+      ![](./media/im5.png)
+      
     Create the choice values:
 
-    - Under **Choices** you see two entry fields
-    titled **Label** and **Value**. Enter **1** under the label. Power
+    Select **+ New choice** under **Sync this choice with** option
+
+    ![](./media/im06.png)
+
+    - Under **Choices**, provide the **Display name** as +++**Bedrooms**+++.
+    - You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power
     Apps assigns a value automatically but you can change the value
     to **1**.
 
@@ -366,9 +372,17 @@ Estate Properties.
 
   - Select **Save**.
 
-  ![](./media/image44.png)
+  ![](./media/im6.png)
 
-9.  Select the **+ New column** button to add a new column in the
+  Select the added choice **Bedrooms**, by clicking the drop down of **Sync this choice with**
+
+  ![](./media/im7.png)
+
+  Click on **Save**.
+
+  ![](./media/im07.png)
+  
+9.  Select the **+** button to add a new column in the
     columns and data pane.
 
 10.  In the New column pane, enter the following values, and then
@@ -376,13 +390,17 @@ Estate Properties.
 
     - **Display name**: +++Bathrooms+++
 
-    - **Data type**: Choice
+    - **Data type**: Choice -> Choice
+
+        ![](./media/im8.png)
+
+  >[!Note] **Note:** Repeat the step 8 process with the Value **Bathrooms**.
 
   Create the choice values
-
-  - Under **Choices** you see two entry fields
-  titled **Label** and **Value**. Enter **1** under the label. Power
-  Apps assigns a value automatically but you can change it to **1**.
+  
+  -  Under **Choices**, provide the Display name as +++Bathrooms+++.
+  
+  -  You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power Apps assigns a value automatically but you can change it to **1**.
 
   - Select **+ New choice** and make **2** the new entry for Label
   and **2** for Value.
@@ -398,29 +416,32 @@ Estate Properties.
 
   - Select **Save**.
 
-    ![](./media/image45.png)
+    ![](./media/im9.png)
 
-11.  Add another column by selecting the **+ New column** button again in
-    the columns and data pane.
+    Select the created choice and click on **Save** in the column addition pane.
+
+    ![](./media/im10.png)
+    
+11.  Add another column by selecting the **+** button again in the columns and data pane.
 
   In the New column pane, enter the following values, and then
 select **Save**:
 
   - **Display name**: +++**Client**+++
   
-  - **Data type**: Lookup -\> Lookup
+  - **Data type**: Lookup -> Lookup
   
   - **Related Table**: Contact
 
-    ![](./media/image46.png)
+    ![](./media/image11.png)
 
-12. At the bottom of the pane, select **Create**.
-
-    ![](./media/image47.png)
-
-13. Once the table is created, under **Real Estate Property columns and
+13. Once the columns are created, under **Real Estate Property columns and
     data**, enter the following test data:
 
+    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
+    >
+    >![](./media/image12.png)
+    
     - Property Name: +++**1100 High Villas**+++
 
     - Asking Price: +++**250,000**+++
@@ -442,7 +463,7 @@ select **Save**:
 Follow these steps to create a new custom table in Dataverse for Real
 Estate Property Bookings.
 
-1.  From the left navigation pane, select **Tables**, select **Create new tables (preview)**.
+1.	From the left navigation pane, select **Tables**, select the **drop down** next to **+ New table** and then select **Create new tables (preview)**.
 
     ![](./media/picture5.png)
 
@@ -462,7 +483,7 @@ Estate Property Bookings.
 
     ![](./media/image51.png)
 
-4.  Create the following columns with the name and data type as
+6.  Create the following columns with the name and data type as
     specified in the table below. Select **Save**.
 
      -  Display name – +++**Property**+++
@@ -487,10 +508,16 @@ Estate Property Bookings.
       ![](./media/image53.png)
    
       ![](./media/image54.png)
-    
-      -  Display name – +++**Decision**+++
-      -  Data type – **Choice**
 
+7.  Add a choice data type column with the below details.
+        
+      -  Display name – +++**Decision**+++
+      -  Data type – **Choice -> Choice**
+    
+          ![](./media/im012.png)
+         
+    Click on **+ New Choice – Display name** – +++Decision+++, enter the below details and click on **Save**.
+    
           - Label – +++**Undecided**+++
           
           - Value – 1
@@ -502,16 +529,14 @@ Estate Property Bookings.
           - Label – +++**Declined**+++
           
           - Value – 3
+
+      ![](./media/im14.png)
+
+    Select the added Choice **Decision**, designate **Undecided** as the **Default choice** and click on **Save**.
     
-      -  Designate **Undecided** as the **Default choice**.
+    ![](./media/im13.png)
 
     ![](./media/image55.png)
-
-5.  At the bottom of the pane, select **Create**.
-
-    ![](./media/image56.png)
-
-6.  Ensure that the table is created successfully.
 
 ## Exercise 3: Working with Copilot Studio
 
@@ -617,7 +642,7 @@ topics. Disable system topics that you don't require.
 
     ![](./media/image73.png)
 
-4.  Select **Save** in the confirmation window.
+4.  Select **Delete** in the confirmation window.
 
     ![](./media/image74.png)
 
@@ -652,9 +677,7 @@ You can provide them with the URL to the demo website.
 
     ![](./media/image80.png)
 
-2.  In the **Type your message** text box, enter +++**What information is
-    needed to book a viewing for a real estate property?**+++ and observe
-    the response from the copilot.
+2.  In the **Type your message** text box, enter +++**What information is needed to book a viewing for a real estate property?**+++ and observe the response from the copilot.
 
     ![](./media/image81.png)
 
@@ -716,82 +739,20 @@ Topics can be created and edited using natural language.
 In addition to adding updating existing nodes, you can use Copilot to
 add new ones.
 
-1.	Make sure that no node is selected by clicking in the empty space around the nodes.
-   
-2.	In the **Edit with Copilot** panel, in the **What do you want to do?** field, enter the following text:
-    +++**Summarize the information collected in an adaptive card**+++
-  	
-3.	Select **Update**.
-
-    ![](./media/image88.png)
-  	
-4.	A message node with an Adaptive Card is added to the end of the topic.
-
-    ![](./media/image89.png)
-  	
-5.	Select the Adaptive Card. The Adaptive Card properties should appear on the right of the screen.
-6.	Copy the below content and paste it as the Adaptive card formula if it is not already populated properly.
-
-    ```
-    {
-    "type": "AdaptiveCard", 
-      "body": 
-      [
-        {
-          "type": "TextBlock",
-          "size": "Medium",
-          "weight": "Bolder",
-          "text": "Summary"    
-        },
-        {
-          "type": "FactSet",
-          "facts": 
-          [
-            {
-              "title": "Full Name",
-              "value": "Text(Topic.Name)"
-            },
-            {
-              "title": "Email Address",
-              "value": "Text(Topic.EmailAddress)"
-            }
-          ]
-        },
-        {
-          "type": "TextBlock",
-          "text": "Thank you for providing the information."
-        }
-      ]
-    }
-    ```
-    
-   Your card content should now look like the one in the below image.
-   
-   ![](./media/image90.png)
-
-   >[!Alert] **Important:** The Copilot output will not be the same as per the screenshots in the lab guide. Each time and for each user, the output might vary. There will be times when you might get a error message stating “Your update request dint go through. Try again” as in the screen shot below.
-  >
-  >![](./media/picture9.png)
-  >In such a case, you will have to try again until you succeed. You can also try to execute the same from a private window. If there are still issues, you can omit this step, since this is only to show the Adaptive node addition and you can proceed with the next steps.
-
-7.  Open the **Edit with Copilot** icon.
-
-    ![](./media/image91.png)
-
-8.  Make sure that no node is selected by clicking in the empty space
+1.  Make sure that no node is selected by clicking in the empty space
     around the nodes.
 
-9.  In the **What do you want to do?** field, enter the following text
+2.  In the **What do you want to do?** field, enter the following text
     and then select **Update.**
 
     +++**Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**+++
 
     ![](./media/image92.png)
 
-10. A new question node is added to the end of the topic with options
+3. A new question node is added to the end of the topic with options
     for the user to select.
 
-11. Select **Save**.
+4. Select **Save**.
 
     ![](./media/image93.png)
 
