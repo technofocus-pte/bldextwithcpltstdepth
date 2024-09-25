@@ -396,14 +396,14 @@ select **Save**:
   
   - **Related Table**: Contact
 
-    ![](./media/image11.png)
+    ![](./media/im11.png)
 
 13. Once the columns are created, under **Real Estate Property columns and
     data**, enter the following test data:
 
     >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
     >
-    >![](./media/image12.png)
+    >![](./media/im12.png)
     
     - Property Name: +++**1100 High Villas**+++
 
