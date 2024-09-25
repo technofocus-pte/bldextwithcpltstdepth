@@ -38,6 +38,7 @@ can create custom entities for your specific purpose.
 3.  Enter the below details
 
     -    Name - +++**Property Type**+++
+    
     **Enter item** under List items
     -    +++**Apartment**+++ - Select **Add**
 
