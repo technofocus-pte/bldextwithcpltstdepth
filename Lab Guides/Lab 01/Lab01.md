@@ -123,44 +123,7 @@ if consent is already provided by the tenant administrator.
 
     ![](./media/image9.png)
 
-### **Task 2: Manage a user in Omnichannel for Customer Service**
-
-1.  In **Dynamics 365 Customer Service admin center**, in the site map,
-    select **User management** under **Customer support** group.
-
-2.  On the **User management** page, select **Manage** next
-    to **Users**.
-
-    ![](./media/image10.png)
-
-3.  Click the dropdown next to **Enabled Users** and select
-    **Omnichannel Users**.
-
-    ![](./media/image11.png)
-
-4.  On the **Omnichannel Users** page, select a user **MOD
-    Administrator** in the list.
-
-    ![](./media/image12.png)
-
-5.  On the **MOD Administrator** page, select the **Omnichannel** tab.
-
-    ![](./media/image13.png)
-
-6.  Specify the following in the user page.
-
-    | **Setting**      | **Value** |
-    |------------------|-----------|
-    | Capacity         | 100       |
-    | Default Presence | available |
-
-    ![](./media/image14.png)
-
-7.  Select **Save and close**.
-
-    ![](./media/image15.png)
-
-### Task 3: Configure Omnichannel Power Virtual Agent Extension
+### Task 2: Configure Omnichannel Power Virtual Agent Extension
 
 1.  Open the link,
     +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++
@@ -187,7 +150,7 @@ if consent is already provided by the tenant administrator.
 
     ![](./media/image20.png)
 
-### Task 4: Configure search settings in the Power Platform admin center
+### Task 3: Configure search settings in the Power Platform admin center
 
 1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
     your tenant details. Select **Environments** -> **CustomerService
@@ -994,9 +957,11 @@ add new ones.
 
     ![](./media/image127.png)
 
+>[!Note] **Note:** Due to very recent changes in the Customer Service admin center, the following two exercises might not work expected. If you face issues completing it, please pause it for now.
+
 ## Exercise 7: Create workstream and channel in Dynamics 365 admin center
 
-### Task 1: Configure workstream 
+### **Task 1: Manage a user in Omnichannel for Customer Service**
 
 1.  Login to +++https://www.office.com+++ using your admin tenant id.
 
@@ -1009,12 +974,49 @@ add new ones.
 
     ![](./media/image129.png)
 
-4.  From the admin center page, select **Workstreams** from the left
+4.  In **Dynamics 365 Customer Service admin center**, in the site map,
+    select **User management** under **Customer support** group.
+
+5.  On the **User management** page, select **Manage** next
+    to **Users**.
+
+    ![](./media/image10.png)
+
+6.  Click the dropdown next to **Enabled Users** and select
+    **Omnichannel Users**.
+
+    ![](./media/image11.png)
+
+7.  On the **Omnichannel Users** page, select a user **MOD
+    Administrator** in the list.
+
+    ![](./media/image12.png)
+
+8.  On the **MOD Administrator** page, select the **Omnichannel** tab.
+
+    ![](./media/image13.png)
+
+9.  Specify the following in the user page.
+
+    | **Setting**      | **Value** |
+    |------------------|-----------|
+    | Capacity         | 100       |
+    | Default Presence | available |
+
+    ![](./media/image14.png)
+
+10.  Select **Save and close**.
+
+    ![](./media/image15.png)
+    
+### Task 1: Configure workstream 
+
+1.  From the admin center page, select **Workstreams** from the left
     pane and then select the **+ New workstream** option.
 
     ![](./media/image130.png)
 
-5.  Fill in the below details, scroll down and click on **Create**.
+2.  Fill in the below details, scroll down and click on **Create**.
 
     - Name - +++**Real Estate Workstream**+++
     
@@ -1028,12 +1030,12 @@ add new ones.
 
     ![](./media/image132.png)
 
-6.  Once the workstream is created, click on **Set up chat** to set up
+3.  Once the workstream is created, click on **Set up chat** to set up
     the chat channel.
 
     ![](./media/image133.png)
 
-7.  In the **Live chat setup – Channel details** screen, fill in the
+4.  In the **Live chat setup – Channel details** screen, fill in the
     below details and click on **Next**.
 
     - Name - +++**Real Estate Chat Channel**+++
@@ -1042,36 +1044,36 @@ add new ones.
 
     ![](./media/image134.png)
 
-8.  In the Live chat setup – Chat widget screen, provide the name as
+5.  In the Live chat setup – Chat widget screen, provide the name as
     +++**Real Estate Booking Assistant**+++, accept the other defaults
     and click on **Next**.
 
     ![](./media/image135.png)
 
-9.  In the **Live chat setup – Behaviors** screen, accept the defaults
+6.  In the **Live chat setup – Behaviors** screen, accept the defaults
     and click on **Next**.
 
     ![](./media/image136.png)
 
-10. In the **Live chat setup – User features** screen, toggle **File
+7. In the **Live chat setup – User features** screen, toggle **File
     attachment** and **Voice and video calls** options to **off** and
     click on **Next**.
 
     ![](./media/image137.png)
 
-11. In the **Live chat setup – Review and finish** screen, select
+8. In the **Live chat setup – Review and finish** screen, select
     **Create channel**.
 
     ![](./media/image138.png)
 
-12. **Copy** the widget that appears in the **Live chat setup –
+9. **Copy** the widget that appears in the **Live chat setup –
     Success** screen and **save** it in a notepad to add it to a webpage
     in the upcoming exercises. Then, click on **Done** to complete the
     configuration.
 
     ![](./media/image139.png)
 
-### Task 2: Add the copilot to the workstream
+### Task 3: Add the copilot to the workstream
 
 1.  Back in the **Real Estate Workstream** page, scroll down and click
     on **+ Add bot** in the Bot section.
