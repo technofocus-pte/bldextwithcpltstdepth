@@ -957,7 +957,7 @@ add new ones.
 
     ![](./media/image127.png)
 
->[!Note] **Note:** Due to very recent changes in the Customer Service admin center, the following two exercises might not work expected. If you face issues completing it, please pause it for now.
+>[!Note] **Note:** Due to very recent changes in the Customer Service admin center, the following two exercises might not work as expected. If you face issues completing it, please pause it for now.
 
 ## Exercise 7: Create workstream and channel in Dynamics 365 admin center
 
