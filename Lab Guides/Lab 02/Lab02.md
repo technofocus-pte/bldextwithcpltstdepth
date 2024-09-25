@@ -38,7 +38,7 @@ can create custom entities for your specific purpose.
 3.  Enter the below details
 
     -    Name - +++**Property Type**+++
-    -    **Enter item** under List items –
+    **Enter item** under List items
     -    +++**Apartment**+++ - Select **Add**
 
     ![](./media/image5.png)
@@ -267,7 +267,7 @@ Power Automate cloud flows
 
     ![](./media/image39.png)
 
-3.  Select **Next** in the **Choose an action** screen**.**.
+3.  Select **Next** in the **Choose an action** screen.
 
     ![](./media/image40.png)
 
@@ -465,9 +465,9 @@ Power Automate cloud flows
 9.  Select the **PropertyId** variable for the **PropertyId** input
     parameter.
 
-Select the **Name** variable for the **ViewerName** input parameter.
+    Select the **Name** variable for the **ViewerName** input parameter.
 
-Select the **EmailAddress** variable for the **ViewerEmail** input
+    Select the **EmailAddress** variable for the **ViewerEmail** input
 parameter.
 
     ![](./media/image76.png)
@@ -565,7 +565,7 @@ improve your copilot's responses.
 ### Task 1: Enable Generative AI
 
 1.  Login to the Copilot Studio using your tenant credentials at
-    +++<https://copilotstudio.microsoft.com>+++ if not logged in
+    +++https://copilotstudio.microsoft.com+++ if not logged in
     already.
 
 2.  Select the Copilot **Real Estate Booking Service**.
@@ -614,7 +614,7 @@ improve your copilot's responses.
 
     ![](./media/image95.png)
 
-4.  Give the name +++ Real Estate Website+++ in the Name field and then
+4.  Give the name +++Real Estate Website+++ in the Name field and then
     select **Add**.
 
     ![](./media/image96.png)
