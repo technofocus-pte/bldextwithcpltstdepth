@@ -1,238 +1,449 @@
-﻿# **Lab 05_ Sending messages from a Copilot(classic) to a Teams channel**
+# Lab 05 - Integrate an agent with the Dynamics 365 Customer Service app and implement automated case escalation to the live agent
 
-**Lab duration** – 30 minutes
+## Exercise 1: Configure the Dynamics 365 Customer Service workspace
 
-**Objective:**
+### Task 1: Configure Omnichannel Power Virtual Agent Extension
 
-In this lab, we will send message from a Copilot to a Teams channel by
-invoking a flow.
+1.  Open the link,
+    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++
+    and click on Get it now in the Omnichannel Power Virtual Agent
+    Extension page.
 
-## **Exercise 1: Add channel and Team in Microsoft Teams**
+    ![](./media/image1.png)
 
-1.  Open **Microsoft Teams** from the VM and login using your tenant
-    credentials if have closed it already. Select **Teams** option.
+    ![](./media/image2.png)
 
-       ![](./media/image1.png
-)
+    ![](./media/image3.png)
 
-2.  From the Teams, select **More options** and select **+ -\>**
-    **Create team**.
+2.  Select the **CustomerService Trial** under **Select an
+    environment**, select the check boxes and click on **Install**.
 
-       ![](./media/image2.png
-)
+    ![](./media/image4.png)
 
-3.  Name the team as +++**HR Team**+++, channel as +++**HR Experts**+++ and select **Create**.
+3.  In the Dynamics 365 apps page, click on the entries that shows
+    **Update available**, **select** the **check box** to agree to the
+    terms and click on **Update**.
 
-       ![](./media/image44.png)
+Make sure to do this for **all** the entries with **Update available**
+as the Status.
 
-4.  Select **Skip** on ‘Add members to HR Team’ window.
+    ![](./media/image5.png)
 
-       ![](./media/image4.png)
+    ![](./media/image6.png)
 
-7.  Select **Skip** on ‘Add members to the HR Experts channel’ window.
+### Task 2: Configure search settings in the Power Platform admin center
 
-       ![](./media/image7.png
-)
+1.  Login to +++<https://admin.powerplatform.microsoft.com/>+++ using
+    your tenant details. Select **Environments** -\> **CustomerService
+    Trial**.
 
-## **Exercise 2: Enhance topic to handle complex queries by escalating to HR experts**
+    ![](./media/image7.png)
 
-1.  From the Teams app, select the Copilot Studio app(Power Virtual
-    Agents), select **Copilots** tab and open the **HR Support
-    Copilot**.
+2.  Select the drop down next to **Resource** (in the top pane) and
+    select **Dynamics 365 apps**.
 
-       ![](./media/image8.png)
+    ![](./media/image8.png)
 
-     >[!Note] **Note:** If Copilot Studio shortcut is not found, search for **Copilot Studio/Power Virtual Agents under Apps** and select **Open**)
-     >
-     >![](./media/image45.png)
+3.  Make sure that **Omnichannel for Customer Service** is
+    **Installed**.
 
+    ![](./media/image9.png)
 
-2.  Select **Topics** from left pane and return to the topic you created
-    earlier(**Employee time off**) and go to the authoring canvas.
+4.  Navigate back to the **Environments -\> CustomerService** **Trial**
+    page in the admin center. Select **Settings** from the top pane.
 
-       ![](./media/image9.png)
+    ![](./media/image10.png)
 
-3.  In the **Ask a question node**, add an option named +++**Extended
-    leave**+++.
+5.  Select **Product** -\> **Features**.
 
-       ![](./media/image10.png
-)
+    ![](./media/image11.png)
 
-4.  Under the Condition node of Extended leave, add a question node
-    asking for a description for the issue and add the text +++**How
-    would you describe the issue?***+++*
+6.  Toggle **Dataverse Search** and **Single table search** option to
+    **ON.**
 
-       ![](./media/image11.png)
+    ![](./media/image12.png)
 
-5.  Select **User’s entire response** under Identity and save the
-    description in a variable named +++**Description**+++.
+    Scroll down and click on the **Save** button at the bottom right.
 
-       ![](./media/image12.png)
+    ![](./media/image13.png)
 
-6.  Select **Save**.
+## Exercise 2: Create an agent
 
-       ![](./media/image13.png
-)
+1.  From the Copilot Studio home page,
+    +++https://copilotstudio.microsoft.com+++, select the
+    **CustomerService Trial** Environment from the top right.
 
-7.  Add a node under the question and select **Call an action**. Select
-    **Create a flow** which launches the Power Automate within the
-    Copilot Studio in Teams.
+    ![](./media/image14.png)
 
-       ![](./media/image14.png
-)
+2.  Select **Agents** from the left pane. Click on the **+ New Agent**
+    to create a new agent.
 
-8.  Choose the **Power Virtual Agents Flow** Template option.
+    ![](./media/image15.png)
 
-       ![](./media/image15.png)
+3.  In the Type your message text area, type **+++You are a customer
+    service agent who helps in identifying stores nearby.**+++ And hit
+    **send**.
 
-       ![](./media/image16.png
-)
+    ![](./media/image16.png)
 
-9.  Add a **Text** input field by clicking on **+ Add an input** in the
-    first step. Replace the Input by +++**Description**+++.
+4.  Type the message +++**Maintain a polite tone**+++ next and hit
+    **send.**
 
-       ![](./media/image17.png)
+    ![](./media/image17.png)
 
-10. Insert a **new step** and select **Add an action**.
+5.  Click on **Create**.
 
-       ![](./media/image18.png)
+    ![](./media/image18.png)
 
-11. Select **Microsoft Teams** under **Choose an operation**.
+6.  The created agent opens up with a message, **Your agent is ready**.
 
-       ![](./media/image21.png)
+    ![](./media/image19.png)
 
-12. Select **Post message in a chat or channel**.
+## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
 
-       ![](./media/image22.png)
+### Task 1: Configure the Escalate topic
 
-13. Provide the below details:
+We are focusing here on showcasing the escalation to live agent concept.
+So, we will directly work towards it without creating any other new
+topics.
 
-- Post as – **User**
+1.  Select the **Topics** tab and then select the **System** tab. Select
+    the **Escalate** topic.
 
-- Post in – **Channel**
+    ![](./media/image20.png)
 
-- Team – **HR Team**
+2.  Select the message node of the topic and replace the existing
+    content with, +++**You will be transferred to a live agent
+    shortly**+++
 
-- Channel – **HR Experts**
+    ![](./media/image21.png)
 
-- Message **– Description** from **Dynamic Content**
+3.  Click on the + symbol to add a node next to the Message node.
 
-       ![](./media/image23.png
-)
+4.  Select **Topic management** -\> **Transfer conversation**.
 
-14. Rename the flow as +++**Send a message to HR team**+++ and click on
-    **Save**.
+    ![](./media/image22.png)
 
-       ![](./media/image24.png
-)
+5.  Give a message +++The customer wants to talk to a live agent+++ in the
+    Transfer conversation node.
 
-15. Click on **Close** to close the Power Automate and return to the
-    Authoring canvas.
+    ![ ](./media/image23.png)
 
-       ![](./media/image25.png
-)
+6.  **Save** the Topic.
 
-16. From the Authoring canvas, add a node – **call an action** -\>
-    **Send a message to HR team**.
+    ![](./media/image24.png)
 
-       ![](./media/image26.png
-)
+7.  **Publish** the agent.
 
-17. Add in the input as **Description**.
+    ![](./media/image25.png)
 
-       ![](./media/image27.png
-)
+### Task 2: Connect the copilot to Dynamics 365 Customer Service
 
-18. Add in a message node with the message, +++**We notified the expert.
-    They’ll reach out shortly**+++.
+1.  Once published, from the copilot page top right, click on
+    **Settings**.
 
-       ![](./media/image28.png
-)
+    ![](./media/image26.png)
 
-19. End the conversation \> End the survey.
+2.  Select **Security**, and **Authentication** under Security.
 
-       ![](./media/image29.png)
+    ![](./media/image27.png)
 
-20. Click on **Save** to save the topic.
+3.  Select the **No authentication** option and then click on **Save**.
 
-       ![](./media/image30.png
-)
+    ![](./media/image28.png)
 
-21. A success message of **Topic saved** is obtained.
+4.  Select **Save** in the confirmation dialog box.
 
-       ![](./media/image31.png
-)
+    ![](./media/image29.png)
 
-## **Exercise 3: Test your chatbot**
+5.  Close the **Settings** pane.
 
-1.  Select Test your chatbot from the left pane.
+6.  Click on **Channels** (If the Channels is not visible, click on the
+    +1 to view the **Channels** option)
 
-       ![](./media/image32.png
-)
+    ![](./media/image30.png)
 
-2.  Send a message +++**I need help with time off**+++ and select
-    Extended leave to answer the chatbot.
+7.  Select **Dynamics 365 Customer Service** from the Customer
+    engagement hub pane.
 
-       ![](./media/image33.png)
+    ![](./media/image31.png)
 
-3.  Describe a reason for your leave extension. Here, we have given it
-    as +++**I need extended leave of one month for travelling**+++.
+8.  On the Dynamics 365 Customer Service page, click on **Connect**.
 
-       ![](./media/image34.png)
+    ![](./media/image32.png)
 
-4.  The bot replies with “We notified an expert…..” message.
+9.  Once you get a **successfully connected** message, click on
+    **Close**.
 
-       ![](./media/image35.png)
+    ![](./media/image33.png)
 
-       ![](./media/image36.png)
+## Exercise 4: Create workstream and channel in Dynamics 365 admin center
 
-## **Exercise 4: Check the message in Teams.**
+### Task 1: Manage a user in Omnichannel for Customer Service
 
-1.  Click on Teams from the left menu of the MS Teams app.
+1.  Login to +++https://admin.powerplatform.microsoft.com+++ using your
+    admin tenant credentials and select **Environments** from the left
+    tab. The **CustomerService Trial** will be listed here. **Select**
+    it.
 
-       ![](./media/image37.png")
+    ![](./media/image34.png)
 
-2.  Select the **HR Experts** channel under the **HR Team** team. Notice
-    that the message from the user to the bot has been sent here.
+2.  Click on the **url value** under **Environment URL**.
 
-       ![](./media/image38.png
-)
+    ![](./media/image35.png)
 
-## **Exercise 5: Publish your copilot – Teams**
+3.  This opens up the **Dynamics 365 Customer Service admin center**
+    page.
 
-1.  Go back to Microsoft Copilot Studio app. Select the chatbot **HR
-    Support Copilot**.
+    ![](./media/image36.png)
 
-2.  Select Publish from the left pane.
+4.  In **Dynamics 365 Customer Service admin center**, in the site map,
+    select **User management** under **Customer support** group.
 
-       ![](./media/image39.png)
+5.  On the **User management** page, select **Manage** next
+    to **Users**.
 
-3.  Click on **Publish**.
+    ![](./media/image37.png)
 
-       ![](./media/image40.png)
+6.  Click the dropdown next to **Enabled Users** and select
+    **Omnichannel Users**.
 
-4.  Select Publish in the **Publish latest content?**
+    ![](./media/image38.png)
 
-       ![](./media/image41.png)
+    >[!Alert] **Important:** If you are not able to see the **Omnichannel Users**
+option, it is due to some back-end changes that is happening recently.
+If you are not able to complete this step, then you will not be able to
+complete the Exercises 7 and 8. Please omit them.
 
-5.  Success message is obtained as in the screenshot below. Click on the
-    **Availability options**.
+7.  On the **Omnichannel Users** page, select a user **MOD
+    Administrator** in the list.
 
-       ![](./media/image42.png
-)
+    ![](./media/image39.png)
 
-6.  The **Add to Contoso** option adds the bot to the specific team.
+8.  On the **MOD Administrator** page, select the **Omnichannel** tab.
 
-7.  **Show to my team mates and shared users** makes the bot to appear
-    under the Built by colleagues section.
+    ![](./media/image40.png)
 
-8.  **Show to everyone in the org** submits the request to the admin to
-    get the bot listed under the **Built by org** section.
+9.  Specify the following in the user page.
 
-       ![](./media/image43.png
-)
+    | Setting   |   Value |
+    |:---------|:---------|
+    |   Capacity |  100|
+    |   Default Presence | available    |
+    ![](./media/image41.png)
 
-**Summary:**
+10. Select **Save and close**.
 
-In this lab, we have learnt to post a message to the Teams channel from
-the bot.
+    ![](./media/image42.png)
+
+### Task 2: Configure workstream 
+
+1.  From the admin center page, select **Workstreams** under **Customer
+    support** from the left pane and then select the **+ New
+    workstream** option.
+
+    ![](./media/image43.png)
+
+2.  Fill in the below details, scroll down and click on **Create**.
+
+    - Name - +++**New Workstream**+++
+
+    - Owner – **MOD Administrator** (Selected by default)
+
+    - Type – **Messaging**
+
+    - Channel – **Chat**
+
+    ![](./media/image44.png)
+
+    ![](./media/image45.png)
+
+3.  Once the workstream is created, click on **Set up chat** to set up
+    the chat channel.
+
+    ![](./media/image46.png)
+
+4.  In the **Live chat setup – Channel details** screen, fill in the
+    below details and click on **Next**.
+
+    - Name - +++**Chat Channel**+++
+
+    - Language – **United States**
+
+    ![](./media/image47.png)
+
+5.  In the Live chat setup – Chat widget screen, provide the name as
+    +++**Store Locator Assistant**+++, accept the other defaults and
+    click on **Next**.
+
+    ![](./media/image48.png)
+
+6.  In the **Live chat setup – Behaviors** screen, accept the defaults
+    and click on **Next**.
+
+    ![](./media/image49.png)
+
+7.  In the **Live chat setup – User features** screen, toggle **File
+    attachment** and **Voice and video calls** options to **off** and
+    click on **Next**.
+
+    ![](./media/image50.png)
+
+8.  In the **Live chat setup – Review and finish** screen, select
+    **Create channel**.
+
+    ![](./media/image51.png)
+
+9.  **Copy** the widget that appears in the **Live chat setup –
+    Success** screen and **save** it in a notepad to add it to a webpage
+    in the upcoming exercises. Then, click on **Done** to complete the
+    configuration.
+
+    ![](./media/image52.png)
+
+### Task 3: Add the copilot to the workstream
+
+1.  Back in the **New Workstream** page, scroll down and click on **+
+    Add bot** in the Bot section.
+
+    ![](./media/image53.png)
+
+2.  From the list of copilots on the Add bot screen, select the **Store
+    Locator Assistant** copilot and click on **Connect**.
+
+    ![](./media/image54.png)
+
+3.  Ensure that the bot is added to the workstream as in the screenshot
+    below.
+
+    ![](./media/image55.png)
+
+4.  From the left pane, select **Bots**.
+
+    ![](./media/image56.png)
+
+5.  Ensure that the Real Estate Booking Service copilot is connected.
+
+    ![](./media/image57.png)
+
+## Exercise 5: Create a webpage and test the escalation to agent
+
+1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
+    tenant admin credentials.
+
+    ![](./media/image58.png)
+
+2.  Ensure that you are in **CustomerService Trial** environment.
+
+3.  Click on **Get started**.
+
+    ![](./media/image59.png)
+
+4.  Click on Skip in the **Tell us about yourself** page.
+
+    ![](./media/image60.png)
+
+5.  Scroll down in the next page and click on **Start with a template**
+    option to start creating the site with a template.
+
+    ![](./media/image61.png)
+
+6.  Select a template and click on **Choose this template**.
+
+    ![](./media/image62.png)
+
+7.  In the Give your site a name textbox, enter the name as +++**Contoso
+    Store assistant**+++, accept the other defaults and click on
+    **Done**.
+
+    ![](./media/image63.png)
+
+8.  Once the site is created, click on **Edit site header** in the
+    **Company name** title.
+
+    ![](./media/image64.png)
+
+9.  In the **Edit site header** pane, provide the **Site title** as
+    +++**Contoso Store assistant**+++.
+
+    ![](./media/image65.png)
+
+10. Click on Edit code in the top right corner of the page.
+
+    ![](./media/image66.png)
+
+11. Click on **Open Visual Studio Code**.
+
+    ![](./media/image67.png)
+
+12. Click **Allow**.
+
+    ![](./media/image68.png)
+
+13. The Home page of the web page opens up in the Visual Studio Code.
+
+    ![](./media/image69.png)
+
+14. Scroll to the end of the file. Add the **script** copied while
+    creating the workstream, after the last line of this file.
+
+    ![](./media/image70.png)
+
+15. Save the file, close the Visual Studio Code tab and return to the
+    Power pages. Click on **Sync**.
+
+    ![](./media/image71.png)
+
+16. Once the Sync is completed, select **Preview** -\> **Desktop.**
+
+    ![](./media/image72.png)
+
+17. Your web page opens in a new tab. Find the **Store Locator
+    Assistant** embedded to the page at the bottom right of the web
+    page. **Click** on it.
+
+    ![](./media/image73.png)
+
+18. Enter +++Talk to agent+++.
+
+    ![](./media/image74.png)
+
+19. From the Customer Service admin page, click on **Customer Service
+    admin center** and select the app **Customer Service workspace**
+    from it.
+
+    ![](./media/image75.png)
+
+    ![](./media/image76.png)
+
+20. In the Customer Service workspace page, you will get a **chat
+    request**. **Accept** it.
+
+    ![](./media/image77.png)
+
+21. Once accepted, the chat screen opens up with the message that we had
+    given in the Escalate topic. We can also add any other information
+    provided by the user here to the live agent.
+
+    ![](./media/image78.png)
+
+22. Simulate the chat between the live agent and the customer if you
+    wish to see how it works and then ends.
+
+    ![](./media/image79.png)
+
+    ![](./media/image80.png)
+
+**Summary**
+
+In this lab, we have learnt to
+
+- Build an agent from the Copilot Studio and configure the Escalate
+  topic.
+
+- Publish the agent to Dynamics 365 workspace and integrate it in a web
+  page.
+
+- Configure and test the escalation to a live agent.
+
+
