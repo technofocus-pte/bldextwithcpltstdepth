@@ -1,105 +1,252 @@
-# **Lab 07 – Extending Microsoft Copilot with prompt actions (preview)**
+# **Lab 07_ Sending messages from a Copilot(classic) to a Teams channel**
 
-**Lab duration** – 20 minutes
+**Lab duration** – 30 minutes
 
-**Objective**
+**Objective:**
 
-AI actions can be used to extend Microsoft Copilot, or used within a
-custom copilot as a plugin action. In this lab, we will learn about
-creating Prompt actions.
+In this lab, we will send message from a Copilot to a Teams channel by
+invoking a flow.
 
-The action will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **Exercise 1: Add channel and Team in Microsoft Teams**
 
-## **Exercise 1: Navigate to the Add a prompt action wizard**
+1.  Open **Microsoft Teams** from the VM and login using your tenant
+    credentials if you have closed it already. Select **Teams** option.
 
-1.  Sign into Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your admin tenant
-    credentials.
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-2.  Select **Library** on the side navigation pane.
+2.  From the Teams, select **More options** and select **+ -\>**
+    **Create team**.
 
-    ![](./media/image1.png)
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-4.  Select **+ Add an item**. You're prompted to select a Microsoft
-    Copilot to extend.
+3.  Name the team as +++**HR Team**+++, channel as +++**HR Experts**+++
+    and select **Create**.
 
-    ![](./media/image2.png)
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-5.  Select **Copilot for Microsoft 365**.
+4.  Select **Skip** on ‘Add members to HR Team’ window.
 
-    ![](./media/image3.png)
+![A screenshot of a computer Description automatically
+generated](./media/image4.png)
 
-6.  A **New action** menu appears. Select **Prompt**.
+5.  Select **Skip** on ‘Add members to the HR Experts channel’ window.
 
-    ![](./media/image4.png)
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-7.  The **Add a prompt action** wizard opens.
+## **Exercise 2: Enhance topic to handle complex queries by escalating to HR experts**
 
-## **Exercise 2: Generate content or extract insights with AI Builder dynamic prompts**
+1.  From the Teams app, select the Copilot Studio app(Power Virtual
+    Agents), select **Copilots** tab and open the **HR Support
+    Copilot**.
 
-1.  Provide the below details and click on **Next**.
+> ![](./media/image6.png)
+>
+> **Note:** If Copilot Studio shortcut is not found, search for
+> **Copilot Studio/Power Virtual Agents under Apps** and select
+> **Open**)
+>
+> ![](./media/image7.png)
 
-    - Name - +++**Dynamic prompt**+++
-    
-    - Description - +++**Dynamic prompt to summarize text**+++
+2.  Select **Topics** from left pane and return to the topic you created
+    earlier(**Employee time off**) and go to the authoring canvas.
 
-    ![](./media/image5.png)
+> ![A screenshot of a chat Description automatically
+> generated](./media/image8.png)
 
-2.  Select **Summarize text**.
+3.  In the **Ask a question node**, add an option named **Extended
+    leave**.
 
-    ![](./media/image6.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image9.png)
 
-3.  It will add a prompt with a dynamic value **text**.
+4.  Under the Condition node of Extended leave, add a question node
+    asking for a description for the issue and add the text +++**How
+    would you describe the issue?***+++*
 
-    ![](./media/image7.png)
+> ![](./media/image10.png)
 
-4.  Click on the **Input** under Prompt Settings add the below content
-    in the **Sample data**.
-	
-    ```
-    Meet comfortably and confidently with customizable meeting views
-    The meeting stage, or gallery, is at the core of the virtual meeting experience and can either hinder or enhance meeting efficiency depending on your needs. We’re excited to share how we’re evolving the default gallery experience in Teams meetings to give you a simpler, more predictable meeting presence—while enabling more controls that let you personalize the view to suit your preferences.
-    First, let’s look at the new default gallery experience that will be applicable to all. The new gallery will place everyone in tiles of equal size (16:9 ratio) whether their video is turned on or off. Additionally, the new default gallery layout will be more consistent and predictable for all meetings, regardless of size and content shared.
-    And when a Teams Room joins the meeting, the video of the room automatically enlarges, bridging the gap between remote and in-room participants. Remote attendees enjoy a clearer view and better connection, easily spotting who is speaking. Want a custom view? Simply tweak the tile size to your preference from the more options (...) menu by hovering on the room name. It's seamless, inclusive, and ensures everyone can be seen, no matter where they are.
-    Next, let’s look at the controls that help you customize every meeting view to suit your needs.
-    
-    While the default gallery size for meetings will be 16 participants, you can customize the number of participants visible on your screen to best fit your preference. You can choose from 4, 9, 16, and 49 participants visible on the screen for gallery size.
-    
-    There are still a few default configurations that AI will optimize for to improve engagement and efficiency. For virtual participants, these are prioritizing those that have a raised hand and prioritizing the active speaker, enhancing their visibility so comments are not missed.
-    ```
+5.  Select **User’s entire response** under Identity and save the
+    description in a variable named +++**Description**+++.
 
-    ![](./media/image8.png)
+> ![A screenshot of a computer screen Description automatically
+> generated](./media/image11.png)
 
-5.  Click on **Test prompt**.
+6.  Select **Save**.
 
-    ![](./media/image9.png)
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-6.  Notice that the Prompt response, summarizing the text is generated.
+7.  Add a node under the question and select **Call an action**. Select
+    **Create a flow** which launches the Power Automate within the
+    Copilot Studio in Teams.
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image13.png)
 
-7.  Click on **Save custom prompt**.
+8.  Choose the **Power Virtual Agents Flow** Template option.
 
-    ![](./media/image11.png)
+![](./media/image14.png)
 
-8.  Click on **Next**.
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-    ![](./media/image12.png)
+9.  Add a **Text** input field by clicking on **+ Add an input** in the
+    first step. Replace the Input by **Description**.
 
-9.  Click on **Publish.**
+![A computer screen shot of a computer error Description automatically
+generated](./media/image16.png)
 
-    ![](./media/image13.png)
+10. Insert a **new step** and select **Add an action**.
 
-10. Once published, click on **Go to details page** to view the details.
+![](./media/image17.png)
 
-    ![](./media/image14.png)
+11. Select **Microsoft Teams** under **Choose an operation**.
 
-Your prompt action is now published to **Copilot for Microsoft 365**. It
-will show up in copilot experiences only if you have a valid Copilot
-license.
+![](./media/image18.png)
+
+12. Select **Post message in a chat or channel**.
+
+![](./media/image19.png)
+
+13. Provide the below details:
+
+- Post as – **User**
+
+- Post in – **Channel**
+
+- Team – **HR Team**
+
+- Channel – **HR Experts**
+
+- Message **– Description** from **Dynamic Content**
+
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
+
+14. Rename the flow as +++**Send a message to HR team**+++ and click on
+    **Save**.
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image21.png)
+
+15. Click on **Close** to close the Power Automate and return to the
+    Authoring canvas.
+
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
+
+16. From the Authoring canvas, add a node – **call an action** -\>
+    **Send a message to HR team**.
+
+![A screenshot of a computer Description automatically
+generated](./media/image23.png)
+
+17. Add in the input as **Description**.
+
+![A screenshot of a computer Description automatically
+generated](./media/image24.png)
+
+18. Add in a message node with the message, +++**We notified the expert.
+    They’ll reach out shortly**+++.
+
+![A screenshot of a computer Description automatically
+generated](./media/image25.png)
+
+19. End the conversation \> End the survey.
+
+![A screenshot of a chat Description automatically
+generated](./media/image26.png)
+
+20. Click on **Save** to save the topic.
+
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
+
+21. A success message of **Topic saved** is obtained.
+
+![A screenshot of a computer Description automatically
+generated](./media/image28.png)
+
+## **Exercise 3: Test your chatbot**
+
+1.  Select Test your chatbot from the left pane.
+
+![A screenshot of a computer Description automatically
+generated](./media/image29.png)
+
+2.  Send a message +++**I need help with time off**+++ and select
+    Extended leave to answer the chatbot.
+
+![A screenshot of a chat Description automatically
+generated](./media/image30.png)
+
+3.  Describe a reason for your leave extension. Here, we have given it
+    as +++**I need extended leave of one month for travelling**+++.
+
+![A screenshot of a chat Description automatically
+generated](./media/image31.png)
+
+4.  The bot replies with “We notified an expert…..” message.
+
+![A screenshot of a chatbot Description automatically
+generated](./media/image32.png)
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image33.png)
+
+## **Exercise 4: Check the message in Teams.**
+
+1.  Click on Teams from the left menu of the MS Teams app.
+
+![](./media/image34.png)
+
+2.  Select the **HR Experts** channel under the **HR Team** team. Notice
+    that the message from the user to the bot has been sent here.
+
+![A screenshot of a computer Description automatically
+generated](./media/image35.png)
+
+## **Exercise 5: Publish your copilot – Teams**
+
+1.  Go back to Microsoft Copilot Studio app. Select the chatbot **HR
+    Support Copilot**.
+
+2.  Select Publish from the left pane.
+
+![A screenshot of a chat Description automatically
+generated](./media/image36.png)
+
+3.  Click on **Publish**.
+
+![](./media/image37.png)
+
+4.  Select Publish in the **Publish latest content?**
+
+![A close-up of a computer screen Description automatically
+generated](./media/image38.png)
+
+5.  Success message is obtained as in the screenshot below. Click on the
+    **Availability options**.
+
+![A screenshot of a computer Description automatically
+generated](./media/image39.png)
+
+6.  The **Add to Contoso** option adds the bot to the specific team.
+
+7.  **Show to my team mates and shared users** makes the bot to appear
+    under the Built by colleagues section.
+
+8.  **Show to everyone in the org** submits the request to the admin to
+    get the bot listed under the **Built by org** section.
+
+![A screenshot of a computer Description automatically
+generated](./media/image40.png)
 
 **Summary:**
 
-In this lab, we have learnt to create and publish connector actions from
-the Copilot Studio.
+In this lab, we have learnt to post a message to the Teams channel from
+the bot.
