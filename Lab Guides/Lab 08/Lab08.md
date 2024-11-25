@@ -1,92 +1,144 @@
-# **Lab 08 - Extending Microsoft Copilot with connector actions (preview)**
+**Lab 08 - Creating conversational actions for Microsoft Copilot**
 
 **Lab duration** – 20 minutes
 
-**Objective:**
+**Objective**
 
-Connector actions let you define connectors that can be invoked from AI
-surfaces in Power Platform. For connector actions, you need to identify
-the actions enabled for use in the Copilot. You can also capture the
-information that large language models require to effectively identify
-and utilize the plugin, such as summary and description fields.
+Microsoft Copilot provides out of the box experiences to engage with
+content and resources from across your organization. In some situations,
+answers and interaction with external systems are required. With
+Microsoft Copilot Studio, you can author a conversational topic that can
+be published as a Copilot Plugin. Once your Tenant Admin approves the
+Plugin, it can be added to your organization's M365 Chat experiences.
 
-In this lab, we will learn how to add a connector action and publish it.
+The actions will be available in the Microsoft Copilot in production, if
+the organization has valid license for the same.
 
-## **Exercise 1: Add a connector action**
+In this lab, we will learn how to create a Conversational action.
 
-### **Task 1: Select the Copilot experience and choose connector action**
+## **Exercise 1: Create a Conversational action**
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your tenant
-    credentials if not done already.
+1.  Login to +++**https://copilotstudio.microsoft.com/**+++ using your
+    tenant credentials if not already logged in.
 
-2.  On the home page, select **Copilots** and select **Copilot for
-    Microsoft 365**.
+2.  Select **Copilot for Microsoft 365**.
 
     ![](./media/image1.png)
 
-3.  Select **Actions** and then select **+ Add action**.
+3.  Select **Actions**.
 
     ![](./media/image2.png)
 
-4.  Select **connector**.
+4.  Select **+ Add an action**.
 
     ![](./media/image3.png)
 
-5.  Select **SharePoint**.
+5.  Select **Conversational** in the **New action** pane.
 
     ![](./media/image4.png)
 
-6.  The **Add a connector action** pane opens. Accept the defaults and
-    click on **Next**.
+6.  Provide the name for the action as **Conversational action**.
+    Select **Create**.
 
     ![](./media/image5.png)
 
-7.  Select the **Get lists**, accept the other defaults and click on
-    **Next**.
-
     ![](./media/image6.png)
 
-8.  **Review** the action’s parameters and click on **Next**.
+7.  Once ready, the created action opens in Authoring canvas. Select
+    **Topics**.
 
     ![](./media/image7.png)
 
-9.  The screen again lands in the Add a connector action to enable
-    adding more actions. We can select **Next** since we are adding only
-    one action here.
+8.  Name the topic as Holidaylist
 
     ![](./media/image8.png)
 
-10. In the Review, test and publish your action screen, click on **+ New
-    connection**.
+9.  In the Trigger node’s description, provide a clear description of
+    how the conversational plugin can help the user and what it can
+    do. Let this topic help the user to find the list of holidays in the
+    year 2024.
+
+    Type +++**This plugin helps to retrieve the list of holidays for the
+year 2024.**+++ in the Trigger node’s description.
 
     ![](./media/image9.png)
 
-11. Select **Create**.
+This description has functional purpose and is used by the Microsoft
+Copilot to determine whether to invoke your plugin or not.
+
+10. Add a message node with the list of holidays.
+
+    - New Year's Day - January 1
+
+    - Martin Luther King, Jr.'s Birthday (Third Monday of January) -
+      January 15, 2024
+
+    - Washington's Birthday or Presidents' Day (third Monday of
+      February) - February 19
+
+    - Memorial Day (last Monday of May) - May 27
+
+    - Juneteenth Day - June 19
+
+    - Independence Day - July 4
+
+    - Labor Day (first Monday of September) - September 2
+
+    - Columbus Day (Second Monday of October) - October 14
+
+    - Veterans Day or Veterans Day - November 11
+
+    - Thanksgiving Day (fourth Thursday of November): November 28
+
+    - Christmas Day - December 25
 
     ![](./media/image10.png)
 
-12. Login using your tenant credentials. Once the connection is
-    established, select it (if not automatically selected) and then
-    click on **Next**.
+11. Click on **Save** to save the plugin.
 
     ![](./media/image11.png)
 
-13. In the next screen, your connection action gets published.
-
     ![](./media/image12.png)
 
-14. Once done, you will get a message stating that the **Your**
-    **connector action is now published to Copilot for Microsoft 365**.
-    Click on **Go to details page** to see the details.
+## **Exercise 2: Publishing your conversational action to Microsoft Copilot**
+
+1.  Publishing your conversational plugin creates a new plugin in the
+    Dataverse registry for your Tenant. Once available there, your
+    tenant admin needs to approve your plugin to be available to users
+    in the Microsoft Copilot plugins catalog.
+
+2.  Click on **Publish**.
 
     ![](./media/image13.png)
 
-Your connector action is now published to **Copilot for Microsoft 365**.
-It will show up in copilot experiences only if you have a valid Copilot
-license.
+3.  Select **Publish.**
+
+    ![](./media/image14.png)
+
+4.  Select **Publish** on **Publish latest content** dialog.
+
+    ![](./media/image15.png)
+
+5.  The publish status is shown on the screen.
+
+    ![](./media/image16.png)
+
+    >[!Note] Note: The publish should complete quickly. The actual availability in
+the Microsoft Admin Center can take up to 4 hours.
+
+>[!Alert] **Important:** **:** For the admin to get it listed in the admin center,
+the company will have to hold a valid Copilot license.
+
+6.  Your Admin can find the **Dataverse and Microsoft Copilot
+    Studio** integrated app in the Microsoft Admin Center
+    under **Settings**, then **Integrations to be reviewed and
+    approved**.
+
+7.  Once your Tenant admin approves the Dataverse and Microsoft Copilot
+    Studio integrated app, it should appear in the user's list of
+    plugins in their Microsoft Copilot UI.
 
 **Summary:**
 
-In this lab, we have learnt how to add a connector option, viewed the
-different types of actions available and publish it.
+In this lab, we have learnt how to create a conversational action and to
+publish it.
