@@ -1,155 +1,226 @@
-# **Lab 06 - Creating conversational actions for Microsoft Copilot**
+# **Lab 06_Creating and deploying a Microsoft Copilot Studio copilot from Teams**
 
-**Lab duration** – 20 minutes
+**Lab duration** – 30 minutes
 
-**Objective**
+**Objective:**
 
-Microsoft Copilot provides out of the box experiences to engage with
-content and resources from across your organization. In some situations,
-answers and interaction with external systems are required. With
-Microsoft Copilot Studio, you can author a conversational topic that can
-be published as a Copilot Plugin. Once your Tenant Admin approves the
-Plugin, it can be added to your organization's M365 Chat experiences.
+In this lab, you will Install the Copilot Studio app in Microsoft Teams,
+create a new copilot in a team and test it.
 
-The actions will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **Exercise 1: Install the Copilot Studio app in Microsoft Teams**
 
-In this lab, we will learn how to create a Conversational action.
+1.  Open the link
+    +++https://www.microsoft.com/en-in/microsoft-teams/download-app+++
+    From a browser. Click on **Download the new Teams app** -\>
+    **Download for Windows (64-bit)**
 
-## **Exercise 1: Create a Conversational action**
+    ![](./media/image1.png)
 
-1.  Login to +++**https://copilotstudio.microsoft.com/**+++ using your
-    tenant credentials if not already logged in.
+2.  **Double click** on the **downloaded file** to install the Teams for
+    School app.
 
-2.  Select **Copilot for Microsoft 365**.
+3.  Follow the prompts to install.
 
-    ![](./media/image1.png
-)
+4.  Once installed, **Sign in** using your **office 365 tenant
+    credentials**.
 
-3.  Select **Actions**.
+    ![](./media/image2.png)
 
-    ![](./media/image2.png
-)
+5.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
+    **Microsoft Copilot Studio** and click on **Add**.
 
-4.  Select **+ Add an action**.
+    **Note:** If you are not able to find Copilot Studio, you will have to
+search for and select **Power Virtual agent** and add it.
 
     ![](./media/image3.png)
 
-5.  Select **Conversational** in the **New action** pane.
+    ![](./media/image4.png)
 
-    ![](./media/image4.png
-)
-
-6.  Provide the name for the action as +++**Conversational action**+++.
-    Select **Create**.
+6.  Click on **Start now**.
 
     ![](./media/image5.png)
 
+## **Exercise 2: Create a new copilot in a team**
+
+1.  **Sign in** to **Teams** using your **office 365 tenant
+    credentials**.
+
+    ![](./media/image2.png)
+
+2.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
+    **Microsoft Copilot Studio** and click on **Add**.
+
+    ![](./media/image3.png)
+
+    ![](./media/image4.png)
+
+>[!Alert]**Important:** If you are not able to find Copilot Studio, you will have
+to search for and select +++**Power Virtual agent**+++ and add it.
+
     ![](./media/image6.png)
 
-7.  Once ready, the created action opens in Authoring canvas. Select
-    **Topics**.
+    ![](./media/image7.png)
 
-    ![](./media/image7.png
-)
+3.  Click on **Start now**.
 
-8.  Name the topic as +++Holidaylist+++
+    ![](./media/image5.png)
 
-    ![](./media/image8.png
-)
+4.  Select **Contoso** and click on **Continue**.
 
-9.  In the Trigger node’s description, provide a clear description of
-    how the conversational plugin can help the user and what it can
-    do. Let this topic help the user to find the list of holidays in the
-    year 2024.
+    ![](./media/image8.png)
 
-    Type +++**This plugin helps to retrieve the list of holidays for the
-year 2024.**+++ in the Trigger node’s description.
+    ![](./media/image9.png)
 
-    ![](./media/image9.png
-)
+>[!Alert] **Important:** This step may take around 10 minutes. If it is taking too
+long, close it, select Copilot Studio or Power Virtual Agents from Apps
+in the left pane and redo step 4.
 
-    This description has functional purpose and is used by the Microsoft
-Copilot to determine whether to invoke your plugin or not.
-
-10. Add a message node with the list of holidays.
-    ```
-    - New Year's Day - January 1
-
-    - Martin Luther King, Jr.'s Birthday (Third Monday of January) -
-      January 15, 2024
-
-    - Washington's Birthday or Presidents' Day (third Monday of
-      February) - February 19
-
-    - Memorial Day (last Monday of May) - May 27
-
-    - Juneteenth Day - June 19
-
-    - Independence Day - July 4
-
-    - Labor Day (first Monday of September) - September 2
-
-    - Columbus Day (Second Monday of October) - October 14
-
-    - Veterans Day or Veterans Day - November 11
-
-    - Thanksgiving Day (fourth Thursday of November): November 28
-
-    - Christmas Day - December 25
-    ```
+5.  In the Create a copilot pane, provide the name of the Copilot as
+    +++**HR Support Copilot**+++ and click on **Create**.
 
     ![](./media/image10.png)
 
-11. Click on **Save** to save the plugin.
+6.  A success message stating, **Your chatbot is provisioned** is
+    obtained.
 
-    ![](./media/image11.png
-)
+    ![](./media/image11.png)
+
+## **Exercise 3: Build an employee time-off topic for common time-off queries**
+
+1.  Click on **Topics** from the left pane. Click on **+ New topic -\>
+    From blank.**
 
     ![](./media/image12.png)
 
-## **Exercise 2: Publishing your conversational action to Microsoft Copilot**
+2.  **Close** the Trigger phrases pane for now.
 
-1.  Publishing your conversational plugin creates a new plugin in the
-    Dataverse registry for your Tenant. Once available there, your
-    tenant admin needs to approve your plugin to be available to users
-    in the Microsoft Copilot plugins catalog.
+    ![](./media/image13.png)
 
-2.  Click on **Publish**.
-
-    ![](./media/image13.png
-)
-
-3.  Select **Publish.**
+3.  Click on the **Details** icon.
 
     ![](./media/image14.png)
 
-4.  Select **Publish** on **Publish latest content** dialog.
+4.  In the Details pane, provide the name as +++**Employee time off**+++
+    and Description as +++**Employee time off topic for common time-off
+    queries**+++.
 
-    ![](./media/image15.png
-)
+    ![](./media/image15.png)
 
-5.  The publish status is shown on the screen.
+5.  **Close** the Details pane.
 
-    ![](./media/image16.png
-)
+    ![](./media/image16.png)
 
-Note: The publish should complete quickly. The actual availability in
-the Microsoft Admin Center can take up to 4 hours.
+6.  Click on **Save**.
 
-**Important:** **:** For the admin to get it listed in the admin center,
-the company will have to hold a valid Copilot license.
+    ![](./media/image17.png)
 
-6.  Your Admin can find the **Dataverse and Microsoft Copilot
-    Studio** integrated app in the Microsoft Admin Center
-    under **Settings**, then **Integrations to be reviewed and
-    approved**.
+7.  Click on the **Trigger phases.**
 
-7.  Once your Tenant admin approves the Dataverse and Microsoft Copilot
-    Studio integrated app, it should appear in the user's list of
-    plugins in their Microsoft Copilot UI.
+    ![](./media/image18.png)
+
+8.  Add in a trigger phrase, +++**I need help with time off**+++ and
+    click on **+.**
+
+    ![](./media/image19.png)
+
+9.  Add in the below trigger phrases.
+
+    - +++**Need information on time off**+++
+
+    - +++**How many days of paid vacation do I have**+++
+
+    - +++**What are the national holidays**+++
+
+    - +++**I need extended leave**+++
+
+    ![](./media/image20.png)
+
+    Close the Trigger phrases pane.
+
+10. Add a Message node and enter the text, +++I can help with questions
+    related to time-off*+++*.
+
+    ![](./media/image21.png)
+
+11. As an HR employee, you know the most common time-off questions are
+    about **paid vacation** time and **national holidays**. When a
+    question node with user response options is added, the topic
+    automatically gets a forked branch for each response.
+
+12. Select the (**+**) icon below the message node, then select **Ask a
+    question** to add a question node to the topic. Enter *What
+    information are you looking for?* in the **Ask a question** text
+    box.
+
+    ![](./media/image22.png)
+
+13. Under **Options for user**, add +++Paid
+    vacation*+++* and +++National Holidays*+++* as two options.
+
+    ![](./media/image23.png)
+
+14. User choices are stored in a variable and the topic branches off,
+    based on the option the user chooses. You can rename the variable to
+    track it better in the topic.
+
+15. On the variable, under **Save response as**, select the pencil icon
+    to edit the variable properties.
+
+16. The **Variable properties** pane opens. Rename the variable
+    to +++TimeoffType*+++*. Close the **Variable properties** pane and
+    you see the changes reflected in the authoring canvas.
+
+    ![](./media/image24.png)
+
+17. Add a message node for the Paid vacation branch with this message to
+    the user: +++**For paid vacation time-off, go to
+    www.contoso.com/HR/PaidTimeOff**+++ to submit time-off requests.
+
+    ![](./media/image25.png)
+
+18. In the **National Holidays** path, add a message node with the
+    following text:
+
+National holidays for 2024:
+
+    - New Year's Day: January 1st
+
+    - Memorial Day: May 27th
+
+    - Independence day: July 4th
+
+    - Labor Day: September 2nd
+
+    - Thanksgiving: November 28th
+
+    - Christmas Eve and Christmas Day: December 24th - 25^(th)
+
+    ![](./media/image26.png)
+
+19. Click on **Save**.
+
+    ![](./media/image27.png)
+
+    ![](./media/image28.png)
+
+## **Exercise 4: Test copilot for expected behavior**
+
+1.  Select the **Copilot/Power Virtual Agent** icon at the top of the
+    screen to launch the test copilot canvas.
+
+    ![](./media/image29.png)
+
+2.  Type **I need time off information** into the copilot chat.
+
+3.  Select **Paid vacation**.
+
+4.  You receive the response as per our configuration.
+
+    ![](./media/image30.png)
+
+    ![](./media/image31.png)
 
 **Summary:**
 
-In this lab, we have learnt how to create a conversational action and to
-publish it.
+In this lab, we have learnt to add the Copilot Studio app to Teams and
+create a classic bot in Teams.
