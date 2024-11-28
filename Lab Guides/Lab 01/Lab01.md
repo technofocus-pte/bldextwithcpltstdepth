@@ -65,22 +65,25 @@ booking requests online.
 
 ### Task 1: Sign up for the Microsoft Power Apps Developer Plan
 
-1.  Navigate to +++https://powerapps.microsoft.com/free/+++ and select
+1.  Open a browser and navigate  to +++https://powerapps.microsoft.com/free/+++ and select
     **Start free** or **Try for free**.
 
     ![](./media/image4.png)
 
-2.  Under **Let's get started**, enter the **tenant id** in the text
-    box, check the agreement box and select **Start free**.
+2.	Login using the **Administrative Username** and **Password** from the **Resources** tab if prompted. This will be your **login credentials** to all the Microsoft sites and apps for the labs.
+   
+    ![](./media/image127.png)
+  	
+3.  Under **Let's get started**, enter the **Administrative Username** from the **Resources** tab  in the text box, check the agreement box and select **Start free**.
 
     ![](./media/image5.png)
 
-3.  If you see a prompt that you have an existing account with
+4.  If you see a prompt that you have an existing account with
     Microsoft. Select **Sign in**. Enter your password.
 
-4.  If prompted, Select **Yes** to stay signed in.
+5.  If prompted, Select **Yes** to stay signed in.
 
-5.  Click on **Environment** in the top-right corner of the screen and
+6.  Click on **Environment** in the top-right corner of the screen and
     select **Dev One**.
 
     ![](./media/image6.png)
@@ -88,7 +91,7 @@ booking requests online.
 ### Task 2: Create a solution
 
 1.  From the Power Apps Maker
-    Portal(!\!<https://make.powerapps.com/>+++), select **Solutions**
+    Portal(+++https://make.powerapps.com/+++), select **Solutions**
     form the left pane.
 
     ![](./media/image7.png)
@@ -155,8 +158,7 @@ Estate Properties.
 
     ![](./media/image18.png)
 
-4.  Rename the table name from **Table1** to +++**Real Estate
-    Property**+++ and then click on **Save and exit**.
+4.  Rename the table name from **Table1** to +++**Real Estate Property**+++ and then click on **Save and exit**.
 
     ![](./media/image19.png)
 
@@ -203,41 +205,41 @@ Estate Properties.
 
     ![](./media/image25.png)
 
-Create the choice values:
-
-Select **+ New choice** under **Sync this choice with** option
+    Create the choice values:
+    
+    Select **+ New choice** under **Sync this choice with** option
 
     ![](./media/image26.png)
 
-- Under **Choices**, provide the Display name as +++**Bedrooms**+++.
-
-- You see two entry fields titled **Label** and **Value**.
-  Enter **1** under the label. Power Apps assigns a value automatically
-  but you can change the value to **1**.
-
-&nbsp;
-
-- Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
-
-&nbsp;
-
-- Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
-
-&nbsp;
-
-- Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
-
-&nbsp;
-
-- Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
-
-&nbsp;
-
-- Select **Save**.
+    - Under **Choices**, provide the Display name as +++**Bedrooms**+++.
+    
+    - You see two entry fields titled **Label** and **Value**.
+      Enter **1** under the label. Power Apps assigns a value automatically
+      but you can change the value to **1**.
+    
+    &nbsp;
+    
+    - Select **+ New choice** and make **2** the new entry for Label
+      and **2** for Value.
+    
+    &nbsp;
+    
+    - Select **+ New choice** and make **3** the new entry for Label
+      and **3** for Value.
+    
+    &nbsp;
+    
+    - Select **+ New choice** and make **4** the new entry for Label
+      and **4** for Value.
+    
+    &nbsp;
+    
+    - Select **+ New choice** and make **5** the new entry for Label
+      and **5** for Value.
+    
+    &nbsp;
+    
+    - Select **Save**.
 
     ![](./media/image27.png)
 
@@ -266,27 +268,27 @@ Select **+ New choice** under **Sync this choice with** option
 
     Create the choice values
 
-- Under **Choices**, provide the Display name as +++Bathrooms+++.
-
-&nbsp;
-
-- You see two entry fields titled **Label** and **Value**.
-  Enter **1** under the label. Power Apps assigns a value automatically
-  but you can change it to **1**.
-
-- Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
-
-- Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
-
-- Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
-
-- Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
-
-- Select **Save**.
+    - Under **Choices**, provide the Display name as +++Bathrooms+++.
+    
+    &nbsp;
+    
+    - You see two entry fields titled **Label** and **Value**.
+      Enter **1** under the label. Power Apps assigns a value automatically
+      but you can change it to **1**.
+    
+    - Select **+ New choice** and make **2** the new entry for Label
+      and **2** for Value.
+    
+    - Select **+ New choice** and make **3** the new entry for Label
+      and **3** for Value.
+    
+    - Select **+ New choice** and make **4** the new entry for Label
+      and **4** for Value.
+    
+    - Select **+ New choice** and make **5** the new entry for Label
+      and **5** for Value.
+    
+    - Select **Save**.
 
     ![](./media/image31.png)
 
@@ -311,8 +313,7 @@ select **Save**:
 14. Once the columns are all created, under **Real Estate Property
     columns and data**, enter the following test data:
 
-Note: If the required columns are not getting displayed, adjust the
-columns that are displayed by selecting the **+\<number\>more**
+    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+\<number\>more**
 
     ![](./media/image34.png)
 
@@ -374,25 +375,25 @@ Estate Property Bookings.
 8.  Create the following columns with the name and data type as
     specified in the table below. Select **Save**.
 
--	Display name –  +++Property+++
--	Data type –  Lookup -> Lookup
--	Related Table – Real Estate Property
+    -	Display name –  +++Property+++
+    -	Data type –  Lookup -> Lookup
+    -	Related Table – Real Estate Property
 
     ![](./media/image42.png)
 
--	Display name – +++Viewer Name+++
--	Data type – Single line of text
+    -	Display name – +++Viewer Name+++
+    -	Data type – Single line of text
 
 
--	Display name – +++Viewer Email+++
--	Data type – Single line of text
+    -	Display name – +++Viewer Email+++
+    -	Data type – Single line of text
     -	 Format – Email
 
--	Display name – +++Booking Date+++
+    -	Display name – +++Booking Date+++
     -	Data type – Date and time
 
--	Display name – +++Notes+++
--	Data type – Multiple lines of text
+    -	Display name – +++Notes+++
+    -	Data type – Multiple lines of text
 
     ![](./media/image43.png)
 
@@ -400,8 +401,8 @@ Estate Property Bookings.
 
 9.  Add a choice data type column with the below details.
 
--	Display name – +++Decision+++
--	Data type – Choice -> Choice
+    -	Display name – +++Decision+++
+    -	Data type – Choice -> Choice
 
     ![](./media/image45.png)
 
@@ -463,14 +464,14 @@ field, designate **Undecided** as the **Default choice** and click on
 
 3.  Fill in the below details.
 
-- Name - +++**Real Estate Booking Service**+++
-
-- Description - +++**Create bookings for real estate properties**+++
-
-- Instructions - +++**Create a copilot for topics relating to creating
-  bookings for real estate properties+++**
-
-- Language **–** Select **English**
+    - Name - +++**Real Estate Booking Service**+++
+    
+    - Description - +++**Create bookings for real estate properties**+++
+    
+    - Instructions - +++**Create a copilot for topics relating to creating
+      bookings for real estate properties+++**
+    
+    - Language **–** Select **English**
 
     ![](./media/image53.png)
 
@@ -488,7 +489,7 @@ field, designate **Undecided** as the **Default choice** and click on
     ![](./media/image56.png)
 
 7.  Once the agent is created, in the Test your copilot pane, enter
-    **How do I make a booking?** and click **Enter** and observe the
+    +++**How do I make a booking?+++** and click **Enter** and observe the
     response.
 
     ![](./media/image57.png)
@@ -621,7 +622,7 @@ add new ones.
 2.  In the **What do you want to do?** field, enter the following text
     and then select **Update.**
 
-    **Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**
+    +++**Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**+++
 
     ![](./media/image74.png)
 
@@ -912,10 +913,12 @@ Booking Requests table+++
 
 2.  Update the instructions as below and click on **Save**.
 
+    ```
     1.  **Read the details of the row that gets added or modified**
 
     2.  **Mail the modified information only to \<Your email id\> with a
         proper subject and body added to the email**
+    ```
 
     ![](./media/image114.png)
 
