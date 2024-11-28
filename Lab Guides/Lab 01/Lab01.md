@@ -914,10 +914,10 @@ Booking Requests table+++
 2.  Update the instructions as below and click on **Save**.
 
     ```
-    1.  **Read the details of the row that gets added or modified**
+    1.  Read the details of the row that gets added or modified
 
-    2.  **Mail the modified information only to \<Your email id\> with a
-        proper subject and body added to the email**
+    2.  Mail the modified information only to < Your email id > with a
+        proper subject and body added to the email
     ```
 
     ![](./media/image114.png)
