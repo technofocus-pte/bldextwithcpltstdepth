@@ -567,7 +567,7 @@ improve your copilot's responses.
 ### Task 1: Enable Generative AI
 
 1.  Login to the Copilot Studio using your tenant credentials at
-    +++<https://copilotstudio.microsoft.com>+++ if not logged in
+    +++https://copilotstudio.microsoft.com+++ if not logged in
     already.
 
 2.  Select the Copilot **Real Estate Booking Service**.
@@ -619,7 +619,7 @@ respond**.
 
     ![](./media/image95.png)
 
-4.  Give the name +++ Real Estate Website+++ in the Name field and then
+4.  Give the name +++Real Estate Website+++ in the Name field and then
     select **Add**.
 
     ![](./media/image96.png)
@@ -710,53 +710,34 @@ respond**.
 1.  Select your copilot in the Copilot pane on the left-hand side of the
     screen to return to the **Overview** tab.
 
-2.  From the copilot page top menu, click on **Channels** (If the
-    Channels is not visible, click on the +1 to view the **Channels**
-    option)
-
-    ![](./media/image114.png)
-
-3.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
-
-    ![](./media/image115.png)
-
-4.  On the Dynamics 365 Customer Service page, click on **Disconnect**.
-
-    ![](./media/image116.png)
-
-5.  Once done, **close** the Dynamics 365 Customer Service pane.
-
-    ![](./media/image117.png)
-
-6.  Select **Settings** in the top-right of the screen.
+2.  Select **Settings** in the top-right of the screen.
 
     ![](./media/image118.png)
 
-7.  Select the **Security** tab and then select
+3.  Select the **Security** tab and then select
     the **Authentication** tile.
 
     ![](./media/image119.png)
 
-8.  Select Authenticate with Microsoft **(Entra ID authentication in
+4.  Select Authenticate with Microsoft **(Entra ID authentication in
     Teams and Power App)**.
 
-9.  Select **Save**.
+5.  Select **Save**.
 
     ![](./media/image120.png)
 
-10. Select **Save**.
+6. Select **Save**.
 
     ![](./media/image121.png)
 
-11. Select **Close**.
+7. Select **Close**.
 
     ![](./media/image122.png)
 
-12. Select your copilot in the Copilot pane on the left-hand side of the
+8. Select your copilot in the Copilot pane on the left-hand side of the
     screen to return to the **Overview** tab.
 
-13. Select **Publish** and select **Publish**.
+9. Select **Publish** and select **Publish**.
 
     ![](./media/image123.png)
 
