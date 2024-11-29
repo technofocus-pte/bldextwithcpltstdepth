@@ -24,8 +24,7 @@
     **Update available**, **select** the **check box** to agree to the
     terms and click on **Update**.
 
-Make sure to do this for **all** the entries with **Update available**
-as the Status.
+    Make sure to do this for **all** the entries with **Update available** as the Status.
 
     ![](./media/image5.png)
 
@@ -33,7 +32,7 @@ as the Status.
 
 ### Task 2: Configure search settings in the Power Platform admin center
 
-1.  Login to +++<https://admin.powerplatform.microsoft.com/>+++ using
+1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
     your tenant details. Select **Environments** -\> **CustomerService
     Trial**.
 
@@ -209,11 +208,6 @@ topics.
     **Omnichannel Users**.
 
     ![](./media/image38.png)
-
-    >[!Alert] **Important:** If you are not able to see the **Omnichannel Users**
-option, it is due to some back-end changes that is happening recently.
-If you are not able to complete this step, then you will not be able to
-complete the Exercises 7 and 8. Please omit them.
 
 7.  On the **Omnichannel Users** page, select a user **MOD
     Administrator** in the list.
