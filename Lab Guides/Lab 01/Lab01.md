@@ -31,7 +31,9 @@ booking requests online.
 
 - Create the Dataverse tables required for the bookings.
 
-- Publish the copilot.
+- Publish the agent.
+
+>[!Alert] Important: **Lab 03** needs to be completed by the end of Day 1 in order to execute the Day 2 lab. Even if Labs 01 and 02 are not completed, please ensure to complete Lab 03 by the end of Day1.
 
 ## Exercise 0: Setting up your environment
 
