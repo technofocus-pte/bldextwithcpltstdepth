@@ -15,10 +15,6 @@ the newly created files.
 
 ## Exercise 1: Set up the environment
 
-1.  Login to the VM using the password from the Resources tab.
-
-    ![](./media/image1.png)
-
 ### Task 1: Setup OneDrive
 
 1.  Open a browser and navigate to +++**https://office.com**+++. **Sign
@@ -49,72 +45,18 @@ the newly created files.
 
     ![](./media/image7.png)
 
-### Task 2 : Create a development environment
-
-1.  Login to +++<https://admin.powerplatform.microsoft.com/>+++ using
-    you tenant details from the Resources tab.
-
-2.  Select **Environments** from the left navigation pane and click on
-    **+ New.**
-
-    ![](./media/image8.png)
-
-3.  In the New environment window that opens, fill in the below details
-    and click on **Next**.
-
-    |	|	|
-    |:----|:-----|
-    | +++Property+++	| +++Value+++	|
-    | Name	| +++ Dev env+++	|
-    | Region	| United States - Default	|
-    | Type	| Developer	|
-
-
-    ![](./media/image9.png)
-
-    ![](./media/image10.png)
-
-4.  In the **Add Dataverse** window, accept the defaults and click on
-    **Save**.
-
-    ![](./media/image11.png)
-
-5.  The newly created environment gets listed in the admin center with
-    its status in the Environments pane.
-
-6.  Once the **status** is **ready**, the environment is ready to use.
-    We will use this environment in the upcoming exercises.
-
-    ![](./media/image12.png)
-
-### Task 3: Enable Copilot Studio trial
-
-1.  In a new tab, open +++**https://copilotstudio.microsoft.com/**+++.
-
-2.  Sign in with the **Credentials** provided under the **Resources**
-    tab of your Lab VM.
-
-    ![](./media/image2.png)
-
-3.  Once logged in, the **Welcome to Microsoft Copilot Studio** page,
-    leave the country as **United States** and click on **Get Started**.
-
-    ![](./media/image13.png)
-
-4.  Select **Skip** in the **Welcome** screen.
-
-    ![](./media/image14.png)
-
 ## Exercise 2: Build and test an autonomous agent
 
 ### Task 1: Create an agent from Copilot Studio
 
-1.  Click on the Skip to configure option in the Agent creation page
+1.  Open +++https://copilotstudio.microsoft.com+++ if you do not have it open already and click on **Agents -> + New agent**.
+
+2.  Click on the Skip to configure option in the Agent creation page
     that opens up.
 
     ![](./media/image15.png)
 
-2.  In the agent creation pane, enter the below details and click on
+3.  In the agent creation pane, enter the below details and click on
     **Create**.
 
     - **Name** - +++New file tracker agent+++
@@ -200,7 +142,7 @@ the newly created files.
 
     |	|	|
     |:----|:-----|
-    | +++Property+++	| +++Value+++	|
+    | **Property**	| **Value**	|
     | Location	| OneDrive for Business	|
     | Document Library	| OneDrive	|
     | File	| File details.xlsx	|
