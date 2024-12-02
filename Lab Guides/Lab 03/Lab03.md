@@ -27,3 +27,11 @@
     **Launch Trial**.
 
     ![](./media/image4.png)
+
+7. Once activated, your Customer Service workspace will get opened.
+
+   ![](./media/image5.png)
+
+**Summary:**
+
+In this lab, we have activated the Dynamics 365 Customer Service which will be used in the Day 2 lab.
