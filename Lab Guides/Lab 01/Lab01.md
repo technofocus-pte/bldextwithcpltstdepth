@@ -811,10 +811,9 @@ add new ones.
 
 ## Exercise 5: Build an Autonomous agent that automatically sends an email when a booking is created or updated
 
-### Task 1: Create an agent
+This exercise is to showcase the **When a row is added, modified or deleted** trigger of an Autonomous agent. 
 
-1.  Login to +++https://copilotstudio.microsoft.com+++ and navigate to the
-    Dev One environment if not done already.
+### Task 1: Create an agent
 
 2.  Click on Agents from the left navigation pane.
 
@@ -871,18 +870,20 @@ Booking Requests table+++
 
     ![](./media/image108.png)
 
-3.  Once selected, The **Trigger name** and the **Sign in options** gets
+3. Click on **Continue** in the next screen.
+
+4.  Once selected, The **Trigger name** and the **Sign in options** gets
     loaded in the next screen. This will take a few minutes to get
     populated. For the trigger we selected, there will be two apps, one
     being the **Microsoft Copilot Studio** and the other one being the
     **Microsoft Dataverse**.
 
-4.  Once loaded, ensure that the connectivity status is in **green** for
+5.  Once loaded, ensure that the connectivity status is in **green** for
     the sign in options and then click **Next** to continue.
 
     ![](./media/image109.png)
 
-5.  In the Add trigger screen, select the below details and click on
+6.  In the Add trigger screen, select the below details and click on
     **Create trigger**.
 
     - Change type – **Added or modified**
@@ -896,14 +897,40 @@ Booking Requests table+++
 
     ![](./media/image110.png)
 
-6.  The Trigger creation may take 3 to 5 minutes to complete.
+7.  The Trigger creation may take 3 to 5 minutes to complete.
 
     ![](./media/image111.png)
 
-7.  Once done, click on **Close** in the **Time to test your trigger!**
+8.  Once done, click on **Close** in the **Time to test your trigger!**
     Screen.
 
     ![](./media/image112.png)
+
+9. Click on the **Actions** tab and select **+ Add action**.
+
+    ![](./media/image130.png)
+   
+11. Search for !!Send an mail!! and select **Send an email (V2) action**.
+
+    ![](./media/image131.png)
+
+12.  Select End user Authentication to Copilot Authentication and select **Next**.
+
+      ![](./media/image132.png)
+
+13. Select **Edit inputs**.
+
+    ![](./media/image133.png)
+    
+14. Give the email id to which the mail needs to be delivered in the **Description** field under **Required inputs** and click on **Save**.
+
+    ![](./media/image134.png)
+    
+15. Review the inputs and click on **Next** and then **Finish** in the next screen.
+
+    ![](./media/image135.png)
+
+    ![](./media/image136.png)
 
 ### Task 3: Add instructions to the agent
 
@@ -913,14 +940,11 @@ Booking Requests table+++
 
 2.  Update the instructions as below and click on **Save**.
 
-    ```
-    1.  Read the details of the row that gets added or modified
+    +++1.  Read the details of the row that gets added or modified+++
 
-    2.  Mail the modified information only to < Your email id > with a
-        proper subject and body added to the email
-    ```
+    +++2.  Use the action Office 365 Outlook - Send an email (V2)+++
 
-    ![](./media/image114.png)
+    ![](./media/image137.png)
 
 3.  Click on Publish to publish the agent to all the channels it is
     connected to.
@@ -976,9 +1000,10 @@ Booking Requests table+++
 
     ![](./media/image125.png)
 
-6.  Check the corresponding mail box to have received a mail as below.
-
     ![](./media/image126.png)
+
+6. You can check the status of the trigger from the **Activity** tab.
+
 
 **Summary**
 
@@ -986,7 +1011,7 @@ In this lab, we have learnt to
 
 - Build an agent from the Copilot Studio and create topics in it.
 
-- Test the copilot from the Copilot Studio and publish it to the demo
+- Test the agent from the Copilot Studio and publish it to the demo
   web site.
 
 - Build an autonomous agent and test it
