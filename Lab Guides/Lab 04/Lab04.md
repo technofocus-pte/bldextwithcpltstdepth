@@ -40,8 +40,8 @@ can create custom entities for your specific purpose.
 
 3.  Enter the below details
 
--   Name - +++Property Type+++
--    Enter item under List items – 
+    -   Name - +++Property Type+++
+    -    Enter item under List items – 
     -   +++Apartment+++ - Select Add
 
     ![](./media/image5.png)
@@ -62,8 +62,7 @@ can create custom entities for your specific purpose.
 
     ![](./media/image7.png)
 
-8.  Select **+ Synonyms** for **House**, enter +++**Single-family
-    home**+++, then select the **+** icon and select **Done**.
+8.  Select **+ Synonyms** for **House**, enter +++**Single-family home**+++, then select the **+** icon and select **Done**.
 
 9.  Select **+ Synonyms** for **Condominium**,
     enter +++**Townhouse**+++, then select the **+** icon and
@@ -89,9 +88,9 @@ can create custom entities for your specific purpose.
 
 3.  Enter the below details and click on **Save**.
 
-- Name  - +++**Number of Bedrooms**+++ 
-
-- Pattern  - +++**\[1-5\]**+++ 
+    - Name  - +++**Number of Bedrooms**+++ 
+    
+    - Pattern  - +++**\[1-5\]**+++ 
 
     ![](./media/image12.png)
 
@@ -117,12 +116,12 @@ can create custom entities for your specific purpose.
 
 3.  Fill in the below details.
 
-- **Enter a message** - +++What type of property do you want to see?+++
-
-- **Identify** – Select **Property Type**
-
-- Select **Select options for user** and check the **Display** option
-  for all list values.
+    - **Enter a message** - +++What type of property do you want to see?+++
+    
+    - **Identify** – Select **Property Type**
+    
+    - Select **Select options for user** and check the **Display** option
+      for all list values.
 
     ![](./media/image17.png)
 
@@ -140,12 +139,11 @@ can create custom entities for your specific purpose.
 
     - **Identify -** Select **Number of Bedrooms**
 
-    - **Save user response as** -
-  Enter +++NumberofBedrooms+++ for **Variable name**
+    - **Save user response as** - Enter +++NumberofBedrooms+++ for **Variable name**
 
     ![](./media/image19.png)
 
-## Exercise 2: Create Copilot actions
+## Exercise 2: Create actions
 
 Microsoft Copilot Studio can access data in Microsoft Dataverse using
 Power Automate cloud flows
@@ -246,22 +244,26 @@ Power Automate cloud flows
   enter the following expression:
       +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
 
+    >[!Alert] **Important:** From !!https://make.powerapps.com!!, open the table **Real Estate Property**. Navigate to its column Property Name -> Edit Column -> Advanced options. Look for the value of the **Logical name** and if it is different from Property Name, replace the **propertyname** with that value in the **formula** above.
+    >
+    >![](./media/image126.png)
+    
     ![](./media/image34.png)
 
-22. Select **Settings**. Ensure that **Asynchronous Response** is set
+23. Select **Settings**. Ensure that **Asynchronous Response** is set
     to **Off**.
 
     ![](./media/image35.png)
 
-23. Select **Save draft**.
+24. Select **Save draft**.
 
     ![](./media/image36.png)
 
-24. Once save, select **Publish**.
+25. Once save, select **Publish**.
 
     ![](./media/image37.png)
 
-25. Close the Power Automate tab.
+26. Close the Power Automate tab.
 
 ### Task 2: Add a Copilot action for retrieving a property
 
@@ -326,7 +328,7 @@ Power Automate cloud flows
 
     ![](./media/image49.png)
 
-14. Click on Publish in the Publish confirmation dialog.
+14. Click on **Publish** in the Publish confirmation dialog.
 
     ![](./media/image50.png)
 
@@ -341,7 +343,7 @@ Power Automate cloud flows
     ![](./media/image52.png)
 
 3.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++ **Booking Request**+++ as the flow name.
+    enter +++**Booking Request**+++ as the flow name.
 
     ![](./media/image53.png)
 
@@ -495,9 +497,9 @@ parameter.
 
     ![](./media/image80.png)
 
-## Exercise 3: Test the copilot 
+## Exercise 3: Test the agent 
 
-### Task 1: Test the copilot and make a booking request
+### Task 1: Test the agent and make a booking request
 
 1.  Select the **Test** button in the top-right of the screen to open
     the testing panel. Select the **three dots** at the top of the
@@ -583,7 +585,7 @@ improve your copilot's responses.
     Select **Generative** under **How should your copilot decide how to
 respond**.
 
-    Select **Medium** for **Copilot content moderation**.
+    Select **Medium** for **How strict should the content moderation be?**.
 
     Select **Save**.
 
@@ -595,8 +597,7 @@ respond**.
 
 ### Task 2: Enable knowledge
 
-1.  Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
+1.  Click on the **Overview** tab.
 
 2.  Verify that general knowledge is enabled in the Knowledge section.
 
@@ -604,8 +605,7 @@ respond**.
 
 ### Task 3: Add knowledge from a website
 
-1.  Select **+ Add knowledge** under the **Knowledge** section in the
-    Overview page of the copilot.
+1.  Select **+ Add knowledge** under the **Knowledge** section.
 
     ![](./media/image93.png)
 
@@ -653,16 +653,12 @@ respond**.
 
     ![](./media/image102.png)
 
-2.  Select **Files**.
-
-    ![](./media/image103.png)
-
-3.  Select Click to browse and browse to locate the file
+2.  Under **Upload files** section, select **click to browse** and browse to locate the file
     **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
 
     ![](./media/image104.png)
 
-4.  Select **Add**.
+3.  Select **Add**.
 
     ![](./media/image105.png)
 
@@ -707,8 +703,7 @@ respond**.
 
 ### Task 7: Configure Security
 
-1.  Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
+1.  Select the **Overview** tab.
 
 2.  Select **Settings** in the top-right of the screen.
 
@@ -734,14 +729,13 @@ respond**.
 
     ![](./media/image122.png)
 
-8. Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
+8. Select the **Overview** tab.
 
-9. Select **Publish** and select **Publish**.
+9. Select **Publish** and select **Publish** again in the dialog.
 
     ![](./media/image123.png)
 
-### Task 8: Test the copilot's knowledge
+### Task 8: Test the agent's knowledge
 
 1.  Select the **Test** button in the top-right of the screen to open
     the testing panel.
@@ -756,8 +750,11 @@ respond**.
 4.  Select the **Start a new conversation** icon at the top of the
     testing panel.
 
-5.  Explore the copilot and see how it uses the different knowledge
-    sources.
+5.  Type in +++What is Summit Realty group?+++ and hit **send**.
+
+6.  You will get a response from the uploaded file as in the screenshot below sinc eit has been added as the knowledge source to look for in the Fallback topic.
+
+    ![](./media/image125.png)
 
 **Summary:**
 
@@ -767,6 +764,6 @@ In this lab, we have learnt to
 
 - Implement Flow actions
 
-- Add knowledge to the copilot
+- Add knowledge to the agent
 
 - Enable Generative AI
