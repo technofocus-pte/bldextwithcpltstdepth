@@ -197,7 +197,11 @@ topics.
 
     ![](./media/image35.png)
 
-3.  This opens up the **Dynamics 365 Customer Service admin center**
+3.  This opens the **Apps** page. Select **Customer Service admin center** from it.
+
+    ![](./media/image81.png)
+    
+4.  This opens up the **Dynamics 365 Customer Service admin center**
     page.
 
     ![](./media/image36.png)
@@ -301,7 +305,7 @@ topics.
 
     ![](./media/image52.png)
 
-### Task 3: Add the copilot to the workstream
+### Task 3: Add the agent to the workstream
 
 1.  Back in the **New Workstream** page, scroll down and click on **+
     Add bot** in the Bot section.
@@ -309,7 +313,7 @@ topics.
     ![](./media/image53.png)
 
 2.  From the list of copilots on the Add bot screen, select the **Store
-    Locator Assistant** copilot and click on **Connect**.
+    Locator Assistant** agent and click on **Connect**.
 
     ![](./media/image54.png)
 
@@ -322,7 +326,7 @@ topics.
 
     ![](./media/image56.png)
 
-5.  Ensure that the Real Estate Booking Service copilot is connected.
+5.  Ensure that the **Store locator** agent is connected.
 
     ![](./media/image57.png)
 
@@ -352,9 +356,7 @@ topics.
 
     ![](./media/image62.png)
 
-7.  In the Give your site a name textbox, enter the name as +++**Contoso
-    Store assistant**+++, accept the other defaults and click on
-    **Done**.
+7.  In the Give your site a name textbox, enter the name as +++**Contoso Store assistant**+++, accept the other defaults and click on **Done**.
 
     ![](./media/image63.png)
 
