@@ -912,7 +912,7 @@ Booking Requests table+++
 
     ![](./media/image130.png)
    
-11. Search for !!Send an mail!! and select **Send an email (V2) action**.
+11. Search for +++Send an mail+++ and select **Send an email (V2) action**.
 
     ![](./media/image131.png)
 
