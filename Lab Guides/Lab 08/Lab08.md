@@ -55,14 +55,17 @@ In this lab, we will learn how to create a Conversational action.
 
     ![](./media/image8.png)
 
-10.  In the Trigger node’s description, provide a clear description of how the conversational plugin can help the user and what it can do. Let this topic help the user to find the list of holidays in the year 2024.
+10.  In the Trigger node’s description, provide a clear description of how the conversational plugin can 
+     help the user and what it can do. Let this topic help the user to find the list of holidays in the  
+     year 2024.
 
-    Type +++**This plugin helps to retrieve the list of holidays for the year 2024.**+++ in the Trigger node’s description.
+    Type +++**This plugin helps to retrieve the list of holidays for the year 2024.**+++ in the Trigger 
+ node’s description.
 
    ![](./media/image9.png)
 
-    This description has functional purpose and is used by the Microsoft
-Copilot to determine whether to invoke your plugin or not.
+    This description has functional purpose and is used by the Microsoft Copilot to determine whether to 
+ invoke your plugin or not.
 
 11. Add a message node with the list of holidays.
 
