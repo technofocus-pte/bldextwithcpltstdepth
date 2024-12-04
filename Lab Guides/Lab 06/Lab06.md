@@ -57,7 +57,7 @@ in the left pane and redo step 5 of Exercise 1.
 
 4.  A success message is obtained.
 
-    ![](./media/image11.png)
+    ![](./media/image37.png)
 
 ## **Exercise 3: Build an employee time-off topic for common time-off queries**
 
