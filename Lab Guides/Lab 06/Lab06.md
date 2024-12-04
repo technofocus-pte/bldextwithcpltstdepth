@@ -145,23 +145,23 @@ in the left pane and redo step 5 of Exercise 1.
 18. In the **National Holidays** path, add a message node with the
     following text:
 
-   ```
-   National holidays for 2024:
+    ```
+    National holidays for 2024:
    
-       - New Year's Day: January 1st
+        - New Year's Day: January 1st
    
-       - Memorial Day: May 27th
+        - Memorial Day: May 27th
    
-       - Independence day: July 4th
+        - Independence day: July 4th
    
-       - Labor Day: September 2nd
+        - Labor Day: September 2nd
    
-       - Thanksgiving: November 28th
+        - Thanksgiving: November 28th
    
-       - Christmas Eve and Christmas Day: December 24th - 25^(th)
-   ```
+        - Christmas Eve and Christmas Day: December 24th - 25^(th)
+    ```
 
-   ![](./media/image26.png)
+    ![](./media/image26.png)
 
 19. Click on **Save**.
 
