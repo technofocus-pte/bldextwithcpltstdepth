@@ -6,17 +6,13 @@
     credentials from the Resources tab if you are not in that page
     already.
 
-    ![](./media/image1.png)
-
 2.  If you are already on the Copilot Studio page, click on **Home** to
     go to the Home page.
 
     ![](./media/image2.png)
 
 3.  On the Home page, in the text area under Describe your agent to
-    create it, enter +++I want you to be a question and answering
-    assistant that can answer common questions from users using the
-    content of a website and a SharePoint site+++ and click on **Send**.
+    create it, enter +++I want you to be a question and answering assistant that can answer common questions from users using the content of a website and a SharePoint site+++ and click on **Send**.
 
     ![](./media/image3.png)
 
@@ -25,8 +21,7 @@
 
 5.  Give other details regarding the functions of the agent like below.
 
-    +++help answer common product and support questions using the content of
-a website, and help answer HR questions from an uploaded file+++
+    +++help answer common product and support questions using the content of a website, and help answer HR questions from an uploaded file+++
 
 6.  Provide +++www.microsoft.com+++ for the website that will be used a
     sknowledge source.
@@ -125,10 +120,7 @@ add the trigger.
 
 6.  Paste the below content in the Prompt field.
 
-    +++Generate a quiz with [number] questions to cover this [topic].
-Decide on the format, such as multiple-choice questions or true/false
-statements. Use this [format]. Designate the correct answer within
-parentheses.+++
+    +++Generate a quiz with [number] questions to cover this [topic]. Decide on the format, such as multiple-choice questions or true/false statements. Use this [format]. Designate the correct answer within parentheses.+++
 
     Expand the **Input** section and select **+ Add input**.
 
@@ -170,7 +162,7 @@ parentheses.+++
 
     ![](./media/image20.png)
 
-14. Select Save custom prompt to save the prompt.
+14. Select **Save custom prompt** to save the prompt.
 
     ![](./media/image21.png)
 
@@ -195,7 +187,7 @@ parentheses.+++
 18. Next, we need to define the output variable of the prompt action.
     This is so that the response can be referenced downstream in the
     topic. Select the **\>** icon and in the **Custom** tab,
-    select **Create new**
+    select **Create new** and name the variable as +++VarQuizQuestionsResponse+++
 
     ![](./media/image25.png)
 
@@ -214,15 +206,13 @@ parentheses.+++
 
 21. The Topic details needs to be updated next which will be used by
     your agent to associate the topic with the user's intent when
-    Generative mode is enabled. Select **Details** and for the **Display
-    name** enter the following.
+    Generative mode is enabled. Select **Details** and enter the following details.
 
-    - Display name - +++ generate questions for a quiz+++
+    - Display name - +++generate questions for a quiz+++
 
-    - Description - +++ This topic creates questions for a quiz based on the
-  number of questions, the topic and format provided by the user+++
+    - Description - +++This topic creates questions for a quiz based on the number of questions, the topic and format provided by the user+++
 
-    elect **Save** to save your topic.
+    select **Save** to save your topic.
 
     ![](./media/image29.png)
 
