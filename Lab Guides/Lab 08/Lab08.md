@@ -62,9 +62,9 @@ In this lab, we will learn how to create a Conversational action.
      Type +++**This plugin helps to retrieve the list of holidays for the year 2024.**+++ in the Trigger 
  node’s description.
 
-   ![](./media/image9.png)
+     ![](./media/image9.png)
 
-    This description has functional purpose and is used by the Microsoft Copilot to determine whether to 
+     This description has functional purpose and is used by the Microsoft Copilot to determine whether to 
  invoke your plugin or not.
 
 11. Add a message node with the list of holidays.
