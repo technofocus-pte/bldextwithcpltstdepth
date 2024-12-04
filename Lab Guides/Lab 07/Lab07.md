@@ -89,7 +89,7 @@ generated](./media/image13.png)
 generated](./media/image15.png)
 
 9.  Add a **Text** input field by clicking on **+ Add an input** in the
-    first step. Replace the Input by **Description**.
+    first step. Replace the Input by +++**Description**+++.
 
     ![A computer screen shot of a computer error Description automatically
 generated](./media/image16.png)
@@ -144,8 +144,7 @@ generated](./media/image23.png)
     ![A screenshot of a computer Description automatically
 generated](./media/image24.png)
 
-18. Add in a message node with the message, +++**We notified the expert.
-    They’ll reach out shortly**+++.
+18. Add in a message node with the message, +++**We notified the expert. They’ll reach out shortly**+++.
 
     ![A screenshot of a computer Description automatically
 generated](./media/image25.png)
