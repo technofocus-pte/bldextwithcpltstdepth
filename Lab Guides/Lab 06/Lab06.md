@@ -13,68 +13,53 @@ create a new copilot in a team and test it.
 
    ![](./media/image32.png)
    
-3. Sign in with your credentials from the **Resources** tab.
+2. Sign in with your credentials from the **Resources** tab.
 
    ![](./media/image33.png)
 
-5.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
-    **Microsoft Copilot Studio** and click on **Add**.
-
-    **Note:** If you are not able to find Copilot Studio, you will have to search for and select **Power Virtual agent** and add it.
-
-    ![](./media/image3.png)
-
-    ![](./media/image4.png)
-
-6.	Click on Open.
-
-   ![](./media/image34.png)
-   
-6.  Click on **Start now**.
-
-    ![](./media/image5.png)
-
-## **Exercise 2: Create a new copilot in a team**
-
-1.  **Sign in** to **Teams** using your **office 365 tenant
-    credentials**.
-
-    ![](./media/image2.png)
-
-2.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
+3.  Click on **Apps**. Search for +++**Copilot Studio**+++ and select
     **Microsoft Copilot Studio** and click on **Add**.
 
     ![](./media/image3.png)
 
     ![](./media/image4.png)
-
->[!Alert]**Important:** If you are not able to find Copilot Studio, you will have
-to search for and select +++**Power Virtual agent**+++ and add it.
+    
+    >[Alert] **Important:** If you are not able to find Copilot Studio, you will have to search for and select **Power Virtual agent** and add it.
 
     ![](./media/image6.png)
 
     ![](./media/image7.png)
 
-3.  Click on **Start now**.
+4.	Click on **Open**.
+
+   ![](./media/image34.png)
+   
+5.  Click on **Start now**.
 
     ![](./media/image5.png)
 
-4.  Select **Contoso** and click on **Continue**.
+## **Exercise 2: Create a new copilot in a team**
+
+1.  Click on **Start now**.
+
+    ![](./media/image5.png)
+
+2.  Select **Contoso** and click on **Continue**.
 
     ![](./media/image8.png)
 
     ![](./media/image9.png)
 
->[!Alert] **Important:** This step may take around 10 minutes. If it is taking too
+   >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too
 long, close it, select Copilot Studio or Power Virtual Agents from Apps
 in the left pane and redo step 4.
 
-5.  In the Create a copilot pane, provide the name of the Copilot as
+3.  In the Create a copilot pane, provide the name of the Copilot as
     +++**HR Support Copilot**+++ and click on **Create**.
 
     ![](./media/image10.png)
 
-6.  A success message stating, **Your chatbot is provisioned** is
+4.  A success message stating, **Your chatbot is provisioned** is
     obtained.
 
     ![](./media/image11.png)
