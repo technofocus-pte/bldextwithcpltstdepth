@@ -48,7 +48,7 @@ create a new copilot in a team and test it.
 
     >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too
 long, close it, select Copilot Studio or Power Virtual Agents from Apps
-in the left pane and redo step 4.
+in the left pane and redo step 5 of Exercise 1.
 
 3.  In the Create a copilot pane, provide the **name** as
     +++**HR Support Copilot**+++ and click on **Create**.
