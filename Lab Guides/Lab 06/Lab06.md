@@ -24,43 +24,38 @@ create a new copilot in a team and test it.
 
     ![](./media/image4.png)
     
-    >[Alert] **Important:** If you are not able to find Copilot Studio, you will have to search for and select **Power Virtual agent** and add it.
+    >[!Alert] **Important:** If you are not able to find Copilot Studio, you will have to search for and select **Power Virtual agent** and add it.
 
     ![](./media/image6.png)
 
     ![](./media/image7.png)
 
-4.	Click on **Open**.
+4.	 Click on **Open** to open the app.
 
-   ![](./media/image34.png)
+	 ![](./media/image34.png)
    
-5.  Click on **Start now**.
+7.  Click on **Start now**.
 
     ![](./media/image5.png)
 
 ## **Exercise 2: Create a new copilot in a team**
 
-1.  Click on **Start now**.
-
-    ![](./media/image5.png)
-
-2.  Select **Contoso** and click on **Continue**.
+1.  Select **Contoso** and click on **Continue**.
 
     ![](./media/image8.png)
 
     ![](./media/image9.png)
 
-   >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too
+    >[!Alert] **Important:** This step may take around 10 minutes. If it is taking too
 long, close it, select Copilot Studio or Power Virtual Agents from Apps
 in the left pane and redo step 4.
 
-3.  In the Create a copilot pane, provide the name of the Copilot as
+3.  In the Create a copilot pane, provide the **name** as
     +++**HR Support Copilot**+++ and click on **Create**.
 
-    ![](./media/image10.png)
+    ![](./media/image36.png)
 
-4.  A success message stating, **Your chatbot is provisioned** is
-    obtained.
+4.  A success message is obtained.
 
     ![](./media/image11.png)
 
@@ -89,20 +84,16 @@ in the left pane and redo step 4.
 
     ![](./media/image16.png)
 
-6.  Click on **Save**.
-
-    ![](./media/image17.png)
-
-7.  Click on the **Trigger phases.**
+6.  Click on the **Trigger phases.**
 
     ![](./media/image18.png)
 
-8.  Add in a trigger phrase, +++**I need help with time off**+++ and
+7.  Add in a trigger phrase, +++**I need help with time off**+++ and
     click on **+.**
 
     ![](./media/image19.png)
 
-9.  Add in the below trigger phrases.
+8.  Add in the below trigger phrases.
 
     - +++**Need information on time off**+++
 
@@ -116,65 +107,61 @@ in the left pane and redo step 4.
 
     Close the Trigger phrases pane.
 
-10. Add a Message node and enter the text, +++I can help with questions
-    related to time-off*+++*.
+9. Add a Message node and enter the text, +++I can help with questions related to time-off+++.
 
     ![](./media/image21.png)
 
-11. As an HR employee, you know the most common time-off questions are
+10. As an HR employee, you know the most common time-off questions are
     about **paid vacation** time and **national holidays**. When a
     question node with user response options is added, the topic
     automatically gets a forked branch for each response.
 
-12. Select the (**+**) icon below the message node, then select **Ask a
-    question** to add a question node to the topic. Enter *What
-    information are you looking for?* in the **Ask a question** text
-    box.
+11. Select the (**+**) icon below the message node, then select **Ask a
+    question** to add a question node to the topic. Enter +++What information are you looking for?+++ in the **Ask a question** text box.
 
     ![](./media/image22.png)
 
-13. Under **Options for user**, add +++Paid
-    vacation*+++* and +++National Holidays*+++* as two options.
+12. Under **Options for user**, add +++Paid vacation+++ and +++National Holidays+++ as two options.
 
     ![](./media/image23.png)
 
-14. User choices are stored in a variable and the topic branches off,
+13. User choices are stored in a variable and the topic branches off,
     based on the option the user chooses. You can rename the variable to
     track it better in the topic.
 
-15. On the variable, under **Save response as**, select the pencil icon
-    to edit the variable properties.
+14. On the variable, under **Save response as**, select the pencil icon to edit the variable properties.
 
-16. The **Variable properties** pane opens. Rename the variable
-    to +++TimeoffType*+++*. Close the **Variable properties** pane and
+15. The **Variable properties** pane opens. Rename the variable
+    to +++TimeoffType+++. Close the **Variable properties** pane and
     you see the changes reflected in the authoring canvas.
 
     ![](./media/image24.png)
 
 17. Add a message node for the Paid vacation branch with this message to
-    the user: +++**For paid vacation time-off, go to
-    www.contoso.com/HR/PaidTimeOff**+++ to submit time-off requests.
+    the user: +++**For paid vacation time-off, go to www.contoso.com/HR/PaidTimeOff to submit time-off requests**+++.
 
     ![](./media/image25.png)
 
 18. In the **National Holidays** path, add a message node with the
     following text:
 
-National holidays for 2024:
+   ```
+   National holidays for 2024:
+   
+       - New Year's Day: January 1st
+   
+       - Memorial Day: May 27th
+   
+       - Independence day: July 4th
+   
+       - Labor Day: September 2nd
+   
+       - Thanksgiving: November 28th
+   
+       - Christmas Eve and Christmas Day: December 24th - 25^(th)
+   ```
 
-    - New Year's Day: January 1st
-
-    - Memorial Day: May 27th
-
-    - Independence day: July 4th
-
-    - Labor Day: September 2nd
-
-    - Thanksgiving: November 28th
-
-    - Christmas Eve and Christmas Day: December 24th - 25^(th)
-
-    ![](./media/image26.png)
+   ![](./media/image26.png)
 
 19. Click on **Save**.
 
@@ -189,7 +176,7 @@ National holidays for 2024:
 
     ![](./media/image29.png)
 
-2.  Type **I need time off information** into the copilot chat.
+2.  Type +++**I need time off information**+++ into the copilot chat.
 
 3.  Select **Paid vacation**.
 
