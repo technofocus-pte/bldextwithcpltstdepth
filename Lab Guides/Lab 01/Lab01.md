@@ -133,7 +133,7 @@ booking requests online.
 1.  Under Solutions in the Maker portal, select **Manage** for **Set
     your preferred solution**.
 
-    ![](./media/image13.png)
+    ![](./media/img1.png)
 
 2.  Select **Bookings (contoso)** under **Unless otherwise specified,
     save my changes in** and select **Apply**.
@@ -317,7 +317,7 @@ select **Save**:
 14. Once the columns are all created, under **Real Estate Property
     columns and data**, enter the following test data:
 
-    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+\<number\>more**
+    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
 
     ![](./media/image34.png)
 
@@ -377,7 +377,7 @@ Estate Property Bookings.
     ![](./media/image41.png)
 
 8.  Create the following columns with the name and data type as
-    specified in the table below. Select **Save**.
+    specified below. Select **Save**.
 
     -	Display name –  +++Property+++
     -	Data type –  Lookup -> Lookup
@@ -554,7 +554,7 @@ topics. Disable system topics that you don't require.
 The Demo website allows users without a license to test your copilot.
 You can provide them with the URL to the demo website.
 
-1.  Select the **three dots** next to the **Settings** button in the
+1.  Select the **three dots** next to the **Settings** or the **Publish** button in the
     top-right of the screen and select **Go to demo website**.
 
     ![](./media/image67.png)
@@ -576,7 +576,12 @@ Topics can be created and edited using natural language.
 
     ![](./media/image69.png)
 
-2.  Enter the below details and click on **Create**.
+    >[!Note] **Note:** Select **Allow** if prompted with **See text and images copied to the clipboard**
+    >
+    >![](./media/img10.png)
+    
+    
+3.  Enter the below details and click on **Create**.
 
     - Name your topic - +++**Customer Details**+++
 
@@ -585,10 +590,10 @@ Topics can be created and edited using natural language.
 
     ![](./media/image70.png)
 
-3.  A new topic displays with the  trigger phrases and question
+4.  A new topic displays with the  trigger phrases and question
     nodes.
 
-4.  Select **Save**.
+5.  Select **Save**.
 
     ![](./media/image71.png)
 
@@ -910,56 +915,58 @@ Booking Requests table+++
 
     ![](./media/image112.png)
 
-9. Click on the **Actions** tab and select **+ Add action**.
+9. Click on the **Actions** tab and select **+ Add an action**.
 
     ![](./media/image130.png)
    
-11. Search for +++Send an mail+++ and select **Send an email (V2) action**.
+10. Search for +++Send an mail+++ and select **Send an email (V2) action**.
 
     ![](./media/image131.png)
 
-12.  Select End user Authentication to Copilot Authentication and select **Next**.
+11.	Once the connection is established, click on **Next**.
 
-      ![](./media/image132.png)
+   	![](./media/img2.png)
+   	
+12.	Select **End user Authentication** as **Copilot Authentication** and select **Add action**.
 
-13. Select **Edit inputs**.
+   	![](./media/img3.png)
+   	
+13.	Select the created Action.
 
-    ![](./media/image133.png)
-    
-14. Give the email id to which the mail needs to be delivered in the **Description** field under **Required inputs** and click on **Save**.
+   	![](./media/img4.png)
+   	
+14.	Select the **Inputs** tab.
 
-    ![](./media/image134.png)
-    
-15. Review the inputs and click on **Next** and then **Finish** in the next screen.
+   	![](./media/img5.png)
+   	
+15.	Give the email id to which the mail needs to be delivered in the **Description** field and click on **Save**. This can be any mail id you have access to.
 
-    ![](./media/image135.png)
-
-    ![](./media/image136.png)
+   	![](./media/img6.png)
 
 ### Task 3: Add instructions to the agent
 
-1.  Click on **Edit** in the Overview page.
+1.	Select **Overview** to go to the Overview page and then click on **Edit** in the Overview page
 
-    ![](./media/image113.png)
+    ![](./media/img7.png)
 
-2.  Update the instructions as below and click on **Save**.
+2.	Update the instructions as below, replacing the place holder for **Your mail id** with the **mail id** to which the details needs to be sent and click on **Save**.
+   
+    +++a.	Read the details of the row that gets added or modified+++
+    +++b.	Mail the modified information only to <Your email id> with a proper subject and body added to the email+++
 
-    +++1.  Read the details of the row that gets added or modified+++
 
-    +++2.  Use the action Office 365 Outlook - Send an email (V2)+++
+    ![](./media/img8.png)
 
-    ![](./media/image137.png)
-
-3.  Click on Publish to publish the agent to all the channels it is
+4.  Click on **Publish** to publish the agent to all the channels it is
     connected to.
 
     ![](./media/image115.png)
 
-4.  Click on **Publish** in the **Publish this agent** dialog box.
+5.  Click on **Publish** in the **Publish this agent** dialog box.
 
     ![](./media/image116.png)
 
-5.  Once published, you will get a success message.
+6.  Once published, you will get a success message.
 
     ![](./media/image117.png)
 
@@ -1004,9 +1011,9 @@ Booking Requests table+++
 
     ![](./media/image125.png)
 
-    ![](./media/image126.png)
-
-6. You can check the status of the trigger from the **Activity** tab.
+6.	Check the corresponding mail box to see if you have received a mail as below.
+   
+    ![](./media/img9.png)
 
 
 **Summary**
