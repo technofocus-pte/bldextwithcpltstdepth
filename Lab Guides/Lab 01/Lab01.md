@@ -117,6 +117,8 @@ booking requests online.
 
     ![](./media/image10.png)
 
+    >[!Note] **Note:** If you get a message stating that **A record with matching key value already exists**, close the publisher creation pane and select the Publisher **Contoso** in the New Solution creator pane. 
+
 5.  Select **Contoso (contoso)** under Publisher and then click on
     **Create**.
 
