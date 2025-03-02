@@ -228,12 +228,12 @@ topics.
 
     ![](./media/image40.png)
 
-9.  Specify the following in the user page.
+9.  Ensure that the values are as per the below table
 
-    | Setting   |   Value |
-    |:---------|:---------|
-    |   Capacity |  100|
-    |   Default Presence | available    |
+    -    Capacity:  100
+      
+    -    Default Presence: available
+
     ![](./media/image41.png)
 
 10. Select **Save and close**.
@@ -272,7 +272,7 @@ topics.
 
     - Name - +++**Chat Channel**+++
 
-    - Language – **United States**
+    - Language – **English - United States**
 
     ![](./media/image47.png)
 
