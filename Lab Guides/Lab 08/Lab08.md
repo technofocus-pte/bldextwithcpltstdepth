@@ -74,6 +74,7 @@ In this lab, we will learn how to create a Conversational action.
  invoke your plugin or not.
 
 13. Add a message node with the list of holidays.
+    Copy the below to a notepad and then paste it into the Message node from there.
 
     ```
     National holidays for 2025:
