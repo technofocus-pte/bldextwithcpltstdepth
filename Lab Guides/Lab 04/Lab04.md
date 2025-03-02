@@ -155,27 +155,31 @@ Power Automate cloud flows
 
     ![](./media/image20.png)
 
-2.  Scroll down and select **Create a new flow**.
+2.	Select **+ New action** -> **New Power Automate flow**.
 
-    ![](./media/image21.png)
+    ![](./media/img15.png)
 
 3.  Sign in to Power Automate if prompted.
 
-4.  Select **Run a flow from Copilot** in the top-left of the screen and
+4.	In the top right corner, enable the toggle **New designer** if not already done. Select **Save and switch**.
+
+  	![](./media/img16.png)
+  	
+5.  Select **Run a flow from Copilot** in the top-left of the screen and
     enter +++**Get Property**+++ as the flow name.
 
     ![](./media/image22.png)
 
-5.  Select the trigger step **Run a flow from Copilot** and select **+
+6.  Select the trigger step **Run a flow from Copilot** and select **+
     Add an input**.
 
     ![](./media/image23.png)
 
-6.  Select **Text**.
+7.  Select **Text**.
 
     ![](./media/image24.png)
 
-7.  Enter the below details
+8.  Enter the below details
 
     - **Input** – +++Bedrooms+++
 
@@ -183,44 +187,43 @@ Power Automate cloud flows
 
     ![](./media/image25.png)
 
-8.  Select the **+** icon between the two steps in the flow and
+9.  Select the **+** icon between the two steps in the flow and
     select **Add an action**.
 
     ![](./media/image26.png)
 
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
+10.  Enter +++**Dataverse**+++ in the **Search** field and select **See
     more** for the **Microsoft Dataverse connector**.
 
     ![](./media/image27.png)
 
-10. Select the **List rows** action.
+11. Select the **List rows** action.
 
     ![](./media/image28.png)
 
-11. If prompted for authentication, select **OAuth** and select **Sign
+12. If prompted for authentication, select **OAuth** and select **Sign
     in**. Sign in using your tenant id if prompted.
 
     ![](./media/image29.png)
 
-12. Select **Real Estate Properties** for table name.
+13. Select **Real Estate Properties** for table name.
 
-13. Select **Show all**.
+14. Select **Show all** if all the options does not get listed automatically.
 
-14. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
+15. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
 
-15. Use **Dynamic content** to select the **Bedrooms** parameter and
-    select **Add**.
+16.	Use **spacebar** next to **eq** to ensure that you are adding the value after a space. Use **Dynamic content** to select the **Bedrooms** parameter and select **Add**.
 
     ![](./media/image30.png)
 
-16. Select the **Respond to Copilot** action and select **+ Add an
+17. Select the **Respond to Copilot** action and select **+ Add an
     output**.
 
     ![](./media/image31.png)
 
-17. Select **Text**.
+18. Select **Text**.
 
-18. Enter the below details
+19. Enter the below details
 
     - **Enter a name** - +++PropertyId+++
 
@@ -230,13 +233,17 @@ Power Automate cloud flows
 
     ![](./media/image32.png)
 
-19. Select **Add**.
+20. Select **Add**.
 
     ![](./media/image33.png)
 
-20. Select **+ Add an output**.
+21.	From +++https://make.powerapps.com+++, open the table **Real Estate Property**. Navigate to its column **Property Name -> Edit Column -> Advanced options**. Look for the value of the **Logical name** and if it is different from **Property Name**, replace the **propertyname** with this value in the **formula** below.
 
-21. Select **Text**.
+   	![](./media/img17.png)
+   	
+21. Select **+ Add an output**.
+
+22. Select **Text**.
 
     - **Enter a name** - +++PropertyName+++ 
 
@@ -244,26 +251,24 @@ Power Automate cloud flows
   enter the following expression:
       +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
 
-    >[!Alert] **Important:** From !!https://make.powerapps.com!!, open the table **Real Estate Property**. Navigate to its column Property Name -> Edit Column -> Advanced options. Look for the value of the **Logical name** and if it is different from Property Name, replace the **propertyname** with that value in the **formula** above.
-    >
-    >![](./media/image126.png)
+    (Replace **propertyname** based on the **Logical name** fetched in the earlier step)
     
     ![](./media/image34.png)
 
-23. Select **Settings**. Ensure that **Asynchronous Response** is set
+24. Select **Settings**. Ensure that **Asynchronous Response** is set
     to **Off**.
 
     ![](./media/image35.png)
 
-24. Select **Save draft**.
+25. Select **Save draft**.
 
     ![](./media/image36.png)
 
-25. Once save, select **Publish**.
+26. Once save, select **Publish**.
 
     ![](./media/image37.png)
 
-26. Close the Power Automate tab.
+27. Close the Power Automate tab.
 
 ### Task 2: Add a Copilot action for retrieving a property
 
@@ -273,37 +278,32 @@ Power Automate cloud flows
 
 2.  Select the **Get Property** flow.
 
-    ![](./media/image39.png)
+    ![](./media/img18.png)
 
-3.  Select **Next** in the **Choose an action** screen.
+3.	Select **Add action**.
 
     ![](./media/image40.png)
 
-4.  Select **Next** in the **Review inputs and outputs** screen.
+4.  Select the **Topics** tab. 
 
-    ![](./media/image41.png)
+    ![](./media/img19.png)
 
-5.  Select **Finish** in the **Review and finish** screen.
+5.	Select the **Book a Real Estate Showing** topic.
 
-    ![](./media/image42.png)
-
-6.  Select the **Topics** tab. And select the **Book a Real Estate
-    Showing** topic.
-
-    ![](./media/image43.png)
-
-7.  Select the **+** icon below the **How many bedrooms do you need
-    question?** node and select **Call an action**. Select the **Get
+    ![](./media/img20.png)
+  	
+6.  Select the **+** icon below the **How many bedrooms do you need
+    question?** node and select **Add an action**. Select the **Get
     Property** flow.
 
-    ![](./media/image44.png)
+    ![](./media/img21.png)
 
-8.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
+7.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
     parameter.
 
     ![](./media/image45.png)
 
-9.  Select the **three dots** in the **Which property do you want to
+8.  Select the **three dots** in the **Which property do you want to
     see?** question node and select **Delete**.
 
     ![](./media/image46.png)
@@ -338,9 +338,9 @@ Power Automate cloud flows
 
     ![](./media/image51.png)
 
-2.  Scroll down and select **Create a new flow**.
+2.	Select **+ New action** -> **New Power Automate flow**.
 
-    ![](./media/image52.png)
+    ![](./media/img22.png)
 
 3.  Select **Run a flow from Copilot** in the top-left of the screen and
     enter +++**Booking Request**+++ as the flow name.
@@ -446,9 +446,9 @@ Power Automate cloud flows
 
     ![](./media/image70.png)
 
-3.  Select **Next** in the Choose an option screen.
+3.  Select **Add action**.
 
-    ![](./media/image71.png)
+    ![](./media/img23.png)
 
 4.  Select **Next** in the Review inputs and outputs .
 
@@ -464,11 +464,11 @@ Power Automate cloud flows
     ![](./media/image74.png)
 
 7.  Select the **+** icon below the **What date and time do you want to
-    see the property?** node and select **Call an action**.
+    see the property?** node and select **Add an action**.
 
 8.  Select the **Booking Request** flow.
 
-    ![](./media/image75.png)
+    ![](./media/img24.png)
 
 9.  Select the **PropertyId** variable for the **PropertyId** input
     parameter.
@@ -582,7 +582,7 @@ improve your copilot's responses.
 
 4.  Select the **Generative AI** tab.
 
-    Select **Generative** under **How should your copilot decide how to
+    Select **Generative(preview)** under **How should your copilot decide how to
 respond**.
 
     Select **Medium** for **How strict should the content moderation be?**.
@@ -630,7 +630,7 @@ respond**.
 
     ![](./media/image97.png)
 
-2.  Select **Dataverse**.
+2.  Select **Dataverse(preview)**.
 
     ![](./media/image98.png)
 
@@ -653,15 +653,23 @@ respond**.
 
     ![](./media/image102.png)
 
-2.  Under **Upload files** section, select **click to browse** and browse to locate the file
+2.	Select **Files**.
+
+    ![](./media/img26.png)
+  	
+3.  Select **click to browse** and browse to locate the file
     **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
 
-    ![](./media/image104.png)
+    ![](./media/img27.png)
 
-3.  Select **Add**.
+4.  Select **Add**.
 
     ![](./media/image105.png)
 
+    >[!Alert] **Important:** The file upload will take around 10 minutes to complete. Check the status in the Knowledge tab to ensure that the file has been uploaded successfully.
+    >
+    >![](./media/img25.png)
+    
 ### Task 6: Use generative answers in System fallback topic
 
 1.  Select the **Topics** tab and select **System**. Select
@@ -745,6 +753,8 @@ respond**.
 2.  Select the **three dots** at the top of the testing panel in the
     top-right of the screen.
 
+3.	Select **Activity map**.
+   
 3.  Select **Track between topics**.
 
 4.  Select the **Start a new conversation** icon at the top of the
