@@ -21,43 +21,49 @@ In this lab, we will learn how to create a Conversational action.
 1.  Login to +++**https://copilotstudio.microsoft.com/**+++ using your
     tenant credentials if not already logged in.
 
-2.  Select the environment as Dev one from top right.
+2.  Select the environment as Dev one from top right if not selected already.
 
     ![](./media/image17.png)
-    
-3.  Select **Copilot for Microsoft 365**.
+
+3.	Select **Agents** from the left pane.
+   
+4.  Select **Copilot for Microsoft 365**.
 
     ![](./media/image1.png)
 
-4.  Select **Actions**.
+5.  Select **Actions**.
 
     ![](./media/image2.png)
 
-5.  Select **+ Add an action**.
+6.  Select **+ Add an action**.
 
     ![](./media/image3.png)
 
-6.  Select **Conversational** in the **New action** pane.
+7.  Select **Conversational** in the **New action** pane.
 
     ![](./media/image4.png)
 
-7.  Provide the name for the action as +++**Conversational action**+++.
+8.  Provide the name for the action as +++**Conversational action**+++.
     Select **Create**.
 
-    ![](./media/image5.png)
+    ![](./media/img31.png)
 
-8.  Once ready, the created action opens in Authoring canvas. Select
+9.  Once ready, the created action opens in Authoring canvas. Select
     **Topics**.
 
     ![](./media/image7.png)
 
-9.  Name the topic as +++Holidaylist+++
+10.	If it does not open up, refresh the page and see if it is listed under **Library -> Conversational**.
+
+    ![](./media/img32.png)
+   	
+11.  Name the topic as +++Holidaylist+++
 
     ![](./media/image8.png)
 
-10.  In the Trigger node’s description, provide a clear description of how the conversational plugin can 
+12.  In the Trigger node’s description, provide a clear description of how the conversational plugin can 
      help the user and what it can do. Let this topic help the user to find the list of holidays in the  
-     year 2024.
+     year 2025.
      
      Type +++**This plugin helps to retrieve the list of holidays for the year 2024.**+++ in the Trigger 
  node’s description.
@@ -67,36 +73,35 @@ In this lab, we will learn how to create a Conversational action.
      This description has functional purpose and is used by the Microsoft Copilot to determine whether to 
  invoke your plugin or not.
 
-11. Add a message node with the list of holidays.
+13. Add a message node with the list of holidays.
 
     ```
-    - New Year's Day - January 1
+    National holidays for 2025:
+    - New Year’s Day:	Jan 1
 
-    - Martin Luther King, Jr.'s Birthday (Third Monday of January) -
-      January 15, 2024
+    - Martin Luther King Jr. Day: Jan 20
 
-    - Washington's Birthday or Presidents' Day (third Monday of
-      February) - February 19
+    - Washington’s Birthday (Presidents’ Day): Feb 17
 
-    - Memorial Day (last Monday of May) - May 27
+    - Memorial Day: May 26
 
-    - Juneteenth Day - June 19
+    - Juneteenth National Independence Day: June 19
 
-    - Independence Day - July 4
+    - Independence Day: July 4
 
-    - Labor Day (first Monday of September) - September 2
+    - Labor Day: Sep 1
 
-    - Columbus Day (Second Monday of October) - October 14
+    - Columbus Day / Indigenous Peoples’ Day: Oct 13
 
-    - Veterans Day or Veterans Day - November 11
+    - Veterans Day: Nov 11
 
-    - Thanksgiving Day (fourth Thursday of November): November 28
+    - Thanksgiving Day: Nov 27
 
-    - Christmas Day - December 25
+    - Christmas Day: Dec 25
 
     ```
     
-    ![](./media/image10.png)
+    ![](./media/img33.png)
 
 12. Click on **Save** to save the plugin.
 
