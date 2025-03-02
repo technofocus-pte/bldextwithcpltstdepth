@@ -106,19 +106,20 @@ add the trigger.
 
     ![](./media/image11.png)
 
-3.  Click on the **+** symbol below the Trigger node. Select The **Call
-    an action** option and select **Create a prompt** option under that.
+3.  Click on the **+** symbol below the Trigger node. Select the **Add an action** option and select **New prompt (default AI model)** option under that.
 
-    ![](./media/image12.png)
+    ![](./media/img34.png)
 
-4.  The Prompt dialog will appear, and you may see a flyout appear that
+    ![](./media/img35.png)
+
+5.  The Prompt dialog will appear, and you may see a flyout appear that
     will guide you on how to create your prompt. Select **Next** to go
     through the guide.
 
-5.  We'll create prompt that will generate questions for a quiz. Enter
+6.  We'll create prompt that will generate questions for a quiz. Enter
     the name for the prompt as +++Quiz Generator+++.
 
-6.  Paste the below content in the Prompt field.
+7.  Paste the below content in the Prompt field.
 
     +++Generate a quiz with [number] questions to cover this [topic]. Decide on the format, such as multiple-choice questions or true/false statements. Use this [format]. Designate the correct answer within parentheses.+++
 
@@ -126,65 +127,65 @@ add the trigger.
 
     ![](./media/image13.png)
 
-7.  Select **Text** under the **Add input** option.
+8.  Select **Text** under the **Add input** option.
 
     ![](./media/image14.png)
 
-8.  Enter the name as +++number+++ and enter sample data such as
+9.  Enter the name as +++number+++ and enter sample data such as
     +++5+++. Select **+ Add input** -\> **Text** to add the next input.
 
     ![](./media/image15.png)
 
-9.  Enter the name as +++topic+++ and enter sample data such as
+10.  Enter the name as +++topic+++ and enter sample data such as
     +++Science+++ and then select **+ Add input** -\> **Text** to add
     the next input.
 
     ![](./media/image16.png)
 
-10. Enter the name as +++format+++ and enter sample data such as
+11. Enter the name as +++format+++ and enter sample data such as
     +++bullet points+++
 
     ![](./media/image17.png)
 
-11. Now that we have added the input names and example data. Next, the
-    inputs need to be inserted into the prompt. In the Prompt, highlight
-    **\[number\]** and select **+ Add** and select number. The input of
-    number has now been added to the prompt as an input.
+12. Now that we have added the input names and example data. Next, the
+    inputs need to be inserted into the prompt. In the Prompt, highlight **[number]** and select **+ Add** and select **number** under **In your prompt** tab.  The input of number has now been added to the prompt as an input.
 
     ![](./media/image18.png)
 
-    ![](./media/image19.png)
+    ![](./media/img36.png)
 
-12. Repeat the same steps for the remaining inputs.
+13. Repeat the same steps for the remaining inputs.
 
-13. Once all the inputs are added to the prompt, click on **Test
+14. Once all the inputs are added to the prompt, click on **Test
     prompt** and observe the prompt response.
 
     ![](./media/image20.png)
 
-14. Select **Save custom prompt** to save the prompt.
+15. Select **Save** to save the prompt.
 
-    ![](./media/image21.png)
+    ![](./media/img37.png)
 
-15. The prompt action node will now appear in the authoring canvas of
+    ![](./media/img38.png)
+    
+17. The prompt action node will now appear in the authoring canvas of
     the Topic. Next, the values of the input parameter need to be
     defined in order for the agent to populate them. Select
     the **\>** icon
 
     ![](./media/image22.png)
 
-16. Select the **System** tab and select the **Acivity.Text** as the
+18. Select the **System** tab and select the **Acivity.Text** as the
     input value for the action to use the user’s entire response and
     identify the format value.
 
     ![](./media/image23.png)
 
-17. Repeat the same for the remaining input parameters of the prompt
+19. Repeat the same for the remaining input parameters of the prompt
     action.
 
     ![](./media/image24.png)
 
-18. Next, we need to define the output variable of the prompt action.
+20. Next, we need to define the output variable of the prompt action.
     This is so that the response can be referenced downstream in the
     topic. Select the **\>** icon and in the **Custom** tab,
     select **Create new** and name the variable as +++VarQuizQuestionsResponse+++
@@ -193,18 +194,18 @@ add the trigger.
 
     ![](./media/image26.png)
 
-19. Below the Prompt action, select the **+** icon to add a new node and
+21. Below the Prompt action, select the **+** icon to add a new node and
     select **Send a message**. Select the **{x}** variable icon.
 
     ![](./media/image27.png)
 
-20. Select the variable **VarQuizQuestionsResponse.text**. This will add
+22. Select the variable **VarQuizQuestionsResponse.text**. This will add
     the text property of the prompt action response to the send a
     message node. Select **Save** to save your topic.
 
     ![](./media/image28.png)
 
-21. The Topic details needs to be updated next which will be used by
+23. The Topic details needs to be updated next which will be used by
     your agent to associate the topic with the user's intent when
     Generative mode is enabled. Select **Details** and enter the following details.
 
@@ -216,18 +217,18 @@ add the trigger.
 
     ![](./media/image29.png)
 
-22. Now, the **Generative mode** setting needs to be enabled for the
+24. Now, the **Generative mode** setting needs to be enabled for the
     agent to call the topic with the prompt action. Select **Settings**
     for your agent.
 
     ![](./media/image30.png)
 
-23. Select the **Generative AI** setting and select **Generate
+25. Select the **Generative AI** setting and select **Generate
     (preview)** followed by selecting **Save**.
 
     ![](./media/image31.png)
 
-24. Now we are ready to test the agent. In the test pane, select
+26. Now we are ready to test the agent. **Close** the **Settings** pane. In the test pane, select
     the **refresh** icon. Then enter the following question and observe
     the output.
 
