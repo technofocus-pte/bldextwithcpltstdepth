@@ -61,9 +61,7 @@ the newly created files.
 
     - **Name** - +++New file tracker agent+++
 
-    - **Description** - +++This agent will update the File details tracker
-    placed in the OneDrive, each time a new file is created in the
-    OneDrive
+    - **Description** - +++This agent will update the File details tracker placed in the OneDrive, each time a new file is created in the OneDrive+++
 
     ![](./media/image16.png)
 
