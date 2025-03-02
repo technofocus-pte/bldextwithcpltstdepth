@@ -146,22 +146,32 @@ in the left pane and redo step 5 of Exercise 1.
     following text:
 
     ```
-    National holidays for 2024:
+    National holidays for 2025:
    
-        - New Year's Day: January 1st
+        - New Year’s Day: Jan 1
    
-        - Memorial Day: May 27th
+        - Martin Luther King Jr. Day: Jan 20
    
-        - Independence day: July 4th
+        - Washington’s Birthday (Presidents’ Day): Feb 17
    
-        - Labor Day: September 2nd
+        - Memorial Day: May 26
    
-        - Thanksgiving: November 28th
+        - Juneteenth National Independence Day: June 19
    
-        - Christmas Eve and Christmas Day: December 24th - 25^(th)
+        - Independence Day: July 4
+
+        - Labor Day: Sep 1
+
+        - Columbus Day / Indigenous Peoples’ Day: Oct 13
+
+        - Veterans Day: Nov 11
+
+        - Thanksgiving Day: Nov 27
+
+	- Christmas Day: Dec 25
     ```
 
-    ![](./media/image26.png)
+    ![](./media/img29.png)
 
 19. Click on **Save**.
 
