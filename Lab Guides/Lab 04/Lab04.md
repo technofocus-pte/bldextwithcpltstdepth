@@ -191,7 +191,7 @@ Power Automate cloud flows
 
     ![](./media/image26.png)
 
-10.  Enter +++**Dataverse**+++ in the **Search** field and select **See
+10. Enter +++**Dataverse**+++ in the **Search** field and select **See
     more** for the **Microsoft Dataverse connector**.
 
     ![](./media/image27.png)
