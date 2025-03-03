@@ -447,7 +447,7 @@ field, designate **Undecided** as the **Default choice** and click on
     ![](./media/image48.png)
 
 3.  Click on **Environments** on the top left and select
-    **CustomerService Trial**.
+    **Dev One**.
 
     ![](./media/image49.png)
 
