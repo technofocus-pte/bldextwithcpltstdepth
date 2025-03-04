@@ -449,13 +449,7 @@ Power Automate cloud flows
 
     ![](./media/img23.png)
 
-4.  Select **Next** in the Review inputs and outputs .
-
-    ![](./media/image72.png)
-
-5.  Select **Finish** in the **Review and finish** screen.
-
-    ![](./media/image73.png)
+    ![](./media/img40.png)
 
 6.  Select the **Topics** tab and select the **Book a Real Estate
     Showing** topic.
