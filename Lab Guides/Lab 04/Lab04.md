@@ -236,11 +236,11 @@ Power Automate cloud flows
 
     ![](./media/image33.png)
 
-21.	From +++https://make.powerapps.com+++, open the table **Real Estate Property**. Navigate to its column **Property Name -> Edit Column -> Advanced options**. Look for the value of the **Logical name** and if it is different from **Property Name**, replace the **propertyname** with this value in the **formula** below.
+21.	Have the Power Automate flow as such and from a new tab, open +++https://make.powerapps.com+++ (if not already open), open the table **Real Estate Property**. Navigate to its column **Property Name -> Edit Column -> Advanced options**. Look for the value of the **Logical name**. Make a note of this name to be used in the next step.
 
    	![](./media/img17.png)
    	
-21. Select **+ Add an output**.
+21. Back in the Power Automate tab, select **+ Add an output**.
 
 22. Select **Text**.
 
@@ -250,7 +250,7 @@ Power Automate cloud flows
   enter the following expression:
       +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
 
-    (Replace **propertyname** based on the **Logical name** fetched in the earlier step)
+    (Replace **contoso_propertyname** with the **Logical name** fetched in the earlier step)
     
     ![](./media/image34.png)
 
