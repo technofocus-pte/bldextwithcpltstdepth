@@ -277,32 +277,32 @@ Power Automate cloud flows
 
 2.  Select the **Get Property** flow.
 
+    ![](./media/image39.png)
+     
+4.	Select **Add action**.
+
     ![](./media/img18.png)
 
-3.	Select **Add action**.
-
-    ![](./media/image40.png)
-
-4.  Select the **Topics** tab. 
+5.  Select the **Topics** tab. 
 
     ![](./media/img19.png)
 
-5.	Select the **Book a Real Estate Showing** topic.
+6.	Select the **Book a Real Estate Showing** topic.
 
     ![](./media/img20.png)
   	
-6.  Select the **+** icon below the **How many bedrooms do you need
+7.  Select the **+** icon below the **How many bedrooms do you need
     question?** node and select **Add an action**. Select the **Get
     Property** flow.
 
     ![](./media/img21.png)
 
-7.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
+8.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
     parameter.
 
     ![](./media/image45.png)
 
-8.  Select the **three dots** in the **Which property do you want to
+9.  Select the **three dots** in the **Which property do you want to
     see?** question node and select **Delete**.
 
     ![](./media/image46.png)
