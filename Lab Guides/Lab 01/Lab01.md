@@ -337,6 +337,8 @@ select **Save**:
 
     ![](./media/image35.png)
 
+    >[!Note] Note: If there is no client record in the Contact table, ignore adding data to the Contact column.
+
 ### Task 5: Create the Bookings table
 
 Follow these steps to create a new custom table in Dataverse for Real
