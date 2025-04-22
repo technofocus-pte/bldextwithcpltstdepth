@@ -1,155 +1,261 @@
-# **Lab 06 - Creating conversational actions for Microsoft Copilot**
+# **Lab 06_Teams からの Microsoft Copilot Studio コパイロットの作成とデプロイ**
 
-**Lab duration** – 20 minutes
+**ラボ期間**– 30分
 
-**Objective**
+**目的:**
 
-Microsoft Copilot provides out of the box experiences to engage with
-content and resources from across your organization. In some situations,
-answers and interaction with external systems are required. With
-Microsoft Copilot Studio, you can author a conversational topic that can
-be published as a Copilot Plugin. Once your Tenant Admin approves the
-Plugin, it can be added to your organization's M365 Chat experiences.
+このラボでは、Microsoft Teams に Copilot Studio
+アプリをインストールし、チームに新しい Copilot
+を作成してからテストします。
 
-The actions will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **手順 1: Microsoft Teams に Copilot Studio アプリをインストールする**
 
-In this lab, we will learn how to create a Conversational action.
+1.  Select **Start** menu from the
+    VMから**Start**メニューを選択して+++teams+++を検索し、**Microsoft
+    Teams app**を選択します。
 
-## **Exercise 1: Create a Conversational action**
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-1.  Login to +++**https://copilotstudio.microsoft.com/**+++ using your
-    tenant credentials if not already logged in.
+2.  **Resourcesタブから資格情報を使用してサインインする。**
 
-2.  Select **Copilot for Microsoft 365**.
+![A screenshot of a sign in Description automatically
+generated](./media/image2.png)
 
-    ![](./media/image1.png
-)
+3.  Click on **Apps**をクリックする。+++**Copilot
+    Studio**+++を検索し**Microsoft Copilot
+    Studioを選択して、Add**をクリックする。
 
-3.  Select **Actions**.
+**注:** Copilot Studio が見つからない場合は、**Power Virtual
+エージェント**を検索して選択し、追加する必要があります。
 
-    ![](./media/image2.png
-)
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-4.  Select **+ Add an action**.
+![](./media/image4.png)
 
-    ![](./media/image3.png)
+4.  **Open**をクリックする。
 
-5.  Select **Conversational** in the **New action** pane.
+![A screenshot of a phone Description automatically
+generated](./media/image5.png)
 
-    ![](./media/image4.png
-)
+5.  **Start now**をクリックする。
 
-6.  Provide the name for the action as +++**Conversational action**+++.
-    Select **Create**.
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-    ![](./media/image5.png)
+## **手順 2: チームで新しい副操縦士を作成する**
 
-    ![](./media/image6.png)
+1.  **Office 365** テナントの資格情報を使用して **Teams**
+    に**サインインします**。
 
-7.  Once ready, the created action opens in Authoring canvas. Select
-    **Topics**.
+> ![A screenshot of a sign in Description automatically
+> generated](./media/image7.png)
 
-    ![](./media/image7.png
-)
+1.  \[アプリ**\]をクリックします**。+++Copilot Studio+++
+    を検索し、**Microsoft Copilot Studio** を選択して \[追加**\]
+    をクリックします**。
 
-8.  Name the topic as +++Holidaylist+++
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-    ![](./media/image8.png
-)
+![A screenshot of a phone Description automatically
+generated](./media/image4.png)
 
-9.  In the Trigger node’s description, provide a clear description of
-    how the conversational plugin can help the user and what it can
-    do. Let this topic help the user to find the list of holidays in the
-    year 2024.
+**重要:** Copilot Studioが見つからない場合は、**+++Power
+Virtualエージェント+++**を検索して選択し、追加する必要があります。
 
-    Type +++**This plugin helps to retrieve the list of holidays for the
-year 2024.**+++ in the Trigger node’s description.
+![A screenshot of a search engine Description automatically
+generated](./media/image8.png)
 
-    ![](./media/image9.png
-)
+![A screenshot of a computer Description automatically
+generated](./media/image9.png)
 
-    This description has functional purpose and is used by the Microsoft
-Copilot to determine whether to invoke your plugin or not.
+1.  **Start now**をクリックする。
 
-10. Add a message node with the list of holidays.
-    ```
-    - New Year's Day - January 1
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-    - Martin Luther King, Jr.'s Birthday (Third Monday of January) -
-      January 15, 2024
+2.  **Contosoを選択してContinue**をクリックする。
 
-    - Washington's Birthday or Presidents' Day (third Monday of
-      February) - February 19
+![A screenshot of a chatbot Description automatically
+generated](./media/image10.png)
 
-    - Memorial Day (last Monday of May) - May 27
+![A screenshot of a chatbot Description automatically
+generated](./media/image11.png)
 
-    - Juneteenth Day - June 19
+**重要:** この手順には約 10
+分かかる場合があります。時間がかかりすぎる場合は、閉じて、左側のウィンドウで
+アプリから Copilot Studio または Power Virtual Agents を選択し、手順 4
+をやり直します。
 
-    - Independence Day - July 4
+1.  \[Create a copilot\] 画面で、コパイロットの名前を **+++HR Support
+    Copilot+++** として指定し、\[**Create**\] をクリックします。
 
-    - Labor Day (first Monday of September) - September 2
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-    - Columbus Day (Second Monday of October) - October 14
+3.  **Your chatbot is provisioned**という成功メセッジが表示されます。
 
-    - Veterans Day or Veterans Day - November 11
+![](./media/image13.png)
 
-    - Thanksgiving Day (fourth Thursday of November): November 28
+## **手順 3: 一般的な休暇クエリの従業員の休暇トピックを作成する**
 
-    - Christmas Day - December 25
-    ```
+1.  左側のペインから「**トピック」をクリックします** 。\[**+
+    新しいトピック -\> 空白から\]** をクリックします**。**
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image14.png)
 
-11. Click on **Save** to save the plugin.
+2.  ここで \[トリガー フレーズ\] ウィンドウを**閉じます**.
 
-    ![](./media/image11.png
-)
+![A screenshot of a computer screen Description automatically
+generated](./media/image15.png)
 
-    ![](./media/image12.png)
+1.  \[Details**\]** アイコンをクリックします。
 
-## **Exercise 2: Publishing your conversational action to Microsoft Copilot**
+![A screenshot of a computer Description automatically
+generated](./media/image16.png)
 
-1.  Publishing your conversational plugin creates a new plugin in the
-    Dataverse registry for your Tenant. Once available there, your
-    tenant admin needs to approve your plugin to be available to users
-    in the Microsoft Copilot plugins catalog.
+1.  \[**Details**\] ウィンドウで、名前を +++Employee time off+++
+    と指定し、\[**Description**\] を \[+++Employee time off topic for
+    common time-off queries+++\] として指定します。
 
-2.  Click on **Publish**.
+![A screenshot of a computer Description automatically
+generated](./media/image17.png)
 
-    ![](./media/image13.png
-)
+3.  Detailsウィンドウを**Close**する。![A screenshot of a computer
+    Description automatically generated](./media/image18.png)
 
-3.  Select **Publish.**
+4.  **Save**をクリックする。
 
-    ![](./media/image14.png)
+![A screenshot of a chat Description automatically
+generated](./media/image19.png)
 
-4.  Select **Publish** on **Publish latest content** dialog.
+5.  **Trigger phasesをクリックする。**
 
-    ![](./media/image15.png
-)
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
 
-5.  The publish status is shown on the screen.
+1.  トリガーフレーズ**+++I need help with time
+    off+++**を追加し、+をクリックします **。**
 
-    ![](./media/image16.png
-)
+![](./media/image21.png)
 
-Note: The publish should complete quickly. The actual availability in
-the Microsoft Admin Center can take up to 4 hours.
+6.  以下のトリガーフレーズを追加する。
 
-**Important:** **:** For the admin to get it listed in the admin center,
-the company will have to hold a valid Copilot license.
+- +++**Need information on time off**+++
 
-6.  Your Admin can find the **Dataverse and Microsoft Copilot
-    Studio** integrated app in the Microsoft Admin Center
-    under **Settings**, then **Integrations to be reviewed and
-    approved**.
+- +++**How many days of paid vacation do I have**+++
 
-7.  Once your Tenant admin approves the Dataverse and Microsoft Copilot
-    Studio integrated app, it should appear in the user's list of
-    plugins in their Microsoft Copilot UI.
+- +++**What are the national holidays**+++
 
-**Summary:**
+- +++**I need extended leave**+++
 
-In this lab, we have learnt how to create a conversational action and to
-publish it.
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
+
+トリガーフレーズウィンドウを閉じる。
+
+7.  メセッジノードを追加して+++I can help with questions related to
+    time-off*+++*のテキストを入力する。
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image23.png)
+
+8.  人事担当者であれば、休暇に関する最も一般的な質問は有給休暇と祝日に関するものであることをご存知でしょう。ユーザー回答オプション付きの質問ノードを追加すると、トピックは回答ごとに自動的に分岐します。
+
+9.  メッセージノードの下にある（+）アイコンを選択し、「**Ask a
+    question**」を選択してトピックに質問ノードを追加します。「**Ask a
+    question**」テキストボックスに「どのような情報をお探しですか？」と入力する。
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image24.png)
+
+10. **Options for userの下に**、二つのオプションとして +++Paid
+    vacation*+++* と +++National Holidays*+++* を追加する。
+
+> ![A screenshot of a questionnaire Description automatically
+> generated](./media/image25.png)
+
+11. ユーザーの選択は変数に格納され、トピックはユーザーが選択したオプションに基づいて分岐します。変数の名前を変更して、トピック内で変数を追跡しやすくすることができます。
+
+12. 変数の **\[Save response as**\]
+    で、鉛筆アイコンを選択して変数のプロパティを編集します。
+
+13. \[**変数のプロパティ**\] ウィンドウが開きます。変数の名前を
+    +++TimeoffType+++ に変更します。**\[変数のプロパティ**\]
+    ウィンドウを閉じると、オーサリング キャンバスに変更が反映されます.
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image26.png)
+
+14. 有給休暇ブランチのメッセージ
+    ノードを追加し、次のメッセージをユーザーに送信します:
+    +++有給休暇の場合は、www.contoso.com/HR/PaidTimeOff+++
+    にアクセスして休暇申請を送信する。
+
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
+
+15. 「National Holidays**」パスに**
+    、次のテキストを含むメッセージノードを追加します:
+
+2025年の祝日:
+
+- New Year’s Day: Jan 1
+
+- Martin Luther King Jr. Day: Jan 20
+
+- Washington’s Birthday (Presidents’ Day): Feb 17
+
+- Memorial Day: May 26
+
+- Juneteenth National Independence Day: June 19
+
+- Independence Day: July 4
+
+- Labor Day: Sep 1
+
+- Columbus Day / Indigenous Peoples’ Day: Oct 13
+
+- Veterans Day: Nov 11
+
+- Thanksgiving Day: Nov 27
+
+- Christmas Day: Dec 25
+
+![](./media/image28.png)
+
+16. **Save**をクリックする
+
+![A screenshot of a computer Description automatically
+generated](./media/image29.png)
+
+![A screenshot of a chat window Description automatically
+generated](./media/image30.png)
+
+## **手順 4: 予想される動作について副操縦士をテストする**
+
+1.  画面の上部にある **Copilot/Power Virtual Agent アイコンを選択して**
+    、テスト Copilot キャンバスを起動します.
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image31.png)
+
+2.  Copilotチャットに**I need time off information**を入力する。 
+
+3.  \[**有給休暇**\] を選択**します**。
+
+4.  弊社の設定に従って応答を受け取ります
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image32.png)
+>
+> ![A screenshot of a chat Description automatically
+> generated](./media/image33.png)
+>
+> **要約:**
+>
+> このラボでは、Copilot Studio アプリを Teams に追加し、Teams
+> でクラシック ボットを作成する方法を学習しました。
