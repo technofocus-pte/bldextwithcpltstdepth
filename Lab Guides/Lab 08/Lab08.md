@@ -1,92 +1,165 @@
-# **Lab 08 - Extending Microsoft Copilot with connector actions (preview)**
+**ラボ08 - Microsoft Copilot の会話型アクションの作成**
 
-**Lab duration** – 20 minutes
+**ラボ期間**– 20分
 
-**Objective:**
+**目的**
 
-Connector actions let you define connectors that can be invoked from AI
-surfaces in Power Platform. For connector actions, you need to identify
-the actions enabled for use in the Copilot. You can also capture the
-information that large language models require to effectively identify
-and utilize the plugin, such as summary and description fields.
+Microsoft Copilot
+は、組織全体のコンテンツやリソースにアクセスするための、すぐに使えるエクスペリエンスを提供します。状況によっては、外部システムへの回答やインタラクションが必要になることもあります。Microsoft
+Copilot Studio を使用すると、Copilot
+プラグインとして公開できる会話型トピックを作成できます。テナント管理者がプラグインを承認すると、組織の
+M365 Chat エクスペリエンスに追加できます。
 
-In this lab, we will learn how to add a connector action and publish it.
+組織が有効なライセンスを保有している場合、これらのアクションは運用環境の
+Microsoft Copilot で利用できます。
 
-## **Exercise 1: Add a connector action**
+このラボでは、会話型アクションの作成方法を学習します。
 
-### **Task 1: Select the Copilot experience and choose connector action**
+## **手順 1: Create a Conversational action**
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your tenant
-    credentials if not done already.
+1.  まだログインしていない場合は、テナントの資格情報を使用して
+    **+++https://copilotstudio.microsoft.com/+++** にログインします。
 
-2.  On the home page, select **Copilots** and select **Copilot for
-    Microsoft 365**.
+2.  右上から環境を **Dev one** として選択します。
 
-    ![](./media/image1.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-3.  Select **Actions** and then select **+ Add action**.
+3.  左側のウィンドウから **\[Agent\]** を選択します。
 
-    ![](./media/image2.png)
+4.  **Copilot for Microsoft 365**を選択します。
 
-4.  Select **connector**.
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-    ![](./media/image3.png)
+5.  **Actions**を選択する。
 
-5.  Select **SharePoint**.
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-    ![](./media/image4.png)
+6.  **Add an action**を選択する。
 
-6.  The **Add a connector action** pane opens. Accept the defaults and
-    click on **Next**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image4.png)
 
-    ![](./media/image5.png)
+7.  **New actionウィンドウでConversational**を選択する。
 
-7.  Select the **Get lists**, accept the other defaults and click on
-    **Next**.
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-    ![](./media/image6.png)
+8.  アクションの名前を!!**Conversational
+    action**!!.として提供する。**Create**を選択する。
 
-8.  **Review** the action’s parameters and click on **Next**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image6.png)
 
-    ![](./media/image7.png)
+9.  準備ができたら、作成したアクションが作成キャンバスで開きます。**Topics**を選択する。
 
-9.  The screen again lands in the Add a connector action to enable
-    adding more actions. We can select **Next** since we are adding only
-    one action here.
+10. 開かない場合は、ページを更新して、\[**ライブラリ -\> 会話\]**
+    の下にリストされているかどうかを確認します。
 
-    ![](./media/image8.png)
+![A screenshot of a chat box AI-generated content may be
+incorrect.](./media/image7.png)
 
-10. In the Review, test and publish your action screen, click on **+ New
-    connection**.
+11. **Conversational action**を開く。
 
-    ![](./media/image9.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image8.png)
 
-11. Select **Create**.
+12. トピックに**!!Holidaylist!!**と名前を付ける。
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image9.png)
 
-12. Login using your tenant credentials. Once the connection is
-    established, select it (if not automatically selected) and then
-    click on **Next**.
+トリガーノードの説明には、会話型プラグインがユーザーにどのように役立つか、何ができるかを明確に説明する。このトピックは、ユーザーが2025年の祝日リストを見つけるのに役立つとします。
 
-    ![](./media/image11.png)
+トリガーノードの説明に「+++**This plugin helps to retrieve the list of
+holidays for the year 2025**+++」と入力する。
 
-13. In the next screen, your connection action gets published.
+![A screenshot of a computer Description automatically
+generated](./media/image10.png)
 
-    ![](./media/image12.png)
+この説明には機能的な目的があり、Microsoft Copilot
+がプラグインを起動すかどうかを決定するために使用されます.
 
-14. Once done, you will get a message stating that the **Your**
-    **connector action is now published to Copilot for Microsoft 365**.
-    Click on **Go to details page** to see the details.
+13. 休日のリストを含むメッセージノードを追加する.
 
-    ![](./media/image13.png)
+- 2025年の祝日：
 
-Your connector action is now published to **Copilot for Microsoft 365**.
-It will show up in copilot experiences only if you have a valid Copilot
-license.
+- New Year’s Day: Jan 1
 
-**Summary:**
+- Martin Luther King Jr. Day: Jan 20
 
-In this lab, we have learnt how to add a connector option, viewed the
-different types of actions available and publish it.
+- Washington’s Birthday (Presidents’ Day): Feb 17
+
+- Memorial Day: May 26
+
+- Juneteenth National Independence Day: June 19
+
+- Independence Day: July 4
+
+- Labor Day: Sep 1
+
+- Columbus Day / Indigenous Peoples’ Day: Oct 13
+
+- Veterans Day: Nov 11
+
+- Thanksgiving Day: Nov 27
+
+- Christmas Day: Dec 25
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image11.png)
+
+14. **Save**をクリックしプラグインを保存する**。**
+
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
+
+![A screenshot of a chat box Description automatically
+generated](./media/image13.png)
+
+## **手順 2: 会話型アクションを Microsoft Copilot に公開する**
+
+1.  会話型プラグインを公開すると、テナントのDataverseレジストリに新しいプラグインが作成されます。そこで利用可能になったら、テナント管理者がMicrosoft
+    Copilotプラグインカタログでユーザーにプラグインを承認する必要があります。
+
+2.  **Publish**をクリックする。
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image14.png)
+
+3.  **Publish**を選択する。
+
+![A screenshot of a computer program Description automatically
+generated](./media/image15.png)
+
+4.  **Publish latest content**ダイアログで**Publish**を選択する**。**
+
+![A screenshot of a computer Description automatically
+generated](./media/image16.png)
+
+5.  Publishの状況が画面に表示される。
+
+![A screenshot of a computer Description automatically
+generated](./media/image17.png)
+
+注: 公開はすぐに完了しますが、Microsoft Admin Center
+で実際に利用可能になるまでには最大 4 時間かかる場合があります。
+
+**重要: :** 管理者が管理センターに一覧表示するには、会社が有効な Copilot
+ライセンスを保持している必要があります。
+
+6.  管理者は、Microsoft 管理センターの \[**Settings**\] の
+    \[**Integrations to be reviewed and approved**\] で **Dataverse** と
+    **Microsoft Copilot Studio** の統合アプリを見つけることができます。
+
+&nbsp;
+
+7.  テナント管理者が Dataverse と **Microsoft Copilot Studio**
+    の統合アプリを承認すると、そのアプリはユーザーの **Microsoft Copilot
+    UI** のプラグインのリストに表示されます。
+
+**要約:**
+
+このラボでは、会話型アクションを作成し、それを公開する方法を学習しました。
