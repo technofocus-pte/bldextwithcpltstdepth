@@ -1,1208 +1,1271 @@
-# Lab 01: Creating and using Copilot from Copilot Studio for managing a Real Estate Application
+# ラボ01:Copilot Studioから不動産アプリケーションを管理するためのエージェントの作成と使用
 
-**Lab Duration** – 120 minutes
+**ラボ 期間** – 90分
 
-**Introduction**
+**紹介**
 
-Contoso Real Estate specializes in the sale and management of both
-commercial and residential properties. Currently, customer information
-is efficiently stored within their Dataverse instance, allowing for
-streamlined data management. However, the booking process presents a
-significant challenge.
+Contoso Real
+Estateは、商業用不動産と住宅用不動産の両方の販売と管理を専門としています。現在、顧客情報はDataverseインスタンス内に効率的に保存されており、効率的なデータ管理を実現しています。しかし、予約プロセスには大きな課題があります
 
-At present, customers can only request bookings via phone, leading to an
-overwhelmed phone line and long wait times. This situation not only
-frustrates customers but also risks losing potential business as many
-are unable to connect with the office to request services.
+現在、お客様は電話でのみ予約をリクエストできるため、電話回線が混雑し、待ち時間が長くなっています。この状況は、お客様の不満を招くだけでなく、多くのお客様がオフィスに繋がらずサービスをリクエストできないため、潜在的なビジネスを失うリスクもあります。
 
-To address these issues, Contoso Real Estate is committed to developing
-a comprehensive digital solution. This solution will empower customers
-to easily access information about the booking process and submit
-booking requests online.
+これらの問題に対処するため、Contoso Real
+Estateは包括的なデジタルソリューションの開発に取り組んでいます。このソリューションにより、顧客は予約プロセスに関する情報に簡単にアクセスし、オンラインで予約リクエストを送信できるようになります。
 
-**Objectives**
+**目的**
 
-- Build a standalone copilot for Contoso Real Estates from Copilot
-  Studio (that will allow customers to discover information about the
-  real estate booking process and create booking requests for the office
-  to review.)
+- Copilot Studio から Contoso Real Estates
+  用のスタンドアロンエージェントを構築します（これにより、顧客は不動産予約プロセスに関する情報を入手し、オフィスで確認するための予約リクエストを作成できます）。
 
-- Create Topics to set up the logic of the bookings.
+- 予約ロジックを設定するためのトピックを作成します。
 
-- Create the Dataverse tables required for the bookings.
+- 予約に必要なデータバーステーブルを作成します。
 
-- Publish the copilot.
+- Copilot を公開します。
 
-- Configure the Dynamics 365 workspace and connect the copilot to it.
+:::danger **2 日目のラボを実行するには、1 日目の終わりまでにラボ 03
+を完了する必要があります。ラボ01、02が完了していなくても、Day1終了までにラボ03を必ず完了してください。**.
+:::
 
-- Create a web page using Power Pages and integrate the copilot created
-  from Copilot Studio in it.
+## 手順 0: 環境の設定
 
-- Test the escalation to live agent functionality from the web page.
+### タスク 1: VMにログイン
 
-## Exercise 0: Setting up your environment
+1.  \[ホーム\] タブの \[**ユーザー名**\] と \[**パスワード**\]
+    を使用して VM に**ログイン**します。
 
-### Task 1: Login to VM
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-1.	Login to the VM using the **Username** and **Password** from the **Resources** tab.
-   
-    ![](./media/Picture1.png)
-  	
-### Task 2: Synchronize the VM clock
+### タスク 2: VM クロックを同期する
 
-1.	After logging into the VM, right click on the clock at the bottom right corner of the screen.
-   
-2.	Select **Adjust date and time**.
-   
-    ![](./media/picture2.png)
-  	
-3.	On the Settings screen that opens up, click on **Sync now** under Additional settings.
+1.  VMにログインしたら、画面の右下隅にある時計を右クリックします。
 
-    ![](./media/picture3.png)
- 
-4.	This takes care of synchronizing the time just in case the automatic synchronization does not work.
- 
-5.	**Close** the Settings pane.
+2.  **Adjust date and time**を選択する
 
-    ![](./media/picture4.png)
- 
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image2.png)
 
-## Exercise 1: Setting up the Dynamics 365 Customer Service
+3.  開いたSettings画面でAdditional Settingsの下に**Sync
+    now**をクリックする。
 
-### Task 1: Sign up for Dynamics 365 Customer Service trial
+![](./media/image3.png)
 
-1.  Login to
-    +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++.
-    
-2.	Login using the **Office 365 Tenant details** from the **Resources** tab if prompted.
+4.  これにより、自動同期が機能しない場合に備えて、時刻の同期が処理されます。
 
-    ![](./media/im01.png)
-  	
-3.  Click on **Try for free**
+5.  Settings画面を**閉じる**
 
-    ![](./media/image1.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image4.png)
 
-4.	Enter your **Office 365 Administrative Username** from the **Resources** tab, select the check box and click on **Start your free trial**.
+6.  「**Sign in required**」というアラートが表示された場合は、「**Sign
+    In**」をクリックし、「**Sign in with a different
+    account**」を選択して、VM
+    の「**ホーム**」タブで利用できる**管理者資格情報**を使用してサインインします。
 
-    ![](./media/image2.png)
+![A blue screen with white text AI-generated content may be
+incorrect.](./media/image5.png)
 
-6.  Enter the region as **United States**, enter your **Phone number**
-    and click on **Submit**.
+![](./media/image6.png)
 
-    ![](./media/image3.png)
+7.  **Sign in to this app only**を選択する。
 
-7.  The **Dynamics 365 Customer Service workspace** opens.
+![](./media/image7.png)
 
-  ![](./media/image4.png)
+1.  ログインしたら、**Teams**アプリ**を閉じます**。3日目のラボで使用します。
 
-5.  Click on Customer Service workspace to open the **Apps**.
+## 手順 1: Power Apps と Dataverse の設定
 
-  ![](./media/image5.png)
+### タスク 1: Sign up for the Microsoft Power Apps Developer Planにサインアップする
 
-6.  Click on **Customer Service admin center** to open it.
+1.  ブラウザを開き、!\!<https://powerapps.microsoft.com/free/>!!
+    にアクセスし、\[**Start free**\] または **\[Try for free**\]
+    を選択します。![](./media/image8.png)
 
-    ![](./media/image6.png)
+2.  **ホーム**タブからOffice Tenant Credentials
+    の**ユーザー名とパスワード**を入力してログインします。この**認証情報**は、ラボで使用するすべてのMicrosoftサイトとアプリへのログイン情報となります。
 
-7.  Select **Routing** under **Customer Support** group.
+![](./media/image9.png)
 
-    ![](./media/image7.png)
+3.  「**Lets get started**」の下で、テキスト
+    ボックスに「**Home**」タブの**管理者ユーザー名**を入力し、同意のボックスをオンにして、「**Start
+    free**」を選択します。
 
-8.  On the **Routing** page, under **Record routing**, click **Manage**
-    next to **Turn on Unified Routing for Records**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image10.png)
 
-    ![](./media/image8.png)
+4.  Microsoftアカウントを既にお持ちであることを示すプロンプトが表示された場合は、「**サインイン**」を選択し、パスワードを入力してください。
 
-9.  On the **Service Configuration Settings** page under **Unified
-    routing**, make sure that the **Turn on unified routing** toggle is
-    set to **Yes**.
+5.  プロンプトが表示されたら、「はい」を選択してサインイン状態を維持します。
 
-    >[!Note] **Note**: The **Turn on unified routing** toggle is set to **Yes** only
-if consent is already provided by the tenant administrator.
+6.  画面右上の「**Environment**」をクリックし、「**Dev
+    One**」が選択されていることを確認します。選択されていない場合は、「**Dev
+    One**」を選択してください。
 
-10. Click **Save**.
+![](./media/image11.png)
 
-    ![](./media/image9.png)
+### タスク 2: ソリューションを作成する
 
-### Task 2: Configure Omnichannel Power Virtual Agent Extension
+1.  Power Apps Maker
+    Portal(!\!<https://make.powerapps.com/>!!)から左画面から**Solutions**を選択する
 
-1.  Open the link,
-    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++
-    and click on Get it now in the Omnichannel Power Virtual Agent
-    Extension page.
+![](./media/image12.png)
 
-    ![](./media/image16.png)
+2.  **+ New solution**をクリックする。
 
-    ![](./media/image17.png)
+![A screenshot of a search engine AI-generated content may be
+incorrect.](./media/image13.png)
 
-2.  Select the **CustomerService Trial** under **Select an environment**, select the check boxes 
-    and click on **Install**.
+3.  Display
+    nameに「!!**Bookings**!!」と入力し、**Publisher**で「**Contoso
+    (contoso)**」を選択して、「**Create**」をクリックします。
 
-    ![](./media/image18.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image14.png)
 
-3.  In the Dynamics 365 apps page, click on the entries that shows
-    **Update available**, **select** the **check box** to agree to the
-    terms and click on **Update**.
+**Contoso** オプションが **Publisher**
+の下にリストされていない場合は、次の 2
+つの手順を実行します。それ以外の場合は、手順 6 から続行します。
 
-    Make sure to do this for **all** the entries with **Update available**
-    as the Status.
+4.  **Contoso** オプションが **Publisher**
+    の下にリストされていない場合は**+ New Publisher** を選択する。
 
-    ![](./media/image19.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image15.png)
 
-    ![](./media/image20.png)
+5.  以下の詳細を入力して**Saveをクリックする**。
 
-### Task 3: Configure search settings in the Power Platform admin center
+[TABLE]
 
-1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
-    your tenant details. Select **Environments** -> **CustomerService
-    Trial**.
+> ![](./media/image16.png)
 
-    ![](./media/image21.png)
+6.  左上画面で**Back to solutions**を選択する。
 
-2.  Select the drop down next to **Resource** (in the top pane) and
-    select **Dynamics 365 apps**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image17.png)
 
-    ![](./media/image22.png)
+### タスク 3: 優先ソリューションを設定する
 
-3.  Make sure that **Omnichannel for Customer Service** is
-    **Installed**.
+1.  Under Solutions in the MakerポータルでSolutionsの下に**Set your
+    preferred solutionで** **Manage**を選択する**。**
 
-    ![](./media/image23.png)
+![](./media/image18.png)
 
-4.  Navigate back to the **Environments -\> CustomerService** **Trial**
-    page in the admin center. Select **Settings** from the top pane.
+2.  **Unless otherwise specified, save my changes inの下にBookings
+    (contoso)** を選択し、**Applyを選択する。**
 
-    ![](./media/image24.png)
+![](./media/image19.png)
 
-5.  Select **Product** -\> **Features**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image20.png)
 
-    ![](./media/image25.png)
+### タスク 4: 不動産物件カスタムテーブルを作成する
 
-6.  Toggle **Dataverse Search** and **Single table search** option to
-    **ON.**
+新しいテーブルを作成するには、2つの方法があります。1つは従来の手動方式で、もう1つはCopilotを使用する方法です。
 
-    ![](./media/image26.png)
+#### タスク 4.1: Copilotを使用して動産物件カスタムテーブルを作成する
 
-    Scroll down and click on the **Save** button at the bottom right.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
 
-    ![](./media/image27.png)
+次の列とデータ型を持つテーブル「Real Estate Property」を作成します。  
+1. プロパティ名 - 1 行の text
 
-## Exercise 2: Setting up Power Apps and Dataverse
+2.提示価格 - 通貨
 
-### Task 1: Sign up for the Microsoft Power Apps Developer Plan
+3.通り - テキストの 1 行
 
-1.  Navigate to +++https://powerapps.microsoft.com/free/+++ and select
-    **Start free**.
+4.市区町村 - 1 行のテキスト
 
-    ![](./media/image28.png)
-
-2.  Under **Let's get started**, enter the **tenant id** in the
-    text box, check the agreement box and select **Start free**.
-
-    ![](./media/image29.png)
-
-3.  If you see a prompt that you have an existing account with
-    Microsoft. Select **Sign in**. Enter your password.
-
-4.  If prompted, Select **Yes** to stay signed in.
-
-5.  Click on **Environment** in the top-right corner of the screen and
-    select **CustomerService Trial**.
-
-    ![](./media/image30.png)
-
-### Task 2: Create a solution
-
-1.  From the Power Apps Maker
-    Portal +++https://make.powerapps.com/+++, select **Solutions**
-    form the left pane.
-
-    ![](./media/image31.png)
-
-2.  Click on **+ New solution**.
-
-    ![](./media/image32.png)
-
-3.  Enter +++**Bookings**+++ for the Display name and click on **+ New
-    publisher**.
-
-    ![](./media/image33.png)
-
-4.  Enter the below details and then click on **Save**.
-
-    | **Property**     | **Value**     |
-    |------------------|---------------|
-    | **Display name** | +++Contoso+++ |
-    | **Name**         | +++contoso+++ |
-    | **Prefix**       | +++contoso+++ |
-
-    ![](./media/image34.png)
-
-5.  Select **Contoso (contoso)** under Publisher and then click on
-    **Create**.
-
-    ![](./media/image35.png)
-
-6.  Select **Back to solutions** in the top-left of the screen.
-
-    ![](./media/image36.png)
-
-### Task 3: Set the preferred solution
-
-1.  Under Solutions in the Maker portal, select **Manage** for **Set
-    your preferred solution**.
-
-    ![](./media/image37.png)
-
-2.  Select **Bookings (contoso)** under **Unless otherwise specified,
-    save my changes in** and select **Apply**.
-
-    ![](./media/image38.png)
-
-    ![](./media/image39.png)
-
-### Task 4: Create the Real Estate Properties custom table
-
-Follow these steps to create a new custom table in Dataverse for Real
-Estate Properties.
-
-1.  From the left navigation pane, select **Tables**, select the drop down next to + New table and then select **Create new tables (preview)**.
-
-    ![](./media/picture5.png)
-
-2.	On the Create new tables (preview) screen, click on **+ New table -> Add columns and data**.
-   
-    ![](./media/picture6.png)
-  	
-3.  Rename the table from **Table** to +++**Real Estate Property**+++ and then click on **Save and exit**.
-
-    ![](./media/picture7.png)
-
-4.	Once saved, click on **Custom** to find the newly created table there. Click on the **Real Estate Property** table.
-
-     ![](./media/picture8.png)
-   
-5.	Under the **Real Estate Property columns and data**, change the name of the column called **New Column** (Click on the drop down next to **New Column** and select **Edit Column** and update the **Display name**) to +++**Property Name**+++.
-
-    ![](./media/image42.png)
-
-6.	Select the **+** button to add a new column in the columns and data pane. In the New column pane, enter the following values, and then select **Save**.
-
-      - Display name: +++**Asking Price**+++
+5.クライアント - データ型 Lookup、関連テーブル - 連絡先  
   
-      - Data type: Currency
+不動産物件テーブルにBedroomとBathroomの2つの列を追加し、それぞれにデータ型の選択肢を追加します‐  
+1. Label- 1, Value - 1  
+2. Label- 2, Value -2  
+3. Label- 3, Value 3  
+4. Label- 4, Value 4  
+5. Label- 5, Value 5
 
-    ![](./media/im2.png)
-  	
-    ![](./media/im3.png)
+ 
 
-7.  Add the following two columns.
+以下の列とデータ型を持つ「Booking Request」テーブルを作成します。
 
-    | **Display name** | **Data type**                                   |
-    |------------------|-------------------------------------------------|
-    | +++Street+++     | Single line of text (this value is the default) |
-    | +++City+++       | Single line of text (this value is the default) |
+1\. 予約名 - 1行テキスト
 
-8.  Add another column with the below values
+2\. 物件 - データ型ルックアップ、関連テーブル- 不動産物件
 
-    - **Display name**: +++Bedrooms+++
-  
-    - **Data type**: Choice -> Choice
+3\. ビュー名 - 1行テキスト
 
-      ![](./media/im5.png)
-      
-    Create the choice values:
+4\. ビューアメールアドレス - 1行テキスト
 
-    Select **+ New choice** under **Sync this choice with** option
+5\. 予約日 - 日時
 
-    ![](./media/im06.png)
+6\. メモ - 複数行テキスト
 
-    - Under **Choices**, provide the **Display name** as +++**Bedrooms**+++.
-    - You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power
-    Apps assigns a value automatically but you can change the value
-    to **1**.
+ 
 
-    - Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
+Booking Requestテーブルにデータ型の選択を含む「決定」の列を追加する
 
-  - Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
+1\. Label：未決定、値：1
 
-  - Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
+2\. Label：承認、値：2
 
-  - Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
+3\. Label：辞退、値：3
 
-  - Select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
 
-  ![](./media/im6.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image23.png)
 
-  Select the added choice **Bedrooms**, by clicking the drop down of **Sync this choice with**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image24.png)
 
-  ![](./media/im7.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
 
-  Click on **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
 
-  ![](./media/im07.png)
-  
-9.  Select the **+** button to add a new column in the
-    columns and data pane.
+![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image27.png)
 
-10.  In the New column pane, enter the following values, and then
-    select **Save**:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image28.png)
 
-    - **Display name**: +++Bathrooms+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image29.png)
 
-    - **Data type**: Choice -> Choice
+すべての列が作成されたら、\[**Real Estate Property columns and
+data\]**に次のテスト データを入力します。
 
-        ![](./media/im8.png)
+- プロパティ名: !!**1100 High Villas**!!
 
-  **Note:** Repeat the step 8 process with the Value **Bathrooms**.
+- 希望価格: !!**250,000**!!
 
-  Create the choice values
-  
-    -  Under **Choices**, provide the Display name as +++Bathrooms+++.
-    
-    -  You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power Apps assigns a value automatically but you can change it to **1**.
-  
-    - Select **+ New choice** and make **2** the new entry for Label
-    and **2** for Value.
-  
-    - Select **+ New choice** and make **3** the new entry for Label
-    and **3** for Value.
-  
-    - Select **+ New choice** and make **4** the new entry for Label
-    and **4** for Value.
-  
-    - Select **+ New choice** and make **5** the new entry for Label
-    and **5** for Value.
-  
-    - Select **Save**.
+- バスルーム: **3**
 
-    ![](./media/im9.png)
+- ベッドルーム: **2**
 
-    Select the created choice and click on **Save** in the column addition pane.
+- 都市: !!**Redmond**!!
 
-    ![](./media/im10.png)
-    
-11.  Add another column by selecting the **+** button again in the columns and data pane.
+- 通り: !!**Main Avenue**!!
 
-  In the New column pane, enter the following values, and then
-select **Save**:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image30.png)
 
-  - **Display name**: +++**Client**+++
-  
-  - **Data type**: Lookup -> Lookup
-  
-  - **Related Table**: Contact
+#### タスク 4.2: Copilot を使用して Real Estate Properties カスタム テーブルを作成する
 
-    ![](./media/im11.png)
+Dataverse に不動産物件用の新しいカスタム
+テーブルを手動で作成するには、次の手順に従います。
 
-13. Once the columns are created, under **Real Estate Property columns and
-    data**, enter the following test data:
+1.  左側のナビゲーション ウィンドウで、 **\[Tables\]** を選択し、 **\[+
+    New Table\] の横にあるドロップダウンを選択して** 、 \[**Create new
+    tables\] を選択します**.
 
-    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
-    >
-    >![](./media/im12.png)
-    
-    - Property Name: +++**1100 High Villas**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image31.png)
 
-    - Asking Price: +++**250,000**+++
+2.  **Let’s set up your dataダイアログでGot it** を選択する。
 
-    - Bathrooms: **3**
+![](./media/image32.png)
 
-    - Bedrooms: **2**
+3.  Create new tables画面で**+ New table -\> Add columns and
+    data**をクリックする。
 
-    - City: +++**Redmond**+++
+![](./media/image33.png)
 
-    - Street: +++**Main Avenue**+++
+4.  テーブル名を **Table1** から !!**Real Estate
+    Property**!!に変更して**Save and exit**をクリックする**。**
 
-    - Client: **Select any contact**
+![](./media/image34.png)
 
-      ![](./media/image48.png)
+5.  確認ダイアログで**Save and
+    exitをクリックする。**![](./media/image35.png)
 
-### Task 5: Create the Bookings table
+6.  保存したら、「**Custom**」タブをクリックして、新しく作成されたテーブルを見つけます。「**Real
+    Estate Property** table」をクリックします。
 
-Follow these steps to create a new custom table in Dataverse for Real
-Estate Property Bookings.
+![](./media/image36.png)
 
-1.	From the left navigation pane, select **Tables**, select the **drop down** next to **+ New table** and then select **Create new tables (preview)**.
+7.  **Real Estate Property columns and data**の下にある「**New
+    Column**」という列の名前を変更し（「**New
+    Column**」の横にあるドロップダウンをクリックし、「**Edit
+    Column**」を選択して表示名を更新します）、!!**Property Name**!!
+    に変更し、「**Save**」を選択します。
 
-    ![](./media/picture5.png)
+![](./media/image37.png)
 
-2.	On the Create new tables (preview) screen, click on **+ New table -> Add columns and data**.
-   
-    ![](./media/picture6.png)
-  	
-3.  Rename the table from **Table** to +++**Booking Request**+++ and then click on Save and exit.
+8.  「+」ボタンを選択して、列とデータ画面に新しい列を追加します。「新しい列」画面で以下の値を入力し、「**Save**」を選択します。
 
-    ![](./media/picture10.png)
+    - Display name: !!**Asking Price**!!
 
-4.	Once saved, click on **Custom** to find the newly created table there. Click on the **Booking Request** table.
+    - Data type: Currency
 
-   ![](./media/picture11.png)
+![](./media/image38.png)
 
-5.	Under the **Booking Request columns and data**, Change the name of the column called **New Column** to +++**Booking Name**+++.
+![](./media/image39.png)
 
-    ![](./media/image51.png)
+9.  次の 2 つの列を追加します。
 
-6.  Create the following columns with the name and data type as
-    specified in the table below. Select **Save**.
+[TABLE]
 
-     -  Display name – +++**Property**+++
-     -  Data type – **Lookup** -> **Lookup**
-     -  Related Table – **Real Estate Property**
+10. 以下の値を持つ別の列を追加します
 
-      ![](./media/image52.png) 
-    
-      -  Display name – +++**Viewer Name**+++
-      -  Data type – **Single line of text**
-    
-      -  Display name – +++**Viewer Email**+++
-      -  Data type – **Single line of text**
-      -  Format – **Email**
-  
-      -  Display name – +++**Booking Date**+++
-      -  Data type – **Date and time**
-   
-      -  Display name – +++**Notes**+++
-      -  Data type – **Multiple lines of text**
+    - **Display name**: !!Bedrooms!!
 
-      ![](./media/image53.png)
-   
-      ![](./media/image54.png)
+    - **Data type**: Choice -\> Choice
 
-7.  Add a choice data type column with the below details.
-        
-      -  Display name – +++**Decision**+++
-      -  Data type – **Choice -> Choice**
-    
-          ![](./media/im012.png)
-         
-    Click on **+ New Choice – Display name** – +++Decision+++, enter the below details and click on **Save**.
-    
-     - Label – +++**Undecided**+++
-            
-     - Value – 1
-            
-     - Label – +++**Accepted**+++
-            
-     - Value – 2
-            
-     - Label – +++**Declined**+++
-            
-     - Value – 3
+![](./media/image40.png)
 
-      ![](./media/im14.png)
+選択肢の値を作成する:
 
-    Select the added Choice **Decision**, designate **Undecided** as the **Default choice** and click on **Save**.
-    
-    ![](./media/im13.png)
+**Sync this choice with**オプションで**+ New choice** を選択する
 
-    ![](./media/image55.png)
+![](./media/image41.png)
 
-## Exercise 3: Working with Copilot Studio
+- **Choicesの下に**, Display nameで!!**Bedrooms**!!.を提供する
 
-### Task 1: Sign up for Copilot Studio trial
+- 「**ラベル**」と「**値**」という2つの入力フィールドがあります。ラベルの下に「**1**」と入力する。Power
+  Appsによって自動的に値が割り当てられますが、この値を1に変更することもできます。
 
-1.  Open the url +++https://copilotstudio.microsoft.com/+++.
+- \+ 新しい選択を選択し、ラベルに 2 を、値に 2
+  を新しいエントリとして入力します。
 
-2.  Leave the **Choose your country/region** with the **default** value
-    and click on **Get Started**.
+- \+ 新しい選択を選択し、ラベルに 3 を、値に 3
+  を新しいエントリとして入力します。
 
-    ![](./media/image57.png)
+ 
 
-3.  Click on **Environments** on the top left and select
-    **CustomerService Trial**.
+- \+ 新しい選択を選択し、ラベルに 4 を、値に 4
+  を新しいエントリとして入力します。
 
-    ![](./media/image58.png)
+- \+ 新しい選択を選択し、ラベルに 5 を、値に 5
+  を新しいエントリとして入力します。
 
-4.  Select **Skip** if you get a Welcome to Copilot Studio! Prompt.
+ 
 
-    ![](./media/image59.png)
+- **Save**を選択する
 
-### Task 2: Create the Real Estate Booking Service Copilot
+![](./media/image42.png)
 
-1.  Select **Create** from the left navigation pane and select the **New
-    copilot** tile.
+**Sync this choice
+with**のドロップダウンをクリックして追加された選択肢**Bedrooms**を選択する。
 
-    ![](./media/image60.png)
+![](./media/image43.png)
 
-2.  Select **Skip to configure**.
+**Saveをクリックする**。
 
-    ![](./media/image61.png)
+![](./media/image44.png)
 
-3.  Fill in the below details.
+11. \+ ボタンを選択して、列とデータ 画面に新しい列を追加します。
 
-    - Name - +++**Real Estate Booking Service**+++
-    
-    - Description - +++**Create bookings for real estate properties**+++
-    
-    - Instructions - +++**Create a copilot for topics relating to creating
-      bookings for real estate properties+++**
-    
-    - Language **–** Select **English**
+12. 新しい列画面で次の値を入力し、Saveを選択します:
 
-    ![](./media/image62.png)
+    - **Display name**: !!Bathrooms!!
 
-4.  Select the three dots next to the Create button in the top-right of
-    the screen and select **Edit advanced settings**.
+    - **Data type**: Choice -\> Choice
 
-     ![](./media/image63.png)
+![](./media/image45.png)
 
-5.  Select the **Bookings** solution and select **Save**.
+選択肢の値を作成する:
 
-     ![](./media/image64.png)
+**Sync this choice withの下に+ New choice** を選択する
 
-6.  In the top-right of the screen, select **Create**.
+- **Choicesの下に**, Display name で !!Bathrooms!!.を提供する
 
-     ![](./media/image65.png)
+- 「**ラベル**」と「**値**」という2つの入力フィールドがあります。**ラベル**の下に「**1**」と入力してください。Power
+  Appsは自動的に値を割り当てますが、1に変更することもできます。.
 
-7.  Once the copilot is created, in the Test your copilot pane, enter
-    +++**How do I make a booking?**+++ and click **Enter** and observe the
-    response.
+- \+
+  新しい選択を選択し、ラベルに2、値に2を新しいエントリとして入力します。
 
-    ![](./media/image66.png)
+- \+
+  新しい選択を選択し、ラベルに3、値3を新しいエントリとして入力します。
 
-### Task 3: Configure Security
+- \+
+  新しい選択を選択し、ラベルに4、値に4を新しいエントリとして入力します。
 
-1.  Select **Settings** in the top-right of the screen.
+- \+
+  新しい選択を選択し、ラベルに5、値に5を新しいエントリとして入力します。
 
-    ![](./media/image67.png)
+- **Save**を選択する。
 
-2.  Select the **Security** tab and then select
-    the **Authentication** tile.
+![](./media/image46.png)
 
-    ![](./media/image68.png)
+作成した選択肢を選択し、列追加画面で \[Save\] をクリックします。
 
-3.  Select **No authentication** and click on **Save**.
+![](./media/image47.png)
 
-    ![](./media/image69.png)
+13. 列とデータ ペインで + ボタンをもう一度選択して、別の列を追加します。
 
-4.  Select **Save** in the **Save this configuration** prompt.
+新しい列画面で次の値を入力し、**Save**を選択します:
 
-    ![](./media/image70.png)
+- **Display name**: !!**Client**!!
 
-5.  Once the Authentication settings are saved, click on the **Close**
-    option to close the **Settings** pane.
+- **Data type**: Lookup -\> Lookup
 
-    ![](./media/image71.png)
+- **Related Table**: Contact
 
-### Task 4: Remove topics
+![](./media/image48.png)
 
-Sample topics are included with new copilots. Remove these sample
-topics. Disable system topics that you don't require.
+14. すべての列が作成されたら、Real Estate Property columns and
+    dataの下に次のテストデータを入力します:
 
-1.  Select the **Topics** tab from the top menu of the Copilot Overview
-    page.
+::: 第2次注: 必要な列が表示されない場合は、+\<number\>more
+を選択して表示される列を調整します:::
 
-    ![](./media/image72.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image49.png)
 
-2.  You will land in the **Custom** Topics page.
+- Property Name: !!**1100 High Villas**!!
 
-3.  Select the **three dots** next to the **Lesson 1** topic and select
-    **Delete**.
+- Asking Price: !!**250,000**!!
 
-    ![](./media/image73.png)
+- Bathrooms: **3**
 
-4.  Select **Delete** in the confirmation window.
+- Bedrooms: **2**
 
-    ![](./media/image74.png)
+- City: !!**Redmond**!!
 
-5.  Repeat the delete for Lesson 2 and Lesson 3.
+- Street: !!**Main Avenue**!!
 
-    ![](./media/image75.png)
+- Client: **Select any contact**
 
-    ![](./media/image76.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image50.png)
 
-6.  Select the **System** tab. Toggle **Enabled** to **Off** for the
-    **Sign in** topic.
+:::第2次 注: Contact テーブルにクライアント
+レコードがない場合、その列へのデータの追加は無視されます。:::
 
-    ![](./media/image77.png)
+### タスク 5: Bookings テーブルを作成する
 
-### Task 5: Publish and test the copilot
+次の手順に従って、Dataverse でReal Estate Property
+Bookings用の新しいカスタム テーブルを作成します.
 
-1.  Select **Publish** and select **Publish** again.
+1.  左側のナビゲーション 画面から \[**テーブル**\]
+    を選択し、\[**新しいテーブルの作成**\] を選択します。
 
-    ![](./media/image78.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image51.png)
 
-2.  Select **Publish** in the **Publish this copilot** dialog.
+2.  **Create new tables**画面で**+ New table -\> Add columns and
+    data**をクリックする。
 
-    ![](./media/image79.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image52.png)
 
-### Task 6: Demo Website
+3.  テーブル名を**Table1**から!!**Booking Request**!!に変更し、「**Save
+    and exit**」をクリックします。
 
-The Demo website allows users without a license to test your copilot.
-You can provide them with the URL to the demo website.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image53.png)
 
-1.  Select the **three dots** next to the **Settings** button in the
-    top-right of the screen and select **Go to demo website**.
+4.  確認ダイアログで「Save and exit」をクリックします。
 
-    ![](./media/image80.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image35.png)
 
-2.  In the **Type your message** text box, enter +++**What information is needed to book a viewing for a real estate property?**+++ and observe the response from the copilot.
+5.  保存したら、「**カスタム**」タブをクリックして、新しく作成されたテーブルを見つけます。「Booking
+    Request」テーブルをクリックします。
 
-    ![](./media/image81.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image54.png)
 
-## Exercise 4: Create and manage topics using Copilot
+6.  「**New Column**」という列の名前を「**!!Booking
+    Name!!**」に変更します (「**New
+    Column**」の横にあるドロップダウンをクリックし、「**Edit
+    column**」を選択して、表示名を更新します)。
 
-### Task 1: Create a topic using Copilot
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image55.png)
 
-Topics can be created and edited using natural language.
+1.  列名の横にある **\[+**\] 記号をクリックします。
 
-1.  Select your copilot, **Real Estate Booking Service** in the Copilot
-    pane on the left-hand side of the Copilot Studio.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image56.png)
 
-    ![](./media/image82.png)
+1.  以下で指定されている名前とデータ型で次の列を作成します。\[**Save\]
+    を選択します**。
 
-2.  Select the **Topics** tab. Select **Add a topic** and select
-    **Create from description with Copilot**.
+    - Display name – !!Property!!
 
-    ![](./media/image83.png)
+    - Data type – Lookup -\> Lookup
 
-3.  Enter the below details and click on **Create**.
+    - Related Table – Real Estate Property
 
-    - Name your topic - +++**Customer Details**+++
-    
-    - Create a topic to... - +++**Ask the customer for their name and email
-      address**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image57.png)
 
-      ![](./media/image84.png)
+- Display name – !!Viewer Name!!
 
-4.  A new topic displays with the generated trigger phrases and question
-    nodes.
+- Data type – **Single line of text**
 
-5.  Select **Save**.
+ 
 
-    ![](./media/image85.png)
+- Display name – !!Viewer Email!!
 
-### Task 2: Update nodes with natural language
+- Data type – **Single line of text**
 
-1.  If the **Edit with copilot** pane isn't shown on the right-hand side
-    of the screen, select the **Copilot** icon in the upper part of the
-    authoring canvas.
+- Format – **Email**
 
-2.  Select the second question node, **What is your email address?**
+ 
 
-3.  In the **Edit with Copilot** panel, in the **What do you want to
-    do?** field, enter the following text:
+- Display name – !!Booking Date!!
 
-    +++**Update the message in this question node to say thank you to the Name variable from the previous node and then proceed to ask the email address question**+++
+- Data type – **Date and time**
 
-4.  Select **Update**.
+ 
 
-    ![](./media/image86.png)
+- Display name – !!Notes!!
 
-5.  Select **Save**.
+- Data type – **Multiple lines of text**
 
-    ![](./media/image87.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-### Task 3: Add nodes with natural language
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-In addition to adding updating existing nodes, you can use Copilot to
-add new ones.
+1.  以下の詳細を含むChoiceデータ型列を追加します。
 
-1.  Make sure that no node is selected by clicking in the empty space
-    around the nodes.
+    - Display name – !!Decision!!
 
-2.  In the **What do you want to do?** field, enter the following text
-    and then select **Update.**
+    - Data type – Choice -\> Choice
 
-    +++**Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-    ![](./media/image92.png)
+**Sync this choice withの下に、+ New
+Choice**をクリックする**。**Enter **Display
+nameで**!!**Decision**!!.を入力する。
 
-3. A new question node is added to the end of the topic with options
-    for the user to select.
+以下の詳細を入力して**Save**をクリックする。
 
-4. Select **Save**.
+- Label– !!**Undecided**!!
 
-    ![](./media/image93.png)
+- Value – 1
 
-### Task 4: Configure the scope of the variables
+- Label– !!**Accepted**!!
 
-1.  Select **Variables** to open the Variables pane.
+- Value – 2
 
-    ![](./media/image94.png)
+- Label– !!**Declined**!!
 
-2.  Select the right-hand check boxes for the topic variables and click
-    on **Save**.
+- Value – 3
 
-    ![](./media/image95.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
 
-## Exercise 5: Create and manage topics manually
+**Sync this choice
+withフィールドの下に追加された**Choice**Decisionを選択して、** **Default
+choice** として**Undecidedを指定してSave**をクリックする。
 
-### Task 1: Create a topic from blank
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
 
-1.  Select the **Topics** tab.
+## 手順 2: Copilot Studio での作業
 
-2.  Select **Add a topic** and select **From blank**.
+### タスク 1: Copilot Studioの体験版に申し込む
 
-    ![](./media/image96.png)
+1.  ブラウザの新しいタブに以下のurlへ移動する。!\!<https://copilotstudio.microsoft.com/>!!.
 
-3.  Select **Details** to open the Topic details dialog.
+2.  **Choose your country/regionをデフォルト値のままにしてStart free
+    trial**をクリックする。
 
-    ![](./media/image97.png)
+![A person sitting at a computer AI-generated content may be
+incorrect.](./media/image63.png)
 
-4.  Fill in the below details and click on **Save**.
+3.  Click on **Environments** on the top left and select **Dev One**.
 
-    - **Name** - +++Book a Real Estate Showing+++
-    
-    - **Display Name –** +++**Book**+++
-    
-    - **Description**  - +++Select the property and requested date and
-      create a booking request+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
 
-    ![](./media/image98.png)
+4.  Welcome to Copilot Studio!
+    プロンプトが表示されたら**Skip**を選択する。
 
-5.  Select **Details** to close the Topic details dialog.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-    ![](./media/image99.png)
+### タスク 2: Real Estate Booking Service agentの作成
 
-### Task 2: Add trigger phrases
+1.  左側のナビゲーション ウィンドウから **\[Create**\] を選択し、
+    **\[New Agent**\] タイルを選択します.
 
-1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I
-    want to book a real estate showing**+++ under **Add Phrases** and
-    select the **+** icon.
+![A screenshot of a software AI-generated content may be
+incorrect.](./media/image66.png)
 
-    ![](./media/image100.png)
+2.   **Skip to configure**を選択する
 
-2.  Enter the below phrases one by one.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image67.png)
 
-  - +++**Schedule a real estate showing**+++
-  
-  - +++**Arrange the viewing for a real estate property**+++
-  
-  - +++**Set up an appointment to view a house**+++
-  
-  - +++**Plan a property viewing**+++
+3.  以下の詳細を入力する
 
-3.  Once all the phrases are added, select **Save**.
+    - Name - !!**Real Estate Booking Service**!!
 
-    ![](./media/image101.png)
+    - Description - !!**Create bookings for real estate properties**!!
 
-### Task 3: Add a message node
+    - Instructions - !!**Create a copilot for topics relating to
+      creating bookings for real estate properties!!**
 
-1.  Select the **+** icon under the Trigger node and select **Send a
-    message**.
+    - Language **–** **English**を選択する
 
-    ![](./media/image102.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
 
-2.  In the **Enter a message** field, enter the following text:
+1.  画面の右上にある \[Create\] ボタンの横にある 3
+    つのドットを選択し、\[**Edit advanced settings\]** を選択します。
 
-    +++Hi, I can help you with booking a real estate property showing.+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-3.  Select **Save**.
+4.  Solutionsで**Bookingsを選択して、Save**.を選択する。
 
-    ![](./media/image103.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image70.png)
 
-### Task 4: Add a Topic management node
+5.  画面の右上に**Create**を選択する。
 
-1.  Select the the **+** icon under the send a message node and
-    select **Topic management -\> Go to another topic**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image71.png)
 
-    ![](./media/image104.png)
+6.  エージェントが作成されたら、\[Test your copilot\] 画面に「!!**How do
+    I make a
+    booking?**!をクリックし、**Enter**をクリックして応答を確認します。一般的な応答が得られます.
 
-2.  Select the **Customer Details** topic.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image72.png)
 
-    ![](./media/image105.png)
+### タスク 3: セキュリティの構成
 
-3.  Select **Save**.
+1.  画面の右上にある\[**設定**\]を選択します。
 
-    ![](./media/image106.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image73.png)
 
-### Task 5: Add condition node 
+1.  \[Security**\]** タブを選択し、\[**Authentication**\]
+    タイルを選択します。
 
-1.  Select the **+** icon under the topic management node and
-    select **Add a condition**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image74.png)
 
-    ![](./media/image107.png)
+1.  **No authentication**を選択して**Save**をクリックする
 
-2.  Select **DetailsCorrect** for variable.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image75.png)
 
-    ![](./media/image108.png)
+2.  **Save this configuration**プロンプトで**Save**を選択する。
 
-3.  Select the **Condition** as **is equal to**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image76.png)
 
-4.  Select the **value** as **Yes**.
+1.  認証設定を保存したら、\[**Close**\]オプションをクリックして\[**Settings**\]画面を閉じます。
 
-    ![](./media/image109.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image77.png)
 
-5.  Select **Save**.
+### タスク 4: 不要なトピックを無効にする
 
-    ![](./media/image110.png)
+新しいco-pilotには、サンプル トピックが含まれています。これらのサンプル
+トピックを削除します。不要なシステムトピックを無効にします。
 
-### Task 6: Add question nodes
+1.  Copilot Overview
+    ページで右上のメニューから**Topics**タブを選択する。
 
-1.  Select the **+** icon under the left-hand condition node and
-    select **Ask a question**. Fill in the below details and click on
-    **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image78.png)
 
-    - Enter a message  - +++Which property do you want to see?+++
-    
-    - **Identify** - Select **User's entire response**.
-    
-    - **Save user response as** -
-      Enter +++**PropertyName**+++ for **Variable name**
+2.  **Custom** Topics ページに移動されます。
 
-    ![](./media/image111.png)
+3.  **System**タブを選択する**。**「サインイン**」トピック**の**「Enabled」**を**「Off」**に切り替えます.
 
-2.  Select the the **+** icon under the question node and select **Ask a
-    question**. Fill in the below details and click on **Save.**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image79.png)
 
-    - **Enter a message** - +++What date and time do you want to see the
-      property?+++
-    
-    - Identify - Select **Date and Time**
-    
-    - **Save user response as** - Enter +++**DateTime**+++ for **Variable
-      name**
+### タスク 5: copilotの公開をテストする
 
-    ![](./media/image112.png)
+1.  \[**Publish\]** を選択して、このエージェントを発行します。
 
-### Task 7: Test the copilot
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image80.png)
 
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
+2.  **Publish this agent**ダイアログの中に**Publish**を選択する**。**
 
-    ![](./media/image113.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image81.png)
 
-2.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
+### タスク 6: デモウェブサイト
 
-3.  In response, enter a trigger phrase for the topic that you created:
+デモ Web
+サイトでは、ライセンスを持たないユーザーがco-pilotをテストできます。デモ
+Web サイトへの URL を提供できます.
 
-    +++I want to book a real estate showing+++
+1.  画面の右上にある **\[Settings**\] または \[**Publish**\]
+    ボタンの横にある **3 つのドット**を選択し、\[**Go to Demo
+    website\]** を選択します。
 
-4.  The copilot responds with the "**What is your name?**" question.
+![A screenshot of a web page AI-generated content may be
+incorrect.](./media/image82.png)
 
-5.  Enter your name.
+2.  **Type your messageテキストボックスに、**!!**What information is
+    needed to book a viewing for a real estate property?**!!
+    を入力してエージェントからの応答を確認します。
 
-    ![](./media/image114.png)
+![A screenshot of a chatbot AI-generated content may be
+incorrect.](./media/image83.png)
 
-6.  Then enter your email when it prompts for the email. After you enter
-    the details, an Adaptive Card displays the information that you
-    entered, a question asking if the information is correct, and
-    options to select **Yes** or **No**. Select **Yes**.
+まだ具体的なトピックの設定やエージェントへのロジックの実装は行っていないため、Studioでエージェントをテストした際に取得したものと似た汎用的な内容になります。以降の手順で設定を行います。
 
-    ![](./media/image115.png)
+## 手順 3: Copilot を使用したトピックの作成と管理
 
-7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property
-    to you want to see?** prompt.
+### タスク 1: Copilot を使用してトピックを作成する
 
-8.  Enter **Tomorrow 10:00 AM** to the **What date and time do you want
-    to see the property?** prompt.
+トピックは、自然言語を使用して作成および編集できます。
 
-    ![](./media/image116.png)
+1.  Copilot Studio
+    を開いたブラウザタブに戻ります。「**Topics**」タブから「**Add a
+    topic**」を選択し、「**Create from description with
+    Copilot**」を選択します。
 
-## Exercise 6: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image84.png)
 
-### Task 1: Configure the Escalate topic
+:::secondary::: **注:**
+「クリップボードにコピーされたテキストと画像を表示する
+::：」と表示された場合は、「Allow」を選択します。
 
-1.  Select the **Topics** tab and then select the **System** tab. Select
-    the **Escalate** topic.
+2.  以下の詳細を入力して**Create**をクリックする
 
-    ![](./media/image117.png)
+    - Name your topic - !!**Customer Details**!!
 
-2.  Select the message node of the topic and replace the existing
-    content with, +++You will be transferred to a live agent shortly+++
+    - Create a topic to... - !!**Ask the customer for their name and
+      email address**!!
 
-    ![](./media/image118.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image85.png)
 
-3.  Click on the + symbol to add a node next to the Message node.
+3.  トリガー フレーズと質問ノードを含む新しいトピックが表示されます。
 
-4.  Select **Topic management** -\> **Transfer conversation**.
+4.  **Save**を選択する**。**
 
-    ![](./media/image119.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image86.png)
 
-5.  Give a message +++The customer wants to talk to a live agent+++ in
-    the Transfer conversation node.
+### タスク 2: 自然言語によるノードの更新
 
-    ![](./media/image120.png)
+1.  画面の右側に「Edit with
+    copilot」画面が表示されない場合は、オーサリング
+    キャンバスの上部にあるcopilotアイコンを選択します。
 
-6.  **Save** the Topic.
+2.  2番目の質問ノード**What is your email address?**を選択する
 
-    ![](./media/image121.png)
+3.  In the **Edit with Copilot** panel, in the **What do you want to
+    do?フィールドのEdit with Copilot** パネルに以下のテキストを入力する
 
-7.  **Publish** the copilot.
+!!**Update the message in this question node to say thank you to the
+Name variable from the previous node and then proceed to ask the email
+address question**!!
 
-    ![](./media/image122.png)
+::: :::
 
-### Task 2: Connect the copilot to Dynamics 365 Customer Service
+4.  **Update**を選択する**。**
 
-1.  Click on the **Overview** option to arrive at the Overview page of
-    the copilot.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image87.png)
 
-    ![](./media/image123.png)
+5.  **Save**を選択する。
 
-2.  From the copilot page top menu, click on **Channels** (If the
-    Channels is not visible, click on the +1 to view the **Channels**
-    option)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image88.png)
 
-    ![](./media/image124.png)
+### タスク 3: 自然言語でノードを追加
 
-3.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
+既存のノードを更新するだけでなく、Copilot
+を使用して新しいノードを追加できます。
 
-    ![](./media/image125.png)
+1.  ノードが選択されていないことを確認するには、ノードの周りの空きスペースをクリックします。
 
-4.  On the Dynamics 365 Customer Service page, click on **Connect**.
+&nbsp;
 
-    ![](./media/image126.png)
+1.  **What do you want to do?
+    フィールドに以下を入力してUpdate**を選択する**。**
 
-5.  Once you get a **successfully connected** message, click on
-    **Close**.
+!!**Add a new multiple-choice question to prompt the user if the details
+are correct with two options Yes or No**!!
 
-    ![](./media/image127.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image89.png)
 
->[!Note] **Note:** Due to very recent changes in the Customer Service admin center, the following two exercises might not work as expected. If you face issues completing it, please pause it for now.
+2.  トピックの最後に新しい質問ノードが追加され、ユーザーが選択できるオプションが表示されます。
 
-## Exercise 7: Create workstream and channel in Dynamics 365 admin center
+3.  **Are the details
+    correct?**内容の下にある質問の部分に以下の内容を入力する。
 
-### **Task 1: Manage a user in Omnichannel for Customer Service**
+> \<h3\>Summary\</h3\>
+>
+> \<p\>\<strong\>Full Name:\</strong\>
+>
+> Name string
+>
+> \</p\>
+>
+> \<p\>\<strong\>Email Address:\</strong\>
+>
+> EmailAddress string
+>
+> \</p\>
+>
+> **{x}** 記号を選択して、\<p\> タグ内の**名前文字列**と**メール
+> アドレス**文字列を対応する変数に置き換えます。
 
-1.  Login to +++https://www.office.com+++ using your admin tenant id.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image90.png)
 
-2.  Select **Apps** from the left pane.
+4.  **Save**を選択する**。**
 
-    ![](./media/image128.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image91.png)
 
-3.  From the list of Apps listed, select **Customer Service admin
-    center**.
+### タスク 4: 変数のスコープを構成する
 
-    ![](./media/image129.png)
+1.   **Variables**を選択し**、Variables**の画面を開く。
 
-4.  In **Dynamics 365 Customer Service admin center**, in the site map,
-    select **User management** under **Customer support** group.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image92.png)
 
-5.  On the **User management** page, select **Manage** next
-    to **Users**.
+2.  値を受け取る変数と値を返す変数があります。トピック変数は元のトピックに値を返します。
 
-    ![](./media/image10.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image93.png)
 
-6.  Click the dropdown next to **Enabled Users** and select
-    **Omnichannel Users**.
+3.  トピック変数で右側のチェックボックスをオンにして**Save**をクリックする。
 
-    ![](./media/image11.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image94.png)
 
-7.  On the **Omnichannel Users** page, select a user **MOD
-    Administrator** in the list.
+## 手順 4: トピックを手動で作成および管理する
 
-    ![](./media/image12.png)
+### タスク 1: 空白からトピックを作成する
 
-8.  On the **MOD Administrator** page, select the **Omnichannel** tab.
+1.  **Topics** tabを選択する。
 
-    ![](./media/image13.png)
+2.   **Add a topic**を選択して**From blank**を選択する。
 
-9.  Specify the following in the user page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image95.png)
 
-    | **Setting**      | **Value** |
-    |------------------|-----------|
-    | Capacity         | 100       |
-    | Default Presence | available |
+3.  **Details**を選択してTopicダイアログを開けます**。** ![A screenshot
+    of a computer AI-generated content may be
+    incorrect.](./media/image96.png)
 
-    ![](./media/image14.png)
+4.  以下の詳細を入力して**Save**をクリックする。
 
-10.  Select **Save and close**.
+    - **Name** - !!Book a Real Estate Showing!!
 
-    ![](./media/image15.png)
-    
-### Task 1: Configure workstream 
+    - **Display Name –** !!**Book**!!
 
-1.  From the admin center page, select **Workstreams** from the left
-    pane and then select the **+ New workstream** option.
+    - **Description** - !!Select the property and requested date and
+      create a booking request!!
 
-    ![](./media/image130.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image97.png)
 
-2.  Fill in the below details, scroll down and click on **Create**.
+5.  **Detailsを選択してTopic details**ダイアログを閉じます。
 
-    - Name - +++**Real Estate Workstream**+++
-    
-    - Owner – **MOD Administrator** (Selected by default)
-    
-    - Type – **Messaging**
-    
-    - Channel – **Chat**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image98.png)
 
-    ![](./media/image131.png)
+### タスク 2: トリガー フレーズを追加する
 
-    ![](./media/image132.png)
+1.  Select **Edit** under **Phrases** in
+    the **Triggerの下にあるPhrasesからEditを選択する。** **Add
+    Phrases**の下に!!**I want to book a real estate showing**!!
+    を追加して**+** アイコンを選択する。
 
-3.  Once the workstream is created, click on **Set up chat** to set up
-    the chat channel.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image99.png)
 
-    ![](./media/image133.png)
+2.  以下の文章を一つずつ入力する。各文章を入力した後**+**アイコンを選択する**。**
 
-4.  In the **Live chat setup – Channel details** screen, fill in the
-    below details and click on **Next**.
+    - !!**Schedule a real estate showing**!!
 
-    - Name - +++**Real Estate Chat Channel**+++
-    
-    - Language – **United States**
+    - !!**Arrange the viewing for a real estate property**!!
 
-    ![](./media/image134.png)
+    - !!**Set up an appointment to view a house**!!
 
-5.  In the Live chat setup – Chat widget screen, provide the name as
-    +++**Real Estate Booking Assistant**+++, accept the other defaults
-    and click on **Next**.
+    - !!**Plan a property viewing**!!
 
-    ![](./media/image135.png)
+3.  これで全ての文章が追加された後**Save**を選択する。
 
-6.  In the **Live chat setup – Behaviors** screen, accept the defaults
-    and click on **Next**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image100.png)
 
-    ![](./media/image136.png)
+### タスク 3: メッセージ・ノードの追加
 
-7. In the **Live chat setup – User features** screen, toggle **File
-    attachment** and **Voice and video calls** options to **off** and
-    click on **Next**.
+1.  Trigger nodeの下にある**+**アイコンを選択し**、Send a
+    message**を選択する。
 
-    ![](./media/image137.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image101.png)
 
-8. In the **Live chat setup – Review and finish** screen, select
-    **Create channel**.
+2.  **Enter a messageフィールドに以下のテキストを入力する**：
 
-    ![](./media/image138.png)
+!!Hi, I can help you with booking a real estate property showing.!!
 
-9. **Copy** the widget that appears in the **Live chat setup –
-    Success** screen and **save** it in a notepad to add it to a webpage
-    in the upcoming exercises. Then, click on **Done** to complete the
-    configuration.
+3.  **Save**を選択する。
 
-    ![](./media/image139.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image102.png)
 
-### Task 3: Add the copilot to the workstream
+### タスク 4: トピック管理ノードを追加する
 
-1.  Back in the **Real Estate Workstream** page, scroll down and click
-    on **+ Add bot** in the Bot section.
+1.  send a messageノードの下にある**+アイコンを選択して、Topic
+    management -\> Go to another topic**を選択する。
 
-    ![](./media/image140.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image103.png)
 
-2.  From the list of copilots on the Add bot screen, select the **Real
-    Estate Booking Service** copilot and click on **Connect**.
+2.  **Customer Detailsトピックを選択する。**
 
-    ![](./media/image141.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image104.png)
 
-3.  Ensure that the bot is added to the workstream as in the screenshot
-    below.
+3.  **Saveを選択する。**
 
-    ![](./media/image142.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image105.png)
 
-4.  From the left pane, select **Bots**.
+### タスク 5: Add conditionノード
 
-    ![](./media/image143.png)
+1.  Select the **+** icon under the topic
+    managementノードの下にある**+アイコンを**選択して、**Add a
+    condition**を選択する。
 
-5.  Ensure that the Real Estate Booking Service copilot is connected.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image106.png)
 
-    ![](./media/image144.png)
+2.  変数に対して**DetailsCorrect**を選択する。
 
-## Exercise 8: Create a webpage and test the escalation to agent
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image107.png)
 
-1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
-    tenant admin credentials.
+3.  **Conditionでis equal to**を選択する**。**
 
-    ![](./media/image145.png)
+4.  値で**Yes**を選択する**。**
 
-2.  Ensure that you are in CustomerService Trial environment.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image108.png)
 
-3.  Click on Skip in the **Tell us about yourself** page.
+5.  **Save**を選択する。
 
-    ![](./media/image146.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image109.png)
 
-4.  Scroll down in the next page and click on Start with a template
-    option to start creating the site with a template.
+### タスク 6: questionノードの追加
 
-    ![](./media/image147.png)
+1.  Select the **+** icon under the left-hand condition node and
+    select 左側のcondition **ノードの下にある+アイコンを選択してAsk a
+    question**を選択する**。**以下の詳細を入力して**Save**を選択する。
 
-5.  Select a template and click on **Choose this template**.
+    - Enter a message - !!Which property do you want to see?!!
 
-    ![](./media/image148.png)
+    - **Identify** - Select **User's entire response**.
 
-6.  In the Give your site a name textbox, enter the name as +++**Contoso
-    Real Estates**+++, accept the other defaults and click on **Done**.
+    - **Save user response as** Enter !!**PropertyName**!!
+      for **Variable name**
 
-    ![](./media/image149.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image110.png)
 
-7.  Once the site is created, click on **Edit site header** in the
-    **Company name** title.
+2.  questionノードの下にある**+**アイコンを選択して**、Ask a
+    question**を選択する**。**
+    以下の詳細を入力して**Save**をクリックする**。**
 
-    ![](./media/image150.png)
+    - **メセッジを入力する**- !!What date and time do you want to see
+      the property?!!
 
-8.  In the **Edit site header** pane, provide the **Site title** as
-    **Contoso Real Estates**.
+    - Identify - Select **Date and Time**
 
-    ![](./media/image151.png)
+    - **Save user response as** – Click on **Var1** to open the Variable
+      properties pane and enter !!**DateTime**!! for **Variable name**
 
-9.  Click on Edit code in the top right corner of the page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image111.png)
 
-    ![](./media/image152.png)
+### タスク 7: copilotをテストする
 
-10. Click on **Open Visual Studio Code**.
+1.  画面の右上にある \[Test**\] ボタンを選択して** 、テスト
+    パネルを開きます。 画面の右上にあるテスト パネルの上部にある 3
+    つのドットを選択します。\[**Track between topics\] を選択します**.
 
-    ![](./media/image153.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image112.png)
 
-11. Click **Allow**.
+2.  **Conversation Startメセッジが表示されたら**copilotが
+    会話を開始します。
 
-    ![](./media/image154.png)
+&nbsp;
 
-12. The Home page of the web page opens up in the Visual Studio Code.
+1.  応答として、作成したトピックのトリガー フレーズを入力します。
 
-    ![](./media/image155.png)
+!!I want to book a real estate showing!!
 
-13. Scroll to the end of the file. Add the script copied while creating
-    the workstream, after eh last line of this file.
+3.  The copilotが"**What is your name?**"質問で応答します。
 
-    ![](./media/image156.png)
+4.  名前を入力する。
 
-14. Save the file, close the Visual Studio Code tab and return to the
-    Power pages. Click on **Sync**.
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image113.png)
 
-    ![](./media/image157.png)
+5.  次、メールアドレスのプロンプトが表示されたら、メールアドレスを入力する。入力後、情報が正しいかどうかを確認する質問が表示され、「Yes」または「No」を選択できます。「Yes」を選択してします
 
-15. Once the Sync is completed, select **Preview** -\> **Desktop.**
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image114.png)
 
-    ![](./media/image158.png)
+6.  **Which property to you want to see?プロンプトで**!!555 Oak Lane,
+    Denver, CO 80203!!を入力します。
 
-16. Your web page opens in a new tab. Find the **Real Estate copilot**
-    embedded to the page at the bottom right of the web page. **Click**
-    on it.
+7.  **What date and time do you want to see the
+    property?** プロンプトで!!**Tomorrow 10:00 AM**!! を入力します。
 
-    ![](./media/image159.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image115.png)
 
-17. Enter +++Talk to agent+++.
+## 手順 5: 予約が作成または更新されたときに自動的にメールを送信する自律エージェントを構築する
 
-    ![](./media/image160.png)
+This 手順 is to showcase the **When a row is added, modified or
+deleted** trigger of an Autonomous agent.
 
-18. On the Customer Service workspace page, you will get a **chat
-    request**. Accept it.
+### タスク 1: エージェントを作成
 
-    ![](./media/image161.png)
+1.  **左側ナビゲーションウィンドウで**Agentsを選択する**。**
 
-19. Once accepted, the chat screen opens up with the message that we had
-    given in the Escalate topic. We can also add any other information
-    provided by the user here to the live agent.
+![A screenshot of a chat box AI-generated content may be
+incorrect.](./media/image116.png)
 
-    ![](./media/image162.png)
+2.  **+ New agentをクリックして新しいエージェントを作成する。**
 
-20. Simulate the chat between the live agent and the customer if you
-    wish to see how it works and then ends.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image117.png)
 
-    ![](./media/image163.png)
+3.  **Skip to configureをクリックしてエージェントを構成できます。** ![A
+    screenshot of a computer AI-generated content may be
+    incorrect.](./media/image118.png)
 
-    ![](./media/image164.png)
+4.  以下の詳細を入力して**Create**をクリックする。
 
-**Summary**
+**Name** - !!Autonomous agent!!
 
-In this lab, we have learnt to
+**Description** - !!You are an agent to detect the updates to the
+Booking Requests table!!
 
-- Build a copilot from the Copilot Studio and create topics in it.
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image119.png)
 
-- Test the copilot from the Copilot Studio and publish it to the demo
-  web site.
+5.  エージェントのセットアップは数秒で完了します。完了すると、Autonomousエージェントが起動し、「**Your
+    agent is ready**」というメッセージが表示されます。
 
-- Publish the copilot to Dynamics 365 workspace and integrate the it in
-  a web page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image120.png)
 
-- Configure and test the escalation to a live agent.
+6.  Select **Settings** from the top right corner.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image121.png)
+
+7.  エージェントのトリガー作成を続行するには、Generative AI
+    オプションを有効にする必要があります.
+
+8.  設定画面の左側にあるオプションリストから「Generative
+    AI」オプションを選択します。「Using Generative AI in
+    conversations\]を使用する」で「Generative」を選択し、「Save」をクリックします。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image122.png)
+
+9.  **Settings**画面を閉じる。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image123.png)
+
+### タスク 2: エージェントにトリガーを追加する
+
+1.  自律エージェント ページに戻り、**Triggers (Preview)**
+    セクションまで下にスクロールし**、** \[+ トリガーの追加**\]**
+    を選択します。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image124.png)
+
+2.  **Add trigger**画面に**When a row is added, modified or
+    deleted**トリガーを追加**する。** 
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image125.png)
+
+3.  次の画面に**Continue**をクリックする**。**
+
+4.  選択すると、次の画面に**トリガー名**と**サインインオプション**が表示されます。入力には数分かかります。選択したトリガーには、**Microsoft
+    Copilot Studio** と **Microsoft Dataverse** の 2
+    つのアプリが表示されます。読み込まれたら、サインイン
+    オプションの接続ステータスが**緑色**になっていることを確認して、\[Next\]
+    をクリックして続行します。![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image126.png)
+
+5.  In the Add trigger画面に以下の詳細を選択し、**Create
+    trigger**を選択する。
+
+    - Change type – **Added or modified**
+
+    - Table name – **Booking Requests**
+
+    - Scope – **Organization**
+
+    - トリガーの指示–**デフォルト**のままにする。**これで、エージェントに全体の応答が戻ります。**
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image127.png)
+
+6.  トリガーの作成完了に3分～5分かかる場合があります。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image128.png)
+
+7.  完了したら**Time to test your trigger!** 画面に、Screen
+    **Closeをクリックする。**
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image129.png)
+
+8.  **Actionsタブをクリックして、+ Add action**をクリックする。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image130.png)
+
+9.  !!Send an email!! を選択して、**Send an email (V2)
+    action**を選択する。
+
+![A screenshot of a email conversation AI-generated content may be
+incorrect.](./media/image131.png)
+
+10. 接続が確立されたら、\[Next\]をクリックします。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image132.png)
+
+11. **End user authenticationのドロップダウンからCopilot author
+    Authentication**を選択してから**、Add action**を選択する**。**
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image133.png)
+
+12. 作成されたActionを選択する。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image134.png)
+
+13. **Inputsタブを選択する。**
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image135.png)
+
+14. **Description**フィールドにメールアドレスを入力して、**Save**をクリックする。このメールアドレスがアクセスできる任意のメールアドレスです。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image136.png)
+
+### タスク 3: エージェントに指示を追加する
+
+1.  **Overview**を選択し**、**Overviewページへ移動してからOverviewページの**Edit**をクリックする。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image137.png)
+
+2.  以下の手順を「**Instructions**」テキストエリアに貼り付け、セクションbの\<メールID\>のプレースホルダーを詳細を送信するメールIDに置き換えて、「**保存**」をクリックします。
+
+!!a. Read the details of the row that gets added or modified!! !!b. Mail
+the modified information only to \<Mail ID\> with a proper subject and
+body added to the email!!
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image138.png)
+
+3.  **Publish**をクリックすると、エージェントが接続されているすべてのチャネルに公開されます。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image139.png)
+
+4.  **Publish this agentダイアログボックスでPublishをクリックする。**
+
+![A screen shot of a computer AI-generated content may be
+incorrect.](./media/image140.png)
+
+5.  Publishされてから正常処理のメセッジが表示されます。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image141.png)
+
+### タスク 4: 予約table
+
+1.  !\!<https://make.powerapps.com/>!!
+    にログインして、左側ナビゲーション画面から**Tables**を選択する**。**
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image142.png)
+
+2.  Select **Custom**を選択して、そこで**Booking
+    Request**のテーブルを選択する。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image143.png)
+
+3.  テーブル中に値を追加又は更新する。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image144.png)
+
+### タスク 5: エージェントをテストする
+
+1.  エージェント ページで \[テスト\] を選択し、**Activity Map**
+    をオンにします。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image145.png)
+
+2.  From the agent page, select the エージェントページから**Test
+    triggerオプションを選択する。**予約テーブルに加えた更新がトリガーを起動したはずです。Copilot
+    studioからテストするために使用します。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image146.png)
+
+3.  最新のエントリを選択し、「**テストを開始**」をクリックします.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image147.png)
+
+4.  トリガーが起動されます。![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image148.png).
+
+5.  メールは特定されたメールアドレスに送信されます。![A screenshot of a
+    computer AI-generated content may be
+    incorrect.](./media/image149.png)
+
+6.  該当するメールボックスを確認し、以下のようなメールを受信して​​いるかどうかを確認します。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image150.png)
+
+**要約**
+
+本ラボでは次を学びました。
+
+- Copilot Studio からエージェントを構築し、トピックを作成します。
+
+- Copilot Studio
+  からエージェントをテストし、デモウェブサイトに公開します。
+
+- 自律エージェントを構築し、テストします。
+
+ 
