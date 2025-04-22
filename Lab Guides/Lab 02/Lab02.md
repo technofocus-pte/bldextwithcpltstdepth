@@ -1,788 +1,283 @@
-# Lab 02 - Enhancing the Real Estate copilot with Gen AI capabilities
+# Lab 02 – OneDrive で作成された新しいファイルを追跡するための自律エージェントを構築する
 
-**Lab duration** – 80 minutes
+**紹介**
 
-**Objective:**
+ある組織のOneDrive For
+Businessでは、複数のファイルが作成されており、管理者がそれらを追跡することが困難になっています。
 
-Implement entities, slot filling and variables usage in the Copilot for
-Real Estate app. Enhance the copilot created for the Real Estate app to
-elevate the customer experience by implementing Generative AI.
+**目標**
 
-## Exercise 1: Use entities to improve the copilot
+新しく追加されたファイルの詳細をファイル詳細トラッカーに入力する自律エージェントを構築します。これにより、ファイルの追加を追跡する問題が解決され、ファイル詳細トラッカーには新しく作成されたすべてのファイルの詳細が記録されます。
 
-Microsoft Copilot Studio uses entities to understand user intent. There
-are many prebuilt entities included for commonly used information. You
-can create custom entities for your specific purpose.
+## 手順 1: 環境の設定
 
-### Task 1: View prebuilt entities
+1.  Resourcesタブからのパスワードを使用してVMにログインします。
 
-1.  Select **Settings** in the top-right of the screen.
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-    ![](./media/image1.png)
+### タスク 1: OneDriveを設定する
 
-2.  Select the **Entities** tab. You can see a list of pre-built
-    entities.
+1.  ブラウザを開き、+++**https://office.com**+++へナビゲートする。**Resources**
+    タブからの資格情報を使用して**サインイン**する**。**
 
-    ![](./media/image2.png)
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-### Task 2: Create the property type entity
+2.  左側のメニューから**OneDrive**を選択する。
 
-1.  Select **+ Add an entity** and select **+ New entity**.
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-    ![](./media/image3.png)
+3.  左上にある**+** 符号をクリックして**Files upload**を選択する。
 
-2.  Select the **Closed list** tile.
+![A screenshot of a computer Description automatically
+generated](./media/image4.png)
 
-    ![](./media/image4.png)
+4.  **C:\LabFiles**からのファイル**File
+    details**を選択して**Open**を選択する。
 
-3.  Enter the below details
+5.  ファイルがアップロードされてから、ファイルが通常処理されたとのメセッジが画面にポップアップされます
 
-    -    Name - +++**Property Type**+++
-    
-    **Enter item** under List items
-    -    +++**Apartment**+++ - Select **Add**
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-    ![](./media/image5.png)
+6.  左側のメニューから「マイファイル」をクリックすると、新しいファイルがそこに表示されているのがわかります。
 
-4.  Enter +++**Condominium**+++ in the **Enter item** field and
-    select **Add**.
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-5.  Enter +++**Duplex**+++ in the **Enter item** field and
-    select **Add**.
+### タスク 2 : 開発環境を作成する
 
-    ![](./media/image6.png)
+1.  Resourcesタブからテナント情報を使用して+++<https://admin.powerplatform.microsoft.com/>+++
+    へログインする。
 
-6.  Select **+ Synonyms** for **Apartment**, enter +++**Flat**+++, then
-    select the **+** icon and select **Done**.
+2.  左側のナビゲーション画面から **Environments**選択して**+
+    New**をクリックする。
 
-    ![](./media/image7.png)
+![A screenshot of a computer Description automatically
+generated](./media/image7.png)
 
-7.  Select **+ Synonyms** for **House**, enter +++**Single-family
-    home**+++, then select the **+** icon and select **Done**.
+3.  開いたNew
+    Environment画面で、以下の詳細を入力し、「**Next**」をクリックします。.
 
-8.  Select **+ Synonyms** for **Condominium**,
-    enter +++**Townhouse**+++, then select the **+** icon and
-    select **Done**.
+[TABLE]
 
-9.  Select **Save**.
+![A screenshot of a computer Description automatically
+generated](./media/image8.png)
 
-    ![](./media/image8.png)
+![A screenshot of a computer Description automatically
+generated](./media/image9.png)
 
-10. Select **Close**.
+4.  **Add Dataverse**画面にデフォルトを選択し、**Save**をクリックする。
 
-    ![](./media/image9.png)
+![A screenshot of a computer Description automatically
+generated](./media/image10.png)
 
-### Task 3: Create number of bedrooms entity
+5.  新しく作成されたEnvironmentがアドミンセンターにリストされ、その状況がEnvironment画面に表示します。
 
-1.  Select **+ Add an entity** and select **+ New entity**.
+6.  **Status**が**ready**になってからEnvironmentが利用できます。このenvironment
+    を今後の手順に使用します。
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image11.png)
 
-2.  Select the **Regular expression (Regex)** tile.
+### タスク 3: Copilot Studio のトライアルを有効にする 
 
-    ![](./media/image11.png)
+1.  新しいタブで+++**https://copilotstudio.microsoft.com/**+++を開く
 
-3.  Enter the below details and click on **Save**.
+2.  ラボVMの**Resources**タブで提供された**資格情報**を使用し、**サインイン**する。
 
-    - Name  - +++**Number of Bedrooms**+++ 
-    
-    - Pattern  - +++**\[1-5\]**+++ 
+> ![A screenshot of a computer Description automatically
+> generated](./media/image12.png)
 
-    ![](./media/image12.png)
+3.  ログインしてから**Welcome to Microsoft Copilot Studio**
+    ページで国を**United States**のままにしておき**、Get
+    Started**をクリックする。
 
-4.  Select **Close**.
+![A person sitting at a computer Description automatically
+generated](./media/image13.png)
 
-    ![](./media/image13.png)
+4.  **Welcome**画面で**Skip**を選択する。
 
-5.  Close the **Settings** pane.
+![A screenshot of a computer Description automatically
+generated](./media/image14.png)
 
-    ![](./media/image14.png)
+## 手順 2: 自律エージェントの構築とテスト
 
-### Task 4: Use entities
+### タスク 1: Copilot Studioからエージェントの作成
 
-1.  Select the **Topics** tab. Select the **Book a Real Estate
-    Showing** topic.
+1.  エージェント作成ページに表皮されるSkip to
+    configureオプションをクリックする。
 
-    ![](./media/image15.png)
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-2.  Select the **+** icon above the property question node and
-    select **Ask a question**.
+2.  エージェント作成画面に以下の詳細を入力して、**Create**をクリックする。
 
-    ![](./media/image16.png)
+- **Name** - +++New file tracker agent+++
 
-3.  Fill in the below details.
+- **Description** - +++This agent will update the File details tracker
+  placed in the OneDrive, each time a new file is created in the
+  OneDrive
 
-    - **Enter a message** - +++What type of property do you want to see?+++
-    
-    - **Identify** – Select **Property Type**
-    
-    - Select **Select options for user** and check the **Display** option
-      for all list values.
+![A screenshot of a computer Description automatically
+generated](./media/image16.png)
 
-    ![](./media/image17.png)
+### タスク 2: エージェントにトリガーを追加する
 
-4.  Select the variable in **Save user response as** and enter
-    +++**PropertyType**+++ for **Variable name**
+1.  エージェントが作成されてからスクロールダウンして、**Trigger**セクションで**+
+    Add trigger**を選択する
 
-    ![](./media/image18.png)
+![A screenshot of a computer Description automatically
+generated](./media/image17.png)
 
-5.  Select the the **+** icon below the new question node and
-    select **Ask a question**.
+2.  **Turn on generative orchestration to continue**のダイアログで**Turn
+    it
+    on**を選択する。このオプションの設定をオンにすることでトリガーを追加します。
 
-6.  Enter the below details and click on **Save**.
+![A screenshot of a computer Description automatically
+generated](./media/image18.png)
 
-    - **Enter a message** - +++How many bedrooms do you need?+++
-    
-    - **Identify -** Select **Number of Bedrooms**
-    
-    - **Save user response as** -
-      Enter +++NumberofBedrooms+++ for **Variable name**
+3.  Add triggerメニューから**When a file is created**
+    トリガーを選択する。
 
-    ![](./media/image19.png)
+![A screenshot of a computer Description automatically
+generated](./media/image19.png)
 
-## Exercise 2: Create Copilot actions
+4.  **Add trigger**画面に**Continue**を選択する。
 
-Microsoft Copilot Studio can access data in Microsoft Dataverse using
-Power Automate cloud flows
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
 
-### Task 1: Create Power Automate flow to retrieve a property
+> 次の画面で、トリガー名が入力されていることを確認できます。Microsoft
+> Copilot Studio と OneDrive for Business
+> への接続が確立されるまでお待ちください（各コネクタに緑色のチェックマークが表示されます）。「Next」をクリックします。![A
+> screenshot of a computer Description automatically
+> generated](./media/image21.png)
 
-1.  Select the **Actions** tab from the top menu. Select **+ Add an
-    action**.
+5.  以下の詳細を選択します。
 
-    ![](./media/image20.png)
+- **Folder** – Root
 
-2.  Scroll down and select **Create a new flow**.
+- **Include subfolders** – Yes
 
-    ![](./media/image21.png)
+> 他のフィールドをデフォルトのままにして**Create trigger**を選択する。
 
-3.  Sign in to Power Automate if prompted.
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
 
-4.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++**Get Property**+++ as the flow name.
+![A screenshot of a computer Description automatically
+generated](./media/image23.png)
 
-    ![](./media/image22.png)
+6.  トリガーが作成されてから**Time to test your
+    trigger**メセッジが表示される。それを**Close**します。トリガーの基本的なフローを少し調整して機能を実装し、テストします。
 
-5.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input**.
+![A screenshot of a computer Description automatically
+generated](./media/image24.png)
 
-    ![](./media/image23.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image25.png)
 
-6.  Select **Text**.
+### タスク 3: トリガーにロジックを追加する
 
-    ![](./media/image24.png)
+1.  **New file track
+    agent**ページにトリガーのセクションへスクロールダウンする。
 
-7.  Enter the below details
+2.  **When a file is
+    created**のトリガーの横にある三つのドットをクリックして、**Edit in
+    Power Automate**を選択する。
 
-    - **Input** – +++Bedrooms+++
-    
-    - **Please enter your input** - +++Number of Bedrooms+++
+![A screenshot of a computer Description automatically
+generated](./media/image26.png)
 
-    ![](./media/image25.png)
+3.  **When the file is created**と**Sends a prompt action**
+    の間にある+アイコンを選択して**Add an action**を選択します。
 
-8.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
 
-    ![](./media/image26.png)
+4.  +++add a row+++ を検索して、**Add a row into the table**を選択する。
 
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the Dataverse connector.
+![A screenshot of a computer Description automatically
+generated](./media/image28.png)
 
-    ![](./media/image27.png)
+5.  各行に対して以下の値を選択し、Saveをクリックする。
 
-10. Select the **List rows** action.
+[TABLE]
 
-    ![](./media/image28.png)
+![A screenshot of a computer Description automatically
+generated](./media/image29.png)
 
-11. If prompted for authentication, select **OAuth** and select **Sign
-    in**. Sign in using your tenant id if prompted.
+![A screenshot of a computer Description automatically
+generated](./media/image30.png)
 
-    ![](./media/image29.png)
+6.  フローは以下のスクリーンショットのようになります。
 
-12. Select **Real Estate Properties** for table name.
+![A screenshot of a computer Description automatically
+generated](./media/image31.png)
 
-13. Select **Show all**.
+7.  フローを保存して**publish**する**。**
 
-14. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
+### タスク 4: トリガーをPublishする
 
-15. Use **Dynamic content** to select the **Bedrooms** parameter and
-    select **Add**.
+1.  Copilot Studioで**Settings**を選択する
 
-    ![](./media/image30.png)
+![A screenshot of a computer Description automatically
+generated](./media/image32.png)
 
-16. Select the **Respond to Copilot** action and select **+ Add an
-    output**.
+2.  **Security** -\> **Authentication** -\> **No
+    authentication**選択し、**Save**をクリックする。
 
-    ![](./media/image31.png)
+![A screenshot of a computer Description automatically
+generated](./media/image33.png)
 
-17. Select **Text**.
+3.  確認ダイアログで**Save**を選択する。
 
-18. Enter the below details
+![A screenshot of a computer error Description automatically
+generated](./media/image34.png)
 
-    - **Enter a name** - +++PropertyId+++
-    
-    - **Enter a value to respond with** - select **Insert Expression** and
-      enter the following expression:
-      +++first(outputs('List_rows')?\['body/value'\])\['contoso_realestatepropertyid'\]+++
+4.  次に、**Publish**選択し、エージェントを公開する。
 
-    ![](./media/image32.png)
+![](./media/image35.png)
 
-19. Select **Add**.
+5.  確認ダイアログでで **Publish**を選択する。
 
-    ![](./media/image33.png)
+![A screenshot of a computer Description automatically
+generated](./media/image36.png)
 
-20. Select **+ Add an output**.
+### タスク 5: トリガーをテストする
 
-21. Select **Text**.
+1.  ブラウザで**OneDrive**に戻ります。「+」をクリックして**Word文書**を選択します。
 
-    - **Enter a name** - +++PropertyName+++ 
-    
-    - **Enter a value to respond with** - select **Insert Expression** and
-      enter the following expression:
-      +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
+![A screenshot of a computer Description automatically
+generated](./media/image37.png)
 
-    ![](./media/image34.png)
+2.  ドキュメントに名前を付けて、「**Create**」を選択します。
 
-22. Select **Settings**. Ensure that **Asynchronous Response** is set
-    to **Off**.
+![A screenshot of a computer Description automatically
+generated](./media/image38.png)
 
-    ![](./media/image35.png)
+3.  プライバシーのオプションを閉じるよう**Close**をクリックする
 
-23. Select **Save draft**.
+![A screenshot of a computer screen Description automatically
+generated](./media/image39.png)
 
-    ![](./media/image36.png)
+4.  同様に、さらにいくつかのファイルを追加します。
 
-24. Once save, select **Publish**.
+5.  次に、OneDrive からファイル details.xlsx
+    を開き、作成されたファイルの詳細がトラッカーに追加されていることを確認します。
 
-    ![](./media/image37.png)
+![A screenshot of a computer Description automatically
+generated](./media/image40.png)
 
-25. Close the Power Automate tab.
+6.  OneDrive
+    にファイルが作成されると、トリガーが起動され、**ファイルが追加されたとき**のフローが実行され、トラッカーが更新されます。
 
-### Task 2: Add a Copilot action for retrieving a property
+7.  Copilot
+    Studioのアクティビティタブで自律エージェントの詳細を確認することもできます。
 
-1.  Back in the Copilot Studio page, select **Refresh**.
+**要約**
 
-    ![](./media/image38.png)
-
-2.  Select the **Get Property** flow.
-
-    ![](./media/image39.png)
-
-3.  Select **Next** in the **Choose an action** screen.
-
-    ![](./media/image40.png)
-
-4.  Select **Next** in the **Review inputs and outputs** screen.
-
-    ![](./media/image41.png)
-
-5.  Select **Finish** in the **Review and finish** screen.
-
-    ![](./media/image42.png)
-
-6.  Select the **Topics** tab. And select the **Book a Real Estate
-    Showing** topic.
-
-    ![](./media/image43.png)
-
-7.  Select the **+** icon below the **How many bedrooms do you need
-    question?** node and select **Call an action**. Select the **Get
-    Property** flow.
-
-    ![](./media/image44.png)
-
-8.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
-    parameter.
-
-    ![](./media/image45.png)
-
-9.  Select the **three dots** in the **Which property do you want to
-    see?** question node and select **Delete**.
-
-    ![](./media/image46.png)
-
-10. Select the the **+** icon under the action node and select **Send a
-    message**.
-
-11. Fill in the below details
-
-    - **Enter a message** - enter +++Property+++
-    
-    - Select the **Insert variable** icon and select
-      the **PropertyName** variable.
-
-    ![](./media/image47.png)
-
-12. Select **Save**.
-
-    ![](./media/image48.png)
-
-13. Once saved, select **Publish** and select **Publish**.
-
-    ![](./media/image49.png)
-
-14. Click on Publish in the Publish confirmation dialog.
-
-    ![](./media/image50.png)
-
-### Task 3: Create Power Automate flow to make a booking
-
-1.  Select the **Actions** tab and select **+ Add an action**.
-
-    ![](./media/image51.png)
-
-2.  Scroll down and select **Create a new flow**.
-
-    ![](./media/image52.png)
-
-3.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter Create +++**Booking Request**+++ as the flow name.
-
-    ![](./media/image53.png)
-
-4.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input -\> Text**.
-
-    ![](./media/image54.png)
-
-    ![](./media/image55.png)
-
-5.  Enter the below details
-
-    - Input - +++**PropertyId**+++
-    
-    - Please enter your input **-** +++**Property**+++
-
-6.  Select **+ Add an input -\> Text**
-
-    - Input - +++**ViewerName**+++
-    
-    - Please enter your input **-** +++**Viewer Name**+++
-
-7.  Select **+ Add an input -\>** **Text**.
-
-    - Input - +++**ViewerEmail**+++
-    
-    - Please enter your input **-** +++**Viewer Email**+++
-
-    ![](./media/image56.png)
-
-8.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
-
-    ![](./media/image57.png)
-
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the Dataverse connector.
-
-    ![](./media/image58.png)
-
-10. Select the **Add a new row** action.
-
-    ![](./media/image59.png)
-
-11. Select **Booking Requests** for table name.
-
-12. Enter +++**Copilot booking**+++ in the **Booking Name** field.
-
-13. Select **Show all**.
-
-    ![](./media/image60.png)
-
-14. Enter +++contoso_bookingrequests()+++ in the **Property (Real Estate
-    Properties)** field, move the cursor within the brackets, and
-    use **Dynamic content**.
-
-    ![](./media/image61.png)
-
-15. Select the **PropertyId** parameter.
-
-    ![](./media/image62.png)
-
-16. Use **Dynamic content** to select the **ViewerName** parameter for
-    the **Viewer Name** field.
-
-    ![](./media/image63.png)
-
-17. Use **Dynamic content** to select the **ViewerEmail** parameter for
-    the **Viewer Email** field.
-
-    ![](./media/image64.png)
-
-18. The parameters will now look similar to those in the screenshot
-    below.
-
-    ![](./media/image65.png)
-
-19. Select the **Respond to Copilot** action. Select **Settings** and
-    ensure that **Asynchronous Response** is set to **Off**.
-
-    ![](./media/image66.png)
-
-20. Select **Save draft**.
-
-    ![](./media/image67.png)
-
-21. Once saved, select **Publish**.
-
-    ![](./media/image68.png)
-
-22. Close the Power Automate tab.
-
-### Task 4: Add a Copilot action for creating a booking request
-
-1.  Back in the Copilot Studio page, select **Refresh**.
-
-    ![](./media/image69.png)
-
-2.  Select the **Create Booking Request** flow.
-
-    ![](./media/image70.png)
-
-3.  Select **Next** in the Choose an option screen.
-
-    ![](./media/image71.png)
-
-4.  Select **Next** in the Review inputs and outputs .
-
-    ![](./media/image72.png)
-
-5.  Select **Finish** in the **Review and finish** screen.
-
-    ![](./media/image73.png)
-
-6.  Select the **Topics** tab and select the **Book a Real Estate
-    Showing** topic.
-
-    ![](./media/image74.png)
-
-7.  Select the the **+** icon below the **What date and time do you want
-    to see the property?** node and select **Call an action**.
-
-8.  Select the **Booking Request** flow.
-
-    ![](./media/image75.png)
-
-9.  Select the **PropertyId** variable for the **PropertyId** input
-    parameter.
-
-    Select the **Name** variable for the **ViewerName** input parameter.
-
-    Select the **EmailAddress** variable for the **ViewerEmail** input
-parameter.
-
-    ![](./media/image76.png)
-
-10. Select the the **+** icon below the action node. Select **Topic
-    management**, then select **Go to another topic** and select **End
-    of conversation**.
-
-    ![](./media/image77.png)
-
-11. Select **Save**.
-
-    ![](./media/image78.png)
-
-12. Once saved, select **Publish** and select **Publish** again in the
-    confirmation dialog.
-
-    ![](./media/image79.png)
-
-    ![](./media/image80.png)
-
-## Exercise 3: Test the copilot 
-
-### Task 1: Test the copilot and make a booking request
-
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
-
-    ![](./media/image81.png)
-
-2.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
-
-3.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
-
-4.  In response, enter a trigger phrase for the topic that you created:
-
-+++I want to book a real estate showing+++
-
-5.  The copilot responds with the "**What is your name?**" question.
-
-6.  Enter your name.
-
-    ![](./media/image82.png)
-
-7.  Then enter your email when it prompts for the email. After you enter
-    the details, an Adaptive Card displays the information that you
-    entered, a question asking if the information is correct, and
-    options to select **Yes** or **No**. Select **Yes**.
-
-    ![](./media/image83.png)
-
-8.  Select **House** for the type of property prompt.
-
-9.  Enter +++**2**+++ for the number of bedrooms prompts.
-
-    ![](./media/image84.png)
-
-10. Enter Tomorrow 2:00 PM to the **What date and time do you want to
-    see the property?** prompt.
-
-11. Select **Yes** to the **Did that answer your question?** prompt.
-
-12. Select any rating.
-
-13. Select **No** to the **Can I help with anything else?** prompt.
-
-    ![](./media/image85.png)
-
-### Task 2: Verify booking request
-
-1.  Navigate to the Power Apps portal at
-    +++**https://make.powerapps.com**+++.
-
-2.  In the left navigation pane, select **Tables** and
-    select **Custom**.
-
-3.  Select the **Booking Request** table.
-
-    ![](./media/image86.png)
-
-4.  Under **Booking Request columns and data** you should see that a
-    Copilot booking request is now created.
-
-    ![](./media/image87.png)
-
-## Exercise 4: Set up Generative AI
-
-In this exercise, you learn how to use the Generative answers feature to
-improve your copilot's responses.
-
-### Task 1: Enable Generative AI
-
-1.  Login to the Copilot Studio using your tenant credentials at
-    +++https://copilotstudio.microsoft.com+++ if not logged in
-    already.
-
-2.  Select the Copilot **Real Estate Booking Service**.
-
-    ![](./media/image88.png)
-
-3.  Select **Settings** in the top-right of the screen.
-
-    ![](./media/image89.png)
-
-4.  Select the **Generative AI** tab.
-   
-    -    Select **Generative** under **How should your copilot decide how to respond**.
-    -    Select **Medium** for **Copilot content moderation**.
-    -    Select **Save**.
-    -    
-    ![](./media/image90.png)
-
-5.  **Close** the Settings pane.
-
-    ![](./media/image91.png)
-
-### Task 2: Enable knowledge
-
-1.  Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
-
-2.  Verify that general knowledge is enabled in the Knowledge section.
-
-    ![](./media/image92.png)
-
-### Task 3: Add knowledge from a website
-
-1.  Select **+ Add knowledge** under the **Knowledge** section in the
-    Overview page of the copilot.
-
-    ![](./media/image93.png)
-
-2.  Select the **Public websites** tile.
-
-    ![](./media/image94.png)
-
-3.  Enter the public website
-    link +++https://create.microsoft.com/templates/real-estate+++.
-    Select **Add**.
-
-    ![](./media/image95.png)
-
-4.  Give the name +++Real Estate Website+++ in the Name field and then
-    select **Add**.
-
-    ![](./media/image96.png)
-
-### Task 4: Add knowledge from Dataverse
-
-1.  Select the **Knowledge** tab. Select **+ Add knowledge**.
-
-    ![](./media/image97.png)
-
-2.  Select **Dataverse**.
-
-    ![](./media/image98.png)
-
-3.  Select the **Real Estate Property** table and select **Next**.
-
-    ![](./media/image99.png)
-
-4.  Preview the data in the next screen and then select **Next**.
-
-    ![](./media/image100.png)
-
-5.  Review the details and click on **Add** in the Review and finish
-    screen.
-
-    ![](./media/image101.png)
-
-### Task 5: Add knowledge from files
-
-1.  From the **Knowledge** tab, select **+ Add knowledge**.
-
-    ![](./media/image102.png)
-
-2.  Select **Files**.
-
-    ![](./media/image103.png)
-
-3.  Select Click to browse and browse to locate the file
-    **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
-
-    ![](./media/image104.png)
-
-4.  Select **Add**.
-
-    ![](./media/image105.png)
-
-### Task 6: Use generative answers in System fallback topic
-
-1.  Select the **Topics** tab and select **System**. Select
-    the **Fallback** topic.
-
-    ![](./media/image106.png)
-
-2.  Select the **three dots** in the message node and select **Delete**.
-
-    ![](./media/image107.png)
-
-3.  Select the **+** icon under the Condition node, select **Advanced**,
-    and select **Generative answers**.
-
-    ![](./media/image108.png)
-
-4.  Select the **Input** field, select **System** in the **Select a
-    variable** pane. Select **Activity.Text** from it.
-
-    ![](./media/image109.png)
-
-5.  Select **Edit** under **Data sources**.
-
-    ![](./media/image110.png)
-
-6.  Select **Search only selected sources**.
-
-    ![](./media/image111.png)
-
-7.  Select the **SummitRealtyCaseStudy** document. Deselect **Allow the
-    AI to use its own general knowledge**.
-    Select **Medium** for **Content moderation**.
-
-    ![](./media/image112.png)
-
-8.  Select **Save**.
-
-    ![](./media/image113.png)
-
-### Task 7: Configure Security
-
-1.  Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
-
-2.  From the copilot page top menu, click on **Channels** (If the
-    Channels is not visible, click on the +1 to view the **Channels**
-    option)
-
-    ![](./media/image114.png)
-
-3.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
-
-    ![](./media/image115.png)
-
-4.  On the Dynamics 365 Customer Service page, click on **Disconnect**.
-
-    ![](./media/image116.png)
-
-5.  Once done, **close** the Dynamics 365 Customer Service pane.
-
-    ![](./media/image117.png)
-
-6.  Select **Settings** in the top-right of the screen.
-
-    ![](./media/image118.png)
-
-7.  Select the **Security** tab and then select
-    the **Authentication** tile.
-
-    ![](./media/image119.png)
-
-8.  Select Authenticate with Microsoft **(Entra ID authentication in
-    Teams and Power App)**.
-
-9.  Select **Save**.
-
-    ![](./media/image120.png)
-
-10. Select **Save**.
-
-    ![](./media/image121.png)
-
-11. Select **Close**.
-
-    ![](./media/image122.png)
-
-12. Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
-
-13. Select **Publish** and select **Publish**.
-
-    ![](./media/image123.png)
-
-### Task 8: Test the copilot's knowledge
-
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel.
-
-    ![](./media/image124.png
-    )
-
-3.  Select the **three dots** at the top of the testing panel in the
-    top-right of the screen.
-
-4.  Select **Track between topics**.
-
-5.  Select the **Start a new conversation** icon at the top of the
-    testing panel.
-
-6.  Explore the copilot and see how it uses the different knowledge
-    sources.
-
-**Summary:**
-
-In this lab, we have learnt to
-
-- Use entities and slot filling
-
-- Implement Flow actions
-
-- Add knowledge to the copilot
-
-- Enable Generative AI
+このラボでは、Copilot Studio
+から自律エージェントを作成、公開、テストする方法を学習しました。
