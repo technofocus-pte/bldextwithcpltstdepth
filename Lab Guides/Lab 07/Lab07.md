@@ -1,105 +1,250 @@
-# **Lab 07 – Extending Microsoft Copilot with prompt actions (preview)**
+# **ラボ 12\_ Copilot(classic) から Teams チャネルに　メッセージの送信**
 
-**Lab duration** – 20 minutes
+**ラボ期間**– 30分
 
-**Objective**
+**目的:**
 
-AI actions can be used to extend Microsoft Copilot, or used within a
-custom copilot as a plugin action. In this lab, we will learn about
-creating Prompt actions.
+このラボでは、フローを呼び出してコパイロットからTeamsチャネルにメッセージを送信します。
 
-The action will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **手順 1: Microsoft Teams にチャネルとチームを追加する**
 
-## **Exercise 1: Navigate to the Add a prompt action wizard**
+1.  VMからMicrosoft
+    Teamsを開き、既に閉じている場合はテナントの資格情報を使用してログインします。Teamsオプションを選択します。
 
-1.  Sign into Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your admin tenant
-    credentials.
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-2.  Select **Library** on the side navigation pane.
+2.  Teamsから**More optionsを選択し、+ -\>** **Create
+    team**を選択します。
 
-    ![](./media/image1.png)
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-4.  Select **+ Add an item**. You're prompted to select a Microsoft
-    Copilot to extend.
+3.  チームを +++**HR Team**+++で チャネルを+++**HR
+    Experts**+++として名前を付けて、**Create**を選択する。
 
-    ![](./media/image2.png)
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-5.  Select **Copilot for Microsoft 365**.
+4.  ‘Add members to HR Team’ ウィンドウに**Skip**を選択する。
 
-    ![](./media/image3.png)
+![A screenshot of a computer Description automatically
+generated](./media/image4.png)
 
-6.  A **New action** menu appears. Select **Prompt**.
+5.  ‘Add members to the HR Experts
+    channel’ウィンドウに**Skip**を選択する。
 
-    ![](./media/image4.png)
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-7.  The **Add a prompt action** wizard opens.
+## **手順 2: HR エキスパートにエスカレーションして複雑なクエリを処理するトピックを強化する**
 
-## **Exercise 2: Generate content or extract insights with AI Builder dynamic prompts**
+1.  From the Teams app, select the Teams アプリからCopilot Studio
+    app(Power Virtual Agents)を選択して、**Copilots**タブを選択し**、HR
+    Support Copilot**を開く。
 
-1.  Provide the below details and click on **Next**.
+> ![](./media/image6.png)
+>
+> **注:** Copilot Studio
+> のショートカットが見つからない場合は、\[アプリ\] で **Copilot
+> Studio/Power Virtual Agents** を検索し、**\[Open\]**
+> を選択します**。**
+>
+> ![](./media/image7.png)
 
-    - Name - +++**Dynamic prompt**+++
-    
-    - Description - +++**Dynamic prompt to summarize text**+++
+1.  左側のウィンドウから トピック を選択し、前に作成したトピック
+    (**Employee time off**) に戻り、作成キャンバスに移動します。
 
-    ![](./media/image5.png)
+> ![A screenshot of a chat Description automatically
+> generated](./media/image8.png)
 
-2.  Select **Summarize text**.
+2.  \[**Ask a question**\] ノード**で、\[Extended leave\]
+    という名前のオプションを追加します。**
 
-    ![](./media/image6.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image9.png)
 
-3.  It will add a prompt with a dynamic value **text**.
+3.  長期休暇の条件ノードの下に、問題の説明を求める質問ノードを追加し、「**+++How
+    would you describe the issue?+++**」というテキストを追加します。
 
-    ![](./media/image7.png)
+> ![](./media/image10.png)
 
-4.  Click on the **Input** under Prompt Settings add the below content
-    in the **Sample data**.
-	
-    ```
-    Meet comfortably and confidently with customizable meeting views
-    The meeting stage, or gallery, is at the core of the virtual meeting experience and can either hinder or enhance meeting efficiency depending on your needs. We’re excited to share how we’re evolving the default gallery experience in Teams meetings to give you a simpler, more predictable meeting presence—while enabling more controls that let you personalize the view to suit your preferences.
-    First, let’s look at the new default gallery experience that will be applicable to all. The new gallery will place everyone in tiles of equal size (16:9 ratio) whether their video is turned on or off. Additionally, the new default gallery layout will be more consistent and predictable for all meetings, regardless of size and content shared.
-    And when a Teams Room joins the meeting, the video of the room automatically enlarges, bridging the gap between remote and in-room participants. Remote attendees enjoy a clearer view and better connection, easily spotting who is speaking. Want a custom view? Simply tweak the tile size to your preference from the more options (...) menu by hovering on the room name. It's seamless, inclusive, and ensures everyone can be seen, no matter where they are.
-    Next, let’s look at the controls that help you customize every meeting view to suit your needs.
-    
-    While the default gallery size for meetings will be 16 participants, you can customize the number of participants visible on your screen to best fit your preference. You can choose from 4, 9, 16, and 49 participants visible on the screen for gallery size.
-    
-    There are still a few default configurations that AI will optimize for to improve engagement and efficiency. For virtual participants, these are prioritizing those that have a raised hand and prioritizing the active speaker, enhancing their visibility so comments are not missed.
-    ```
+4.  「Identify」の下で「**User's entire response**」を選択し、説明を
+    +++**Description**+++ という名前の変数に保存します。
 
-    ![](./media/image8.png)
+> ![A screenshot of a computer screen Description automatically
+> generated](./media/image11.png)
 
-5.  Click on **Test prompt**.
+5.  **Save**を選択する
 
-    ![](./media/image9.png)
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-6.  Notice that the Prompt response, summarizing the text is generated.
+6.  質問の下にノードを追加し、「**Call an action**」を選択する。Teams の
+    Copilot Studio 内で Power Automate を起動する「**Create a
+    flow**」を選択する。
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image13.png)
 
-7.  Click on **Save custom prompt**.
+7.  **Power Virtual Agents Flow** Templateオプションを選択する。
 
-    ![](./media/image11.png)
+![](./media/image14.png)
 
-8.  Click on **Next**.
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-    ![](./media/image12.png)
+8.  最初のステップでの「+Add an
+    input」をクリックしてテキスト入力フィールドを追加する。入力をDescriptionに置き換える。
 
-9.  Click on **Publish.**
+![A computer screen shot of a computer error Description automatically
+generated](./media/image16.png)
 
-    ![](./media/image13.png)
+9.  新しいステップを挿入し、**Add an action**を選択する。
 
-10. Once published, click on **Go to details page** to view the details.
+![](./media/image17.png)
 
-    ![](./media/image14.png)
+10. **Microsoft Teams** under **Choose an operation**の下に**Microsoft
+    Teams**を選択する**。**
 
-Your prompt action is now published to **Copilot for Microsoft 365**. It
-will show up in copilot experiences only if you have a valid Copilot
-license.
+![](./media/image18.png)
 
-**Summary:**
+11. **Post message in a chat or channel**を選択する。
 
-In this lab, we have learnt to create and publish connector actions from
-the Copilot Studio.
+![](./media/image19.png)
+
+12. 以下の詳細を入力する:
+
+- Post as – **User**
+
+- Post in – **Channel**
+
+- Team – **HR Team**
+
+- Channel – **HR Experts**
+
+- Message **– Description** from **Dynamic Content**
+
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
+
+13. フローを +++**Send a message to HR team**+++
+    として改名し、**Save**をクリックする。
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image21.png)
+
+14. \[Close\] をクリックして Power Automate
+    を閉じてから、作成キャンバスに戻ります。
+
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
+
+15. 作成キャンバスからノードを追加する – **call an action** -\> **Send a
+    message to HR team**.
+
+![A screenshot of a computer Description automatically
+generated](./media/image23.png)
+
+16. 入力を**Description**として追加する
+
+![A screenshot of a computer Description automatically
+generated](./media/image24.png)
+
+17. +++**We notified the expert. They’ll reach out
+    shortly**+++とのメセッジがあるメセッジノードを追加する
+
+![A screenshot of a computer Description automatically
+generated](./media/image25.png)
+
+18. 会話を終了する \> アンケートを終了する.
+
+![A screenshot of a chat Description automatically
+generated](./media/image26.png)
+
+19. **Save**をクリックしてトピックを保存する。
+
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
+
+20. **Topic saved**の成功のメセッジが表示する。
+
+![A screenshot of a computer Description automatically
+generated](./media/image28.png)
+
+## **手順 3: チャットボットをテストする**
+
+1.  左側ウィンドウからTest your chatbot を選択する![A screenshot of a
+    computer Description automatically generated](./media/image29.png)
+
+2.  Send a message +++**I need help with time
+    off**+++のメセッジを送付し、Extended
+    leaveを選択してチャットボットに回答する。![A screenshot of a chat
+    Description automatically generated](./media/image30.png)
+
+3.  休暇延長の理由を記入する。ここでは「+++I need extended leave of one
+    month for travelling+++」と入力しました。
+
+![A screenshot of a chat Description automatically
+generated](./media/image31.png)
+
+4.  ボットは「専門家に通知しました…」というメッセージで返信します。
+
+![A screenshot of a chatbot Description automatically
+generated](./media/image32.png)
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image33.png)
+
+## **手順 4: Teams でメッセージを確認します。**
+
+1.  MS Teamアプリの左側メニューからTeamsをクリックする。
+
+![](./media/image34.png)
+
+2.  Teamsの**HR Teamの下にあるHR Experts** チャネルを選択する。team.
+    ここで、ユーザーからボットへのメッセージが送信されていることに注意する。
+
+![A screenshot of a computer Description automatically
+generated](./media/image35.png)
+
+## **手順 5: Copilot – Teamsを公開する**
+
+1.  Microsoft Copilot Studio アプリに戻り、チャットボット「**HR Support
+    Copilot**」を選択します。
+
+2.  左側ウィンドウからPublishを選択する。
+
+![A screenshot of a chat Description automatically
+generated](./media/image36.png)
+
+3.  **Publish**をクリックする。
+
+![](./media/image37.png)
+
+4.  **Publish latest content?で**Publishを選択する。
+
+![A close-up of a computer screen Description automatically
+generated](./media/image38.png)
+
+5.  以下のスクリーンショットのよう成功メセッジを受け取る。**Availability
+    options**をクリックする。
+
+![A screenshot of a computer Description automatically
+generated](./media/image39.png)
+
+6.  **Add to Contosoオプションによりボットを特定チームに追加します。**
+
+7.  **Show to my team mates and shared usersによりボットが**Built by
+    colleaguesセクションの下に表示される。
+
+8.  **Show to everyone in the orgによりアドミンにボットをBuilt by
+    orgセクションのしたにリストされる要求を提出します。**
+
+![A screenshot of a computer Description automatically
+generated](./media/image40.png)
+
+**要約:**
+
+このラボでは、ボットから Teams
+チャネルにメッセージを投稿する方法を学習しました。
