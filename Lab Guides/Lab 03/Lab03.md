@@ -1,4 +1,4 @@
-# 实验 02：配置 Dynamics 365 Customer Service
+# 实验 03 配置 Dynamics 365 Customer Service
 
 ### 任务 1：注册 Dynamics 365 Customer Service 试用版
 
