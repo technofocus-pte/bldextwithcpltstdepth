@@ -1,1208 +1,1250 @@
-# Lab 01: Creating and using Copilot from Copilot Studio for managing a Real Estate Application
+# 实验 01：从 Copilot Studio 创建和使用代理来管理房地产应用程序
 
-**Lab Duration** – 120 minutes
+**实验室持续时间** – 90 分钟
 
-**Introduction**
+**介绍**
 
-Contoso Real Estate specializes in the sale and management of both
-commercial and residential properties. Currently, customer information
-is efficiently stored within their Dataverse instance, allowing for
-streamlined data management. However, the booking process presents a
-significant challenge.
+Contoso Real Estate
+专门从事商业和住宅物业的销售和管理。目前，客户信息有效地存储在其
+Dataverse 实例中，从而简化了数据管理。然而，预订过程带来了重大挑战。
 
-At present, customers can only request bookings via phone, leading to an
-overwhelmed phone line and long wait times. This situation not only
-frustrates customers but also risks losing potential business as many
-are unable to connect with the office to request services.
+目前，客户只能通过电话申请预订，导致电话线不堪重负，等待时间长。这种情况不仅让客户感到沮丧，而且还有可能失去潜在业务，因为许多人无法与办公室联系以请求服务。
 
-To address these issues, Contoso Real Estate is committed to developing
-a comprehensive digital solution. This solution will empower customers
-to easily access information about the booking process and submit
-booking requests online.
+为了解决这些问题，Contoso Real Estate
+致力于开发全面的数字解决方案。该解决方案将使客户能够轻松访问有关预订流程的信息并在线提交预订请求。
 
-**Objectives**
+**目标**
 
-- Build a standalone copilot for Contoso Real Estates from Copilot
-  Studio (that will allow customers to discover information about the
-  real estate booking process and create booking requests for the office
-  to review.)
+- 从 Copilot Studio 为 Contoso Real Estates
+  构建独立代理（这将允许客户发现有关房地产预订流程的信息，并创建预订请求供办公室查看。
 
-- Create Topics to set up the logic of the bookings.
+- Create Topics （创建主题） 以设置预订的逻辑。
 
-- Create the Dataverse tables required for the bookings.
+- 创建预订所需的 Dataverse 表。
 
-- Publish the copilot.
+- 发布 Copilot。
 
-- Configure the Dynamics 365 workspace and connect the copilot to it.
+:::danger **实验 03** 需要在第 1 天结束前完成，才能执行第 2
+天的实验。即使实验 01 和 02 未完成，也请确保在第 1 天结束时完成实验
+03。:::
 
-- Create a web page using Power Pages and integrate the copilot created
-  from Copilot Studio in it.
+## 练习 0：设置环境
 
-- Test the escalation to live agent functionality from the web page.
+### 任务 1：登录到 VM
 
-## Exercise 0: Setting up your environment
+1.  使用 **Home** 选项卡中的 **Username** 和 **Password** 登录到 VM。
 
-### Task 1: Login to VM
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-1.	Login to the VM using the **Username** and **Password** from the **Resources** tab.
-   
-    ![](./media/Picture1.png)
-  	
-### Task 2: Synchronize the VM clock
+### 任务 2：同步 VM 时钟
 
-1.	After logging into the VM, right click on the clock at the bottom right corner of the screen.
-   
-2.	Select **Adjust date and time**.
-   
-    ![](./media/picture2.png)
-  	
-3.	On the Settings screen that opens up, click on **Sync now** under Additional settings.
+1.  登录到 VM 后，右键单击屏幕右下角的时钟。
 
-    ![](./media/picture3.png)
- 
-4.	This takes care of synchronizing the time just in case the automatic synchronization does not work.
- 
-5.	**Close** the Settings pane.
+2.  选择 **Adjust date and time**。
 
-    ![](./media/picture4.png)
- 
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image2.png)
 
-## Exercise 1: Setting up the Dynamics 365 Customer Service
+3.  在打开的 设置 屏幕上，单击 其他设置 下的 **Sync now 。**
 
-### Task 1: Sign up for Dynamics 365 Customer Service trial
+![](./media/image3.png)
 
-1.  Login to
-    +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++.
-    
-2.	Login using the **Office 365 Tenant details** from the **Resources** tab if prompted.
+4.  这负责同步时间，以防自动同步不起作用。
 
-    ![](./media/im01.png)
-  	
-3.  Click on **Try for free**
+5.  **关闭** Settings 窗格。
 
-    ![](./media/image1.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image4.png)
 
-4.	Enter your **Office 365 Administrative Username** from the **Resources** tab, select the check box and click on **Start your free trial**.
+6.  如果有 **Sign in required** 警报，请单击  **Sign In** ，然后选择
+    **Sign in with a different account** ，然后使用 VM 的 **Home**
+    选项卡中提供的 **admin credentials** 登录。
 
-    ![](./media/image2.png)
+![A blue screen with white text AI-generated content may be
+incorrect.](./media/image5.png)
 
-6.  Enter the region as **United States**, enter your **Phone number**
-    and click on **Submit**.
+![](./media/image6.png)
 
-    ![](./media/image3.png)
+7.  选择 **Sign in to this app only** 。
 
-7.  The **Dynamics 365 Customer Service workspace** opens.
+![](./media/image7.png)
 
-  ![](./media/image4.png)
+8.  登录后，**关闭** **Teams** 应用程序。我们将在第 3 天的实验中使用它。
 
-5.  Click on Customer Service workspace to open the **Apps**.
+## 练习 1：设置 Power Apps 和 Dataverse
 
-  ![](./media/image5.png)
+### 任务 1：注册 Microsoft Power Apps 开发人员计划
 
-6.  Click on **Customer Service admin center** to open it.
+1.  打开浏览器并导航到
+    !\!<https://powerapps.microsoft.com/free/>!!，然后选择 **Start
+    free** 或 **Try for free** 。
 
-    ![](./media/image6.png)
+![](./media/image8.png)
 
-7.  Select **Routing** under **Customer Support** group.
+2.  如果出现提示，请在 **Home** 选项卡中使用 Office Tenant
+    Credentials **Username** 和 **Password** 登录。这将是您实验室所有
+    Microsoft 网站和应用的 **login credentials** 。
 
-    ![](./media/image7.png)
+![](./media/image9.png)
 
-8.  On the **Routing** page, under **Record routing**, click **Manage**
-    next to **Turn on Unified Routing for Records**.
+3.  在 **Let's get started**
+    下，在文本框中输入 **Home** 选项卡中的 **Administrative
+    Username**，选中协议框并选择 **Start free**。
 
-    ![](./media/image8.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image10.png)
 
-9.  On the **Service Configuration Settings** page under **Unified
-    routing**, make sure that the **Turn on unified routing** toggle is
-    set to **Yes**.
+4.  如果您看到一条提示，指出您已有 Microsoft 账户。选择 **Sign in**
+    。输入您的密码。
 
-    >[!Note] **Note**: The **Turn on unified routing** toggle is set to **Yes** only
-if consent is already provided by the tenant administrator.
+5.  如果出现提示，请选择 **Yes** 以保持登录状态。
 
-10. Click **Save**.
+6.  单击 屏幕右上角的 **Environment** 并确保选中 **Dev
+    One**。如果没有，请选择 **Dev One**。
 
-    ![](./media/image9.png)
+![](./media/image11.png)
 
-### Task 2: Configure Omnichannel Power Virtual Agent Extension
+### 任务 2：创建解决方案
 
-1.  Open the link,
-    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++
-    and click on Get it now in the Omnichannel Power Virtual Agent
-    Extension page.
+1.  来自 Power Apps Maker 门户 (!\!<https://make.powerapps.com/>!!)，从
+    左侧窗格中选择 **Solutions**。
 
-    ![](./media/image16.png)
+![](./media/image12.png)
 
-    ![](./media/image17.png)
+2.  单击 **+ New solution**。
 
-2.  Select the **CustomerService Trial** under **Select an environment**, select the check boxes 
-    and click on **Install**.
+![A screenshot of a search engine AI-generated content may be
+incorrect.](./media/image13.png)
 
-    ![](./media/image18.png)
+3.  进入 **!!Bookings!!** 对于显示名称，在 **Publisher** 下选择
+    **Contoso （contoso），**然后单击 **Create**。
 
-3.  In the Dynamics 365 apps page, click on the entries that shows
-    **Update available**, **select** the **check box** to agree to the
-    terms and click on **Update**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image14.png)
 
-    Make sure to do this for **all** the entries with **Update available**
-    as the Status.
+如果 **Contoso** 选项未列在 **Publisher** 下，请执行接下来的 2
+个步骤，否则从步骤 6 继续。
 
-    ![](./media/image19.png)
+4.  如果 **Contoso** 选项未列在 **Publisher** 下，请选择 **+ New
+    Publisher。**
 
-    ![](./media/image20.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image15.png)
 
-### Task 3: Configure search settings in the Power Platform admin center
+5.  输入以下详细信息，然后单击 **Save**。
 
-1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
-    your tenant details. Select **Environments** -> **CustomerService
-    Trial**.
+[TABLE]
 
-    ![](./media/image21.png)
+> ![](./media/image16.png)
 
-2.  Select the drop down next to **Resource** (in the top pane) and
-    select **Dynamics 365 apps**.
+6.  选择 屏幕左上角的 **Back to solutions**。
 
-    ![](./media/image22.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image17.png)
 
-3.  Make sure that **Omnichannel for Customer Service** is
-    **Installed**.
+### 任务 3：设置首选解决方案
 
-    ![](./media/image23.png)
+1.  在 Maker 门户中的 Solutions 下，为 **Set your preferred solution**
+    选择 **Manage**。
 
-4.  Navigate back to the **Environments -\> CustomerService** **Trial**
-    page in the admin center. Select **Settings** from the top pane.
+![](./media/image18.png)
 
-    ![](./media/image24.png)
+2.  在 **Unless otherwise specified** 下选择**“Bookings
+    （contoso）”，save my changes in **，然后选择 **Apply**。
 
-5.  Select **Product** -\> **Features**.
+![](./media/image19.png)
 
-    ![](./media/image25.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image20.png)
 
-6.  Toggle **Dataverse Search** and **Single table search** option to
-    **ON.**
+### 任务 4：创建 Real Estate Properties 自定义表
 
-    ![](./media/image26.png)
+有 2 种方法可以创建新表。一种是传统的手动方法，另一种是使用 Copilot。
 
-    Scroll down and click on the **Save** button at the bottom right.
+#### 任务 4.1：使用 Copilot 创建房地产属性自定义表
 
-    ![](./media/image27.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
 
-## Exercise 2: Setting up Power Apps and Dataverse
-
-### Task 1: Sign up for the Microsoft Power Apps Developer Plan
-
-1.  Navigate to +++https://powerapps.microsoft.com/free/+++ and select
-    **Start free**.
-
-    ![](./media/image28.png)
-
-2.  Under **Let's get started**, enter the **tenant id** in the
-    text box, check the agreement box and select **Start free**.
-
-    ![](./media/image29.png)
-
-3.  If you see a prompt that you have an existing account with
-    Microsoft. Select **Sign in**. Enter your password.
-
-4.  If prompted, Select **Yes** to stay signed in.
-
-5.  Click on **Environment** in the top-right corner of the screen and
-    select **CustomerService Trial**.
-
-    ![](./media/image30.png)
-
-### Task 2: Create a solution
-
-1.  From the Power Apps Maker
-    Portal +++https://make.powerapps.com/+++, select **Solutions**
-    form the left pane.
-
-    ![](./media/image31.png)
-
-2.  Click on **+ New solution**.
-
-    ![](./media/image32.png)
-
-3.  Enter +++**Bookings**+++ for the Display name and click on **+ New
-    publisher**.
-
-    ![](./media/image33.png)
-
-4.  Enter the below details and then click on **Save**.
-
-    | **Property**     | **Value**     |
-    |------------------|---------------|
-    | **Display name** | +++Contoso+++ |
-    | **Name**         | +++contoso+++ |
-    | **Prefix**       | +++contoso+++ |
-
-    ![](./media/image34.png)
-
-5.  Select **Contoso (contoso)** under Publisher and then click on
-    **Create**.
-
-    ![](./media/image35.png)
-
-6.  Select **Back to solutions** in the top-left of the screen.
-
-    ![](./media/image36.png)
-
-### Task 3: Set the preferred solution
-
-1.  Under Solutions in the Maker portal, select **Manage** for **Set
-    your preferred solution**.
-
-    ![](./media/image37.png)
-
-2.  Select **Bookings (contoso)** under **Unless otherwise specified,
-    save my changes in** and select **Apply**.
-
-    ![](./media/image38.png)
-
-    ![](./media/image39.png)
-
-### Task 4: Create the Real Estate Properties custom table
-
-Follow these steps to create a new custom table in Dataverse for Real
-Estate Properties.
-
-1.  From the left navigation pane, select **Tables**, select the drop down next to + New table and then select **Create new tables (preview)**.
-
-    ![](./media/picture5.png)
-
-2.	On the Create new tables (preview) screen, click on **+ New table -> Add columns and data**.
-   
-    ![](./media/picture6.png)
-  	
-3.  Rename the table from **Table** to +++**Real Estate Property**+++ and then click on **Save and exit**.
-
-    ![](./media/picture7.png)
-
-4.	Once saved, click on **Custom** to find the newly created table there. Click on the **Real Estate Property** table.
-
-     ![](./media/picture8.png)
-   
-5.	Under the **Real Estate Property columns and data**, change the name of the column called **New Column** (Click on the drop down next to **New Column** and select **Edit Column** and update the **Display name**) to +++**Property Name**+++.
-
-    ![](./media/image42.png)
-
-6.	Select the **+** button to add a new column in the columns and data pane. In the New column pane, enter the following values, and then select **Save**.
-
-      - Display name: +++**Asking Price**+++
+创建具有以下列和数据类型的表 “Real Estate Property” -  
+1. Property Name - Single line of text  
+2. Asking Price - Currency   
+3. Street - Single line of text  
+4. City - Single line of text  
+5. Client - Data type Lookup, Related table - Contact  
   
-      - Data type: Currency
+在 Real Estate Property 表中再添加两列 Bedrooms 和 Bathrooms，每列都有
+Datatype 选项 -  
+1. Label - 1, Value - 1  
+2. Label - 2, Value -2  
+3. Label - 3, Value 3  
+4. Label - 4, Value 4  
+5. Label - 5, Value 5
 
-    ![](./media/im2.png)
-  	
-    ![](./media/im3.png)
+ 
 
-7.  Add the following two columns.
+使用以下列和数据类型创建表 “Booking Request” -  
+1. Booking Name - Single line of text  
+2. Property - Data type Lookup, Related table - real estate property  
+3. View name - Single line of text  
+4. Viewer Email - Single line of text  
+5. Booking Date - Date and time  
+6. Notes - Multiple lines of text
 
-    | **Display name** | **Data type**                                   |
-    |------------------|-------------------------------------------------|
-    | +++Street+++     | Single line of text (this value is the default) |
-    | +++City+++       | Single line of text (this value is the default) |
+ 
 
-8.  Add another column with the below values
+在具有数据类型选项的 Booking Requests 表中添加另一列 Decision -  
+1. Label - Undecided, Value - 1  
+2. Label - Accepted, Value -2  
+3. Label - Declined, Value 3
 
-    - **Display name**: +++Bedrooms+++
-  
-    - **Data type**: Choice -> Choice
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
 
-      ![](./media/im5.png)
-      
-    Create the choice values:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image23.png)
 
-    Select **+ New choice** under **Sync this choice with** option
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image24.png)
 
-    ![](./media/im06.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
 
-    - Under **Choices**, provide the **Display name** as +++**Bedrooms**+++.
-    - You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power
-    Apps assigns a value automatically but you can change the value
-    to **1**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
 
-    - Select **+ New choice** and make **2** the new entry for Label
-  and **2** for Value.
+![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image27.png)
 
-  - Select **+ New choice** and make **3** the new entry for Label
-  and **3** for Value.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image28.png)
 
-  - Select **+ New choice** and make **4** the new entry for Label
-  and **4** for Value.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image29.png)
 
-  - Select **+ New choice** and make **5** the new entry for Label
-  and **5** for Value.
+创建所有列后，在 **Real Estate Property columns and data**
+下，输入以下测试数据：
 
-  - Select **Save**.
+- Property Name: !!**1100 High Villas**!!
 
-  ![](./media/im6.png)
+- Asking Price: !!**250,000**!!
 
-  Select the added choice **Bedrooms**, by clicking the drop down of **Sync this choice with**
+- Bathrooms: **3**
 
-  ![](./media/im7.png)
+- Bedrooms: **2**
 
-  Click on **Save**.
+- City: !!**Redmond**!!
 
-  ![](./media/im07.png)
-  
-9.  Select the **+** button to add a new column in the
-    columns and data pane.
+- Street: !!**Main Avenue**!!
 
-10.  In the New column pane, enter the following values, and then
-    select **Save**:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image30.png)
 
-    - **Display name**: +++Bathrooms+++
+#### 任务 4.2：使用 Copilot 创建 Real Estate Properties 自定义表
 
-    - **Data type**: Choice -> Choice
+按照以下步骤在 Dataverse 中手动为房地产属性创建新的自定义表。
 
-        ![](./media/im8.png)
+1.  在左侧导航窗格中，选择 **Tables，**选择 **+ New table**
+    旁边的下拉列表 ，然后选择 **Create new tables**。
 
-  **Note:** Repeat the step 8 process with the Value **Bathrooms**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image31.png)
 
-  Create the choice values
-  
-    -  Under **Choices**, provide the Display name as +++Bathrooms+++.
-    
-    -  You see two entry fields titled **Label** and **Value**. Enter **1** under the label. Power Apps assigns a value automatically but you can change it to **1**.
-  
-    - Select **+ New choice** and make **2** the new entry for Label
-    and **2** for Value.
-  
-    - Select **+ New choice** and make **3** the new entry for Label
-    and **3** for Value.
-  
-    - Select **+ New choice** and make **4** the new entry for Label
-    and **4** for Value.
-  
-    - Select **+ New choice** and make **5** the new entry for Label
-    and **5** for Value.
-  
-    - Select **Save**.
+2.  单击 **Let's set up your data** 对话框中的 **Got it** 。
 
-    ![](./media/im9.png)
+![](./media/image32.png)
 
-    Select the created choice and click on **Save** in the column addition pane.
+3.  在 Create new tables 屏幕上，单击 **+ New table -\> Add columns and
+    data**。
 
-    ![](./media/im10.png)
-    
-11.  Add another column by selecting the **+** button again in the columns and data pane.
+![](./media/image33.png)
 
-  In the New column pane, enter the following values, and then
-select **Save**:
+4.  将表名称从 **Table1** 重命名为 !!**Real Estate
+    Property**!!，然后单击 **Save and exit**。
 
-  - **Display name**: +++**Client**+++
-  
-  - **Data type**: Lookup -> Lookup
-  
-  - **Related Table**: Contact
+![](./media/image34.png)
 
-    ![](./media/im11.png)
+5.  单击 确认对话框中的 **Save and exit**。
 
-13. Once the columns are created, under **Real Estate Property columns and
-    data**, enter the following test data:
+![](./media/image35.png)
 
-    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
-    >
-    >![](./media/im12.png)
-    
-    - Property Name: +++**1100 High Villas**+++
+6.  保存后，单击 **Custom** 选项卡以在此处找到新创建的表。单击 **Real
+    Estate Property** 表。
 
-    - Asking Price: +++**250,000**+++
+![](./media/image36.png)
 
-    - Bathrooms: **3**
+7.  在 **Real Estate Property columns and data**下，将名为  **New
+    Column** 的列的名称更改为 **New
+    Column**（单击新列旁边的下拉列表**，**然后选择 **Edit Column**
+    并更新 **Display name**）更改为 !!**Property Name**!!，然后选择
+    **Save** 。
 
-    - Bedrooms: **2**
+![](./media/image37.png)
 
-    - City: +++**Redmond**+++
+8.  选择 + 按钮，在 columns and data 窗格中添加新列。在 New column
+    窗格中，输入以下值，然后选择 **Save**。
 
-    - Street: +++**Main Avenue**+++
+    - Display name: !!**Asking Price**!!
 
-    - Client: **Select any contact**
+    - Data type: Currency
 
-      ![](./media/image48.png)
+![](./media/image38.png)
 
-### Task 5: Create the Bookings table
+![](./media/image39.png)
 
-Follow these steps to create a new custom table in Dataverse for Real
-Estate Property Bookings.
+9.  添加以下两列。
 
-1.	From the left navigation pane, select **Tables**, select the **drop down** next to **+ New table** and then select **Create new tables (preview)**.
+[TABLE]
 
-    ![](./media/picture5.png)
+10. 添加另一个具有以下值的列
 
-2.	On the Create new tables (preview) screen, click on **+ New table -> Add columns and data**.
-   
-    ![](./media/picture6.png)
-  	
-3.  Rename the table from **Table** to +++**Booking Request**+++ and then click on Save and exit.
+    - **Display name**: !!Bedrooms!!
 
-    ![](./media/picture10.png)
+    - **Data type**: Choice -\> Choice
 
-4.	Once saved, click on **Custom** to find the newly created table there. Click on the **Booking Request** table.
+![](./media/image40.png)
 
-   ![](./media/picture11.png)
+创建选择值:
 
-5.	Under the **Booking Request columns and data**, Change the name of the column called **New Column** to +++**Booking Name**+++.
+在 **Sync this choice with**下选择 **+ New Choice**
 
-    ![](./media/image51.png)
+![](./media/image41.png)
 
-6.  Create the following columns with the name and data type as
-    specified in the table below. Select **Save**.
+- 在 **Choices** 下，将 Display name 提供为 !!**Bedrooms**!!.
 
-     -  Display name – +++**Property**+++
-     -  Data type – **Lookup** -> **Lookup**
-     -  Related Table – **Real Estate Property**
+&nbsp;
 
-      ![](./media/image52.png) 
-    
-      -  Display name – +++**Viewer Name**+++
-      -  Data type – **Single line of text**
-    
-      -  Display name – +++**Viewer Email**+++
-      -  Data type – **Single line of text**
-      -  Format – **Email**
-  
-      -  Display name – +++**Booking Date**+++
-      -  Data type – **Date and time**
-   
-      -  Display name – +++**Notes**+++
-      -  Data type – **Multiple lines of text**
+- 您会看到两个标题为 **Label** 和 **Value** 的输入字段。 在标签下输入
+  **1**。Power Apps 会自动分配一个值，但您可以将该值更改为 **1**。
 
-      ![](./media/image53.png)
-   
-      ![](./media/image54.png)
+&nbsp;
 
-7.  Add a choice data type column with the below details.
-        
-      -  Display name – +++**Decision**+++
-      -  Data type – **Choice -> Choice**
-    
-          ![](./media/im012.png)
-         
-    Click on **+ New Choice – Display name** – +++Decision+++, enter the below details and click on **Save**.
-    
-     - Label – +++**Undecided**+++
-            
-     - Value – 1
-            
-     - Label – +++**Accepted**+++
-            
-     - Value – 2
-            
-     - Label – +++**Declined**+++
-            
-     - Value – 3
+- 选择 **+ New choice **，并将 **2** 作为 Label 的新条目，将 **2** 作为
+  Value 的新条目。
 
-      ![](./media/im14.png)
+ 
 
-    Select the added Choice **Decision**, designate **Undecided** as the **Default choice** and click on **Save**.
-    
-    ![](./media/im13.png)
+- 选择 **+ New choice**，并将 **3** 作为 Label 的新条目，将 **3** 作为
+  Value 的新条目。
 
-    ![](./media/image55.png)
+ 
 
-## Exercise 3: Working with Copilot Studio
+- 选择 **+ New choice**，并将 **4** 作为 Label 的新条目，将 **4** 作为
+  Value 的新条目。
 
-### Task 1: Sign up for Copilot Studio trial
+ 
 
-1.  Open the url +++https://copilotstudio.microsoft.com/+++.
+- 选择 **+ New choice**，并将 **5** 作为 Label 的新条目，将 **5** 作为
+  Value 的新条目。
 
-2.  Leave the **Choose your country/region** with the **default** value
-    and click on **Get Started**.
+ 
 
-    ![](./media/image57.png)
+- 选择 **Save** 。
 
-3.  Click on **Environments** on the top left and select
-    **CustomerService Trial**.
+![](./media/image42.png)
 
-    ![](./media/image58.png)
+通过单击 S**ync this choice with**的下拉列表，选择添加的选项
+**Bedrooms**
 
-4.  Select **Skip** if you get a Welcome to Copilot Studio! Prompt.
+![](./media/image43.png)
 
-    ![](./media/image59.png)
+点击 **Save** 。
 
-### Task 2: Create the Real Estate Booking Service Copilot
+![](./media/image44.png)
 
-1.  Select **Create** from the left navigation pane and select the **New
-    copilot** tile.
+11. 选择 **+** 按钮，在 columns and data 窗格中添加新列。
 
-    ![](./media/image60.png)
+12. 在 New column 窗格中，输入以下值，然后选择 **Save** :
 
-2.  Select **Skip to configure**.
+    - **Display name**: !!Bathrooms!!
 
-    ![](./media/image61.png)
+    - **Data type**: Choice -\> Choice
 
-3.  Fill in the below details.
+![](./media/image45.png)
 
-    - Name - +++**Real Estate Booking Service**+++
-    
-    - Description - +++**Create bookings for real estate properties**+++
-    
-    - Instructions - +++**Create a copilot for topics relating to creating
-      bookings for real estate properties+++**
-    
-    - Language **–** Select **English**
+创建选择值:
 
-    ![](./media/image62.png)
+在 **Sync this choice with**下选择 **+ New choice** 。
 
-4.  Select the three dots next to the Create button in the top-right of
-    the screen and select **Edit advanced settings**.
+- 在 **Choices** 下，将 Display name 提供为 !!Bathrooms!!。
 
-     ![](./media/image63.png)
+- 您会看到两个标题为 **Label** 和 **Value** 的输入字段。在标签下输入
+  **1**。Power Apps 会自动分配一个值，但您可以将其更改为 **1**。
 
-5.  Select the **Bookings** solution and select **Save**.
+- 选择 **+ New choice**，并将 **2** 作为 Label 的新条目，将 **2** 作为
+  Value 的新条目。
 
-     ![](./media/image64.png)
+- 选择 **+ New choice**，并将 **3** 作为 Label 的新条目，将 **3** 作为
+  Value 的新条目。
 
-6.  In the top-right of the screen, select **Create**.
+- 选择 **+ New choice**，并将 **4** 作为 Label 的新条目，将 **4** 作为
+  Value 的新条目。
 
-     ![](./media/image65.png)
+- 选择 **+ New choice**，并将 **5** 作为 Label 的新条目，将 **5** 作为
+  Value 的新条目。
 
-7.  Once the copilot is created, in the Test your copilot pane, enter
-    +++**How do I make a booking?**+++ and click **Enter** and observe the
-    response.
+- 选择 **Save**。
 
-    ![](./media/image66.png)
+![](./media/image46.png)
 
-### Task 3: Configure Security
+选择创建的选择，然后单击 **Save** 在列添加窗格中。
 
-1.  Select **Settings** in the top-right of the screen.
+![](./media/image47.png)
 
-    ![](./media/image67.png)
+13. 通过在列和数据窗格中再次选择 **+** 按钮来添加另一列。
 
-2.  Select the **Security** tab and then select
-    the **Authentication** tile.
+在 New column 窗格中，输入以下值，然后选择 **Save** ：
 
-    ![](./media/image68.png)
+- **Display name**: !!**Client**!!
 
-3.  Select **No authentication** and click on **Save**.
+- **Data type**: Lookup -\> Lookup
 
-    ![](./media/image69.png)
+- **Related Table**: Contact
 
-4.  Select **Save** in the **Save this configuration** prompt.
+![](./media/image48.png)
 
-    ![](./media/image70.png)
+14. 创建所有列后，在 **Real Estate Property columns and data**
+    下，输入以下测试数据：
 
-5.  Once the Authentication settings are saved, click on the **Close**
-    option to close the **Settings** pane.
+:::secondary 注意：如果未显示所需的列，请通过选择 **+\<number\>more**
+来调整显示的列 :::
 
-    ![](./media/image71.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image49.png)
 
-### Task 4: Remove topics
+- 属性名称: !!**1100 High Villas**!!
 
-Sample topics are included with new copilots. Remove these sample
-topics. Disable system topics that you don't require.
+- 要价: !!**250,000**!!
 
-1.  Select the **Topics** tab from the top menu of the Copilot Overview
-    page.
+- 浴室: **3**
 
-    ![](./media/image72.png)
+- 卧室: **2**
 
-2.  You will land in the **Custom** Topics page.
+- 城市: !!**Redmond**!!
 
-3.  Select the **three dots** next to the **Lesson 1** topic and select
-    **Delete**.
+- 街: !!**Main Avenue**!!
 
-    ![](./media/image73.png)
+- 客户: **选择任何联系人**
 
-4.  Select **Delete** in the confirmation window.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image50.png)
 
-    ![](./media/image74.png)
+:::secondary 注意：如果  **Contact** 表中没有 **client ** 端记录
+，请忽略向该列添加数据。:::
 
-5.  Repeat the delete for Lesson 2 and Lesson 3.
+### 任务 5：创建 Bookings 表
 
-    ![](./media/image75.png)
+按照以下步骤在 Dataverse 中为房地产预订创建新的自定义表。
 
-    ![](./media/image76.png)
+1.  从左侧导航窗格中，选择 **Tables** ，然后选择 **Create new tables**。
 
-6.  Select the **System** tab. Toggle **Enabled** to **Off** for the
-    **Sign in** topic.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image51.png)
 
-    ![](./media/image77.png)
+2.  在 **Create new tables** 屏幕上，单击 **+ New table -\> Add columns
+    and data**。
 
-### Task 5: Publish and test the copilot
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image52.png)
 
-1.  Select **Publish** and select **Publish** again.
+3.  将表名称从 **Table1** 重命名为 !!**Booking Request**!! ，然后单击
+    **Save and exit**。
 
-    ![](./media/image78.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image53.png)
 
-2.  Select **Publish** in the **Publish this copilot** dialog.
+4.  单击 确认对话框中的 **Save and exit**。
 
-    ![](./media/image79.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image35.png)
 
-### Task 6: Demo Website
+5.  保存后，单击 **Custom** 选项卡以在此处找到新创建的表。单击 **Booking
+    Request** 表。
 
-The Demo website allows users without a license to test your copilot.
-You can provide them with the URL to the demo website.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image54.png)
 
-1.  Select the **three dots** next to the **Settings** button in the
-    top-right of the screen and select **Go to demo website**.
+6.  将名为 **New Column 的**列的名称更改为 !!Booking
+    Name!!（单击旁边的下拉菜单 **New Column** 并选择 **Edit Column**
+    并更新 **Display name**）。
 
-    ![](./media/image80.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image55.png)
 
-2.  In the **Type your message** text box, enter +++**What information is needed to book a viewing for a real estate property?**+++ and observe the response from the copilot.
+7.  单击 列名称旁边的 **+** symbol。
 
-    ![](./media/image81.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image56.png)
 
-## Exercise 4: Create and manage topics using Copilot
+8.  使用下面指定的名称和数据类型创建以下列。选择 **Save** 。
 
-### Task 1: Create a topic using Copilot
+- Display name – !!Property!!
 
-Topics can be created and edited using natural language.
+- Data type – Lookup -\> Lookup
 
-1.  Select your copilot, **Real Estate Booking Service** in the Copilot
-    pane on the left-hand side of the Copilot Studio.
+- Related Table – Real Estate Property
 
-    ![](./media/image82.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image57.png)
 
-2.  Select the **Topics** tab. Select **Add a topic** and select
-    **Create from description with Copilot**.
+- Display name – !!Viewer Name!!
 
-    ![](./media/image83.png)
+- Data type – **Single line of text**
 
-3.  Enter the below details and click on **Create**.
+ 
 
-    - Name your topic - +++**Customer Details**+++
-    
-    - Create a topic to... - +++**Ask the customer for their name and email
-      address**+++
+- Display name – !!Viewer Email!!
 
-      ![](./media/image84.png)
+- Data type – **Single line of text**
 
-4.  A new topic displays with the generated trigger phrases and question
-    nodes.
+- Format – **Email**
 
-5.  Select **Save**.
+ 
 
-    ![](./media/image85.png)
+- Display name – !!Booking Date!!
 
-### Task 2: Update nodes with natural language
+- Data type – **Date and time**
 
-1.  If the **Edit with copilot** pane isn't shown on the right-hand side
-    of the screen, select the **Copilot** icon in the upper part of the
-    authoring canvas.
+ 
 
-2.  Select the second question node, **What is your email address?**
+- Display name – !!Notes!!
 
-3.  In the **Edit with Copilot** panel, in the **What do you want to
-    do?** field, enter the following text:
+- Data type – **Multiple lines of text**
 
-    +++**Update the message in this question node to say thank you to the Name variable from the previous node and then proceed to ask the email address question**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-4.  Select **Update**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-    ![](./media/image86.png)
+1.  添加包含以下详细信息的 choice 数据类型列。
 
-5.  Select **Save**.
+- Display name – !!Decision!!
 
-    ![](./media/image87.png)
+- Data type – Choice -\> Choice
 
-### Task 3: Add nodes with natural language
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-In addition to adding updating existing nodes, you can use Copilot to
-add new ones.
+在 **Sync this choice with下**，单击 **+ New Choice**。输入**Display
+name**为 **!!Decision!!.**
 
-1.  Make sure that no node is selected by clicking in the empty space
-    around the nodes.
+输入以下详细信息，然后单击 **Save** 。
 
-2.  In the **What do you want to do?** field, enter the following text
-    and then select **Update.**
+- Label – !!**Undecided**!!
 
-    +++**Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**+++
+- Value – 1
 
-    ![](./media/image92.png)
+- Label – !!**Accepted**!!
 
-3. A new question node is added to the end of the topic with options
-    for the user to select.
+- Value – 2
 
-4. Select **Save**.
+- Label – !!**Declined**!!
 
-    ![](./media/image93.png)
+- Value – 3
 
-### Task 4: Configure the scope of the variables
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
 
-1.  Select **Variables** to open the Variables pane.
+在 **Sync this choice with** 字段下选择添加的 Choice **Decision**，指定
+**Undecided** 作为 **Default choice**，然后单击 **Save**。
 
-    ![](./media/image94.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
 
-2.  Select the right-hand check boxes for the topic variables and click
-    on **Save**.
+## 练习 2：使用 Copilot Studio
 
-    ![](./media/image95.png)
+### 任务 1：注册 Copilot Studio 试用版
 
-## Exercise 5: Create and manage topics manually
+1.  在浏览器中的新选项卡中，导航到 url
+    !\!<https://copilotstudio.microsoft.com/>!!.
 
-### Task 1: Create a topic from blank
+2.  将 **Choose your country/region** 保留为 **default**，然后单击
+    **Start free trial**。
 
-1.  Select the **Topics** tab.
+![A person sitting at a computer AI-generated content may be
+incorrect.](./media/image63.png)
 
-2.  Select **Add a topic** and select **From blank**.
+3.  单击 左上角的 **Environments**，然后选择 **Dev One**。
 
-    ![](./media/image96.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
 
-3.  Select **Details** to open the Topic details dialog.
+4.  如果您 收到 Welcome to Copilot Studio，请选择 **Skip**！提示。
 
-    ![](./media/image97.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-4.  Fill in the below details and click on **Save**.
+### 任务 2：创建 Real Estate Booking Service 代理
 
-    - **Name** - +++Book a Real Estate Showing+++
-    
-    - **Display Name –** +++**Book**+++
-    
-    - **Description**  - +++Select the property and requested date and
-      create a booking request+++
+1.  从 左侧导航窗格中选择  **Create** 创建 ，然后选择 ** New agent**
+    磁贴。
 
-    ![](./media/image98.png)
+![A screenshot of a software AI-generated content may be
+incorrect.](./media/image66.png)
 
-5.  Select **Details** to close the Topic details dialog.
+2.  选择 **Skip to configure**。
 
-    ![](./media/image99.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image67.png)
 
-### Task 2: Add trigger phrases
+3.  填写以下详细信息。
 
-1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I
-    want to book a real estate showing**+++ under **Add Phrases** and
-    select the **+** icon.
+    - Name - !!**Real Estate Booking Service**!!
 
-    ![](./media/image100.png)
+    - Description - !!**Create bookings for real estate properties**!!
 
-2.  Enter the below phrases one by one.
+    - Instructions - !!**Create a copilot for topics relating to
+      creating bookings for real estate properties!!**
 
-  - +++**Schedule a real estate showing**+++
-  
-  - +++**Arrange the viewing for a real estate property**+++
-  
-  - +++**Set up an appointment to view a house**+++
-  
-  - +++**Plan a property viewing**+++
+    - Language **–** Select **English**
 
-3.  Once all the phrases are added, select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
 
-    ![](./media/image101.png)
+4.  选择屏幕右上角的 Create 按钮旁边的三个点，然后选择 **Edit advanced
+    settings**。
 
-### Task 3: Add a message node
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-1.  Select the **+** icon under the Trigger node and select **Send a
-    message**.
+5.  选择 **Bookings** 解决方案，然后选择 **Save**。
 
-    ![](./media/image102.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image70.png)
 
-2.  In the **Enter a message** field, enter the following text:
+6.  在屏幕的右上角，选择 **Create**。
 
-    +++Hi, I can help you with booking a real estate property showing.+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image71.png)
 
-3.  Select **Save**.
+7.  创建代理后，在 Test your copilot 窗格中，输入 !**How do I make a
+    booking?!!，**然后单击 **Enter** 并观察响应。您将收到一个通用响应。
 
-    ![](./media/image103.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image72.png)
 
-### Task 4: Add a Topic management node
+### 任务 3：配置安全性
 
-1.  Select the the **+** icon under the send a message node and
-    select **Topic management -\> Go to another topic**.
+1.  选择 屏幕右上角的 **Settings。**
 
-    ![](./media/image104.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image73.png)
 
-2.  Select the **Customer Details** topic.
+2.  选择 **Security** 选项卡，然后选择 **Authentication** 磁贴。
 
-    ![](./media/image105.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image74.png)
 
-3.  Select **Save**.
+3.  选择 **No authentication** 并单击 **Save** 。
 
-    ![](./media/image106.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image75.png)
 
-### Task 5: Add condition node 
+4.  在 **Save this configuration** 提示中选择 **Save**。
 
-1.  Select the **+** icon under the topic management node and
-    select **Add a condition**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image76.png)
 
-    ![](./media/image107.png)
+5.  保存身份验证设置后，单击 **Close **选项以关闭 **Settings** 窗格。
 
-2.  Select **DetailsCorrect** for variable.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image77.png)
 
-    ![](./media/image108.png)
+### 任务 4：禁用您不需要的主题
 
-3.  Select the **Condition** as **is equal to**
+示例主题包含在新的 Copilot 中。删除这些示例主题。禁用不需要的系统主题。
 
-4.  Select the **value** as **Yes**.
+1.  从 Copilot 概述页面的顶部菜单中选择 **Topics** 选项卡。
 
-    ![](./media/image109.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image78.png)
 
-5.  Select **Save**.
+2.  您将进入 **Custom** Topics 页面。
 
-    ![](./media/image110.png)
+3.  选择 **System** 选项卡。将 **Sign in** 主题的 **Enabled** 切换为
+    **Off**。
 
-### Task 6: Add question nodes
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image79.png)
 
-1.  Select the **+** icon under the left-hand condition node and
-    select **Ask a question**. Fill in the below details and click on
-    **Save**.
+### 任务 5：发布和测试 Copilot
 
-    - Enter a message  - +++Which property do you want to see?+++
-    
-    - **Identify** - Select **User's entire response**.
-    
-    - **Save user response as** -
-      Enter +++**PropertyName**+++ for **Variable name**
+1.  选择 **Publish** 以发布此代理。
 
-    ![](./media/image111.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image80.png)
 
-2.  Select the the **+** icon under the question node and select **Ask a
-    question**. Fill in the below details and click on **Save.**
+2.  在 **Publish this agent** 对话框中选择 **Publish** 。
 
-    - **Enter a message** - +++What date and time do you want to see the
-      property?+++
-    
-    - Identify - Select **Date and Time**
-    
-    - **Save user response as** - Enter +++**DateTime**+++ for **Variable
-      name**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image81.png)
 
-    ![](./media/image112.png)
+### 任务 6：演示网站
 
-### Task 7: Test the copilot
+Demo 网站允许没有许可证的用户测试您的
+Copilot。您可以向他们提供演示网站的 URL。
 
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
+1.  选择 **Settings** 旁边的 **three dots** 或 屏幕右上角的 **Publish**
+    按钮，然后选择 **Go to demo website**。
 
-    ![](./media/image113.png)
+![A screenshot of a web page AI-generated content may be
+incorrect.](./media/image82.png)
 
-2.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
+2.  在 **Type your message** 文本框中，输入 **! !What information is
+    needed to book a viewing for a real estate property?!!**
+    并观察代理的响应。
 
-3.  In response, enter a trigger phrase for the topic that you created:
+![A screenshot of a chatbot AI-generated content may be
+incorrect.](./media/image83.png)
 
-    +++I want to book a real estate showing+++
+它将是通用的，类似于您在 在 Studio 中测试您的代理
+中获得的那个，因为我们尚未配置任何特定主题，也尚未为代理实施任何逻辑。我们将在即将到来的练习中执行此作。
 
-4.  The copilot responds with the "**What is your name?**" question.
+## 练习 3：使用 Copilot 创建和管理主题
 
-5.  Enter your name.
+### 任务 1：使用 Copilot 创建主题
 
-    ![](./media/image114.png)
+可以使用自然语言创建和编辑主题。
 
-6.  Then enter your email when it prompts for the email. After you enter
-    the details, an Adaptive Card displays the information that you
-    entered, a question asking if the information is correct, and
-    options to select **Yes** or **No**. Select **Yes**.
+1.  在 **Copilot Studio** 打开的情况下导航回浏览器选项卡。在 **Topics **
+    选项卡中，选择 **Add a topic** ，然后选择 **Create from description
+    with Copilot.**。
 
-    ![](./media/image115.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image84.png)
 
-7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property
-    to you want to see?** prompt.
+:::secondary:::
+**注意：**如果提示查看复制到剪贴板的文本和图像，请选择允许 :::
 
-8.  Enter **Tomorrow 10:00 AM** to the **What date and time do you want
-    to see the property?** prompt.
+2.  输入以下详细信息，然后单击 **Create**。
 
-    ![](./media/image116.png)
+    - Name your topic - !!**Customer Details**!!
 
-## Exercise 6: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
+    - Create a topic to... - !!**Ask the customer for their name and
+      email address**!!
 
-### Task 1: Configure the Escalate topic
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image85.png)
 
-1.  Select the **Topics** tab and then select the **System** tab. Select
-    the **Escalate** topic.
+3.  此时将显示一个新主题，其中包含触发短语和问题节点。
 
-    ![](./media/image117.png)
+4.  选择 **Save** 。
 
-2.  Select the message node of the topic and replace the existing
-    content with, +++You will be transferred to a live agent shortly+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image86.png)
 
-    ![](./media/image118.png)
+### 任务 2：使用自然语言更新节点
 
-3.  Click on the + symbol to add a node next to the Message node.
+1.  如果 屏幕右侧未显示 **Edit with copilot** 窗格，请选择创作画布上部的
+    **Copilot** 图标。
 
-4.  Select **Topic management** -\> **Transfer conversation**.
+2.  选择第二个问题节点 **What is your email address？**
 
-    ![](./media/image119.png)
+3.  在 **Edit with Copilot** 面板的 **What do you want to
+    do? **字段中，输入以下文本：
 
-5.  Give a message +++The customer wants to talk to a live agent+++ in
-    the Transfer conversation node.
+!!**Update the message in this question node to say thank you to the
+Name variable from the previous node and then proceed to ask the email
+address question**!!
 
-    ![](./media/image120.png)
+::: :::
 
-6.  **Save** the Topic.
+4.  选择 **Update**。
 
-    ![](./media/image121.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image87.png)
 
-7.  **Publish** the copilot.
+5.  选择 **Save**。![A screenshot of a computer AI-generated content may
+    be incorrect.](./media/image88.png)
 
-    ![](./media/image122.png)
+### 任务 3：使用自然语言添加节点
 
-### Task 2: Connect the copilot to Dynamics 365 Customer Service
+除了添加更新现有节点外，您还可以使用 Copilot 添加新节点。
 
-1.  Click on the **Overview** option to arrive at the Overview page of
-    the copilot.
+1.  通过单击节点周围的空白区域，确保未选择任何节点。
 
-    ![](./media/image123.png)
+2.  在 **What do you want to do?** 字段中，输入以下文本，然后选择
+    **Update。**
 
-2.  From the copilot page top menu, click on **Channels** (If the
-    Channels is not visible, click on the +1 to view the **Channels**
-    option)
+!!**Add a new multiple-choice question to prompt the user if the details
+are correct with two options Yes or No**!!
 
-    ![](./media/image124.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image89.png)
 
-3.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
+3.  新的问题节点将添加到主题末尾，其中包含供用户选择的选项。
 
-    ![](./media/image125.png)
+4.  在问题部分，内容下方的细节 **Are the details
+    correct?**，输入以下内容。
 
-4.  On the Dynamics 365 Customer Service page, click on **Connect**.
+> \<h3\>Summary\</h3\>
+>
+> \<p\>\<strong\>Full Name:\</strong\>
+>
+> Name string
+>
+> \</p\>
+>
+> \<p\>\<strong\>Email Address:\</strong\>
+>
+> EmailAddress string
+>
+> \</p\>
+>
+> 通过选择 **{x}** 符号，将 \<p\> 标记内的 **Name string** 和 **Email
+> address string** 替换为相应的变量。
 
-    ![](./media/image126.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image90.png)
 
-5.  Once you get a **successfully connected** message, click on
-    **Close**.
+5.  选择 **Save**。
 
-    ![](./media/image127.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image91.png)
 
->[!Note] **Note:** Due to very recent changes in the Customer Service admin center, the following two exercises might not work as expected. If you face issues completing it, please pause it for now.
+### 任务 4：配置变量的范围
 
-## Exercise 7: Create workstream and channel in Dynamics 365 admin center
+1.  选择 **Variables** 以打开 Variables 窗格。
 
-### **Task 1: Manage a user in Omnichannel for Customer Service**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image92.png)
 
-1.  Login to +++https://www.office.com+++ using your admin tenant id.
+2.  我们有接收值的变量和返回值的变量。我们的 topic 变量将返回原始 topic
+    的值。
 
-2.  Select **Apps** from the left pane.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image93.png)
 
-    ![](./media/image128.png)
+3.  选中主题变量的右侧复选框，然后单击 **Save** 。
 
-3.  From the list of Apps listed, select **Customer Service admin
-    center**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image94.png)
 
-    ![](./media/image129.png)
+## 练习 4：手动创建和管理主题
 
-4.  In **Dynamics 365 Customer Service admin center**, in the site map,
-    select **User management** under **Customer support** group.
+### 任务 1：从零开始创建主题
 
-5.  On the **User management** page, select **Manage** next
-    to **Users**.
+1.  选择 **Topics** 选项卡。
 
-    ![](./media/image10.png)
+2.  选择 **Add a topic** ，然后选择 **From blank** 。
 
-6.  Click the dropdown next to **Enabled Users** and select
-    **Omnichannel Users**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image95.png)
 
-    ![](./media/image11.png)
+3.  选择 **Details** 以打开 主题详细信息 对话框。
 
-7.  On the **Omnichannel Users** page, select a user **MOD
-    Administrator** in the list.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image96.png)
 
-    ![](./media/image12.png)
+4.  填写以下详细信息，然后单击 **Save**。
 
-8.  On the **MOD Administrator** page, select the **Omnichannel** tab.
+    - **Name** - !!Book a Real Estate Showing!!
 
-    ![](./media/image13.png)
+    - **Display Name –** !!**Book**!!
 
-9.  Specify the following in the user page.
+    - **Description** - !!Select the property and requested date and
+      create a booking request!!
 
-    | **Setting**      | **Value** |
-    |------------------|-----------|
-    | Capacity         | 100       |
-    | Default Presence | available |
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image97.png)
 
-    ![](./media/image14.png)
+5.  选择 **Details** 以关闭 Topic details 对话框。
 
-10.  Select **Save and close**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image98.png)
 
-    ![](./media/image15.png)
-    
-### Task 1: Configure workstream 
+### 任务 2：添加触发短语
 
-1.  From the admin center page, select **Workstreams** from the left
-    pane and then select the **+ New workstream** option.
+1.  在 **Trigger** 中的 **Phrases** 下选择 **Edit** 。进入
 
-    ![](./media/image130.png)
+> **!!I want to book a real estate showing!!** ，然后选择 **+** 图标。
 
-2.  Fill in the below details, scroll down and click on **Create**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image99.png)
 
-    - Name - +++**Real Estate Workstream**+++
-    
-    - Owner – **MOD Administrator** (Selected by default)
-    
-    - Type – **Messaging**
-    
-    - Channel – **Chat**
+2.  逐个输入以下短语。输入 **+** 后选择图标。
 
-    ![](./media/image131.png)
+    - !!**Schedule a real estate showing**!!
 
-    ![](./media/image132.png)
+    - !!**Arrange the viewing for a real estate property**!!
 
-3.  Once the workstream is created, click on **Set up chat** to set up
-    the chat channel.
+    - !!**Set up an appointment to view a house**!!
 
-    ![](./media/image133.png)
+    - !!**Plan a property viewing**!!
 
-4.  In the **Live chat setup – Channel details** screen, fill in the
-    below details and click on **Next**.
+&nbsp;
 
-    - Name - +++**Real Estate Chat Channel**+++
-    
-    - Language – **United States**
+1.  添加所有短语后，选择 **Save**。
 
-    ![](./media/image134.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image100.png)
 
-5.  In the Live chat setup – Chat widget screen, provide the name as
-    +++**Real Estate Booking Assistant**+++, accept the other defaults
-    and click on **Next**.
+### 任务 3：添加消息节点
 
-    ![](./media/image135.png)
+1.  选择 **Trigger** 节点下的 + icon，然后选择 **Send a message**。
 
-6.  In the **Live chat setup – Behaviors** screen, accept the defaults
-    and click on **Next**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image101.png)
 
-    ![](./media/image136.png)
+2.  在 **Enter a message** 字段中，输入以下文本：
 
-7. In the **Live chat setup – User features** screen, toggle **File
-    attachment** and **Voice and video calls** options to **off** and
-    click on **Next**.
+!!Hi, I can help you with booking a real estate property showing.!!
 
-    ![](./media/image137.png)
+3.  选择 **Save**。
 
-8. In the **Live chat setup – Review and finish** screen, select
-    **Create channel**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image102.png)
 
-    ![](./media/image138.png)
+### 任务 4：添加 Topic 管理节点
 
-9. **Copy** the widget that appears in the **Live chat setup –
-    Success** screen and **save** it in a notepad to add it to a webpage
-    in the upcoming exercises. Then, click on **Done** to complete the
-    configuration.
+1.  选择 **send a message** 节点下的 **+** icon，然后选择 **Topic
+    management -\> Go to another topic**。
 
-    ![](./media/image139.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image103.png)
 
-### Task 3: Add the copilot to the workstream
+2.  选择 **Customer Details** 主题。
 
-1.  Back in the **Real Estate Workstream** page, scroll down and click
-    on **+ Add bot** in the Bot section.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image104.png)
 
-    ![](./media/image140.png)
+3.  选择 **Save** 。
 
-2.  From the list of copilots on the Add bot screen, select the **Real
-    Estate Booking Service** copilot and click on **Connect**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image105.png)
 
-    ![](./media/image141.png)
+### 任务 5：添加条件节点
 
-3.  Ensure that the bot is added to the workstream as in the screenshot
-    below.
+1.  选择 主题管理节点下的 + 图标，然后选择 **Add a condition**。
 
-    ![](./media/image142.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image106.png)
 
-4.  From the left pane, select **Bots**.
+2.  选择 **DetailsCorrect** for variable。
 
-    ![](./media/image143.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image107.png)
 
-5.  Ensure that the Real Estate Booking Service copilot is connected.
+3.  选择 **Condition** as **is equal to**
 
-    ![](./media/image144.png)
+4.  选择 **value **作为 **Yes** 。
 
-## Exercise 8: Create a webpage and test the escalation to agent
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image108.png)
 
-1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
-    tenant admin credentials.
+5.  选择 **Save** 。
 
-    ![](./media/image145.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image109.png)
 
-2.  Ensure that you are in CustomerService Trial environment.
+### 任务 6：添加问题节点
 
-3.  Click on Skip in the **Tell us about yourself** page.
+1.  选择 左侧条件节点下的 **+** icon，然后选择 **Ask a
+    question**。填写以下详细信息，然后单击 **Save**。
 
-    ![](./media/image146.png)
+    - **Enter a message**  - !!Which property do you want to see?!!
 
-4.  Scroll down in the next page and click on Start with a template
-    option to start creating the site with a template.
+    - **Identify** - 选择**User's entire response**.
 
-    ![](./media/image147.png)
+    &nbsp;
 
-5.  Select a template and click on **Choose this template**.
+    - **Save user response as** Enter **!!PropertyName!!** 对于
+      **Variable name**
 
-    ![](./media/image148.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image110.png)
 
-6.  In the Give your site a name textbox, enter the name as +++**Contoso
-    Real Estates**+++, accept the other defaults and click on **Done**.
+1.  选择 问题节点下的 + 图标，然后选择 **Ask a
+    question**。填写以下详细信息，然后单击 **Save。**
 
-    ![](./media/image149.png)
+    - **Enter a message** - !!What date and time do you want to see the
+      property?!!
 
-7.  Once the site is created, click on **Edit site header** in the
-    **Company name** title.
+    - Identify - 选择**Date and Time**
 
-    ![](./media/image150.png)
+    - **Save user response as** – 单击 **Var1** 打开 Variable properties
+      窗格并输入 **!!DateTime!!** 对于 **Variable name**
 
-8.  In the **Edit site header** pane, provide the **Site title** as
-    **Contoso Real Estates**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image111.png)
 
-    ![](./media/image151.png)
+### 任务 7：测试 Copilot
 
-9.  Click on Edit code in the top right corner of the page.
+1.  选择 屏幕右上角的 Test 按钮以打开测试面板。选择
+    屏幕右上角的测试面板顶部的 **three dots** 。选择 **Track between
+    topics** 。
 
-    ![](./media/image152.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image112.png)
 
-10. Click on **Open Visual Studio Code**.
+2.  当 **Conversation Start** 消息出现时，您的 Copilot 将开始对话。
 
-    ![](./media/image153.png)
+3.  作为响应，输入您创建的主题的触发短语：
 
-11. Click **Allow**.
+!!I want to book a real estate showing!!
 
-    ![](./media/image154.png)
+4.  Copilot 回答说：**"What is your name?"** 问题。
 
-12. The Home page of the web page opens up in the Visual Studio Code.
+5.  输入您的姓名。
 
-    ![](./media/image155.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image113.png)
 
-13. Scroll to the end of the file. Add the script copied while creating
-    the workstream, after eh last line of this file.
+6.  然后在 系统提示输入 **email**
+    时输入您的电子邮件。输入详细信息后，将显示一个问题，询问信息是否正确，并提供用于选择
+    **Yes** 或 **No** 的选项。选择 **Yes**。
 
-    ![](./media/image156.png)
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image114.png)
 
-14. Save the file, close the Visual Studio Code tab and return to the
-    Power pages. Click on **Sync**.
+7.  进入 !!555 Oak Lane, Denver, CO 80203!! 到 **Which property to you
+    want to see？** 提示。
 
-    ![](./media/image157.png)
+8.  进入 **!!Tomorrow 10:00 AM!!** 到 **What date and time you want to
+    see the property？** 提示。
 
-15. Once the Sync is completed, select **Preview** -\> **Desktop.**
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image115.png)
 
-    ![](./media/image158.png)
+## 练习 5：构建一个 Autonomous 代理，在创建或更新预订时自动发送电子邮件
 
-16. Your web page opens in a new tab. Find the **Real Estate copilot**
-    embedded to the page at the bottom right of the web page. **Click**
-    on it.
+本练习旨在展示 Autonomous 代理的 **When a row is added， modified or
+deleted** 触发器。
 
-    ![](./media/image159.png)
+### 任务 1：创建代理
 
-17. Enter +++Talk to agent+++.
+1.  单击 左侧导航窗格中的 **Agents**。
 
-    ![](./media/image160.png)
+![A screenshot of a chat box AI-generated content may be
+incorrect.](./media/image116.png)
 
-18. On the Customer Service workspace page, you will get a **chat
-    request**. Accept it.
+2.  单击 **+ New agent** 创建新代理。
 
-    ![](./media/image161.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image117.png)
 
-19. Once accepted, the chat screen opens up with the message that we had
-    given in the Escalate topic. We can also add any other information
-    provided by the user here to the live agent.
+3.  单击 **Skip to configure** 以配置代理。
 
-    ![](./media/image162.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image118.png)
 
-20. Simulate the chat between the live agent and the customer if you
-    wish to see how it works and then ends.
+4.  输入以下详细信息，然后单击 **Create**。
 
-    ![](./media/image163.png)
+**Name** - !!Autonomous agent!!
 
-    ![](./media/image164.png)
+**Description** - !!You are an agent to detect the updates to the
+Booking Requests table!!
 
-**Summary**
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image119.png)
 
-In this lab, we have learnt to
+5.  代理设置需要几秒钟才能完成。完成后，Autonomous 代理将打开，并显示
+    **Your agent is ready** 消息。
 
-- Build a copilot from the Copilot Studio and create topics in it.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image120.png)
 
-- Test the copilot from the Copilot Studio and publish it to the demo
-  web site.
+6.  选择 **Settings ** 从右上角。
 
-- Publish the copilot to Dynamics 365 workspace and integrate the it in
-  a web page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image121.png)
 
-- Configure and test the escalation to a live agent.
+7.  必须启用 Generative AI 选项才能继续为代理创建 Trigger。
+
+8.  从 **Settings** 屏幕左侧的选项列表中选择 **Generative AI** 选项。在
+    **Using generative AI in conversations**下，选择 **Generative**
+    式点击 **Save**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image122.png)
+
+9.  关闭 **Settings** 窗格。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image123.png)
+
+### 任务 2：向代理添加触发器
+
+1.  返回 自治代理 页面，向下滚动到 **Triggers (preview) **部分，然后选择
+    **+ Add trigger** 。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image124.png)
+
+2.  从 **Add trigger** 屏幕中选择 **When a row is added， modified or
+    deleted** 触发器。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image125.png)
+
+3.  在 下一个屏幕中单击 **Continue**。
+
+4.  选择后， **Trigger name** 和 **Sign in options**
+    将加载到下一个屏幕中。这将需要几分钟时间才能填充。对于我们选择的触发器，将有两个应用程序，一个是
+    **Microsoft Copilot Studio**，另一个是 **Microsoft Dataverse**。
+
+5.  加载后，确保登录选项的连接状态为绿色，然后单击 **Next** 继续。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image126.png)
+
+6.  在 Add trigger 屏幕中，选择以下详细信息，然后单击 **Create
+    trigger**。
+
+    - 更改类型 – **Added or modified**
+
+    - 表名称 – **Booking Requests**
+
+    - 范围 – **Organization**
+
+    - 触发指令 – 保留为 **default**。这会将整个响应返回给代理。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image127.png)
+
+7.  触发器创建可能需要 3 到 5 分钟才能完成。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image128.png)
+
+8.  完成后，单击 **Close** in the **Time to test your trigger! **屏幕。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image129.png)
+
+9.  单击 **Actions** 选项卡，然后选择 **+ Add action**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image130.png)
+
+10. 寻找 !!Send an email!!，然后选择 **Send an email （V2） action**。
+
+![A screenshot of a email conversation AI-generated content may be
+incorrect.](./media/image131.png)
+
+11. 建立连接后，单击 **Next**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image132.png)
+
+12. 选择 **Copilot author Authentication** 作为 **End user
+    authentication**下拉列表中的选项，然后选择 **Add action**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image133.png)
+
+13. 选择 created Action。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image134.png)
+
+14. Select the **Inputs** tab.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image135.png)
+
+15. 在 **Description** 字段中提供邮件需要传送到的电子邮件 ID，然后单击
+    **Save**。这可以是您可以访问的任何邮件 ID。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image136.png)
+
+### 任务 3：向代理添加说明
+
+1.  选择 **Overview** 转到 Overview 页面，然后单击 Overview 页面中的
+    **Edit**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image137.png)
+
+2.  将下面的说明粘贴到 **instructions** 文本区域内，将下面 b
+    部分中\<邮件 ID\> 的占位符替换为 需要将详细信息发送到的邮件
+    ID，然后单击 **Save**。
+
+!!a. Read the details of the row that gets added or modified!! !!b. Mail
+the modified information only to \<Mail ID\> with a proper subject and
+body added to the email!!
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image138.png)
+
+3.  单击 **Publish** 将代理发布到它所连接的所有渠道。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image139.png)
+
+4.  单击 **Publish this agent** 对话框中的 **Publish**。
+
+![A screen shot of a computer AI-generated content may be
+incorrect.](./media/image140.png)
+
+5.  发布后，您将收到一条成功消息。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image141.png)
+
+### 任务 4：更新 Bookings 表
+
+1.  登录 ！！<https://make.powerapps.com/>！！，然后从
+    左侧导航窗格中选择 **Tables**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image142.png)
+
+2.  选择  **Custom**  ，然后从中选择 **Booking Request** 表。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image143.png)
+
+3.  在表中添加或更新值。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image144.png)
+
+### 任务 5：测试代理
+
+1.  在代理页面中，选择 Test，然后打开 **Activity Map**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image145.png)
+
+2.  在代理页面中，选择 **Test trigger** 选项。我们在 Bookings
+    表中所做的更新将触发触发器。我们将使用它从 copilot studio 进行
+    **test** 。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image146.png)
+
+3.  选择最新条目，然后单击 **Start testing**。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image147.png)
+
+4.  触发器被调用。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image148.png)
+
+5.  邮件将发送到指定的邮件 ID。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image149.png)
+
+6.  检查相应的邮箱，查看您是否收到了如下邮件。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image150.png)
+
+**总结**
+
+在本实验中，我们学习了
+
+- 从 Copilot Studio 构建代理并在其中创建主题。
+
+- 从 Copilot Studio 测试代理并将其发布到演示网站。
+
+- 构建自治代理并进行测试
+
+ 
