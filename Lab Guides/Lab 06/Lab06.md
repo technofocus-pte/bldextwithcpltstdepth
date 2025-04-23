@@ -1,155 +1,254 @@
-# **Lab 06 - Creating conversational actions for Microsoft Copilot**
+# **实验室06_Creating和从 Teams 部署 Microsoft Copilot Studio Copilot**
 
-**Lab duration** – 20 minutes
+**实验室持续时间** – 30 分钟
 
-**Objective**
+**目的:**
 
-Microsoft Copilot provides out of the box experiences to engage with
-content and resources from across your organization. In some situations,
-answers and interaction with external systems are required. With
-Microsoft Copilot Studio, you can author a conversational topic that can
-be published as a Copilot Plugin. Once your Tenant Admin approves the
-Plugin, it can be added to your organization's M365 Chat experiences.
+在本实验中，您将在 Microsoft Teams 中安装 Copilot Studio
+应用程序，在团队中创建新的 Copilot 并对其进行测试。
 
-The actions will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **练习 1： 在 Microsoft Teams 中安装 Copilot Studio 应用程序**
 
-In this lab, we will learn how to create a Conversational action.
+1.  从 VM 中选择 **Start** 菜单，搜索 +++teams+++，然后选择 **Microsoft
+    Teams apps** 。
 
-## **Exercise 1: Create a Conversational action**
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-1.  Login to +++**https://copilotstudio.microsoft.com/**+++ using your
-    tenant credentials if not already logged in.
+2.  从 **Resources** 选项卡中使用您的凭证登录。
 
-2.  Select **Copilot for Microsoft 365**.
+![A screenshot of a sign in Description automatically
+generated](./media/image2.png)
 
-    ![](./media/image1.png
-)
+3.  点击 **Apps**。搜索 +++**Copilot Studio**+++ 并选择 **Microsoft
+    Copilot Studio** ，然后单击 **Add**。
 
-3.  Select **Actions**.
+**注意：** 如果您找不到 Copilot Studio，则必须搜索并选择 **Power Virtual
+agent** 并添加它。
 
-    ![](./media/image2.png
-)
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-4.  Select **+ Add an action**.
+![](./media/image4.png)
 
-    ![](./media/image3.png)
+4.  点击 **Open**。
 
-5.  Select **Conversational** in the **New action** pane.
+![A screenshot of a phone Description automatically
+generated](./media/image5.png)
 
-    ![](./media/image4.png
-)
+5.  单击 **Start now** 。
 
-6.  Provide the name for the action as +++**Conversational action**+++.
-    Select **Create**.
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-    ![](./media/image5.png)
+## **练习 2：在团队中创建新的 Copilot**
 
-    ![](./media/image6.png)
+1.  使用 **Office 365 tenant credentials 登录到** **Teams**。
 
-7.  Once ready, the created action opens in Authoring canvas. Select
-    **Topics**.
+> ![A screenshot of a sign in Description automatically
+> generated](./media/image7.png)
 
-    ![](./media/image7.png
-)
+2.  点击 **Apps**。搜索 +++**Copilot Studio**+++ 并选择 **Microsoft
+    Copilot Studio** ，然后单击 **Add**。
 
-8.  Name the topic as +++Holidaylist+++
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-    ![](./media/image8.png
-)
+![A screenshot of a phone Description automatically
+generated](./media/image4.png)
 
-9.  In the Trigger node’s description, provide a clear description of
-    how the conversational plugin can help the user and what it can
-    do. Let this topic help the user to find the list of holidays in the
-    year 2024.
+**重要提示：** 如果您找不到 Copilot Studio，则必须搜索并选择 +++**Power
+Virtual agent**+++ 并添加它。
 
-    Type +++**This plugin helps to retrieve the list of holidays for the
-year 2024.**+++ in the Trigger node’s description.
+![A screenshot of a search engine Description automatically
+generated](./media/image8.png)
 
-    ![](./media/image9.png
-)
+![A screenshot of a computer Description automatically
+generated](./media/image9.png)
 
-    This description has functional purpose and is used by the Microsoft
-Copilot to determine whether to invoke your plugin or not.
+3.  单击 **Start now**。
 
-10. Add a message node with the list of holidays.
-    ```
-    - New Year's Day - January 1
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-    - Martin Luther King, Jr.'s Birthday (Third Monday of January) -
-      January 15, 2024
+4.  选择 **Contoso** 并单击 **Continue**。
 
-    - Washington's Birthday or Presidents' Day (third Monday of
-      February) - February 19
+![A screenshot of a chatbot Description automatically
+generated](./media/image10.png)
 
-    - Memorial Day (last Monday of May) - May 27
+![A screenshot of a chatbot Description automatically
+generated](./media/image11.png)
 
-    - Juneteenth Day - June 19
+**重要提示：** 此步骤可能需要大约 10
+分钟。如果花费的时间太长，请关闭它，从左侧窗格中的应用程序中选择 Copilot
+Studio 或 Power Virtual Agents，然后重做步骤 4。
 
-    - Independence Day - July 4
+5.  在 Create a copilot 窗格中，将 Copilot 的名称配置为 +++**HR Support
+    Copilot**+++，然后单击 **Create**。
 
-    - Labor Day (first Monday of September) - September 2
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-    - Columbus Day (Second Monday of October) - October 14
+6.  获取一条成功消息，指出 **Your chatbot is provisioned**。
 
-    - Veterans Day or Veterans Day - November 11
+![](./media/image13.png)
 
-    - Thanksgiving Day (fourth Thursday of November): November 28
+## **练习 3：为常见的休假查询构建员工休假主题**
 
-    - Christmas Day - December 25
-    ```
+1.  单击 左侧窗格中的 **Topics**。单击 **+ New topic -\> From blank。**
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image14.png)
 
-11. Click on **Save** to save the plugin.
+2.  暂时 **Close** Trigger phrases 窗格。
 
-    ![](./media/image11.png
-)
+![A screenshot of a computer screen Description automatically
+generated](./media/image15.png)
 
-    ![](./media/image12.png)
+3.  单击 **Details** 图标。
 
-## **Exercise 2: Publishing your conversational action to Microsoft Copilot**
+![A screenshot of a computer Description automatically
+generated](./media/image16.png)
 
-1.  Publishing your conversational plugin creates a new plugin in the
-    Dataverse registry for your Tenant. Once available there, your
-    tenant admin needs to approve your plugin to be available to users
-    in the Microsoft Copilot plugins catalog.
+4.  在 Details 窗格中，为常见的休假查询提供 +++**Employee time off**+++
+    （名称） 和 +++**Employee time off topic for common time-off
+    queries**+++（Description）。
 
-2.  Click on **Publish**.
+![A screenshot of a computer Description automatically
+generated](./media/image17.png)
 
-    ![](./media/image13.png
-)
+5.  **关闭** Details 窗格。
 
-3.  Select **Publish.**
+![A screenshot of a computer Description automatically
+generated](./media/image18.png)
 
-    ![](./media/image14.png)
+6.  点击 **Save**。
 
-4.  Select **Publish** on **Publish latest content** dialog.
+![A screenshot of a chat Description automatically
+generated](./media/image19.png)
 
-    ![](./media/image15.png
-)
+7.  单击 **Trigger phases。**
 
-5.  The publish status is shown on the screen.
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
 
-    ![](./media/image16.png
-)
+8.  添加触发短语 +++ **I need help with time off** +++，然后单击 **+。**
 
-Note: The publish should complete quickly. The actual availability in
-the Microsoft Admin Center can take up to 4 hours.
+![](./media/image21.png)
 
-**Important:** **:** For the admin to get it listed in the admin center,
-the company will have to hold a valid Copilot license.
+9.  添加以下rigger phrases。
 
-6.  Your Admin can find the **Dataverse and Microsoft Copilot
-    Studio** integrated app in the Microsoft Admin Center
-    under **Settings**, then **Integrations to be reviewed and
-    approved**.
+- +++**Need information on time off**+++
 
-7.  Once your Tenant admin approves the Dataverse and Microsoft Copilot
-    Studio integrated app, it should appear in the user's list of
-    plugins in their Microsoft Copilot UI.
+- +++**How many days of paid vacation do I have**+++
 
-**Summary:**
+- +++**What are the national holidays**+++
 
-In this lab, we have learnt how to create a conversational action and to
-publish it.
+- +++**I need extended leave**+++
+
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
+
+关闭 Trigger phrases 窗格。
+
+10. 添加 Message 节点并输入文本 +++I can help with questions related to
+    time-off+++.
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image23.png)
+
+11. 作为 HR 员工，您知道最常见的休假问题是关于 **paid vacation** 时间和
+    **national holidays**
+    的。当添加具有用户响应选项的问题节点时，主题会自动为每个响应获取一个分叉分支。
+
+12. 选择消息节点下方的 （**+**） 图标，然后选择 **Ask a question**
+    以将问题节点添加到主题。输入 *What information are you looking
+    for? *在 **Ask a question** 文本框中。
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image24.png)
+
+13. 在 **Options for user** 下，添加 +++ Paid vacation+++ 和 +++
+    National Holidays+++ 作为两个选项。
+
+> ![A screenshot of a questionnaire Description automatically
+> generated](./media/image25.png)
+
+14. 用户选择存储在变量中，主题根据用户选择的选项进行分支。您可以重命名变量，以便在主题中更好地跟踪它。
+
+15. 在变量上，在 **Save response as** 下，选择铅笔图标以编辑变量属性。
+
+16. **Variable** **properties** 窗格随即打开。将变量重命名为
+    +++TimeoffType+++。关闭 **Variable properties**
+    窗格，您会看到创作区域中反映的更改。
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image26.png)
+
+17. 为带薪休假分支添加消息节点，并向用户发送此消息: +++**For paid
+    vacation time-off, go to www.contoso.com/HR/PaidTimeOff**+++ to
+    submit time-off requests.
+
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
+
+18. 在 **National Holidays** 路径中，添加包含以下文本的消息节点:
+
+2025 年国定假日:
+
+- New Year’s Day: Jan 1
+
+- Martin Luther King Jr. Day: Jan 20
+
+- Washington’s Birthday (Presidents’ Day): Feb 17
+
+- Memorial Day: May 26
+
+- Juneteenth National Independence Day: June 19
+
+- Independence Day: July 4
+
+- Labor Day: Sep 1
+
+- Columbus Day / Indigenous Peoples’ Day: Oct 13
+
+- Veterans Day: Nov 11
+
+- Thanksgiving Day: Nov 27
+
+- Christmas Day: Dec 25
+
+![](./media/image28.png)
+
+19. 点击 **Save**。
+
+![A screenshot of a computer Description automatically
+generated](./media/image29.png)
+
+![A screenshot of a chat window Description automatically
+generated](./media/image30.png)
+
+## **练习 4：测试 Copilot 的预期行为**
+
+1.  选择屏幕顶部的 **Copilot/Power Virtual Agent** 图标以启动测试
+    Copilot 画布。
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image31.png)
+
+2.  在 copilot 聊天中键入 **I need time off information**。
+
+3.  选择 **Paid vacation**。
+
+4.  您将根据我们的配置收到响应。
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image32.png)
+>
+> ![A screenshot of a chat Description automatically
+> generated](./media/image33.png)
+>
+> **总结：**
+>
+> 在此实验室中，我们学习了将 Copilot Studio 应用程序添加到 Teams 并在
+> Teams 中创建经典机器人。
