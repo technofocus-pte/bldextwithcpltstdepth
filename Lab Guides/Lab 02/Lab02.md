@@ -1,788 +1,286 @@
-# Lab 02 - Enhancing the Real Estate copilot with Gen AI capabilities
+# 实验 02 – 构建自治代理来跟踪在 OneDrive 中创建的新文件
 
-**Lab duration** – 80 minutes
+**介绍**
 
-**Objective:**
+组织的 OneDrive For Business
+一直在其中创建多个文件，管理员很难跟踪它们。
 
-Implement entities, slot filling and variables usage in the Copilot for
-Real Estate app. Enhance the copilot created for the Real Estate app to
-elevate the customer experience by implementing Generative AI.
+**目的**
 
-## Exercise 1: Use entities to improve the copilot
+构建一个自治代理，将新添加的文件的详细信息输入到 File Details
+（文件详细信息） 跟踪器中。这解决了跟踪文件添加的问题，并且 File details
+（文件详细信息） 跟踪器将包含所有新创建文件的详细信息。
 
-Microsoft Copilot Studio uses entities to understand user intent. There
-are many prebuilt entities included for commonly used information. You
-can create custom entities for your specific purpose.
+## 练习 1：设置环境
 
-### Task 1: View prebuilt entities
+1.  使用 Resources 选项卡中的密码登录到 VM。
 
-1.  Select **Settings** in the top-right of the screen.
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-    ![](./media/image1.png)
+### 任务 1：设置 OneDrive
 
-2.  Select the **Entities** tab. You can see a list of pre-built
-    entities.
+1.  打开浏览器并导航到 +++**https://office.com**+++。 使用 **Resources**
+    选项卡中的凭证登录
 
-    ![](./media/image2.png)
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-### Task 2: Create the property type entity
+2.  从 左侧菜单中选择 **OneDrive**。
 
-1.  Select **+ Add an entity** and select **+ New entity**.
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-    ![](./media/image3.png)
+3.  单击 左上角的 + icon，然后选择 **Files upload**。
 
-2.  Select the **Closed list** tile.
+![A screenshot of a computer Description automatically
+generated](./media/image4.png)
 
-    ![](./media/image4.png)
+4.  从 **C：\LabFiles** 中选择文件 **File details** 并选择 **Open**。
 
-3.  Enter the below details
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-    -    Name - +++**Property Type**+++
-    
-    **Enter item** under List items
-    -    +++**Apartment**+++ - Select **Add**
+5.  上传文件后，窗口中会弹出一条成功消息。
 
-    ![](./media/image5.png)
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-4.  Enter +++**Condominium**+++ in the **Enter item** field and
-    select **Add**.
+6.  单击左侧菜单中的 **My files**，您可以看到新文件在那里可用。
 
-5.  Enter +++**Duplex**+++ in the **Enter item** field and
-    select **Add**.
+![A screenshot of a computer Description automatically
+generated](./media/image7.png)
 
-    ![](./media/image6.png)
+### 任务 2 ：创建开发环境
 
-6.  Select **+ Synonyms** for **Apartment**, enter +++**Flat**+++, then
-    select the **+** icon and select **Done**.
+1.  使用 Resources 选项卡中的租户详细信息[登录到
+    +++](https://admin.powerplatform.microsoft.com/)
+    <https://admin.powerplatform.microsoft.com/>+++。
 
-    ![](./media/image7.png)
+2.  选择 **Environments** 从左侧导航窗格中，然后单击 **+ Newv。**
 
-7.  Select **+ Synonyms** for **House**, enter +++**Single-family
-    home**+++, then select the **+** icon and select **Done**.
+![A screenshot of a computer Description automatically
+generated](./media/image8.png)
 
-8.  Select **+ Synonyms** for **Condominium**,
-    enter +++**Townhouse**+++, then select the **+** icon and
-    select **Done**.
+3.  在打开的 New environment （新建环境）
+    窗口中，填写以下详细信息，然后单击 **Next**。
 
-9.  Select **Save**.
+[TABLE]
 
-    ![](./media/image8.png)
+![A screenshot of a computer Description automatically
+generated](./media/image9.png)
 
-10. Select **Close**.
+![A screenshot of a computer Description automatically
+generated](./media/image10.png)
 
-    ![](./media/image9.png)
+4.  在 **Add Dataverse** 窗口中，接受默认值，然后单击 **Save** 。
 
-### Task 3: Create number of bedrooms entity
+![A screenshot of a computer Description automatically
+generated](./media/image11.png)
 
-1.  Select **+ Add an entity** and select **+ New entity**.
+5.  新创建的环境将在管理中心列出，其状态在 Environments 窗格中。
 
-    ![](./media/image10.png)
+6.  **Status** 为 **ready**
+    后，环境即可使用。我们将在即将到来的练习中使用此环境。
 
-2.  Select the **Regular expression (Regex)** tile.
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-    ![](./media/image11.png)
+### 任务 3：启用 Copilot Studio 试用版
 
-3.  Enter the below details and click on **Save**.
+1.  在新选项卡中，打开 +++**https://copilotstudio.microsoft.com/**+++。
 
-    - Name  - +++**Number of Bedrooms**+++ 
-    
-    - Pattern  - +++**\[1-5\]**+++ 
+2.  使用 实验室 VM 的 **Resources** 选项卡下提供的 **Credentials**
+    登录。
 
-    ![](./media/image12.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image13.png)
 
-4.  Select **Close**.
+3.  登录后，**Welcome to Microsoft Copilot Studio**
+    页面，将国家/地区保留为 **United States** ，然后单击 **Get Started**
+    。
 
-    ![](./media/image13.png)
+![A person sitting at a computer Description automatically
+generated](./media/image14.png)
 
-5.  Close the **Settings** pane.
+4.  在 **Welcome** 屏幕中选择 **Skip** 。
 
-    ![](./media/image14.png)
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-### Task 4: Use entities
+## 练习 2：构建和测试自治代理
 
-1.  Select the **Topics** tab. Select the **Book a Real Estate
-    Showing** topic.
+### 任务 1：从 Copilot Studio 创建代理
 
-    ![](./media/image15.png)
+1.  单击打开的 Agent creation 页面中的 Skip to configure 选项。
 
-2.  Select the **+** icon above the property question node and
-    select **Ask a question**.
+![A screenshot of a computer Description automatically
+generated](./media/image16.png)
 
-    ![](./media/image16.png)
+2.  在代理创建窗格中，输入以下详细信息，然后单击 **Create**。
 
-3.  Fill in the below details.
+- **Name** - +++New file tracker agent+++
 
-    - **Enter a message** - +++What type of property do you want to see?+++
-    
-    - **Identify** – Select **Property Type**
-    
-    - Select **Select options for user** and check the **Display** option
-      for all list values.
+&nbsp;
 
-    ![](./media/image17.png)
+- **Description** - +++每次在 OneDrive
+  中创建新文件时，此代理都会更新放置在 OneDrive 中的 File details
+  tracker
 
-4.  Select the variable in **Save user response as** and enter
-    +++**PropertyType**+++ for **Variable name**
+![A screenshot of a computer Description automatically
+generated](./media/image17.png)
 
-    ![](./media/image18.png)
+### 任务 2：向代理添加触发器
 
-5.  Select the the **+** icon below the new question node and
-    select **Ask a question**.
+1.  创建代理后，向下滚动以找到 **Trigger** 部分。选择 **+ Add
+    trigger。**
 
-6.  Enter the below details and click on **Save**.
+![A screenshot of a computer Description automatically
+generated](./media/image18.png)
 
-    - **Enter a message** - +++How many bedrooms do you need?+++
-    
-    - **Identify -** Select **Number of Bedrooms**
-    
-    - **Save user response as** -
-      Enter +++NumberofBedrooms+++ for **Variable name**
+2.  在 **Turn on generative orchestration to continue** 对话框中，选择
+    **Turn it on**。我们需要将此选项设置为 on 才能添加触发器。
 
-    ![](./media/image19.png)
+![A screenshot of a computer Description automatically
+generated](./media/image19.png)
 
-## Exercise 2: Create Copilot actions
+3.  从 Add trigger 菜单中，选择 **When a file is created** 触发器。
 
-Microsoft Copilot Studio can access data in Microsoft Dataverse using
-Power Automate cloud flows
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
 
-### Task 1: Create Power Automate flow to retrieve a property
+4.  在 **Add trigger** 屏幕中，选择 Continue 。
 
-1.  Select the **Actions** tab from the top menu. Select **+ Add an
-    action**.
+![A screenshot of a computer Description automatically
+generated](./media/image21.png)
 
-    ![](./media/image20.png)
+5.  在下一个屏幕中，请注意 **Trigger name** 已填充。等待 与 **Microsoft
+    Copilot Studio** 和 **OneDrive for Business**
+    建立连接（每个连接器都有一个绿色勾号）。然后，单击 **Next**。
 
-2.  Scroll down and select **Create a new flow**.
+> ![A screenshot of a computer Description automatically
+> generated](./media/image22.png)
 
-    ![](./media/image21.png)
+6.  选择以下详细信息。
 
-3.  Sign in to Power Automate if prompted.
+- **Folder** – Root
 
-4.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++**Get Property**+++ as the flow name.
+- **Include subfolders** – Yes
 
-    ![](./media/image22.png)
+> 将其他字段保留为默认字段，然后选择 **Create trigger**。
 
-5.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input**.
+![A screenshot of a computer Description automatically
+generated](./media/image23.png)
 
-    ![](./media/image23.png)
+![A screenshot of a computer Description automatically
+generated](./media/image24.png)
 
-6.  Select **Text**.
+7.  创建触发器后，将显示 **Time to test your trigger** 消息。 **Close**
+    它。我们将稍微调整触发器的基本流程以实现功能，然后对其进行测试。
 
-    ![](./media/image24.png)
+![A screenshot of a computer Description automatically
+generated](./media/image25.png)
 
-7.  Enter the below details
+> ![A screenshot of a computer Description automatically
+> generated](./media/image26.png)
 
-    - **Input** – +++Bedrooms+++
-    
-    - **Please enter your input** - +++Number of Bedrooms+++
+### 任务 3：向触发器添加逻辑
 
-    ![](./media/image25.png)
+1.  在 **New file track agent** 页面中，向下滚动到触发器部分。
 
-8.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
+2.  单击触发器 **When a file is created**上的 3 个点，然后选择 **Edit in
+    Power Automate**。
 
-    ![](./media/image26.png)
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
 
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the Dataverse connector.
+3.  选择 **+** icon **When the file is created** 和 **Sends a prompt
+    action** ，然后选择 **Add an action**。
 
-    ![](./media/image27.png)
+![A screenshot of a computer Description automatically
+generated](./media/image28.png)
 
-10. Select the **List rows** action.
+4.  搜索 +++add a row+++，然后选择 **Add a row into the table**。
 
-    ![](./media/image28.png)
+![A screenshot of a computer Description automatically
+generated](./media/image29.png)
 
-11. If prompted for authentication, select **OAuth** and select **Sign
-    in**. Sign in using your tenant id if prompted.
+5.  为每行选择以下值，然后单击 **Save** 。
 
-    ![](./media/image29.png)
+[TABLE]
 
-12. Select **Real Estate Properties** for table name.
+![A screenshot of a computer Description automatically
+generated](./media/image30.png)
 
-13. Select **Show all**.
+![A screenshot of a computer Description automatically
+generated](./media/image31.png)
 
-14. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
+6.  该流现在将类似于以下屏幕截图中的流。
 
-15. Use **Dynamic content** to select the **Bedrooms** parameter and
-    select **Add**.
+![A screenshot of a computer Description automatically
+generated](./media/image32.png)
 
-    ![](./media/image30.png)
+7.  保存流程并 **publish** 它。
 
-16. Select the **Respond to Copilot** action and select **+ Add an
-    output**.
+### 任务 4：发布触发器
 
-    ![](./media/image31.png)
+1.  返回 Copilot Studio，选择 **Settings**。
 
-17. Select **Text**.
+![A screenshot of a computer Description automatically
+generated](./media/image33.png)
 
-18. Enter the below details
+2.  选择 **Security** -\> **Authentication** -\> **No authentication**
+    ，然后单击 **Save**。
 
-    - **Enter a name** - +++PropertyId+++
-    
-    - **Enter a value to respond with** - select **Insert Expression** and
-      enter the following expression:
-      +++first(outputs('List_rows')?\['body/value'\])\['contoso_realestatepropertyid'\]+++
+![A screenshot of a computer Description automatically
+generated](./media/image34.png)
 
-    ![](./media/image32.png)
+3.  在 确认对话框中选择 **Save**。
 
-19. Select **Add**.
+![A screenshot of a computer error Description automatically
+generated](./media/image35.png)
 
-    ![](./media/image33.png)
+4.  现在，选择 **Publish** 以发布代理。
 
-20. Select **+ Add an output**.
+![](./media/image36.png)
 
-21. Select **Text**.
+5.  在 确认对话框中选择 **Publish**。
 
-    - **Enter a name** - +++PropertyName+++ 
-    
-    - **Enter a value to respond with** - select **Insert Expression** and
-      enter the following expression:
-      +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
+![A screenshot of a computer Description automatically
+generated](./media/image37.png)
 
-    ![](./media/image34.png)
+### 任务 5：测试触发器
 
-22. Select **Settings**. Ensure that **Asynchronous Response** is set
-    to **Off**.
+1.  在浏览器中导航回 **OneDrive** 。点击 **+** 并选择 **Word
+    document。**
 
-    ![](./media/image35.png)
+![A screenshot of a computer Description automatically
+generated](./media/image38.png)
 
-23. Select **Save draft**.
+2.  为文档 **name** ，然后选择 **Create**。
 
-    ![](./media/image36.png)
+![A screenshot of a computer Description automatically
+generated](./media/image39.png)
 
-24. Once save, select **Publish**.
+3.  单击 **Close** 关闭隐私选项。
 
-    ![](./media/image37.png)
+![A screenshot of a computer screen Description automatically
+generated](./media/image40.png)
 
-25. Close the Power Automate tab.
+4.  以类似方式添加更多文件。
 
-### Task 2: Add a Copilot action for retrieving a property
+5.  现在，从 OneDrive 打开 File details.xlsx
+    并观察所创建文件的详细信息是否已添加到跟踪器中。
 
-1.  Back in the Copilot Studio page, select **Refresh**.
+![A screenshot of a computer Description automatically
+generated](./media/image41.png)
 
-    ![](./media/image38.png)
+6.  在 OneDrive 中创建文件时，将调用触发器，该触发器反过来会在 **When a
+    file is added** 执行流并更新跟踪器。
 
-2.  Select the **Get Property** flow.
+7.  您还可以在 Copilot Studio 的 Activity
+    选项卡中查看自治代理的详细信息。
 
-    ![](./media/image39.png)
+**总结**
 
-3.  Select **Next** in the **Choose an action** screen.
-
-    ![](./media/image40.png)
-
-4.  Select **Next** in the **Review inputs and outputs** screen.
-
-    ![](./media/image41.png)
-
-5.  Select **Finish** in the **Review and finish** screen.
-
-    ![](./media/image42.png)
-
-6.  Select the **Topics** tab. And select the **Book a Real Estate
-    Showing** topic.
-
-    ![](./media/image43.png)
-
-7.  Select the **+** icon below the **How many bedrooms do you need
-    question?** node and select **Call an action**. Select the **Get
-    Property** flow.
-
-    ![](./media/image44.png)
-
-8.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
-    parameter.
-
-    ![](./media/image45.png)
-
-9.  Select the **three dots** in the **Which property do you want to
-    see?** question node and select **Delete**.
-
-    ![](./media/image46.png)
-
-10. Select the the **+** icon under the action node and select **Send a
-    message**.
-
-11. Fill in the below details
-
-    - **Enter a message** - enter +++Property+++
-    
-    - Select the **Insert variable** icon and select
-      the **PropertyName** variable.
-
-    ![](./media/image47.png)
-
-12. Select **Save**.
-
-    ![](./media/image48.png)
-
-13. Once saved, select **Publish** and select **Publish**.
-
-    ![](./media/image49.png)
-
-14. Click on Publish in the Publish confirmation dialog.
-
-    ![](./media/image50.png)
-
-### Task 3: Create Power Automate flow to make a booking
-
-1.  Select the **Actions** tab and select **+ Add an action**.
-
-    ![](./media/image51.png)
-
-2.  Scroll down and select **Create a new flow**.
-
-    ![](./media/image52.png)
-
-3.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter Create +++**Booking Request**+++ as the flow name.
-
-    ![](./media/image53.png)
-
-4.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input -\> Text**.
-
-    ![](./media/image54.png)
-
-    ![](./media/image55.png)
-
-5.  Enter the below details
-
-    - Input - +++**PropertyId**+++
-    
-    - Please enter your input **-** +++**Property**+++
-
-6.  Select **+ Add an input -\> Text**
-
-    - Input - +++**ViewerName**+++
-    
-    - Please enter your input **-** +++**Viewer Name**+++
-
-7.  Select **+ Add an input -\>** **Text**.
-
-    - Input - +++**ViewerEmail**+++
-    
-    - Please enter your input **-** +++**Viewer Email**+++
-
-    ![](./media/image56.png)
-
-8.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
-
-    ![](./media/image57.png)
-
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the Dataverse connector.
-
-    ![](./media/image58.png)
-
-10. Select the **Add a new row** action.
-
-    ![](./media/image59.png)
-
-11. Select **Booking Requests** for table name.
-
-12. Enter +++**Copilot booking**+++ in the **Booking Name** field.
-
-13. Select **Show all**.
-
-    ![](./media/image60.png)
-
-14. Enter +++contoso_bookingrequests()+++ in the **Property (Real Estate
-    Properties)** field, move the cursor within the brackets, and
-    use **Dynamic content**.
-
-    ![](./media/image61.png)
-
-15. Select the **PropertyId** parameter.
-
-    ![](./media/image62.png)
-
-16. Use **Dynamic content** to select the **ViewerName** parameter for
-    the **Viewer Name** field.
-
-    ![](./media/image63.png)
-
-17. Use **Dynamic content** to select the **ViewerEmail** parameter for
-    the **Viewer Email** field.
-
-    ![](./media/image64.png)
-
-18. The parameters will now look similar to those in the screenshot
-    below.
-
-    ![](./media/image65.png)
-
-19. Select the **Respond to Copilot** action. Select **Settings** and
-    ensure that **Asynchronous Response** is set to **Off**.
-
-    ![](./media/image66.png)
-
-20. Select **Save draft**.
-
-    ![](./media/image67.png)
-
-21. Once saved, select **Publish**.
-
-    ![](./media/image68.png)
-
-22. Close the Power Automate tab.
-
-### Task 4: Add a Copilot action for creating a booking request
-
-1.  Back in the Copilot Studio page, select **Refresh**.
-
-    ![](./media/image69.png)
-
-2.  Select the **Create Booking Request** flow.
-
-    ![](./media/image70.png)
-
-3.  Select **Next** in the Choose an option screen.
-
-    ![](./media/image71.png)
-
-4.  Select **Next** in the Review inputs and outputs .
-
-    ![](./media/image72.png)
-
-5.  Select **Finish** in the **Review and finish** screen.
-
-    ![](./media/image73.png)
-
-6.  Select the **Topics** tab and select the **Book a Real Estate
-    Showing** topic.
-
-    ![](./media/image74.png)
-
-7.  Select the the **+** icon below the **What date and time do you want
-    to see the property?** node and select **Call an action**.
-
-8.  Select the **Booking Request** flow.
-
-    ![](./media/image75.png)
-
-9.  Select the **PropertyId** variable for the **PropertyId** input
-    parameter.
-
-    Select the **Name** variable for the **ViewerName** input parameter.
-
-    Select the **EmailAddress** variable for the **ViewerEmail** input
-parameter.
-
-    ![](./media/image76.png)
-
-10. Select the the **+** icon below the action node. Select **Topic
-    management**, then select **Go to another topic** and select **End
-    of conversation**.
-
-    ![](./media/image77.png)
-
-11. Select **Save**.
-
-    ![](./media/image78.png)
-
-12. Once saved, select **Publish** and select **Publish** again in the
-    confirmation dialog.
-
-    ![](./media/image79.png)
-
-    ![](./media/image80.png)
-
-## Exercise 3: Test the copilot 
-
-### Task 1: Test the copilot and make a booking request
-
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
-
-    ![](./media/image81.png)
-
-2.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
-
-3.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
-
-4.  In response, enter a trigger phrase for the topic that you created:
-
-+++I want to book a real estate showing+++
-
-5.  The copilot responds with the "**What is your name?**" question.
-
-6.  Enter your name.
-
-    ![](./media/image82.png)
-
-7.  Then enter your email when it prompts for the email. After you enter
-    the details, an Adaptive Card displays the information that you
-    entered, a question asking if the information is correct, and
-    options to select **Yes** or **No**. Select **Yes**.
-
-    ![](./media/image83.png)
-
-8.  Select **House** for the type of property prompt.
-
-9.  Enter +++**2**+++ for the number of bedrooms prompts.
-
-    ![](./media/image84.png)
-
-10. Enter Tomorrow 2:00 PM to the **What date and time do you want to
-    see the property?** prompt.
-
-11. Select **Yes** to the **Did that answer your question?** prompt.
-
-12. Select any rating.
-
-13. Select **No** to the **Can I help with anything else?** prompt.
-
-    ![](./media/image85.png)
-
-### Task 2: Verify booking request
-
-1.  Navigate to the Power Apps portal at
-    +++**https://make.powerapps.com**+++.
-
-2.  In the left navigation pane, select **Tables** and
-    select **Custom**.
-
-3.  Select the **Booking Request** table.
-
-    ![](./media/image86.png)
-
-4.  Under **Booking Request columns and data** you should see that a
-    Copilot booking request is now created.
-
-    ![](./media/image87.png)
-
-## Exercise 4: Set up Generative AI
-
-In this exercise, you learn how to use the Generative answers feature to
-improve your copilot's responses.
-
-### Task 1: Enable Generative AI
-
-1.  Login to the Copilot Studio using your tenant credentials at
-    +++https://copilotstudio.microsoft.com+++ if not logged in
-    already.
-
-2.  Select the Copilot **Real Estate Booking Service**.
-
-    ![](./media/image88.png)
-
-3.  Select **Settings** in the top-right of the screen.
-
-    ![](./media/image89.png)
-
-4.  Select the **Generative AI** tab.
-   
-    -    Select **Generative** under **How should your copilot decide how to respond**.
-    -    Select **Medium** for **Copilot content moderation**.
-    -    Select **Save**.
-    -    
-    ![](./media/image90.png)
-
-5.  **Close** the Settings pane.
-
-    ![](./media/image91.png)
-
-### Task 2: Enable knowledge
-
-1.  Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
-
-2.  Verify that general knowledge is enabled in the Knowledge section.
-
-    ![](./media/image92.png)
-
-### Task 3: Add knowledge from a website
-
-1.  Select **+ Add knowledge** under the **Knowledge** section in the
-    Overview page of the copilot.
-
-    ![](./media/image93.png)
-
-2.  Select the **Public websites** tile.
-
-    ![](./media/image94.png)
-
-3.  Enter the public website
-    link +++https://create.microsoft.com/templates/real-estate+++.
-    Select **Add**.
-
-    ![](./media/image95.png)
-
-4.  Give the name +++Real Estate Website+++ in the Name field and then
-    select **Add**.
-
-    ![](./media/image96.png)
-
-### Task 4: Add knowledge from Dataverse
-
-1.  Select the **Knowledge** tab. Select **+ Add knowledge**.
-
-    ![](./media/image97.png)
-
-2.  Select **Dataverse**.
-
-    ![](./media/image98.png)
-
-3.  Select the **Real Estate Property** table and select **Next**.
-
-    ![](./media/image99.png)
-
-4.  Preview the data in the next screen and then select **Next**.
-
-    ![](./media/image100.png)
-
-5.  Review the details and click on **Add** in the Review and finish
-    screen.
-
-    ![](./media/image101.png)
-
-### Task 5: Add knowledge from files
-
-1.  From the **Knowledge** tab, select **+ Add knowledge**.
-
-    ![](./media/image102.png)
-
-2.  Select **Files**.
-
-    ![](./media/image103.png)
-
-3.  Select Click to browse and browse to locate the file
-    **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
-
-    ![](./media/image104.png)
-
-4.  Select **Add**.
-
-    ![](./media/image105.png)
-
-### Task 6: Use generative answers in System fallback topic
-
-1.  Select the **Topics** tab and select **System**. Select
-    the **Fallback** topic.
-
-    ![](./media/image106.png)
-
-2.  Select the **three dots** in the message node and select **Delete**.
-
-    ![](./media/image107.png)
-
-3.  Select the **+** icon under the Condition node, select **Advanced**,
-    and select **Generative answers**.
-
-    ![](./media/image108.png)
-
-4.  Select the **Input** field, select **System** in the **Select a
-    variable** pane. Select **Activity.Text** from it.
-
-    ![](./media/image109.png)
-
-5.  Select **Edit** under **Data sources**.
-
-    ![](./media/image110.png)
-
-6.  Select **Search only selected sources**.
-
-    ![](./media/image111.png)
-
-7.  Select the **SummitRealtyCaseStudy** document. Deselect **Allow the
-    AI to use its own general knowledge**.
-    Select **Medium** for **Content moderation**.
-
-    ![](./media/image112.png)
-
-8.  Select **Save**.
-
-    ![](./media/image113.png)
-
-### Task 7: Configure Security
-
-1.  Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
-
-2.  From the copilot page top menu, click on **Channels** (If the
-    Channels is not visible, click on the +1 to view the **Channels**
-    option)
-
-    ![](./media/image114.png)
-
-3.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
-
-    ![](./media/image115.png)
-
-4.  On the Dynamics 365 Customer Service page, click on **Disconnect**.
-
-    ![](./media/image116.png)
-
-5.  Once done, **close** the Dynamics 365 Customer Service pane.
-
-    ![](./media/image117.png)
-
-6.  Select **Settings** in the top-right of the screen.
-
-    ![](./media/image118.png)
-
-7.  Select the **Security** tab and then select
-    the **Authentication** tile.
-
-    ![](./media/image119.png)
-
-8.  Select Authenticate with Microsoft **(Entra ID authentication in
-    Teams and Power App)**.
-
-9.  Select **Save**.
-
-    ![](./media/image120.png)
-
-10. Select **Save**.
-
-    ![](./media/image121.png)
-
-11. Select **Close**.
-
-    ![](./media/image122.png)
-
-12. Select your copilot in the Copilot pane on the left-hand side of the
-    screen to return to the **Overview** tab.
-
-13. Select **Publish** and select **Publish**.
-
-    ![](./media/image123.png)
-
-### Task 8: Test the copilot's knowledge
-
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel.
-
-    ![](./media/image124.png
-    )
-
-3.  Select the **three dots** at the top of the testing panel in the
-    top-right of the screen.
-
-4.  Select **Track between topics**.
-
-5.  Select the **Start a new conversation** icon at the top of the
-    testing panel.
-
-6.  Explore the copilot and see how it uses the different knowledge
-    sources.
-
-**Summary:**
-
-In this lab, we have learnt to
-
-- Use entities and slot filling
-
-- Implement Flow actions
-
-- Add knowledge to the copilot
-
-- Enable Generative AI
+在本实验中，我们学习了如何从 Copilot Studio 创建、发布和测试自主代理。
