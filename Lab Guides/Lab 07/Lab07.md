@@ -1,105 +1,244 @@
-# **Lab 07 – Extending Microsoft Copilot with prompt actions (preview)**
+# **实验 12\_ 将消息从 Copilot（经典）发送到 Teams 频道**
 
-**Lab duration** – 20 minutes
+**实验室持续时间** – 30 分钟
 
-**Objective**
+**目的：**
 
-AI actions can be used to extend Microsoft Copilot, or used within a
-custom copilot as a plugin action. In this lab, we will learn about
-creating Prompt actions.
+在本实验中，我们将通过调用流将消息从 Copilot 发送到 Teams 频道。
 
-The action will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **练习 1：在 Microsoft Teams 中添加频道和团队**
 
-## **Exercise 1: Navigate to the Add a prompt action wizard**
+1.  从 VM 打开 **Microsoft
+    Teams**，并使用租户凭据登录（如果已关闭）。选择 **Teams** 选项。
 
-1.  Sign into Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your admin tenant
-    credentials.
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-2.  Select **Library** on the side navigation pane.
+2.  从 Teams 中，选择 **More options** ，然后选择 **+ -\> Create team**.
 
-    ![](./media/image1.png)
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-4.  Select **+ Add an item**. You're prompted to select a Microsoft
-    Copilot to extend.
+3.  将团队命名为 +++**HR Team**+++，将频道命名为 +++**HR
+    Experts**+++，然后选择 **Create**。
 
-    ![](./media/image2.png)
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-5.  Select **Copilot for Microsoft 365**.
+4.  在“Add members to HR Team”窗口中选择 **Skip**。
 
-    ![](./media/image3.png)
+![A screenshot of a computer Description automatically
+generated](./media/image4.png)
 
-6.  A **New action** menu appears. Select **Prompt**.
+5.  在“Add members to the HR Experts channel”窗口中选择 **Skip**。
 
-    ![](./media/image4.png)
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-7.  The **Add a prompt action** wizard opens.
+## **练习 2：通过升级到 HR 专家来增强主题以处理复杂查询**
 
-## **Exercise 2: Generate content or extract insights with AI Builder dynamic prompts**
+1.  在 Teams 应用中，选择 Copilot Studio 应用（Power Virtual
+    Agents），选择 **Copilots** 选项卡并打开 **HR Support Copilot**。
 
-1.  Provide the below details and click on **Next**.
+> ![](./media/image6.png)
+>
+> **注意：**如果未找到 Copilot Studio 快捷方式，请在“应用程序”下搜索
+> **Copilot Studio/Power Virtual Agents**，然后选择 **Open**）
+>
+> ![](./media/image7.png)
 
-    - Name - +++**Dynamic prompt**+++
-    
-    - Description - +++**Dynamic prompt to summarize text**+++
+2.  从左侧窗格中选择 **Topics** ，然后返回到您之前创建的主题 **(Employee
+    time off)** 并转到创作区域。
 
-    ![](./media/image5.png)
+> ![A screenshot of a chat Description automatically
+> generated](./media/image8.png)
 
-2.  Select **Summarize text**.
+3.  在 **Ask a question** 节点中，添加名为 **Extended leave** 的选项。
 
-    ![](./media/image6.png)
+> ![A screenshot of a computer Description automatically
+> generated](./media/image9.png)
 
-3.  It will add a prompt with a dynamic value **text**.
+4.  在 Extended leave 的 Condition
+    节点下，添加一个问题节点，要求提供问题的描述，并添加文本 +++**How
+    would you would describe the issue？***+++*
 
-    ![](./media/image7.png)
+> ![](./media/image10.png)
 
-4.  Click on the **Input** under Prompt Settings add the below content
-    in the **Sample data**.
-	
-    ```
-    Meet comfortably and confidently with customizable meeting views
-    The meeting stage, or gallery, is at the core of the virtual meeting experience and can either hinder or enhance meeting efficiency depending on your needs. We’re excited to share how we’re evolving the default gallery experience in Teams meetings to give you a simpler, more predictable meeting presence—while enabling more controls that let you personalize the view to suit your preferences.
-    First, let’s look at the new default gallery experience that will be applicable to all. The new gallery will place everyone in tiles of equal size (16:9 ratio) whether their video is turned on or off. Additionally, the new default gallery layout will be more consistent and predictable for all meetings, regardless of size and content shared.
-    And when a Teams Room joins the meeting, the video of the room automatically enlarges, bridging the gap between remote and in-room participants. Remote attendees enjoy a clearer view and better connection, easily spotting who is speaking. Want a custom view? Simply tweak the tile size to your preference from the more options (...) menu by hovering on the room name. It's seamless, inclusive, and ensures everyone can be seen, no matter where they are.
-    Next, let’s look at the controls that help you customize every meeting view to suit your needs.
-    
-    While the default gallery size for meetings will be 16 participants, you can customize the number of participants visible on your screen to best fit your preference. You can choose from 4, 9, 16, and 49 participants visible on the screen for gallery size.
-    
-    There are still a few default configurations that AI will optimize for to improve engagement and efficiency. For virtual participants, these are prioritizing those that have a raised hand and prioritizing the active speaker, enhancing their visibility so comments are not missed.
-    ```
+5.  在 Identity 下选择 **User's entire response，**并将描述保存在名为
+    +++**Description**+++ 的变量中。
 
-    ![](./media/image8.png)
+> ![A screenshot of a computer screen Description automatically
+> generated](./media/image11.png)
 
-5.  Click on **Test prompt**.
+6.  选择 **Save**。
 
-    ![](./media/image9.png)
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-6.  Notice that the Prompt response, summarizing the text is generated.
+7.  在问题下添加一个节点，然后选择 **Call an action**。 选择 **Create a
+    flow**，以便在 Teams 的 Copilot Studio 中启动 Power Automate。
 
-    ![](./media/image10.png)
+![A screenshot of a computer Description automatically
+generated](./media/image13.png)
 
-7.  Click on **Save custom prompt**.
+8.  选择 **Power Virtual Agents Flow Template** 选项。
 
-    ![](./media/image11.png)
+![](./media/image14.png)
 
-8.  Click on **Next**.
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-    ![](./media/image12.png)
+9.  通过单击第一步中的 **+ Add an input** 来添加 **Text** 输入字段。将
+    Input by **Description** 替换为 Input。
 
-9.  Click on **Publish.**
+![A computer screen shot of a computer error Description automatically
+generated](./media/image16.png)
 
-    ![](./media/image13.png)
+10. 插入 **new step** ，然后选择 **Add an action**。
 
-10. Once published, click on **Go to details page** to view the details.
+![](./media/image17.png)
 
-    ![](./media/image14.png)
+11. 在 **Choose an operation**下选择 **Microsoft Teams**。
 
-Your prompt action is now published to **Copilot for Microsoft 365**. It
-will show up in copilot experiences only if you have a valid Copilot
-license.
+![](./media/image18.png)
 
-**Summary:**
+12. 选择 **Post message in a chat or channel**。
 
-In this lab, we have learnt to create and publish connector actions from
-the Copilot Studio.
+![](./media/image19.png)
+
+13. 提供以下详细信息:
+
+- Post as – **User**
+
+- Post in – **Channel**
+
+- Team – **HR Team**
+
+- Channel – **HR Experts**
+
+- Message **– Description** from **Dynamic Content**
+
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
+
+14. 将流重命名为 +++**Send a message to HR team**+++，然后单击
+    **Save**。
+
+> ![A screenshot of a computer Description automatically
+> generated](./media/image21.png)
+
+15. 单击 **Close** 关闭 Power Automate 并返回到 Authoring （创作）
+    画布。
+
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
+
+16. 从 Authoring 画布中，添加一个节点 – **call an action** \> **Send a
+    message to HR team**.
+
+![A screenshot of a computer Description automatically
+generated](./media/image23.png)
+
+17. 将输入添加为 **Description**。
+
+![A screenshot of a computer Description automatically
+generated](./media/image24.png)
+
+18. 添加消息节点，其中包含消息 +++**We notify the expert。They’ll reach
+    out shortly**+++。
+
+![A screenshot of a computer Description automatically
+generated](./media/image25.png)
+
+19. 结束对话 \> 结束调查。
+
+![A screenshot of a chat Description automatically
+generated](./media/image26.png)
+
+20. 单击 **Save** 以保存主题。
+
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
+
+21. 获取 **Topic saved** 的成功消息。
+
+![A screenshot of a computer Description automatically
+generated](./media/image28.png)
+
+## **练习 3：测试您的 chatbot**
+
+1.  从左侧窗格中选择 Test your chatbot。
+
+![A screenshot of a computer Description automatically
+generated](./media/image29.png)
+
+2.  发送消息 +++ **I need help with time off** +++，然后选择 延长休假
+    chatbot。
+
+![A screenshot of a chat Description automatically
+generated](./media/image30.png)
+
+3.  描述您延长休假的原因。在这里，我们给出了 +++ **I need extended leave
+    of one month for travelling** +++。
+
+![A screenshot of a chat Description automatically
+generated](./media/image31.png)
+
+4.  Bot 回复“We notified an expert.....”消息。
+
+![A screenshot of a chatbot Description automatically
+generated](./media/image32.png)
+
+> ![A screenshot of a chat Description automatically
+> generated](./media/image33.png)
+
+## **练习 4：在 Teams 中检查消息。**
+
+1.  单击 MS Teams app 左侧菜单中的 Teams。
+
+![](./media/image34.png)
+
+2.  选择 **HR Team** 团队下的 **HR Experts** 频道
+    。请注意，从用户到机器人的消息已在此处发送。
+
+![A screenshot of a computer Description automatically
+generated](./media/image35.png)
+
+## **练习 5：发布 Copilot – Teams**
+
+1.  返回 Microsoft Copilot Studio 应用程序。选择聊天机器人 **HR Support
+    Copilot**。
+
+2.  从左侧窗格中选择 Publish。
+
+![A screenshot of a chat Description automatically
+generated](./media/image36.png)
+
+3.  单击 **Publish**。
+
+![](./media/image37.png)
+
+4.  在 **Publish latest content？**中选择发布
+
+![A close-up of a computer screen Description automatically
+generated](./media/image38.png)
+
+5.  获得成功消息，如下面的屏幕截图所示。单击 **Availability options**。
+
+![A screenshot of a computer Description automatically
+generated](./media/image39.png)
+
+6.  **Add to** **Contoso** 选项将机器人添加到特定团队。
+
+7.  **Show to my team mates and shared users** 使 bot 显示在 Built by
+    colleagues 部分下。
+
+8.  **Show to everyone in the organization** 向管理员提交请求，以获取
+    **Built by org** 部分下列出的机器人。
+
+![A screenshot of a computer Description automatically
+generated](./media/image40.png)
+
+**总结:**
+
+在本实验中，我们学习了从机器人向 Teams 渠道发布消息。
