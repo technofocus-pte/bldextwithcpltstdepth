@@ -1,246 +1,297 @@
-# Lab 09 - Implement prompt action for a quiz generation agent’s topic
+# 실습 09 - 퀴즈 생성 에이전트 주제에 대한 프롬프트 액션 구현
 
-## Exercise 1: Use natural language to create an agent
+## 연습 1: 자연어로 에이전트 생성하기
 
-1.  Open a browser and login to +++https://copilotstudio.microsoft.com/+++ and login with the
-    credentials from the Resources tab if you are not in that page
-    already.
+1.  브라우저를 열고 +++https://copilotstudio.microsoft.com/+++에
+    로그인하세요. Resources 탭에서 제공된 자격 증명을 사용하여
+    로그인하세요.
 
-2.  If you are already on the Copilot Studio page, click on **Home** to
-    go to the Home page.
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-    ![](./media/image2.png)
+2.  이미 Copilot Studio 페이지에 있다면, **Home**을 클릭하여 홈 페이지로
+    이동하세요.
 
-3.  On the Home page, in the text area under Describe your agent to
-    create it, enter +++I want you to be a question and answering assistant that can answer common questions from users using the content of a website and a SharePoint site+++ and click on **Send**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image2.png)
 
-    ![](./media/image3.png)
+3.  홈 페이지에서 Describe your agent to create it 텍스트 입력란에서
+    +++I want you to be a question and answering assistant that can
+    answer common questions from users using the content of a website+++
+    라고 입력하고 **Send**를 클릭하세요.
 
-4.  It might suggest a name for the agent. Either accept it or provide
-    your own name.
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-5.  Give other details regarding the functions of the agent like below.
+4.  에이전트의 이름을 제안할 수 있습니다. 제안을 수락하거나 원하는
+    이름을 제공할 수 있습니다.
 
-    +++help answer common product and support questions using the content of a website, and help answer HR questions from an uploaded file+++
+5.  에이전트의 기능에 대한 추가 정보를 아래와 같이 입력하세요.
 
-6.  Provide +++www.microsoft.com+++ for the website that will be used a
-    sknowledge source.
++++help answer common product and support questions using the content of
+a website, and help answer HR questions from an uploaded file+++
 
-    ![](./media/image4.png)
+6.  지식 소스로 사용할 웹사이트로 +++www.microsoft.com+++ 을 제공하세요.
 
-7.  Once done with giving instructions, click on **Create** to create
-    your agent.
+![A screenshot of a chat Description automatically
+generated](./media/image4.png)
 
-    ![](./media/image5.png)
+7.  지시 사항을 모두 입력한 후, **Create** 를 클릭하여 에이전트를
+    생성하세요.
 
-8.  The agent gets created and opens up with the details. Scroll through
-    the page to understand that the agent has been created with the
-    instructions you have provided for it.
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image5.png)
 
-    ![](./media/image6.png)
+8.  에이전트가 생성되면, 설정된 내용과 함께 열립니다. 페이지를
+    스크롤하여 에이전트가 제대로 생성되었는지 확인하세요.
 
-    ![](./media/image7.png)
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-9.  Click on **Test** icon to Test the agent. Enter +++What is Copilot
-    Studio+++ and hit **Enter**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image7.png)
 
-    ![](./media/image8.png)
+9.  **Test** 아이콘을 클릭하여 에이전트를 테스트하세요. +++What is
+    Copilot Studio+++를 입력하고 **Enter** 키를 누르세요.
 
-10. Enter +++What is the latest xbox model?+++
+![A screenshot of a phone Description automatically
+generated](./media/image8.png)
 
-    ![](./media/image9.png)
+10. +++What is the latest xbox model?+++를 입력하세요.
 
-For both the above steps, you will get an answer from the agent which
-will be a generic one since the agent will be using its general
-knowledge.
+![A screenshot of a chat Description automatically
+generated](./media/image9.png)
 
-## Exercise 2: Create a Prompt action for a Topic for generative answers
+위 두 단계에 대해 에이전트는 일반적인 지식을 바탕으로 제공되는 답변을
+받을 수 있습니다.
 
-Actions can be used to extend the capabilities of agents. You can add
-multiple types of actions to your agents in Microsoft Copilot Studio:
+## **연습 2: 생성적인(generative) 답변을 위한 주제(Topic)에 프롬프트 액션 생성**
 
-- **Prebuilt connector action**, which use Power Platform connectors to
-  access data from other systems, such as popular enterprise products
-  like Salesforce, Zendesk, MailChimp, and GitHub.
+액션은 에이전트의 기능을 확장하는 데 사용될 수 있습니다. Microsoft
+Copilot Studio에서 다양한 에이전트에 유형의 액션을 추가할 수 있습니다:
 
-- **Custom connector action**, where a connector can be built to access
-  data from public or private APIs.
+- **미리 구축된 커넥터 액션:** Power Platform 커넥터를 사용하여
+  Salesforce, Zendesk, MailChimp, GitHub과 같은 인기 있는 기업 제품의
+  데이터를 액세스합니다.
 
-- **Power Automate cloud flow**, which use Power Automate cloud flows to
-  perform actions, retrieve and work with data.
+- **사용자 정의 커넥터 액션:** 공개 또는 비공개 API에서 데이터를
+  액세스하기 위해 커넥터를 구축할 수 있습니다.
 
-- **AI Builder prompts**, which use AI Builder and natural language
-  understanding to target the specific scenarios and workflows within
-  your business.
+- **Power Automate 클라우드 플로우:** Power Automate 클라우드 플로우를
+  사용하여 작업을 수행하고, 데이터를 검색하고 처리합니다.
 
-- **Bot Framework skill**, which use the skill manifest that outlines
-  the actions the skill can perform, including its input and output
-  parameters, the skill's endpoints, and dispatch models for the skill.
+- **AI Builder 프롬프트:** AI Builder와 자연어 이해를 사용하여 비즈니스
+  내의 특정 시나리오 및 워크플로우를 처리합니다.
 
-In this exercise, you will learn how to add a prompt to action to a
-topic node
+- **Bot Framework skill**: Skill manifest를 사용하여 스킬이 수행할 수
+  있는 작업, 입력 및 출력 매개변수, 스킬의 엔드포인트 및 디스패치 모델을
+  정의합니다.
 
-1.  In your agent select the **Topics** tab, select **+ Add a
-    topic** and select **From blank**.
+이번 실습에서는 주제(topic) 노드에 프롬프트에서 액션으로(prompt to
+action)를 추가하는 방법을 배우게 됩니다.
 
-    ![](./media/image10.png)
+1.  에이전트에서 **Topics** 탭을 선택하고, **+ Add a topic**을 클릭한 후
+    **From blank**를 선택하세요.
 
-2.  Enter the name for the Topic as +++Generate questions for a quiz+++.
-    Select the **Edit** hyperlink under Phrases in the trigger. A
-    minimum of 5 trigger phrases needs to be entered
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image10.png)
 
-    Add the below phrases one by one. Add each phrase and select + option to
-add the trigger.
+2.  Topic 이름을 +++Generate questions for a quiz+++로 입력하세요.
+    트리거 아래의 **Edit** Edit 하이퍼링크를 선택한 후, 최소 5개의
+    트리거 문구를 입력해야 합니다.
 
-    +++create a number of questions for a quiz based on a topic and format the quiz based on the instruction provided+++
+아래 문구들을 하나씩 추가하세요. 각 문구를 추가한 후, + 옵션을 선택하여
+트리거를 추가하세요.
 
-    +++creates a quiz with a number of questions based on the topic provided and formats the quiz+++
+> +++create a number of questions for a quiz based on a topic and format
+> the quiz based on the instruction provided+++
+>
+> +++creates a quiz with a number of questions based on the topic
+> provided and formats the quiz+++
+>
+> +++generate a quiz with a number of questions using the topic provide
+> and format the questions+++
+>
+> +++creates questions for a quiz on a specific topic and format+++
+>
+> +++format a quiz by a number of questions based on the topic
+> provided+++
 
-    +++generate a quiz with a number of questions using the topic provide and format the questions+++
+오른쪽 위에서 **Save**을 선택하여 주제를 저장하세요.
 
-    +++creates questions for a quiz on a specific topic and format+++
+> ![A screenshot of a computer Description automatically
+> generated](./media/image11.png)
 
-    +++format a quiz by a number of questions based on the topic provided+++
+3.  트리거 노드 아래에 있는 + 기호를 클릭하세요. Add an action 옵션을
+    선택한 후, 해당 옵션 아래에서 New prompt(default AI model) 옵션을
+    선택하세요.
 
-    Select **Save** on the top right to save the topic.
+![A screenshot of a quiz AI-generated content may be
+incorrect.](./media/image12.png)
 
-    ![](./media/image11.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image13.png)
 
-3.  Click on the **+** symbol below the Trigger node. Select the **Add an action** option and select **New prompt (default AI model)** option under that.
+4.  프롬프트 대화 상자가 나타나며, 프롬프트를 만드는 방법을 안내하는
+    플라이아웃이 표시될 수 있습니다. **Next**를 선택하여 가이드를 계속
+    진행하세요.
 
-    ![](./media/img34.png)
+5.  퀴즈용 질문을 생성하는 프롬프트를 만들겠습니다. 프롬프트 이름을
+    +++Quiz Generator+++로 입력하세요.
 
-    ![](./media/img35.png)
+6.  아래 내용을 Prompt 입력란에 붙여넣으세요.
 
-5.  The Prompt dialog will appear, and you may see a flyout appear that
-    will guide you on how to create your prompt. Select **Next** to go
-    through the guide.
++++Generate a quiz with \[number\] questions to cover this \[topic\].
+Decide on the format, such as multiple-choice questions or true/false
+statements. Use this \[format\]. Designate the correct answer within
+parentheses.+++
 
-6.  We'll create prompt that will generate questions for a quiz. Enter
-    the name for the prompt as +++Quiz Generator+++.
+**Input** 섹션을 확장하고 **+ Add input**를 선택하세요.
 
-7.  Paste the below content in the Prompt field.
+**참고:** 입력(Input) 섹션이 보이지 않는 경우, 아래로 스크롤하여
+확인하세요.
 
-    +++Generate a quiz with [number] questions to cover this [topic]. Decide on the format, such as multiple-choice questions or true/false statements. Use this [format]. Designate the correct answer within parentheses.+++
+![A screenshot of a computer Description automatically
+generated](./media/image14.png)
 
-    Expand the **Input** section and select **+ Add input**.
+7.  **Add input** 옵션에서 **Text**를 선택하세요.
 
-    ![](./media/image13.png)
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-8.  Select **Text** under the **Add input** option.
+8.  이름란에 +++number+++를 입력하고, 샘플 데이터로 +++5+++를
+    입력하세요. **+ Add input** -\> **Text**를 선택하여 다음 입력 항목을
+    추가하세요.
 
-    ![](./media/image14.png)
+![A screenshot of a computer Description automatically
+generated](./media/image16.png)
 
-9.  Enter the name as +++number+++ and enter sample data such as
-    +++5+++. Select **+ Add input** -\> **Text** to add the next input.
+9.  이름을 +++topic+++로 입력하고 샘플 데이터(예: +++Science+++)를
+    입력한 다음, + Add input -\> Text를 선택하여 다음 입력을 추가하세요.
 
-    ![](./media/image15.png)
+![A screenshot of a computer Description automatically
+generated](./media/image17.png)
 
-10.  Enter the name as +++topic+++ and enter sample data such as
-    +++Science+++ and then select **+ Add input** -\> **Text** to add
-    the next input.
+10. 이름을 +++format+++로 입력하고 샘플 데이터(예: +++bullet
+    points+++)를 입력하세요.
 
-    ![](./media/image16.png)
+![A screenshot of a computer Description automatically
+generated](./media/image18.png)
 
-11. Enter the name as +++format+++ and enter sample data such as
-    +++bullet points+++
+11. 이제 입력 이름과 예시 데이터를 모두 추가했으므로, 다음으로 입력값을
+    프롬프트에 삽입해야 합니다. Prompt 필드에서 **\[number\]** 부분을
+    강조 표시한 뒤, + Add를 선택하고 **In your prompt** 탭 아래에서
+    **number**를 선택하세요. 이제 숫자 입력이 프롬프트에 입력으로
+    추가되었습니다.
 
-    ![](./media/image17.png)
+![A screenshot of a computer Description automatically
+generated](./media/image19.png)
 
-12. Now that we have added the input names and example data. Next, the
-    inputs need to be inserted into the prompt. In the Prompt, highlight **[number]** and select **+ Add** and select **number** under **In your prompt** tab.  The input of number has now been added to the prompt as an input.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image20.png)
 
-    ![](./media/image18.png)
+12. 나머지 입력값들에 대해서도 동일한 단계를 반복하세요.
 
-    ![](./media/img36.png)
+13. 모든 입력값을 프롬프트에 추가한 후, **Test prompt**를 클릭하고 응답
+    결과를 확인하세요.
 
-13. Repeat the same steps for the remaining inputs.
+![A screenshot of a quiz generator Description automatically
+generated](./media/image21.png)
 
-14. Once all the inputs are added to the prompt, click on **Test
-    prompt** and observe the prompt response.
+14. **Save** 를 선택하여 프롬프트를 저장하세요.
 
-    ![](./media/image20.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
 
-15. Select **Save** to save the prompt.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image23.png)
 
-    ![](./media/img37.png)
+15. 이제 프롬프트 액션 노드가 해당 주제의 작성 캔버스(Authoring
+    canvas)에 표시됩니다. 다음 단계로, 에이전트가 입력 값을 자동으로
+    채울 수 있도록 입력 매개변수의 값을 정의해야 합니다. \> 아이콘을
+    선택하세요.
 
-    ![](./media/img38.png)
-    
-17. The prompt action node will now appear in the authoring canvas of
-    the Topic. Next, the values of the input parameter need to be
-    defined in order for the agent to populate them. Select
-    the **\>** icon
+![A screenshot of a quiz Description automatically
+generated](./media/image24.png)
 
-    ![](./media/image22.png)
+16. **System** 탭을 선택하고, **Activity.Text**를 선택하여 액션이
+    사용자의 전체 응답을 입력 값으로 사용하고 형식 값을 식별하도록
+    설정하세요.
 
-18. Select the **System** tab and select the **Acivity.Text** as the
-    input value for the action to use the user’s entire response and
-    identify the format value.
+![A screenshot of a computer Description automatically
+generated](./media/image25.png)
 
-    ![](./media/image23.png)
+17. 프롬프트 액션의 나머지 입력 매개변수에 대해서도 동일한 작업을
+    반복하세요.
 
-19. Repeat the same for the remaining input parameters of the prompt
-    action.
+![A screenshot of a quiz Description automatically
+generated](./media/image26.png)
 
-    ![](./media/image24.png)
+18. 다음으로, 프롬프트 액션의 출력 변수를 정의해야 합니다. 이렇게 해야
+    응답을 주제의 다운스트림으로 참조될 수 있습니다. \> 아이콘을
+    선택하고 Custom 탭에서 Create new를 선택한 후 변수 이름을
+    +++**VarQuizQuestionsResponse+++**로 지정하세요.
 
-20. Next, we need to define the output variable of the prompt action.
-    This is so that the response can be referenced downstream in the
-    topic. Select the **\>** icon and in the **Custom** tab,
-    select **Create new** and name the variable as +++VarQuizQuestionsResponse+++
+![A screenshot of a quiz AI-generated content may be
+incorrect.](./media/image27.png)
 
-    ![](./media/image25.png)
+> ![A screenshot of a browser window Description automatically
+> generated](./media/image28.png)
 
-    ![](./media/image26.png)
+19. Prompt action 아래에서 **+** 아이콘을 선택하여 새 노드를 추가하고
+    **Send a message**를 선택하세요. **{x}** 변수 아이콘을 선택하세요.
 
-21. Below the Prompt action, select the **+** icon to add a new node and
-    select **Send a message**. Select the **{x}** variable icon.
+![A screenshot of a quiz Description automatically
+generated](./media/image29.png)
 
-    ![](./media/image27.png)
+20. **VarQuizQuestionsResponse.text** 변수를 선택하세요. 이렇게 하면
+    프롬프트 액션 응답의 텍스트 속성이 메시지 전송 노드에 추가됩니다.
+    **Save**을 선택하여 주제를 저장하세요.
 
-22. Select the variable **VarQuizQuestionsResponse.text**. This will add
-    the text property of the prompt action response to the send a
-    message node. Select **Save** to save your topic.
+![A screenshot of a computer Description automatically
+generated](./media/image30.png)
 
-    ![](./media/image28.png)
+21. 다음으로 주제 정보를 업데이트해야 합니다. 이는 Generative 모드가
+    활성화된 상태에서 사용자의 의도와 주제를 연결하는 데 사용됩니다.
+    **Details**를 선택하고 다음 정보를 입력하세요**.**
 
-23. The Topic details needs to be updated next which will be used by
-    your agent to associate the topic with the user's intent when
-    Generative mode is enabled. Select **Details** and enter the following details.
+- Display name - +++ generate questions for a quiz+++
 
-    - Display name - +++generate questions for a quiz+++
+- Description - +++ This topic creates questions for a quiz based on the
+  number of questions, the topic and format provided by the user+++
 
-    - Description - +++This topic creates questions for a quiz based on the number of questions, the topic and format provided by the user+++
+**Save**을 선택하여 주제를 저장하세요.
 
-    select **Save** to save your topic.
+> ![A screenshot of a quiz Description automatically
+> generated](./media/image31.png)
 
-    ![](./media/image29.png)
+22. 이제 **Generative mode** 설정을 활성화해야 합니다. 이렇게 하면
+    에이전트가 프롬프트 액션이 포함된 주제를 호출할 수 있습니다.
+    에이전트의 **Settings**을 선택하세요.
 
-24. Now, the **Generative mode** setting needs to be enabled for the
-    agent to call the topic with the prompt action. Select **Settings**
-    for your agent.
+![A screenshot of a computer Description automatically
+generated](./media/image32.png)
 
-    ![](./media/image30.png)
+23. **Generative AI** 설정을 선택하고 **Generate (preview)**를 선택한
+    후, **Save** 버튼을 클릭하세요.
 
-25. Select the **Generative AI** setting and select **Generate
-    (preview)** followed by selecting **Save**.
+![A screenshot of a computer Description automatically
+generated](./media/image33.png)
 
-    ![](./media/image31.png)
+24. 이제 에이전트를 테스트할 준비가 되었습니다. **Settings** 창을
+    닫고(**close**), 테스트 창에서 **refresh** 아이콘을 선택하세요. 그런
+    다음 다음 질문을 입력하고 출력을 확인하세요**.**
 
-26. Now we are ready to test the agent. **Close** the **Settings** pane. In the test pane, select
-    the **refresh** icon. Then enter the following question and observe
-    the output.
-
-    +++Create 5 questions for a quiz based on geography and format the quiz
++++Create 5 questions for a quiz based on geography and format the quiz
 as multi choice+++
 
-    ![](./media/image32.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image34.png)
 
-    ![](./media/image33.png)
+> ![A screenshot of a cell phone Description automatically
+> generated](./media/image35.png)
 
-Summary
+요약
 
-In this lab, we have learnt how to create a prompt action for a topic by
-creating a custom prompt and test it.
-
+이번 실습에서는 사용자 지정 프롬프트를 생성하고 이를 테스트하여 토픽에
+대한 프롬프트 액션을 만드는 방법을 배웠습니다.
