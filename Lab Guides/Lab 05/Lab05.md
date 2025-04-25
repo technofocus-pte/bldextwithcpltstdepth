@@ -1,451 +1,519 @@
-# Lab 05 - Integrate an agent with the Dynamics 365 Customer Service app and implement automated case escalation to the live agent
+# **실습 05 - 에이전트를 Dynamics 365 Customer Service 앱과 통합하고, 실시간 에이전트에게 자동으로 케이스를 이관(escalation)하는 기능 구현하기**
 
-**Objective:**
+## 연습 1: Dynamics 365 Customer Service workspace워크스페이스 구성
 
-This lab details the steps to escalate a conversation to a live agent from the agents.
+### 작업 1: Omnichannel Power Virtual Agent 확장 구성
 
->[!Alert] **Important:** This lab can be executed only if the Dynamics 365 trial has been enabled in Lab 03 of Day 1
+1.  아래 링크를 열고, Omnichannel Power Virtual Agent Extension
+    페이지에서 **Get it now** 버튼을 클릭하세요:
+    +++<https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com>+++
 
-## Exercise 1: Configure the Dynamics 365 Customer Service workspace
+![A screenshot of a computer Description automatically
+generated](./media/image1.png)
 
-### Task 1: Configure Omnichannel Power Virtual Agent Extension
+![A screenshot of a computer Description automatically
+generated](./media/image2.png)
 
-1.  Open the link,
-    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++
-    and click on **Get it now** in the Omnichannel Power Virtual Agent Extension page.
+![A screenshot of a computer Description automatically
+generated](./media/image3.png)
 
-    ![](./media/image1.png)
+2.  **Select an environment**에서 **CustomerService Trial**을 선택하고,
+    체크박스를 선택한 후 **Install**을 클릭하세요.
 
-2. Sign in with the tenant credentials from the **Resources** tab.
-   
-    ![](./media/image2.png)
+![A screenshot of a computer Description automatically
+generated](./media/image4.png)
 
-3. Click on **Get it now**.
+Dynamics 365 apps 페이지에서 **Update available**이라고 표시된 항목을
+클릭한 후, 약관에 동의하는 **check box**를 선택하고 **Update** 버튼을
+클릭하세요. **Update available** 상태(Status)인 **모든** 항목에 대해 이
+작업을 반복해야 합니다.
 
-   ![](./media/image3.png)
+![A screenshot of a computer Description automatically
+generated](./media/image5.png)
 
-2.  Select the **CustomerService Trial** under **Select an
-    environment**, select the check boxes and click on **Install**.
+![A screenshot of a computer Description automatically
+generated](./media/image6.png)
 
-    ![](./media/image4.png)
+### 작업 2: Power Platform 관리 센터에서 검색 설정 구성
 
-3.  In the Dynamics 365 apps page, click on the entries that shows
-    **Update available**, **select** the **check box** to agree to the
-    terms and click on **Update**.
+1.  테넌트 정보를 사용해
+    +++<https://admin.powerplatform.microsoft.com/>+++에 로그인하세요.
+    **Environments** -\> **CustomerService Trial**를 선택하세요.
 
-    Make sure to do this for **all** the entries with **Update available** as the Status.
+![A screenshot of a computer Description automatically
+generated](./media/image7.png)
 
-    ![](./media/image5.png)
+2.  상단 창에서 **Resource** 옆의 드롭다운을 선택한 후, **Dynamics 365
+    apps**를 선택하세요.
 
-    ![](./media/image6.png)
+![A screenshot of a computer Description automatically
+generated](./media/image8.png)
 
-### Task 2: Configure search settings in the Power Platform admin center
+3.  **Omnichannel for Customer Service**가 설치(**installed**)되어
+    있는지 확인하세요.
 
-1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
-    your tenant details. Select **Environments** -\> **CustomerService
-    Trial**.
+![A screenshot of a computer Description automatically
+generated](./media/image9.png)
 
-    ![](./media/image7.png)
+4.  관리자 센터에서 **Environments -\> CustomerService** **Trial**
+    페이지로 돌아가서 상단 메뉴에서 **Settings**를 선택하세요.
 
-2.  Select the drop down next to **Resource** (in the top pane) and
-    select **Dynamics 365 apps**.
+> ![A screenshot of a computer Description automatically
+> generated](./media/image10.png)
 
-    ![](./media/image8.png)
+5.  **Product** -\> **Features**를 선택하세요.
 
-3.  Make sure that **Omnichannel for Customer Service** is
-    **Installed**.
+![A screenshot of a computer Description automatically
+generated](./media/image11.png)
 
-    ![](./media/image9.png)
+6.  **Dataverse Search** 및 **Single table search** 옵션을 **ON**으로
+    전환하세요.
 
-4.  Navigate back to the **Environments -\> CustomerService** **Trial**
-    page in the admin center. Select **Settings** from the top pane.
+![A screenshot of a computer Description automatically
+generated](./media/image12.png)
 
-    ![](./media/image10.png)
+화면을 아래로 스크롤한 후, 오른쪽 하단에 있는 Save 버튼을 클릭하세요.
 
-5.  Select **Product** -\> **Features**.
+![A screenshot of a computer Description automatically
+generated](./media/image13.png)
 
-    ![](./media/image11.png)
+## 연습 2: 에이전트 생성하기
 
-6.  Toggle **Dataverse Search** and **Single table search** option to
-    **ON.**
+1.  Copilot Studio 홈 페이지 !!https://copilotstudio.microsoft.com!!
+    에서 오른쪽 상단에 있는 **CustomerService Trial** Environment을
+    선택하세요.
 
-    ![](./media/image12.png)
+![A screenshot of a computer Description automatically
+generated](./media/image14.png)
 
-    Scroll down and click on the **Save** button at the bottom right.
+2.  왼쪽 메뉴에서 Agents를 선택한 후, **+ New Agent**를 클릭하여 새
+    에이전트를 생성하세요.
 
-    ![](./media/image13.png)
+![A screenshot of a computer Description automatically
+generated](./media/image15.png)
 
-## Exercise 2: Create an agent
+3.  Type your message(메시지 입력) 입력란에 다음 문장을 입력하고
+    **send**를 누르세요: **!!You are a customer service agent who helps
+    in identifying stores nearby.**!!
 
-1.  From the Copilot Studio home page,
-    +++https://copilotstudio.microsoft.com+++, select the
-    **CustomerService Trial** Environment from the top right.
+![A screenshot of a chat Description automatically
+generated](./media/image16.png)
 
-    ![](./media/image14.png)
+4.  다음 메시지를 입력하고 **send**를 누르세요: !!**Maintain a polite
+    tone**!!
 
-2.  Select **Agents** from the left pane. Click on the **+ New Agent**
-    to create a new agent.
+![A screenshot of a chat Description automatically
+generated](./media/image17.png)
 
-    ![](./media/image15.png)
+5.  **Create**를 클릭하세요.
 
-3.  In the Type your message text area, type **+++You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
+![A screenshot of a chat Description automatically
+generated](./media/image18.png)
 
-    ![](./media/image16.png)
+6.  생성된 에이전트가 열리며, **Your agent is ready**라는 메시지가
+    표시됩니다.
 
-4.  Type the message +++**Maintain a polite tone**+++ next and hit
-    **send.**
+![A screenshot of a computer Description automatically
+generated](./media/image19.png)
 
-    ![](./media/image17.png)
+## 연습 3: Copilot을 Dynamics 365 Customer Service에 연결하고 Escalate 주제를 구성하기
 
-5.  Click on **Create**.
+### 작업 1: Escalate 주제 구성
 
-    ![](./media/image18.png)
+이번 작업에서는 실시간 에이전트로의 전환(Escalation) 기능을 보여주는 데
+중점을 둡니다. 따라서 다른 새 주제를 만들지 않고 바로 Escalate 주제를
+구성하는 데 집중하겠습니다.
 
-6.  The created agent opens up with a message, **Your agent is ready**.
+1.  **Topics** 탭을 선택한 후, **System** 탭을 선택하세요. **Escalate**
+    주제를 선택하세요..
 
-    ![](./media/image19.png)
+![A screenshot of a computer Description automatically
+generated](./media/image20.png)
 
-## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
+2.  주제의 메시지 노드를 선택한 후, 기존 내용을 다음으로 변경해주세요:
+    !!**You will be transferred to a live agent shortly**!!
 
-### Task 1: Configure the Escalate topic
+![A screenshot of a computer Description automatically
+generated](./media/image21.png)
 
-We are focusing here on showcasing the escalation to live agent concept.
-So, we will directly work towards it without creating any other new
-topics.
+3.  Message 노드 옆에 있는 **+ 기호를 클릭하여 새 노드를 추가**하세요.
 
-1.  Select the **Topics** tab and then select the **System** tab. Select
-    the **Escalate** topic.
+4.  **Topic management** -\> **Transfer conversation**를 선택하세요.
 
-    ![](./media/image20.png)
+![A screenshot of a computer Description automatically
+generated](./media/image22.png)
 
-2.  Select the message node of the topic and replace the existing
-    content with, +++**You will be transferred to a live agent shortly**+++
+5.  Transfer conversation 노드에 다음 메시지를 입력하세요: !!The
+    customer wants to talk to a live agent!!
 
-    ![](./media/image21.png)
+![A screenshot of a chat Description automatically
+generated](./media/image23.png)
 
-3.  Click on the + symbol to add a node next to the Message node.
+6.  Topic을 저장(**save)**하세요.
 
-4.  Select **Topic management** -\> **Transfer conversation**.
+![A screenshot of a computer Description automatically
+generated](./media/image24.png)
 
-    ![](./media/image22.png)
+7.  에이전트를 **Publish**하세요.
 
-5.  Give a message +++The customer wants to talk to a live agent+++ in the
-    Transfer conversation node.
+![A screenshot of a computer Description automatically
+generated](./media/image25.png)
 
-    ![ ](./media/image23.png)
+### 작업 2: Copilot을 Dynamics 365 Customer Service에 연결
 
-6.  **Save** the Topic.
+1.  게시되면 오른쪽 상단의 copilot 페이지에서 **Settings**을
+    클릭하세요.![A screenshot of a computer Description automatically
+    generated](./media/image26.png)
 
-    ![](./media/image24.png)
+2.  **Security**를 선택한 후, Security에서 **Authentication**을
+    선택하세요.
 
-7.  **Publish** the agent.
+![A screenshot of a computer Description automatically
+generated](./media/image27.png)
 
-    ![](./media/image25.png)
+3.  **No authentication** 옵션을 선택한 후, **Save**를 클릭하세요.
 
-### Task 2: Connect the copilot to Dynamics 365 Customer Service
+![A screenshot of a computer Description automatically
+generated](./media/image28.png)
 
-1.  Once published, from the copilot page top right, click on
-    **Settings**.
+4.  확인 대화 상자에 **Save** 버튼을 선택하세요.
 
-    ![](./media/image26.png)
+![A screenshot of a computer screen Description automatically
+generated](./media/image29.png)
 
-2.  Select **Security**, and **Authentication** under Security.
+5.  **Settings** 창을 닫으세요.
 
-    ![](./media/image27.png)
+6.  **Channels**을 클릭하세요.(**Channels** 옵션이 보이지 않는 경우,
+    **+1**을 클릭하여 **Channels** 옵션을 표시).
 
-3.  Select the **No authentication** option and then click on **Save**.
+![A screenshot of a chat Description automatically
+generated](./media/image30.png)
 
-    ![](./media/image28.png)
+7.  Customer engagement hub 창에서 **Dynamics 365 Customer Service**를
+    선택하세요.
 
-4.  Select **Save** in the confirmation dialog box.
+![](./media/image31.png)
 
-    ![](./media/image29.png)
+8.  Dynamics 365 Customer Service 페이지에서 **Connect**를 클릭하세요.
 
-5.  Close the **Settings** pane.
+![A screenshot of a message Description automatically
+generated](./media/image32.png)
 
-6.  Click on **Channels** (If the Channels is not visible, click on the
-    +1 to view the **Channels** option)
+9.  **successfully connected** 메시지가 표시되면 **Close**를 클릭하세요.
 
-    ![](./media/image30.png)
+![A screenshot of a computer Description automatically
+generated](./media/image33.png)
 
-7.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
+## 연습 4: Dynamics 365 관리자 센터에서 워크스트림 및 채널 생성하기
 
-    ![](./media/image31.png)
+### 작업 1: Omnichannel for Customer Service에서 사용자 관리
 
-8.  On the Dynamics 365 Customer Service page, click on **Connect**.
+1.  관리자 테넌트 자격 증명을 사용해
+    !!https://admin.powerplatform.microsoft.com!! 에 로그인하고 왼쪽
+    탭에서를 선택하세요. 여기에서 CustomerService Trial이 표시됩니다.
+    이를 **선택**하세요**.**
 
-    ![](./media/image32.png)
+![A screenshot of a computer Description automatically
+generated](./media/image34.png)
 
-9.  Once you get a **successfully connected** message, click on
-    **Close**.
+2.  **Environment URL**에서 **url value**를 클릭하세요.
 
-    ![](./media/image33.png)
+![A screenshot of a computer Description automatically
+generated](./media/image35.png)
 
-## Exercise 4: Create workstream and channel in Dynamics 365 admin center
+이제 **Apps** 페이지가 열립니다. 여기서 **Customer Service admin
+center**를 선택하세요.
 
-### Task 1: Manage a user in Omnichannel for Customer Service
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image36.png)
 
-1.  Login to +++https://admin.powerplatform.microsoft.com+++ using your
-    admin tenant credentials and select **Environments** from the left
-    tab. The **CustomerService Trial** will be listed here. **Select**
-    it.
+3.  그러면 **Dynamics 365 Customer Service admin center** 페이지가
+    열립니다.
 
-    ![](./media/image34.png)
+![A screenshot of a customer service Description automatically
+generated](./media/image37.png)
 
-2.  Click on the **url value** under **Environment URL**.
+4.  **Dynamics 365 Customer Service admin center**의 사이트 맵에서
+    **Customer support** 그룹 아래에 있는 **User management**를
+    선택하세요.
 
-    ![](./media/image35.png)
+5.  **User management** 페이지에서 **Users** 옆에 있는 **Manage** 버튼을
+    선택하세요.
 
-3.  This opens the **Apps** page. Select **Customer Service admin center** from it.
+![A screenshot of a computer Description automatically
+generated](./media/image38.png)
 
-    ![](./media/image81.png)
-    
-4.  This opens up the **Dynamics 365 Customer Service admin center**
-    page.
+6.  **Enabled Users** 옆의 드롭다운을 클릭하고 **Omnichannel Users**를
+    선택하세요.
 
-    ![](./media/image36.png)
+![A screenshot of a computer Description automatically
+generated](./media/image39.png)
 
-4.  In **Dynamics 365 Customer Service admin center**, in the site map,
-    select **User management** under **Customer support** group.
+7.  **Omnichannel Users** 페이지의 목록에서 사용자 **MOD
+    Administrator**를 선택하세요.
 
-5.  On the **User management** page, select **Manage** next
-    to **Users**.
+![A screenshot of a computer Description automatically
+generated](./media/image40.png)
 
-    ![](./media/image37.png)
+8.  **MOD Administrator** 페이지에서 **Omnichannel** 텝을 선택하세요.
 
-6.  Click the dropdown next to **Enabled Users** and select
-    **Omnichannel Users**.
+![A screenshot of a computer Description automatically
+generated](./media/image41.png)
 
-    ![](./media/image38.png)
+9.  아래 표에 따라 값이 정확히 설정되어 있는지 확인하세요.
 
-7.  On the **Omnichannel Users** page, select a user **MOD
-    Administrator** in the list.
+\- Capacity: 100
 
-    ![](./media/image39.png)
+\- Default Presence: available
 
-8.  On the **MOD Administrator** page, select the **Omnichannel** tab.
+![A screenshot of a computer Description automatically
+generated](./media/image42.png)
 
-    ![](./media/image40.png)
+10. **Save and close**를 선택하세요.
 
-9.  Ensure that the values are as per the below table
+![A screenshot of a computer Description automatically
+generated](./media/image43.png)
 
-    -    Capacity:  100
-      
-    -    Default Presence: available
+### 작업 2: 워크스트림 구성 
 
-    ![](./media/image41.png)
+1.  Admin center 페이지에서 왼쪽 메뉴의 **Customer support** 아래에 있는
+    **Workstreams**을 선택한 후, **+ New workstream** 옵션을 선택하세요.
 
-10. Select **Save and close**.
+![A screenshot of a computer Description automatically
+generated](./media/image44.png)
 
-    ![](./media/image42.png)
+2.  다음 정보를 입력하고 아래로 스크롤하여 **Create**를 클릭하세요.
 
-### Task 2: Configure workstream 
+- Name - +++**New Workstream**+++
 
-1.  From the admin center page, select **Workstreams** under **Customer
-    support** from the left pane and then select the **+ New
-    workstream** option.
+- Owner – **MOD Administrator** (Selected by default)
 
-    ![](./media/image43.png)
+- Type – **Messaging**
 
-2.  Fill in the below details, scroll down and click on **Create**.
+- Channel – **Chat**
 
-    - Name - +++**New Workstream**+++
+> ![A screenshot of a chat Description automatically
+> generated](./media/image45.png)
+>
+> ![A screenshot of a chat Description automatically
+> generated](./media/image46.png)
 
-    - Owner – **MOD Administrator** (Selected by default)
+3.  워크스트림이 생성되면 **Set up chat**을 클릭하여 채팅 채널을
+    설정하세요.
 
-    - Type – **Messaging**
+![A screenshot of a chat Description automatically
+generated](./media/image47.png)
 
-    - Channel – **Chat**
+4.  **Live chat setup**에서 **– Channel details** 화면에서 다음 정보를
+    입력하고**Next**를 클릭하세요.
 
-    ![](./media/image44.png)
+- Name - +++**Chat Channel**+++
 
-    ![](./media/image45.png)
+- Language – **English -** **United States**
 
-3.  Once the workstream is created, click on **Set up chat** to set up
-    the chat channel.
+![A screenshot of a chat channel Description automatically
+generated](./media/image48.png)
 
-    ![](./media/image46.png)
+5.  Live chat setup 에서 – Chat widget 화면에 이름을 +++**Store Locator
+    Assistant**+++으로 입력하고 기본 설정은 그대로 두고 **Next**를
+    클릭하세요.
 
-4.  In the **Live chat setup – Channel details** screen, fill in the
-    below details and click on **Next**.
+![A screenshot of a chat Description automatically
+generated](./media/image49.png)
 
-    - Name - +++**Chat Channel**+++
+6.  **Live chat setup – Behaviors** 화면에서 기본 설정을 그대로 두고
+    **Next**를 클릭하세요.
 
-    - Language – **English - United States**
+![A screenshot of a computer screen Description automatically
+generated](./media/image50.png)
 
-    ![](./media/image47.png)
+7.  **Live chat setup – User features** 화면에서 **File attachment** 및
+    **Voice and video calls** 옵션을 **off**으로 설정하고 **Next**를
+    클릭하세요.
 
-5.  In the Live chat setup – Chat widget screen, provide the name as
-    +++**Store Locator Assistant**+++, accept the other defaults and
-    click on **Next**.
+![A screenshot of a computer Description automatically
+generated](./media/image51.png)
 
-    ![](./media/image48.png)
+8.  **Live chat setup – Review and finish** 화면에서 **Create
+    channel**를 선택하세요.
 
-6.  In the **Live chat setup – Behaviors** screen, accept the defaults
-    and click on **Next**.
+![A screenshot of a chat setup Description automatically
+generated](./media/image52.png)
 
-    ![](./media/image49.png)
+9.  **Live chat setup** - **Success** 화면에서 나타나는 위젯을
+    복사(**copy**)하여 메모장에 저장(**save**)한 후, 연습에서 웹
+    페이지에 추가할 수 있도록 준비하세요. 그런 다음 **Done**을 클릭하여
+    구성을 완료하세요.
 
-7.  In the **Live chat setup – User features** screen, toggle **File
-    attachment** and **Voice and video calls** options to **off** and
-    click on **Next**.
+![A screenshot of a chat Description automatically
+generated](./media/image53.png)
 
-    ![](./media/image50.png)
+### 작업 3: 워크스트림에 copilot 추가
 
-8.  In the **Live chat setup – Review and finish** screen, select
-    **Create channel**.
+1.  **New Workstream** 페이지로 돌아가서, 아래로 스크롤하여 Bot 섹션에서
+    **+ Add bot**을 클릭하세요.
 
-    ![](./media/image51.png)
+![A screenshot of a computer Description automatically
+generated](./media/image54.png)
 
-9.  **Copy** the widget that appears in the **Live chat setup –
-    Success** screen and **save** it in a notepad to add it to a webpage
-    in the upcoming exercises. Then, click on **Done** to complete the
-    configuration.
+2.  **Add bot** 화면에서, 목록에 있는 **Store Locator Assistant**
+    copilot을 선택하고 **Connect**를 클릭하세요.
 
-    ![](./media/image52.png)
+![A screenshot of a computer Description automatically
+generated](./media/image55.png)
 
-### Task 3: Add the agent to the workstream
+3.  아래 스크린샷과 같이 해당 봇이 워크스트림에 정상적으로 추가되었는지
+    확인하세요.
 
-1.  Back in the **New Workstream** page, scroll down and click on **+
-    Add bot** in the Bot section.
+![A screenshot of a computer Description automatically
+generated](./media/image56.png)
 
-    ![](./media/image53.png)
+4.  왼쪽 창에서 **Bots**를 선택하세요.
 
-2.  From the list of copilots on the Add bot screen, select the **Store
-    Locator Assistant** agent and click on **Connect**.
+![A screenshot of a computer Description automatically
+generated](./media/image57.png)
 
-    ![](./media/image54.png)
+5.  Real Estate Booking Service copilot가 연결되어 있는지 확인하세요.
 
-3.  Ensure that the bot is added to the workstream as in the screenshot
-    below.
+![A screenshot of a computer Description automatically
+generated](./media/image58.png)
 
-    ![](./media/image55.png)
+## 연습 5: 웹페이지를 생성하고 에이전트로의 에스컬레이션 기능을 테스트하기
 
-4.  From the left pane, select **Bots**.
+1.  테넌트 관리자 자격 증명을 사용하여
+    +++https://make.powerpages.microsoft.com/+++에 로그인하세요.
 
-    ![](./media/image56.png)
+![A screenshot of a computer Description automatically
+generated](./media/image59.png)
 
-5.  Ensure that the **Store locator** agent is connected.
+2.  **CustomerService Trial** 환경에 있는지 확인하세요.
 
-    ![](./media/image57.png)
+3.  **Get started**를 클릭하세요.
 
-## Exercise 5: Create a webpage and test the escalation to agent
+![A screenshot of a computer Description automatically
+generated](./media/image60.png)
 
-1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
-    tenant admin credentials.
+4.  **Tell us about yourself** 페이지에서 Skip를 클릭하세요.
 
-    ![](./media/image58.png)
+![A screenshot of a computer Description automatically
+generated](./media/image61.png)
 
-2.  Ensure that you are in **CustomerService Trial** environment.
+5.  다음 페이지에서 아래로 스크롤한 후 **Start with a template** 옵션을
+    클릭하여 사이트를 템플릿으로 생성하세요.
 
-3.  Click on **Get started**.
+![A screenshot of a web page Description automatically
+generated](./media/image62.png)
 
-    ![](./media/image59.png)
+6.  템플릿을 선택하고 **Choose this template**을 클릭하세요.
 
-4.  Click on Skip in the **Tell us about yourself** page.
+![A screenshot of a computer Description automatically
+generated](./media/image63.png)
 
-    ![](./media/image60.png)
+7.  Give your site a name 텍스트 상자에 +++**Contoso Store
+    assistant**라고 입력한 후, 나머지 기본 설정은 그대로 두고 **Done**
+    버튼을 클릭하세요.
 
-5.  Scroll down in the next page and click on **Start with a template**
-    option to start creating the site with a template.
+![A screenshot of a computer Description automatically
+generated](./media/image64.png)
 
-    ![](./media/image61.png)
+8.  사이트가 생성되면, **Company name** 제목 부분에 있는 **Edit site
+    header**을 클릭하세요.
 
-6.  Select a template and click on **Choose this template**.
+![A screenshot of a computer Description automatically
+generated](./media/image65.png)
 
-    ![](./media/image62.png)
+9.  **Edit site header** 창에서 **Site title**을 !!**Contoso Store
+    assistant**!!로 입력하세요.
 
-7.  In the Give your site a name textbox, enter the name as +++**Contoso Store assistant**+++, accept the other defaults and click on **Done**.
+![A screenshot of a computer Description automatically
+generated](./media/image66.png)
 
-    ![](./media/image63.png)
+10. 페이지 오른쪽 상단에서 **Edit code**를 클릭하세요.
 
-8.  Once the site is created, click on **Edit site header** in the
-    **Company name** title.
+![A screenshot of a computer Description automatically
+generated](./media/image67.png)
 
-    ![](./media/image64.png)
+11. **Open Visual Studio Code**를 클릭하세요.
 
-9.  In the **Edit site header** pane, provide the **Site title** as
-    +++**Contoso Store assistant**+++.
+![A screenshot of a computer Description automatically
+generated](./media/image68.png)
 
-    ![](./media/image65.png)
+12. **Allow**를 클릭하세요.
 
-10. Click on Edit code in the top right corner of the page.
+![A black screen with white text Description automatically
+generated](./media/image69.png)
 
-    ![](./media/image66.png)
+13. 웹 페이지의 홈 페이지가 Visual Studio Code에서 열립니다.
 
-11. Click on **Open Visual Studio Code**.
+![A screenshot of a computer program Description automatically
+generated](./media/image70.png)
 
-    ![](./media/image67.png)
+14. 파일의 끝으로 스크롤을 내린 후, 워크스트림을 생성할 때 복사한
+    **script**를 이 파일의 마지막 줄 뒤에 추가하세요.
 
-12. Click **Allow**.
+![A screen shot of a computer screen Description automatically
+generated](./media/image71.png)
 
-    ![](./media/image68.png)
+15. 파일을 저장하고, Visual Studio Code 탭을 닫은 후 Power Pages로
+    돌아가서 **Sync**를 클릭하세요.
 
-13. The Home page of the web page opens up in the Visual Studio Code.
+![A screenshot of a computer Description automatically
+generated](./media/image72.png)
 
-    ![](./media/image69.png)
+16. Sync가 완료되면, **Preview** -\> **Desktop**을 선택하세요.
 
-14. Scroll to the end of the file. Add the **script** copied while
-    creating the workstream, after the last line of this file.
+![A screenshot of a computer Description automatically
+generated](./media/image73.png)
 
-    ![](./media/image70.png)
+17. 웹 페이지가 새 탭에서 열리면, 페이지 오른쪽 하단에 임베드된 **Store
+    Locator Assistant**를 찾아 클릭(**click**)하세요.
 
-15. Save the file, close the Visual Studio Code tab and return to the
-    Power pages. Click on **Sync**.
+![A screenshot of a website Description automatically
+generated](./media/image74.png)
 
-    ![](./media/image71.png)
+18. +++Talk to agent+++를 입력하세요.
 
-16. Once the Sync is completed, select **Preview** -\> **Desktop.**
+![A screenshot of a phone Description automatically
+generated](./media/image75.png)
 
-    ![](./media/image72.png)
+19. From the Customer Service admin 페이지에서 **Customer Service admin
+    center**를 클릭한 후, 여기서**Customer Service workspace** 앱을
+    선택하세요.
 
-17. Your web page opens in a new tab. Find the **Store Locator
-    Assistant** embedded to the page at the bottom right of the web
-    page. **Click** on it.
+![A screenshot of a computer Description automatically
+generated](./media/image76.png)
 
-    ![](./media/image73.png)
+![A screenshot of a computer Description automatically
+generated](./media/image77.png)
 
-18. Enter +++Talk to agent+++.
+20. Customer Service 워크스페이스 페이지에서 **chat request**을 받게
+    됩니다. 요청을 수락(**accept)**하세요.
 
-    ![](./media/image74.png)
+![A screenshot of a computer Description automatically
+generated](./media/image78.png)
 
-19. From the Customer Service admin page, click on **Customer Service
-    admin center** and select the app **Customer Service workspace**
-    from it.
+21. 수락하면, 채팅 화면이 열리며 Escalate 주제에서 설정한 메시지가
+    표시됩니다. 또한, 사용자가 제공한 다른 정보를 라이브 에이전트에게
+    전달할 수 있습니다.
 
-    ![](./media/image75.png)
+![A screenshot of a chat Description automatically
+generated](./media/image79.png)
 
-    ![](./media/image76.png)
+22. 라이브 에이전트와 고객 간의 채팅을 시뮬레이션하여 어떻게 작동하는지
+    확인한 후, 채팅을 종료합니다.
 
-20. In the Customer Service workspace page, you will get a **chat
-    request**. **Accept** it.
+![A screenshot of a chat Description automatically
+generated](./media/image80.png)
 
-    ![](./media/image77.png)
+![A screenshot of a chat Description automatically
+generated](./media/image81.png)
 
-21. Once accepted, the chat screen opens up with the message that we had
-    given in the Escalate topic. We can also add any other information
-    provided by the user here to the live agent.
+**요약**
 
-    ![](./media/image78.png)
+이 실습에서는 다음을 배웠습니다:
 
-22. Simulate the chat between the live agent and the customer if you
-    wish to see how it works and then ends.
+- Copilot Studio에서 에이전트를 구축하고 Escalate 주제를 구성하는 방법
 
-    ![](./media/image79.png)
+- 에이전트를 Dynamics 365 워크스페이스에 게시하고 이를 웹 페이지에 통합
 
-    ![](./media/image80.png)
-
-**Summary**
-
-In this lab, we have learnt to
-
-- Build an agent from the Copilot Studio and configure the Escalate
-  topic.
-
-- Publish the agent to Dynamics 365 workspace and integrate it in a web
-  page.
-
-- Configure and test the escalation to a live agent.
-
-
+- 라이브 에이전트로의 에스컬레이션을 구성하고 테스트하는 방법
