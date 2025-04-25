@@ -1,1030 +1,1294 @@
-# Lab 01: Creating and using an agent from Copilot Studio for managing a Real Estate Application
+# 실습 01:부동산 애플리케이션(Real Estate Application) 관리를 위한 Copilot Studio 에이전트 생성 및 활용
 
-**Lab Duration** – 120 minutes
+**실습 소요 시간** – 90분
 
-**Introduction**
+**소개**
 
-Contoso Real Estate specializes in the sale and management of both
-commercial and residential properties. Currently, customer information
-is efficiently stored within their Dataverse instance, allowing for
-streamlined data management. However, the booking process presents a
-significant challenge.
+Contoso Real Estate은 상업용 및 주거용 부동산의 판매와 관리를 전문으로
+하며, 현재 고객 정보는 Dataverse 인스턴스에 효율적으로 저장되어 있어
+데이터 관리는 원활하게 이루어지고 있습니다. 그러나 예약 프로세스는
+여전히 큰 과제로 남아 있습니다.
 
-At present, customers can only request bookings via phone, leading to an
-overwhelmed phone line and long waiting time. This situation not only
-frustrates customers but also risks losing potential business as many
-are unable to connect with the office to request services.
+현재 고객은 전화로만 예약을 요청할 수 있어, 전화 문의가 폭주하고 대기
+시간도 길어지고 있습니다. 이로 인해 고객들은 불만을 가지게 되고, 많은
+잠재 고객이 사무실과 연결되지 못해 서비스를 요청하지 못하는 상황이
+발생하며 비즈니스 손실로 이어질 위험이 있습니다.
 
-To address these issues, Contoso Real Estate is committed to developing
-a comprehensive digital solution. This solution will empower customers
-to easily access information about the booking process and submit
-booking requests online.
+이러한 문제를 해결하기 위해 Contoso Real Estate은 종합적인 디지털 솔루션
+개발에 착수했습니다. 이 솔루션은 고객이 예약 절차에 대한 정보를 쉽게
+확인하고 온라인으로 예약 요청을 제출할 수 있도록 지원할 것입니다..
 
-**Objectives**
+**목표**
 
-- Build a standalone agent for Contoso Real Estates from Copilot Studio
-  (that will allow customers to discover information about the real
-  estate booking process and create booking requests for the office to
-  review.)
+- Copilot Studio에서 Contoso Real Estate를 위한 독립형 에이전트를
+  구축(이 에이전트를 통해 고객은 부동산 예약 절차에 대한 정보를
+  확인하고, 사무실에서 검토할 수 있도록 예약 요청을 생성할 수 있음)
 
-- Create Topics to set up the logic of the bookings.
+- 예약 절차의 논리를 설정하기 위해 토픽(Topics)을 생성
 
-- Create the Dataverse tables required for the bookings.
+- 예약에 필요한 Dataverse 테이블을 생성
 
-- Publish the agent.
+- Copilot을 게시
 
->[!Alert] Important: **Lab 03** needs to be completed by the end of Day 1 in order to execute the Day 2 lab. Even if Labs 01 and 02 are not completed, please ensure to complete Lab 03 by the end of Day1.
+:::danger **Lab 03**은 Day 2의 실습을 진행하기 위해 반드시 Day 1이
+끝나기 전까지 완료되어야 합니다. Lab 01과 02가 완료되지 않았더라도,
+반드시 Lab 03은 Day 1 내에 완료해 주시기 바랍니다. :::
 
-## Exercise 0: Setting up your environment
+## 연습 0: 환경 설정
 
-### Task 1: Login to VM
+### 작업 1: VM에 로그인
 
-1.  Login to the VM using the **Username** and **Password** from
-    the **Home** tab.
+1.  **Home** 탭에서 **Username** 및 **Password**를 사용해 VM에
+    로그인하세요.
 
-### Task 2: Synchronize the VM clock
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-1.  After logging into the VM, right click on the clock at the bottom
-    right corner of the screen.
+### 작업 2: VM clock 동기화
 
-2.  Select **Adjust date and time.**
+1.  VM에 로그인한 후, 화면 오른쪽 하단에 있는 시계를 마우스 오른쪽
+    버튼으로 클릭하세요.
 
-    ![](./media/image1.png)
+2.  **Adjust date and time**를 선택하세요.
 
-3.  On the Settings screen that opens up, click on **Sync now** under
-    Additional settings.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image2.png)
 
-    ![](./media/image2.png)
+3.  열린 설정 화면에서 추가 설정 아래에 있는 **Sync now**를 클릭하세요.
 
-4.  This takes care of synchronizing the time just in case the automatic
-    synchronization does not work.
+![](./media/image3.png)
 
-5.  **Close** the Settings pane.
+4.  자동 동기화가 제대로 작동하지 않을 경우를 대비해, 이 단계는 시간을
+    수동으로 동기화하는 역할을 합니다.
 
-    ![](./media/image3.png)
+5.  Settings 창을 **Close**(닫으세요).
 
-## Exercise 1: Setting up Power Apps and Dataverse
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image4.png)
 
-### Task 1: Sign up for the Microsoft Power Apps Developer Plan
+6.  Sign in required 알림이 표시되면, Sign In을 클릭한 후 Sign in with a
+    different account을 선택하고, VM의 Home 탭에 있는 admin
+    credentials을 사용하여 로그인하세요.
 
-1.  Open a browser and navigate  to +++https://powerapps.microsoft.com/free/+++ and select
-    **Start free** or **Try for free**.
+![A blue screen with white text AI-generated content may be
+incorrect.](./media/image5.png)
 
-    ![](./media/image4.png)
+![](./media/image6.png)
 
-2.	Login using the **Administrative Username** and **Password** from the **Resources** tab if prompted. This will be your **login credentials** to all the Microsoft sites and apps for the labs.
-   
-    ![](./media/image127.png)
-  	
-3.  Under **Let's get started**, enter the **Administrative Username** from the **Resources** tab  in the text box, check the agreement box and select **Start free**.
+7.  **sign in to this app only** 선택하세요.
 
-    ![](./media/image5.png)
+![](./media/image7.png)
 
-4.  If you see a prompt that you have an existing account with
-    Microsoft. Select **Sign in**. Enter your password.
+8.  로그인한 후**Teams** 앱을 **close**(닫으세요). Day 3 실습에서 사용할
+    것입니다.
 
-5.  If prompted, Select **Yes** to stay signed in.
+## 연습 1: Power Apps 및 Dataverse 설정
 
-6.  Click on **Environment** in the top-right corner of the screen and
-    select **Dev One**.
+### 작업 1: Microsoft Power Apps 개발자 플랜 등록
 
-    ![](./media/image6.png)
+1.  브로우저를 열고 다음 링크를 이동한 후, **Start free** 또는 **Try for
+    free** 를 선택하세요: !\!<https://powerapps.microsoft.com/free/>!!
 
-### Task 2: Create a solution
+![](./media/image8.png)
 
-1.  From the Power Apps Maker
-    Portal(+++https://make.powerapps.com/+++), select **Solutions**
-    form the left pane.
+2.  메시지가 표시되면 Home 탭에 제공된Office Tenant
+    Credentials **Username** 및 **Password**로 로그인하세요. 이 자격
+    증명은 모든 실습에서 Microsoft 사이트 및 앱에 로그인할 때 사용되는
+    **login credentials** (로그인 자격 증명)입니다.
 
-    ![](./media/image7.png)
+![](./media/image9.png)
 
-2.  Click on **+ New solution**.
+3.  Under **Let's get started**화면에서, 텍스트 상자에 **Home** 탭에
+    **Administrative Username**를 입력하고**,**  동의 확인란을 체크한
+    후**Start free**를 선택하세요.
 
-    ![](./media/image8.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image10.png)
 
-3.  Enter +++**Bookings**+++ for the Display name and click on **+ New
-    publisher**.
+4.  기존 Microsoft 계정이 있다는 알림이 표시되면, Sign in을 선택하고
+    비밀번호를 입력하세요.
 
-    ![](./media/image9.png)
+5.  메시지가 표시되면  **Yes**를 선택하여 로그인 상태를 유지하세요.
 
-4.  Enter the below details and then click on **Save**.
+6.  화면 오른쪽 상단에 있는 **Environment(환경)** 를 클릭하고 **Dev
+    One** 이 선택되어 있는지 확인하세요. 선택되어 있지 않다면 **Dev
+    One** 을 선택하세요.
 
-    |	Property |	Value |
-    |:-----|:--------|
-    | Display name	|+++Contoso+++	|
-    |	Name |	+++Contoso+++|
-    | Prefix |+++Contoso+++	|
+![](./media/image11.png)
 
-    ![](./media/image10.png)
+### 작업 2: 솔루션 만들기
 
-    >[!Note] **Note:** If you get a message stating that **A record with matching key value already exists**, close the publisher creation pane and select the Publisher **Contoso** in the New Solution creator pane. 
+1.  다음 Power Apps Maker Portal의 왼쪽 창에서 **Solutions**  을
+    선택하세요: (!\!<https://make.powerapps.com/>!!).
 
-5.  Select **Contoso (contoso)** under Publisher and then click on
-    **Create**.
+![](./media/image12.png)
 
-    ![](./media/image11.png)
+2.  **+ New solution**를 클릭하세요.
 
-6.  Select **Back to solutions** in the top-left of the screen.
+![A screenshot of a search engine AI-generated content may be
+incorrect.](./media/image13.png)
 
-    ![](./media/image12.png)
+3.  표시 이름(Display name)에 !!**Bookings**!!을 입력하고, **Publisher**
+    항목에 **Contoso (contoso)** 를 선택한 후, **Create**을 클릭하세요.
 
-### Task 3: Set the preferred solution
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image14.png)
 
-1.  Under Solutions in the Maker portal, select **Manage** for **Set
-    your preferred solution**.
+**Publisher** 항목에 **Contoso** 옵션이 표시되지 않는 경우, 다음 두
+단계를 실행하세요. 표시되는 경우에는 **6**단계부터 계속 진행하세요.
 
-    ![](./media/img1.png)
+4.  **Contoso** 옵션이 **Publisher**목록에 표시되지 않는 경우, **+ New
+    Publisher**를 선택하세요.
 
-2.  Select **Bookings (contoso)** under **Unless otherwise specified,
-    save my changes in** and select **Apply**.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image15.png)
 
-    ![](./media/image14.png)
+5.  다음 정보를 입력한 후, **Save**을 클릭하세요.
 
-    ![](./media/image15.png)
+[TABLE]
 
-### Task 4: Create the Real Estate Properties custom table
+> ![](./media/image16.png)
 
-Follow these steps to create a new custom table in Dataverse for Real
-Estate Properties.
+6.  화면 왼쪽 상단에서 **Back to solutions**을 선택하세요.
 
-1.  From the left navigation pane, select **Tables**, select the drop
-    down next to **+ New table** and then select **Create** **new
-    tables**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image17.png)
 
-    ![](./media/image16.png)
+### 작업 3: 기본 솔루션 설정
 
-2.  Click on **Got it** in the **Let’s set up your data** dialog.
+1.  Maker 포털의 **Solutions** 섹션에서 **Set your preferred
+    solution** 옆에 있는 **Manage**를 선택하세요.
 
-    ![](./media/image17.png)
+![](./media/image18.png)
 
-3.  On the Create new tables screen, click on **+ New table -\> Add
-    columns and data**.
+2.  **Unless otherwise specified, save my changes in**에서 **Bookings
+    (contoso)**를 선택하고, **Apply**를 선택하세요.
 
-    ![](./media/image18.png)
+![](./media/image19.png)
 
-4.  Rename the table name from **Table1** to +++**Real Estate Property**+++ and then click on **Save and exit**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image20.png)
 
-    ![](./media/image19.png)
+### 작업 4: 부동산 속성(Real Estate Properties) 맞춤 테이블 생성하기
 
-5.  Click on **Save and exit** in the confirmation dialog.
+새로운 테이블을 생성하는 방법에는 두 가지가 있습니다. 하나는 기존의 수동
+방법이고, 또 다른 하나는 Copilot을 사용하는 방법입니다.
 
-    ![](./media/image20.png)
+#### 작업 4.1: Copilot을 사용해 Real Estate Properties 맞춤 테이블 생성하기
 
-6.  Once saved, click on the **Custom** tab to find the newly created
-    table there. Click on the **Real Estate Property** table.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
 
-    ![](./media/image21.png)
+"Real Estate Property" 테이블을 다음과 같은 열과 데이터 유형으로
+생성하세요-  
+1. Property Name – Single line of text  
+2. Asking Price - Currency   
+3. Street - Single line of text  
+4. City - Single line of text  
+5. Client - Data type Lookup, Related table - Contact  
+  
+Real Estate Property 테이블에 Bedrooms 및 Bathrooms라는 두 개의 열을 더
+추가하고 각각 데이터 유형(Datatype)을 선택할 수 있습니다. -  
+1. Label - 1, Value - 1  
+2. Label - 2, Value -2  
+3. Label - 3, Value 3  
+4. Label - 4, Value 4  
+5. Label - 5, Value 5
 
-7.  Under the **Real Estate Property columns and data**, change the name
-    of the column called **New Column** (Click on the drop down next to
-    **New Column** and select **Edit Column** and update the **Display
-    name**) to +++**Property Name**+++ and select **Save**.
+ 
 
-    ![](./media/image22.png)
+"Booking Request" 테이블을 다음과 같은 열과 데이터 유형으로 생성하세요
+-  
+1. Booking Name - Single line of text  
+2. Property - Data type Lookup, Related table - real estate property  
+3. View name - Single line of text  
+4. Viewer Email - Single line of text  
+5. Booking Date - Date and time  
+6. Notes - Multiple lines of text
 
-8.  Select the **+** button to add a new column in the columns and data
-    pane. In the New column pane, enter the following values, and then
-    select **Save**.
+ 
 
-    - Display name: +++**Asking Price**+++
+"Booking Request" 테이블에 Decision 열을 추가하고, 데이터
+유형은 **Choice**로 설정하세요 -  
+1. Label - Undecided, Value - 1  
+2. Label - Accepted, Value -2  
+3. Label - Declined, Value 3
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image23.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image24.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
+
+![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image27.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image28.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image29.png)
+
+열이 모두 생성되면 **Real Estate Property columns and data**에 다음
+테스트 데이터를 입력하세요:
+
+- Property Name: !!**1100 High Villas**!!
+
+- Asking Price: !!**250,000**!!
+
+- Bathrooms: **3**
+
+- Bedrooms: **2**
+
+- City: !!**Redmond**!!
+
+- Street: !!**Main Avenue**!!
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image30.png)
+
+#### 작업 4.2: Copilot을 사용하여 Real Estate Properties 맞춤 테이블 생성하기
+
+Real Estate Properties 맞춤 테이블을 Dataverse에서 수동으로 생성하려면
+다음 단계를 따르세요.
+
+1.  왼쪽 탐색 창에서 **Tables** 을 선택한 후, **+ New table** 옆의
+    드롭다운을 클릭하고 **Create** **new tables**를 선택하세요.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image31.png)
+
+2.  **Let’s set up your data** 대화 상자에서 **Got it**을 클릭하세요.
+
+![](./media/image32.png)
+
+3.  Create new tables 화면에서 **+ New table -\> Add columns and
+    data**를 클릭하세요.
+
+![](./media/image33.png)
+
+4.  테이블 이름을 Table1에서 !!**Real Estate Property**!!로 변경한 후,
+    **Save and exit**를 클릭하세요.
+
+![](./media/image34.png)
+
+5.  Confirmation (확인) 대화 상자에서 **Save and exit**를 클릭하세요.
+
+![](./media/image35.png)
+
+6.  저장이 완료되면 **Custom**  탭을 클릭하여 새로 생성된 테이블을
+    찾습니다. 그 후, **Real Estate Property** 테이블을 클릭하세요.
+
+![](./media/image36.png)
+
+7.  **Real Estate Property columns and data** 아래에서 **New
+    Column** 이라는 열의 이름을 변경합니다. **New Column**  옆의
+    드롭다운을 클릭하고 \***Edit Column** 을 선택한 후 **Display name**
+    을 !!**Property Name**!! 로 업데이트하고 **Save** 을 선택하세요.
+
+![](./media/image37.png)
+
+8.  열 및 데이터 창에서 + 버튼을 클릭하여 새 열을 추가하세요. 새 열
+    창에서 다음 값을 입력한 후 **Save** 을 선택하세요.
+
+    - Display name: !!**Asking Price**!!
 
     - Data type: Currency
 
-    ![](./media/image23.png)
+![](./media/image38.png)
 
-    ![](./media/image24.png)
+![](./media/image39.png)
 
-9.  Add the following two columns.
+9.  다음 두 열을 추가하세요.
 
-    |	Display name | Data type	|
-    |:-----|:--------|
-    |+++Street+++	|	Single line of text (this value is the default)|
-    |	+++City+++|	Single line of text (this value is the default)|
+[TABLE]
 
-10. Add another column with the below values
+10. 아래 값으로 다른 열을 추가하세요.
 
-    - **Display name**: +++Bedrooms+++
+    - **Display name**: !!Bedrooms!!
 
     - **Data type**: Choice -\> Choice
 
-    ![](./media/image25.png)
+![](./media/image40.png)
 
-    Create the choice values:
-    
-    Select **+ New choice** under **Sync this choice with** option
+선택 값을 생성하세요:
 
-    ![](./media/image26.png)
+**Sync this choice with** 옵션에서 **+ New choice** 를 선택하세요.
 
-    - Under **Choices**, provide the Display name as +++**Bedrooms**+++.
-    
-    - You see two entry fields titled **Label** and **Value**.
-      Enter **1** under the label. Power Apps assigns a value automatically
-      but you can change the value to **1**.
-    
-    &nbsp;
-    
-    - Select **+ New choice** and make **2** the new entry for Label
-      and **2** for Value.
-    
-    &nbsp;
-    
-    - Select **+ New choice** and make **3** the new entry for Label
-      and **3** for Value.
-    
-    &nbsp;
-    
-    - Select **+ New choice** and make **4** the new entry for Label
-      and **4** for Value.
-    
-    &nbsp;
-    
-    - Select **+ New choice** and make **5** the new entry for Label
-      and **5** for Value.
-    
-    &nbsp;
-    
-    - Select **Save**.
+![](./media/image41.png)
 
-    ![](./media/image27.png)
+- **Choices 항목** 아래에서 표시(Display) 이름을 !!**Bedrooms**!! 로
+  입력하세요.
 
-    Select the added choice **Bedrooms**, by clicking the drop down of
-**Sync this choice with**
+- **Label** 과 **Value** 라는 두 개의 입력 필드가 표시됩니다. Label
+  필드에 1을 입력하세요. Power Apps는 값을 자동으로 할당하지만, 값을 1로
+  변경할 수 있습니다.
 
-    ![](./media/image28.png)
+ 
 
-    Click on **Save**.
+- **+ New choice**  항목을 선택한 후, Label에 **2**, Value에 **2**를
+  입력하여 새 항목을 추가하세요.
 
-    ![](./media/image29.png)
+ 
 
-11. Select the **+** button to add a new column in the columns and data
-    pane.
+- **+ New choice**  항목을 선택한 후, Label에 **3**, Value에 **3**을
+  입력하여 새 항목을 추가하세요.
 
-12. In the New column pane, enter the following values, and then
-    select **Save**:
+ 
 
-    - **Display name**: +++Bathrooms+++
+- **+ New choice**  항목을 선택한 후, Label에 **4**, Value에 **4**를
+  입력하여 새 항목을 추가하세요.
+
+ 
+
+- **+ New choice**  항목을 선택한 후, Label에 **5**, Value에 **5**를
+  입력하여 새 항목을 추가하세요.
+
+ 
+
+- **Save**선택하세요.
+
+![](./media/image42.png)
+
+**Sync this choice with** 드롭다운 메뉴를 클릭하여 추가된 선택(choice)
+**Bedrooms**을 선택하세요.
+
+![](./media/image43.png)
+
+**Save**를 클릭하세요.
+
+![](./media/image44.png)
+
+11. 열 및 데이터 창에서 + 버튼을 선택하여 새 열을 추가하세요.
+
+12. New column 창에서 다음 값을 입력한 후, **Save**을 선택하세요:
+
+    - **Display name**: !!Bathrooms!!
 
     - **Data type**: Choice -\> Choice
 
-    ![](./media/image30.png)
+![](./media/image45.png)
 
-    **Note:** Repeat the step 8 process with the Value +++**Bathrooms**+++.
+Choice 값을 생성하세요:
 
-    Create the choice values
+**Sync this choice with**에 있는 **+ New choice** 를 선택하세요.
 
-    - Under **Choices**, provide the Display name as +++Bathrooms+++.
-    
-    &nbsp;
-    
-    - You see two entry fields titled **Label** and **Value**.
-      Enter **1** under the label. Power Apps assigns a value automatically
-      but you can change it to **1**.
-    
-    - Select **+ New choice** and make **2** the new entry for Label
-      and **2** for Value.
-    
-    - Select **+ New choice** and make **3** the new entry for Label
-      and **3** for Value.
-    
-    - Select **+ New choice** and make **4** the new entry for Label
-      and **4** for Value.
-    
-    - Select **+ New choice** and make **5** the new entry for Label
-      and **5** for Value.
-    
-    - Select **Save**.
+- **Choices**에서 Display name을 !!Bathrooms!!으로 제공하세요.
 
-    ![](./media/image31.png)
+ 
 
-    Select the created choice and click on Save in the column addition pane.
+- 두 개의 입력 필드가 표시됩니다: **Label** 과 **Value** . Label에
+  **1**을 입력하세요. Power Apps가 값을 자동으로 할당하지만, 이를
+  **1**로 변경할 수 있습니다.
 
-    ![](./media/image32.png)
+- **+ New choice**를 선택하고, Label에 **2** 및 Value에 **2**를
+  입력하세요.
 
-13. Add another column by selecting the **+** button again in the
-    columns and data pane.
+- **+ New choice**를 선택하고, Label에 **3** 및 Value에 **3**을
+  입력하세요.
 
-    In the New column pane, enter the following values, and then
-select **Save**:
+- **+ New choice**를 선택하고, Label에 **4** 및 Value에 **4**를
+  입력하세요.
 
-    - **Display name**: +++**Client**+++
+- **+ New choice**를 선택하고, Label에 **5** 및 Value에 **5**를
+  입력하세요.
 
-    - **Data type**: Lookup -\> Lookup
+- **Save**를 선택하세요.
 
-    - **Related Table**: Contact
+![](./media/image46.png)
 
-    ![](./media/image33.png)
+생성된 선택(choice) 항목을 선택하고, 열 추가 창에서 **Save**을
+클릭하세요.
 
-14. Once the columns are all created, under **Real Estate Property
-    columns and data**, enter the following test data:
+![](./media/image47.png)
 
-    >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
+13. columns and data 창에서 + 버튼을 다시 선택하여 다른 열을 추가하세요.
 
-    ![](./media/image34.png)
+New column 창에서 다음 값을 입력한 후 **Save**을 선택하세요:
 
-    - Property Name: +++**1100 High Villas**+++
+- **Display name**: !!**Client**!!
 
-    - Asking Price: +++**250,000**+++
+- **Data type**: Lookup -\> Lookup
 
-    - Bathrooms: **3**
+- **Related Table**: Contact
 
-    - Bedrooms: **2**
+![](./media/image48.png)
 
-    - City: +++**Redmond**+++
+14. 모든 열이 생성되면, **Real Estate Property** **columns and data**
+    아래에 다음 테스트 데이터를 입력하세요:
 
-    - Street: +++**Main Avenue**+++
+:::secondary 참고: 필요한 열이 표시되지 않으면, **+\<number\>more**를
+선택하여 표시되는 열을 수정하세요. :::
 
-    - Client: **Select any contact**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image49.png)
 
-    ![](./media/image35.png)
+- Property Name: !!**1100 High Villas**!!
 
-    >[!Note] Note: If there is no client record in the Contact table, ignore adding data to the Contact column.
+- Asking Price: !!**250,000**!!
 
-### Task 5: Create the Bookings table
+- Bathrooms: **3**
 
-Follow these steps to create a new custom table in Dataverse for Real
-Estate Property Bookings.
+- Bedrooms: **2**
 
-1.  From the left navigation pane, select **Tables**, select **Create**
-    **new tables**.
+- City: !!**Redmond**!!
 
-    ![](./media/image36.png)
+- Street: !!**Main Avenue**!!
 
-2.  On the **Create new tables** screen, click on **+ New table -\> Add
-    columns and data**.
+- Client: **Select any contact**
 
-    ![](./media/image37.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image50.png)
 
-3.  Rename the table name from **Table1** to +++**Booking Request**+++ and
-    then click on **Save and exit**.
+::: secondary 참고: Contact 테이블에 **client** 기록이 없다면, 해당 열에
+데이터를 추가하지 않아도 됩니다. :::
 
-    ![](./media/image38.png)
+### 작업 5: Bookings 테이블 생성
 
-4.  Click on **Save and exit** in the confirmation dialog.
+다음 단계를 따라 Real Estate Property Bookings을 위한 새로운 맞춤형
+테이블을 Dataverse에서 생성하세요.
 
-    ![](./media/image20.png)
+1.  왼쪽 탐색 창에서 **Tables**을 선택한 후, **Create** **new tables**를
+    선택하세요.
 
-5.  Once saved, click on the **Custom** tab to find the newly created
-    table there. Click on the **Booking Request** table.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image51.png)
 
-    ![](./media/image39.png)
+2.  **Create new tables** 화면에 **+ New table -\> Add columns and
+    data**를 클릭하세요.
 
-6.  Change the name of the column called **New Column** to +++**Booking
-    Name**+++ (Click on the drop down next to **New Column** and select
-    **Edit Column** and update the **Display name**).
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image52.png)
 
-    ![](./media/image40.png)
+3.  테이블 이름을 **Table1**에서 !!**Booking Request**!! 로 변경하세요.
+    그 후, **Save and exit**를 클릭하세요.
 
-7.  Click on **+** symbol next to the column names.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image53.png)
 
-    ![](./media/image41.png)
+4.  확인(confirmation) 대화상자에서 **Save and exit**를 클릭하세요.
 
-8.  Create the following columns with the name and data type as
-    specified below. Select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image35.png)
 
-    -	Display name –  +++Property+++
-    -	Data type –  Lookup -> Lookup
-    -	Related Table – Real Estate Property
+5.  저장이 완료되면 **Custom** 탭을 클릭하여 새로 생성된 테이블을
+    확인하세요. **Booking Request** 테이블을 클릭하세요.
 
-    ![](./media/image42.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image54.png)
 
-    -	Display name – +++Viewer Name+++
-    -	Data type – Single line of text
+6.  New Column이라는 이름의 열을 !!Booking Name!!으로 변경하세요. (**New
+    Column** 옆의 드롭다운을 클릭하고 **Edit Column**을 선택한 후 표시
+    이름 수정).
 
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image55.png)
 
-    -	Display name – +++Viewer Email+++
-    -	Data type – Single line of text
-    -	 Format – Email
+7.  열 이름 옆에 있는 **+** 기호를 클릭하세요.
 
-    -	Display name – +++Booking Date+++
-    -	Data type – Date and time
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image56.png)
 
-    -	Display name – +++Notes+++
-    -	Data type – Multiple lines of text
+8.  아래에 명시된 이름과 데이터 유형으로 열을 생성한 후, **Save**을
+    클릭하세요.
 
-    ![](./media/image43.png)
+    - Display name – !!Property!!
 
-    ![](./media/image44.png)
+    - Data type – Lookup -\> Lookup
 
-9.  Add a choice data type column with the below details.
+    - Related Table – Real Estate Property
 
-    -	Display name – +++Decision+++
-    -	Data type – Choice -> Choice
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image57.png)
 
-    ![](./media/image45.png)
+- Display name – !!Viewer Name!!
 
-    Under **Sync this choice with**, click on **+ New Choice**. Enter
-**Display name** as +++**Decision**+++.
+- Data type – **Single line of text**
 
-    Enter the below details and click on **Save**.
+ 
 
-    - Label – +++**Undecided**+++
+- Display name – !!Viewer Email!!
 
-    - Value – 1
+- Data type – **Single line of text**
 
-    - Label – +++**Accepted**+++
+- Format – **Email**
 
-    - Value – 2
+ 
 
-    - Label – +++**Declined**+++
+- Display name – !!Booking Date!!
 
-    - Value – 3
+- Data type – **Date and time**
 
-    ![](./media/image46.png)
+ 
 
-    Select the added Choice **Decision** under **Sync this choice with**
-field, designate **Undecided** as the **Default choice** and click on
-**Save**.
+- Display name – !!Notes!!
 
-    ![](./media/image47.png)
+- Data type – **Multiple lines of text**
 
-## Exercise 2: Working with Copilot Studio
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-### Task 1: Sign up for Copilot Studio trial
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-1.  Open the url +++https://copilotstudio.microsoft.com/+++.
+9.  아래 세부 정보를 사용하여 선택 데이터 유형 열을 추가하세요.
 
-2.  Leave the **Choose your country/region** with the **default** value
-    and click on **Get Started**.
+    - Display name – !!Decision!!
 
-    ![](./media/image48.png)
+    - Data type – Choice -\> Choice
 
-3.  Click on **Environments** on the top left and select
-    **Dev One**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-    ![](./media/image49.png)
+**Sync this choice with**에서 **+ New Choice**를 클릭하세요. **Display
+name**을 !!**Decision**!!으로 입력하세요.
 
-4.  Select **Skip** if you get a Welcome to Copilot Studio! Prompt.
+다음 정보를 입력하고 **Save**를 클릭하세요.
 
-    ![](./media/image50.png)
+- Label – !!**Undecided**!!
 
-### Task 2: Create the Real Estate Booking Service agent
+- Value – 1
 
-1.  Select **Create** from the left navigation pane and select the **New
-    agent** tile.
+- Label – !!**Accepted**!!
 
-    ![](./media/image51.png)
+- Value – 2
 
-2.  Select **Skip to configure**.
+- Label – !!**Declined**!!
 
-    ![](./media/image52.png)
+- Value – 3
 
-3.  Fill in the below details.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
 
-    - Name - +++**Real Estate Booking Service**+++
-    
-    - Description - +++**Create bookings for real estate properties**+++
-    
-    - Instructions - +++**Create a copilot for topics relating to creating
-      bookings for real estate properties+++**
-    
-    - Language **–** Select **English**
+**Sync this choice with** 필드에서 추가된 **Choice Decision**을 선택한
+후, **Undecided**를 **Default choice** 항목으로 지정하고 **Save**을
+클릭하세요.
 
-    ![](./media/image53.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
 
-4.  Select the three dots next to the Create button in the top-right of
-    the screen and select **Edit advanced settings**.
+## 연습 2: Copilot Studio 사용하기
 
-    ![](./media/image54.png)
+### 작업 1: Copilot Studio 체험판 등록
 
-5.  Select the **Bookings** solution and select **Save**.
+1.  브라우저의 새 탭에서 다음 url으로 이동하세요:
+    !\!<https://copilotstudio.microsoft.com/>!!.
 
-    ![](./media/image55.png)
+2.  **Choose your country/region**을 **default** 값으로 두고 **Start
+    free trial**을 클릭하세요.
 
-6.  In the top-right of the screen, select **Create**.
+![A person sitting at a computer AI-generated content may be
+incorrect.](./media/image63.png)
 
-    ![](./media/image56.png)
+3.  왼쪽 상단에서 **Environments**을 클릭한 후, **Dev One**을
+    선택하세요.
 
-7.  Once the agent is created, in the Test your copilot pane, enter
-    +++**How do I make a booking?+++** and click **Enter** and observe the
-    response.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
 
-    ![](./media/image57.png)
+4.  Welcome to Copilot Studio! 메시지가 표시되면 **Skip** 을 선택하세요.
 
-### Task 3: Configure Security
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-1.  Select **Settings** in the top-right of the screen.
+### 작업 2: Real Estate Booking Service 에이전트 생성
 
-    ![](./media/image58.png)
+1.  왼쪽 탐색 창에서 **Create**를 선택한 후, **New agent** 타일을
+    선택하세요.
 
-2.  Select the **Security** tab and then select
-    the **Authentication** tile.
+![A screenshot of a software AI-generated content may be
+incorrect.](./media/image66.png)
 
-    ![](./media/image59.png)
+2.  **Skip to configure**를 선택하세요.
 
-3.  Select **No authentication** and click on **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image67.png)
 
-    ![](./media/image60.png)
+3.  다음 정보를 입력하세요.
 
-4.  Select **Save** in the **Save this configuration** prompt.
+    - Name - !!**Real Estate Booking Service**!!
 
-    ![](./media/image61.png)
+    - Description - !!**Create bookings for real estate properties**!!
 
-5.  Once the Authentication settings are saved, click on the **Close**
-    option to close the **Settings** pane.
+    - Instructions - !!**Create a copilot for topics relating to
+      creating bookings for real estate properties!!**
 
-    ![](./media/image62.png)
+    - Language **–** **English** 선택
 
-### Task 4: Remove topics
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
 
-Sample topics are included with new copilots. Remove these sample
-topics. Disable system topics that you don't require.
+4.  화면 오른쪽 상단에 있는 **Create** 버튼 옆의 세 점을 클릭한
+    후, **Edit advanced settings**를 선택하세요.
 
-1.  Select the **Topics** tab from the top menu of the Copilot Overview
-    page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-    ![](./media/image63.png)
+5.  **Bookings** 솔루션을 선택한 후, **Save**을 선택하세요.
 
-2.  You will land in the **Custom** Topics page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image70.png)
 
-3.  Select the **System** tab. Toggle **Enabled** to **Off** for the
-    **Sign in** topic.
+6.  화면 오른쪽 상단에서 **Create**을 선택하세요ㅣ
 
-    ![](./media/image64.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image71.png)
 
-### Task 5: Publish and test the copilot
+7.  에이전트가 생성되면 Test your copilot 창에서 !!**How do I make a
+    booking?**!! 을 입력하고 **Enter** 키를 눌러 응답을 확인하세요.
+    일반적인 응답이 표시될 것입니다.
 
-1.  Select **Publish** and select **Publish** again.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image72.png)
 
-    ![](./media/image65.png)
+### 작업 3: 보안 구성
 
-2.  Select **Publish** in the **Publish this copilot** dialog.
+1.  화면 오른쪽 상단에서 **Settings**을 선택하세요.
 
-    ![](./media/image66.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image73.png)
 
-### Task 6: Demo Website
+2.  **Security** 탭을 선택한 후, **Authentication** 타일을 선택하세요.
 
-The Demo website allows users without a license to test your copilot.
-You can provide them with the URL to the demo website.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image74.png)
 
-1.  Select the **three dots** next to the **Settings** or the **Publish** button in the
-    top-right of the screen and select **Go to demo website**.
+3.  **No authentication** 선택하고 **Save**을 클릭하세요.
 
-    ![](./media/image67.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image75.png)
 
-2.  In the **Type your message** text box, enter +++**What information is
-    needed to book a viewing for a real estate property?**+++ and observe
-    the response from the copilot.
+4.  **Save this configuration** 프롬프트에 **Save** 을 선택하세요.
 
-    ![](./media/image68.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image76.png)
 
-## Exercise 3: Create and manage topics using Copilot
+5.  인증 설정이 저장되면 **Close** 옵션을 클릭하여 **Settings** 창을
+    닫으세요.
 
-### Task 1: Create a topic using Copilot
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image77.png)
 
-Topics can be created and edited using natural language.
+### 작업 4: 필요하지 않은 주제 비활성화
 
-1.  From the **Topics** tab, select **Add a topic** and select **Create
-    from description with Copilot**.
+새로 생성한 Copilot에는 샘플 토픽이 포함되어 있습니다. 이 샘플 토픽들은
+삭제하고, 필요하지 않은 시스템 토픽은 비활성화하세요.
 
-    ![](./media/image69.png)
+1.  Copilot Overview 페이지의 상단 메뉴에서 **Topics** 을 선택하세요.
 
-    >[!Note] **Note:** Select **Allow** if prompted with **See text and images copied to the clipboard**
-    >
-    >![](./media/img10.png)
-    
-    
-3.  Enter the below details and click on **Create**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image78.png)
 
-    - Name your topic - +++**Customer Details**+++
+2.  **Custom** Topics 페이지로 이동하게 됩니다.
 
-    - Create a topic to... - +++**Ask the customer for their name and email
-  address**+++
+3.  **System** 탭을 선택하세요. Sign in 토픽에 대해 **Enabled**를
+    **Off**로 전환하세요.
 
-    ![](./media/image70.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image79.png)
 
-4.  A new topic displays with the  trigger phrases and question
-    nodes.
+### 작업 5: Copilot 게시 및 테스트
 
-5.  Select **Save**.
+1.  에전트를 게시하기 위해서 **Publish**를 선택하세요.
 
-    ![](./media/image71.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image80.png)
 
-### Task 2: Update nodes with natural language
+2.  **Publish this agent** 대화상자에서 **Publish** 를 선택하세요.
 
-1.  If the **Edit with copilot** pane isn't shown on the right-hand side
-    of the screen, select the **Copilot** icon in the upper part of the
-    authoring canvas.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image81.png)
 
-2.  Select the second question node, **What is your email address?**
+### 작업 6: 데모 웹사이트
 
-3.  In the **Edit with Copilot** panel, in the **What do you want to
-    do?** field, enter the following text:
+라이선스가 없는 사용자도 Copilot을 테스트할 수 있도록 데모 웹사이트가
+제공됩니다. 이들에게 데모 웹사이트 URL을 공유할 수 있습니다.
 
-    +++**Update the message in this question node to say thank you to the
+1.  화면 오른쪽 상단의 **Settings** 또는 **Publish** 버튼 옆의 **점 세
+    개** 를 클릭하고 **Go to demo website**를 선택하세요.
+
+![A screenshot of a web page AI-generated content may be
+incorrect.](./media/image82.png)
+
+2.  **Type your message** 입력란에 !!**What information is needed to
+    book a viewing for a real estate property?**!! 입력하고 에이전트의
+    응답을 확인하세요.
+
+![A screenshot of a chatbot AI-generated content may be
+incorrect.](./media/image83.png)
+
+Studio의 Test your agent 창에서 확인했던 것처럼, 이 데모 웹사이트에서도
+일반적인 응답이 제공될 것입니다. 이는 아직 에이전트에 특정 주제나 동작
+로직이 설정되지 않았기 때문이며, 향후 실습에서 이러한 기능들을
+단계적으로 구성해 나갈 예정입니다.
+
+## 연습 3: Copilot로 주제(topic) 생성 및 관리
+
+### 작업 1: Copilot을 사용하여 주제 생성
+
+자연어를 사용하여 주제를 생성하고 수정할 수 있습니다.
+
+1.  **Copilot Studio**가 열려 있는 브라우저 탭으로 다시 이동하세요.
+    **Topics** 탭에서 **Add a topic**을 선택한 후, **Create from
+    description with Copilot** 옵션을 선택하세요.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image84.png)
+
+:::secondary::: **참고:** Select Allow if prompted with See text and
+images copied to the clipboard라는 메시지가 표시되면 Allow를 선택하세요.
+:::
+
+2.  다음 정보를 입력하고 **Create**를 클릭하세요.
+
+    - Name your topic - !!**Customer Details**!!
+
+    - Create a topic to... - !!**Ask the customer for their name and
+      email address**!!
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image85.png)
+
+3.  새 주제가 트리거 문구 및 질문 노드와 함께 표시됩니다.
+
+4.  **Save**를 선택하세요.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image86.png)
+
+### 작업 2: 자연어로 노드 업데이트
+
+1.  화면 오른쪽에 **Edit with Copilot** 창이 표시되지 않으면, authoring
+    canvas 상단에 있는 **Copilot** 아이콘을 선택하세요.
+
+2.  두 번째 질문 노드인 **What is your email address?**를 선택하세요.
+
+3.  **Edit with Copilot** 패널에서 **What do you want to do?** 필드에
+    다음 텍스트를 입력하세요.
+
+!!**Update the message in this question node to say thank you to the
 Name variable from the previous node and then proceed to ask the email
-address question**+++
+address question**!!
 
-4.  Select **Update**.
+::: :::
 
-    ![](./media/image72.png)
+4.  **Update**를 선택하세요.
 
-5.  Select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image87.png)
 
-    ![](./media/image73.png)
+5.  **Save**를 선택하세요.
 
-### Task 3: Add nodes with natural language
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image88.png)
 
-In addition to adding updating existing nodes, you can use Copilot to
-add new ones.
+### 작업 3: 자연어를 사용하여 노드 추가
 
-1.  Make sure that no node is selected by clicking in the empty space
-    around the nodes.
+기존 노드 업데이트를 추가하는 것 외에도 Copilot을 사용하여 새 노드를
+추가할 수 있습니다.
 
-2.  In the **What do you want to do?** field, enter the following text
-    and then select **Update.**
+1.  노드 주위의 빈 공간을 클릭하여 선택된 노드가 없는지 확인하세요.
 
-    +++**Add a new multiple-choice question to prompt the user if the details are correct with two options Yes or No**+++
+2.  **What do you want to do?** 필드에서 다음 텍스트를 입력하고
+    **Update**를 선택하세요.
 
-    ![](./media/image74.png)
+!!**Add a new multiple-choice question to prompt the user if the details
+are correct with two options Yes or No**!!
 
-3.  A new question node is added to the end of the topic with options
-    for the user to select.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image89.png)
 
-4.  Select **Save**.
+3.  새로운 질문 노드가 토픽 끝에 추가되며 사용자가 선택할 수 있는 옵션이
+    표시됩니다.
 
-    ![](./media/image75.png)
+4.  질문 부분에서, Are the details correct? 아래에 다음 내용을
+    입력하세요:
 
-### Task 4: Configure the scope of the variables
+> \<h3\>Summary\</h3\>
+>
+> \<p\>\<strong\>Full Name:\</strong\>
+>
+> Name string
+>
+> \</p\>
+>
+> \<p\>\<strong\>Email Address:\</strong\>
+>
+> EmailAddress string
+>
+> \</p\>
+>
+> \<p\> 태그 안에 있는 **Name string**과 **Email address** **string**을
+> 해당 변수로 변경하려면, **{x}** 기호를 선택하여 각각의 변수로
+> 대체하세요.
 
-1.  Select **Variables** to open the Variables pane.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image90.png)
 
-    ![](./media/image76.png)
+5.  **Save**를 선택하세요.
 
-2.  Select the right-hand check boxes for the topic variables and click
-    on **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image91.png)
 
-    ![](./media/image77.png)
+### 작업 4: 변수 범위 구성
 
-## Exercise 4: Create and manage topics manually
+1.  **Variables**을 선택하여 Variables 창을 여세요.
 
-### Task 1: Create a topic from blank
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image92.png)
 
-1.  Select the **Topics** tab.
+2.  주제(topic)에는 값을 입력받는 변수와 반환하는 변수가 있습니다. 이
+    연습에서 사용하는 변수는 원래 주제로 값을 반환하는 역할을 합니다.
 
-2.  Select **Add a topic** and select **From blank**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image93.png)
 
-    ![](./media/image78.png)
+3.  주제 변수 오른쪽에 있는 체크박스를 선택한 후, **Save**을
+    클릭하세요.![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image94.png)
 
-3.  Select **Details** to open the Topic details dialog.
+## 연습 4: 수동으로 주제(topic) 생성 및 관리
 
-    ![](./media/image79.png)
+### 작업 1: From blank에서 주제(topic)을 생성하기
 
-4.  Fill in the below details and click on **Save**.
+1.  **Topics** 탭을 선택하세요.
 
-    - **Name** - +++Book a Real Estate Showing+++
+2.  **Add a topic**을 선택한 후, **From blank**를 선택하세요.
 
-    - **Display Name –** +++**Book**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image95.png)
 
-    - **Description**  - +++Select the property and requested date and create a booking request+++
+3.  Topic details 대화상자를 열기 위해 **Details** 을 선택하세요.
 
-    ![](./media/image80.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image96.png)
 
-5.  Select **Details** to close the Topic details dialog.
+4.  다음 정보를 입력하고 **Save**를 클릭하세요.
 
-    ![](./media/image81.png)
+    - **Name** - !!Book a Real Estate Showing!!
 
-### Task 2: Add trigger phrases
+    - **Display Name –** !!**Book**!!
 
-1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I
-    want to book a real estate showing**+++ under **Add Phrases** and
-    select the **+** icon.
+    - **Description** - !!Select the property and requested date and
+      create a booking request!!
 
-    ![](./media/image82.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image97.png)
 
-2.  Enter the below phrases one by one.
+5.  Topic details 대화상자를 닫기 위해서 **Details** 를 선택하세요.
 
-    - +++**Schedule a real estate showing**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image98.png)
 
-    - +++**Arrange the viewing for a real estate property**+++
+### 작업 2: 트리거 문구 추가
 
-    - +++**Set up an appointment to view a house**+++
+1.  **Trigger**에서 **Phrases** 항목 아래의 **Edit**를 선택하세요. **Add
+    Phrases** 아래에 Enter !!**I want to book a real estate showing**!!
+    을 입력한 후, **+** 아이콘을 클릭하세요.
 
-    - +++**Plan a property viewing**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image99.png)
 
-3.  Once all the phrases are added, select **Save**.
+2.  아래 문장들을 하나씩 입력하세요. 각 문장을 입력한 후에는 + 아이콘을
+    눌러 추가하세요.
 
-    ![](./media/image83.png)
+    - !!**Schedule a real estate showing**!!
 
-### Task 3: Add a message node
+    - !!**Arrange the viewing for a real estate property**!!
 
-1.  Select the **+** icon under the Trigger node and select **Send a
-    message**.
+    - !!**Set up an appointment to view a house**!!
 
-    ![](./media/image84.png)
+    - !!**Plan a property viewing**!!
 
-2.  In the **Enter a message** field, enter the following text:
+3.  모든 문장을 추가한 후,  **Save**을 선택하세요.
 
-    +++Hi, I can help you with booking a real estate property showing.+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image100.png)
 
-3.  Select **Save**.
+### 태스크 3: 메시지 노드 추가
 
-    ![](./media/image85.png)
+1.  트리거 노드 아래의 **+** 아이콘을 선택한 후, **Send a message**를
+    선택하세요.
 
-### Task 4: Add a Topic management node
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image101.png)
 
-1.  Select the **+** icon under the send a message node and
-    select **Topic management -\> Go to another topic**.
+2.  **Enter a message** 필드에서 다음 문장을 입력하세요:
 
-    ![](./media/image86.png)
+!!Hi, I can help you with booking a real estate property showing.!!
 
-2.  Select the **Customer Details** topic.
+3.  **Save**를 선택하세요.
 
-    ![](./media/image87.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image102.png)
 
-3.  Select **Save**.
+### 작업 4: 주제(Topic) 관리 노드 추가
 
-    ![](./media/image88.png)
+1.  send a message 노드 아래에서 **+** 아이콘을 선택한 후, **Topic
+    management -\> Go to another topic**을 선택하세요.
 
-### Task 5: Add condition node 
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image103.png)
 
-1.  Select the **+** icon under the topic management node and
-    select **Add a condition**.
+2.  **Customer Details** 주제를 선택하세요.
 
-    ![](./media/image89.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image104.png)
 
-2.  Select **DetailsCorrect** for variable.
+3.  **Save**를 선택하세요.
 
-    ![](./media/image90.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image105.png)
 
-3.  Select the **Condition** as **is equal to**
+### 작업 5: 조건(condition) 노드 추가
 
-4.  Select the **value** as **Yes**.
+1.  Topic management 노드 아래의 **+** 아이콘을 **Add a condition**을
+    클릭하세요.
 
-    ![](./media/image91.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image106.png)
 
-5.  Select **Save**.
+2.  변수로 **DetailsCorrect**를 선택하세요.
 
-    ![](./media/image92.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image107.png)
 
-### Task 6: Add question nodes
+3.  **Condition**을 **is equal to**로 선택하세요.
 
-1.  Select the **+** icon under the left-hand condition node and
-    select **Ask a question**. Fill in the below details and click on
-    **Save**.
+4.  **value**를 **Yes**로 선택하세요.
 
-    - Enter a message  - +++Which property do you want to see?+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image108.png)
 
-    - **Identify** - Select **User's entire response**.
+5.  **Save**를 선택하세요.
 
-    - **Save user response as** Enter +++**PropertyName**+++ for **Variable
-  name**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image109.png)
 
-    ![](./media/image93.png)
+### 작업 6: 질문 노드 추가
 
-2.  Select the the **+** icon under the question node and select **Ask a
-    question**. Fill in the below details and click on **Save.**
+1.  왼쪽 condition 노드 아래에서 **+** 아이콘을 선택하고 **Ask a
+    question**을 선택하세요. 다음 정보를 입력하고 **Save**를 클릭하세요.
 
-    - **Enter a message** - +++What date and time do you want to see the
-  property?+++
+    - Enter a message - !!Which property do you want to see?!!
 
-    - Identify - Select **Date and Time**
+    - **Identify** - Select **User's entire response** 선택하세요.
 
-    - **Save user response as** - Enter +++**DateTime**+++ for **Variable
-  name**
+    - **Save user response as**을 **Variable name**에
+      !!**PropertyName**!!를 입력하세요.
 
-    ![](./media/image94.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image110.png)
 
-### Task 7: Test the copilot
+2.  질문 노드 아래의 **+** 아이콘을 선택하고 **Ask a question**를
+    선택하세요 . 아래 정보를 입력하고 **Save**을 클릭하세요**.**
 
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
+    - **Enter a message** - !!What date and time do you want to see the
+      property?!!
 
-    ![](./media/image95.png)
+    - Identify - **Date and Time** 선택
 
-2.  When the **Conversation Start** message appears, your copilot starts
-    a conversation.
+    - **Save user response as** – **Var1**을 클릭하여 Variable
+      properties 창을 열고, **Variable name**에 !!**DateTime**!!을
+      입력하세요.
 
-3.  In response, enter a trigger phrase for the topic that you created:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image111.png)
 
-    +++I want to book a real estate showing+++
+### 작업 7: Copilot 테스트하기
 
-4.  The copilot responds with the "**What is your name?**" question.
+1.  화면 오른쪽 상단에 있는 **Test** 버튼을 선택하여 testing 패널을
+    엽니다. Testing 패널 상단의 오른쪽에 있는 **세 개의 점**을 선택하고,
+    **Track between topics**을 선택하세요.
 
-5.  Enter your name.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image112.png)
 
-    ![](./media/image96.png)
+2.  **Conversation Start** 메시지가 표시되면, Copilot이 대화를
+    시작합니다.
 
-6.  Then enter your **email** when it prompts for the email. After you
-    enter the details, a question appears asking if the information is
-    correct, and options to select **Yes** or **No**. Select **Yes**.
+3.  응답으로, 생성한 주제에 대한 트리거 문구를 입력하세요:
 
-    ![](./media/image97.png)
+!!I want to book a real estate showing!!
 
-7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property to
-    you want to see?** prompt.
+4.  Copilot이 "**What is your name?**"라는 질문을 합니다.
 
-8.  Enter +++**Tomorrow 10:00 AM**+++ to the **What date and time do you
-    want to see the property?** prompt.
+5.  성함을 입력해주세요.
 
-    ![](./media/image98.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image113.png)
 
-## Exercise 5: Build an Autonomous agent that automatically sends an email when a booking is created or updated
+6.  **Email**을 입력하라는 프롬프트가 나타나면 이메일을 입력하세요. 세부
+    사항을 입력한 후에는 정보가 정확한지 묻는 질문과 함께 **Yes** 또는
+    **No** 옵션이 표시됩니다. **Yes**를 선택하세요.
 
-This exercise is to showcase the **When a row is added, modified or deleted** trigger of an Autonomous agent. 
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image114.png)
 
-### Task 1: Create an agent
+7.  **Which property to you want to see?** 프롬프트에 !!555 Oak Lane,
+    Denver, CO 80203!!을 입력하세요.
 
-2.  Click on Agents from the left navigation pane.
+8.  **What date and time do you want to see the property?** 프롬프트에
+    !!**Tomorrow 10:00 AM**!!을 입력하세요.
 
-    ![](./media/image99.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image115.png)
 
-3.  Click on **+ New agent** to create a new agent.
+## 연습 5: 예약이 생성되거나 업데이트될 때 자동으로 이메일을 보내는 자율 에이전트 구축
 
-    ![](./media/image100.png)
+이 연습은 자율 에이전트의**When a row is added, modified or
+deleted** 트리거를 보여주기 위한 것입니다.
 
-4.  Click on **Skip to configure** to configure the agent.
+### 작업 1: 에이전트 생성
 
-    ![](./media/image101.png)
+1.  왼쪽 탐색 창에서 **Agents**를 클릭하세요.
 
-5.  Enter the below details and click on **Create**.
+![A screenshot of a chat box AI-generated content may be
+incorrect.](./media/image116.png)
 
-    **Name** - +++Autonomous agent+++
+2.  새로운 에이전트를 생성하려면 **+ New agent** 를 클릭하세요.
 
-    **Description** - +++You are an agent to detect the updates to the
-Booking Requests table+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image117.png)
 
-    ![](./media/image102.png)
+3.  에이전트를 구성을 설정하려면 **Skip to configure** 를 클릭하세요.
 
-6.  The agent setup will take few minutes to get completed. Once done,
-    the Autonomous agent opens with the **Your agent is ready** message.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image118.png)
 
-    ![](./media/image103.png)
+4.  다음 정보를 입력하고 **Create**을 선택하세요.
 
-7.  Select **Settings** from the top right corner.
+**Name** - !!Autonomous agent!!
 
-    ![](./media/image104.png)
+**Description** - !!You are an agent to detect the updates to the
+Booking Requests table!!
 
-8.  The Generative AI option must be enabled in order to continue with
-    the Trigger creation for the agent.
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image119.png)
 
-9.  Select the **Generative AI** option from the list of options on the
-    left side of the **Settings** screen. Under **Using generative AI in
-    conversations**, select **Generative (preview)**. Click on **Save**.
+5.  에이전트 설정이 완료되려면 몇 초가 걸립니다. 완료되면 **Your agent
+    is ready** 메시지와 함께 자율 에이전트가 열립니다.
 
-    ![](./media/image105.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image120.png)
 
-10. Close the **Settings** pane.
+6.  오른쪽 상단에서 **Settings**을 선택하세요.
 
-    ![](./media/image106.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image121.png)
 
-### Task 2: Add trigger to the agent
+7.  에이전트의 트리거 생성을 계속하려면 Generative AI 옵션이
+    활성화되어야 합니다.
 
-1.  Back in the Autonomous agent page, scroll down to the **Triggers
-    (preview)** section and select **+ Add trigger**.
+8.  **Settings** 화면 왼쪽에 있는 옵션 목록에서 Generative AI 옵션을
+    선택하세요. **Using generative AI in conversations** 아래에서
+    **Generative**를 선택하고 **Save**을 클릭하세요.
 
-    ![](./media/image107.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image122.png)
 
-2.  Select **When a row is added, modifies or deleted** trigger from the
-    **Add trigger** screen.
+9.  **Settings** 창을 닫으세요.
 
-    ![](./media/image108.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image123.png)
 
-3. Click on **Continue** in the next screen.
+### 작업 2: 에이전트에 트리거 추가
 
-4.  Once selected, The **Trigger name** and the **Sign in options** gets
-    loaded in the next screen. This will take a few minutes to get
-    populated. For the trigger we selected, there will be two apps, one
-    being the **Microsoft Copilot Studio** and the other one being the
-    **Microsoft Dataverse**.
+1.  Autonomous agent 페이지로 돌아가서, **Triggers (preview)** 섹션까지
+    스크롤한 후 **+ Add trigger**를 선택하세요.
 
-5.  Once loaded, ensure that the connectivity status is in **green** for
-    the sign in options and then click **Next** to continue.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image124.png)
 
-    ![](./media/image109.png)
+2.  **Add trigger** 화면에서 **When a row is added, modified or
+    deleted** 트리거를 선택하세요.
 
-6.  In the Add trigger screen, select the below details and click on
-    **Create trigger**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image125.png)
 
-    - Change type – **Added or modified**
+3.  다음 화면에서 **Continue**를 클릭하세요.
 
-    - Table name – **Booking Requests**
+4.  선택하면, **Trigger name** 및 **Sign in options**이 다음 화면에
+    로드됩니다. 이 과정은 몇 분 정도 걸릴 수 있습니다. 선택한 트리거에는
+    두 개의 앱이 표시됩니다. 하나는 **Microsoft Copilot Studio**이고,
+    다른 하나는 **Microsoft Dataverse**입니다..
 
-    - Scope – **Organization**
+5.  로드되면 로그인 옵션에 대해 연결 상태가 **초록색**으로 표시되는지
+    확인하고, **Next**를 클릭하여 계속 진행하세요.
 
-    - Trigger instructions – Leave as **default**. This will return the
-  entire response to the agent.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image126.png)
 
-    ![](./media/image110.png)
+6.  **Add trigger** 화면에서 아래 세부 사항을 선택하고 **Create
+    trigger**를 클릭하세요.
 
-7.  The Trigger creation may take 3 to 5 minutes to complete.
+    - Change type – **Added or modified**
 
-    ![](./media/image111.png)
+    - Table name – **Booking Requests**
 
-8.  Once done, click on **Close** in the **Time to test your trigger!**
-    Screen.
+    - Scope – **Organization**
 
-    ![](./media/image112.png)
+    - Trigger instructions – **default**으로 둡니다. 이렇게 하면 전체
+      응답이 에이전트에 반환됩니다.
 
-9. Click on the **Actions** tab and select **+ Add an action**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image127.png)
 
-    ![](./media/image130.png)
-   
-10. Search for +++Send an mail+++ and select **Send an email (V2) action**.
+7.  트리거 생성을 완료하는 데 3-5분 정도 걸릴 수 있습니다.
 
-    ![](./media/img43.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image128.png)
 
-11.	Once the connection is established, click on **Next**.
+8.  완료되면, **Time to test your trigger!** 화면에서 **Close**를
+    클릭하세요.
 
-   	![](./media/img2.png)
-   	
-12.	Select **End user Authentication** as **Copilot Authentication** and select **Add action**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image129.png)
 
-   	![](./media/img3.png)
-   	
-13.	Select the created Action.
+9.  **Actions** 탭을 클릭하고 **+ Add action**를 선택하세요.
 
-   	![](./media/img4.png)
-   	
-14.	Select the **Inputs** tab.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image130.png)
 
-   	![](./media/img5.png)
-   	
-15.	Give the email id to which the mail needs to be delivered in the **Description** field and click on **Save**. This can be any mail id you have access to.
+10. !!Send an email!! 를 찾고 **Send an email (V2) action**를
+    선택하세요.
 
-   	![](./media/img6.png)
+![A screenshot of a email conversation AI-generated content may be
+incorrect.](./media/image131.png)
 
-### Task 3: Add instructions to the agent
+11. 연결이 설정되면 **Next**를 클릭하세요.
 
-1.	Select **Overview** to go to the Overview page and then click on **Edit** in the Overview page
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image132.png)
 
-    ![](./media/img7.png)
+12. **End user authentication** 드롭다운에서 **Copilot author
+    Authentication** 옵션을 선택하고 **Add action**을 선택하세요.
 
-2.	Update the instructions as below, replacing the place holder for **Your mail id** with the **mail id** to which the details needs to be sent and click on **Save**.
-   
-    +++a.	Read the details of the row that gets added or modified+++
-    +++b.	Mail the modified information only to <Your email id> with a proper subject and body added to the email+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image133.png)
 
+13. 생성한 Action을 선택하세요.
 
-    ![](./media/img8.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image134.png)
 
-4.  Click on **Publish** to publish the agent to all the channels it is
-    connected to.
+14. **Inputs** 탭을 선택하세요.
 
-    ![](./media/image115.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image135.png)
 
-5.  Click on **Publish** in the **Publish this agent** dialog box.
+15. 메일을 받을 이메일 주소를 **Description** 필드에 입력한 후,
+    **Save**을 클릭하세요. 이 이메일 주소는 본인이 액세스할 수 있는 모든
+    메일 ID가 될 수 있습니다.
 
-    ![](./media/image116.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image136.png)
 
-6.  Once published, you will get a success message.
+### 작업 3: 에이전트에 지침 추가
 
-    ![](./media/image117.png)
+1.  **Overview**를 선택하여 Overview 페이지로 이동한 후, **Overview
+    page**에서 Edit를 클릭하세요.
 
-### Task 4: Update the Bookings table
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image137.png)
 
-1.  Login to +++https://make.powerapps.com/+++ and select **Tables** from
-    the left navigation pane.
+2.  아래의 지침을 **Instructions** 텍스트 영역에 붙여넣고, 섹션
+    **b**에서 \<Mail ID\>를 세부 사항을 보낼 이메일 주소로 변경한 후
+    **save** 을 클릭하세요.
 
-    ![](./media/image118.png)
+!!a. Read the details of the row that gets added or modified!! !!b. Mail
+the modified information only to \<Mail ID\> with a proper subject and
+body added to the email!!
 
-2.  Select **Custom** and select the **Booking Request** table from
-    there.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image138.png)
 
-    ![](./media/image119.png)
+3.  Publish **를 클릭하여** 연결된 모든 채널에 에이전트를 게시하세요.
 
-3.  Add or update a value in the table.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image139.png)
 
-    ![](./media/image120.png)
+4.  **Publish this agent** 대화 상자에서 **Publish** 를 클릭하세요.
 
-### Task 5: Test the agent
+![A screen shot of a computer AI-generated content may be
+incorrect.](./media/image140.png)
 
-1.  From the agent page, select Test, and switch on the **Activity
-    Map**.
+5.  게시가 완료되면 성공 메시지가 표시됩니다.
 
-    ![](./media/image121.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image141.png)
 
-2.  From the agent page, select the **Test trigger** option. The update
-    we made in the Bookings table would have triggered the trigger. We
-    will use it to **test** from the copilot studio.
+### 작업 4: Bookings 테이블 업데이트하기
 
-    ![](./media/image122.png)
+1.  Login to !\!<https://make.powerapps.com/>!!에 로그인한 후, 왼쪽
+    탐색**Tables**을 선택하세요.
 
-3.  Select the latest entry and click on **Start testing**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image142.png)
 
-    ![](./media/image123.png)
+2.  **Custom**을 선택한 다음, 목록에서 **Booking Request** 테이블을
+    선택하세요.
 
-4.  The trigger gets invoked.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image143.png)
 
-    ![](./media/image124.png)
+3.  테이블의 값 추가 또는 업데이트하세요.
 
-5.  The mail is sent to the specified mail id.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image144.png)
 
-    ![](./media/image125.png)
+### 작업 5: 에이전트 테스트하기
 
-6.	Check the corresponding mail box to see if you have received a mail as below.
-   
-    ![](./media/img9.png)
+1.  에이전트 페이지에서 Test를 선택한 후, **Activity Map**을
+    활성화하세요.
 
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image145.png)
 
-**Summary**
+2.  에이전트 페이지에서 **Test trigger** 옵션을 선택하세요. Bookings
+    테이블에서 수행한 업데이트가 트리거를 실행했을 것입니다. 이 트리거를
+    사용해 Copilot Studio에서 테스트를 진행할 예정입니다.
 
-In this lab, we have learnt to
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image146.png)
 
-- Build an agent from the Copilot Studio and create topics in it.
+3.  최신 항목을 선택하고 **Start testing**을 클릭하세요.
 
-- Test the agent from the Copilot Studio and publish it to the demo
-  web site.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image147.png)
 
-- Build an autonomous agent and test it
+4.  트리거가 실행됩니다.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image148.png)
+
+5.  지정된 메일 ID로 메일이 전송됩니다.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image149.png)
+
+6.  아래와 같은 메일을 받았는지 해당 메일함을 확인하세요.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image150.png)
+
+**요약**
+
+이 실습에서는 다음 내용을 배웠습니다:
+
+- Copilot Studio에서 에이전트를 만들고 주제(topic)를 생성하는 방법
+
+- Copilot Studio에서 에이전트를 테스트하고 데모 웹사이트에 게시하는 방법
+
+- 자율 에이전트를 구축하고 이를 테스트하는 방법
+
+ 
