@@ -1,772 +1,894 @@
-## Lab 04 - Enhancing the Real Estate copilot with Gen AI capabilities
+# 실습 04 - Gen AI 기능을 통한 부동산(Real Estate) copilot 향상시키기
 
-**Lab duration** – 80 minutes
+**실습 소요 시간** – 80분
 
-**Objective:**
+**목표:**
 
-Implement entities, slot filling and variables usage in the Copilot for
-Real Estate app. Enhance the copilot created for the Real Estate app to
-elevate the customer experience by implementing Generative AI.
+Copilot for Real Estate 앱에 엔터티, 슬롯 채우기, 변수 활용을 구현하고,
+Generative AI 기능을 적용해 고객 경험을 한층 더 향상시켜 보세요.
 
-## Exercise 1: Use entities to improve the copilot
+## 연습 1: Copilot의 이해도를 높이기 위해 엔터티 사용하기
 
-Microsoft Copilot Studio uses entities to understand user intent. There
-are many prebuilt entities included for commonly used information. You
-can create custom entities for your specific purpose.
+Microsoft Copilot Studio는 사용자의 의도를 파악하기 위해 엔터티를
+사용합니다. 자주 사용되는 정보에 대해 미리 생성된 엔터티가 포함되어
+있으며, 특정 목적에 맞게 사용자 지정 엔터티를 직접 만들 수도 있습니다.
 
-### Task 1: View prebuilt entities
+### 작업 1: 미리 구축된 엔터티 보기
 
-1.  Open the Copilot Studio at +++https://copilotstudio.microsoft.com+++
-    and open the agent **Real Estate Booking Service.**
+1.  !\![https://copilotstudio.microsoft.com](https://copilotstudio.microsoft.com/)!!에서
+    Copilot Studio를 열고 **Real Estate Booking Service** 에이전트를
+    여세요.
 
-2.  Select **Settings** in the top-right of the screen.
+2.  화면 왼쪽 상단에서 **Settings**을 선택하세요.
 
-    ![](./media/image1.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-3.  Select the **Entities** tab. You can see a list of pre-built
-    entities.
+3.  **Entities** 탭을 선택하세요. 사전 구축된 엔터티 목록을 확인할 수
+    있습니다.
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-### Task 2: Create the property type entity
+### 작업 2: 부동산 유형(Property Type) 엔터티 만들기
 
-1.  Select **+ Add an entity** and select **+ New entity**.
+1.  **+ Add an entity** 선택하고, **+ New entity**를 선택하세요.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-2.  Select the **Closed list** tile.
+2.  **Closed list** 타일을 선택하세요.
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-3.  Enter the below details
+3.  다음 정보를 입력하세요:
 
-    -   Name - +++Property Type+++
-    -   Enter item under List items –  +++Apartment+++ - Select Add
+    - Name - !!Property Type!!
 
-    ![](./media/image5.png)
+    - List items에 다음 항목 입력하세요 – !!Apartment!! – **Add**
+      선택하세요.
 
-4.  Enter +++**Condominium**+++ in the **Enter item** field and
-    select **Add**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image5.png)
 
-5.  Enter +++**Duplex**+++ in the **Enter item** field and
-    select **Add**.
+4.  **Enter item** 필드에 !!**Condominium**!!을 입력하고, **Add**를
+    선택하세요.
 
-6.  Enter +++**House**+++ in the **Enter item** field and
-    select **Add**.
+5.  **Enter item** 필드에 !!**Duplex**!!을 입력하고, **Add**를
+    선택하세요.
 
-   ![](./media/image6.png)
+6.  **Enter item** 필드에 !!**House**!!을 입력하고, **Add**를
+    선택하세요.
 
-7.  Select **+ Synonyms** for **Apartment**, enter +++**Flat**+++, then
-    select the **+** icon and select **Done**.
+![](./media/image6.png)
 
-    ![](./media/image7.png)
+7.  **Apartment** 항목 옆의 + **Synonyms**를 선택하고, !!**Flat**!! 을
+    입력한 후 **+** 아이콘을 클릭하고 **Done** 을 선택하세요.
 
-8.  Select **+ Synonyms** for **House**, enter +++**Single-family home**+++, then select the **+** icon and select **Done**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image7.png)
 
-9.  Select **+ Synonyms** for **Condominium**,
-    enter +++**Townhouse**+++, then select the **+** icon and
-    select **Done**.
+8.   **House** 항목은 **+ Synonyms**을 선택하고 !!**Single-family
+    home**!!를 입력한하세요. **+** 아이콘을 선택한 후, **Done**을
+    선택하세요.
 
-10. Select **Save**.
+9.  **+ Synonyms** for **Condominium**에 대한 **+ Synonyms** 를 선택하고
+    !!**Townhouse**!!를 입력한 후, **+** 아이콘을 선택하고 **Done**을
+    선택하세요.
 
-    ![](./media/image8.png)
+10. **Save**를 선택하세요.
 
-11. Select **Close**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image8.png)
 
-    ![](./media/image9.png)
+11. **Close**를 선택하세요.
 
-### Task 3: Create number of bedrooms entity
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image9.png)
 
-1.  Select **+ Add an entity** and select **+ New entity**.
+### 작업 3: 침실 수 엔터티 생성
 
-    ![](./media/image10.png)
+1.  **+ Add an entity** 선택한 후 **+ New entity**를 선택하세요.
 
-2.  Select the **Regular expression (Regex)** tile.
+![](./media/image10.png)
 
-    ![](./media/image11.png)
+2.  **Regular expression (Regex)** 타일을 선택하세요.
 
-3.  Enter the below details and click on **Save**.
+![](./media/image11.png)
 
-    - Name  - +++**Number of Bedrooms**+++ 
-    
-    - Pattern  - +++**\[1-5\]**+++ 
+3.  아래 정보를 입력하고 **Save**을 클릭하세요.
 
-    ![](./media/image12.png)
+    - Name - !!**Number of Bedrooms**!!
 
-4.  Select **Close**.
+    - Pattern - !!**\[1-5\]**!!
 
-    ![](./media/image13.png)
+![A screenshot of a cell phone AI-generated content may be
+incorrect.](./media/image12.png)
 
-5.  Close the **Settings** pane.
+4.  **Close**를 선택하세요.
 
-    ![](./media/image14.png)
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image13.png)
 
-### Task 4: Use entities
+5.  **Settings** 창을 닫으세요.
 
-1.  Select the **Topics** tab. Select the **Book a Real Estate
-    Showing** topic.
+![](./media/image14.png)
 
-    ![](./media/image15.png)
+### 작업 4: 엔터티 사용
 
-2.  Select the **+** icon above the property question node and
-    select **Ask a question**.
+1.  **Topics** 탭을 선택하세요. **Book a Real Estate Showing** 주제를
+    선택하세요.
 
-    ![](./media/image16.png)
+![](./media/image15.png)
 
-3.  Fill in the below details.
+2.  부동산 질문 노드 위에 있는 + 아이콘을 선택하고, **Ask a question**을
+    선택하세요.
 
-    - **Enter a message** - +++What type of property do you want to see?+++
-    
-    - **Identify** – Select **Property Type**
-    
-    - Select **Select options for user** and check the **Display** option
-      for all list values.
+![](./media/image16.png)
 
-    ![](./media/image17.png)
+3.  다음 정보를 입력하세요.
 
-4.  Select the variable in **Save user response as** and enter
-    +++**PropertyType**+++ for **Variable name**
+    - **Enter a message** - !!What type of property do you want to
+      see?!!
 
-    ![](./media/image18.png)
+    - **Identify** –**Property Type**를 선택하세요.
 
-5.  Select the **+** icon below the new question node and select **Ask a
-    question**.
+    - **Select options for user** 을 선택하고 모든 목록 값에
+      대해  **Display** 옵션을 확인하세요.
 
-6.  Enter the below details and click on **Save**.
+![](./media/image17.png)
 
-    - **Enter a message** - +++How many bedrooms do you need?+++
+4.  **Save user response as**에서 변수를 선택하고, **Variable name**에
+    !!**PropertyType**!! 을 입력하세요. 
 
-    - **Identify -** Select **Number of Bedrooms**
+![](./media/image18.png)
 
-    - **Save user response as** - Enter +++NumberofBedrooms+++ for **Variable name**
+5.  새로운 질문 노드 아래에 있는 + 아이콘을 선택하고, **Ask a
+    question**을 선택하세요.
 
-    ![](./media/image19.png)
+6.  다음 정보를 입력하고 **Save**을 선택하세요.
 
-## Exercise 2: Create actions
+    - **Enter a message** - !!How many bedrooms do you need?!!
 
-Microsoft Copilot Studio can access data in Microsoft Dataverse using
-Power Automate cloud flows
+    - **Identify -**  **Number of Bedrooms** 선택하세요.
 
-### Task 1: Create Power Automate flow to retrieve a property
+    - **Save user response as** - **Variable name**을
+      !!NumberofBedrooms!!으로 입력하세요.
 
-1.  Select the **Actions** tab from the top menu. Select **+ Add an
-    action**.
+![](./media/image19.png)
 
-    ![](./media/image20.png)
+## 연습 2: 액션 생성
 
-2.	Select **+ New action** -> **New Power Automate flow**.
+Microsoft Copilot Studio는 Power Automate 클라우드 플로우를 사용해
+Microsoft Dataverse의 데이터에 액세스할 수 있습니다.
 
-    ![](./media/img15.png)
+### 작업 1: 부동산 정보를 가져오는 Power Automate 흐름 만들기
 
-3.  Sign in to Power Automate if prompted.
+1.  상단 메뉴에서 **Actions** 탭을 선택하고, **+ Add an action**를
+    선택하세요.
 
-4.	In the top right corner, enable the toggle **New designer** if not already done. Select **Save and switch**.
+![](./media/image20.png)
 
-  	![](./media/img16.png)
-  	
-5.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++**Get Property**+++ as the flow name.
+2.  **+ New action** -\> **New Power Automate flow**를 선택하세요.
 
-    ![](./media/image22.png)
+![](./media/image21.png)
 
-6.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input**.
+3.  메시지가 표시되면 Power Automate에 로그인하세요.
 
-    ![](./media/image23.png)
+4.  오른쪽 상단에서 **New designer** 토글을 활성화하세요(아직 활성화되지
+    않았다면). **Save and switch**를 선택하세요.
 
-7.  Select **Text**.
+![](./media/image22.png)
 
-    ![](./media/image24.png)
+5.  화면 왼쪽 상단에서 **Run a flow from Copilot**을 선택하고, 플로우
+    이름으로 !!**Get Property**!!를 입력하세요.
 
-8.  Enter the below details
+![](./media/image23.png)
 
-    - **Input** – +++Bedrooms+++
+6.  **Run a flow from Copilot** 트리거 단계를 선택한 후, **+ Add an
+    input**을 선택하세요.
 
-    - **Please enter your input** - +++Number of Bedrooms+++
+![](./media/image24.png)
 
-    ![](./media/image25.png)
+7.  **Text**를 선택하세요.
 
-9.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
+![](./media/image25.png)
 
-    ![](./media/image26.png)
+8.  다음 정보를 입력하세요.
 
-10. Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the **Microsoft Dataverse connector**.
+    - **Input** – !!Bedrooms!!
 
-    ![](./media/image27.png)
+    - **Please enter your input** - !!Number of Bedrooms!!
 
-11. Select the **List rows** action.
+![](./media/image26.png)
 
-    ![](./media/image28.png)
+9.  흐름**(flow)**에서 두 단계 사이에 있는 + 아이콘을 마우스 오른쪽
+    버튼으로 클릭한 후, **Add an action**을 선택하세요.
 
-12. If prompted for authentication, select **OAuth** and select **Sign
-    in**. Sign in using your tenant id if prompted.
+![](./media/image27.png)
 
-    ![](./media/image29.png)
+10. **Searcb** 필드에 !!**Dataverse**!!를 입력하고, **Microsoft
+    Dataverse connector**에서 **See more**을 선택하세요.
 
-13. Select **Real Estate Properties** for table name.
+\![\](./media/image27.png)
 
-14. Select **Show all** if all the options does not get listed automatically.
+11. **List rows** 작업(action)을 선택하세요.
 
-15. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
+![](./media/image28.png)
 
-16.	Use **spacebar** next to **eq** to ensure that you are adding the value after a space. Use **Dynamic content** to select the **Bedrooms** parameter and select **Add**.
+12. 인증 요청 메시지가 표시되면 **OAuth**를 선택하고 Sign in을
+    클릭하세요. 필요할 경우 테넌트 ID로 로그인하세요.
 
-    ![](./media/image30.png)
+![](./media/image29.png)
 
-17. Select the **Respond to Copilot** action and select **+ Add an
-    output**.
+13. 테이블 이름을 **Real Estate Properties** 으로 선택하세요.
 
-    ![](./media/image31.png)
+14. 모든 옵션이 자동으로 표시되지 않으면 **Show all**을 선택하세요.
 
-18. Select **Text**.
+15. **Filter Rows** 필드에 !!contoso_bedrooms eq!!를 입력하세요.
 
-19. Enter the below details
+16. **eq** 옆에 spacebar을 눌러 값을 띄어쓰기 후에 입력하세요. **Dynamic
+    conten**t에서 **Bedrooms** 매개변수를 선택하고 **Add**를 클릭하세요.
 
-    - **Enter a name** - +++PropertyId+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image30.png)
 
-    - **Enter a value to respond with** - select **Insert Expression** and
-  enter the following expression:
-      +++first(outputs('List_rows')?['body/value'])['contoso_realestatepropertyid']+++
+17. **Respond to Copilot** 액션을 선택한 후, **+ Add an output**를
+    선택하세요.
 
-    ![](./media/image32.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image31.png)
 
-20. Select **Add**.
+18. **Text**를 선택하세요.
 
-    ![](./media/image33.png)
+19. 다음 정보를 입력하세요.
 
-21.	Have the Power Automate flow as such and from a new tab, open +++https://make.powerapps.com+++ (if not already open), open the table **Real Estate Property**. Navigate to its column **Property Name -> Edit Column -> Advanced options**. Look for the value of the **Logical name**. Make a note of this name to be used in the next step.
+    - **Enter a name** - !!PropertyId!!
 
-   	![](./media/img17.png)
-   	
-21. Back in the Power Automate tab, select **+ Add an output**.
+    - **Enter a value to respond with** - **Insert Expression** 선택하고
+      다음 표현식을 입력하세요:
+      !!first(outputs('List_rows')?\['body/value'\])\['contoso_realestatepropertyid'\]!!
 
-22. Select **Text**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image32.png)
 
-    - **Enter a name** - +++PropertyName+++ 
+20. **Add**를 선택하세요.
 
-    - **Enter a value to respond with** - select **Insert Expression** and
-  enter the following expression:
-      +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image33.png)
 
-    (Replace **contoso_propertyname** with the **Logical name** fetched in the earlier step)
-    
-    ![](./media/image34.png)
+21. From
+    !\![https://make.powerapps.com](https://make.powerapps.com/)!!에서
+    **Real Estate Property** 테이블을 여세요. 해당 테이블의 Property
+    Name 열로 이동합니다 (Copilot으로 생성했을 경우 이름이 Real Estate
+    Property 또는 약간 다를 수 있음) → Edit Column → Advanced options로
+    들어갑니다. **Logical name** 값을 확인하세요. 일반적으로
+    **contoso\_**로 시작하며, 예: **contoso_newcolumn**처럼 표시됩니다.
+    여기서 **contoso\_** 이후의 부분, 즉 **newcolumn**을 기억해 두세요.
+    다음 단계에서 이 값을 사용할 것입니다.
 
-24. Select **Settings**. Ensure that **Asynchronous Response** is set
-    to **Off**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image34.png)
 
-    ![](./media/image35.png)
+22. Power Automate flow 페이지로 돌아가서 **+ Add an output**을
+    선택하세요.
 
-25. Select **Save draft**.
+23. **Text**를 선택하세요.
 
-    ![](./media/image36.png)
+    - **Enter a name** - !!PropertyName!!
 
-26. Once save, select **Publish**.
+    - **Enter a value to respond with** - **Insert Expression**를
+      선택하고 다음 표현식을 입력하세요:
+      !!first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]!!
 
-    ![](./media/image37.png)
+위 표현식에서 **contoso_propertyname**의 **propertyname**을 이전
+단계에서 저장한 값(**newcolumn**)으로 변경하세요.
 
-27. Close the Power Automate tab.
+::: secondary 이 값 교체는 해당 열의 Logical(놀리적) 이름이 표준 값이
+아니기 때문에, 테이블에서 값을 확인하고 업데이트해야 합니다. :::
 
-### Task 2: Add a Copilot action for retrieving a property
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image35.png)
 
-1.  Back in the Copilot Studio page, select **Refresh**.
+24. **Settings**을 선택하고, **Asynchronous Response**이 **Off**으로
+    설정되어 있는지 확인하세요.
 
-    ![](./media/image38.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image36.png)
 
-2.  Select the **Get Property** flow.
+25. **Save draft**를 선택하세요.
 
-    ![](./media/image39.png)
-     
-4.	Select **Add action**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image37.png)
 
-    ![](./media/img18.png)
+26. 저장되면 **Publish**를 선택하세요.
 
-5.  Select the **Topics** tab. 
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image38.png)
 
-    ![](./media/img19.png)
+27. Power Automate 탭을 닫으세요.
 
-6.	Select the **Book a Real Estate Showing** topic.
+### 작업 2: 부동산 정보를 가져오는 Copilot 액션 추가하기
 
-    ![](./media/img20.png)
-  	
-7.  Select the **+** icon below the **How many bedrooms do you need
-    question?** node and select **Add an action**. Select the **Get
-    Property** flow.
+1.  Copilot Studio 페이지로 돌아가서 **Refresh**를 선택하세요.
 
-    ![](./media/img21.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image39.png)
 
-8.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
-    parameter.
+2.  **Get Property** 플로우를 선택하세요.
 
-    ![](./media/image45.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image40.png)
 
-9.  Select the **three dots** in the **Which property do you want to
-    see?** question node and select **Delete**.
+3.  **Add action**를 선택하세요.
 
-    ![](./media/image46.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image41.png)
 
-10. Select the the **+** icon under the action node and select **Send a
-    message**.
+4.  **Topics** 탭을 선택하세요.
 
-11. Fill in the below details
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image42.png)
 
-    - **Enter a message** - enter +++Property+++
+5.  **Book a Real Estate Showing** 주제를 선택하세요.
 
-    - Select the **Insert variable** icon and select
-  the **PropertyName** variable.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image43.png)
 
-    ![](./media/image47.png)
+6.  **How many bedrooms do you need question?** 노드 아래에 있는 +
+    아이콘을 선택하고**Add an action**을 선택하세요. **Get
+    Property** 플로우를 선택하세요.
 
-12. Select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image44.png)
 
-    ![](./media/image48.png)
+7.  **Bedrooms** 입력 매개변수에 대한 **NumberofBedrooms** 변수를
+    선택하세요.
 
-13. Once saved, select **Publish** and select **Publish**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image45.png)
 
-    ![](./media/image49.png)
+8.  **Which property do you want to see?** 질문 노드에서 **세 개의
+    점을** 선택하고 **Delete**를 선택하세요.
 
-14. Click on **Publish** in the Publish confirmation dialog.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image46.png)
 
-    ![](./media/image50.png)
+9.  액션 노드 아래의 + 아이콘을 선택하고 **Send a message**를
+    선택하세요.
 
-### Task 3: Create Power Automate flow to make a booking
+10. 다음 정보를 입력하세요.
 
-1.  Select the **Actions** tab and select **+ Add an action**.
+    - **Enter a message** -!!Property!!를 입력하세요.
 
-    ![](./media/image51.png)
+    - **Insert variable** 아이콘을 선택하고 **PropertyName** 변수를
+      선택하세요.
 
-2.	Select **+ New action** -> **New Power Automate flow**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image47.png)
 
-    ![](./media/img22.png)
+11. **Save**를 선택하세요.
 
-3.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++**Booking Request**+++ as the flow name.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image48.png)
 
-    ![](./media/image53.png)
+12. 저장되면**Publish**를 선택하세요.
 
-4.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input -\> Text**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image49.png)
 
-    ![](./media/image54.png)
+13. Publish 확인 대화상자에서 **Publish**  를 클릭하세요.
 
-    ![](./media/image55.png)
+![A close-up of a white background AI-generated content may be
+incorrect.](./media/image50.png)
 
-5.  Enter the below details
+### 작업 3: 예약을 위한 Power Automate 플로우 만들기
 
-    - Input - +++**PropertyId**+++
+1.  **Actions** 탭을 선택하고 **+ Add an action**을 선택하세요.
 
-    - Please enter your input **-** +++**Property**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image51.png)
 
-6.  Select **+ Add an input -\> Text**
+2.  **+ New action** -\> **New Power Automate flow**를 선택하세요.
 
-    - Input - +++**ViewerName**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image52.png)
 
-    - Please enter your input **-** +++**Viewer Name**+++
+3.  화면 왼쪽 상단에서 **Run a flow from Copilot**을 선택한 후, 플로우
+    이름으로 !!**Booking Reques**t!!를 입력하세요.
 
-7.  Select **+ Add an input -\>** **Text**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image53.png)
 
-    - Input - +++**ViewerEmail**+++
+4.  **Run a flow from Copilot** 트리거 단계를 선택한 후, **+ Add an
+    input -\> Text** 를 선택하세요.
 
-    - Please enter your input **-** +++**Viewer Email**+++
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image54.png)
 
-    ![](./media/image56.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image55.png)
 
-8.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
+5.  다음 정보를 입력하세요
 
-    ![](./media/image57.png)
+    - Input - !!**PropertyId**!!
 
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the Dataverse connector.
+    - Please enter your input **-** !!**Property**!!
 
-    ![](./media/image58.png)
+6.  **+ Add an input -\> Text**를 선택하세요.
 
-10. Select the **Add a new row** action.
+    - Input - !!**ViewerName**!!
 
-    ![](./media/image59.png)
+    - Please enter your input **-** !!**Viewer Name**!!
 
-11. Select **Booking Requests** for table name.
+7.  \\**+ Add an input -\>** **Text**를 선택하세요.
 
-12. Enter +++**Copilot booking**+++ in the **Booking Name** field.
+    - Input - !!**ViewerEmail**!!
 
-13. Select **Show all**.
+    - Please enter your input **-** !!**Viewer Email**!!
 
-    ![](./media/image60.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image56.png)
 
-14. Enter +++contoso_bookingrequests()+++ in the **Property (Real Estate
-    Properties)** field, move the cursor within the brackets, and
-    use **Dynamic content**.
+8.  플로우의 두 단계 사이에 있는 **+** 아이콘을 선택하고, **Add an
+    action**을 선택하세요.
 
-    ![](./media/image61.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image57.png)
 
-15. Select the **PropertyId** parameter.
+9.  **Search** 필드에 !!**Dataverse**!!를 입력하고, Dataverse 커넥터
+    옆에 있는 **See more**를 선택하세요.
 
-    ![](./media/image62.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-16. Use **Dynamic content** to select the **ViewerName** parameter for
-    the **Viewer Name** field.
+10. **Add a new row** 액션을 선택하세요.
 
-    ![](./media/image63.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-17. Use **Dynamic content** to select the **ViewerEmail** parameter for
-    the **Viewer Email** field.
+11. Table Name을 **Booking Requests**으로 선택하세요.
 
-    ![](./media/image64.png)
+12. **Booking Name** 필드에 !!**Copilot booking**!!를 입력하세요.
 
-18. The parameters will now look similar to those in the screenshot
-    below.
+13. **Show all**를 선택하세요.
 
-    ![](./media/image65.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-19. Select the **Respond to Copilot** action. Select **Settings** and
-    ensure that **Asynchronous Response** is set to **Off**.
+14. **Property (Real Estate Properties)** 필드에
+    !!contoso_bookingrequests()!!를 입력한 후, 괄호 안으로 커서를
+    이동시키고 **Dynamic content**를 사용하세요.
 
-    ![](./media/image66.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
 
-20. Select **Save draft**.
+15. **PropertyId** 매개변수를 선택하세요.
 
-    ![](./media/image67.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
 
-21. Once saved, select **Publish**.
+16. **Viewer Name** 필드에서는 **Dynamic content**를 사용해
+    **ViewerName** 매개변수를 선택하세요.
 
-    ![](./media/image68.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image63.png)
 
-22. Close the Power Automate tab.
+17. **Viewer Email** 필드에서는 **Dynamic content**를 사용해
+    **ViewerEmail** 매개변수를 선택하세요.
 
-### Task 4: Add a Copilot action for creating a booking request
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
 
-1.  Back in the Copilot Studio page, select **Refresh**.
+18. 이제 매개변수들이 아래 스크린샷과 유사하게 표시될 것입니다.
 
-    ![](./media/image69.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-2.  Select the **Booking Request** flow.
+19. **Respond to Copilot** 작업(action)을 선택하세요. **Settings**을
+    선택한 후, **Asynchronous Response** 옵션이 **Off**으로 설정되어
+    있는지 확인하세요.
 
-    ![](./media/image70.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image66.png)
 
-3.  Select **Add action**.
+20. **Save draft**를 선택하세요.
 
-    ![](./media/img23.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image67.png)
 
-    ![](./media/img40.png)
+21. 저장되면 **Publish**를 선택하세요.
 
-6.  Select the **Topics** tab and select the **Book a Real Estate
-    Showing** topic.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
 
-    ![](./media/image74.png)
+22. Power Automate 탭을 닫으세요.
 
-7.  Select the **+** icon below the **What date and time do you want to
-    see the property?** node and select **Add an action**.
+### 작업 4: 예약 요청을 생서하기 위한 Copilot 작업 추가
 
-8.  Select the **Booking Request** flow.
+1.  Copilot Studio 페이지로 돌아가 **Refresh**를 선택하세요.
 
-    ![](./media/img24.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-9.  Select the **PropertyId** variable for the **PropertyId** input
-    parameter.
+2.  **Booking Request** 플로우를 선택하세요.
 
-    Select the **Name** variable for the **ViewerName** input parameter.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image70.png)
 
-    Select the **EmailAddress** variable for the **ViewerEmail** input
-parameter.
+3.  **Add action**를 선택하세요.
 
-    ![](./media/image76.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image71.png)
 
-10. Select the **+** icon below the action node. Select **Topic
-    management**, then select **Go to another topic** and select **End
-    of conversation**.
+4.  Review inputs and outputs에서 **Next**를 선택하세요.
 
-    ![](./media/image77.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image72.png)
 
-11. Select **Save**.
+5.  **Review and finish** 화면에서 **Finish**를 선택하세요.
 
-    ![](./media/image78.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image73.png)
 
-12. Once saved, select **Publish** and select **Publish** again in the
-    confirmation dialog.
+6.  **Topics** 탭을 선택하고 **Book a Real Estate Showing** 주제를
+    선택하세요.
 
-    ![](./media/image79.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image74.png)
 
-    ![](./media/image80.png)
+7.  **What date and time do you want to see the property?** 노드 아래
+    있는 + 아이콘을 선택하고 **Add an action**를 선택하세요.
 
-## Exercise 3: Test the agent 
+8.  **Booking Request** 플로우를 선택하세요.
 
-### Task 1: Test the agent and make a booking request
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image75.png)
 
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
+9.  **PropertyId** 입력 매개변수에 대해**PropertyId** 변수를 선택하세요.
 
-    ![](./media/image81.png)
+**ViewerName** 입력 매개변수에는 **Name** 변수를 선택하세요.
 
-2.  When the **Conversation Start** message appears, your agent starts a
-    conversation.
+**ViewerEmail** 입력 매개변수에 대해 **EmailAddress** 변수를 입력하세요.
 
-3.  In response, enter a trigger phrase for the topic that you created:
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image76.png)
 
-    +++I want to book a real estate showing+++
+10. Action 노드 아래의 + 아이콘을 선택하세요. 그 후, **Topic
+    management을** 선택하고, **Go to another topic**을 선택한 후 **End
+    of conversation**를 선택하세요.
 
-4.  The copilot responds with the "**What is your name?**" question.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image77.png)
 
-5.  Enter your name.
+11. **Save**를 선택하세요.
 
-    ![](./media/image82.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image78.png)
 
-6.  Then enter your email when it prompts for the email. After you enter
-    the details, a question asking if the information is correct, and
-    options to select **Yes** or **No** is prompted. Select **Yes**.
+12. 저장되면 **Publish**를 선택하고 확인 대화상자에서 다시 한
+    번**Publish**를 선택하세요.
 
-    ![](./media/image83.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image79.png)
 
-7.  Select **House** for the type of property prompt.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image80.png)
 
-8.  Enter +++**2**+++ for the number of bedrooms prompts.
+## 연습 3: 에이전트 테스트
 
-    ![](./media/image84.png)
+### 작업 1: 에이전트를 테스트하고 예약 요청을 진행
 
-9.  Enter +++Tomorrow 2:00 PM+++ to the **What date and time do you want
-    to see the property?** prompt.
+1.  화면 오른쪽 상단에 있는 **Test** 버튼을 선택하여 테스트 패널을
+    엽니다. 그런 다음, 테스트 패널 상단 오른쪽에 있는 **점 세 개**
+    아이콘을 클릭하고, 표시되는 옵션 중에서 **Track between topics**을
+    선택하세요.
 
-10. Select **Yes** to the **Did that answer your question?** prompt.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image81.png)
 
-11. Select any rating.
+2.  **Conversation Start** 메시지가 나타나면, 에이전트가 대화를
+    시작합니다.
 
-12. Select **No** to the **Can I help with anything else?** prompt.
+3.  이에 응답으로, 여러분이 생성한 주제에 대한 트리거 문구(trigger
+    phrase)를 입력하세요:
 
-    ![](./media/image85.png)
+!!I want to book a real estate showing!!
 
-### Task 2: Verify booking request
+4.  Copilot이 “What is your name?” 라는 질문으로 응답합니다**.**
 
-1.  Navigate to the Power Apps portal at
-    +++**https://make.powerapps.com**+++.
+5.  이름을 입력하세요.
 
-2.  In the left navigation pane, select **Tables** and
-    select **Custom**.
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image82.png)
 
-3.  Select the **Booking Request** table.
+6.  이후 이메일을 입력하라는 메시지가 표시되면 이메일을 입력하세요.
+    입력이 완료되면, 정보가 정확한지 확인하는 질문과 함께 **Yes** 또는
+    **No**를 선택할 수 있는 옵션이 나타납니다. **Yes**를 선택하세요.
 
-    ![](./media/image86.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image83.png)
 
-4.  Under **Booking Request columns and data** you should see that a
-    Copilot booking request is now created.
+7.  부동산 유형 질문에서 **House**를 선택하세요.
 
-    ![](./media/image87.png)
+8.  !!**2**!! 를 침실 수 질문에 입력하세요.
 
-## Exercise 4: Set up Generative AI
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image84.png)
 
-In this exercise, you learn how to use the Generative answers feature to
-improve your copilot's responses.
+9.  **What date and time do you want to see the property?** 질문에
+    !!Tomorrow 2:00 PM!!를 입력하세요.
 
-### Task 1: Enable Generative AI
+10. **Yes** to the **Did that answer your question?** 질문에 **Yes**를
+    선택하세요.
 
-1.  Login to the Copilot Studio using your tenant credentials at
-    +++https://copilotstudio.microsoft.com+++ if not logged in
-    already.
+11. 아무 별점이나 선택하세요.
 
-2.  Select the Copilot **Real Estate Booking Service**.
+12. **Can I help with anything else?** 질문에 대해 **No** 를 선택하세요.
 
-    ![](./media/image88.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image85.png)
 
-3.  Select **Settings** in the top-right of the screen.
+### 작업 2: 예약 요청 확인
 
-    ![](./media/image89.png)
+1.  Power Apps 포털로
+    !\![**https://make.powerapps.com**](https://make.powerapps.com/)!!
+    이동하세요.
 
-4.  Select the **Generative AI** tab.
+2.  왼쪽 탐색 창에서 **Tables**을 선택한 후, **Custom**을 선택하세요.
 
-    Select **Generative(preview)** under **How should your copilot decide how to
-respond**.
+3.  **Booking Request** 테이블을 선택하세요.
 
-    Select **Medium** for **How strict should the content moderation be?**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image86.png)
 
-    Select **Save**.
+4.  **Booking Request columns and data** 섹션에서, 이제 Copilot 예약
+    요청이 생성된 것을 확인할 수 있습니다.
 
-    ![](./media/image90.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image87.png)
 
-5.  **Close** the Settings pane.
+## 연습 4: Generative AI 설정
 
-    ![](./media/image91.png)
+이번 실습에서는 생성형 답변(Generative answers) 기능을 활용해 copilot의
+응답 품질을 향상시키는 방법을 배우게 됩니다.
 
-### Task 2: Enable knowledge
+### 작업 1: Generative AI를 활성화하기
 
-1.  Click on the **Overview** tab.
+1.  아직 로그인하지 않았다면,
+    !\![https://copilotstudio.microsoft.com](https://copilotstudio.microsoft.com/)!!
+    에 접속하여 테넌트 자격 증명으로 **Copilot Studio**에 로그인하세요.
 
-2.  Verify that general knowledge is enabled in the Knowledge section.
+2.  **Real Estate Booking Service** 에이전트를 선택하세요.
 
-    ![](./media/image92.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image88.png)
 
-### Task 3: Add knowledge from a website
+3.  화면 오른쪽 상단에서 **Settings**을 선택하세요.
 
-1.  Select **+ Add knowledge** under the **Knowledge** section.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image89.png)
 
-    ![](./media/image93.png)
+4.  **Generative AI** 탭을 선택하세요.
 
-2.  Select the **Public websites** tile.
+**How should your copilot decide how to respond** 항목에서
+**Generative(preview)** 를 선택하세요.
 
-    ![](./media/image94.png)
+**How strict should the content moderation be?** 항목에서는 **Medium**을
+선택하세요.
 
-3.  Enter the public website
-    link +++https://create.microsoft.com/templates/real-estate+++.
-    Select **Add**.
+**Save**을 선택하세요.
 
-    ![](./media/image95.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image90.png)
 
-4.  Give the name +++Real Estate Website+++ in the Name field and then
-    select **Add**.
+5.  Settings 창을 닫으세요(**Close)**.
 
-    ![](./media/image96.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image91.png)
 
-### Task 4: Add knowledge from Dataverse
+### 작업 2: 지식 사용
 
-1.  Select the **Knowledge** tab. Select **+ Add knowledge**.
+1.  **Overview** 탭을 클릭하세요.
 
-    ![](./media/image97.png)
+2.  Knowledge 섹션에서 General knowledge가 활성화되어 있는지 확인하세요.
 
-2.  Select **Dataverse(preview)**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image92.png)
 
-    ![](./media/image98.png)
+### 작업 3: 웹 사이트에서 지식 추가
 
-3.  Select the **Real Estate Property** table and select **Next**.
+1.  **Knowledge**  섹션에서 **+ Add knowledge**를 선택하세요.
 
-    ![](./media/image99.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image93.png)
 
-4.  Preview the data in the next screen and then select **Next**.
+2.  **Public websites** 타일을 선택하세요.
 
-    ![](./media/image100.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image94.png)
 
-5.  Review the details and click on **Add** in the Review and finish
-    screen.
+3.  다음 공개 웹 사이트 링크를 입력하세요:
+    !\!<https://create.microsoft.com/templates/real-estate>!!. **Add**을
+    선택하세요.
 
-    ![](./media/image101.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image95.png)
 
-### Task 5: Add knowledge from files
+4.  Name 필드에 !!Real Estate Website!!라고 입력한 후, **Add**를
+    선택하세요.
 
-1.  From the **Knowledge** tab, select **+ Add knowledge**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image96.png)
 
-    ![](./media/image102.png)
+### 작업 4: Dataverse에서 지식 추가
 
-2.	Select **Files**.
+1.  **Knowledge** 탭을 선택하세요. **+ Add knowledge**를 선택하세요.
 
-    ![](./media/img26.png)
-  	
-3.  Select **click to browse** and browse to locate the file
-    **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image97.png)
 
-    ![](./media/img27.png)
+2.  **Dataverse(preview)**를 선택하세요.
 
-4.  Select **Add**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image98.png)
 
-    ![](./media/image105.png)
+3.  **Real Estate Property** 테이블을 선택한 후 **Next**를 선택하세요.
 
-    >[!Alert] **Important:** The file upload will take around 10 minutes to complete. Check the status in the Knowledge tab to ensure that the file has been uploaded successfully.
-    >
-    >![](./media/img25.png)
-    
-### Task 6: Use generative answers in System fallback topic
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image99.png)
 
-1.  Select the **Topics** tab and select **System**. Select
-    the **Fallback** topic.
+4.  다음 화면에서 데이터를 미리 확인한 후 **Next**를 선택하세요.
 
-    ![](./media/image106.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image100.png)
 
-2.  Select the **three dots** in the message node and select **Delete**.
+5.  **Review and finish** 화면에서 세부 정보를 확인한 후, **Add** 버튼을
+    클릭하세요.
 
-    ![](./media/image107.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image101.png)
 
-3.  Select the **+** icon under the Condition node, select **Advanced**,
-    and select **Generative answers**.
+### 작업 5: 파일에서 지식 추가
 
-    ![](./media/image108.png)
+1.  **Knowledge** 탭에서 **+ Add knowledge**을 선택하세요.
 
-4.  Select the **Input** field, select **System** in the **Select a
-    variable** pane. Select **Activity.Text** from it.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image102.png)
 
-    ![](./media/image109.png)
+2.  **Upload files** 섹션에서 **click to browse**를 선택한 후,
+    **C:\LabFiles**  경로로 이동하여 **SummitRealtyCaseStudy.docx** 
+    파일을 찾아 선택하세요.
 
-5.  Select **Edit** under **Data sources**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image103.png)
 
-    ![](./media/image110.png)
+3.  **Add**를 선택하세요.
 
-6.  Select **Search only selected sources**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image104.png)
 
-    ![](./media/image111.png)
+:::danger **중요 사항:** 파일 업로드가 완료되고 인덱싱이 완료되는 데
+다소 시간이 걸릴 수 있습니다. 파일이 사용 가능한 상태인지 확인하려면
+**Knowledge** 탭에서 상태를 확인하세요. :::
 
-7.  Select the **SummitRealtyCaseStudy** document. Deselect **Allow the
-    AI to use its own general knowledge**.
-    Select **Medium** for **Content moderation**.
+### 작업 6: System fallback 주제에서 생성적 답변 사용하기
 
-    ![](./media/image112.png)
+1.  **Topics** 탭에서 **System**을 선택하세요. **Fallback** 주제를
+    선택하세요.
 
-8.  Select **Save**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image105.png)
 
-    ![](./media/image113.png)
+2.  메시지 노드에서 **세 개의 점**을 선택하고 **Delet**를 선택하세요.
 
-### Task 7: Configure Security
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image106.png)
 
-1.  Select the **Overview** tab.
+3.  Condition 아래에서 + 아이콘을 선택하고, **Advanced**을 선택한
+    후, **Generative answers**를 선택하세요.
 
-2.  Select **Settings** in the top-right of the screen.
+![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image107.png)
 
-    ![](./media/image118.png)
+4.  **Input** 필드를 선택하고 **Select a variable** 창에서 **System**을
+    선택하세요. 여기서 **Activity.Text**를 선택하세요.
 
-3.  Select the **Security** tab and then select
-    the **Authentication** tile.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image108.png)
 
-    ![](./media/image119.png)
+5.  **Data sources**에서 **Edit**을 선택하세요.
 
-4.  Select Authenticate with Microsoft **(Entra ID authentication in
-    Teams and Power App)**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image109.png)
 
-5.  Select **Save**.
+6.  **Search only selected sources**을 선택하세요.
 
-    ![](./media/image120.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image110.png)
 
-6. Select **Save**.
+7.  **SummitRealtyCaseStudy** 문서를 선택하세요. **Allow the AI to use
+    its own general knowledge**를 선택 취소하세요. **Content
+    moderation**은 **Medium** 으로 선택하세요.
 
-    ![](./media/image121.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image111.png)
 
-7. Select **Close**.
+8.  **Save**을 선택하세요.
 
-    ![](./media/image122.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image112.png)
 
-8. Select the **Overview** tab.
+### 작업 7: 보안 구성
 
-9. Select **Publish** and select **Publish** again in the dialog.
+1.  **Overview** 탭을 선택하세요.
 
-    ![](./media/image123.png)
+2.  화면 오른쪽 상단에서 **Settings**을 선택하세요.
 
-### Task 8: Test the agent's knowledge
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image113.png)
 
-1.  Select the **Test** button in the top-right of the screen to open
-    the testing panel.
+3.  **Security** 탭을 선택한 후, **Authentication** 타일을 선택하세요.
 
-    ![](./media/image124.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image114.png)
 
-2.  Select the **three dots** at the top of the testing panel in the
-    top-right of the screen.
+4.  Authenticate with Microsoft **(Entra ID authentication in Teams and
+    Power App)**를 선택하세요.
 
-3.	Select **Activity map**.
-   
-3.  Select **Track between topics**.
+5.  **Save**을 선택하세요.
 
-4.  Select the **Start a new conversation** icon at the top of the
-    testing panel.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image115.png)
 
-5.  Type in +++What is Summit Realty group?+++ and hit **send**.
+6.  **Save**을 선택하세요.
 
-6.  You will get a response from the uploaded file as in the screenshot below sinc eit has been added as the knowledge source to look for in the Fallback topic.
+![A screenshot of a computer error AI-generated content may be
+incorrect.](./media/image116.png)
 
-    ![](./media/image125.png)
+7.  **Close**를 선택하세요.
 
-**Summary:**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image117.png)
 
-In this lab, we have learnt to
+8.  **Overview** 탭을 선택하세요.
 
-- Use entities and slot filling
+9.  **Publish**를 선택하고 대화 상자에서 **Publish**를 다시 선택하세요.
 
-- Implement Flow actions
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image118.png)
 
-- Add knowledge to the agent
+### 작업 8: 에이전트의 지식 테스트
 
-- Enable Generative AI
+1.  화면 오른쪽 상단에 있는 **Test**  버튼을 선택하여 테스트 패널을
+    여세요.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image119.png)
+
+2.  아직 선택하지 않았다면, **Activity map**을 선택하세요.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image120.png)
+
+3.  Test 패널에서 **Refresh** 버튼을 선택해 새로운 대화를
+    시작하세요**(Start a new conversation**).
+
+4.  !!What is Summit Realty group?!!를 입력하고 **send** 버튼을
+    누르세요.
+
+5.  해당 파일이 Fallback 주제의 지식 소스로 추가되었기 때문에, 아래
+    스크린샷과 같이 업로드한 파일로부터 응답을 받을 수 있습니다.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image121.png)
+
+**요약:**
+
+이번 실습에서는 다음과 같은 내용을 배웠습니다:
+
+- 엔터티와 슬롯 채우기(slot filling) 사용하기
+
+- 플로우(Flow) 작업 구현하기
+
+- 에이전트에 지식 추가하기
+
+- Generative AI 활성화하기
