@@ -481,6 +481,10 @@ field, designate **Undecided** as the **Default choice** and click on
 
     ![](./media/image57.png)
 
+8. From the Overview page, disable **Orchestration**.
+
+   <img width="504" alt="image" src="https://github.com/user-attachments/assets/eee75ac0-9112-41ec-a4c4-26131fdc71a3" />
+
 ### Task 3: Configure Security
 
 1.  Select **Settings** in the top-right of the screen.
@@ -577,7 +581,8 @@ Topics can be created and edited using natural language.
 
 5.  Select **Save**.
 
-    ![](./media/image71.png)
+  ![image](https://github.com/user-attachments/assets/f864727c-f473-4d89-ac2b-17b2f76d636e)
+
 
 ### Task 2: Update nodes with natural language
 
