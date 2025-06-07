@@ -102,29 +102,11 @@ booking requests online.
 
     ![](./media/image8.png)
 
-3.  Enter +++**Bookings**+++ for the Display name and click on **+ New
-    publisher**.
+3.  Enter +++**Bookings**+++ for the Display name, select **Contoso (contoso)** under **Publisher** and click on **Create**.
 
-    ![](./media/image9.png)
+    ![image](https://github.com/user-attachments/assets/6f97ef79-a5d1-45ab-9751-ff6d7a910cdf)
 
-4.  Enter the below details and then click on **Save**.
-
-    |	Property |	Value |
-    |:-----|:--------|
-    | Display name	|+++Contoso+++	|
-    |	Name |	+++Contoso+++|
-    | Prefix |+++Contoso+++	|
-
-    ![](./media/image10.png)
-
-    >[!Note] **Note:** If you get a message stating that **A record with matching key value already exists**, close the publisher creation pane and select the Publisher **Contoso** in the New Solution creator pane. 
-
-5.  Select **Contoso (contoso)** under Publisher and then click on
-    **Create**.
-
-    ![](./media/image11.png)
-
-6.  Select **Back to solutions** in the top-left of the screen.
+4.  Select **Back to solutions** in the top-left of the screen.
 
     ![](./media/image12.png)
 
