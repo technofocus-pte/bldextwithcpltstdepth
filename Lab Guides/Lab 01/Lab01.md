@@ -670,8 +670,7 @@ add new ones.
 
 ### Task 2: Add trigger phrases
 
-1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I
-    want to book a real estate showing**+++ under **Add Phrases** and
+1.  Select **Edit** under **Phrases** in the **Trigger**. Enter +++**I want to book a real estate showing**+++ under **Add Phrases** and
     select the **+** icon.
 
     ![](./media/image82.png)
