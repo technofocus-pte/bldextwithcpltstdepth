@@ -249,7 +249,7 @@ Estate Properties.
 
     ![](./media/image30.png)
 
-    **Note:** Repeat the step 8 process with the Value +++**Bathrooms**+++.
+    **Note:** We will add the choices in a way smilar to adding choice for the Bedrooms column.
 
     Create the choice values
 
@@ -281,7 +281,7 @@ Estate Properties.
 
     ![](./media/image32.png)
 
-13. Add another column by selecting the **+** button again in the
+14. Add another column by selecting the **+** button again in the
     columns and data pane.
 
     In the New column pane, enter the following values, and then
@@ -295,7 +295,7 @@ select **Save**:
 
     ![](./media/image33.png)
 
-14. Once the columns are all created, under **Real Estate Property
+15. Once the columns are all created, under **Real Estate Property
     columns and data**, enter the following test data:
 
     >[!Note] **Note:** If the required columns are not getting displayed, adjust the columns that are displayed by selecting the **+<number>more**
