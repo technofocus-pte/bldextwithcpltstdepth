@@ -794,7 +794,8 @@ add new ones.
     enter the details, a question appears asking if the information is
     correct, and options to select **Yes** or **No**. Select **Yes**.
 
-    ![](./media/image97.png)
+    <img width="212" alt="image" src="https://github.com/user-attachments/assets/f3345191-93b4-475e-b3cf-d7f9aeded644" />
+
 
 7.  Enter +++555 Oak Lane, Denver, CO 80203+++ to the **Which property to
     you want to see?** prompt.
