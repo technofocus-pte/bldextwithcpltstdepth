@@ -325,41 +325,41 @@ select **Save**:
 Follow these steps to create a new custom table in Dataverse for Real
 Estate Property Bookings.
 
-1.  From the left navigation pane, select **Tables**, select **Create**
-    **new tables**.
+1.  From the left navigation pane, select **Tables**, select the drop
+    down next to **+ New table** and then select **Create** **new tables**.
 
-    ![](./media/image36.png)
+    ![](./media/image16.png)
 
-2.  On the **Create new tables** screen, click on **+ New table -\> Add
+3.  On the **Create new tables** screen, click on **+ New table -\> Add
     columns and data**.
 
     ![](./media/image37.png)
 
-3.  Rename the table name from **Table1** to +++**Booking Request**+++ and
+4.  Rename the table name from **Table1** to +++**Booking Request**+++ and
     then click on **Save and exit**.
 
     ![](./media/image38.png)
 
-4.  Click on **Save and exit** in the confirmation dialog.
+5.  Click on **Save and exit** in the confirmation dialog.
 
     ![](./media/image20.png)
 
-5.  Once saved, click on the **Custom** tab to find the newly created
+6.  Once saved, click on the **Custom** tab to find the newly created
     table there. Click on the **Booking Request** table.
 
     ![](./media/image39.png)
 
-6.  Change the name of the column called **New Column** to +++**Booking
+7.  Change the name of the column called **New Column** to +++**Booking
     Name**+++ (Click on the drop down next to **New Column** and select
     **Edit Column** and update the **Display name**).
 
     ![](./media/image40.png)
 
-7.  Click on **+** symbol next to the column names.
+8.  Click on **+** symbol next to the column names.
 
     ![](./media/image41.png)
 
-8.  Create the following columns with the name and data type as
+9.  Create the following columns with the name and data type as
     specified below. Select **Save**.
 
     -	Display name –  +++Property+++
@@ -386,7 +386,7 @@ Estate Property Bookings.
 
     ![](./media/image44.png)
 
-9.  Add a choice data type column with the below details.
+10.  Add a choice data type column with the below details.
 
     -	Display name – +++Decision+++
     -	Data type – Choice -> Choice
