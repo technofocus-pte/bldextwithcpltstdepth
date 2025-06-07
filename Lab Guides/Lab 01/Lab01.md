@@ -542,8 +542,7 @@ You can provide them with the URL to the demo website.
 
     ![](./media/image67.png)
 
-2.  In the **Type your message** text box, enter +++**What information is
-    needed to book a viewing for a real estate property?**+++ and observe
+2.  In the **Type your message** text box, enter +++**What information is needed to book a viewing for a real estate property?**+++ and observe
     the response from the copilot.
 
     ![](./media/image68.png)
