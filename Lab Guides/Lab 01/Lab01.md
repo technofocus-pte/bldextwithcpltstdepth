@@ -803,7 +803,8 @@ add new ones.
 8.  Enter +++**Tomorrow 10:00 AM**+++ to the **What date and time do you
     want to see the property?** prompt.
 
-    ![](./media/image98.png)
+  <img width="265" alt="image" src="https://github.com/user-attachments/assets/1b91f55d-3fd3-428d-843c-14b0c57b3801" />
+
 
 ## Exercise 5: Build an Autonomous agent that automatically sends an email when a booking is created or updated
 
