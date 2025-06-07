@@ -112,8 +112,7 @@ booking requests online.
 
 ### Task 3: Set the preferred solution
 
-1.  Under Solutions in the Maker portal, select **Manage** for **Set
-    your preferred solution**.
+1.  Under Solutions in the Maker portal, select **Manage** for **Current preferred solution**.
 
     ![](./media/img1.png)
 
