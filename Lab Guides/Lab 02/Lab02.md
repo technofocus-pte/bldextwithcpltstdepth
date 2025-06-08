@@ -22,9 +22,13 @@ the newly created files.
 
     ![](./media/image2.png)
 
-2.  Select **OneDrive** from the left menu.
+2.  Select **Apps** from the **M365 Copilot Home screen**.
 
-    ![](./media/image3.png)
+    <img width="602" alt="image" src="https://github.com/user-attachments/assets/bf0d6224-79fd-49c1-9c08-59d627d14f3a" />
+
+3.  Select **OneDrive** from the Apps list.
+
+    ![image](https://github.com/user-attachments/assets/ef0d82e2-b160-4a9d-87f5-30ab69fd3d68)
 
 3.  Click on the **+** symbol on the top left and select **Files
     upload**.
