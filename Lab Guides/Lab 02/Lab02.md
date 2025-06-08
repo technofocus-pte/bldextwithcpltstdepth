@@ -24,7 +24,7 @@ the newly created files.
 
 2.  Select **Apps** from the **M365 Copilot Home screen**.
 
-    <img width="602" alt="image" src="https://github.com/user-attachments/assets/bf0d6224-79fd-49c1-9c08-59d627d14f3a" />
+    ![image](https://github.com/user-attachments/assets/b41cf708-c945-4789-9d91-eca12da37e77)
 
 3.  Select **OneDrive** from the Apps list.
 
