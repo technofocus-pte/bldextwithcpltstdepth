@@ -142,87 +142,77 @@ can create custom entities for your specific purpose.
 
     ![](./media/image19.png)
 
-## Exercise 2: Create actions
+## Exercise 2: Create Flows
 
-Microsoft Copilot Studio can access data in Microsoft Dataverse using
-Power Automate cloud flows
+Microsoft Copilot Studio can access data in Microsoft Dataverse using Agent flows
 
 ### Task 1: Create Power Automate flow to retrieve a property
 
-1.  Select the **Actions** tab from the top menu. Select **+ Add an
-    action**.
+1.  Select the **Tools** tab from the top menu. Select **+ Add a tool**.
 
-    ![](./media/image20.png)
+    ![image](https://github.com/user-attachments/assets/83454cdc-a26a-49dc-b844-cea304933cb3)
 
-2.	Select **+ New action** -> **New Power Automate flow**.
+2.	Select **+ New tool**.
 
-    ![](./media/img15.png)
+    ![image](https://github.com/user-attachments/assets/a2678a4c-e46a-4bc5-a889-4502e6909681)
 
-3.  Sign in to Power Automate if prompted.
+3.  Select **Agent flow**.
 
-4.	In the top right corner, enable the toggle **New designer** if not already done. Select **Save and switch**.
-
-  	![](./media/img16.png)
+    ![image](https://github.com/user-attachments/assets/5d1054bb-1cb1-45ff-82c2-b9c603f9fbc8)
   	
-5.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++**Get Property**+++ as the flow name.
+4.	Select the trigger step **When an agent calls the flow** and select **+ Add an input**.
 
-    ![](./media/image22.png)
+    ![image](https://github.com/user-attachments/assets/b5cc43f1-ff0d-4868-a2d7-870a24a334c7)
 
-6.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input**.
+    ![image](https://github.com/user-attachments/assets/6034a2d9-9f0d-4ee1-9449-d3dceb6133f7)
 
-    ![](./media/image23.png)
+5.	Select **Text**.
 
-7.  Select **Text**.
+    ![image](https://github.com/user-attachments/assets/360cd7d0-1ecc-457b-952f-45e94efa0b56)
 
-    ![](./media/image24.png)
-
-8.  Enter the below details
+6.  Enter the below details
 
     - **Input** – +++Bedrooms+++
 
     - **Please enter your input** - +++Number of Bedrooms+++
 
-    ![](./media/image25.png)
+    ![image](https://github.com/user-attachments/assets/552632a5-d887-47eb-965d-6ef7c7644776)
 
-9.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
+7.  Select the **+** icon between the two steps in the flow and to **Add an action**.
 
-    ![](./media/image26.png)
+    ![image](https://github.com/user-attachments/assets/6e00dd75-3e9c-45b5-8cc4-74ce9a035ef3)
 
-10. Enter +++**Dataverse**+++ in the **Search** field and select **See
+8. Enter +++**Dataverse**+++ in the **Search** field and select **See
     more** for the **Microsoft Dataverse connector**.
 
-    ![](./media/image27.png)
+    ![image](https://github.com/user-attachments/assets/aad5dba1-852c-492f-8daa-5f630c9c9eee)
 
-11. Select the **List rows** action.
+9. Select the **List rows** action.
 
     ![](./media/image28.png)
 
-12. If prompted for authentication, select **OAuth** and select **Sign
+10. If prompted for authentication, select **OAuth** and select **Sign
     in**. Sign in using your tenant id if prompted.
 
     ![](./media/image29.png)
 
-13. Select **Real Estate Properties** for table name.
+11. Select **Real Estate Properties** for table name.
 
-14. Select **Show all** if all the options does not get listed automatically.
+12. Select **Show all** if all the options does not get listed automatically.
 
-15. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
+13. Enter +++contoso_bedrooms eq+++ in the **Filter Rows** field.
 
-16.	Use **spacebar** next to **eq** to ensure that you are adding the value after a space. Use **Dynamic content** to select the **Bedrooms** parameter and select **Add**.
+14.	Use **spacebar** next to **eq** to ensure that you are adding the value after a space. Use **Dynamic content** to select the **Bedrooms** parameter and select **Add**.
 
-    ![](./media/image30.png)
+    ![image](https://github.com/user-attachments/assets/418ac548-864b-45af-9a0d-0866819a6f47)
 
-17. Select the **Respond to Copilot** action and select **+ Add an
-    output**.
+15. Select the **Respond to Copilot** action and select **+ Add an output**.
 
-    ![](./media/image31.png)
+    ![image](https://github.com/user-attachments/assets/27b791ec-d38d-4a43-8c7f-10fd4d175ac7)
 
-18. Select **Text**.
+16. Select **Text**.
 
-19. Enter the below details
+17. Enter the below details
 
     - **Enter a name** - +++PropertyId+++
 
@@ -230,19 +220,21 @@ Power Automate cloud flows
   enter the following expression:
       +++first(outputs('List_rows')?['body/value'])['contoso_realestatepropertyid']+++
 
-    ![](./media/image32.png)
+    ![image](https://github.com/user-attachments/assets/27102be8-1523-4bab-9d37-c7befd35ec08)
 
-20. Select **Add**.
+18. Select **Add**.
 
     ![](./media/image33.png)
 
-21.	Have the Power Automate flow as such and from a new tab, open +++https://make.powerapps.com+++ (if not already open), open the table **Real Estate Property**. Navigate to its column **Property Name -> Edit Column -> Advanced options**. Look for the value of the **Logical name**. Make a note of this name to be used in the next step.
+19.	From +++https://make.powerapps.com+++, open the table **Real Estate Property**. Navigate to its column, Property Name(This might be Real Estate Property or slightly different when created using Copilot) -> Edit Column -> Advanced options. Look for the value of the **Logical name**. It should be something similar to **contoso_newcolumn**. It might be slightly different as well. Save the part that is there after **contoso_** locally. If the Logical name is **contoso_newcolumn**, keep a note of **newcolumn** for usage in the next step.
 
    	![](./media/img17.png)
    	
-21. Back in the Power Automate tab, select **+ Add an output**.
+20. Back in the **Copilot Studio Designer** page, in the **Respond to Copilot** pane, select **+ Add an output**.
 
-22. Select **Text**.
+    ![image](https://github.com/user-attachments/assets/fab0f41a-dce3-40cb-aae7-4e21199254e5)
+
+21. Select **Text**.
 
     - **Enter a name** - +++PropertyName+++ 
 
@@ -250,220 +242,199 @@ Power Automate cloud flows
   enter the following expression:
       +++first(outputs('List_rows')?\['body/value'\])\['contoso_propertyname'\]+++
 
-    (Replace **contoso_propertyname** with the **Logical name** fetched in the earlier step)
+    - Replace **propertyname** in **contoso_propertyname** in the above expression, with the value saved in the step before this(**newcolumn**).
+
+    - Select **Add**.
     
     ![](./media/image34.png)
 
-24. Select **Settings**. Ensure that **Asynchronous Response** is set
-    to **Off**.
+    >[!Note] **Note:**  This value replacement needs to be done since the Logical name for this column is not a standard value and we will have to check and update based on the value from the Table.
 
-    ![](./media/image35.png)
+    ![image](https://github.com/user-attachments/assets/03e696a4-db82-4d0c-b95a-eec11766dedf)
 
-25. Select **Save draft**.
+22. Select **Save draft**.
 
-    ![](./media/image36.png)
+    ![image](https://github.com/user-attachments/assets/559c7891-1751-4b76-bcca-2fd47551defe)
 
-26. Once save, select **Publish**.
+23. Once saved, select **Publish**.
 
-    ![](./media/image37.png)
+    ![image](https://github.com/user-attachments/assets/d05c2be0-4f04-4778-ac74-4073c502f58c)
 
-27. Close the Power Automate tab.
+24.	Select **Flows** from the left pane and then select the created flow named **Untitled**.
+
+    ![image](https://github.com/user-attachments/assets/e039d36f-d7b0-4769-bb88-8a8a7c4de86c)
+
+25.	Select **Edit** in the **Details** pane.
+
+    ![image](https://github.com/user-attachments/assets/e770347d-ac33-464a-af9c-c1326ab72cb1)
+
+26.	Name the flow as +++Get Property+++ and select **Save**.
+
+    ![image](https://github.com/user-attachments/assets/a08cfa8b-7fcf-46d3-8073-32349cd6ac82)
 
 ### Task 2: Add a Copilot action for retrieving a property
 
-1.  Back in the Copilot Studio page, select **Refresh**.
+1.	Select the **Topics** tab of the agent **Real Estate Booking Service**.
 
-    ![](./media/image38.png)
+    ![image](https://github.com/user-attachments/assets/a54f266f-a45a-4565-874b-7045c4ac35e1)
 
-2.  Select the **Get Property** flow.
-
-    ![](./media/image39.png)
-     
-4.	Select **Add action**.
-
-    ![](./media/img18.png)
-
-5.  Select the **Topics** tab. 
-
-    ![](./media/img19.png)
-
-6.	Select the **Book a Real Estate Showing** topic.
+2.	Select the **Book a Real Estate Showing** topic.
 
     ![](./media/img20.png)
   	
-7.  Select the **+** icon below the **How many bedrooms do you need
-    question?** node and select **Add an action**. Select the **Get
-    Property** flow.
+3.  Select the **+** icon below the **How many bedrooms do you need?** question node and select **Add a tool**. Select the **Get Property** flow.
 
-    ![](./media/img21.png)
+    ![image](https://github.com/user-attachments/assets/1740a089-ca0a-44d2-9730-a93c09d0707a)
 
-8.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
+4.  Select the **NumberofBedrooms** variable for the **Bedrooms** input
     parameter.
 
     ![](./media/image45.png)
 
-9.  Select the **three dots** in the **Which property do you want to
+5.  Select the **three dots** in the **Which property do you want to
     see?** question node and select **Delete**.
 
     ![](./media/image46.png)
 
-10. Select the the **+** icon under the action node and select **Send a
-    message**.
+6. Select the the **+** icon under the action node and select **Send a message**.
 
-11. Fill in the below details
+7. Fill in the below details
 
-    - **Enter a message** - enter +++Property+++
+    - **Enter a message** - +++Property+++
 
     - Select the **Insert variable** icon and select
   the **PropertyName** variable.
 
     ![](./media/image47.png)
 
-12. Select **Save**.
+8. Select **Save**.
 
     ![](./media/image48.png)
 
-13. Once saved, select **Publish** and select **Publish**.
+9. Once saved, select **Publish**.
 
     ![](./media/image49.png)
 
-14. Click on **Publish** in the Publish confirmation dialog.
+10. Click on **Publish** in the Publish confirmation dialog.
 
-    ![](./media/image50.png)
+    ![image](https://github.com/user-attachments/assets/4a018bb9-c90f-40d3-b3a7-5d00c84ceefb)
 
 ### Task 3: Create Power Automate flow to make a booking
 
-1.  Select the **Actions** tab and select **+ Add an action**.
+1.  Select the **Tools** tab and select **+ Add a tool**.
 
-    ![](./media/image51.png)
+    ![image](https://github.com/user-attachments/assets/1001e326-432f-40db-ac87-ee6cbf7edc42)
 
-2.	Select **+ New action** -> **New Power Automate flow**.
+2.	Select **Agent flow** from the **New tool** pane.
 
-    ![](./media/img22.png)
+    ![image](https://github.com/user-attachments/assets/a5525413-1e4c-4c1c-86f2-e4d10f7e117f)
 
-3.  Select **Run a flow from Copilot** in the top-left of the screen and
-    enter +++**Booking Request**+++ as the flow name.
+3.	Select the trigger step **When Copilot Studio calls a flow** and select **+ Add an input -> Text**.
 
-    ![](./media/image53.png)
+    ![image](https://github.com/user-attachments/assets/126a2024-bcb4-4578-b8bc-3a0cca2ef9bb)
 
-4.  Select the trigger step **Run a flow from Copilot** and select **+
-    Add an input -\> Text**.
+    ![image](https://github.com/user-attachments/assets/5ebe42ae-bb29-4fa6-b0cc-184822fae620)
 
-    ![](./media/image54.png)
 
-    ![](./media/image55.png)
-
-5.  Enter the below details
+4.  Enter the below details
 
     - Input - +++**PropertyId**+++
 
     - Please enter your input **-** +++**Property**+++
 
-6.  Select **+ Add an input -\> Text**
+5.  Select **+ Add an input -> Text**
 
     - Input - +++**ViewerName**+++
 
     - Please enter your input **-** +++**Viewer Name**+++
 
-7.  Select **+ Add an input -\>** **Text**.
+6.  Select **+ Add an input ->** **Text**.
 
     - Input - +++**ViewerEmail**+++
 
     - Please enter your input **-** +++**Viewer Email**+++
 
-    ![](./media/image56.png)
+    ![image](https://github.com/user-attachments/assets/ce3b9312-09ae-4064-acde-e35e7fc371fa)
 
-8.  Select the **+** icon between the two steps in the flow and
-    select **Add an action**.
+7.  Select the **+** icon between the two steps to **Add an action**.
 
-    ![](./media/image57.png)
+    ![image](https://github.com/user-attachments/assets/30667e36-0039-403a-ad95-e81197cee81c)
 
-9.  Enter +++**Dataverse**+++ in the **Search** field and select **See
-    more** for the Dataverse connector.
+8.  Enter +++**Dataverse**+++ in the **Search** field and select **See more** for the Dataverse connector.
 
-    ![](./media/image58.png)
+    ![image](https://github.com/user-attachments/assets/adf523d0-0413-4173-b35f-df710393ff49)
 
-10. Select the **Add a new row** action.
+9. Select the **Add a new row** action.
 
-    ![](./media/image59.png)
+    ![image](https://github.com/user-attachments/assets/5620c785-e8f4-41f3-85a4-0a058cca6803)
 
-11. Select **Booking Requests** for table name.
+10. Select **Booking Requests** for table name.
 
-12. Enter +++**Copilot booking**+++ in the **Booking Name** field.
+11. Enter +++**Copilot booking**+++ in the **Booking Name** field.
 
-13. Select **Show all**.
+12. Select **Show all**.
 
-    ![](./media/image60.png)
+    ![image](https://github.com/user-attachments/assets/bc44a8e8-86db-4129-a67e-15b297856390)
 
-14. Enter +++contoso_bookingrequests()+++ in the **Property (Real Estate
+13. Enter +++contoso_bookingrequests()+++ in the **Property (Real Estate
     Properties)** field, move the cursor within the brackets, and
     use **Dynamic content**.
 
-    ![](./media/image61.png)
+    ![image](https://github.com/user-attachments/assets/fc1ac1cd-0154-4430-8c3c-a373e15bb2a6)
 
-15. Select the **PropertyId** parameter.
+14. Select the **PropertyId** parameter.
 
-    ![](./media/image62.png)
+    ![image](https://github.com/user-attachments/assets/0e4bf761-6d67-4b85-b378-356f84db388e)
 
-16. Use **Dynamic content** to select the **ViewerName** parameter for
+15. Use **Dynamic content** to select the **ViewerName** parameter for
     the **Viewer Name** field.
 
-    ![](./media/image63.png)
+    ![image](https://github.com/user-attachments/assets/28330aa9-c881-497c-869d-9a7beec65475)
 
-17. Use **Dynamic content** to select the **ViewerEmail** parameter for
+16. Use **Dynamic content** to select the **ViewerEmail** parameter for
     the **Viewer Email** field.
 
-    ![](./media/image64.png)
+    ![image](https://github.com/user-attachments/assets/f50d3377-031a-45b9-90dd-30e4a60a8f8c)
 
-18. The parameters will now look similar to those in the screenshot
+17. The parameters will now look similar to those in the screenshot
     below.
 
-    ![](./media/image65.png)
+    ![image](https://github.com/user-attachments/assets/c7654468-5a69-45c6-b099-8af4bb91381d)
 
-19. Select the **Respond to Copilot** action. Select **Settings** and
-    ensure that **Asynchronous Response** is set to **Off**.
+18. Select **Save draft**.
 
-    ![](./media/image66.png)
+    ![image](https://github.com/user-attachments/assets/152d0dc7-7381-4698-ba4b-4a6badcf5a19)
 
-20. Select **Save draft**.
+19. Once saved, select **Publish**.
 
-    ![](./media/image67.png)
-
-21. Once saved, select **Publish**.
-
-    ![](./media/image68.png)
-
-22. Close the Power Automate tab.
+    ![image](https://github.com/user-attachments/assets/866bf76e-fc89-4c8c-888c-0e4b1c1ebbca)
 
 ### Task 4: Add a Copilot action for creating a booking request
 
-1.  Back in the Copilot Studio page, select **Refresh**.
+1.	Select **Flows** from the left pane and select the **Untitled** flow.
 
-    ![](./media/image69.png)
+    ![image](https://github.com/user-attachments/assets/a0dd4b2d-7f4c-448a-94b0-e8bc22deacbd)
 
-2.  Select the **Booking Request** flow.
+2.	Select **Edit** in the **Details** pane.
 
-    ![](./media/image70.png)
+    ![image](https://github.com/user-attachments/assets/136dae62-8cae-49f7-97d7-52bcd0b39662)
 
-3.  Select **Add action**.
+3.	Provide the **Flow name** as +++Booking Request+++.
 
-    ![](./media/img23.png)
+    ![image](https://github.com/user-attachments/assets/a919cc94-7f38-4499-9ca2-64ce41495fc2)
 
-    ![](./media/img40.png)
+4.	Select the **Topics** tab of the **Real Estate Booking Service** agent and select the **Book a Real Estate Showing** topic.
 
-6.  Select the **Topics** tab and select the **Book a Real Estate
-    Showing** topic.
+    ![image](https://github.com/user-attachments/assets/27b77599-755e-4a6f-9535-0b2f880b219a)
 
-    ![](./media/image74.png)
+5.  Select the **+** icon below the **What date and time do you want to
+    see the property?** node and select **Add a tool**.
 
-7.  Select the **+** icon below the **What date and time do you want to
-    see the property?** node and select **Add an action**.
+6.  Select the **Booking Request** flow.
 
-8.  Select the **Booking Request** flow.
+    ![image](https://github.com/user-attachments/assets/8daf7daa-faa5-4af4-8735-1616a408d93f)
 
-    ![](./media/img24.png)
-
-9.  Select the **PropertyId** variable for the **PropertyId** input
+7.  Select the **PropertyId** variable for the **PropertyId** input
     parameter.
 
     Select the **Name** variable for the **ViewerName** input parameter.
@@ -473,22 +444,22 @@ parameter.
 
     ![](./media/image76.png)
 
-10. Select the **+** icon below the action node. Select **Topic
+8. Select the **+** icon below the action node. Select **Topic
     management**, then select **Go to another topic** and select **End
     of conversation**.
 
     ![](./media/image77.png)
 
-11. Select **Save**.
+9. Select **Save**.
 
     ![](./media/image78.png)
 
-12. Once saved, select **Publish** and select **Publish** again in the
+10. Once saved, select **Publish** and select **Publish** again in the
     confirmation dialog.
 
     ![](./media/image79.png)
 
-    ![](./media/image80.png)
+    ![image](https://github.com/user-attachments/assets/e65b1d1a-e965-4a19-896b-942c8fa7cbbb)
 
 ## Exercise 3: Test the agent 
 
@@ -496,8 +467,7 @@ parameter.
 
 1.  Select the **Test** button in the top-right of the screen to open
     the testing panel. Select the **three dots** at the top of the
-    testing panel in the top-right of the screen. Select **Track between
-    topics**.
+    testing panel in the top-right of the screen. Select **Track between topics**.
 
     ![](./media/image81.png)
 
@@ -508,7 +478,7 @@ parameter.
 
     +++I want to book a real estate showing+++
 
-4.  The copilot responds with the "**What is your name?**" question.
+4.  The agent responds with the "**What is your name?**" question.
 
 5.  Enter your name.
 
@@ -557,65 +527,51 @@ parameter.
 ## Exercise 4: Set up Generative AI
 
 In this exercise, you learn how to use the Generative answers feature to
-improve your copilot's responses.
+improve your agent's responses.
 
 ### Task 1: Enable Generative AI
 
-1.  Login to the Copilot Studio using your tenant credentials at
-    +++https://copilotstudio.microsoft.com+++ if not logged in
-    already.
+1.	Back in the **Copilot Studio** (+++https://copilotstudio.microsoft.com+++), select the agent **Real Estate Booking Service**.
 
-2.  Select the Copilot **Real Estate Booking Service**.
-
-    ![](./media/image88.png)
-
-3.  Select **Settings** in the top-right of the screen.
+2.  Select **Settings** in the top-right of the screen.
 
     ![](./media/image89.png)
 
-4.  Select the **Generative AI** tab.
+3.  Select the **Generative AI** tab.
 
-    Select **Generative(preview)** under **How should your copilot decide how to
-respond**.
+4.	Select **Yes** under **Use generative AI orchestration for your agent's responses?**
 
-    Select **Medium** for **How strict should the content moderation be?**.
+    ![image](https://github.com/user-attachments/assets/3443d165-7e92-4a05-b261-311947fec3ce)
 
-    Select **Save**.
+5.	Scroll down and set the **content moderation** to **Moderate**.
 
-    ![](./media/image90.png)
+    ![image](https://github.com/user-attachments/assets/6afe1c3b-225e-45f7-8e3b-78b20679f5be)
 
 5.  **Close** the Settings pane.
 
-    ![](./media/image91.png)
-
-### Task 2: Enable knowledge
-
-1.  Click on the **Overview** tab.
-
-2.  Verify that general knowledge is enabled in the Knowledge section.
-
-    ![](./media/image92.png)
+    ![image](https://github.com/user-attachments/assets/5bd15c02-127b-43e4-be44-b6354481b2ab)
 
 ### Task 3: Add knowledge from a website
 
-1.  Select **+ Add knowledge** under the **Knowledge** section.
+1.  Click on the **Overview** tab.
 
-    ![](./media/image93.png)
+2.  Select **+ Add knowledge** under the **Knowledge** section.
 
-2.  Select the **Public websites** tile.
+    ![image](https://github.com/user-attachments/assets/e837007a-4ad5-476d-af2b-0b73590ab189)
 
-    ![](./media/image94.png)
+3.  Select the **Public websites** tile.
 
-3.  Enter the public website
-    link +++https://create.microsoft.com/templates/real-estate+++.
+    ![image](https://github.com/user-attachments/assets/46ebeaff-1c8e-48c7-8192-35a69da8edc1)
+
+4.  Enter the public website link +++https://create.microsoft.com/templates/real-estate+++.
     Select **Add**.
 
-    ![](./media/image95.png)
+    ![image](https://github.com/user-attachments/assets/68bf412b-96a1-40fe-a674-e670999c083e)
 
-4.  Give the name +++Real Estate Website+++ in the Name field and then
+5.  Give the name +++Real Estate Website+++ in the **Name** field and then
     select **Add**.
 
-    ![](./media/image96.png)
+    ![image](https://github.com/user-attachments/assets/a14d61e4-72d1-4ddf-9c35-e50893a9d3cc)
 
 ### Task 4: Add knowledge from Dataverse
 
@@ -623,22 +579,17 @@ respond**.
 
     ![](./media/image97.png)
 
-2.  Select **Dataverse(preview)**.
+2.  Select **Dataverse**.
 
-    ![](./media/image98.png)
+    ![image](https://github.com/user-attachments/assets/420eac9d-0a4d-4285-a7a4-4e5c9a9b8ced)
 
 3.  Select the **Real Estate Property** table and select **Next**.
 
-    ![](./media/image99.png)
+    ![image](https://github.com/user-attachments/assets/7495d3c6-aee1-4fb8-b411-d74cd6858f18)
 
-4.  Preview the data in the next screen and then select **Next**.
+4.	Select **Add**.
 
-    ![](./media/image100.png)
-
-5.  Review the details and click on **Add** in the Review and finish
-    screen.
-
-    ![](./media/image101.png)
+    ![image](https://github.com/user-attachments/assets/fad4c5bb-7ae4-42cf-b210-5a2ce5205b12)
 
 ### Task 5: Add knowledge from files
 
@@ -646,22 +597,15 @@ respond**.
 
     ![](./media/image102.png)
 
-2.	Select **Files**.
+2.	Under **Upload file** section, select **select to browse** and browse to locate the file **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
 
-    ![](./media/img26.png)
-  	
-3.  Select **click to browse** and browse to locate the file
-    **SummitRealtyCaseStudy.docx** at **C:\LabFiles** and select it.
+    ![image](https://github.com/user-attachments/assets/7e513e99-d5c1-4175-978e-0ccfc3503ef3)
 
-    ![](./media/img27.png)
+3.  Select **Add**.
 
-4.  Select **Add**.
+    ![image](https://github.com/user-attachments/assets/a972620f-efc5-4786-9fe1-8218586832ed)
 
-    ![](./media/image105.png)
-
-    >[!Alert] **Important:** The file upload will take around 10 minutes to complete. Check the status in the Knowledge tab to ensure that the file has been uploaded successfully.
-    >
-    >![](./media/img25.png)
+    >[!Alert] **Important:** The file upload will complete and the indexing will take some time to complete. Check the status in the Knowledge tab to ensure that the file is available. 
     
 ### Task 6: Use generative answers in System fallback topic
 
@@ -741,23 +685,19 @@ respond**.
 1.  Select the **Test** button in the top-right of the screen to open
     the testing panel.
 
-    ![](./media/image124.png)
+    <img width="464" alt="image" src="https://github.com/user-attachments/assets/02150627-c16e-4acb-a166-b69abb58b5cf" />
 
-2.  Select the **three dots** at the top of the testing panel in the
-    top-right of the screen.
+2.	Select **Activity map** if not selected already.
 
-3.	Select **Activity map**.
+    ![image](https://github.com/user-attachments/assets/bca2d292-6a00-4a0b-a52f-8be552c0ac64)
+
+3.	Select the **Refresh** button in Test Panel to **Start a new conversation**.
    
-3.  Select **Track between topics**.
+4.	Type in +++What is Summit Realty group?+++ and hit **send**.
+   
+5.	You will get a response from the uploaded file as in the screenshot below since it has been added as the knowledge source to look for in the Fallback topic.
 
-4.  Select the **Start a new conversation** icon at the top of the
-    testing panel.
-
-5.  Type in +++What is Summit Realty group?+++ and hit **send**.
-
-6.  You will get a response from the uploaded file as in the screenshot below sinc eit has been added as the knowledge source to look for in the Fallback topic.
-
-    ![](./media/image125.png)
+    ![image](https://github.com/user-attachments/assets/23fdd440-901c-476b-bf98-90456b95dc78)
 
 **Summary:**
 
