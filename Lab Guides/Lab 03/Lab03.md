@@ -1,5 +1,9 @@
 # Lab 03: Configure the Dynamics 365 Customer Service
 
+**Objective**
+
+In this lab, you will activate the **Dynamics 365 Customer Service trial**, which will be required in the Day 2 lab.
+
 ### Task 1: Sign up for Dynamics 365 Customer Service trial
 
 1.  Login to
