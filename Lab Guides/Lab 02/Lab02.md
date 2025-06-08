@@ -83,7 +83,7 @@ the newly created files.
     ![](./media/image18.png)
 
 3.  From the Add trigger menu, select **When a file is created**
-    trigger.
+    trigger and select **Next**.
 
     ![](./media/image19.png)
 
