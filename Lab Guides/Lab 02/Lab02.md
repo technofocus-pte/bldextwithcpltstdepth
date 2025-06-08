@@ -55,7 +55,7 @@ the newly created files.
 
 1.  Open +++https://copilotstudio.microsoft.com+++ if you do not have it open already and click on **Agents -> + New agent**.
 
-2.  Click on the Skip to configure option in the Agent creation page
+2.  Click on the **Skip to configure** option in the Agent creation page
     that opens up.
 
     ![](./media/image15.png)
