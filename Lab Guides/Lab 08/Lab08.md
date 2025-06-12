@@ -1,4 +1,4 @@
-# **Lab 08 - Creating conversational actions for Microsoft Copilot**
+![image](https://github.com/user-attachments/assets/3bfff052-d220-45b3-ac38-c51aae8f5f56)# **Lab 08 - Creating conversational actions for Microsoft Copilot**
 
 **Lab duration** – 20 minutes
 
@@ -43,112 +43,89 @@ In this lab, we will learn how to create a Conversational action.
 
     ![image](https://github.com/user-attachments/assets/7e096b69-e7f6-446d-900d-a2e19ccae7fd)
 
-9.  Provide the the Name, Description and Instruction as +++Conversational action+++ and select **Create**.
+9.  Provide the below details and select **Create**.
 
-    ![image](https://github.com/user-attachments/assets/22438d0a-ea6f-4f05-a208-799742b3caff)
-
-9.  Once ready, the created agent opens under **Tools**.
-
-    <img width="779" alt="image" src="https://github.com/user-attachments/assets/e3ee14f6-358b-43f2-8134-e8aabad187fa" />
-
-10. Select the agent from **Agents -> Microsoft 365 Copilot**.
-
-    <img width="773" alt="image" src="https://github.com/user-attachments/assets/653d136a-4f17-44f7-90d1-9cb6a1d37756" />
-
-10.	If it does not open up, refresh the page and see if it is listed under **Library -> Conversational**.
-
-    ![](./media/img32.png)
-   	
-11.  Name the topic as +++Holidaylist+++
-
-    ![](./media/image8.png)
-
-12.  In the Trigger node’s description, provide a clear description of how the conversational plugin can 
-     help the user and what it can do. Let this topic help the user to find the list of holidays in the  
-     year 2025.
-     
-     Type +++**This plugin helps to retrieve the list of holidays for the year 2024.**+++ in the Trigger 
- node’s description.
-
-     ![](./media/image9.png)
-
-     This description has functional purpose and is used by the Microsoft Copilot to determine whether to 
- invoke your plugin or not.
-
-13. Add a message node with the list of holidays.
-    Copy the below to a notepad and then paste it into the Message node from there.
+    - Name - +++Conversational action+++
+    - Description - +++This agent helps to retrieve the list of holidays for the year 2025+++
+    - Instruction –
 
     ```
+    Answer based on this Holiday list
     National holidays for 2025:
     - New Year’s Day:	Jan 1
-
+    
     - Martin Luther King Jr. Day: Jan 20
-
+    
     - Washington’s Birthday (Presidents’ Day): Feb 17
-
+    
     - Memorial Day: May 26
-
+    
     - Juneteenth National Independence Day: June 19
-
+    
     - Independence Day: July 4
-
+    
     - Labor Day: Sep 1
-
+    
     - Columbus Day / Indigenous Peoples’ Day: Oct 13
-
+    
     - Veterans Day: Nov 11
-
+    
     - Thanksgiving Day: Nov 27
-
+    
     - Christmas Day: Dec 25
 
     ```
-    
-    ![](./media/img33.png)
 
-12. Click on **Save** to save the plugin.
+    ![image](https://github.com/user-attachments/assets/15b063e1-0b3f-494e-9a4e-9cd3324e3947)
 
-    ![](./media/image11.png)
+9.  Under **Suggested prompt** section, add a prompt with Title - +++July+++ and Prompt - +++Leaves in July?+++ and select **Save**.
 
-    ![](./media/image12.png)
+    <img width="476" alt="image" src="https://github.com/user-attachments/assets/e1ceef94-9836-4a6d-b7da-bbb38bfc98b6" />
 
-## **Exercise 2: Publishing your conversational action to Microsoft Copilot**
+10. Under **Test Agent**, you can see the prompt. Select it to see it in action.
 
-1.  Publishing your conversational plugin creates a new plugin in the
-    Dataverse registry for your Tenant. Once available there, your
-    tenant admin needs to approve your plugin to be available to users
-    in the Microsoft Copilot plugins catalog.
+    ![image](https://github.com/user-attachments/assets/703ebf71-d399-4fce-84e3-f2769bee2f1f)
 
-2.  Click on **Publish**.
+11.	Select **Publish**.
 
-    ![](./media/image13.png)
+    <img width="476" alt="image" src="https://github.com/user-attachments/assets/5cef3535-62c6-4ae1-b45a-e8840a689dc3" />
 
-3.  Select **Publish.**
+11. Select **Publish** from the Publish pane.
 
-    ![](./media/image14.png)
+    ![image](https://github.com/user-attachments/assets/5162d4af-32ea-42c7-89c7-c6eb0efaeda7)
 
-4.  Select **Publish** on **Publish latest content** dialog.
+    ![image](https://github.com/user-attachments/assets/f94170e2-0ec7-4f45-8005-9db13c64ff97)
 
-    ![](./media/image15.png)
+11. Select the option, **Download zip file** and click **Done**.
 
-5.  The publish status is shown on the screen.
+    ![image](https://github.com/user-attachments/assets/40bc7e0f-29e8-4f72-8757-4f2aa499638d)
 
-    ![](./media/image16.png)
+12. Select **Apps -> Manage your apps**.
 
-    >[!Note] Note: The publish should complete quickly. The actual availability in
-the Microsoft Admin Center can take up to 4 hours.
+    <img width="459" alt="image" src="https://github.com/user-attachments/assets/89a629c4-1ed7-4cf6-a4f8-d5ab6068e91f" />
 
-    >[!Alert] **Important:** **:** For the admin to get it listed in the admin center,
-the company will have to hold a valid Copilot license.
+13. Select **Upload an app** and browse and upload the downloaded file.
 
-6.  Your Admin can find the **Dataverse and Microsoft Copilot
-    Studio** integrated app in the Microsoft Admin Center
-    under **Settings**, then **Integrations to be reviewed and
-    approved**.
+    ![image](https://github.com/user-attachments/assets/a75be53d-3f7d-4319-adfb-b510da4314e4)
 
-7.  Once your Tenant admin approves the Dataverse and Microsoft Copilot
-    Studio integrated app, it should appear in the user's list of
-    plugins in their Microsoft Copilot UI.
+    ![image](https://github.com/user-attachments/assets/77b4f79f-8e42-4599-86bd-6e3e3634e82f)
+
+14. Once uploaded, select **add**.
+
+    ![image](https://github.com/user-attachments/assets/b7b3b076-5a04-453a-be1c-605a2a15056f)
+
+    ![image](https://github.com/user-attachments/assets/b61f7054-511f-44af-adfb-c8567589c5c4)
+
+15. **Open** the app once added.
+
+    ![image](https://github.com/user-attachments/assets/2892998c-4fa7-4427-a016-01b8c6a1ee79)
+
+16. See the agent in action.
+
+    ![image](https://github.com/user-attachments/assets/db722127-40f0-4fc2-9316-f8e296032c4d)
+
+    ![image](https://github.com/user-attachments/assets/9ad99afd-6982-4cc8-afff-f933c56588dd)
+
 
 **Summary:**
 
