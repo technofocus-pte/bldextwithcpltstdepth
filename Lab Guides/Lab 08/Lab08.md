@@ -39,15 +39,17 @@ In this lab, we will learn how to create a Conversational action.
 
     <img width="565" alt="image" src="https://github.com/user-attachments/assets/90b450c2-251f-4f41-a3fc-79a9b5efb0bc" />
 
-8.  Provide the name for the action as +++**Conversational action**+++.
-    Select **Create**.
+8.  Click on **Skip to configure** in the agent creation screen.
 
-    ![](./media/img31.png)
+    ![image](https://github.com/user-attachments/assets/7e096b69-e7f6-446d-900d-a2e19ccae7fd)
 
-9.  Once ready, the created action opens in Authoring canvas. Select
-    **Topics**.
+9.  Provide the the Name, Description and Instruction as +++Conversational action+++ and select **Create**.
 
-    ![](./media/image7.png)
+    ![image](https://github.com/user-attachments/assets/22438d0a-ea6f-4f05-a208-799742b3caff)
+
+9.  Once ready, the created agent opens under **Tools**.
+
+    <img width="779" alt="image" src="https://github.com/user-attachments/assets/e3ee14f6-358b-43f2-8134-e8aabad187fa" />
 
 10.	If it does not open up, refresh the page and see if it is listed under **Library -> Conversational**.
 
