@@ -100,27 +100,29 @@ In this lab, we will learn how to create a Conversational action.
 
     ![image](https://github.com/user-attachments/assets/40bc7e0f-29e8-4f72-8757-4f2aa499638d)
 
-12. Select **Apps -> Manage your apps**.
+12. Open **MS Teams**.
+
+13. Select **Apps -> Manage your apps**.
 
     <img width="459" alt="image" src="https://github.com/user-attachments/assets/89a629c4-1ed7-4cf6-a4f8-d5ab6068e91f" />
 
-13. Select **Upload an app** and browse and upload the downloaded file.
+14. Select **Upload an app** and browse and upload the downloaded file.
 
     ![image](https://github.com/user-attachments/assets/a75be53d-3f7d-4319-adfb-b510da4314e4)
 
     ![image](https://github.com/user-attachments/assets/77b4f79f-8e42-4599-86bd-6e3e3634e82f)
 
-14. Once uploaded, select **add**.
+15. Once uploaded, select **add**.
 
     ![image](https://github.com/user-attachments/assets/b7b3b076-5a04-453a-be1c-605a2a15056f)
 
     ![image](https://github.com/user-attachments/assets/b61f7054-511f-44af-adfb-c8567589c5c4)
 
-15. **Open** the app once added.
+16. **Open** the app once added.
 
     ![image](https://github.com/user-attachments/assets/2892998c-4fa7-4427-a016-01b8c6a1ee79)
 
-16. See the agent in action.
+17. See the agent in action.
 
     ![image](https://github.com/user-attachments/assets/db722127-40f0-4fc2-9316-f8e296032c4d)
 
