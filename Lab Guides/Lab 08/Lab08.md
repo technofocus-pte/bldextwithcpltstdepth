@@ -51,6 +51,10 @@ In this lab, we will learn how to create a Conversational action.
 
     <img width="779" alt="image" src="https://github.com/user-attachments/assets/e3ee14f6-358b-43f2-8134-e8aabad187fa" />
 
+10. Select the agent from **Agents -> Microsoft 365 Copilot**.
+
+    <img width="773" alt="image" src="https://github.com/user-attachments/assets/653d136a-4f17-44f7-90d1-9cb6a1d37756" />
+
 10.	If it does not open up, refresh the page and see if it is listed under **Library -> Conversational**.
 
     ![](./media/img32.png)
