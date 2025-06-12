@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/3bfff052-d220-45b3-ac38-c51aae8f5f56)# **Lab 08 - Creating conversational actions for Microsoft Copilot**
+# **Lab 08 - Creating conversational actions for Microsoft Copilot**
 
 **Lab duration** – 20 minutes
 
