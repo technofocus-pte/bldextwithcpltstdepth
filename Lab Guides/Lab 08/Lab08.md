@@ -31,17 +31,13 @@ In this lab, we will learn how to create a Conversational action.
 
     ![](./media/image1.png)
 
-5.  Select **Actions**.
+5.  Select **Agents**.
 
-    ![](./media/image2.png)
+    <img width="558" alt="image" src="https://github.com/user-attachments/assets/fe25742c-82d5-48a7-8ebb-f801dd925055" />
 
-6.  Select **+ Add an action**.
+6.  Select **New agent**.
 
-    ![](./media/image3.png)
-
-7.  Select **Conversational** in the **New action** pane.
-
-    ![](./media/image4.png)
+    <img width="565" alt="image" src="https://github.com/user-attachments/assets/90b450c2-251f-4f41-a3fc-79a9b5efb0bc" />
 
 8.  Provide the name for the action as +++**Conversational action**+++.
     Select **Create**.
