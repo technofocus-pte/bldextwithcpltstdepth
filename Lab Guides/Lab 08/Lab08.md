@@ -1,92 +1,185 @@
-# **Lab 08 - Extending Microsoft Copilot with connector actions (preview)**
+**Laboratoire 08 - Création d'actions conversationnelles pour Microsoft
+Copilot**
 
-**Lab duration** – 20 minutes
+**Durée du laboratoire** – 20 minutes
 
-**Objective:**
+**Objectif**
 
-Connector actions let you define connectors that can be invoked from AI
-surfaces in Power Platform. For connector actions, you need to identify
-the actions enabled for use in the Copilot. You can also capture the
-information that large language models require to effectively identify
-and utilize the plugin, such as summary and description fields.
+Microsoft Copilot offre des expériences prêtes à l'emploi pour interagir
+avec le contenu et les ressources de l'ensemble de votre organisation.
+Dans certaines situations, des réponses et une interaction avec des
+systèmes externes sont nécessaires. Avec Microsoft Copilot Studio, vous
+pouvez créer un sujet conversationnel qui peut être publié en tant que
+plug-in Copilot. Une fois que votre administrateur de locataire a
+approuvé le plug-in, il peut être ajouté aux expériences de chat M365 de
+votre organisation.
 
-In this lab, we will learn how to add a connector action and publish it.
+Les actions seront disponibles dans Microsoft Copilot en production, si
+l'organisation dispose d'une licence valide pour celles-ci.
 
-## **Exercise 1: Add a connector action**
+Dans ce laboratoire, nous allons apprendre à créer une action
+conversationnelle.
 
-### **Task 1: Select the Copilot experience and choose connector action**
+## **Exercice 1 : Créer une action conversationnelle**
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your tenant
-    credentials if not done already.
+1.  Connectez-vous à +++**https://copilotstudio.microsoft.com/**+++ à
+    l'aide de vos informations d'identification de locataire si vous
+    n'êtes pas déjà connecté.
 
-2.  On the home page, select **Copilots** and select **Copilot for
-    Microsoft 365**.
+2.  Sélectionnez l'environnement en tant que **Dev one** en haut à
+    droite.
 
-    ![](./media/image1.png)
+![Une capture d'écran d'un ordinateur Le contenu généré par l'IA peut
+être incorrect.](./media/image1.png)
 
-3.  Select **Actions** and then select **+ Add action**.
+3.  Sélectionnez **Agents** dans le volet gauche.
 
-    ![](./media/image2.png)
+4.  Sélectionnez **Copilot for Microsoft 365**.
 
-4.  Select **connector**.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image2.png)
 
-    ![](./media/image3.png)
+5.  Sélectionnez **Actions**.
 
-5.  Select **SharePoint**.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image3.png)
 
-    ![](./media/image4.png)
+6.  Sélectionnez **Add an action**.
 
-6.  The **Add a connector action** pane opens. Accept the defaults and
-    click on **Next**.
+![Une capture d'écran d'un ordinateur Le contenu généré par l'IA peut
+être incorrect.](./media/image4.png)
 
-    ![](./media/image5.png)
+7.  Sélectionnez **Conversational** dans le volet **New action**.
 
-7.  Select the **Get lists**, accept the other defaults and click on
-    **Next**.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image5.png)
 
-    ![](./media/image6.png)
+8.  Indiquez le nom de l'action comme !! **Coversational action** !.
+    Sélectionnez **Create**
 
-8.  **Review** the action’s parameters and click on **Next**.
+![Une capture d'écran d'un ordinateur Le contenu généré par l'IA peut
+être incorrect.](./media/image6.png)
 
-    ![](./media/image7.png)
+9.  Une fois prête, l'action créée s'ouvre dans le canevas de création.
+    Sélectionnez **Topics**
 
-9.  The screen again lands in the Add a connector action to enable
-    adding more actions. We can select **Next** since we are adding only
-    one action here.
+10. S'il ne s'ouvre pas, actualisez la page et voyez si elle est
+    répertoriée sous **Library -\> Coversational**
 
-    ![](./media/image8.png)
+![Une capture d'écran d'une boîte de discussion Le contenu généré par
+l'IA peut être incorrect.](./media/image7.png)
 
-10. In the Review, test and publish your action screen, click on **+ New
-    connection**.
+11. Ouvrez **Coversational action** **.**
 
-    ![](./media/image9.png)
+![Une capture d'écran d'un ordinateur Le contenu généré par l'IA peut
+être incorrect.](./media/image8.png)
 
-11. Select **Create**.
+12. Nommez le sujet comme !! Holidaylist!!
 
-    ![](./media/image10.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image9.png)
 
-12. Login using your tenant credentials. Once the connection is
-    established, select it (if not automatically selected) and then
-    click on **Next**.
+13. Dans la description du nœud Trigger, fournissez une description
+    claire de la façon dont le plug-in conversationnel peut aider
+    l'utilisateur et de ce qu'il peut faire. Laissez ce sujet aider
+    l'utilisateur à trouver la liste des jours fériés de l'année 2025.
 
-    ![](./media/image11.png)
+Type +++ **This plugin helps to retrieve the list of holidays for the
+year 2025.**+++ dans la description du nœud Trigger.
 
-13. In the next screen, your connection action gets published.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image10.png)
 
-    ![](./media/image12.png)
+Cette description a un but fonctionnel et est utilisée par Microsoft
+Copilot pour déterminer s'il faut appeler votre plugin ou non.
 
-14. Once done, you will get a message stating that the **Your**
-    **connector action is now published to Copilot for Microsoft 365**.
-    Click on **Go to details page** to see the details.
+14. Ajoutez un nœud de message avec la liste des jours fériés.
 
-    ![](./media/image13.png)
+National holidays for 2025:
 
-Your connector action is now published to **Copilot for Microsoft 365**.
-It will show up in copilot experiences only if you have a valid Copilot
-license.
+- New Year’s Day: Jan 1
 
-**Summary:**
+- Martin Luther King Jr. Day: Jan 20
 
-In this lab, we have learnt how to add a connector option, viewed the
-different types of actions available and publish it.
+- Washington’s Birthday (Presidents’ Day): Feb 17
+
+- Memorial Day: May 26
+
+- Juneteenth National Independence Day: June 19
+
+- Independence Day: July 4
+
+- Labor Day: Sep 1
+
+- Columbus Day / Indigenous Peoples’ Day: Oct 13
+
+- Veterans Day: Nov 11
+
+- Thanksgiving Day: Nov 27
+
+- Christmas Day: Dec 25
+
+- 
+
+![Une capture d'écran d'un ordinateur Le contenu généré par l'IA peut
+être incorrect.](./media/image11.png)
+
+15. Cliquez sur **Save** pour enregistrer le plugin.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image12.png)
+
+![Une capture d'écran d'une boîte de discussion Description générée
+automatiquement](./media/image13.png)
+
+## **Exercice 2 : Publication de votre action conversationnelle sur Microsoft Copilot**
+
+1.  La publication de votre plug-in conversationnel crée un nouveau
+    plug-in dans le registre Dataverse pour votre Tenant. Une fois
+    disponible, l'administrateur de votre locataire doit approuver votre
+    plug-in pour qu'il soit disponible pour les utilisateurs dans le
+    catalogue de plug-ins Microsoft Copilot.
+
+2.  Cliquez sur **Publish**.
+
+> ![Une capture d'écran d'un ordinateur Description générée
+> automatiquement](./media/image14.png)
+
+3.  Sélectionnez **Publish.**
+
+![Une capture d'écran d'un programme informatique Description générée
+automatiquement](./media/image15.png)
+
+4.  Sélectionnez **Publish** dans la **Publish latest content** le
+    contenu le plus récent.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image16.png)
+
+5.  L'état de publication s'affiche à l'écran.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image17.png)
+
+Remarque : La publication devrait se terminer rapidement. La
+disponibilité réelle dans Microsoft Admin Center peut prendre jusqu'à 4
+heures.
+
+**Important :** Pour que l'administrateur puisse le référencer dans le
+centre d'administration, l'entreprise devra détenir une licence Copilot
+valide.
+
+6.  Votre administrateur peut trouver l'application intégrée **Dataverse
+    and Microsoft Copilot Studio** dans le Centre d'administration
+    Microsoft sous **Paramètres**, puis **Intégrations à examiner et à
+    approuver**.
+
+7.  Une fois que votre administrateur de locataire a approuvé
+    l'application intégrée Dataverse et Microsoft Copilot Studio,
+    celle-ci doit apparaître dans la liste des plug-ins de l'utilisateur
+    dans son interface utilisateur Microsoft Copilot.
+
+**Résumé:**
+
+Dans ce laboratoire, nous avons appris à créer une action
+conversationnelle et à la publier.
