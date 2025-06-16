@@ -1,238 +1,540 @@
-﻿# **Lab 05_ Sending messages from a Copilot(classic) to a Teams channel**
+﻿# Laboratoire 5 - Intégrer un agent à l'application Dynamics 365 Customer Service et mettre en œuvre l'escalade automatisée des incidents vers l'agent en direct
 
-**Lab duration** – 30 minutes
+## Exercice 1 : Configurer l'espace de travail Dynamics 365 Customer Service
 
-**Objective:**
+### Tâche 1 : Configurer l'extension Omnichannel Power Virtual Agent
 
-In this lab, we will send message from a Copilot to a Teams channel by
-invoking a flow.
+1.  Ouvrez le lien
+    +++<https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com>+++
+    et cliquez sur Obtenir maintenant dans la page Extension Omnichannel
+    Power Virtual Agent.
 
-## **Exercise 1: Add channel and Team in Microsoft Teams**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image1.png)
 
-1.  Open **Microsoft Teams** from the VM and login using your tenant
-    credentials if have closed it already. Select **Teams** option.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image2.png)
 
-       ![](./media/image1.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image3.png)
 
-2.  From the Teams, select **More options** and select **+ -\>**
-    **Create team**.
+2.  Sélectionnez la **CustomerService Trial** sous **Select an
+    environment**, cochez les cases et cliquez sur **Install**
 
-       ![](./media/image2.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image4.png)
 
-3.  Name the team as +++**HR Team**+++, channel as +++**HR Experts**+++ and select **Create**.
+3.  Dans la page des applications Dynamics 365, cliquez sur les entrées
+    qui indiquent **Update available**, **select** **cochez la case**
+    pour accepter les conditions et cliquez sur **Update**
 
-       ![](./media/image44.png)
+Assurez-vous de le faire pour **all** entrées avec **Update available**
+comme Statut.
 
-4.  Select **Skip** on ‘Add members to HR Team’ window.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image5.png)
 
-       ![](./media/image4.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image6.png)
 
-7.  Select **Skip** on ‘Add members to the HR Experts channel’ window.
+### Tâche 2 : Configurer les paramètres de recherche dans le centre d'administration Power Platform
 
-       ![](./media/image7.png
-)
+1.  Connectez-vous à +++<https://admin.powerplatform.microsoft.com/>+++
+    en utilisant vos coordonnées de locataire. Sélectionnez
+    **Environements** -\>**CustomerService Trial**.
 
-## **Exercise 2: Enhance topic to handle complex queries by escalating to HR experts**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image7.png)
 
-1.  From the Teams app, select the Copilot Studio app(Power Virtual
-    Agents), select **Copilots** tab and open the **HR Support
-    Copilot**.
+2.  Sélectionnez la liste déroulante en regard de **Resource** (dans le
+    volet supérieur) et sélectionnez **Dynamics 365 apps**.
 
-       ![](./media/image8.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image8.png)
 
-     >[!Note] **Note:** If Copilot Studio shortcut is not found, search for **Copilot Studio/Power Virtual Agents under Apps** and select **Open**)
-     >
-     >![](./media/image45.png)
+3.  Assurez-vous qu'**Omnicanal for Customer Service** est
+    **Installed.**
 
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image9.png)
 
-2.  Select **Topics** from left pane and return to the topic you created
-    earlier(**Employee time off**) and go to the authoring canvas.
+4.  Revenez à la page **Environements -\> CustomerService Trial** dans
+    le centre d'administration. Sélectionnez **Settings** dans le volet
+    supérieur.
 
-       ![](./media/image9.png)
+> ![Une capture d'écran d'un ordinateur Description générée
+> automatiquement](./media/image10.png)
 
-3.  In the **Ask a question node**, add an option named +++**Extended
-    leave**+++.
+5.  Sélectionnez **Product** -\> **Features**.
 
-       ![](./media/image10.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image11.png)
 
-4.  Under the Condition node of Extended leave, add a question node
-    asking for a description for the issue and add the text +++**How
-    would you describe the issue?***+++*
+6.  Basculez l'option **Dataverse Search** et **Single table search**
+    sur **ON.**
 
-       ![](./media/image11.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image12.png)
 
-5.  Select **User’s entire response** under Identity and save the
-    description in a variable named +++**Description**+++.
+Faites défiler vers le bas et cliquez sur le bouton **Save** en bas à
+droite.
 
-       ![](./media/image12.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image13.png)
 
-6.  Select **Save**.
+## Exercice 2 : Création d'un agent
 
-       ![](./media/image13.png
-)
+1.  Depuis la page d'accueil de Copilot Studio, !!
+    https://copilotstudio.microsoft.com!!, sélectionner l'environnement
+    **CustomerService Trial** en haut à droite.
 
-7.  Add a node under the question and select **Call an action**. Select
-    **Create a flow** which launches the Power Automate within the
-    Copilot Studio in Teams.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image14.png)
 
-       ![](./media/image14.png
-)
+2.  Sélectionnez **Agents** dans le volet gauche. Cliquez sur le **+ New
+    Agent** pour créer un nouvel agent.
 
-8.  Choose the **Power Virtual Agents Flow** Template option.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image15.png)
 
-       ![](./media/image15.png)
+3.  Dans la zone de texte Tapez votre message, tapez **!! You are a
+    customer service agent who helps in identifying stores nearby.**!!
+    Et appuyez sur **Send**.
 
-       ![](./media/image16.png
-)
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image16.png)
 
-9.  Add a **Text** input field by clicking on **+ Add an input** in the
-    first step. Replace the Input by +++**Description**+++.
+4.  Tapez le message !! **Maintain a polite tone** !! Ensuite, appuyez
+    sur **send.**
 
-       ![](./media/image17.png)
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image17.png)
 
-10. Insert a **new step** and select **Add an action**.
+5.  Cliquez sur **Create**.
 
-       ![](./media/image18.png)
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image18.png)
 
-11. Select **Microsoft Teams** under **Choose an operation**.
+6.  L'agent créé s'ouvre avec un message indiquant que **Your agent is
+    ready.**
 
-       ![](./media/image21.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image19.png)
 
-12. Select **Post message in a chat or channel**.
+## Exercice 3 : Connecter le copilote à Dynamics 365 Customer Service et configurer la rubrique Escalade
 
-       ![](./media/image22.png)
+### Tâche 1 : Configurer la rubrique Escalade
 
-13. Provide the below details:
+Nous nous concentrons ici sur la présentation du concept d'escalade vers
+l'agent en direct. Nous y travaillerons donc directement sans créer
+d'autres sujets.
 
-- Post as – **User**
+1.  Sélectionnez l'onglet **Topics**, puis l'onglet **System**.
+    Sélectionnez la rubrique **Escalate.**
 
-- Post in – **Channel**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image20.png)
 
-- Team – **HR Team**
+2.  Sélectionnez le nœud de message du sujet et remplacez le contenu
+    existant par !! **You will be transferred to a live agent
+    shortly!!**
 
-- Channel – **HR Experts**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image21.png)
 
-- Message **– Description** from **Dynamic Content**
+3.  Cliquez sur le symbole + pour ajouter un nœud à côté du nœud
+    Message.
 
-       ![](./media/image23.png
-)
+4.  Sélectionnez **Topic management** -\> **Transfer conversation**.
 
-14. Rename the flow as +++**Send a message to HR team**+++ and click on
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image22.png)
+
+5.  Donnez un message !! Le client veut parler à un agent en direct !!
+    dans le nœud Transférer la conversation.
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image23.png)
+
+6.  **Save** le sujet.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image24.png)
+
+7.  **Publish** l'agent.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image25.png)
+
+### Tâche 2 : Connecter le copilote à Dynamics 365 Customer Service
+
+1.  Une fois publié, depuis la page du copilote en haut à droite,
+    cliquez sur **Settings**.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image26.png)
+
+2.  Sélectionnez **Security** et **Authentication** sous Security.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image27.png)
+
+3.  Sélectionnez l'option **No authentication**, puis cliquez sur
     **Save**.
 
-       ![](./media/image24.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image28.png)
 
-15. Click on **Close** to close the Power Automate and return to the
-    Authoring canvas.
+4.  Sélectionnez **Save** dans la boîte de dialogue de confirmation.
 
-       ![](./media/image25.png
-)
+![Une capture d'écran d'un écran d'ordinateur Description générée
+automatiquement](./media/image29.png)
 
-16. From the Authoring canvas, add a node – **call an action** -\>
-    **Send a message to HR team**.
+5.  Fermez le volet **Settings** .
 
-       ![](./media/image26.png
-)
+6.  Cliquez sur **Channels** (si les chaînes ne sont pas visibles,
+    cliquez sur le +1 pour afficher l'option **Channels**)
 
-17. Add in the input as **Description**.
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image30.png)
 
-       ![](./media/image27.png
-)
+7.  Sélectionnez **Dynamics 365 Customer Service** dans le volet Centre
+    d'engagement client.
 
-18. Add in a message node with the message, +++**We notified the expert.
-    They’ll reach out shortly**+++.
+![](./media/image31.png)
 
-       ![](./media/image28.png
-)
+8.  Sur la page Service clientèle Dynamics 365, cliquez sur **Connect**.
 
-19. End the conversation \> End the survey.
+![Une capture d'écran d'un message Description générée
+automatiquement](./media/image32.png)
 
-       ![](./media/image29.png)
+9.  Une fois que vous obtenez un **successfully connected** message,
+    cliquez sur **Close**.
 
-20. Click on **Save** to save the topic.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image33.png)
 
-       ![](./media/image30.png
-)
+## Exercice 4 : Créer un flux de travail et un canal dans le centre d'administration Dynamics 365
 
-21. A success message of **Topic saved** is obtained.
+### Tâche 1 : Gérer un utilisateur dans Omnicanal pour Customer Service
 
-       ![](./media/image31.png
-)
+1.  Connectez-vous à !! https://admin.powerplatform.microsoft.com !! à
+    l'aide de vos informations d'identification de locataire admin et
+    sélectionnez **Environements** dans l'onglet de gauche.
+    **L’CustomerService Trial** sera répertorié ici. **Select -**le.
 
-## **Exercise 3: Test your chatbot**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image34.png)
 
-1.  Select Test your chatbot from the left pane.
+2.  Cliquez sur l’ **url value** sous **Environment URL**.
 
-       ![](./media/image32.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image35.png)
 
-2.  Send a message +++**I need help with time off**+++ and select
-    Extended leave to answer the chatbot.
+3.  La page **Applications** s'ouvre . Sélectionnez **Customer Service
+    admin center** à partir de celui-ci.
 
-       ![](./media/image33.png)
+![Une capture d'écran d'un ordinateur Le contenu généré par l'IA peut
+être incorrect.](./media/image36.png)
 
-3.  Describe a reason for your leave extension. Here, we have given it
-    as +++**I need extended leave of one month for travelling**+++.
+4.  Cela ouvre la page du **Dynamics 365 Customer Service admin center**
+    .
 
-       ![](./media/image34.png)
+![Une capture d'écran d'un service client Description générée
+automatiquement](./media/image37.png)
 
-4.  The bot replies with “We notified an expert…..” message.
+5.  Dans le **Dynamics 365 Customer Service admin center**, dans le plan
+    du site, sélectionnez **User management** sous groupe de **Customer
+    support** .
 
-       ![](./media/image35.png)
+6.  Sur la page **User management**, sélectionnez **Manage** en regard
+    de **Users**.
 
-       ![](./media/image36.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image38.png)
 
-## **Exercise 4: Check the message in Teams.**
+7.  Cliquez sur le menu déroulant en regard de **Enabled Users** et
+    sélectionnez **Omnichannel Users**.
 
-1.  Click on Teams from the left menu of the MS Teams app.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image39.png)
 
-       ![](./media/image37.png")
+8.  Sur la page **Omnichannel Users**, sélectionnez un **MOD
+    Administrator** d'utilisateur dans la liste.
 
-2.  Select the **HR Experts** channel under the **HR Team** team. Notice
-    that the message from the user to the bot has been sent here.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image40.png)
 
-       ![](./media/image38.png
-)
+9.  Sur la page **MOD Administrator**, sélectionnez l'onglet
+    **Omnichannel**.
 
-## **Exercise 5: Publish your copilot – Teams**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image41.png)
 
-1.  Go back to Microsoft Copilot Studio app. Select the chatbot **HR
-    Support Copilot**.
+10. Assurez-vous que les valeurs sont conformes au tableau ci-dessous
 
-2.  Select Publish from the left pane.
+\- Capacity: 100
 
-       ![](./media/image39.png)
+\- Default Presence: available
 
-3.  Click on **Publish**.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image42.png)
 
-       ![](./media/image40.png)
+11. Sélectionnez **Save and close.**
 
-4.  Select Publish in the **Publish latest content?**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image43.png)
 
-       ![](./media/image41.png)
+### Tâche 2 : Configurer le flux de travail 
 
-5.  Success message is obtained as in the screenshot below. Click on the
-    **Availability options**.
+1.  Sur la page du centre d'administration, sélectionnez **Workstreams**
+    sous **Customer support** dans le volet gauche, puis sélectionnez
+    l'option **+ New workstream**.
 
-       ![](./media/image42.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image44.png)
 
-6.  The **Add to Contoso** option adds the bot to the specific team.
+2.  Remplissez les détails ci-dessous, faites défiler vers le bas et
+    cliquez sur **Create**
 
-7.  **Show to my team mates and shared users** makes the bot to appear
-    under the Built by colleagues section.
+- Name - +++**New Workstream**+++
 
-8.  **Show to everyone in the org** submits the request to the admin to
-    get the bot listed under the **Built by org** section.
+- Owner – **MOD Administrator** (Selected by default)
 
-       ![](./media/image43.png
-)
+- Type – **Messaging**
 
-**Summary:**
+- Channel – **Chat**
 
-In this lab, we have learnt to post a message to the Teams channel from
-the bot.
+> ![Une capture d'écran d'un chat Description générée
+> automatiquement](./media/image45.png)
+>
+> ![Une capture d'écran d'un chat Description générée
+> automatiquement](./media/image46.png)
+
+3.  Une fois le flux de travail créé, cliquez sur **Set up chat** pour
+    configurer le canal de chat.
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image47.png)
+
+4.  Dans l'écran **Live chat setup- Channel details** , remplissez les
+    détails ci-dessous et cliquez sur **Next.**
+
+- Name - +++**Chat Channel**+++
+
+- Language – **English -** **United States**
+
+![Une capture d'écran d'un canal de chat Description générée
+automatiquement](./media/image48.png)
+
+5.  Dans l'écran Configuration du chat en direct – Widget de chat,
+    indiquez le nom **+++Store Locator Assistant+++,** acceptez les
+    autres valeurs par défaut et cliquez sur **Next**
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image49.png)
+
+6.  Dans l' écran **Live chat setup – Behaviors**, acceptez les valeurs
+    par défaut et cliquez sur **Next.**
+
+![Une capture d'écran d'un écran d'ordinateur Description générée
+automatiquement](./media/image50.png)
+
+7.  Dans l'écran **Live chat setup – User features**, désactivez les
+    options **File attachment** et **Voice and video calls** et cliquez
+    sur **Next.**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image51.png)
+
+8.  Dans l' écran **Live chat setup- Review and finish**, sélectionnez
+    **Create channel**.
+
+![Une capture d'écran d'une configuration de chat Description générée
+automatiquement](./media/image52.png)
+
+9.  **Copy** le widget qui apparaît dans l'écran Configuration du **Lice
+    chat setup - Success** et **save**-le dans un bloc-notes pour
+    l'ajouter à une page Web dans les exercices à venir. Ensuite,
+    cliquez sur **Done** pour terminer la configuration.
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image53.png)
+
+### Tâche 3 : Ajouter le copilote au flux de travail
+
+1.  De retour dans la page **New Workstream**, faites défiler vers le
+    bas et cliquez sur **+ Add bot** dans la section Bot.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image54.png)
+
+2.  Dans la liste des copilotes de l'écran Ajouter un bot, sélectionnez
+    le copilote de **Store Locator Assistant** et cliquez sur
+    **Connect**.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image55.png)
+
+3.  Assurez-vous que le bot est ajouté au flux de travail comme dans la
+    capture d'écran ci-dessous.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image56.png)
+
+4.  Dans le volet gauche, sélectionnez **Bots**.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image57.png)
+
+5.  Assurez-vous que le Real Estate Booking Service copilot est
+    connecté.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image58.png)
+
+## Exercice 5 : Créer une page Web et tester l'escalade vers l'agent
+
+1.  Connectez-vous à +++https://make.powerpages.microsoft.com/+++ à
+    l'aide de vos informations d'identification d'administrateur de
+    locataire.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image59.png)
+
+2.  Assurez-vous que vous êtes dans l'environement **CustomerService
+    Trial**.
+
+3.  Cliquez sur **Get started**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image60.png)
+
+4.  Cliquez sur Skip dans la **page tell us about yourself**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image61.png)
+
+5.  Faites défiler la page suivante vers le bas et cliquez sur l'**Start
+    with a tempelate** pour commencer à créer le site avec un modèle.
+
+![Une capture d'écran d'une page web Description générée
+automatiquement](./media/image62.png)
+
+6.  Sélectionnez un modèle et cliquez sur **Choose this template**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image63.png)
+
+7.  Dans la zone de texte Donnez un nom à votre site, entrez le nom +++
+    **Contoso Store assistant** **+++,** acceptez les autres valeurs par
+    défaut et cliquez sur **Done.**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image64.png)
+
+8.  Une fois le site créé, cliquez sur **Edit site header** dans le
+    titre **Company name.**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image65.png)
+
+9.  Dans le volet **Edit site header** , indiquez le titre du **Site
+    title** sous la forme !! **Contoso Store assistant !**!.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image66.png)
+
+10. Cliquez sur **Edit code** dans le coin supérieur droit de la page.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image67.png)
+
+11. Cliquez sur **Open Visual Studio Code**.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image68.png)
+
+12. Cliquez sur **Allow**
+
+![Un écran noir avec du texte blanc Description générée
+automatiquement](./media/image69.png)
+
+13. La page d'accueil de la page web s'ouvre dans Visual Studio Code.
+
+![Une capture d'écran d'un programme informatique Description générée
+automatiquement](./media/image70.png)
+
+14. Faites défiler jusqu'à la fin du fichier. Ajoutez le **script**
+    copié lors de la création du flux de travail, après la dernière
+    ligne de ce fichier.
+
+![Une capture d'écran d'un écran d'ordinateur Description générée
+automatiquement](./media/image71.png)
+
+15. Enregistrez le fichier, fermez l'onglet Visual Studio Code et
+    revenez aux pages Alimentation. Cliquez sur **Sync**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image72.png)
+
+16. Une fois la synchronisation terminée, sélectionnez **Preview-\>
+    Desktop**
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image73.png)
+
+17. Votre page Web s'ouvre dans un nouvel onglet. Recherchez le **Store
+    Locator Assistant** intégré à la page en bas à droite de la page
+    Web. **Click** dessus.
+
+![Une capture d'écran d'un site web Description générée
+automatiquement](./media/image74.png)
+
+18. Entrez +++talk to agent+++.
+
+![Une capture d'écran d'un téléphone Description générée
+automatiquement](./media/image75.png)
+
+19. Sur la page d'administration du service clientèle, cliquez sur
+    **Customer Service admin center** et sélectionnez l’application
+    **Customer Service workspace** ![Une capture d'écran d'un ordinateur
+    Description générée automatiquement](./media/image76.png)
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image77.png)
+
+20. Sur la page de l'espace de travail du service clientèle, vous
+    recevrez une chat request. **Accept**-le.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image78.png)
+
+21. Une fois accepté, l'écran de chat s'ouvre avec le message que nous
+    avions donné dans le sujet Escalader. Nous pouvons également ajouter
+    toute autre information fournie par l'utilisateur ici à l'agent en
+    direct.
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image79.png)
+
+22. Simulez le chat entre l'agent en direct et le client si vous
+    souhaitez voir comment il fonctionne et se termine ensuite.
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image80.png)
+
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image81.png)
+
+**Résumé**
+
+Dans ce laboratoire, nous avons appris à
+
+- Créez un agent à partir du Copilot Studio et configurez la rubrique
+  Escalader.
+
+- Publiez l'agent dans l'espace de travail Dynamics 365 et intégrez-le
+  dans une page Web.
+
+- Configurez et testez l'escalade vers un agent en direct.
