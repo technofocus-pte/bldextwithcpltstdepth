@@ -1,155 +1,273 @@
-# **Lab 06 - Creating conversational actions for Microsoft Copilot**
+# **Laboratoire 06\_** **Création et déploiement d’un copilote Microsoft Copilot Studio à partir de Teams**
 
-**Lab duration** – 20 minutes
+**Durée du laboratoire** – 30 minutes
 
-**Objective**
+**Objectif:**
 
-Microsoft Copilot provides out of the box experiences to engage with
-content and resources from across your organization. In some situations,
-answers and interaction with external systems are required. With
-Microsoft Copilot Studio, you can author a conversational topic that can
-be published as a Copilot Plugin. Once your Tenant Admin approves the
-Plugin, it can be added to your organization's M365 Chat experiences.
+Dans ce laboratoire vous allez installer l'application Copilot Studio
+dans Microsoft Teams, créer un nouveau copilote dans une équipe et le
+tester.
 
-The actions will be available in the Microsoft Copilot in production, if
-the organization has valid license for the same.
+## **Exercice 1 : Installer l'application Copilot Studio dans Microsoft Teams**
 
-In this lab, we will learn how to create a Conversational action.
+1.  Sélectionnez le menu **Start** de la machine virtuelle, recherchez
+    +++teams+++ et sélectionnez l' **application Microsoft Teams**.
 
-## **Exercise 1: Create a Conversational action**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image1.png)
 
-1.  Login to +++**https://copilotstudio.microsoft.com/**+++ using your
-    tenant credentials if not already logged in.
+2.  Connectez-vous à l'aide de vos informations d'identification à
+    partir de l' onglet **Resources**.
 
-2.  Select **Copilot for Microsoft 365**.
+![Capture d'écran d'une connexion Description générée
+automatiquement](./media/image2.png)
 
-    ![](./media/image1.png
-)
+3.  Cliquez sur **Appls**. Recherchez +++**Copilot Studio**+++ et
+    sélectionnez **Microsoft Copilot Studio** et cliquez sur **Add**.
 
-3.  Select **Actions**.
+**Remarque :** Si vous ne parvenez pas à trouver Copilot Studio, vous
+devrez rechercher et sélectionner le **Power Virtual agent** et
+l'ajouter.
 
-    ![](./media/image2.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image3.png)
 
-4.  Select **+ Add an action**.
+![](./media/image4.png)
 
-    ![](./media/image3.png)
+4.  Cliquez sur **Open**
 
-5.  Select **Conversational** in the **New action** pane.
+![Une capture d'écran d'un téléphone Description générée
+automatiquement](./media/image5.png)
 
-    ![](./media/image4.png
-)
+5.  Cliquez sur **Start now**.
 
-6.  Provide the name for the action as +++**Conversational action**+++.
-    Select **Create**.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image6.png)
 
-    ![](./media/image5.png)
+## **Exercice 2 : Créer un nouveau copilot dans Teams**
 
-    ![](./media/image6.png)
+1.  **Sign in** à **Teams** à l'aide de vos **office 365 tenant
+    credentials**
 
-7.  Once ready, the created action opens in Authoring canvas. Select
-    **Topics**.
+> ![Capture d'écran d'une connexion Description générée
+> automatiquement](./media/image7.png)
 
-    ![](./media/image7.png
-)
+2.  Cliquez sur **Apps**. Recherchez +++**Copilot Studio+++** et
+    sélectionnez **Microsoft Copilot Studio** et cliquez sur **Add.**
 
-8.  Name the topic as +++Holidaylist+++
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image3.png)
 
-    ![](./media/image8.png
-)
+![Une capture d'écran d'un téléphone Description générée
+automatiquement](./media/image4.png)
 
-9.  In the Trigger node’s description, provide a clear description of
-    how the conversational plugin can help the user and what it can
-    do. Let this topic help the user to find the list of holidays in the
-    year 2024.
+**Important :** Si vous ne parvenez pas à trouver Copilot Studio, vous
+devrez rechercher et sélectionner +++**Power Virtual agent**+++ et
+l'ajouter.
 
-    Type +++**This plugin helps to retrieve the list of holidays for the
-year 2024.**+++ in the Trigger node’s description.
+![Une capture d'écran d'un moteur de recherche Description générée
+automatiquement](./media/image8.png)
 
-    ![](./media/image9.png
-)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image9.png)
 
-    This description has functional purpose and is used by the Microsoft
-Copilot to determine whether to invoke your plugin or not.
+3.  Cliquez sur **Start now**
 
-10. Add a message node with the list of holidays.
-    ```
-    - New Year's Day - January 1
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image6.png)
 
-    - Martin Luther King, Jr.'s Birthday (Third Monday of January) -
-      January 15, 2024
+4.  Sélectionnez **Contoso** et cliquez sur **Continue**.
 
-    - Washington's Birthday or Presidents' Day (third Monday of
-      February) - February 19
+![Une capture d'écran d'un chatbot Description générée
+automatiquement](./media/image10.png)
 
-    - Memorial Day (last Monday of May) - May 27
+![Une capture d'écran d'un chatbot Description générée
+automatiquement](./media/image11.png)
 
-    - Juneteenth Day - June 19
+**Important :** Cette étape peut prendre environ 10 minutes. Si cela
+prend trop de temps, fermez-le, sélectionnez Copilot Studio ou Power
+Virtual Agents à partir d'Applications dans le volet gauche et refaites
+l'étape 4.
 
-    - Independence Day - July 4
+5.  Dans le volet Creste un copilot, indiquez le nom du copilote sous la
+    forme +++**HR** **Support Copilot**+++ et cliquez sur **Create**.
 
-    - Labor Day (first Monday of September) - September 2
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image12.png)
 
-    - Columbus Day (Second Monday of October) - October 14
+6.  Un message de réussite indiquant que **Your chatbot is provisioned**
+    est obtenu.
 
-    - Veterans Day or Veterans Day - November 11
+![](./media/image13.png)
 
-    - Thanksgiving Day (fourth Thursday of November): November 28
+## **Exercice 3 : Créez un sujet de congés pour les employés pour les requêtes courantes sur les congés**
 
-    - Christmas Day - December 25
-    ```
+1.  Cliquez sur **Topics** dans le volet de gauche. Cliquez sur **+ New
+    topic-\> From blank.**
 
-    ![](./media/image10.png)
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image14.png)
 
-11. Click on **Save** to save the plugin.
+2.  **Close** le volet Phrases de déclenchement pour l'instant.
 
-    ![](./media/image11.png
-)
+![Une capture d'écran d'un écran d'ordinateur Description générée
+automatiquement](./media/image15.png)
 
-    ![](./media/image12.png)
+3.  Cliquez sur l’icone **Details.**
 
-## **Exercise 2: Publishing your conversational action to Microsoft Copilot**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image16.png)
 
-1.  Publishing your conversational plugin creates a new plugin in the
-    Dataverse registry for your Tenant. Once available there, your
-    tenant admin needs to approve your plugin to be available to users
-    in the Microsoft Copilot plugins catalog.
+4.  Dans le volet Détails, indiquez le nom +++ **Employee time off +++**
+    et la description +++ **Employee time off topic for common time-off
+    queries**+++.
 
-2.  Click on **Publish**.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image17.png)
 
-    ![](./media/image13.png
-)
+5.  **Close** le volet Détails.
 
-3.  Select **Publish.**
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image18.png)
 
-    ![](./media/image14.png)
+6.  Cliquez sur **Save**.
 
-4.  Select **Publish** on **Publish latest content** dialog.
+![Une capture d'écran d'un chat Description générée
+automatiquement](./media/image19.png)
 
-    ![](./media/image15.png
-)
+7.  Cliquez sur les **Trigger phases.**
 
-5.  The publish status is shown on the screen.
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image20.png)
 
-    ![](./media/image16.png
-)
+8.  Ajoutez une phrase déclencheur, +++**I need help with time off**+++
+    et cliquez sur **+.**
 
-Note: The publish should complete quickly. The actual availability in
-the Microsoft Admin Center can take up to 4 hours.
+![](./media/image21.png)
 
-**Important:** **:** For the admin to get it listed in the admin center,
-the company will have to hold a valid Copilot license.
+9.  Ajoutez les phrases déclencheurs ci-dessous.
 
-6.  Your Admin can find the **Dataverse and Microsoft Copilot
-    Studio** integrated app in the Microsoft Admin Center
-    under **Settings**, then **Integrations to be reviewed and
-    approved**.
+- +++**Need information on time off**+++
 
-7.  Once your Tenant admin approves the Dataverse and Microsoft Copilot
-    Studio integrated app, it should appear in the user's list of
-    plugins in their Microsoft Copilot UI.
+- +++**How many days of paid vacation do I have**+++
 
-**Summary:**
+- +++**What are the national holidays**+++
 
-In this lab, we have learnt how to create a conversational action and to
-publish it.
+- +++**I need extended leave**+++
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image22.png)
+
+Fermez le volet Phrases de déclenchement.
+
+10. Ajoutez un nœud Message et entrez le texte, +++I can help with
+    questions related to time-off*+++*.
+
+> ![Une capture d'écran d'un chat Description générée
+> automatiquement](./media/image23.png)
+
+11. En tant qu'employé des RH, vous savez que les questions les plus
+    courantes sur les congés concernent les **paid vacation** et les
+    **national holidays**. Lorsqu'un nœud de question avec des options
+    de réponse utilisateur est ajouté, la rubrique obtient
+    automatiquement une branche bifurquée pour chaque réponse.
+
+12. Sélectionnez l'icône (**+**) sous le nœud de message, puis
+    sélectionnez **Ask a question** pour ajouter un nœud de question à
+    la rubrique. Entrez *Quelles informations recherchez-vous ?* dans la
+    zone de texte **Ask a question**.
+
+> ![Une capture d'écran d'un chat Description générée
+> automatiquement](./media/image24.png)
+
+13. Sous **Options for user**, ajoutez +++Paid vacation+++ et
+    +++National Holidays+++ comme deux options.
+
+> ![Capture d'écran d'un questionnaire Description générée
+> automatiquement](./media/image25.png)
+
+14. Les choix de l'utilisateur sont stockés dans une variable et la
+    rubrique se divise en fonction de l'option choisie par
+    l'utilisateur. Vous pouvez renommer la variable pour mieux la suivre
+    dans la rubrique.
+
+15. Sur la variable, sous **Save response as**, sélectionnez l'icône en
+    forme de crayon pour modifier les propriétés de la variable.
+
+16. Le **Variable properties** s'ouvre. Renommez la variable en
+    +++TimeoffType*+++*. Fermez le volet **Variable properties** et vous
+    verrez les modifications reflétées dans le canevas de création.
+
+> ![Une capture d'écran d'un ordinateur Description générée
+> automatiquement](./media/image26.png)
+
+17. Ajoutez un nœud de message pour la branche Congés payés avec ce
+    message à l'utilisateur : +++**For paid vacation time-off**, **go
+    to** **www.contoso.com/HR/PaidTimeOff**+++ pour soumettre des
+    demandes de congés.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image27.png)
+
+18. Dans le chemin d'accès aux **National Holidays**, ajoutez un nœud de
+    message avec le texte suivant :
+
+National holidays for 2025:
+
+- New Year’s Day: Jan 1
+
+- Martin Luther King Jr. Day: Jan 20
+
+- Washington’s Birthday (Presidents’ Day): Feb 17
+
+- Memorial Day: May 26
+
+- Juneteenth National Independence Day: June 19
+
+- Independence Day: July 4
+
+- Labor Day: Sep 1
+
+- Columbus Day / Indigenous Peoples’ Day: Oct 13
+
+- Veterans Day: Nov 11
+
+- Thanksgiving Day: Nov 27
+
+- Christmas Day: Dec 25
+
+![](./media/image28.png)
+
+19. Cliquez sur **Save**.
+
+![Une capture d'écran d'un ordinateur Description générée
+automatiquement](./media/image29.png)
+
+![Une capture d'écran d'une fenêtre de chat Description générée
+automatiquement](./media/image30.png)
+
+## **Exercice 4 : Tester le comportement attendu du copilote**
+
+1.  Sélectionnez l' icône **Copilot/Power Virtual Agent** en haut de
+    l'écran pour lancer le canevas du copilote de test.
+
+> ![Une capture d'écran d'un ordinateur Description générée
+> automatiquement](./media/image31.png)
+
+2.  Tapez **I need time off information** sur les congés dans le chat du
+    copilot.
+
+3.  Sélectionnez **Paid vacation**.
+
+4.  Vous recevez la réponse selon notre configuration.
+
+> ![Une capture d'écran d'un chat Description générée
+> automatiquement](./media/image32.png)
+>
+> ![Une capture d'écran d'un chat Description générée
+> automatiquement](./media/image33.png)
+>
+> **Résumé:**
+>
+> Dans ce laboratoire, nous avons appris à ajouter l'application Copilot
+> Studio à Teams et à créer un bot classique dans Teams.
