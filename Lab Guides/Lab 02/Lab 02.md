@@ -14,67 +14,72 @@ documents.
 ## Exercise 1: Create an Azure AI Search resource
 
 1.  Login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
-From the Home page of the Azure portal, select **Azure AI Foundry.**
+
+    -    Username - +++@lab.CloudPortalCredential(User1).Username+++
+    
+    -    Password - +++@lab.CloudPortalCredential(User1).Password+++
+
+    From the Home page of the Azure portal, select **Azure AI Foundry.**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  In the **AI Foundry page**, select **AI Search** from the left pane
+3.  In the **AI Foundry page**, select **AI Search** from the left pane
     and then select **+ Create**.
 
     ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Enter the below details and select **Review + create**.
+4.  Enter the below details and select **Review + create**.
 
     - Subscription – Select your **assigned subscription**
 
     - Resource group – Select your **assigned Resource group**
     (**ResourceGroup1**)
 
-    - Storage account name – +++**searchleaves**+++
+    - Storage account name – +++**searchleaves@lab.LabInstance.Id**+++
 
-    - Location – Select your **assigned region**
+    - Location – Select @lab.CloudResourceGroup(ResourceGroup1).Location
 
     ![A screenshot of a search service AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Once the validation passes, select **Create**.
+5.  Once the validation passes, select **Create**.
 
     ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  The deployment takes a few minutes. Select **Go to resource** once
+6.  The deployment takes a few minutes. Select **Go to resource** once
     the search service is created.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  From the **Overview** page, copy the Url value and save it in a
+7.  From the **Overview** page, copy the Url value and save it in a
     notepad to be used in a future exercise.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-7.  Select **Keys** under **Settings** from the left pane. Copy the
+8.  Select **Keys** under **Settings** from the left pane. Copy the
     **Primary admin key** and save it in a notepad for using it in the
     upcoming exercises.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-8.  Select **Identity** under **Settings** from the left pane.
+9.  Select **Identity** under **Settings** from the left pane.
 
     ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image8.png)
 
-9.  Toggle the Status to **On** under **System assigned** and then click
+10.  Toggle the Status to **On** under **System assigned** and then click
     on **Save**.
 
     ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image9.png)
 
-10. Select **Yes** in the **Enable system assigned managed identity**
+11. Select **Yes** in the **Enable system assigned managed identity**
     confirmation dialog.
 
     ![A screenshot of a computer error AI-generated content may be
@@ -101,9 +106,9 @@ incorrect.](./media/image12.png)
     - Resource group – Select your **assigned Resource group**
     (**ResourceGroup1**)
 
-    - Region – Select your **assigned region**
+    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
 
-    - Storage account name – +++**leavepolicystorage**+++
+    - Storage account name – +++**leavepolicystorage@lab.LabInstance.Id**+++
 
     - Primary service – Select **Azure Blob Storage or Azure Data Lake
     Storage Gen 2**
@@ -165,7 +170,7 @@ incorrect.](./media/image22.png)
 incorrect.](./media/image23.png)
 
 12. Click on **+Select members**, search for and select your **user
-    id**, select your **user id** that gets listed and then click on
+    name**, +++@lab.CloudPortalCredential(User1).Username+++ and then click on
     **Select**. This adds the Storage Blob Data Reader role to your user
     id.
 
@@ -223,9 +228,9 @@ incorrect.](./media/image31.png)
     - Resource group – Select your **assigned Resource group**
     (**ResourceGroup1**)
 
-    - Region – Select your **assigned region**
+    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
 
-    - Name – +++**openaiservice52374668**+++
+    - Name – +++**openaiservice@lab.LabInstance.Id**+++
 
     - Pricing tier – Select **Standard**
 
@@ -257,8 +262,7 @@ incorrect.](./media/image35.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-8.  Select **+ Select members**, search for your **user id**, select it
-    and click on **Select**.
+8.  Select **+ Select members**, search for your **user name**, +++@lab.CloudPortalCredential(User1).Username+++, select it and click on **Select**.
 
     ![](./media/image38.png)
 
