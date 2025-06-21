@@ -7,7 +7,7 @@ Studio agent builder and providing a sample set of instructions.
 
 ## Exercise 1: Creating the agent
 
-1.  Open the link +++https://www.microsoft365.com/chat+++ and login
+1.  Open the link +++https://m365.cloud.microsoft/chat+++ and login
     with your credentials.
 
     ![A screenshot of a computer AI-generated content may be
