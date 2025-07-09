@@ -78,10 +78,10 @@ incorrect.](./media/image7.png)
 
 10.  Click on the 3 dots on the top right and select **Create**.
 
-    ![A screenshot of a chat AI-generated content may be
+     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image8.png)
 
-    ![A screenshot of a computer AI-generated content may be
+     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
 11. Select **Go to agent** once the agent is created,
