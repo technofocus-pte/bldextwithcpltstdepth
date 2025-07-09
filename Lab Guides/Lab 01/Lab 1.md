@@ -35,9 +35,7 @@ incorrect.](./media/image1.png)
     can simply *describe* the agent by providing a description in
     natural language. Let's provide the following initial description
 
-    +++You are an expert gardener, and you help users to maintain and improve
-their home garden providing detailed instructions and advice about the best practices for
-home gardening.+++
+    +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
@@ -65,8 +63,7 @@ incorrect.](./media/image5.png)
     asks you about what should be emphasized, provide the following
     sentence.
 
-    +++Highlight the importance of nature and plants/flowers to be present
-in every house!+++
+    +++Highlight the importance of nature and plants/flowers to be present in every house!+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
