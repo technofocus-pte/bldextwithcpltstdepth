@@ -6,7 +6,7 @@ A large enterprise wants to reduce the time employees spend searching
 for HR-related information (policies, benefits, leave guidelines, etc.)
 spread across SharePoint, PDFs, internal wikis, and documents.
 
-To overcome this issue, in this lab, you will build an **Knowledge
+To overcome this issue, in this lab, you will build a **Knowledge
 assistant** **agent** in **Copilot Studio** that uses **Azure AI
 Search**, to index and semantically search across enterprise HR
 documents.
@@ -24,7 +24,7 @@ documents.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-3.  In the **AI Foundry page**, select **AI Search** from the left pane
+3.  In the **AI Foundry page**, select **AI Search** under **Use with AI Foundry** from the left pane
     and then select **+ Create**.
 
     ![A screenshot of a search engine AI-generated content may be
@@ -49,13 +49,13 @@ incorrect.](./media/image3.png)
     ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image4.png)
 
-6.  The deployment takes a few minutes. Select **Go to resource** once
+6.  The deployment takes around 10 minutes to complete. Select **Go to resource** once
     the search service is created.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-7.  From the **Overview** page, copy the Url value and save it in a
+7.  From the **Overview** page, copy the **Url** value and save it in a
     notepad to be used in a future exercise.
 
     ![A screenshot of a computer AI-generated content may be
@@ -87,8 +87,7 @@ incorrect.](./media/image10.png)
 
 ## Exercise 2: Create a Storage account
 
-1.  Login to Azure portal at +++https://portal.azure.com/+++ and login
-    with your credentials. Select Storage accounts from the Home screen.
+1.  From the Azure portal Home page (+++https://portal.azure.com/+++), select **Storage accounts**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
@@ -210,8 +209,7 @@ document and required Role permissions to it.
 
 ## Exercise 3: Create an Azure OpenAI Service and deploy a model 
 
-1.  From the Azure portal Home page, search for select +++Azure
-    OpenAI++.
+1.  From the Azure portal Home page, search for select +++Azure OpenAI+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
@@ -279,7 +277,7 @@ incorrect.](./media/image39.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-11. Select Review + assign in the next 2 screens.
+11. Select **Review + assign** in the next 2 screens.
 
     ![](./media/image41.png)
 
@@ -301,7 +299,7 @@ incorrect.](./media/image43.png)
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image44.png)
 
-15. Select **+ Deploy model** -\> **From base models**.
+15. Select **+ Deploy model** -> **Deploy base model**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
@@ -312,10 +310,9 @@ incorrect.](./media/image45.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-17. Select **Deploy** in the Deploy text-embedding-3-large.
+17. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image47.png)
+    <img width="375" alt="image" src="https://github.com/user-attachments/assets/3c36852b-1ec3-4a95-a326-63cbfe2ae404" />
 
 18. The model gets deployed and the screen is loaded with the deployment
     details.
@@ -389,26 +386,18 @@ incorrect.](./media/image56.png)
 1.  Login to +++https://copilotstudio.microsoft.com+++ using your login
     credentials.
 
+2.  Select **Get Started** in the Welcome to Microsoft Copilot Studio.
+
+    <img width="549" alt="image" src="https://github.com/user-attachments/assets/63c8fa05-b9ff-44f0-a32b-648db74dc32c" />
+
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-2.  Select **Create** from the left pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
-
-3.  Select **+ New agent** to create a new agent.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image59.png)
-
-4.  Enter +++You are a Knowledge assistant agent for HR who will answer
-    questions related to leaves and leave policies to the employees.+++
-    and select **Send**.
+3.  The agent creation page gets opened. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
 
-5.  The copilot suggests a name to the agent. Click on **Create** to
+4.  The copilot suggests a name to the agent. Click on **Create** to
     create the agent.
 
     ![A screenshot of a computer AI-generated content may be
@@ -417,8 +406,7 @@ incorrect.](./media/image61.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-6.  Once the agent is created, in the Test pane, enter +++How many days
-    can I avail Maternity leaves?+++ and click **Send.**
+6.  Once the agent is created, in the Test pane, enter +++How many days can I avail Maternity leaves?+++ and click **Send.**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
@@ -467,8 +455,7 @@ incorrect.](./media/image70.png)
 
 7.  Now, let us test the agent with the same question we tried before.
 
-8.  In the Test pane, enter +++How many days can I avail Maternity
-    leaves?+++ and click **Send.**
+8.  In the Test pane, enter +++How many days can I avail Maternity leaves?+++ and click **Send.**
 
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image71.png)
