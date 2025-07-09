@@ -1,4 +1,4 @@
-# Lab - Create a gardening assistant agent using Copilot Studio Agent Builder
+# Lab 01 - Create a gardening assistant agent using Copilot Studio Agent Builder
 
 ## Objective
 
