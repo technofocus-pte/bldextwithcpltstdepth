@@ -21,13 +21,13 @@ incorrect.](./media/image1.png)
 
    ![image](https://github.com/user-attachments/assets/5c69b8fb-aca3-4105-9e93-0dc25015d6d9)
 
-3.  Select **Create agent** from the left pane. If you are not able to see the Create agent option, refresh the browser and try again in few minutes. At times, it takes few minutes to get it loaded properly.
+3.  Select **Create agent** from the **right** pane. If you are **not** able to see the **Create agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
 
-    ![](./media/image2.png)
+    ![image](https://github.com/user-attachments/assets/85aea6c5-008d-4d54-9b2e-f297d5f12a75)
 
     >[!Alert] **Important:** The menu might be present in the right pane as well similar to the one in the below screenshot. Since it is evolving, there might be differences in the screenshots captured in the lab guide and the actual one
     >
-    ><img width="654" alt="image" src="https://github.com/user-attachments/assets/0020610e-942d-41ee-a070-fa5aacfe95ca" />
+    >![](./media/image2.png)
 
 
 4.  The Copilot Studio agent builder pops up and you can start defining
@@ -35,7 +35,7 @@ incorrect.](./media/image1.png)
     can simply *describe* the agent by providing a description in
     natural language. Let's provide the following initial description
 
-    +++You are an expert gardener and you help users to maintain and improve
+    +++You are an expert gardener, and you help users to maintain and improve
 their home garden providing detailed instructions and advice about the best practices for
 home gardening.+++
 
