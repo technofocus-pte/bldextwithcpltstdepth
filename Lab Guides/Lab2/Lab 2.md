@@ -15,27 +15,27 @@ trial**.
 
 3.  Click on **Try for free**
 
-![](./media/image1.png)
+    ![](./media/image1.png)
 
 4.  Enter your **Office 365 Administrative Username** from
     the **Resources** tab, select the check box and click on **Start
     your free trial**.
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
 5.  Enter the region as **United States**, enter your **Phone
     number** and click on **Submit**.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 6.  If you see an option to Launch Trial for Engage customers, click
     on **Launch Trial**.
 
-![](./media/image4.png)
+    ![](./media/image4.png)
 
 7.  Once activated, your Customer Service workspace will get opened.
 
-![](./media/image5.png)
+    ![](./media/image5.png)
 
 ## Summary
 
