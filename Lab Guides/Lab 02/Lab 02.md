@@ -1,4 +1,4 @@
-# Lab - Create a Knowledge Assistant agent for HR in Copilot Studio that leverages Azure AI Search
+# Lab 06 - Create a Knowledge Assistant agent for HR in Copilot Studio that leverages Azure AI Search
 
 ## Objective:
 
