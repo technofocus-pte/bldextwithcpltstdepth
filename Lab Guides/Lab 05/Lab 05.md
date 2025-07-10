@@ -104,7 +104,10 @@ incorrect.](./media/image14.png)
     ![A screenshot of a email AI-generated content may be
 incorrect.](./media/image15.png)
 
-Now, the Team and Channel creation is completed.
+5.   Now, the Team and Channel creation is completed.
+
+    <img width="633" alt="image" src="https://github.com/user-attachments/assets/9645537b-29a1-42d4-891b-6b36061043b2" />
+
 
 ## Exercise 4 – Create an Agent Flow
 
