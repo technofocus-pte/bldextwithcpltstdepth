@@ -79,6 +79,8 @@ incorrect.](./media/image10.png)
 
 ## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
 
+In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+
 1.  Select **Publish** from the top right of the agent page.
 
     ![A screenshot of a computer AI-generated content may be
