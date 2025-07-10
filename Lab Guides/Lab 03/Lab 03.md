@@ -3,7 +3,9 @@
 **Objective**
 
 **Agent templates** are designed to help you get started with a **custom agent**. You are responsible for assessing all safety and legal implications of using an agent template and customizing it as appropriate for your business.
+
 An agent built from the **Safe Travels agent template** is a Business-to-Employee (B2E) agent designed to provide employees of a company with **travel assistance**. This agent helps ensure employees are well-prepared and informed for their next work trip. This agent uses natural language processing to offer a conversational interface, making it easy and intuitive for employees to access the information they need. However, the default website used by the agent currently only covers US travel destinations. You can replace the default website with your own knowledge source.
+
 In this lab, you will create an agent from the **Safe Travels template** and enhance it in Lab 05.
 
 
