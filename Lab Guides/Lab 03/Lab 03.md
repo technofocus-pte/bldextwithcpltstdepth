@@ -1,6 +1,15 @@
 # Lab 03 – Create Safe Travels agent from Template
 
+**Objective**
+
+**Agent templates** are designed to help you get started with a **custom agent**. You are responsible for assessing all safety and legal implications of using an agent template and customizing it as appropriate for your business.
+An agent built from the **Safe Travels agent template** is a Business-to-Employee (B2E) agent designed to provide employees of a company with **travel assistance**. This agent helps ensure employees are well-prepared and informed for their next work trip. This agent uses natural language processing to offer a conversational interface, making it easy and intuitive for employees to access the information they need. However, the default website used by the agent currently only covers US travel destinations. You can replace the default website with your own knowledge source.
+In this lab, you will create an agent from the **Safe Travels template** and enhance it in Lab 05.
+
+
 ## Exercise 1: Create Safe Travels agent from template
+
+In this exercise, you will create the agent in Copilot Studio using the Safe Travels agent template.
 
 1.  From a browser, login to +++https://copilotstudio.microsoft.com+++.
     The Start free trial page opens up. Select your country and click
@@ -9,6 +18,8 @@
     ![](./media/image1.png)
 
 2.  Select the **Dev One** environment.
+
+    ![image](https://github.com/user-attachments/assets/7a2b18ab-7d57-44f6-a6a4-2993d60bbcd8)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
