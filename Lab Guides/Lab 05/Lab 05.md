@@ -106,7 +106,7 @@ incorrect.](./media/image15.png)
 
 5.   Now, the Team and Channel creation is completed.
 
-    <img width="633" alt="image" src="https://github.com/user-attachments/assets/9645537b-29a1-42d4-891b-6b36061043b2" />
+   <img width="633" alt="image" src="https://github.com/user-attachments/assets/9645537b-29a1-42d4-891b-6b36061043b2" />
 
 
 ## Exercise 4 – Create an Agent Flow
