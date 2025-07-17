@@ -452,7 +452,7 @@ incorrect.](./media/image56.png)
     cr6dd_lastpurchasedproduct '\]))+++ in the function area of the
     condition.
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
     >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
@@ -530,8 +530,7 @@ incorrect.](./media/image67.png)
     with your logical names for the corresponding columns.
 
     - +++Customer ID+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
-      +++
+      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++
     
     - +++Customer Name+++ -
       +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
@@ -1090,8 +1089,7 @@ incorrect.](./media/image142.png)
     your recent purchase we suggest you products in \<Product Category\>
     category. Would you like to continue?+++
 
-In the message replace **\<Product Category\>** with the
-**Global.ProductCategory** variable.
+    In the message replace **\<Product Category\>** with the **Global.ProductCategory** variable.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
 
@@ -1629,20 +1627,19 @@ gets added to the Customer Record table.
 
 ## Summary:
 
-In this lab, you have learnt to design an autonomous shopping agent.
-Topics covered include,
+In this lab, you have learnt to design an autonomous shopping agent. Topics covered include,
 
-    - Variables
+- Variables
     
-    - Entities
+- Entities
     
-    - Topics
+- Topics
     
-    - Agent flows
+- Agent flows
     
-    - Trigger
+- Trigger
     
-    - Analytics
+- Analytics
     
-    - Knowledge sources
+- Knowledge sources
 
