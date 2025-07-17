@@ -8,7 +8,7 @@ trial**.
 ## Task 1: Sign up for Dynamics 365 Customer Service trial
 
 1.  Login to
-    +++<https://dynamics.microsoft.com/en-us/customer-service/overview/+++>
+    +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++
 
 2.  Login using the **Office 365 Tenant details** from the **Home** tab
     if prompted.
