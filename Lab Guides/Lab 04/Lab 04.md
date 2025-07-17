@@ -24,7 +24,7 @@ Customer Service**
 
 3.  Click on **Get it now**.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 4.  Select the **CustomerService Trial** under **Select an
     environment**, select the check boxes and click on **Install**.
@@ -230,7 +230,7 @@ incorrect.](./media/image36.png)
 
     ![](./media/image37.png)
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
 3.  Fill in the below details, scroll down and click on **Create**.
@@ -338,7 +338,7 @@ incorrect.](./media/image53.png)
 
 ## Exercise 5: Create a webpage and test the escalation to agent
 
-1.  Login to +++<https://make.powerpages.microsoft.com/+++> using your
+1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
     tenant admin credentials.
 
     ![A screenshot of a computer AI-generated content may be
