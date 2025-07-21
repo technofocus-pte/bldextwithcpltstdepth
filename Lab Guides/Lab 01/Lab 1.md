@@ -3,7 +3,7 @@
 ## Objective
 
 In this lab you will start out building a gardening agent using Copilot
-Studio agent builder and providing a sample set of instructions.
+Studio agent builder by providing a sample set of instructions.
 
 ## Exercise 1: Creating the agent
 
