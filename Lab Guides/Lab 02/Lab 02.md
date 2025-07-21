@@ -13,7 +13,7 @@ documents.
 
 ## Exercise 1: Create an Azure AI Search resource
 
-1.  Login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
+1.  Open a browser and login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
 
     -    Username - +++@lab.CloudPortalCredential(User1).Username+++
     
@@ -105,9 +105,9 @@ incorrect.](./media/image12.png)
     - Resource group – Select your **assigned Resource group**
     (**ResourceGroup1**)
 
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+    - Storage account name – +++**leavepolicystg@lab.LabInstance.Id**+++
 
-    - Storage account name – +++**leavepolicystorage@lab.LabInstance.Id**+++
+    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
 
     - Primary service – Select **Azure Blob Storage or Azure Data Lake
     Storage Gen 2**
@@ -154,10 +154,10 @@ incorrect.](./media/image20.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-10. Navigate to the **leavepolicystorage** Storage account (Select
+10. Navigate to the +++**leavepolicystg@lab.LabInstance.Id**+++ Storage account (Select
     **Storageaccounts** from the **Home page** of the Azure portal and
-    select **leavepolicystorage**) and select **Access Control (IAM)**
-    from the left pane. Select **Add -\> Add role assignment**.
+    select **leavepolicystg@lab.LabInstance.Id**) and select **Access Control (IAM)**
+    from the left pane. Select **Add -> Add role assignment**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
@@ -230,7 +230,7 @@ incorrect.](./media/image31.png)
 
     - Name – +++**openaiservice@lab.LabInstance.Id**+++
 
-    - Pricing tier – Select **Standard**
+    - Pricing tier – Select **Standard S0**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
@@ -322,38 +322,42 @@ incorrect.](./media/image48.png)
 
 ## Exercise 4: Create a vector index
 
-1.  Go to the **searchleaves** AI Search service resource. Select
-    **Import and vectorize data**.
+1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
+
+    <img width="564" height="362" alt="image" src="https://github.com/user-attachments/assets/c68909a7-8c8a-4050-89e2-d6d470349e9b" />
+
+2.  Select **Import and vectorize data**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-2.  Select the **Azure Blob Storage** option.
+3.  Select the **Azure Blob Storage** option.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image50.png)
 
-3.  Select the **RAG** option in the **What scenarios are you
+4.  Select the **RAG** option in the **What scenarios are you
     targeting?** screen.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-4.  Enter the below details, accept the other values as default and
+5.  Enter the below details, accept the other values as default and
     click **Next**.
 
     - Subscription – Select your **assigned subscription**
 
-    - Storage account- Select **leavepolicystorage**
+    - Storage account- Select **leavepolicystg@lab.LabInstance.Id**
 
     - Blob-container – Select **document**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-5.  In the Vectorize your text screen, the subscription and the Azure
-    OpenAI resource details are pre-populated. Enter the below details
+6.  In the Vectorize your text screen, the subscription is are pre-populated. Enter the below details
     and click **Next**.
+
+    - Azure OpenAI Service – Select **openaiservice@lab.LabInstance.Id**
 
     - Model deployment – Select **text-embedding-3-large**
 
@@ -361,7 +365,7 @@ incorrect.](./media/image52.png)
 
     - Select the checkbox to acknowledge the cost alert of Azure OpenAI.
 
-6.  Select Next in the **Vectorize and enrich your images** screen since
+7.  Select Next in the **Vectorize and enrich your images** screen since
     we are not dealing with images here and select **Next** in the
     **Advanced settings** screen as well.
 
@@ -371,19 +375,19 @@ incorrect.](./media/image53.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-7.  Select **Create** in the **Review + create** screen.
+8.  Select **Create** in the **Review + create** screen.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-8.  Click on **Close** in the success dialog box.
+9.  Click on **Close** in the success dialog box.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
 ## Exercise 5: Create a knowledge assistant agent
 
-1.  Login to +++https://copilotstudio.microsoft.com+++ using your login
+1.  Open a new broser and login to +++https://copilotstudio.microsoft.com+++ using your login
     credentials.
 
 2.  Select **Get Started** in the Welcome to Microsoft Copilot Studio.
@@ -406,15 +410,13 @@ incorrect.](./media/image61.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-6.  Once the agent is created, in the Test pane, enter +++How many days can I avail Maternity leaves?+++ and click **Send.**
+6.  Once the agent is created, in the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image63.png)
+    <img width="290" height="347" alt="image" src="https://github.com/user-attachments/assets/62a90308-c3f9-4c44-8946-0d83e7fd532a" />
 
 7.  It gives a generalized reply as in the screenshot below.
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image64.png)
+    <img width="191" height="340" alt="image" src="https://github.com/user-attachments/assets/c55f45dc-2205-4336-aee6-81e83f89a21a" />
 
 ## Exercise 6: Add the Azure AI Search as a knowledge source
 
@@ -455,16 +457,15 @@ incorrect.](./media/image70.png)
 
 7.  Now, let us test the agent with the same question we tried before.
 
-8.  In the Test pane, enter +++How many days can I avail Maternity leaves?+++ and click **Send.**
+8.  In the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image71.png)
+    <img width="285" height="315" alt="image" src="https://github.com/user-attachments/assets/b48e410f-6950-4d89-abdd-dc1e5d5ff81c" />
 
 9.  You can see that the response from the agent now is from the
     document uploaded in the AI Search service.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image72.png)
+    <img width="279" height="305" alt="image" src="https://github.com/user-attachments/assets/89622034-fa6e-4a07-a52b-757b1899bb12" />
+
 
 ## Summary:
 
