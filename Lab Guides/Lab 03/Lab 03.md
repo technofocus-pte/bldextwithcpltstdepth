@@ -32,7 +32,8 @@ incorrect.](./media/image2.png)
     >
     > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments** and select the value of the **Environment ID**.
     > <img width="459" height="327" alt="image" src="https://github.com/user-attachments/assets/37585a91-e802-47d5-aaa1-37d7f96058a4" />
-    > Navigate back to the Copilot Studio tab and open https://copilotstudio.microsoft.com/environments/**<EnvironmentID>**   (Replacing **<EnvironmentID>** with the value fetched above)
+    >
+    > Navigate back to the Copilot Studio tab and open https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**   (Replacing **< EnvironmentID >** with the value fetched above)
 
 3.  Select **+ Create** from the left pane to create a new agent.
 
