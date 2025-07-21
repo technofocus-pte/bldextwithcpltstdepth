@@ -7,7 +7,7 @@ Studio agent builder and providing a sample set of instructions.
 
 ## Exercise 1: Creating the agent
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ and login
+1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a browser and login
     with your credentials.
     
     - Username - +++@lab.CloudPortalCredential(User1).Username+++
@@ -25,7 +25,7 @@ incorrect.](./media/image1.png)
 
     ![image](https://github.com/user-attachments/assets/85aea6c5-008d-4d54-9b2e-f297d5f12a75)
 
-    >[!Alert] **Important:** The menu might be present in the right pane as well similar to the one in the below screenshot. Since it is evolving, there might be differences in the screenshots captured in the lab guide and the actual one
+    >[!Alert] **Important:** The menu might be present in the right pane as well similar to the one in the below screenshot. Since it is evolving, there might be differences in the screenshots captured in the lab guide and the actual one.
     >
     >![](./media/image2.png)
 
@@ -76,7 +76,7 @@ incorrect.](./media/image6.png)
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image7.png)
 
-10.  Click on the 3 dots on the top right and select **Create**.
+10.  Click on **Create** on the top right to create the agent.
 
      ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image8.png)
@@ -84,7 +84,7 @@ incorrect.](./media/image8.png)
      ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-11. Select **Go to agent** once the agent is created,
+11. Select **Go to agent** once the agent is created.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
