@@ -90,7 +90,11 @@ incorrect.](./media/image10.png)
 
 In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
 
-1.  Select **Publish** from the top right of the agent page.
+1.  Open MS Teams from the VM and login using your tenant credentials.
+
+    <img width="415" height="357" alt="image" src="https://github.com/user-attachments/assets/ee03935d-da23-4c20-bb9d-2640c417f6ef" />
+
+1.  Back in the Copilot Studio, select **Publish** from the top right of the agent page.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
