@@ -206,7 +206,8 @@ incorrect.](./media/image33.png)
 4.  This opens the **Apps** page. Select **Copilot Service admin
     center** from it.
 
-    <img width="940" height="527" alt="image" src="https://github.com/user-attachments/assets/86e90ac6-a6e2-4954-8bb5-39bb7ba84740" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/img2.png)
 
 
 5.  This opens up the **Dynamics 365 Customer Service admin
