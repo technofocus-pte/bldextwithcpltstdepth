@@ -73,9 +73,7 @@ incorrect.](./media/image9.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-3.  In the Type your message text area, type +++**You are a customer
-    service agent who helps in identifying stores nearby.**+++ And
-    hit **send**.
+3.  In the Type your message text area, type +++**You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
 
     ![](./media/image12.png)
 
@@ -205,17 +203,17 @@ incorrect.](./media/image32.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  This opens the **Apps** page. Select **Customer Service admin
+4.  This opens the **Apps** page. Select **Copilot Service admin
     center** from it.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image34.png)
+    <img width="940" height="527" alt="image" src="https://github.com/user-attachments/assets/86e90ac6-a6e2-4954-8bb5-39bb7ba84740" />
+
 
 5.  This opens up the **Dynamics 365 Customer Service admin
     center** page.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image35.png)
+    <img width="940" height="541" alt="image" src="https://github.com/user-attachments/assets/9386a286-e906-48ae-afa5-72ae36fb2cfd" />
+
 
 ### Task 2: Configure workstream
 
@@ -223,8 +221,7 @@ incorrect.](./media/image35.png)
     support** from the left pane and then select the **+ New
     workstream** option.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image36.png)
+    <img width="940" height="493" alt="image" src="https://github.com/user-attachments/assets/33f8b166-5375-4d01-965f-cee38276a220" />
 
 2.  Select Inbound
 
