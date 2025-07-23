@@ -421,24 +421,26 @@ incorrect.](./media/image67.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-17. Once the Sync is completed, select **Preview** -\> **Desktop.**
+17. Please wait for few minutes before proceeding to the next step.
+    
+18. Once the Sync is completed, select **Preview** -\> **Desktop.**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-18. Your web page opens in a new tab. Find the **Store Locator
+19. Your web page opens in a new tab. Find the **Store Locator
     Assistant** embedded to the page at the bottom right of the web
     page. **Click** on it.
 
     ![A screenshot of a website AI-generated content may be
 incorrect.](./media/image70.png)
 
-19. Enter +++Talk to agent+++.
+20. Enter +++Talk to agent+++.
 
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/img5.png)
 
-20. From the Customer Service admin page, click on **Customer Service
+21. From the Customer Service admin page, click on **Customer Service
     admin center** and select the app **Customer Service
     workspace** from it.
 
@@ -448,20 +450,20 @@ incorrect.](./media/image72.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-21. In the Customer Service workspace page, you will get a **chat
+22. In the Customer Service workspace page, you will get a **chat
     request**. **Accept** it.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-22. Once accepted, the chat screen opens up with the message that we had
+23. Once accepted, the chat screen opens up with the message that we had
     given in the Escalate topic. We can also add any other information
     provided by the user here to the live agent.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image75.png)
 
-23. Simulate the chat between the live agent and the customer if you
+24. Simulate the chat between the live agent and the customer if you
     wish to see how it works and then ends.
 
     ![A screenshot of a chat AI-generated content may be
