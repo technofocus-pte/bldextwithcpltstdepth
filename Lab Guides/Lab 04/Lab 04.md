@@ -435,12 +435,15 @@ incorrect.](./media/image69.png)
     ![A screenshot of a website AI-generated content may be
 incorrect.](./media/image70.png)
 
-20. Enter +++Talk to agent+++.
-
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/img5.png)
 
-21. From the Customer Service admin page, click on **Customer Service
+21. Enter +++Talk to agent+++.
+
+    ![A screenshot of a phone AI-generated content may be
+incorrect.](./media/img6.png)
+
+22. From the Customer Service admin page, click on **Customer Service
     admin center** and select the app **Customer Service
     workspace** from it.
 
@@ -450,20 +453,20 @@ incorrect.](./media/image72.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-22. In the Customer Service workspace page, you will get a **chat
+23. In the Customer Service workspace page, you will get a **chat
     request**. **Accept** it.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-23. Once accepted, the chat screen opens up with the message that we had
+24. Once accepted, the chat screen opens up with the message that we had
     given in the Escalate topic. We can also add any other information
     provided by the user here to the live agent.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image75.png)
 
-24. Simulate the chat between the live agent and the customer if you
+25. Simulate the chat between the live agent and the customer if you
     wish to see how it works and then ends.
 
     ![A screenshot of a chat AI-generated content may be
