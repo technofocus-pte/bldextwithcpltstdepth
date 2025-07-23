@@ -436,7 +436,7 @@ incorrect.](./media/image70.png)
 19. Enter +++Talk to agent+++.
 
     ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image71.png)
+incorrect.](./media/img5.png)
 
 20. From the Customer Service admin page, click on **Customer Service
     admin center** and select the app **Customer Service
