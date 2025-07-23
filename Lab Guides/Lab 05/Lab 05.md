@@ -224,7 +224,7 @@ incorrect.](./media/image34.png)
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image35.png)
 
-18. Select Add an output. Name it as +++Output+++ and enter the value as
+18. Select **Add an output**. Add a **Text** output. Name it as +++Output+++ and enter the value as
     +++Request submitted+++.
 
     ![A screenshot of a computer AI-generated content may be
@@ -276,7 +276,7 @@ incorrect.](./media/image43.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-4.  Select the created **Request Travel Approval Flow**.
+4.  From the **Flow** tab, select the created **Request Travel Approval Flow**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
@@ -435,7 +435,7 @@ incorrect.](./media/image69.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-6.  Select the file **Leave balance Tracker** from C:\Labfiles and click
+6.  Select the file **Leave balance Tracker** from **C:\Labfiles\Lab Files** and click
     **Open**.
 
     ![A screenshot of a computer AI-generated content may be
