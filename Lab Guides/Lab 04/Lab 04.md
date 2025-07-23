@@ -213,7 +213,8 @@ incorrect.](./media/img2.png)
 5.  This opens up the **Dynamics 365 Customer Service admin
     center** page.
 
-    <img width="940" height="541" alt="image" src="https://github.com/user-attachments/assets/9386a286-e906-48ae-afa5-72ae36fb2cfd" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/img3.png)
 
 
 ### Task 2: Configure workstream
@@ -222,7 +223,8 @@ incorrect.](./media/img2.png)
     support** from the left pane and then select the **+ New
     workstream** option.
 
-    <img width="940" height="493" alt="image" src="https://github.com/user-attachments/assets/33f8b166-5375-4d01-965f-cee38276a220" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/img4.png)
 
 2.  Select Inbound
 
@@ -306,21 +308,23 @@ incorrect.](./media/image48.png)
 
 ### Task 3: Add the agent to the workstream
 
-1.  Back in the **New Workstream** page, scroll down and click on **+ Add AI agent** in the **Add an AI agent** section.
+1.  Back in the **New Workstream** page, scroll down and click on **+ Add bot** in the **Add an AI agent** section.
 
-    <img width="587" height="322" alt="image" src="https://github.com/user-attachments/assets/38a3d8dc-a4c1-4fcf-be55-02087ab8bb44" />
+    ![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image49.png)
 
 
-2.  From the list of agents on the Add an AI agent screen, select the **Store
+2.  From the list of bots on the Add a bot screen, select the **Store
     Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
 
-    <img width="579" height="267" alt="image" src="https://github.com/user-attachments/assets/a63fa7ae-235c-4546-9c94-e937ac1e127f" />
+    ![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image50.png)
 
 
-3.  Ensure that the agent is added to the workstream as in the screenshot
-    below.
+3.  Ensure that the bot is added to the workstream as in the screenshot below.
 
-    <img width="501" height="331" alt="image" src="https://github.com/user-attachments/assets/379a5aa6-009e-47a0-8f0c-442676185e99" />
+    ![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image51.png)
 
 
 4.  From the left pane, select **AI Agents**.
