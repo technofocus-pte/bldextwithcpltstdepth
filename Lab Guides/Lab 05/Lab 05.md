@@ -55,7 +55,7 @@ incorrect.](./media/image5.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-3.  From **C:\Labfiles** folder, select **Travel Policy.docx** and click
+3.  From **C:\Labfiles\Lab Files** folder, select **Travel Policy.docx** and click
     **Open**.
 
     ![A screenshot of a computer AI-generated content may be
