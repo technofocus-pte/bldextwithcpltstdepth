@@ -305,23 +305,22 @@ incorrect.](./media/image48.png)
 
 ### Task 3: Add the agent to the workstream
 
-1.  Back in the **New Workstream** page, scroll down and click on **+
-    Add bot** in the Bot section.
+1.  Back in the **New Workstream** page, scroll down and click on **+ Add AI agent** in the **Add an AI agent** section.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image49.png)
+    <img width="587" height="322" alt="image" src="https://github.com/user-attachments/assets/38a3d8dc-a4c1-4fcf-be55-02087ab8bb44" />
 
-2.  From the list of copilots on the Add bot screen, select the **Store
-    Locator Assistant** agent and click on **Connect**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image50.png)
+2.  From the list of agents on the Add an AI agent screen, select the **Store
+    Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
 
-3.  Ensure that the bot is added to the workstream as in the screenshot
+    <img width="579" height="267" alt="image" src="https://github.com/user-attachments/assets/a63fa7ae-235c-4546-9c94-e937ac1e127f" />
+
+
+3.  Ensure that the agent is added to the workstream as in the screenshot
     below.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image51.png)
+    <img width="501" height="331" alt="image" src="https://github.com/user-attachments/assets/379a5aa6-009e-47a0-8f0c-442676185e99" />
+
 
 4.  From the left pane, select **AI Agents**.
 
