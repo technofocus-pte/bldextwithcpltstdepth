@@ -1,150 +1,122 @@
-# Lab 03 – Create Safe Travels agent from Template
+# 실습 03 – 템플릿에서 안전 여행 에이전트 만들기
 
-**Objective**
+## 연습 1: 템플릿을 사용하여 Safe Travels 에이전트 만들기
 
-**Agent templates** are designed to help you get started with a **custom agent**. You are responsible for assessing all safety and legal implications of using an agent template and customizing it as appropriate for your business.
+1.  브라우저에서 +++https://copilotstudio.microsoft.com+++에
+    로그인합니다. 무료 평가판 시작 페이지가 열립니다. 국가를 선택하고
+    **Start free trial**을 클릭합니다.
 
-An agent built from the **Safe Travels agent template** is a Business-to-Employee (B2E) agent designed to provide employees of a company with **travel assistance**. This agent helps ensure employees are well-prepared and informed for their next work trip. This agent uses natural language processing to offer a conversational interface, making it easy and intuitive for employees to access the information they need. However, the default website used by the agent currently only covers US travel destinations. You can replace the default website with your own knowledge source.
+![](./media/image1.png)
 
-In this lab, you will create an agent from the **Safe Travels template** and enhance it in Lab 05.
+2.  **Dev One** 환경을 선택합니다.
 
-
-## Exercise 1: Create Safe Travels agent from template
-
-In this exercise, you will create the agent in Copilot Studio using the Safe Travels agent template.
-
-1.  From a browser, login to +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and click
-    **Start free trial**.
-
-    ![](./media/image1.png)
-
-2.  Select the **Dev One** environment.
-
-    ![image](https://github.com/user-attachments/assets/7a2b18ab-7d57-44f6-a6a4-2993d60bbcd8)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    ><img width="794" height="335" alt="image" src="https://github.com/user-attachments/assets/aa733c94-334a-4f69-88b4-59fbbe93bb08" />
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments** and select the value of the **Environment ID**.
-    ><img width="459" height="327" alt="image" src="https://github.com/user-attachments/assets/37585a91-e802-47d5-aaa1-37d7f96058a4" />
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+3.  왼쪽 창에서 **+ Create**를 선택하여 새 에이전트를 만듭니다.
 
-3.  Select **+ Create** from the left pane to create a new agent.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under **Start with an agent template**, select **Safe Travels**.
+4.  **Start with an agent template Safe Travels**을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+5.  Safe Travels 템플릿은 회사 직원에게 여행 지원을 제공하도록 설계된
+    새로운 에이전트를 만듭니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+6.  설정 페이지를 탐색하세요. **Knowledge** 아래에 that **US Travel
+    Website**가 이미 Knowledge source로 추가되어 있는 것을 확인할 수
+    있습니다. 필요한 경우 편집할 수 있습니다. 여기서는 동일한 웹사이트를
+    사용합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+7.  **Create**를 선택하여 Safe Travels에이전트를 생성합니다. 여기서는
+    아무것도 변경하지 않고 기존 템플릿을 그대로 사용합니다. 사용자 요구
+    사항에 따라 언제든지 에이전트를 업그레이드할 수 있습니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+8.  **에이전트**가 **생성되고** 자동으로 열리면서 **Overview** 페이지가
+    표시됩니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and hit
-    **Send**.
+테스트 창에 +++ How to apply for passport?+++을 입력하고 보내기를
+클릭하세요.
 
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
+테스트 창은 기본적으로 열려 있습니다. 열려 있지 않으면 오른쪽 상단의
+테스트 아이콘을 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+9.  해당 여행사가 자체 지식 소스를 통해 여권 신청 방법에 대한 정보를
+    제공하는 것을 볼 수 있습니다.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## 연습 2: Teams 및 Microsoft 365 Copilot에 에이전트 게시하기
 
-In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+1.  에이전트 페이지 오른쪽 상단에서 **Publish**를 선택합니다.
 
-1.  Open MS Teams from the VM and login using your tenant credentials.
-
-    <img width="415" height="357" alt="image" src="https://github.com/user-attachments/assets/ee03935d-da23-4c20-bb9d-2640c417f6ef" />
-
-1.  Back in the Copilot Studio, select **Publish** from the top right of the agent page.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Select **Publish** in the confirmation dialog.
+2.  확인 대화 상자에서 **Publish**를 선택합니다.
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-3.  Select **Channels** from the top navigation bar.
+3.  상단 탐색 모음에서 **Channels**을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-4.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+4.  사용 가능한 채널 목록에서 **Teams**와 **Microsoft 365 Copilot**을
+    선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Select **Add channel**.
+5.  **Add channel**을 성택합니다.
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-6.  Click on the **See agent in Teams** option add the agent to the
-    Teams.
+6.  **See agent in Teams**옵션을 클릭하여 에이전트를 Teams에 추가합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-7.  This opens up the agent in the Microsoft Teams. Select **Add** to
-    add the agent.
+7.  Microsoft Teams에서 에이전트가 열립니다. **Add**를 선택하여
+    에이전트를 추가합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Once added, you will get an option to open the agent. Select
-    **Open**.
+8.  에이전트를 추가하면 해당 에이전트를 열 수 있는 옵션이 나타납니다.
+    **Open**를 선택합니다.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Test the agent from Teams.
+9.  Teams에서 에이전트를 테스트합니다.
 
-    ![](./media/image20.png)
+![](./media/image20.png)
 
-10. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+10. Copilot Studio로 돌아와서 Teams 및 Microsoft 365 Copilot 채널 창을
+    닫습니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
