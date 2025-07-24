@@ -1,150 +1,123 @@
-# Lab 03 – Create Safe Travels agent from Template
+# Laboratório 03 – Criar agente Safe Travels a partir do modelo
 
-**Objective**
+## Exercício 1: Criar um agente Safe Travels a partir do modelo
 
-**Agent templates** are designed to help you get started with a **custom agent**. You are responsible for assessing all safety and legal implications of using an agent template and customizing it as appropriate for your business.
+1.  Em um navegador, acesse +++https://copilotstudio.microsoft.com+++. A
+    página Iniciar avaliação gratuita será aberta. Selecione seu país e
+    clique em **Start free trial**.
 
-An agent built from the **Safe Travels agent template** is a Business-to-Employee (B2E) agent designed to provide employees of a company with **travel assistance**. This agent helps ensure employees are well-prepared and informed for their next work trip. This agent uses natural language processing to offer a conversational interface, making it easy and intuitive for employees to access the information they need. However, the default website used by the agent currently only covers US travel destinations. You can replace the default website with your own knowledge source.
+![](./media/image1.png)
 
-In this lab, you will create an agent from the **Safe Travels template** and enhance it in Lab 05.
+2.  Selecione o ambiente **Dev One.**
 
-
-## Exercise 1: Create Safe Travels agent from template
-
-In this exercise, you will create the agent in Copilot Studio using the Safe Travels agent template.
-
-1.  From a browser, login to +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and click
-    **Start free trial**.
-
-    ![](./media/image1.png)
-
-2.  Select the **Dev One** environment.
-
-    ![image](https://github.com/user-attachments/assets/7a2b18ab-7d57-44f6-a6a4-2993d60bbcd8)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    ><img width="794" height="335" alt="image" src="https://github.com/user-attachments/assets/aa733c94-334a-4f69-88b4-59fbbe93bb08" />
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments** and select the value of the **Environment ID**.
-    ><img width="459" height="327" alt="image" src="https://github.com/user-attachments/assets/37585a91-e802-47d5-aaa1-37d7f96058a4" />
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+3.  Selecione **+ Create** no painel esquerdo para criar um novo agente.
 
-3.  Select **+ Create** from the left pane to create a new agent.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under **Start with an agent template**, select **Safe Travels**.
+4.  Em **Start with an agent template**, selecione **Safe Travels**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+5.  O modelo Safe Travels cria um novo agente projetado para fornecer
+    assistência de viagem aos funcionários de uma empresa.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+6.  Navegue pela página de configuração. Em **Knowledge**, você verá que
+    o site **US Travel** já foi adicionado como fonte de conhecimento.
+    Pode ser editado, se necessário. Aqui, estamos usando o mesmo site.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+7.  Selecione **Create** para criar o agente Safe Travels. Não faremos
+    nenhuma alteração aqui, mas usaremos o modelo como está. O agente
+    pode ser atualizado a qualquer momento, de acordo com as
+    necessidades do usuário.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+8.  O **agente** é **criado** e é aberto automaticamente, exibindo a
+    página **Overview**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and hit
+9.  No painel Teste, digite +++How to apply for passport?+++ e clique em
     **Send**.
 
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
+O painel **Test** está aberto por padrão. Caso contrário, clique no
+ícone Test no canto superior direito.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+10. Você pode ver que o agente fornece informações sobre como solicitar
+    o passaporte em sua fonte de conhecimento.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## Exercício 2: Publicar o agente no Teams e Microsoft 365 Copilot
 
-In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+1.  Selecione **Publish** no canto superior direito da página do agente.
 
-1.  Open MS Teams from the VM and login using your tenant credentials.
-
-    <img width="415" height="357" alt="image" src="https://github.com/user-attachments/assets/ee03935d-da23-4c20-bb9d-2640c417f6ef" />
-
-1.  Back in the Copilot Studio, select **Publish** from the top right of the agent page.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Select **Publish** in the confirmation dialog.
+2.  Selecione **Publish** na caixa de diálogo de confirmação.
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-3.  Select **Channels** from the top navigation bar.
+3.  Selecione **Channels** na barra de navegação superior.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-4.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+4.  Selecione **Teams e Microsoft 365 Copilot** na lista de canais
+    disponíveis.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Select **Add channel**.
+5.  Selecione **Add channel**.
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-6.  Click on the **See agent in Teams** option add the agent to the
+6.  Clique na opção **See agent in Teams** para adicionar o agente ao
     Teams.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-7.  This opens up the agent in the Microsoft Teams. Select **Add** to
-    add the agent.
+7.  Isso abrirá o agente no Microsoft Teams. Selecione **Add** para
+    adicionar o agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Once added, you will get an option to open the agent. Select
+8.  Após a adição, você terá a opção de abrir o agente. Selecione
     **Open**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Test the agent from Teams.
+9.  Teste o agente do Teams.
 
-    ![](./media/image20.png)
+![](./media/image20.png)
 
-10. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+10. Voltando ao Copilot Studio, feche a janela do canal **Teams e
+    Microsoft 365 Copilot**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
