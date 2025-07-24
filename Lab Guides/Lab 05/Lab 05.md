@@ -1,416 +1,420 @@
-# Lab 05 – Enhance the Safe Travels agent and implement Multi agent orchestration
+# ラボ 05 – Safe Travelsエージェントの強化と マルチエージェントオーケストレーションの実装
 
-## Objective
+## 客観的
 
-You created an agent named **Safe Travels** by using a template provided
-in the Copilot Studio in a previous lab. In this lab, you will
-understand how that agent can be enhanced to suit the needs of specific
-customers.
+**「Safe Travels」**というエージェントを作成しました。このラボでは、この
+エージェントを特定の顧客のニーズに合わせて拡張する方法を学びます。
 
-In the process of doing that, you will learn the concepts of Agent Flow
-creation and Multi agent orchestration in Copilot Studio.
+その過程で、Copilot Studio でのエージェント フローの作成とマルチ
+　　　　　　　　　　　　　エージェント・
+オーケストレーションの概念を学習します。
 
-## Exercise 1 – Test the existing Safe Travels agent
+## 演習1 – 既存のSafe Travelsエージェントをテストする
 
-In this exercise, we will test the **Safe Travels** agent to see how it
-responds when asked about travel approval.
+**Safe
+Travels**エージェントをテストして、旅行の承認について尋ねられたときにどのように応答するかを確認します。
 
-1.  Open the **Copilot Studio** at
-    +++https://copilotstudio.microsoft.com+++ from a browser. Navigate
-    to the **Dev One** environment and open the **Safe Travels** agent.
+1.  ブラウザから +++https://copilotstudio.microsoft.com+++
+    にある**Copilot 　　Studio**を開きます。Dev **One**環境に移動し、
+    **Safe Travels**エージェントを　　　　　　　　開きます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the **Test** icon to test the agent.
+2.  エージェントをテストするには、**Test**アイコンを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Enter +++Need travel approval+++ in the Test window and click on
-    **Enter**.
+3.  Testウィンドウに +++Need travel authorization+++ と入力し、
+    **Enter**をクリックします。
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  You can see that the agent responds with a generalized instruction
-    set to be followed to get the travel approval.
+4.  エージェントが、旅行の承認を得るために従うべき一般的な指示セットで
+    応答していることがわかります。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image4.png)
 
-## Exercise 2 – Enhance the agent with company specific Knowledge assets
+## 企業固有の知識資産でエージェントを強化する
 
-In this exercise, we will add knowledge asset - **Travel Policy**
-specific to Contoso.
+Contoso に固有の知識資産「**Travel Policy」**を追加します。
 
-1.  From the Overview page of the agent, scroll down and select **+ Add
-    knowledge**
+1.  エージェントのOverviewページで下にスクロールし、 **「+ Add
+    knowledge」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-2.  Click on **select to browse** option.
+2.  **select to browse**オプションをクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-3.  From **C:\Labfiles\Lab Files** folder, select **Travel Policy.docx** and click
-    **Open**.
+3.  **C:\Labfiles**フォルダーから**Travel Policy.docx**を選択し、
+    **\[Open\]**をクリック します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-4.  Click **Add** to the add the file.
+4.  **「Add」**をクリックしてファイルを追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
+> ![A screenshot of a computer error AI-generated content may be
+> incorrect.](./media/image9.png)
 
-5.  Ensure that the file is added. Wait till the status changes from
-    **In progress** to **Ready** before proceeding to the next step.
+5.  ファイルが追加されていることを確認してください。ステータスが**「In
+    progress」から「Ready」**に変わるまで待ってから、次のステップに進んで
+    ください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-## Exercise 3 – Create a Team and Channel in Microsoft Teams
+## 演習3 – Microsoft Teamsでチームとチャネルを作成する
 
-In this exercise, we will create a team and a channel in MS Teams to
-which the travel approval request will be sent.
+この演習では、出張承認リクエストを送信する MS Teams のチームとチャネルを
+作成します。
 
-1.  Open Microsoft Teams and select **See all your teams** option from
-    the left pane.
+1.  Microsoft Teams を開き、左側のペインから \[**See all your teams\]**
+    オプションを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-2.  Select **Create team** to create a new team.
+2.  新しいチームを作成するには、 **「Create team」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the Team name as +++**HR Team**+++ and First channel name as
-    +++**Travel Approval Channel**+++ and select **Create**.
+3.  チーム名に「+++ **HR Team** +++」、最初のチャネル名に「+++ **Travel
+    Approval Channel** +++」と入力し、 **\[Create\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Select **Skip** in the Add members to HR Team dialog.
+4.  HR チームにメンバーを追加するダイアログで**\[Skip\]**を選択します。
 
-    ![A screenshot of a email AI-generated content may be
+![A screenshot of a email AI-generated content may be
 incorrect.](./media/image15.png)
 
-5.  Now, the Team and Channel creation is completed.
+これで、チームとチャネルの作成が完了しました。
 
-    <img width="633" alt="image" src="https://github.com/user-attachments/assets/9645537b-29a1-42d4-891b-6b36061043b2" />
+## 演習4 – エージェント・フローを作成する
 
+出張リクエストをTeamsチャネルに投稿するための新しいAgentFlowを作成します。
 
-## Exercise 4 – Create an Agent Flow
+1.  左側のペインから**Flows**を選択します。
 
-In this exercise, we will create a new AgentFlow to post the travel
-request to the Teams channel
-
-1.  Select **Flows** from the left pane.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-2.  Select **New agent flow** to create a new flow.
+2.  新しいフローを作成するには、 **\[New agent flow\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-3.  Select **Add a trigger**.
+3.  **Add a trigger**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-4.  Select **When an agent calls the flow** under **AI capabilities**.
+4.  **AI capabilities**で**When an agent calls the flow**を選択します。
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image19.png)
 
-5.  Select **+ Add an input**.
+5.  **+ Add an input**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-6.  Select **Number** and name it as +++**Employee ID**+++. Then select
-    **+ Add an input**.
+6.  **「Number」**を選択し、「+++ **Employee ID
+    +++」**という名前を付けます。 次に、 **「+ Add an
+    input」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image22.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image22.png)
 
-7.  Now, select a **Text** input and name it as +++**Purpose**+++.
+7.  次に、**Text**入力を選択し**、「+++ Purpose
+    +++」**という名前を付けます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-8.  Select **Add an action** below the trigger node.
+8.  Triggerノードの下にある**\[Add an action\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-9.  Search for +++**Teams**+++ and click on **See more** under the Teams
-    group of actions.
+9.  +++ **Teams** +++ を検索し、 Teams のアクション グループの下にある
+    **\[See more\]** をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-10. Select **Post message in a chat or channel**.
+10. **Post message in a chat or channel**を選択します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image26.png)
 
-11. Select **Sign in** and **login** using your credentials.
+11. **\[Sign in\]**を選択し、資格情報を使用して**ログインします。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-12. Select the below details
+12. 以下の詳細を選択してください
 
-    Post as – Select **User**
-    
-    Post in – Select **Channel**
-    
-    Team – Select **HR Team**
-    
-    Channel – Select **Travel Approval Channel**
+Post as–**User**を選択
 
-    ![A screenshot of a chat AI-generated content may be
+Post in –**Channel**を選択
+
+Team – **HR Team**を選択
+
+Channel – **Travel Approval Channel**を選択
+
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image29.png)
 
-13. In the Message field, enter the following
+13. メッセージ欄に次の内容を入力します
 
-    ```
-    Travel Request from 
-    Employee ID - <Employee ID>
-    Purpose - <Purpose>
-    ```
+「」
 
-    Replace **<Employee ID>** and **<Purpose>** with the dynamic content variables, **Employee ID** and **Purpose** as in the below screenshots.
+> Travel Request from
+>
+> Employee ID - \<Employee ID\>
+>
+> Purpose - \<Purpose\>
+>
+> 「」
+>
+> 以下のスクリーンショットのように、 **\<Employee
+> ID\>**と**\<Purpose\>**を動的 コンテンツ変数の**Employee
+> ID**と**Purposeに**置き換えます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-14. The Parameters tab will now look like below.
+14. Parametersタブは以下のようになります。
 
-    ![](./media/image32.png)
+![](./media/image32.png)
 
-15. Close the Parameters tab.
+15. Parametersタブを閉じます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-16. Add another **action** after the Post message node.
+16. Post Message ノードの後に別の**action**を追加します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image34.png)
 
-17. Select **Respond to the agent** under **Skills**.
+17. **\[Skills\]**の下の**\[Respond to the agent\]**を選択します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image35.png)
 
-18. Select **Add an output**. Add a **Text** output. Name it as +++Output+++ and enter the value as
-    +++Request submitted+++.
+18. 「Add an
+    output」を選択します。名前を「+++Output+++」とし、値を「+++Request
+    submitted+++」と入力します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-19. Click on **Save draft** to save the flow.
+19. フローを保存するには、 **「Save draft」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-20. Once the flow is saved, select **Publish**.
+20. フローを保存したら、 **\[Publish\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-21. Ensure that the flow has been published.
+21. フローが公開されていることを確認します。
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image39.png)
+22. ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image39.png)エージェント
+    フローの**Overview**タブをクリックします。
 
-22. Click on the **Overview** tab of the agent flow.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-23. Select **Edit** and name the flow as +++Request Travel Approval
-    Flow+++ in the **Details** pane. Select **Save**.
+23. **「Edit」**を選択し、**Details**ペインでフローに「+++ Request
+    Travel Approval Flow +++」という名前を付けます。
+    **「Save」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image41.png)
 
-## Exercise 5 – Add the Agent flow as a tool to the agent
+## 演習5 – エージェント・フローをツールとしてエージェントに 追加する
 
-In this exercise, we will add the create Agent flow to the agent Safe
-Travels in order to leverage the flow functionality.
+フロー機能を活用するために、エージェント Safe Travels
+にエージェント作成　　　　フローを追加します。
 
-1.  From the left pane, select **Agents**.
+1.  左側のペインから、 **\[Agents\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-2.  Select the **Safe Travels** agent.
+2.  **Safe Travels**エージェントを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-3.  Scroll down in the Overview page and select **Add tool**.
+3.  Overviewページを下にスクロールし、**Add tool**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-4.  From the **Flow** tab, select the created **Request Travel Approval Flow**.
+4.  作成した**Request Travel Approval Flow**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-5.  Select **Add to agent**.
+5.  **Add to agent**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-6.  Once added, the flow will get listed under **Tools** section of the
-    **Overview** page of the **agent**.
+6.  追加されたフローは、**agent**の**OverviewページのTools**セクションに表示
+    されます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-## Exercise 6 – Create Topic
+## 演習6 – トピックの作成
 
-In this exercise, we will create a Topic to use the created travel
-approval flow.
+この演習では、作成した出張承認フローを使用するためのトピックを作成します。
 
-1.  Select **Topics** from the top menu. Select **+ Add a topic** -\>
-    **Add from description with Copilot**.
+1.  トップメニューから**「Topics」**を選択します。Copilot**で「+ Add a
+    topic** -\> **Add from description with Copilot**」を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-2.  Enter the below details and then select **Create**.
+2.  以下の詳細を入力し、 **「Create」**を選択します。
 
-    **Name** - +++Travel Approval+++
-    
-    **Create a topic to** - +++This topic should get the Employee ID
-    (Number) and Purpose of travel (Text) details from the user and invoke
-    the Tool "Request Travel Approval Flow"+++
+**Name**- +++ Travel Approval +++
 
-    ![A screenshot of a computer AI-generated content may be
+**Create a topic to** - +++ This topic should get the Employee ID
+(Number) and Purpose of travel (Text) details from the user and invoke
+the Tool "Request Travel Approval Flow"+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-3.  The **Topic** gets created as below.
+3.  **Topic**は以下のように作成されます。
 
-    ![](./media/image50.png)
+![](./media/image50.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image51.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image51.png)
 
-4.  See if the Flow is actually invoked. In this case, only a Message
-    node stating that the flow is invoked is added. In such a case,
-    delete such Message node and click on Add a node icon after the node
-    where the Purpose is requested from the user.
+4.  フローが実際に呼び出されたかどうかを確認してください。この場合、
+    フローが呼び出されたことを示すMessageノードのみが追加されます。その場合は、そのMessageノードを削除し、ユーザーに目的を尋ねたノードの
+    後の「Add a node」アイコンをクリックしてください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
 
-5.  Select **Add a tool** -> **Request Travel Approval Flow**
+5.  **Add a tool** -\> **Request Travel Approval Flow**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-6.  Add the Variable **EmployeeID** for the flow variable **Employee
-    ID.**
+6.  フロー変数 **Employee ID** に変数**EmployeeID**を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-7.  Similarly add the Purpose of travel input.
+7.  同様に、Travel inputのPurposeの入力を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-8.  Add a **Send a message** node and add the Output Variable to it as
-    in the screenshots below.
+8.  **Send a message**ノードを追加し、それに出力変数を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-9.  Select **Save** and then **Publish** to publish the agent.
+9.  **「Save」**を選択し、
+    **「Publish」**を選択してエージェントを公開します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image60.png)
 
-10. Select **Publish** in the confirmation dialog box.
+10. 確認ダイアログボックスで**「Publish」**を選択します。
 
-    ![A close-up of a white background AI-generated content may be
+![A close-up of a white background AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Select the Test icon and enter +++Travel Approval+++ and send from
-    the test pane.
+11. Test アイコンを選択し、+++ Travel Approval
+    +++と入力して、Testペインから送信します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-12. Converse by giving the below details to the agent
+12. エージェントに以下の詳細を伝えて会話してください
 
-    Employee ID – +++1234+++
-    
-    Purpose of travel - +++Client meeting for finalizing proposal of XYZ project+++
+> Employee ID – +++1234+++
+>
+> Purpose of travel - +++Client meeting for finalizing proposal of XYZ
+> project+++
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image63.png)
 
-13. You will get a **Request submitted** message from the agent.
+13. エージェントから**Request submitted**メッセージが届きます。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image64.png)
 
-14. Open the Teams Channel and you will see the details posted there for
-    the Travel approval.
+14. Teams チャネルを開くと、出張承認についてそこに投稿された詳細が表示
+    されます。
 
-    ![](./media/image65.png)
+![](./media/image65.png)
 
-## Exercise 7 – Create Leave Management agent 
+## 演習7 – 休暇管理エージェントの作成
 
-In this exercise, we will build a Leave management agent which can be
-used to learn about the leaves, leave balance for employees and so on.
+この演習では、休暇や従業員の休暇残高などを把握するために使用できる休暇管理エージェントを構築します。
 
-1.  From the Copilot Studio Home page, select **Agents** -\> **+ New
-    agent**.
+1.  Copilot Studio のホームページから、 **\[Agents** -\> **+ New
+    agent\]**を選択 します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-2.  Select **Skip to configure**.
+2.  **Skip to configure**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-3.  In the configuration page, enter the below details and select
-    **Create**.
+3.  設定ページで以下の詳細を入力し、 **「Create」**を選択します。
 
     - Name - +++Leave Manager Agent+++
 
@@ -421,165 +425,164 @@ incorrect.](./media/image67.png)
     - Instructions - +++Track the leaves of employees. Track their leave
       balance. Apply/Reject leaves based on their balance.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-4.  Once the agent gets created, scroll down in the Overview page and
-    select **Add knowledge** under the **Knowledge** section.
+4.  エージェントが作成されたら、「Overview」ページを下にスクロールし、
+    「**Knowledge**」セクション**「Add knowledge」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-5.  Click on **select to browse**.
+5.  **select to browse**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-6.  Select the file **Leave balance Tracker** from **C:\Labfiles\Lab Files** and click
-    **Open**.
+6.  C:\Labfiles から**Leave balance Tracker**ファイルを選択し、
+    **\[Open\]**を クリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image71.png)
 
-7.  Select **Add** to add the tracker to the agent.
+7.  トラッカーをエージェントに追加するには、 **\[Add\]**を選択します。
 
-    ![](./media/image72.png)
+![](./media/image72.png)
 
-8.  The file gets added. Wait until the status is Ready before
-    proceeding to the next step.
+8.  ファイルが追加されました。ステータスが「準備完了」になるまで待って
+    から、次のステップに進んでください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-9.  Select **+ Add a topic** -\> **Add from description with Copilot**
-    from the Topics tab.
+9.  「Topics」タブから、 **「+ Add a topic** -\> **Add from description
+    with Copilot」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-10. Enter the below details and click on **Create**.
+10. 以下の詳細を入力し、 **「Create」**をクリックします。
 
-    - Name - +++Leave Balance Checker+++
-    
-    - Create a topic to - +++Get the Employee ID from the user and check and
-      reply with the leave balance based on the tracker added as knowledge
-      source+++
+- Name - +++Leave Balance Checker+++
 
-    ![A screenshot of a computer AI-generated content may be
+- Create a topic to - +++Get the Employee ID from the user and check and
+  reply with the leave balance based on the tracker added as knowledge
+  source+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-11. Check if the topic has the node to get the Employee ID and then
-    click **Save**. Here, we have a node for getting the Employee ID and
-    a Message node stating that the balance is being retrieved.
+11. トピックにEmployee
+    IDを取得するためのノードがあるかどうかを確認し、**「Save」**をクリックします。ここでは、従業員IDを取得するためのノードと、残高が取得されていることを示すMessageノードがあります。
 
-    Check the topic once and remove other nodes that have got created apart from the above ones.
+> トピックを一度確認し、上記のノード以外に作成された他のノードを削除
+> します。
 
-    Then **Save** the topic.
+次にトピックを保存します。
 
-    ![](./media/image76.png)
+![](./media/image76.png)
 
-12. Send a message +++Check Leave balance+++ from the Test pane.
+12. Test ペインから、メッセージを送信します +++ Check Leave balance +++
+    。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image77.png)
 
-13. Enter +++1234+++ for Employee ID.
+13. Employee IDに「+++1234+++」と入力します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image78.png)
 
-14. Check the response from the agent. This is retrieved from the
-    knowledge asset added to the agent.
+14. エージェントからの応答を確認します。これは、エージェントに追加されたナレッジ・アセットから取得されます。
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image79.png)
 
-15. Select **Publish** and wait till the agent is published.
+15. 「Publish」を選択し、エージェントが公開されるまで待ちます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-## Exercise 8 - Implement Multi agent orchestration in Copilot Studio
+## 演習8 - Copilot Studioでマルチエージェント・　　　　　　　オーケストレーションを実装する
 
-Rather than relying on a single agent to do everything—or managing
-disconnected agents in silos—organizations can now build multi-agent
-systems in Copilot Studio (preview), where agents delegate tasks to one
-another. This includes those built with the Microsoft 365 agent builder,
-Microsoft Azure AI Agents Service, and Microsoft Fabric. These agents
-can now all work together to achieve a shared goal: completing complex,
-business-critical tasks that span systems, teams, and workflows.
+単一のエージェントにすべてを依存したり、サイロ化されたエージェントを管理　したりするのではなく、Copilot
+Studio（プレビュー）でマルチエージェント・　　　システムを構築し、エージェントが互いにタスクを委任できるようになりました。これには、Microsoft
+365 エージェントビルダー、Microsoft Azure AI Agents
+　　　　　　サービス、Microsoft Fabric
+で構築されたシステムも含まれます。これらの　　　　　　　　　　　エージェントはすべて連携して、システム、チーム、ワークフローにまたがる複雑でビジネスクリティカルなタスクを完了するという共通の目標を達成できるようになります。
 
-In this exercise, we will add the Leave management agent to the Safe
-Travels agent which can be used to learn about the leaves when planning
-to travel.
+この演習では、旅行の計画時に休暇について学習するために使用できる休暇管理　エージェントを
+Safe Travels エージェントに追加します。
 
-1.  Select the **Safe Travels** agent from Copilot Studio.
+1.  Copilot Studio から**Safe Travels**エージェントを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-2.  We will first test this agent to see what information it can give on
-    leaves. From the Test pane, enter +++Check Leave balance+++ and hit
-    enter.
+2.  休暇に関してどのような情報を提供できるかをテストします。Testペインで「+++
+    Check Leave balance +++」と入力し、Enterキーを押します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-3.  You can see that the agent responds with a generalized information
-    on how to check the leave balance. It also refers to the Travel
-    Policy document while doing this.
+3.  一般的な情報を提供していることがわかります。また、その際に出張
+    ポリシー文書も参照しています。
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image83.png)
 
-4.  Select the **Agents** tab from the top menu and select **+ Add**.
+4.  上部のメニューから**「Agents」**タブを選択し、 **「+
+    Add」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-5.  Under **Choose how do you want to extend your agent**, select
-    **Copilot Studio**.
+5.  **\[Choose how do you want to extend your agent\]**の下で、
+    **\[Copilot Studio\]**を 選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-6.  From the list, select **Leave Manager Agent**. It can be added only
-    if it is published. Please wait if it is in the process of
-    publishing.
+6.  リストから**「Leave Manager
+    Agent」**を選択してください。公開済みの場合のみ追加できます。公開中の場合はお待ちください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-7.  Select **Add agent** to add this agent to **Safe Travels**.
+7.  このエージェントを**Safe Travels**に追加するには、 **\[Add
+    agent\]**を選択 します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image87.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image88.png)
 
-8.  Wait for few minutes after the agent is added and then click on
-    **Publish**.
+8.  エージェントが追加された後、数分間待ってから**「Publish」**をクリック
+    します。
 
-    ![](./media/image89.png)
+![](./media/image89.png)
 
-9.  Wait for few more minutes after the agent is published and then
-    enter +++Check Leave balance+++ in the Test pane of the **Safe
-    Travels agent**.
+9.  エージェントが公開されてからさらに数分間待ってから、**Safe Travels
+    agentのTest ペインに +++Check Leave balance+++** と入力します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-10. You can see that the **Leave Manager** agent is accessed
-    automatically and the agent replies with the **Enter Employee ID**
-    question from the **Leave Manager agent’s topic**.
+10. **Leave
+    Manager**エージェントが自動的にアクセスされ、エージェントが**Leave
+    Manager**エージェントのトピックから**Enter Employee
+    ID**を入力という質問に返信していることがわかります。
 
-11. Enter the Employee ID as +++1234+++ and you can see that the agent
-    replies based on the Leave Manager agent’s knowledge asset.
+11. Employee ID を +++1234+++ として入力すると、エージェントが Leave
+    Manager エージェントのナレッジ アセットに基づいて返信していることが
+    わかります。
 
-    ![](./media/image91.png)
+![](./media/image91.png)
 
-## Summary
+## まとめ
 
-In this lab, we have learnt how to enhance an agent created from a
-template to suit the individual needs. We have also learnt to implement
-Multi agent orchestration in the Copilot Studio
+このラボでは、テンプレートから作成したエージェントを個々のニーズに
+合わせて拡張する方法を学びました。また、Copilot
+Studioでマルチエージェント
+オーケストレーションを実装する方法も学びました。
