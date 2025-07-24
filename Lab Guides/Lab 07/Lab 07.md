@@ -37,7 +37,7 @@ incorrect.](./media/image3.png)
     ![A screenshot of a file AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  From **C:\Labfiles**, select the excel – **Customers.xlsx**. Select
+5.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
     **Import** to import the data from the tracker and create the table.
 
     ![A screenshot of a computer AI-generated content may be
