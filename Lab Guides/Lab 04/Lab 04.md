@@ -1,485 +1,489 @@
-# Lab 04 - Integrate an agent with the Dynamics 365 Customer Service app and implement automated case escalation to the live agent
+# Laboratório 04 - Integrar um agente ao aplicativo Dynamics 365 Customer Service e implementar o escalonamento automático de casos para um agente humano
 
-## Objective
+## Objetivo
 
-This lab details the steps to escalate a conversation to a live agent
-from the agents.
+Este laboratório detalha as etapas para escalonar uma conversa de um
+agente virtual para um agente humano.
 
->[!Alert] **Important:** This lab can be executed only if the Dynamics
-365 trial has been enabled as per **Lab 02 - Configure the Dynamics 365
-Customer Service**
+\[!Alerta\] **Importante:** Este laboratório só poderá ser executado se
+a versão de avaliação do Dynamics 365 tiver sido habilitada conforme o
+**Laboratório 02 - Configurar o Dynamics 365 Customer Service**
 
-## Exercise 1: Configure the Dynamics 365 Customer Service workspace
+## Exercício 1: Configurar o espaço de trabalho do Dynamics 365 Customer Service
 
-### Task 1: Configure Omnichannel Power Virtual Agent Extension
+### Tarefa 1: Configurar a extensão do Omnichannel Power Virtual Agent
 
-1.  Open the link,
-    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++ and click on **Get it now** in the Omnichannel Power Virtual Agent Extension page.
+1.  Abra o link
+    +++<https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++>
+    e clique em **Get it now** na página Extensão do Omnichannel Power
+    Virtual Agent.
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  Sign in with the tenant credentials from the **Resources** tab.
+2.  Entre com as credenciais do locatário na aba **Resources**.
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  Click on **Get it now**.
+3.  Clique em **Get it now**.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  Select the **CustomerService Trial** under **Select an
-    environment**, select the check boxes and click on **Install**.
+4.  Selecione o **CustomerService Trial** em **Select an environment**,
+    marque as caixas de seleção e clique em **Install**.
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-## Task 2: Configure search settings in the Power Platform admin center
+## Tarefa 2: Configurar as definições de pesquisa no centro de administração do Power Platform
 
-1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
-    your tenant details. Select **Manage** from the left pane and then
-    select **CustomerService Trial** environment from the list of
-    environments.
+1.  Acesse +++<https://admin.powerplatform.microsoft.com/+++> usando as
+    informações do seu locatário. Selecione **Manage** no painel
+    esquerdo e, em seguida, selecione o E**nvironment** como
+    **CustomerService Trial** na lista de ambientes.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-2.  Select **Settings** from the top pane.
+2.  Selecione **Settings** no painel superior.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-3.  Select **Product** -\> **Features**.
+3.  Selecione **Product** -\> **Features**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-4.  Toggle **Dataverse Search** and **Single table search** option
-    to **ON** and select **Save**.
+4.  Altere para **On** as opções **Dataverse Search** e **Single table
+    search** e selecione **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-## Exercise 2: Create an agent
+## Exercício 2: Criar um agente
 
-1.  From the Copilot Studio home page,
-    +++https://copilotstudio.microsoft.com+++, select the **CustomerService Trial** Environment from the top right.
+1.  Na página inicial do Copilot Studio,
+    +++[https://copilotstudio.microsoft.com+++](https://copilotstudio.microsoft.com+++/),
+    selecione o Environment **CustomerService Trial** no canto superior
+    direito.
 
-    ![](./media/image10.png)
+![](./media/image10.png)
 
-2.  Select **Agents** from the left pane. Click on the **+ New
-    Agent** to create a new agent.
+2.  Selecione **Agents**  no painel esquerdo. Clique em **+ New Agent**
+    para criar um novo agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-3.  In the Type your message text area, type +++**You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
+3.  Na área de texto Digite sua mensagem, digite +++**You are a customer
+    service agent who helps in identifying stores nearby.**+++ E clique
+    em **send**.
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-4.  The agent might suggest a **name** for the Agent being created.
-    Either accept it or suggest a new name.
+4.  O agente pode sugerir um **name** para o Agente que está sendo
+    criado. Aceite ou sugira um novo nome.
 
-5.  Type the message +++**Maintain a polite tone**+++ next and
-    hit **send**.
+5.  Digite a mensagem +++**Maintain a polite tone**+++ e clique em
+    **send**.
 
-    ![](./media/image13.png)
+![](./media/image13.png)
 
-6.  Click on **Create**.
+6.  Clique em **create**.
 
-    ![](./media/image14.png)
+![](./media/image14.png)
 
-7.  The created agent opens up with a message, **Your agent is ready**.
+7.  O agente criado abre com uma mensagem: **Your agent is ready**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image15.png)
 
-## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
+## Exercício 3: Conectar o copilot ao Dynamics 365 Customer Service e configure o tópico Escalar
 
-### Task 1: Configure the Escalate topic
+### Tarefa 1: Configurar o tópico Escalar
 
-We are focusing here on showcasing the escalation to live agent concept.
-So, we will directly work towards it without creating any other new
-topics.
+Aqui, estamos focando em demonstrar o conceito de escalonamento para um
+agente humano. Portanto, iremos direto ao ponto sem criar nenhum outro
+tópico novo.
 
-1.  Select the **Topics** tab and then select the **System** tab. Select
-    the **Escalate** topic.
+1.  Selecione a aba **Topics** e, em seguida, a aba **System**.
+    Selecione o tópico **Escalate**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-2.  Select the message node of the topic and replace the existing
-    content with, +++You will be transferred to a live agent shortly+++
+2.  Selecione o nó da mensagem do tópico e substitua o conteúdo
+    existente por +++You will be transferred to a live agent shortly+++
 
-    ![](./media/image17.png)
+![](./media/image17.png)
 
-3.  Click on the + symbol to add a node next to the Message node.
+3.  Clique no símbolo + para adicionar um nó ao lado do nó Mensagem.
 
-4.  Select **Topic management** -\> **Transfer conversation**.
+4.  Selecione **Topic management** -\> **Transfer conversation**.
 
-    ![](./media/image18.png)
+![](./media/image18.png)
 
-5.  Give a message +++The customer wants to talk to a live agent+++ in
-    the Transfer conversation node.
+5.  Insira a mensagem +++The customer wants to talk to a live agent+++
+    no nó **Transfer conversation**.
 
-    ![ ](./media/image19.png)
+![ ](./media/image19.png)
 
-6.  **Save** the Topic.
+6.  **Save** o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-7.  **Publish** the agent.
+7.  **Publish**  o agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-### Task 2: Connect the copilot to Dynamics 365 Customer Service
+### Tarefa 2: Conectar o copilot ao Dynamics 365 Customer Service
 
-1.  Once published, from the copilot page top right, click
-    on **Settings**.
+1.  Após a publicação, no canto superior direito da página do copilot,
+    clique em **Settings**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-2.  Select **Security**, and **Authentication** under Security.
+2.  Selecione **Security** e **Authentication** em **Security**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-3.  Select the **No authentication** option and then click on **Save**.
+3.  Selecione a opção **No authentication** e clique em **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-4.  Select **Save** in the confirmation dialog box.
+4.  Selecione **Save** na caixa de diálogo de confirmação.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image25.png)
 
-5.  Close the **Settings** pane.
+5.  Feche o painel **Settings**.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image26.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image26.png)
 
-6.  Click on **Channels** (If the Channels is not visible, click on the
-    +1 to view the **Channels** option)
+6.  Clique em **Channels** (se os Canais não estiverem visíveis, clique
+    em +1 para visualizar a opção **Channels)**
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image27.png)
 
-7.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
+7.  Selecione **Dynamics 365 Customer Service** no painel **Customer
+    engagement hub**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-8.  On the Dynamics 365 Customer Service page, click on **Connect**.
+8.  Na página **Dynamics 365 Customer Service**, clique em **Connect**.
 
-    ![A screenshot of a message AI-generated content may be
+![A screenshot of a message AI-generated content may be
 incorrect.](./media/image29.png)
 
-9.  Once you get a **successfully connected** message, click
-    on **Close**.
+9.  Após receber uma mensagem **successfully connected,** clique em
+    **Close**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-## Exercise 4: Create workstream and channel in Dynamics 365 admin center
+## Exercício 4: Criar fluxo de trabalho e canal no Dynamics 365 admin center
 
-### Task 1: Manage a user in Omnichannel for Customer Service
+### Tarefa 1: Gerenciar um usuário no Omnichannel para Atendimento ao Cliente
 
-1.  Login to +++https://admin.powerplatform.microsoft.com+++ using your admin tenant credentials. Select **Manage** from the left pane. Select **CustomerService Trial** environment **under Environments**.
+1.  Efetue login em
+    +++[https://admin.powerplatform.microsoft.com+++](https://admin.powerplatform.microsoft.com+++/)
+    usando suas credenciais de locatário de administrador. Selecione
+    **Manage** no painel esquerdo. Selecione Ambiente **CustomerService
+    Trial** em **Environments**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-2.  Click on the **url value** under **Environment URL**.
+2.  Clique no **valor da URL** em **Environment URL**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Select **Customer Service workspace** from the header bar.
+3.  Selecione **Customer Service workspace** na barra de cabeçalho.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  This opens the **Apps** page. Select **Copilot Service admin
-    center** from it.
+4.  Isso abrirá a página **Apps**. Selecione **Customer Service admin
+    center**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img2.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image34.png)
 
+5.  Isso abre a página **Dynamics 365 Customer Service admin center**.
 
-5.  This opens up the **Dynamics 365 Customer Service admin
-    center** page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image35.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img3.png)
+### Tarefa 2: Configurar fluxo de trabalho
 
+1.  Na página do centro de administração, selecione **Workstreams** em
+    **Customer support** no painel esquerdo e, em seguida, selecione a
+    opção **+ New workstream**.
 
-### Task 2: Configure workstream
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image36.png)
 
-1.  From the admin center page, select **Workstreams** under **Customer
-    support** from the left pane and then select the **+ New
-    workstream** option.
+2.  Selecione **Inbound**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img4.png)
+![](./media/image37.png)
 
-2.  Select Inbound
-
-    ![](./media/image37.png)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-3.  Fill in the below details, scroll down and click on **Create**.
+3.  Preencha os detalhes abaixo, role para baixo e clique em **Create**.
 
     - Name - +++**New Workstream**+++
 
-    - Owner – **MOD Administrator** (Selected by default)
+    - Owner – **MOD Administrator** (Selecionado por padrão)
 
     - Type – **Messaging**
 
     - Channel – **Chat**
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image39.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image39.png)
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image40.png)
 
-4.  Once the workstream is created, click on **Set up chat** to set up
-    the chat channel.
+4.  Depois que o fluxo de trabalho for criado, clique em **Set up chat**
+    para configurar o canal do chat.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image41.png)
 
-5.  In the **Live chat setup – Channel details** screen, fill in the
-    below details.
+5.  Na tela **Live chat setup – Channel details**, preencha os detalhes
+    abaixo.
 
     - Name - +++**Chat Channel**+++
 
     - Language – **English - United States**
 
-    ![A screenshot of a chat channel AI-generated content may be
+![A screenshot of a chat channel AI-generated content may be
 incorrect.](./media/image42.png)
 
-6.  Scroll down and click **Next**.
+6.  Role para baixo e clique em **Next**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-7.  Accept the defaults in the next 2 pages until you reach the Chat
-    widget screen. In the Live chat setup – Chat widget screen, provide
-    the name as +++**Store Locator Assistant**+++, accept the other
-    defaults and click on **Next**.
+7.  Aceite os padrões nas próximas 2 páginas até chegar à tela **Chat
+    widget**. Na tela **Live chat setup – Chat widget**, informe o nome
+    +++**Store Locator Assistant**+++, aceite os outros padrões e clique
+    em **Next**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image44.png)
 
-8.  In the **Live chat setup – Behaviors** screen, accept the defaults
-    and click on **Next**.
+8.  Na tela **Live chat setup – Behaviors**, aceite os padrões e clique
+    em **Next**.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image45.png)
 
-9.  In the **Live chat setup – User features** screen, toggle **File
-    attachment** and **Voice and video calls** options to **off** and
-    click on **Next**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
-
-10. Accept the default value in the Notification screen and click
+9.  Na tela **Live chat setup – User features**, desative as opções
+    **File attachment** e **Voice and video calls** e clique em
     **Next**.
 
-11. In the **Live chat setup – Review and finish** screen,
-    select **Create channel**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image46.png)
 
-    ![](./media/image47.png)
+10. Aceite o valor padrão na tela de Notificação e clique em **Next**.
 
-12. **Copy** the value of the widget that appears in the **Live chat
-    setup – Success** screen and **save** it in a notepad to add it to a
-    webpage in the upcoming exercises. Then, click on **Done** to
-    complete the configuration.
+11. Na tela **Live chat setup – Review and finish**, selecione **Create
+    channel**.
 
-    ![A screenshot of a chat AI-generated content may be
+![](./media/image47.png)
+
+12. **Copy** o valor do widget que aparece na tela **Live chat setup –
+    Success** em um bloco de notas para adicioná-lo a uma página da web
+    nos próximos exercícios. Em seguida, clique em **Done** para
+    concluir a configuração.
+
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image48.png)
 
-### Task 3: Add the agent to the workstream
+### Tarefa 3: Adicionar o agente ao fluxo de trabalho
 
-1.  Back in the **New Workstream** page, scroll down and click on **+ Add bot** in the **Add an AI agent** section.
+1.  De volta à página **New Workstream**, role para baixo e clique em
+    **+ Add bot** na seção **Bot**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
+2.  Na lista de copilots na tela **Add bot**, selecione o agente **Store
+    Locator Assistant** e clique em **Connect**.
 
-2.  From the list of bots on the Add a bot screen, select the **Store
-    Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
-
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image50.png)
 
+3.  Certifique-se de que o bot seja adicionado ao fluxo de trabalho,
+    como na captura de tela abaixo.
 
-3.  Ensure that the bot is added to the workstream as in the screenshot below.
-
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
+4.  No painel esquerdo, selecione **AI Agents**.
 
-4.  From the left pane, select **AI Agents**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-5.  Ensure that the **Store locator** agent is connected.
+5.  Certifique-se de que o agente **Store locator** esteja conectado.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
 
-## Exercise 5: Create a webpage and test the escalation to agent
+## Exercício 5: Criar uma página da web e testar a escalonamento para o agente
 
-1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
-    tenant admin credentials.
+1.  Efetue login em +++<https://make.powerpages.microsoft.com/+++>
+    usando suas credenciais de administrador de locatário.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-2.  Ensure that you are in **CustomerService Trial** environment.
+2.  Certifique-se de que você está no ambiente **CustomerService
+    Trial**.
 
-3.  Click on **Get started**.
+3.  Clique em **Get started**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-4.  Click on Skip in the **Tell us about yourself** page.
+4.  Clique em **Skip** na página **Tell us about yourself**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-5.  Scroll down in the next page and click on **Start with a
-    template** option to start creating the site with a template.
+5.  Role para baixo na próxima página e clique na opção **Start with a
+    template** para começar a criar o site com um modelo.
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image57.png)
 
-6.  Select a template and click on **Choose this template**.
+6.  Selecione um modelo e clique em **Choose this template**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-7.  In the Give your site a name textbox, enter the name as +++**Contoso
-    Store assistant**+++, accept the other defaults and click
-    on **Done**.
+7.  Na caixa de texto **Give your site a name**, insira o nome como
+    +++**Contoso Store assistant**+++, aceite os outros padrões e clique
+    em **Done**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-8.  Once the site is created, click on **Edit**.
+8.  Depois que o site for criado, clique em **Edit**.
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-9.  Click on **Edit site header** in the **Company name** title.
+9.  Clique em **Edit site header** no título **Company name**.
 
-    ![](./media/image61.png)
+![](./media/image61.png)
 
-10. In the **Edit site header** pane, provide the **Site title** as
-    +++**Contoso Store assistant**+++ and close the dialog.
+10. No painel **Edit site header**, informe o **Site title** como
+    +++**Contoso Store assistant**+++ e feche a caixa de diálogo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-11. Click on **Edit code** in the top right corner of the page.
+11. Clique em **Edit code** no canto superior direito da página.
 
-    ![](./media/image63.png)
+![](./media/image63.png)
 
-12. Click on **Open Visual Studio Code**.
+12. Clique em **Open Visual Studio Code**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-13. Click **Allow**. **Login** using your tenant credentials if
-    required.
+13. Clique em **Allow**. **Efetue login** usando suas credenciais de
+    locatário, se necessário.
 
-    ![A black screen with white text AI-generated content may be
+![A black screen with white text AI-generated content may be
 incorrect.](./media/image65.png)
 
-14. The Home page of the web page opens up in the Visual Studio Code.
+14. A página inicial do site é aberta no Visual Studio Code.
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image66.png)
 
-15. Scroll to the end of the file. Add the **script** copied while
-    creating the workstream, after the last line of this file.
+15. Vá até o final do arquivo. Adicione o **script** copiado durante a
+    criação do fluxo de trabalho, após a última linha deste arquivo.
 
-    ![A screen shot of a computer screen AI-generated content may be
+![A screen shot of a computer screen AI-generated content may be
 incorrect.](./media/image67.png)
 
-16. Save the file, close the Visual Studio Code tab and return to the
-    Power pages. Click on **Sync**.
+16. Salve o arquivo, feche a aba Visual Studio Code e retorne às páginas
+    do Power. Clique em **Sync**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-17. Please wait for few minutes before proceeding to the next step.
-    
-18. Once the Sync is completed, select **Preview** -\> **Desktop.**
+17. Quando a sincronização estiver concluída, selecione
+    **Preview** -\> **Desktop.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-19. Your web page opens in a new tab. Find the **Store Locator
-    Assistant** embedded to the page at the bottom right of the web
-    page. **Click** on it.
+18. Sua página da web será aberta em uma nova aba. Encontre o **Store
+    Locator Assistant** integrado à página, no canto inferior direito.
+    **Clique** nele.
 
-    ![A screenshot of a website AI-generated content may be
+![A screenshot of a website AI-generated content may be
 incorrect.](./media/image70.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/img5.png)
+19. Digite +++Talk to agent+++.
 
-21. Enter +++Talk to agent+++.
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image71.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/img6.png)
+20. Na página de administração do Atendimento ao Cliente, clique em
+    **Customer Service admin center** e selecione o aplicativo
+    **Customer Service workspace**.
 
-22. From the Customer Service admin page, click on **Customer Service
-    admin center** and select the app **Customer Service
-    workspace** from it.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-23. In the Customer Service workspace page, you will get a **chat
-    request**. **Accept** it.
+21. Na página **Customer Service workspace**, você receberá um **chat
+    request**. Clique em **Accept**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-24. Once accepted, the chat screen opens up with the message that we had
-    given in the Escalate topic. We can also add any other information
-    provided by the user here to the live agent.
+22. Após a aceitação, a tela do chat será aberta com a mensagem que
+    havíamos informado no tópico Escalate. Também é possível adicionar
+    ao agente humano qualquer outra informação fornecida pelo usuário.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image75.png)
 
-25. Simulate the chat between the live agent and the customer if you
-    wish to see how it works and then ends.
+23. Simule o chat entre o agente humano e o cliente, se desejar ver como
+    funciona, e então finalize.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image76.png)
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image77.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image77.png)
 
-## Summary
+## Resumo
 
-In this lab, we have learnt to
+Neste laboratório, aprendemos a:
 
-- Build an agent from the Copilot Studio and configure the Escalate
-  topic.
+- Criar um agente no Copilot Studio e configurar o tópico Escalate.
 
-- Publish the agent to Dynamics 365 workspace and integrate it in a web
-  page. 
+- Publicar o agente no espaço de trabalho do Dynamics 365 e integrar em
+  uma página da Web.
