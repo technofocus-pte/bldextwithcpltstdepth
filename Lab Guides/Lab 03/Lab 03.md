@@ -1,150 +1,111 @@
-# Lab 03 – Create Safe Travels agent from Template
+# 实验 03 – 从模板创建 Safe Travels 代理
 
-**Objective**
+## 练习 1：从模板创建 Safe Travels 代理
 
-**Agent templates** are designed to help you get started with a **custom agent**. You are responsible for assessing all safety and legal implications of using an agent template and customizing it as appropriate for your business.
+1.  在浏览器中，登录到
+    +++https://copilotstudio.microsoft.com+++。此时将打开 Start free
+    trial 页面。选择您所在的国家/地区，然后单击 **Start free trial**。
 
-An agent built from the **Safe Travels agent template** is a Business-to-Employee (B2E) agent designed to provide employees of a company with **travel assistance**. This agent helps ensure employees are well-prepared and informed for their next work trip. This agent uses natural language processing to offer a conversational interface, making it easy and intuitive for employees to access the information they need. However, the default website used by the agent currently only covers US travel destinations. You can replace the default website with your own knowledge source.
+![](./media/image1.png)
 
-In this lab, you will create an agent from the **Safe Travels template** and enhance it in Lab 05.
+2.  选择 **Dev One** 环境。
 
-
-## Exercise 1: Create Safe Travels agent from template
-
-In this exercise, you will create the agent in Copilot Studio using the Safe Travels agent template.
-
-1.  From a browser, login to +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and click
-    **Start free trial**.
-
-    ![](./media/image1.png)
-
-2.  Select the **Dev One** environment.
-
-    ![image](https://github.com/user-attachments/assets/7a2b18ab-7d57-44f6-a6a4-2993d60bbcd8)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    ><img width="794" height="335" alt="image" src="https://github.com/user-attachments/assets/aa733c94-334a-4f69-88b4-59fbbe93bb08" />
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments** and select the value of the **Environment ID**.
-    ><img width="459" height="327" alt="image" src="https://github.com/user-attachments/assets/37585a91-e802-47d5-aaa1-37d7f96058a4" />
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+3.  从左侧窗格中选择 **+ Create** 以创建新代理。
 
-3.  Select **+ Create** from the left pane to create a new agent.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under **Start with an agent template**, select **Safe Travels**.
+4.  在 **Start with an agent template** 下，选择 **Safe Travels**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+5.  Safe Travels 模板创建一个新代理，旨在为公司员工提供差旅帮助。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+6.  浏览设置页面。在 **Knowledge** 下，您会发现 **US Travel Website**
+    已添加为 Knowledge
+    源。如果需要，可以对其进行编辑。在这里，我们使用的是同一个网站。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+7.  选择 **Create** 以创建 Safe Travels
+    代理。我们在这里没有更改任何内容，也没有使用模板。在任何时候，都可以根据用户要求升级代理。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+8.  **Agent 已创建**并自动打开，显示**Overview** 页面。![A screenshot of
+    a computer AI-generated content may be
+    incorrect.](./media/image8.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+9.  在 Test 窗格中，输入 +++How to apply for passport？+++，然后点击
+    **Send** 。
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and hit
-    **Send**.
+默认情况下，Test 窗格处于打开状态。如果没有，请单击右上角的 Test 图标。
 
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+10. 您可以看到，代理从其知识源提供了有关如何申请 passport 的信息。
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## 练习 2：将代理发布到 Teams 和 Microsoft 365 Copilot
 
-In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+1.  从 代理页面的右上角选择 **Publish**。
 
-1.  Open MS Teams from the VM and login using your tenant credentials.
-
-    <img width="415" height="357" alt="image" src="https://github.com/user-attachments/assets/ee03935d-da23-4c20-bb9d-2640c417f6ef" />
-
-1.  Back in the Copilot Studio, select **Publish** from the top right of the agent page.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Select **Publish** in the confirmation dialog.
+2.  在 确认对话框中选择 **Publish**。
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-3.  Select **Channels** from the top navigation bar.
+3.  选择 **Channels** 从顶部导航栏中。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-4.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+4.  从 可用通道列表中选择 **Teams 和 Microsoft 365 Copilot**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Select **Add channel**.
+5.  选择 **Add channel**。
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-6.  Click on the **See agent in Teams** option add the agent to the
-    Teams.
+6.  单击 **See agent in Teams** 选项，将代理添加到 Teams。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-7.  This opens up the agent in the Microsoft Teams. Select **Add** to
-    add the agent.
+7.  这将在 Microsoft Teams 中打开代理。选择 **Add** 以添加代理。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Once added, you will get an option to open the agent. Select
-    **Open**.
+8.  添加后，您将获得打开代理的选项。选择 **“Open**”。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Test the agent from Teams.
+9.  从 Teams 测试代理。
 
-    ![](./media/image20.png)
+![](./media/image20.png)
 
-10. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+10. 返回 Copilot Studio，关闭 Teams 和 Microsoft 365 Copilot 频道窗口。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
