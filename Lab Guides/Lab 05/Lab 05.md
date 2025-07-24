@@ -493,7 +493,7 @@ incorrect.](./media/image78.png)
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
 
-15. Select Publish and wait till the agent is published.
+15. Select **Publish** and wait till the agent is published.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
