@@ -116,8 +116,7 @@ incorrect.](./media/image13.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Enter +++Help the users in finding products and their prices, give
-    personalized suggestions and track order delivery.+++ and hit
+4.  Enter +++Help the users in finding products and their prices, give personalized suggestions and track order delivery.+++ and hit
     **Enter**.
 
     ![](./media/image15.png)
@@ -403,7 +402,7 @@ incorrect.](./media/image48.png)
 11. Scroll down and under **Advanced options**, there is a field named
     **Logical name**. Make a note of its value in a note pad.
 
-    >[!Alert] **Important:** Each filed will have an associated Logical name to it in
+    >[!Alert] **Important:** Each field will have an associated Logical name to it in
     Dataverse. And while using it in the Agent flow, you will have to
     specify only the logical names for all the fields.
     >
@@ -768,9 +767,7 @@ not already exist.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image102.png)
 
-14. Next to the variable node, add a **Message** node and enter +++We do
-    not have your details in our system. Please fill in your details
-    below to help us serve you better.+++
+14. Next to the variable node, add a **Message** node and enter +++We do not have your details in our system. Please fill in your details below to help us serve you better.+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image103.png)
@@ -877,8 +874,7 @@ incorrect.](./media/image112.png)
 incorrect.](./media/image113.png)
 
 27. After the action node, add a **Message node** and enter the value,
-    +++Thank You! Customer detail has been added to the database. Please
-    select a product type to shop.+++
+    +++Thank You! Customer detail has been added to the database. Please select a product type to shop.+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image114.png)
@@ -952,8 +948,8 @@ incorrect.](./media/image124.png)
 
     - **Table name –** Select **Product Record**
     
-    - Filter rows – +++cr6dd_producttitle eq '**<Product Name>**'+++
-      Replacing <Product Name> with the dynamic value ProductName.
+    - Filter rows – +++cr6dd_producttitle eq '**< Product Name >**'+++
+      Replacing < Product Name > with the dynamic value **ProductName**.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
 
@@ -1085,10 +1081,10 @@ incorrect.](./media/image142.png)
 
 15. Navigate back to the start of this topic. Under all other
     conditions, add a **Question** node. Add the message +++Based on
-    your recent purchase we suggest you products in \<Product Category\>
+    your recent purchase we suggest you products in < Product Category >
     category. Would you like to continue?+++
 
-    In the message replace **\<Product Category\>** with the **Global.ProductCategory** variable.
+    In the message replace **< Product Category >** with the **Global.ProductCategory** variable.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
 
@@ -1222,7 +1218,7 @@ incorrect.](./media/image160.png)
 
     - Customer Identifier - **Customer ID** (Dynamic value)
     
-    - Order identifier – Enter guid() in Insert expression
+    - Order identifier – Enter +++guid()+++ in Insert expression
     
     - Order Status - +++**Order Placed**+++
 
@@ -1258,8 +1254,7 @@ the Dataverse table.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image165.png)
 
-2.  Add a message node with the message +++Options based on the category
-    will be listed below.+++
+2.  Add a message node with the message +++Options based on the category will be listed below.+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image166.png)
@@ -1333,14 +1328,14 @@ incorrect.](./media/image176.png)
 incorrect.](./media/image177.png)
 
 15. Add a Message node below the Action and enter the below message.
-    Replace <ProductName> and <Price> with the corresponding variable
+    Replace < ProductName > and < Price > with the corresponding variable
     names
 
     Product Details
     
-    - Product Name - <ProductName>
+    - Product Name - < ProductName >
     
-    - Price - <Price>
+    - Price - < Price >
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image178.png)
