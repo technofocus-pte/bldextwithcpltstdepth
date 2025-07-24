@@ -1,85 +1,80 @@
-# Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
+# Lab 07 – 创建个性化的购物助手
 
-## Objective
+## 目标
 
-The objective of this lab is to create a personalized shopping agent for
-Contoso Electronics. This will use Dataverse tables as the knowledge
-source for the agent. It will suggest product categories to the customer
-based on their latest shopping and assist them throughout the shopping
-experience.
+本实验室的目标是为 Contoso Electronics 创建个性化购物代理。这将使用
+Dataverse
+表作为代理的知识源。它将根据买家的最新购物情况向他们推荐商品类别，并在整个购物体验中为他们提供帮助。
 
-## Exercise 1 – Create Dataverse tables
+## 练习 1 - 创建 Dataverse 表
 
-In this exercise, you will create tables in the Dataverse to store the
-**Customer**, **Product** and **Order** details.
+在本练习中，您将在 Dataverse 中创建表来存储 **Customer**、 **Product**
+和 **Order** 详细信息。
 
-1.  Login to +++https://make.powerapps.com+++ using your admin tenant
-    credentials and select Dev One as your environment. Select Tables
-    form the eft navigation pane.
+1.  登录 +++https://make.powerapps.com+++
+    使用您的管理员租户凭证，然后选择 Dev One 作为您的环境。从 eft
+    导航窗格中选择 表。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the drop down next to **+ New table** and select **Create new
-    tables** under it.
+2.  选择 **+ New table 旁边的下拉列表** ，然后选择 **其下的 Create new
+    tables**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Select **Import an Excel file or .csv** to create a new table.
+3.  选择 **Import an Excel file or .csv** 以创建新表。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under Export an Excel or .CSV file, select the **Select from
-    device** option.
+4.  在“导出 Excel”或“导出 .CSV 文件中，选择 **Select from device**
+    选项。
 
-    ![A screenshot of a file AI-generated content may be
+![A screenshot of a file AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
-    **Import** to import the data from the tracker and create the table.
+5.  从 **C：\Labfiles** 中，选择 excel – **Customers.xlsx**。选择
+    **Import** 以从跟踪器导入数据并创建表格。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  The table gets created with the data from the tracker.
+6.  该表是使用跟踪器中的数据创建的。
 
-7.  Here, that table name is **Customer Record**. The name might be
-    slightly different in your case since it is automatically generated.
-    Keep a note of it and use the appropriate Table name throughout the
-    lab execution.
+7.  此处，该表名称为 **Customer
+    Record**。在您的案例中，名称可能略有不同，因为它是自动生成的。记下它，并在整个实验室执行过程中使用适当的
+    Table name。
 
-8.  Click on the table, and then select **View data** to view the data
-    added to the table.
+8.  单击表，然后选择 **View data** 以查看添加到表中的数据。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-9.  Select **Save and exit**.
+9.  选择**Save and exit**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-10. Click on **Save and exit** in the confirmation dialog.
+10. 单击 确认对话框中的 **Save and exit。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-11. Repeat the steps from 2 to 10 twice, to create tables once using the
-    tracker **Product Catalog.xlsx** and the next time using
-    **Orders.xls**
+11. 重复 2 到 10 的步骤两次，一次使用跟踪链接 **Product Catalog.xlsx**
+    创建表格，下次使用 **Orders.xls**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-12. Now, we will have 3 tables,
+1.  现在，我们将有 3 张表，
 
     - Customer Record
 
@@ -87,1558 +82,1543 @@ incorrect.](./media/image11.png)
 
     - Orders
 
-## Exercise 2 – Create a Shopping agent
+## 联系2 – 创建 Shopping 代理
 
-In this exercise, you will create a Shopping agent which will assist
-customers while shopping in Contoso Electronics.
+在本练习中，您将创建一个 Shopping 代理，该代理将协助客户在 Contoso
+Electronics 中购物。
 
-### Task 1 – Create the agent
+### 任务 1 – 创建代理
 
-Create the agent in Copilot Studio by using Copilot. Chat with the
-Copilot and give it instructions on how the agent should be designed and
-how it should behave so that the Copilot will create the agent for you.
+使用 Copilot 在 Copilot Studio 中创建代理。与 Copilot
+聊天，并就代理的设计和行为提供说明，以便 Copilot 为您创建代理。
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com/+++ and select the **Dev
-    One** environment.
+1.  登录 Copilot Studio： +++https://copilotstudio.microsoft.com/+++
+    并选择 **Dev One** 环境。
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-2.  Select **Agents** and then click on **+ New agent**.
+2.  选择 **代理** ，然后单击 **+ 新建代理**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the below in the chat and send it.
+3.  在聊天中输入以下内容并发送。
 
-    +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
++++Create an agent that will assist the customers in shopping with
+Contoso Electronics. Name it as "Shopping agent".+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Enter +++Help the users in finding products and their prices, give
-    personalized suggestions and track order delivery.+++ and hit
-    **Enter**.
+4.  输入 +++Help the users in finding products and their prices, give
+    personalized suggestions and track order delivery.+++ 并按 **Enter
+    键**.
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-5.  Enter additional instructions as below.
+5.  输入以下附加说明。
 
-    +++Maintain a polite tone+++
++++Maintain a polite tone+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Click **Create** to create the **Shopping agent**.
+6.  点击 **Create** 以创建 **Shopping agent**.
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image17.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image17.png)
 
-7.  The agent gets set up. This might take a few minutes. Once the agent
-    is ready, it gets displayed in Copilot Studio as in the screenshot
-    below.
+7.  代理已设置完毕。这可能需要几分钟时间。代理准备就绪后，它将显示在
+    Copilot Studio 中，如下面的屏幕截图所示。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-### Task 2 – Add Knowledge
+### 任务 2 – 添加知识
 
-Adding knowledge to the agent makes it grounded to those knowledge
-resources enabling it to answer the user queries more effectively. In
-this task, you will add the Dataverse table created in the earlier
-exercise as a knowledge source to this agent.
+向代理添加知识使其以这些知识资源为基础，使其能够更有效地回答用户查询。在此任务中，您将把在前面的练习中创建的
+Dataverse 表作为知识源添加到此代理。
 
-1.  Enter +++What is the status of the order o1001?+++ in the Test pane.
+1.  输入 +++What is the status of the order o1001?+++ 在 Test （测试）
+    窗格中.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image19.png)
 
-2.  The response will be similar the one below since the agent does not
-    have any information on this.
+2.  响应将类似于下面的响应，因为代理没有任何相关信息。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image20.png)
 
-3.  Now, we will add knowledge source to the agent. From the **Home**
-    page of the agent, select **Add Knowledge** under the **Knowledge**
-    section.
+3.  现在，我们将向代理添加 knowledge source. 在 代理的主页上，选择
+    **Knowledge** 部分**下的** Add Knowledge.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-4.  Select **Dataverse** from the list of available options.
+4.  从 **可用选项列表中选择** Dataverse。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-5.  Search for +++order+++, select the **Order Record** table and click
-    **Next**.
+5.  搜索+++order+++, 选择 **Order Record** 表，然后单击 **Next**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-6.  Select **Add**.
+6.  选择 **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-7.  Wait for a few minutes after the knowledge source is added before
-    testing the agent again.
+7.  添加数据源后，请等待几分钟，然后再次测试代理。
 
-8.  Once the **Order Record** becomes **Ready** under the Knowledge
-    section, ask the same question in the Test pane.
+8.  一旦 **Order Record** 在 Knowledge 部分**下变为** Ready, 在 Test
+    （测试） 窗格中提出相同的问题。
 
-    You can now see that the agent retrieves the information from the
-database and provides it to the user.
+现在，您可以看到代理从数据库中检索信息并将其提供给用户。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-### Task 3 – Create Entities
+### 任务 3 – 创建实体
 
-1.  Select **Settings** from the Home screen of the agent.
+1.  从代理的 Home 屏幕**中选择** Settings 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-2.  Select **Entities** from the left pane. Select **Add an entity -\> +
-    New entity**
+2.  从 **左侧窗格中选择** Entities。选择 **Add an entity -\> + New
+    entity**
 
-    ![](./media/image27.png)
+![](./media/image27.png)
 
-3.  Select **Closed list**.
+3.  选择 **Closed list**.
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image28.png)
 
-4.  Enter the below details.
+4.  输入以下详细信息。
 
-    - Name - +++Laptop+++
-    
-    - Description - +++Contains products under Laptop category+++
-    
-    Under **List items**, enter +++Apple MacBook Air M3+++ and click on
-    **Add**.
+名称 - +++Laptop+++
 
-    ![A screenshot of a computer AI-generated content may be
+描述 - +++Contains products under Laptop category+++
+
+在 List items （列表项**） 下**，输入 +++Apple MacBook Air M3+++
+，然后单击 **Add**。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-5.  Similarly, add the below items and then select **Save**.
+5.  同样，添加以下项目，然后选择 **Save （保存**）。
 
-    +++Dell XPS 13 Plus+++
-    
-    +++HP Spectre x360 14+++
-    
-    +++Lenovo ThinkPad X1 Carbon Gen 12+++
-    
-    +++Asus ROG Zephyrus G14+++
++++Dell XPS 13 Plus+++
 
-    ![A screenshot of a computer AI-generated content may be
++++HP Spectre x360 14+++
+
++++Lenovo ThinkPad X1 Carbon Gen 12+++
+
++++Asus ROG Zephyrus G14+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-6.  Now, repeat steps 2 to 5 with the below data.
+6.  现在，对以下数据重复步骤 2 到 5。
 
-    - Name - +++Desktop+++
-    
-    - Description - +++Contains products under Desktop category+++
-    
-    Under **List items**, enter +++Apple iMac+++ and click on **Add**.
+Name - +++Desktop+++
 
-7.  Other items to be added in the list,
+Description - +++Contains products under Desktop category+++
 
-    +++Microsoft Surface Studio 2+++
-    
-    +++HP Envy Desktop+++
-    
-    +++Dell Inspiron Desktop+++
-    
-    +++Lenovo IdeaCentre AIO 5i+++
+Under **List items**, enter +++Apple iMac+++ and click on **Add**.
 
-8.  Again, repeat steps 2 to 5 with the below data.
+7.  要添加到列表中的其他项目，
 
-    - Name - +++Tablet+++
++++Microsoft Surface Studio 2+++
 
-    - Description - +++Contains products under Tablet category+++
++++HP Envy Desktop+++
 
-    Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
++++Dell Inspiron Desktop+++
 
-9.  Other items to be added in the list,
++++Lenovo IdeaCentre AIO 5i+++
 
-    +++Samsung Galaxy Tab S9 Ultra+++
-    
-    +++Microsoft Surface Pro 10+++
-    
-    +++Lenovo Tab P12 Pro+++
-    
-    +++Apple iPad Air+++
+8.  同样，对以下数据重复步骤 2 到 5。
 
-## Exercise 3 – Create Topics and agent flows and design the agent
+Name - +++Tablet+++
 
-Designing Topics is a very important part in creating an agent since it
-deals with the logic behind how the user’s questions are answered and
-how the flow of the details will be.
+Description - +++Contains products under Tablet category+++
 
-### Task 1 – Edit the Conversation Start topic
+Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
 
-The Conversation Start topic is the first topic to be invoked when
-testing the agent. It is a System Topic available by default in any
-agent that you create in the Copilot Studio. Now, you will edit this
-topic to continue the conversation from the greeting message from the
-agent.
+9.  要添加到列表中的其他项目，
 
-1.  From the **Overview** page of the agent, select the **Topics** tab
-    from the top menu bar. Select **System** to view the list of System
-    topics. Select the Conversation Start topic from the list.
++++Samsung Galaxy Tab S9 Ultra+++
 
-    ![A screenshot of a computer AI-generated content may be
++++Microsoft Surface Pro 10+++
+
++++Lenovo Tab P12 Pro+++
+
++++Apple iPad Air+++
+
+## 联系 3 – 创建 Topic 和代理流程并设计代理
+
+设计主题是创建代理中非常重要的部分，因为它处理如何回答用户问题背后的逻辑以及细节的流程将如何。
+
+### 任务 1 – 编辑对话开始主题
+
+Conversation Start
+主题是测试代理时要调用的第一个主题。默认情况下，它是您在 Copilot Studio
+中创建的任何代理中可用的系统主题。现在，您将编辑此主题以继续来自代理的问候消息的对话。
+
+1.  在 代理的 Overview 页面中，从 顶部菜单栏中选择 Topics 选项卡。选择
+    **System** 以查看 System 主题列表。从列表中选择 Conversation Start
+    主题。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-2.  After the existing Message node, add a **Question node**.
+2.  在现有 Message 节点后，添加 **Question 节点**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Enter the below message,
+3.  输入以下消息，
 
-    +++Welcome to Contoso Electronics. Please enter your **Phone number** to proceed.+++ in the message     area and select **User’s entire response** under **Identity**. Click on the **Var1** under **Save user response as** field.
++++Welcome to Contoso Electronics. Please enter your **Phone number** to
+proceed.+++ ，然后在 **Identity** 下选择 **User's entire response**
+。单击 **Save user response as** field **下的** Var1。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image33.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image33.png)
 
-4.  Rename **Var 1** to +++MobileNumber+++ and select **Global** to use
-    it across topics and then select **Save**.
+4.  重命名 **Var 1** 到 +++MobileNumber+++ 并选择 **Global （全局** ）
+    以跨主题使用它，然后选择 **Save （保存**）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-### Task 2 – Create a topic to handle the Customer details
+### 任务 2 – 创建主题以处理 Customer details
 
-1.  From the Overview page of the agent, select the Topics tab from the
-    top menu bar. Select the drop down next to **Add a topic -\> From
-    blank**.
+1.  在代理的 Overview （概述） 页面中，从顶部菜单栏中选择 Topics
+    （主题） 选项卡。选择旁边的下拉列表 **Add a topic -\> From blank**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-2.  Name the agent as +++Customer Details+++.
+2.  将代理命名为 +++Customer Details+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-3.  Select **Change trigger** and select **It’s redirected to** as the
-    trigger.
+3.  选择 **Change trigger** 并选择 **It’s redirected to** 作为触发器。
 
-    ![Screens screenshot of a computer AI-generated content may be
+![Screens screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-4.  Select **Save** to save the topic.
+4.  选择 **Save** 以保存主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-### Task 3 – Create an Agent flow to get the details of the customer
+### 任务 3 – 创建 Agent 流以获取客户的详细信息
 
-In this task, you will create an Agent flow, to which you will pass the
-Phone number entered by the customer as input and design the flow to
-check if the user exists or not and retrieve the information and return
-the details to the agent.
+在此任务中，您将创建一个代理流程，将客户输入的电话号码作为输入传递给该流程，并设计流程以检查用户是否存在，并检索信息并将详细信息返回给代理。
 
-1.  Below the Trigger node, add a node, select **Add a tool** -\> **New
-    Agent flow**.
+1.  在 Trigger 节点下，添加一个节点，选择 **Add a tool** -\> **New Agent
+    flow**.
 
-    ![](./media/image39.png)
+![](./media/image39.png)
 
-2.  The Agent flow designer opens up. Select **Save draft** to save the
-    flow.
+2.  代理流程设计器随即打开。选择 **Save draft** 以保存流。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-3.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++GetCustomer+++. Then select **Save**.
+3.  选择 **Overview** 从顶部菜单中，单击 **Edit （编辑** ）
+    并输入流的名称 +++GetCustomer+++. 然后选择 **Save**. ![A screenshot
+    of a computer AI-generated content may be
+    incorrect.](./media/image41.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
+4.  再次导航到 **Designer （设计器**） 选项卡以设计流程。选择节点
+    **当代理调用流时**，然后选择 **+ Add an input**.
 
-5.  Navigate to the **Designer** tab again to design the flow. Select
-    the node **When an agent calls the flow** and then select **+ Add an
-    input**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-5.  Select **Text**.
+5.  选择 **Text**.
 
-    ![](./media/image43.png)
+![](./media/image43.png)
 
-6.  Enter the input as +++Phone number+++ and then collapse the
-    **Parameters** tab.
+6.  将输入为 +++Phone number+++，然后折叠 **Parameters** 选项卡。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-7.  Click on **Add an action** between the 2 nodes in the flow. Search
-    for +++List rows+++ and select the **List rows** action under
-    **Microsoft Dataverse**.
+7.  单击 **Add an action** between the 2 nodes in the flow.搜索 +++List
+    rows+++ ，然后选择 **Microsoft Dataverse** 下的 列出行**作**。
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image45.png)
 
-8.  Enter the connection name as +++**Dataverse**+++ and click **Sign
-    in**.
+8.  将连接名称输入为 +++Dataverse+++，然后单击 **登录**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-9.  **Sign in** using your admin tenant credentials and click on **Allow
-    access** if prompted.
+9.  使用您的管理员租户凭据**登录**，并在 **出现提示时单击** Allow access
+    。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-10. Navigate to PowerApps at +++https://make.powerapps.com/+++ and open
-    the **Customer Record** table. Click on the drop down next to the
-    **Mobile number** field and select **Edit column**.
+10. 导航到 PowerApps，网址为 +++https://make.powerapps.com/+++ 并打开
+    **Customer Record** 表。单击 **Mobile number**
+    字段旁边的下拉列表，然后选择 **Edit column**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-11. Scroll down and under **Advanced options**, there is a field named
-    **Logical name**. Make a note of its value in a note pad.
+11. 向下滚动和下方 **Advanced options**, 有一个名为 **Logical name**
+    的字段。在记事本中记下它的值。
 
-    >[!Alert] **Important:** Each filed will have an associated Logical name to it in
-    Dataverse. And while using it in the Agent flow, you will have to
-    specify only the logical names for all the fields.
-    >
-    > ![A screenshot of a computer AI-generated content may be
+**重要:** 每个字段在 Dataverse 中都有一个关联的逻辑名称。在 Agent
+流中使用它时，您只需为所有字段指定逻辑名称。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-12. In this case, for Phone number, it is **cr6dd_mobilecontact**. Make
-    a note of it
+12. 在这种情况下，对于 Phone number （电话号码），它是
+    **cr6dd_mobilecontact**。记下它
 
-13. Navigate back to the Copilot Studio – Agent flow tab. Open the
-    Getcustomer flow and select the **List rows** action.
+13. 导航回 Copilot Studio – 代理流程选项卡。打开 Getcustomer
+    流程，然后选择列出 **行** 作。
 
-14. Under Filter rows, enter **<Logical name of Mobile number> eq ''**. Replace **<Logical name>** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+14. 在 Filter rows （筛选行） 下，输入 **\<Logical name of Mobile
+    number\> eq ' '**.将 **\<Logical name\>**
+    替换为您在前面的步骤中检索到的值。将光标保留在引号内，并添加 Phone
+    number – dynamic 变量。
 
-    In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
+在这种情况下，它将cr6dd_mobilecontact **eq 'Phone number'**
 
-    ![](./media/image50.png)
+![](./media/image50.png)
 
-    ![](./media/image51.png)
+![](./media/image51.png)
 
-15. Below the List rows node, add a **Condition** node.
+15. 在 List rows 节点下，添加 **Condition** 节点。
 
-    ![](./media/image52.png)
+![](./media/image52.png)
 
-16. Enter **/** and select **Insert expression**.
+16. 输入 **/** 并选择 **Insert expression**。
 
-    ![](./media/image53.png)
+![](./media/image53.png)
 
-17. Enter +++length(outputs('List_rows')?\['body'\]?\['value'\])+++ in
-    the function and select **Add**. This will check if the List rows
-    returns a value or not.
+17. 输入+++length(outputs('List_rows')?\['body'\]?\['value'\])+++
+    ，然后选择 **Add**.这将检查 List rows 是否返回值。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-18. Click on **Add an action** under the **True** branch of the
-    condition added and add a new **Condition** node.
+18. 点击 **Add an action** 在 添加的条件的 True 分支下，然后添加新的
+    **Condition** 节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
-    cr6dd_lastpurchasedproduct '\]))+++ in the function area of the
-    condition.
+19. 输入 +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
+    cr6dd_lastpurchasedproduct '\]))+++ 在 Condition 的 function area
+    中。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-    >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
-    >
-    > ![](./media/image58.png)
+> **重要** – 确保将 **cr6dd_lastpurchasedproduct** 替换为 **Customer
+> Record** 表中**的 Recent Products Purchased** 字段 **的**逻辑名称
+>
+> ![](./media/image58.png)
 
-20. Set the condition as **is equal to true**
+20. 将条件设置为 **等于 true**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-21. Add a new action below the **True** path of **Condition1** and
-    select the **Respond to the agent** node.
+21. 在 Condition1 的 **True** 路径**下添加新作** ，然后选择 **Respond to
+    the agent** 节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image60.png)
 
-22. Select the added **Respond to the agent node** and rename it to
-    +++If the customer has made a previous purchase+++ and select **+ Add an output**.
+22. 选择添加的 **Respond to the agent （响应代理） 节点** 并将其重命名为
+    +++If the customer has made a previous purchase+++ 并选择 **+ Add an
+    output**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image61.png)
 
-23. Select **Text**.
+23. 选择 **Text**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-24. Enter +++Customer ID+++ as the name and click on **Insert
-    expression**.
+24. 进入 +++Customer ID+++ 作为名称，然后单击 **Insert expression**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-25. Enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
-    Customer ID of the Customer Record table. **Replace** it with your
-    value.
+25. 输入
+    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+    +++ **cr6dd_customeridentifier** 是 Customer Record 表的 Customer ID
+    的逻辑名称。 **将其替换为**您的值。
 
-26. Select **Add**.
+26. 选择 **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-27. Similarly, add the below output variables and expressions to each
-    one of it. For each variable, make sure to replace the logical name
-    with yours.
+27. 同样，将以下输出变量和表达式添加到每个变量中。对于每个变量，请确保将逻辑名称替换为您的变量。
 
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
+- +++Customer Name+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image65.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image66.png)
+- +++Product Category+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
 
-28. The **Respond to the agent** node will have 3 output variables as in
-    the screenshot below.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image66.png)
+
+28. **Respond to the agent （响应代理）** 节点将具有 3
+    个输出变量，如下面的屏幕截图所示。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-29. Add a Respond to the agent node under the **False** path of the
-    **Condition1** node. Rename it to +++If the customer has not made a
-    previous purchase+++. Click on **+ Add an output**.
+29. 在 Condition1 **节点的** False **路径**下添加 Respond to agent
+    节点。将其重命名为 +++If the customer has not made a previous
+    purchase+++. 点击 **+ Add an output**.
 
-    ![](./media/image68.png)
+![](./media/image68.png)
 
-30. Enter the below output variables replacing the column logical names
-    with your logical names for the corresponding columns.
+30. 输入以下输出变量，将列逻辑名称替换为相应列的逻辑名称。
 
-    - +++Customer ID+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++
-    
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+  +++
 
-31. The **Respond to the agent** node under the **False** path will look
-    like the one in the screenshot below.
+- +++Customer Name+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
+- +++Product Category+++ - +++’1’+++
+
+31. False **路径下的 Respond to the agent** 节点
+    将类似于下面屏幕截图中的节点。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-32. Now, add a **Respond to the agent** node under the **False** path of
-    the Condition node, rename it to +++If the customer does not
-    exist+++ and add outputs to it as below.
+32. 现在，在 Condition 节点的 **False 路径下添加一个** Respond to the
+    agent **节点** ，将其重命名为 +++If the customer does not exist+++
+    and add outputs to it as below.
 
-    - +++Customer ID+++ - +++’1’+++
-    
-    - +++Customer Name+++ - +++’1’+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ - +++’1’+++
 
-    ![](./media/image70.png)
+- +++Customer Name+++ - +++’1’+++
 
-33. The **GetCustomer** flow will look like the one in the screenshot
-    below.
+- +++Product Category+++ - +++’1’+++
 
-    ![](./media/image71.png)
+![](./media/image70.png)
 
-34. Right click on the **Respond to the agent** that is there as a
-    common one at the end of the flow and select **Delete** to delete
-    it.
+33. **GetCustomer** 流将类似于下面屏幕截图中的流。
 
-    ![A screenshot of a computer AI-generated content may be
+![](./media/image71.png)
+
+34. 右键单击 **流末尾作为常见**代理的 Respond to the agent
+    （响应代理），然后选择 **Delete （删除**） 将其删除。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-35. Select **Save Draft** to save the lab. Once saved, click on
-    **Publish** to publish the flow.
+35. 选择 **Save Draft** 以保存实验室。保存后，单击 **Publish （发布** ）
+    以发布流程。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-### Task 4 – Create Agent flow to add customer
+### 任务 4 – 创建代理流程以添加客户
 
-In this task, you will create an Agent flow to add a new customer into
-the Dataverse when the customer is a new customer.
+在此任务中，您将创建一个代理流，以便在客户是新客户时将新客户添加到
+Dataverse 中。
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  从 **Agent flows** 选项卡中，选择 **+ New agent flow。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-2.  Select **Add a trigger** node and replace it with **When an agent
-    calls the flow** node.
+2.  选择 **Add a trigger node** 并将其替换为 **When an agent calls the
+    flow** 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image76.png)
 
-3.  Select **+ Add an input** and add a **Text** input.
+3.  选择 **+ Add an input** 并添加 **Text** input。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
 
-4.  Enter +++Name+++ as the input name.
+4.  输入 +++Name+++ 作为输入名称。
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image78.png)
 
-5.  Similarly, add the following input values.
+5.  同样，添加以下输入值。
 
-    +++Phone Number+++
-    
-    +++Email ID+++
-    
-    +++Address+++
++++Phone Number+++
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image79.png)
++++Email ID+++
 
-6.  Add an action below the node and select **Add a new row**.
++++Address+++
 
-    ![A screenshot of a computer AI-generated content may be
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image79.png)
+
+6.  在节点下方添加作，然后选择 **Add a new row**.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-7.  Select the Table Name as **Customer Record** and then select **Show
-    all** in Advanced parameters.
+7.  选择 Table Name（表名称）作为 **Customer
+    Record（客户记录**），然后在 **Advanced
+    parameters（高级参数）中选择** Show all（全部显示）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-8.  Click in the **Address** field, select the **Dynamic value** and
-    then select the **Address** dynamic value.
+8.  单击 **Address** 字段，选择 **Dynamic 值** ，然后选择 **Address**
+    动态值。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image83.png)
 
-9.  Similarly, add the dynamic values for
+9.  同样，添加
 
-    - Customer Name – Name
-    
-    - Email ID – Email ID
-    
-    - Mobile Number - Phone Number
+- 客户名称 – Name
 
-    ![A screenshot of a computer AI-generated content may be
+- Email ID – Email ID
+
+- 手机号码 - Phone Number
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-10. Ewqewqewq Open the insert expression for **Customer ID**, enter
-    +++guid()+++ and select **Add**. This is to add a unique value as
-    the ID for the customer.
+10. 打开 Customer ID **的 insert 表达式**，输入 +++guid()+++ ，然后选择
+    **Add**。这是为了添加唯一值作为客户的 ID。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-11. Add a new action and select **Respond to the agent**.
+11. 添加新作，然后选择 **Respond to the agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-12. Add a output value named +++Customer ID+++ and insert an expression
-    and enter
+12. 添加名为 +++Customer ID+++ 并插入表达式并输入
     +++string(outputs('Add_a_new_row')?\['body/cr6dd_customeridentifier'\])+++
     as the value.
 
-    Replace **cr6dd_customeridentifier** with your logical name for the
-column **Customer ID**.
+将 **cr6dd_customeridentifier 替换为列 Customer ID 的逻辑名称**。
 
-    Select **Add**.
+选择 **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image87.png)
 
-13. Select **Save draft** to save the flow.
+13. 选择 **Save draft** 以保存流。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image88.png)
 
-14. Once the flow is saved, select **Publish** to publish the flow.
+14. 保存流程后，选择 **Publish （发布** ） 以发布流程。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image89.png)
 
-15. Select **Overview** tab. **Click on Edit.** Enter the name of the
-    flow as +++Add Customer+++ and then select **Save**.
+15. 选择 **Overview** tab. **点击 Edit.** 将流的名称输入为 +++Add
+    Customer+++ ，然后选择 **Save** 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-### Task 5 – Add the flow and design the Customer Details topic
+### 任务 5 – 添加流程并设计 Customer Details 主题
 
-In this task, you will design the Customer Details topic which will get
-the phone number of the customer, check if the detail is already present
-in the Dataverse and add it if not already present.
+在此任务中，您将设计客户详细信息主题，该主题将获取客户的电话号码，检查
+Dataverse 中是否已存在详细信息，如果尚不存在，则添加详细信息。
 
-1.  Navigate back to the **Customer Details** topic.
+1.  导航回 **Customer Details** 主题。
 
-2.  Add a node under the Trigger node, select **Add a tool -\>
-    GetCustomer**.
+2.  在 Trigger 节点下添加节点，选择 **Add a tool -\> GetCustomer**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image91.png)
 
-3.  In the Inputs, select the variable **MobileNumber**.
+3.  在 Inputs （输入） 中，选择变量 **MobileNumber**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image92.png)
 
-4.  Select the **output** variables and mark the Customer ID and
-    ProductCategory as **Global** as in the screenshot below.
+4.  选择 **输出** 变量，并将 Customer ID 和 ProductCategory 标记为
+    **Global** ，如下面的屏幕截图所示。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image93.png)
 
-5.  Below the **Action** node, add a **condition** node.
+5.  在 **Action （作** ） 节点下，添加一个 **condition** （条件） 节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image94.png)
 
-6.  Select **CustomerID** in **Select a variable**.
+6.  选择 **CustomerID** in **Select a variable**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image95.png)
 
-7.  Select the condition as **is not equal to** and enter +++'1'+++ in
-    the **Value** field. This checks if the customer detail is already
-    existing in the database.
+7.  选择条件 as **不等于** 并输入 +++ '1'+++ 在 **Value**
+    字段中。这将检查数据库中是否已存在客户详细信息。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image96.png)
 
-8.  Under the condition node, add a **Set a variable** node.
+8.  在 condition 节点下，添加 **Set a variable** 节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image97.png)
 
-9.  Click on **Select a variable** and select **Create a new variable**.
+9.  单击 **Select a variable** ，然后选择 **Create a new variable**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image98.png)
 
-10. Name the variable as +++IsNewCustomer+++ and mark it as **Global**.
+10. 将变量命名为 +++IsNewCustomer+++ 并将其标记为 **Global**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image99.png)
 
-11. Set the value as +++‘No’+++. This means that the customer is an old
-    customer whose data is already present in the Dataverse.
+11. 将值设置为 +++‘No’+++. 这意味着客户是其数据已存在于 Dataverse
+    中的老客户。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image100.png)
 
-12. You will add a new node next to the variable node and give a Welcome
-    message to the customer.
+12. 您将在变量节点旁边添加一个新节点，并向客户提供 Welcome 消息。
 
-13. Select Add a node and select **Send a message** node. In the message
-    area, type +++Welcome+++ and then click on the {x} icon to select
-    the variable. Select the **Customer Name** variable.
+13. 选择 Add a node ，然后选择 **Send a message** node
+    。在消息区域中，键入 +++Welcome+++ 然后单击 {x} 图标以选择变量。选择
+    **Customer Name** 变量。
 
-    ![](./media/image101.png)
+![](./media/image101.png)
 
-    Now, we have invoked the Agent flow **GetCustomer**, checked if the
-customer record already exist and if yes, Added a Welcome message to the
-customer.
+现在，我们已经调用了代理流程
+**GetCustomer**，检查客户记录是否已经存在，如果是，则向客户添加了欢迎消息。
 
-    Now, we will design the part of the topic if the customer record does
-not already exist.
+现在，如果客户记录尚不存在，我们将设计主题的部分。
 
-13. Under the **All other conditions** node, add a Set a variable node
-    and set the value for **isNewCustomer** variable as +++’Yes’+++.
+14. 在 **All other conditions** 节点下，添加 Set a variable 节点，并将
+    **isNewCustomer** 变量的值设置为 +++’Yes’+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image102.png)
 
-14. Next to the variable node, add a **Message** node and enter +++We do
-    not have your details in our system. Please fill in your details
-    below to help us serve you better.+++
+15. 在变量节点旁边，添加 **Message** 节点并输入 +++We do not have your
+    details in our system. Please fill in your details below to help us
+    serve you better.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image103.png)
 
-15. Next to the Message node, add an **Ask with adaptive card** node.
+16. 在 Message 节点旁边，添加 **Ask with adaptive card** 节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image104.png)
 
-16. Click on the 3 dots on the top right of the screen and select
-    **Properties**.
+17. 单击屏幕右上角的 3 个点，然后选择 **Properties（属性**）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image105.png)
 
-17. Select **Edit adaptive card**.
+18. 选择 **“编辑自适应卡**”。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image106.png)
 
-18. Enter the below **JSON** in the **Card payload editor** area. Select **Save**.
-    
-    ```
-    {
-        "type": "AdaptiveCard",
-        "body": [
-            {
-                "type": "TextBlock",
-                "size": "Medium",
-                "weight": "Bolder",
-                "text": "Please enter your details"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Name",
-                "label": "Name"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Mobile Number",
-                "label": "Mobile Number"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Email ID",
-                "label": "Email ID"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Address",
-                "label": "Address"
-            }
-        ],
-        "actions": [
-            {
-                "type": "Action.Submit",
-                "title": "Submit"
-            }
-        ],
-        "version": "1.5",
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
-    }
-    ```
+19. 在 **Card payload editor** 区域中输入以下 **JSON**。选择 **Save
+    （保存**）。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image107.png)
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "body": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "size": "Medium",
+>
+> "weight": "Bolder",
+>
+> "text": "Please enter your details"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Name",
+>
+> "label": "Name"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Mobile Number",
+>
+> "label": "Mobile Number"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Email ID",
+>
+> "label": "Email ID"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Address",
+>
+> "label": "Address"
+>
+> }
+>
+> \],
+>
+> "actions": \[
+>
+> {
+>
+> "type": "Action.Submit",
+>
+> "title": "Submit"
+>
+> }
+>
+> \],
+>
+> "version": "1.5",
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
+>
+> }
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image107.png)
 
-20. Select **Close** to close the editor.
+20. 选择 **Close** 关闭编辑器。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image108.png)
 
-20. Expand the Outputs section of the created Adaptive card node, select
-    the Mobile Number value and select the Global.MobileNumber variable
-    to save the user entered Phone number value in it.
+21. 展开创建的自适应卡片节点的 Outputs 部分，选择 Mobile Number
+    值，然后选择 Global.MobileNumber 变量以保存用户输入的电话号码值。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image109.png)
 
-21. Leave the other values to the default ones.
+22. 将其他值保留为默认值。
 
-22. The Adaptive card is ready with the form to get the customer
-    details.
+23. 自适应卡已准备好表单以获取客户详细信息。
 
-23. Next to the Adaptive card node, invoke the flow **Add Customer.**
+24. 在 自适应卡 节点旁边，调用流 **添加客户.**
 
-    ![](./media/image110.png)
+![](./media/image110.png)
 
-24. Click on the **three dots** in the **Enter or select a value** and
-    select **CustomerName** variable.
+25. 单击 Enter **中的**三个点**，或选择一个值**，然后选择
+    **CustomerName** 变量。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image111.png)
 
-25. Similarly, add the input variables for the other fields to be passed
-    to the flow.
+26. 同样，为要传递给流的其他字段添加输入变量。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image112.png)
 
-26. Select **Global.CustomerID** as the output variable to which the
-    output from the flow will be saved.
+27. 选择 **Global.CustomerID** 作为输出变量，流的输出将保存到该变量。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image113.png)
 
-27. After the action node, add a **Message node** and enter the value,
-    +++Thank You! Customer detail has been added to the database. Please
-    select a product type to shop.+++
+28. 在 action 节点后，添加 **Message 节点** 并输入值, +++Thank You!
+    Customer detail has been added to the database. Please select a
+    product type to shop.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image114.png)
 
-28. **Save** the topic.
+29. **保存** 主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image115.png)
 
-29. Open the Conversation Start topic and invoke the Customer Details
-    topic from there.
+30. 打开 Conversation Start 主题，然后从那里调用 Customer Details 主题。
 
-30. Add a node after the Question node in the topic. Select **Topic
-    management -> Go to another topic**.
+31. 在主题中的 Question 节点后添加一个节点。选择 **Topic management -\>
+    Go to another topic（主题管理转到其他主题**）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image116.png)
 
-31. Select the **Customer Details** topic.
+32. 选择 **Customer Details** 主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image117.png)
 
-32. Select **Save** to save the topic.
+33. 选择 **Save （保存**） 以保存主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image118.png)
 
-### Task 6 – Create an agent flow to get the product details
+### 任务 6 – 创建代理流程以获取产品详细信息
 
-In this task, you will create an agent flow which will fetch the Product
-details from the Dataverse based on the selected product.
+在此任务中，您将创建一个代理流，该流将根据所选产品从 Dataverse
+获取产品详细信息。
 
-1.  Select the **Flows** tab from the Copilot Studio and select **+ New
-    agent flow**.
+1.  从 Copilot Studio **中选择** 流 选项卡，然后选择 **+ 新建代理流**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image119.png)
 
-2.  Select the trigger node and select **When an agent calls the flow**
-    action.
+2.  选择触发器节点，然后选择 **When an agent calls the flow** 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image120.png)
 
-3.  Add a Text input and name it as +++Product Name+++
+3.  添加 Text input 并将其命名为 +++Product Name+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image121.png)
 
-4.  Select **Save draft** to save the flow.
+4.  选择 **Save draft （保存草稿** ） 以保存流程。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image122.png)
 
-5.  Select the **Overview** tab and click on **Edit**. Enter the name as
-    +++GetProductDetails+++ and select **Save**.
+5.  选择 **Overview** 选项卡，然后单击 **Edit**。将名称输入为
+    +++GetProductDetails+++ ，然后选择 **Save （保存**）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image123.png)
 
-6.  Navigate back to the **Designer** tab and select **Add an action**
-    below the **When an agent calls the flow** node. Search for +++list
-    rows+++ and select the **List rows** action under **Microsoft
-    Dataverse**.
+6.  导航回 **Designer** 选项卡，然后选择 **When an agent calls the
+    flow** 节点下的 **Add an action**。搜索 +++list rows+++ ，然后选择
+    **Microsoft Dataverse** 下的 列出行**作**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image124.png)
 
-7.  Enter the below values
+7.  输入以下值
 
-    - **Table name –** Select **Product Record**
-    
-    - Filter rows – +++cr6dd_producttitle eq '**<Product Name>**'+++
-      Replacing <Product Name> with the dynamic value ProductName.
+- **表名称 –** 选择 **产品记录**
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
+筛选行 – +++cr6dd_producttitle eq '**\<Product Name\>**'+++ 将 \<Product
+Name\> 替换为动态值 ProductName。
 
-8.  Add a **Respond to the agent** node under the **List rows** node.
-    Select **+ Add an output** and add a text output variable. Enter the
-    below values and click Add in **insert expression.**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image125.png)
 
-    - Enter a name – Enter +++Product Name+++
+1.  在 List rows **节点下添加** Respond to the agent **节点** 。选择 **+
+    Add an output** 并添加 Text Output 变量。输入以下值，然后单击 Add in
+    **insert expression。**
 
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_producttitle'\]+++
-      (Replace **cr6dd_producttitle** with the logical name of tha
-      column Product Name in your table.
+- 输入名称 – Enter +++Product Name+++
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image126.png)
+> 表达 -
+> +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_producttitle'\]+++
+> (将 **cr6dd_producttitle** 替换为表中 tha 列 Product Name 的逻辑名称。
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image126.png)
 
-9.  Similarly, add another output node with the below details
+2.  同样，添加另一个具有以下详细信息的输出节点
 
-    - Enter a name – Enter +++Price+++
-    
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
-      Replace **cr6dd_productprice** with the logical name of the column
-      **Price** in your table
+- 输入名称 – Enter +++Price+++
 
-    The node should now look like this.
+- 表达 -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
+  Replace **cr6dd_productprice** with the logical name of the column
+  **Price** in your table
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image127.png)
+> 节点现在应如下所示。
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image127.png)
 
-10. Select **Save draft** to save the topic and then **Publish** to
-    Publish the flow.
+1.  选择 **Save draft （保存草稿**） 以保存主题，然后选择 **Publish
+    （发布**） 以发布流程。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image128.png)
 
-### Task 7 – Create a topic to retrieve the Product category from the customer
+### 任务 7 – 创建主题以从客户处检索 Product category
 
-1.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
+1.  从 Copilot Studio 主题选项卡中，选择 **+ Add a topic -\> From
     blank**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image129.png)
 
-2.  Rename the topic to +++Place Order+++. Change the trigger of the
-    trigger node to **It’s redirected to**.
+2.  将主题重命名为 +++Place Order+++. 将触发器节点的触发器更改为 **It's
+    redirected to**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image130.png)
 
-3.  **Save** the topic.
+3.  **保存** 主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image131.png)
 
-4.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
+4.  从 Copilot Studio 主题选项卡中，选择 **+ Add a topic -\> From
     blank**.
 
-    ![](./media/image129.png)
+![](./media/image129.png)
 
-5.  Rename the topic as +++Get Product Categories+++. Select the
-    **Change trigger** option in the **Trigger** node and select **It’s
-    redirect to** option.
+5.  将主题重命名为 +++Get Product Categories+++. 在 **Trigger
+    节点中选择** Change trigger **选项** ，然后选择 **It's redirect to**
+    选项。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image132.png)
 
-6.  Below the **Trigger** node, add a **Condition** node.
+6.  在 **Trigger** 节点下，添加 **Condition** 节点。
 
-    Select the Global variable **IsNewCustomer** and add the condition, **IsNewCustomer** **is equal to** +++**'Yes'**+++.
+选择全局变量 **IsNewCustomer** 并添加条件 **IsNewCustomer** **is equal
+to** +++**'Yes'**+++.
 
-    Select **+ New condition.**
+选择 **+ New condition.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image133.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image134.png)
 
-7.  Select **Or**.
+7.  选择 **Or**.
 
-    Under the Or condition, select the Global variable **ProductCategory**
-add the condition, is equal to +++'1'+++
+在 Or 条件下，选择全局变量 **ProductCategory** 添加条件，等于 +++'1'+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image135.png)
 
-    ![](./media/image136.png)
+![](./media/image136.png)
 
-8.  Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+8.  在 Condition 节点下，添加一个 question 节点并输入 +++Select a
+    category+++ 并选择 **+ 新建选项**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-9.  Enter the option +++Laptop+++ and select + New option again.
+9.  输入选项 +++Laptop+++ ，然后再次选择 + 新建选项。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-10. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++. Select the variable under **Save user response
-    as**, and name the variable as +++**ProdCatchoice**+++
+10. 同样，添加两个其他选项 +++**Desktop**+++ and +++**Tablet**+++. 在
+    Save user response as （将用户响应另存为**）
+    下选择变量**，并将变量命名为 +++**ProdCatchoice**+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image139.png)
 
-11. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+11. 在 question 节点下，添加 **Set a variable value** 节点，以将从
+    question 节点收到的选择转换为 String （字符串）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-12. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression
-    +++Text(Topic.ProdCatchoice)+++ and select **Insert**.
+12. 在 Set variable （设置变量） 下选择全局变量 **ProductCategory**。在
+    **To value** 字段中，单击 3 个点，选择 **Formula**
+    选项卡。输入表达式 +++Text(Topic.ProdCatchoice)+++ and select
+    **Insert**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image141.png)
 
-13. Below the Set variable value node, add a new node, **Topic
-    management** -> **Go to another topic** -\> **Place Order**.
+13. 在 Set variable value 节点下，添加新节点 **Topic management** -\>
+    **Go to another topic** -\> **Place Order**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-14. Now, one path is fully complete. It will get the category from the
-    user and invoke the Place Order topic.
+14. 现在，一条路径已完全完成。它将从用户那里获取类别并调用 Place Order
+    主题。
 
-15. Navigate back to the start of this topic. Under all other
-    conditions, add a **Question** node. Add the message +++Based on
-    your recent purchase we suggest you products in \<Product Category\>
-    category. Would you like to continue?+++
+15. 导航回本主题的开头。在所有其他条件下，添加 **Question （问题** ）
+    节点。添加消息 +++Based on your recent purchase we suggest you
+    products in \<Product Category\> category. Would you like to
+    continue?+++
 
-    In the message replace **\<Product Category\>** with the **Global.ProductCategory** variable.
+在消息中，将 **\<Product Category\>** 替换为 **Global.ProductCategory**
+变量。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image143.png)
 
-16. Add 2 options, +++Yes+++ and +++No+++. Click on the variable under
-    Save user response as and rename it to +++Userschoiceofcategory+++
+16. 添加 2 个选项, +++Yes+++ and +++No+++. 单击将用户响应另存为 （Save
+    user response as） 下的变量，并将其重命名为
+    +++Userschoiceofcategory+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image144.png)
 
-17. Under the **question** node, add a **condition** node.
+17. 在 **question** 节点下，添加 **condition** 节点。
 
-    Set the first condition as **Userschoiceofcategory is equal to Yes**.
+将第一个条件设置为 **Userschoiceofcategory is equal to Yes**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image145.png)
 
-36. Under this node, add a **Topic management node** and invoke the
-    **Place Order** topic.
+18. 在此节点下，添加 **Topic management 节点** 并调用 **Place Order**
+    主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image146.png)
 
-18. In the condition node, select the three dots in the top right corner
-    of the condition node and select **Insert new condition**.
+19. 在 condition 节点中，选择 condition 节点右上角的三个点，然后选择
+    **Insert new condition** 。
 
-    ![](./media/image147.png)
+![](./media/image147.png)
 
-19. Add a condition, **Userschoiceofcategory is equal to No**.
+20. 添加条件, **Userschoiceofcategory is equal to No**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image148.png)
 
-20. Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+21. 在 Condition 节点下，添加一个 question 节点并输入 +++Select a
+    category+++ 并选择 **+ 新建选项**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-21. Enter the option +++Laptop+++ and select + New option again.
+22. 输入选项 +++Laptop+++ and select + 又是新选项。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-22. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++.
+23. 同样，添加两个其他选项 +++**Desktop**+++ and +++**Tablet**+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image149.png)
 
-23. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+24. 在 question 节点下，添加 **Set a variable value** 节点，以将从
+    question 节点收到的选择转换为 String （字符串）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-24. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression +++Text(Topic.Var1)+++ and
-    select **Insert**.
+25. 在 Set variable （设置变量） 下选择全局变量 **ProductCategory**。在
+    **To value** 字段中，单击 3 个点，选择 **Formula**
+    选项卡。输入表达式 +++Text(Topic.Var1)+++ ，然后选择 **Insert**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image150.png)
 
-25. Below the Set variable value node, add a new node, **Topic
-    management** -\> **Go to another topic** -\> **Place Order**.
+26. 在 Set variable value 节点下，添加新节点 **Topic management** -\>
+    **Go to another topic** -\> **Place Order**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-26. Select **Save** to save the topic.
+27. 选择 **Save** 以保存主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image151.png)
 
-27. Open the Topic **Customer Details** and move to the last node.
+28. 打开 Customer **Details** 主题并移至最后一个节点。
 
-28. **Add a new node** to invoke the topic **Get Product Categories**.
+29. **添加新节点** 以调用主题 **Get Product Categories**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image152.png)
 
-29. Select **Save** to save the topic.
+30. 选择 **Save** 以保存主题。
 
-    ![](./media/image153.png)
+![](./media/image153.png)
 
-### Task 8 – Create Agent flow to place the order
+### 任务 8 – Create Agent flow 来下订单
 
-In this task, you will create an Agent flow to place the order based on
-the product chosen by the customer.
+在此任务中，您将创建一个代理流程，以根据客户选择的产品下订单。
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  从 **Agent flows** 选项卡中，选择 **+ New agent flow。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image154.png)
 
-2.  Click on the **Add a trigger node** and select **When an agent calls
-    the flow** node.
+2.  单击 **Add a trigger 节点** ，然后选择 **When an agent calls the
+    flow** 节点时。
 
-    ![](./media/image155.png)
+![](./media/image155.png)
 
-3.  Add 2 **Text** variables +++Product Name+++ and +++Customer ID+++ as
-    **Input**.
+3.  添加 2 个 **Text** 变量 +++Product Name+++ and +++Customer ID+++
+    作为 **Input**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image156.png)
 
-4.  Click on **Save Draft** to save the flow.
+4.  单击 **Save Draft** 以保存流程。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image157.png)
 
-5.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++PlaceOrder+++. Then select **Save**.
+5.  从 **顶部菜单中选择** Overview ，单击 **Edit** 并输入流的名称
+    +++PlaceOrder+++. 然后选择 **Save （保存**）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image158.png)
 
-6.  Navigate back to the **Designer** tab. Select Add a new action and
-    select **Add a new row** under Dataverse.
+6.  导航回 **设计器** 选项卡。选择 添加新作 ，然后在 **Dataverse
+    下**选择 添加新行。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image159.png)
 
-7.  Select the Table name as **Order Record** and then click on **Show
-    all** under Advanced parameters.
+7.  选择 Table name 作为 **Order Record**，然后单击 **Advanced
+    parameters 下的** Show all。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image160.png)
 
-8.  Enter the below values.
+8.  输入以下值。
 
-    - Customer Identifier - **Customer ID** (Dynamic value)
-    
-    - Order identifier – Enter guid() in Insert expression
-    
-    - Order Status - +++**Order Placed**+++
+客户标识符 - **客户 ID** （动态值）
 
-    ![A screenshot of a computer AI-generated content may be
+Order identifier – 在 Insert expression 中输入 guid（）
+
+订单状态 - +++**Order Placed**+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image161.png)
 
-9.  Add a node, **Respond to the agent**.
+9.  添加节点, **Respond to the agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image162.png)
 
-10. Add a output Text variable and name it as +++Order ID+++.
+10. 添加输出 Text 变量并将其命名为 +++Order ID+++.
 
-    Enter its value as +++string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
-(Replace **cr6dd_orderidentifier** with the logical name value of the
-column Order ID from the Order Record table.
+将其值输入为 +++
+string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
+（将 **cr6dd_orderidentifier** 替换为 Order Record 表中列 Order ID
+的逻辑名称值。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image163.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image163.png)
 
-11. Click on **Save draft** to save the flow and then click on
-    **Publish** to publish the flow.
+11. 单击 **Save Draft** 以保存流程，然后单击 **Publish** 以发布流程。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image164.png)
 
-### Task 9 – Design the Place Order topic 
+### 任务 9 – 设计 Place Order 主题 
 
-In this task, you will design the topic to place the order and update
-the Dataverse table.
+在此任务中，您将设计主题来下订单并更新 Dataverse 表。
 
-1.  Open the topic **Place Order** from the Agent’s **Topic** tab.
+1.  从 Agent 的 **Topic** 选项卡中**打开主题** Place Order 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image165.png)
 
-2.  Add a message node with the message +++Options based on the category
-    will be listed below.+++
+2.  添加包含消息 +++Options based on the category will be listed
+    below.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image166.png)
 
-3.  Add a condition node. Enter the condition as ProductCategory(Global
-    variable) is equal to +++Laptop+++.
+3.  添加 condition 节点。输入条件 ProductCategory（全局变量） 等于
+    +++Laptop+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image167.png)
 
-4.  Under the node, add a question node and enter the message +++Select
-    a Laptop product+++. Select **Laptop** under **Identity**.
+4.  在节点下，添加 question 节点并输入消息 +++Select a Laptop
+    product+++. 在 **Identity** 下选择 **Laptop** 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image168.png)
 
-5.  Click on **Select** options for user and select all the 5 available
-    options.
+5.  单击 **Select** options for user 并选择所有 5 个可用选项。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image169.png)
 
-6.  Enter the variable name as +++ProdNameLapChoice+++
+6.  将变量名称输入为 +++ProdNameLapChoice+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image170.png)
 
-7.  Now, follow the same procedure and add condition nodes for
-    ProductCategory is equal to +++Desktop+++ and +++Tablet+++.
+7.  现在，按照相同的过程并为 ProductCategory 等于 +++Desktop+++ and
+    +++Tablet+++.
 
-8.  Save the values in variable names.
+8.  将值保存在变量名称中。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image171.png)
 
-9.  Select a **Set variable value** node under the **Select a Laptop
-    product** question node.
+9.  在 Select a Laptop product **问题节点**下选择 **Set variable value**
+    节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image172.png)
 
-10. Rename the created variable to +++ProdNameSelected+++ and set it as
-    **Global**.
+10. 将创建的变量重命名为 +++ProdNameSelected+++ 并将其设置为
+    **Global**.![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image173.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image173.png)
+11. 将 Formula （公式） 字段中的值设置为
+    +++Text(Topic.ProdNameLapChoice)+++
+    （如果您使用了其他变量名称，请替换变量名称）
 
-12. Set the value in the Formula field as
-    +++Text(Topic.ProdNameLapChoice)+++ (Replace the variable name, if you have used a different one)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image174.png)
 
-12. Similarly, add a **Set variable value** node under **Desktop** and
-    **Tablet** branches. Select the **Set variable** value as
-    **ProdNameSelected** and insert the expression for the To value
-    field with the variable name as per the one you used.
+12. 同样，在 **Desktop** 和 **Tablet 分支下添加** Set variable value
+    **节点** 。选择 **将变量**值设置为 **ProdNameSelected**，然后插入 To
+    value 字段的表达式，其中包含您所使用的变量名称。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image175.png)
 
-13. Add an Action node under all these nodes in common and invoke the
-    GetProductDetails flow.
+13. 在所有这些共同节点下添加一个 Action 节点，并调用 GetProductDetails
+    流。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image176.png)
 
-14. Select **ProdNameSelected** input variable to be passed to the flow.
-    Leave the other values as default.
+14. 选择要传递到流的 **ProdNameSelected**
+    输入变量。将其他值保留为默认值。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image177.png)
 
-15. Add a Message node below the Action and enter the below message.
-    Replace <ProductName> and <Price> with the corresponding variable
-    names
+15. 在 Action （作） 下方添加 Message （消息）
+    节点，然后输入以下消息。将 \<roductName\> 和 \<Price\>
+    替换为相应的变量名称
 
-    Product Details
-    
-    - Product Name - <ProductName>
-    
-    - Price - <Price>
+产品详情
 
-    ![A screenshot of a computer AI-generated content may be
+- 产品名称 - \<ProductName\>
+
+> ​
+
+- 价格 - \<Price\>
+
+​
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image178.png)
 
-16. Below the message node, adda **Question node** with a message,
-    +++Would you like to place order for this item?+++ in it. Add
-    options **Yes** and **No** to it and name the variable as
-    +++PlaceOrder+++.
+16. 在 message 节点下方，添加带有 **消息的** Question 节点, +++Would you
+    like to place order for this item?+++ in it. 添加选项 **Yes** 和
+    **No** 到它，并将变量命名为 +++PlaceOrder+++.
 
-    ![](./media/image179.png)
+![](./media/image179.png)
 
-17. Under the Question node, add a condition node and in one branch, add
-    a condition **PlaceOrder isequal to Yes** and **all other
-    conditions** will be the **second branch**.
+17. 在 Question 节点下，添加一个 condition
+    节点，并在一个分支中添加一个条件 **PlaceOrder isequal to Yes**
+    ，所有其他 **条件** 将成为 **第二个分支**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image180.png)
 
-18. Invoke the flow **PlaceOrder** as the next step.
+18. 调用流 **PlaceOrder** 作为下一步。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image181.png)
 
-19. Select the **ProductName** and **CustomerID** as the input to the
-    flow.
+19. 选择 **ProductName** 和 **CustomerID** 作为流的输入。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image182.png)
 
-20. Now, add a message node below this with the message, +++Your order
-    is placed. This is your Order ID for reference -<OrderID>+++
-    (Replace **<OrderID>** with the **variable OrderID** (the output
-    variable from the flow).
+20. 现在，在此下方添加一个消息节点，其中包含消息, +++Your order is
+    placed. This is your Order ID for reference -\<OrderID\>+++ (将
+    **\<OrderID\>** 替换为变量 **OrderID** （流的输出变量）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image183.png)
 
-21. With this the **PlaceOrder isequal to Yes** branch is **complete**.
-    Now, navigate to **all other conditions branch**.
+21. 这样，**PlaceOrder isequal to Yes**
+    分支就完成了。现在，导航到**所有其他条件分支**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image184.png)
 
-22. Below that, add a Question node with the message, +++Do you want to
-    go to the main menu?+++ with options **Yes** and **No**. Name the
-    variable as +++**GoToMainMenu**+++.
+22. 在此下方，添加一个 Question 节点，其中包含消息, +++Do you want to go
+    to the main menu?+++ 使用选项 **Yes （是**） 和 **No**
+    （否）。将变量命名为 +++**GoToMainMenu**+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image185.png)
 
-23. Under this node, add a condition node and in one branch add a
-    condition with **GoToMainMenu is equal to Yes**. The other branch of
-    this condition will be **All other conditions**.
+23. 在此节点下，添加一个条件节点，并在一个分支中添加一个条件，其中
+    **GoToMainMenu is equal to Yes**。此条件的另一个分支将是 **All other
+    conditions**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image186.png)
 
-24. Under this condition node, add a question node with message
-    +++**Select Product Category**+++ and add 3 options,
-    +++**Laptop**+++, +++**Desktop**+++ and +++**Tablet**+++.
+24. 在此 condition 节点下，添加一个带有 message 的 question 节点
+    +++**Select Product Category**+++ 并添加 3 个选项, +++**Laptop**+++,
+    +++**Desktop**+++ 和 +++**Tablet**+++.
 
-    Make a note of the variable name to which the result is saved. We will
-convert it to text in the next step.
+记下保存结果的变量名称。我们将在下一步中将其转换为文本。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image187.png)
 
-25. Add a **Set variable value** node and select **ProductCategory**
-    variable under **set variable** and enter the value as
-    +++**Text(Topic.Var1)**+++ under the **Formula** tab.
+25. 添加 **设置变量值** 节点，然后在 **设置变量 下选择** ProductCategory
+    **变量** ，然后输入值作为 +++**Text(Topic.Var1)**+++ 在下面 **公式**
+    标签。
 
-    Replace **Var1** with your variable name if it is different.
+如果变量名称不同，**请将** Var1 替换为变量名称。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image188.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image189.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image189.png)
 
-26. Under the Set variable value node, add a **Go to step** node.
+26. 在 Set variable value 节点下，添加 **Go to step** 节点。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image190.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image191.png)
 
-27. After adding the node, you will have to select the **step**, to
-    which the **control should pass** on at this point. **Scroll up**
-    and select the **Message node at the starting of this topic** since,
-    you have got the **ProductCategory** from the customer now and need
-    to execute from the beginning.
+27. 添加节点后，您必须选择**步骤**，此时**控件应传递到**该步骤。
+    **向上滚动**并选择**本主题开头的 Message
+    节点**，因为您现在已从客户那里获得
+    **ProductCategory**，需要从头开始执行。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image192.png)
 
-28. Add a common message node at the end with the message +++Thank you
-    for shopping with us! Please visit again!+++ Then select **Save** to
-    save the topic.
+28. 在带有消息的末尾添加一个公共消息节点 +++Thank you for shopping with
+    us! Please visit again!+++ 然后选择 **Save （保存**） 以保存主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image193.png)
 
-## Exercise 4 – Add a trigger 
+## 练习 4 – 添加触发器 
 
-In this exercise, you will add a trigger to get initiated when the Order
-table is added with a new row or an existing row is modified and send an
-email to the customer automatically. This defines the autonomous
-capability of the agent in this scenario,
+在本练习中，您将添加一个触发器，以便在 Order
+表添加新行或修改现有行时启动，并自动向客户发送电子邮件。这定义了代理在此场景中的自主能力，
 
-1.  Select the Overview tab of the agent.
+1.  选择代理的 Overview （概述） 选项卡。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image194.png)
 
-2.  Scroll down the page and select **Add trigger.**
+2.  向下滚动页面，然后选择 **Add trigger。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image195.png)
 
-3.  Select **When a row is added, modified or deleted** option and then
-    select **Next**.
+3.  选择 **When a row is added, modified or deleted** 选项，然后选择
+    **Next**.
 
-    ![](./media/image196.png)
+![](./media/image196.png)
 
-4.  Once the **Microsoft Copilot Studio** and **Dataverse** are
-    connected, click on **Next**.
+4.  连接 Microsoft Copilot Studio **和** Dataverse **后** ，单击下一步。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image196.png)
 
-5.  Select the below options, leave the rest as default and select
-    **Create trigger**.
+5.  选择以下选项，将其余选项保留为默认值，然后选择 **Create
+    trigger（创建触发器**）。
 
-    - Change Type – Added or Modified or Deleted
-    
-    - Table name – Order Record
-    
-    - Scope - Organization
+- Change Type – Added or Modified or Deleted
 
-    ![A screenshot of a computer AI-generated content may be
+- Table name – Order Record
+
+- 范围 - 组织
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image197.png)
 
-6.  This might take a few minutes to get completed. Once done, select
-    **Close** in the Add trigger dialog.
+6.  这可能需要几分钟才能完成。完成后，在 **Add trigger 对话框中**选择
+    Close。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image198.png)
 
-7.  From the Trigger section in the **Overview** page of the agent,
-    click on the **3 dots** next to the added trigger and select **Edit
-    in Power Automate**.
+7.  在代理的 概述 页面**的 触发器 部分中** ，单击 **添加的触发器旁边的**
+    3 个点，然后选择 **在 Power Automate 中编辑**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image199.png)
 
-8.  Select the first node in the flow and add the column names,
-    +++cr6dd_orderidentifier, cr6dd_customeridentifier+++ under **Select
-    columns**. (**Replace** them with **your logical names** of the
-    **Order ID** and **Customer ID** columns from the **Order Record
-    table**).
+8.  选择流程中的第一个节点并添加列名称 +++cr6dd_orderidentifier,
+    cr6dd_customeridentifier+++ 在 **Select columns**
+    下。（将它们**替换为** Order Record 表中 **Order ID** 和 **Customer
+    ID** 列的**逻辑名称**）。
 
-    ![](./media/image200.png)
+![](./media/image200.png)
 
-9.  Add a new node and select **List rows** action in it.
+9.  添加新节点，然后选择 **List rows** 作。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image201.png)
 
-10. In the List rows action, select **Table name** as **Customer
-    Record**.
+10. 在 List rows （列出行）作中，选择 **Table name （表名称** ） 作为
+    **Customer Record （客户记录**）。
 
-    Under **Filter rows**, enter +++**cr6dd_customeridentifier eq ''**+++,
-    replacing the column name with your **Customer ID’s logical name**. Keep
-    the **cursor** **inside** the **single quotes**.
+在 Filter rows （筛选行**） 下**，输入 +++**cr6dd_customeridentifier eq
+''**+++, 将列名称替换为您的客户 **ID
+的逻辑名称**。将**光标保持在单引号内**。
 
-    ![A screenshot of a list AI-generated content may be
+![A screenshot of a list AI-generated content may be
 incorrect.](./media/image202.png)
 
-11. Select Insert expression, enter
+11. 选择 Insert expression（插入表达式），输入
     +++String(triggerOutputs()?\['body/cr6dd_customeridentifier'\])+++,
-    replacing **cr6dd_customeridentifier** with your CustomerID’s
-    logical name and select **Add**.
+    将 **cr6dd_customeridentifier** 替换为 CustomerID
+    的逻辑名称，然后选择 **Add**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image203.png)
 
-12. Next to the **List rows**, add an action **Send an email (V2).**
+12. 在 **List 行**旁边，添加作 **Send an email （V2）。**
 
-    ![A screenshot of a mail box AI-generated content may be
+![A screenshot of a mail box AI-generated content may be
 incorrect.](./media/image204.png)
 
-13. Click on **Sign in** and sign in with your credentials.
+13. 单击 **Sign in （登录** ） 并使用您的凭证登录。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image205.png)
 
-14. In the **To** field, insert expression and enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++,
-    replacing **cr6dd_emailaddress** with the logical name of your email
-    id field from Customer Record table and then select **Add**.
+14. 在 **To** 字段中，插入表达式并输入
+    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++，将
+    **cr6dd_emailaddress** 替换为客户记录表中电子邮件 ID
+    字段的逻辑名称，然后选择 **添加**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image206.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image207.png)
 
-15. Enter the below details,
+15. 输入以下详细信息，
 
-    Subject - +++Order Placement+++
+主题 - +++Order Placement+++
 
-    Body –
-    ```
-    Hi,
-    
-    This is to update you that your order has been placed. Thank you for
-    shopping with us.
-    
-    Thank You.
-    ```
-16. **Save** the flow and then **Publish** it.
+内容 –
 
-    ![A screenshot of a computer AI-generated content may be
+Hi,
+
+这是为了通知您您的订单已下达。感谢您在我们这里购物。
+
+谢谢。
+
+16. 保存流程，然后选择 Publish it 。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image208.png)
 
-17. Back in the Copilot Studio agent page, select **Publish** to publish
-    the agent.
+17. 返回 Copilot Studio 代理页面，选择 **发布** 以发布代理。
 
-    ![](./media/image209.png)
+![](./media/image209.png)
 
-18. Select **Publish** in the confirmation dialog.
+18. 在 确认对话框中选择 **Publish**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image210.png)
 
-## Exercise 5 – Test the agent
+19. ewqewqew
 
-In this exercise, you will test how the agent works.
+## 练习5 – 测试代理
 
-1.  From the agent page, select **Test** to open the Test pane.
+在本练习中，您将测试代理的工作原理。
 
-2.  Enter +++3148987666+++. This is the Phone number of an existing
-    customer.
+1.  在代理页面中，选择 **Test （测试**） 以打开 Test （测试） 窗格。
 
-    ![A screenshot of a phone AI-generated content may be
+2.  输入 +++3148987666+++. 这是现有客户的电话号码。
+
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image211.png)
 
-3.  Select **Yes** from the given options.
+3.  从 **给定的选项**中选择 Yes。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image212.png)
 
-4.  Select a **product** from the given options.
+4.  从给定的选项**中选择一个**产品。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image213.png)
 
-5.  Select Yes from the given options.
+5.  从给定的选项中选择 Yes。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image214.png)
 
-6.  The order gets placed and the reference id is provided to the
-    customer.
+6.  下订单并将参考 ID 提供给客户。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image215.png)
 
-7.  You can also ask other questions like track the order delivery for
-    the id you received. Though we have not configured the topics for
-    that, it will give you reply based on the knowledge source.
+7.  您还可以询问其他问题，例如跟踪您收到的 ID
+    的订单交付。虽然我们没有为此配置主题，但它会根据知识来源给你回复。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image216.png)
 
-    Test the other scenarios by selecting different options. Add a new
-customer and check that you have received a mail in your email id that
-gets added to the Customer Record table.
+通过选择不同的选项来测试其他方案。添加新客户，并检查您的电子邮件 ID
+中是否已收到已添加到 Customer Record 表的邮件。
 
-8.  After testing for some time, click on the **Analytics** tab to know
-    the details of usage of topics and knowledge sources. This might
-    take some time to reflect.
+## 总结:
 
-## Summary:
+在本实验中，您学习了如何设计自主购物代理。涵盖的主题包括：
 
-In this lab, you have learnt to design an autonomous shopping agent. Topics covered include,
+- 变量
 
-- Variables
-    
-- Entities
-    
-- Topics
-    
-- Agent flows
-    
-- Trigger
-    
-- Analytics
-    
-- Knowledge sources
+- 实体
 
+- 主题
+
+- 代理流程
+
+- 触发
+
+- 知识来源
