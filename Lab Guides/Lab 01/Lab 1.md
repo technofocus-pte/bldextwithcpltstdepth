@@ -1,109 +1,93 @@
-# Lab 01 - Create a gardening assistant agent using Copilot Studio Agent Builder
+# ラボ 01 - Copilot Studio Agent Builder を使用してGardening Assistant エージェントを作成 する
 
-## Objective
+## 客観的
 
-In this lab you will start out building a gardening agent using Copilot
-Studio agent builder by providing a sample set of instructions.
+このラボでは、Copilot Studio エージェント ビルダーを使用してガーデニング
+・　　エージェントを構築し、サンプルの手順セットを提供します。
 
-## Exercise 1: Creating the agent
+## 演習1: エージェントの作成
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a browser and login
-    with your credentials.
-    
-    - Username - +++@lab.CloudPortalCredential(User1).Username+++
-    
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+1.  リンク +++ [https://www.microsoft365.com/chat +++
+    を開き、資格情報を](https://www.microsoft365.com/chat%20+++%20を開き、資格情報を)　　使用してログインします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2. You might get a **Coming Soon** screen as in the screenshot below. If you get this, close the browser and redo step 1.
+2.  左側のペインから**「Create agent」**を選択します。
 
-   ![image](https://github.com/user-attachments/assets/5c69b8fb-aca3-4105-9e93-0dc25015d6d9)
+> ![](./media/image2.png)
 
-3.  Select **Create agent** from the **right** pane. If you are **not** able to see the **Create agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
+3.  Copilot
+    Studioのエージェント・ビルダーがポップアップ表示され、カスタム・エージェントの定義を開始できます。テンプレートを選択するか、自然言語でエージェントの説明を入力することで、エージェント*の定義を開始　　　　できます*。以下の初期説明を入力してみましょう。
 
-    ![image](https://github.com/user-attachments/assets/85aea6c5-008d-4d54-9b2e-f297d5f12a75)
++++ You are an expert gardener and you help users to maintain and
+improve their home garden
 
-    >[!Alert] **Important:** The menu might be present in the right pane as well similar to the one in the below screenshot. Since it is evolving, there might be differences in the screenshots captured in the lab guide and the actual one.
-    >
-    >![](./media/image2.png)
+providing detailed instructions and advice about the best practices for
+home gardening.+++
 
-
-4.  The Copilot Studio agent builder pops up and you can start defining
-    the custom agent. You can choose a template to start from, or you
-    can simply *describe* the agent by providing a description in
-    natural language. Let's provide the following initial description
-
-    +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-5.  Once you have provided the instructions, the agent builder will ask
-    you about the name for the new agent.
+4.  指示を入力すると、エージェント
+    ビルダーによって新しいエージェントの名前を尋ねられます。
 
-6.  Provide the name: +++Gardening assistant+++.
+5.  名前を入力してください: +++ Gardening assistant +++。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image4.png)
 
-7.  While you interact with the agent builder, on the right side of the
-    dialog you can see there is a preview of the agent itself, including
-    some suggested conversation starters. If the agent builder asks you
-    about refining instructions further, provide the following sentence.
+6.  エージェント・ビルダーを操作している間、ダイアログの右側に　　　　　　　エージェント自体のプレビューが表示され、会話のきっかけとなるフレーズもいくつか
+    提案されます。エージェント・ビルダーから指示をさらに　　　絞り込むように求められた場合は、以下の文を入力してください。
 
-    +++Suggest ways to keep plants and flowers shining and gorgeous+++
++++ Suggest ways to keep plants and flowers shining and gorgeous +++
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image5.png)
 
-8.  Keep on interacting with the agent builder until it does have all
-    the information needed to create the agent. If the agent builder
-    asks you about what should be emphasized, provide the following
-    sentence.
+7.  エージェント・ビルダーがエージェントの作成に必要なすべての情報を取得するまで、エージェント・ビルダーとのやり取りを続けます。　　　　　　　　　　　　エージェント・ビルダーから強調すべき点について尋ねられた場合は、次の文を入力してください。
 
-    +++Highlight the importance of nature and plants/flowers to be present in every house!+++
++++ Highlight the importance of nature and plants/flowers to be present
+in 　every house!+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-9.  When the agent builder asks you about how the agent should talk,
-    answer with the following sentence.
+8.  エージェント・ビルダーがエージェントの話し方について質問してきたら、次の文で答えます。
 
-    +++Use a professional, yet friendly, tone.+++
++++ Use a professional, yet friendly, tone.+++
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image7.png)
 
-10.  Click on **Create** on the top right to create the agent.
+9.  右上の3つのドットをクリックし、 **「Create」**を選択します。
 
-     ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image8.png)
 
-     ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-11. Select **Go to agent** once the agent is created.
+10. エージェントが作成されたら、 **「Go to agent」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-12. This opens the created agent.
+11. 作成されたエージェントが開きます。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image11.png)
 
-13. Select any prompt in the agent and click on **Send** and observe the
-    response.
+12. エージェント内の任意のプロンプトを選択し、
+    **「Send」**をクリックして応答を確認します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image12.png)
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image13.png)
 
-## Summary:
+## まとめ：
 
-In this lab, you have learnt to create an agent from the Copilot Studio
-Agent Builder.
+Copilot Studio Agent Builderからエージェントを作成する方法を学習
+しました。
