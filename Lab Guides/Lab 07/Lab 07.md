@@ -488,8 +488,7 @@ incorrect.](./media/image62.png)
 incorrect.](./media/image63.png)
 
 25. Enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
-    +++ The **cr6dd_customeridentifier** is the logical name of the
+    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
     Customer ID of the Customer Record table. **Replace** it with your
     value.
 
@@ -719,7 +718,7 @@ incorrect.](./media/image94.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image95.png)
 
-7.  Select the condition as **is not equal to** and enter +++ '1'+++ in
+7.  Select the condition as **is not equal to** and enter +++'1'+++ in
     the **Value** field. This checks if the customer detail is already
     existing in the database.
 
