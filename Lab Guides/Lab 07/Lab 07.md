@@ -1,85 +1,86 @@
-# Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
+# Laboratório 07 – Crie um assistente de compras personalizado
 
-## Objective
+## Objetivo
 
-The objective of this lab is to create a personalized shopping agent for
-Contoso Electronics. This will use Dataverse tables as the knowledge
-source for the agent. It will suggest product categories to the customer
-based on their latest shopping and assist them throughout the shopping
-experience.
+O objetivo deste laboratório é criar um agente de compras personalizado
+para a Contoso Electronics. Isso usará as tabelas do Dataverse como a
+fonte de conhecimento para o agente. Ele sugerirá categorias de produtos
+ao cliente com base em suas últimas compras e o ajudará durante toda a
+experiência de compra.
 
-## Exercise 1 – Create Dataverse tables
+## Exercício 1 – Criar tabelas do Dataverse
 
-In this exercise, you will create tables in the Dataverse to store the
-**Customer**, **Product** and **Order** details.
+Neste exercício, você criará tabelas no Dataverse para armazenar os
+detalhes do **Cliente, Produto e Pedido.**
 
-1.  Login to +++https://make.powerapps.com+++ using your admin tenant
-    credentials and select Dev One as your environment. Select Tables
-    form the eft navigation pane.
+1.  Faça login em +++https://make.powerapps.com+++ usando suas
+    credenciais de locatário de administrador e selecione Dev One como
+    seu ambiente. Selecione **Tables** do painel de navegação esquerdo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the drop down next to **+ New table** and select **Create new
-    tables** under it.
+2.  Selecione o menu suspenso ao lado de **+ New table** e selecione
+    **Create new tables**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Select **Import an Excel file or .csv** to create a new table.
+3.  Selecione **Import an Excel file or .CSV** para criar uma nova
+    tabela.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under Export an Excel or .CSV file, select the **Select from
-    device** option.
+4.  Em **Export an Excel or .CSV file**, selecione a opção **Select from
+    device**.
 
-    ![A screenshot of a file AI-generated content may be
+![A screenshot of a file AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
-    **Import** to import the data from the tracker and create the table.
+5.  Em **C:\Labfiles**, selecione o Excel – **Customers.xlsx**.
+    Selecione **Import** para importar os dados do rastreador e criar a
+    tabela.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  The table gets created with the data from the tracker.
+6.  A tabela é criada com os dados do rastreador.
 
-7.  Here, that table name is **Customer Record**. The name might be
-    slightly different in your case since it is automatically generated.
-    Keep a note of it and use the appropriate Table name throughout the
-    lab execution.
+7.  Aqui, o nome dessa tabela é **Customer Record**. O nome pode ser um
+    pouco diferente no seu caso, pois é gerado automaticamente. Anote-o
+    e use o nome da tabela apropriado durante a execução do laboratório.
 
-8.  Click on the table, and then select **View data** to view the data
-    added to the table.
+8.  Clique na tabela e selecione **View data** para ver os dados
+    adicionados à tabela.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-9.  Select **Save and exit**.
+9.  Selecione **Save and exit**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-10. Click on **Save and exit** in the confirmation dialog.
+10. Clique em **Save and exit** na caixa de diálogo de confirmação.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-11. Repeat the steps from 2 to 10 twice, to create tables once using the
-    tracker **Product Catalog.xlsx** and the next time using
+11. Repita as etapas de 2 a 10 duas vezes, para criar tabelas uma vez
+    usando o rastreador **Product Catalog.xlsx** e da próxima vez usando
     **Orders.xls**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-12. Now, we will have 3 tables,
+12. Agora, teremos 3 tabelas,
 
     - Customer Record
 
@@ -87,1558 +88,1633 @@ incorrect.](./media/image11.png)
 
     - Orders
 
-## Exercise 2 – Create a Shopping agent
+## Exercício 2 – Criar um agente de compras
 
-In this exercise, you will create a Shopping agent which will assist
-customers while shopping in Contoso Electronics.
+Neste exercício, você criará um agente de compras que ajudará os
+clientes a fazer compras na Contoso Electronics.
 
-### Task 1 – Create the agent
+### Tarefa 1 – Criar o agente
 
-Create the agent in Copilot Studio by using Copilot. Chat with the
-Copilot and give it instructions on how the agent should be designed and
-how it should behave so that the Copilot will create the agent for you.
+Crie o agente no Copilot Studio usando o Copilot. Converse com o
+Copiloto e dê instruções sobre como o agente deve ser projetado e como
+ele deve se comportar para que o Copiloto crie o agente para você.
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com/+++ and select the **Dev
-    One** environment.
+1.  Faça login no Copilot Studio em
+    +++https://copilotstudio.microsoft.com/+++ e selecione o o
+    environment **Dev One**.
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-2.  Select **Agents** and then click on **+ New agent**.
+2.  Selecione **Agents** e, em seguida, clique em **+ New agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the below in the chat and send it.
+3.  Digite o prompt abaixo no chat e envie.
 
-    +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
++++**Create an agent that will assist the customers in shopping with
+Contoso Electronics. Name it as "Shopping agent"**.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Enter +++Help the users in finding products and their prices, give
-    personalized suggestions and track order delivery.+++ and hit
-    **Enter**.
+4.  Insira +++**Help the users in finding products and their prices,
+    give personalized suggestions and track order delivery.**+++ e
+    pressione **Enter**.
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-5.  Enter additional instructions as below.
+5.  Insira instruções adicionais conforme abaixo.
 
-    +++Maintain a polite tone+++
++++**Maintain a polite tone**+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Click **Create** to create the **Shopping agent**.
+6.  Clique em **Create** para criar o **Shopping agent**.
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image17.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image17.png)
 
-7.  The agent gets set up. This might take a few minutes. Once the agent
-    is ready, it gets displayed in Copilot Studio as in the screenshot
-    below.
+7.  O agente é configurado. Isso pode levar alguns minutos. Quando o
+    agente estiver pronto, ele será exibido no Copilot Studio como na
+    captura de tela abaixo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-### Task 2 – Add Knowledge
+### Tarefa 2 – Adicionar conhecimento
 
-Adding knowledge to the agent makes it grounded to those knowledge
-resources enabling it to answer the user queries more effectively. In
-this task, you will add the Dataverse table created in the earlier
-exercise as a knowledge source to this agent.
+Adicionar conhecimento ao agente o torna fundamentado nesses recursos de
+conhecimento, permitindo que ele responda às perguntas do usuário com
+mais eficiência. Nesta tarefa, você adicionará a tabela do Dataverse
+criada no exercício anterior como uma fonte de conhecimento a esse
+agente.
 
-1.  Enter +++What is the status of the order o1001?+++ in the Test pane.
+1.  Insira +++**What is the status of the order o1001?**+++ no painel
+    **Test** **your agent**.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image19.png)
 
-2.  The response will be similar the one below since the agent does not
-    have any information on this.
+2.  A resposta será semelhante à abaixo, pois o agente não tem nenhuma
+    informação sobre isso.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image20.png)
 
-3.  Now, we will add knowledge source to the agent. From the **Home**
-    page of the agent, select **Add Knowledge** under the **Knowledge**
-    section.
+3.  Agora, adicionaremos a fonte de conhecimento ao agente. Da página
+    **Home** do agente, selecione **Add Knowledge** na seção
+    **Knowledge**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-4.  Select **Dataverse** from the list of available options.
+4.  Selecione **Dataverse** na lista de opções disponíveis.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-5.  Search for +++order+++, select the **Order Record** table and click
-    **Next**.
+5.  Procure por +++**order**+++, selecione a tabela **Order Record** e
+    clique em **Next**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-6.  Select **Add**.
+6.  Selecione **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-7.  Wait for a few minutes after the knowledge source is added before
-    testing the agent again.
+7.  Aguarde alguns minutos após a adição da fonte de conhecimento antes
+    de testar o agente novamente.
 
-8.  Once the **Order Record** becomes **Ready** under the Knowledge
-    section, ask the same question in the Test pane.
+8.  Once the **Order Record** se torna **Ready** na seção **Knowledge**,
+    faça a mesma pergunta no painel **Test**.
 
-    You can now see that the agent retrieves the information from the
-database and provides it to the user.
+Agora você pode ver que o agente recupera as informações do banco de
+dados e as fornece ao usuário.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-### Task 3 – Create Entities
+### Tarefa 3 – Criar Entidades
 
-1.  Select **Settings** from the Home screen of the agent.
+1.  Selecione **Settings** na tela inicial do agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-2.  Select **Entities** from the left pane. Select **Add an entity -\> +
-    New entity**
+2.  Selecione **Entities** no painel esquerdo. Selecione **Add an entity
+    -\> + New entity**
 
-    ![](./media/image27.png)
+![](./media/image27.png)
 
-3.  Select **Closed list**.
+3.  Selecione **Closed list**.
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image28.png)
 
-4.  Enter the below details.
+4.  Insira os detalhes abaixo.
 
-    - Name - +++Laptop+++
-    
-    - Description - +++Contains products under Laptop category+++
-    
-    Under **List items**, enter +++Apple MacBook Air M3+++ and click on
-    **Add**.
+**Name** - +++**Laptop**+++
 
-    ![A screenshot of a computer AI-generated content may be
+**Description** - +++**Contains products under Laptop category**+++
+
+Em **List items**, insira +++**Apple MacBook Air M3**+++ and click on
+**Add**.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-5.  Similarly, add the below items and then select **Save**.
+5.  Da mesma forma, adicione os itens abaixo e selecione **Save**.
 
-    +++Dell XPS 13 Plus+++
-    
-    +++HP Spectre x360 14+++
-    
-    +++Lenovo ThinkPad X1 Carbon Gen 12+++
-    
-    +++Asus ROG Zephyrus G14+++
++++Dell XPS 13 Plus+++
 
-    ![A screenshot of a computer AI-generated content may be
++++HP Spectre x360 14+++
+
++++Lenovo ThinkPad X1 Carbon Gen 12+++
+
++++Asus ROG Zephyrus G14+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-6.  Now, repeat steps 2 to 5 with the below data.
+6.  Agora, repita as etapas 2 a 5 com os dados abaixo.
 
-    - Name - +++Desktop+++
-    
-    - Description - +++Contains products under Desktop category+++
-    
-    Under **List items**, enter +++Apple iMac+++ and click on **Add**.
+**Name** - +++Desktop+++
 
-7.  Other items to be added in the list,
+**Description** - +++Contains products under Desktop category+++
 
-    +++Microsoft Surface Studio 2+++
-    
-    +++HP Envy Desktop+++
-    
-    +++Dell Inspiron Desktop+++
-    
-    +++Lenovo IdeaCentre AIO 5i+++
+Em **List items**, insira +++Apple iMac+++ e clique em **Add**.
 
-8.  Again, repeat steps 2 to 5 with the below data.
+7.  Outros itens a serem adicionados à lista,
 
-    - Name - +++Tablet+++
++++Microsoft Surface Studio 2+++
 
-    - Description - +++Contains products under Tablet category+++
++++HP Envy Desktop+++
 
-    Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
++++Dell Inspiron Desktop+++
 
-9.  Other items to be added in the list,
++++Lenovo IdeaCentre AIO 5i+++
 
-    +++Samsung Galaxy Tab S9 Ultra+++
-    
-    +++Microsoft Surface Pro 10+++
-    
-    +++Lenovo Tab P12 Pro+++
-    
-    +++Apple iPad Air+++
+8.  Novamente, repita as etapas 2 a 5 com os dados abaixo.
 
-## Exercise 3 – Create Topics and agent flows and design the agent
+**Name** - +++Tablet+++
 
-Designing Topics is a very important part in creating an agent since it
-deals with the logic behind how the user’s questions are answered and
-how the flow of the details will be.
+**Description** - +++Contains products under Tablet category+++
 
-### Task 1 – Edit the Conversation Start topic
+Em **List items**, insira +++Apple iPad Pro+++ e clique em **Add**.
 
-The Conversation Start topic is the first topic to be invoked when
-testing the agent. It is a System Topic available by default in any
-agent that you create in the Copilot Studio. Now, you will edit this
-topic to continue the conversation from the greeting message from the
-agent.
+9.  Outros itens a serem adicionados à lista,
 
-1.  From the **Overview** page of the agent, select the **Topics** tab
-    from the top menu bar. Select **System** to view the list of System
-    topics. Select the Conversation Start topic from the list.
++++Samsung Galaxy Tab S9 Ultra+++
 
-    ![A screenshot of a computer AI-generated content may be
++++Microsoft Surface Pro 10+++
+
++++Lenovo Tab P12 Pro+++
+
++++Apple iPad Air+++
+
+## Exercício 3 – Criar tópicos e fluxos de agentes e projetar o agente
+
+Projetar tópicos é uma parte muito importante na criação de um agente,
+pois lida com a lógica por trás de como as perguntas do usuário são
+respondidas e como será o fluxo dos detalhes.
+
+### Tarefa 1 – Editar o tópico Conversation Start 
+
+O tópico **Conversation Start** é o primeiro tópico a ser chamado ao
+testar o agente. É um tópico do sistema disponível por padrão em
+qualquer agente que você criar no Copilot Studio. Agora, você editará
+este tópico para continuar a conversa a partir da mensagem de saudação
+do agente.
+
+1.  Da página **Overview** do agente, selecione a guia **Topics** na
+    barra de menu superior. Selecione **System** para visualizar a lista
+    de tópicos do sistema. Selecione o tópico **Conversation Start** na
+    lista.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-2.  After the existing Message node, add a **Question node**.
+1.  Após o nódulo **Message** existente, adicione um **Question node**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Enter the below message,
+2.  Insira a mensagem abaixo,
 
-    +++Welcome to Contoso Electronics. Please enter your **Phone number** to proceed.+++ in the message     area and select **User’s entire response** under **Identity**. Click on the **Var1** under **Save user response as** field.
++++Welcome to Contoso Electronics. Please enter your **Phone number** to
+proceed.+++ na área de mensagem e selecione **User’s entire response**
+em **Identity**. Clique em **Var1** no campo **Save user response as**
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image33.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image33.png)
 
-4.  Rename **Var 1** to +++MobileNumber+++ and select **Global** to use
-    it across topics and then select **Save**.
+3.  Renomeie **Var 1** como +++**MobileNumber**+++ e selecione
+    **Global** para usá-lo em todos os tópicos e, em seguida, selecione
+    **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-### Task 2 – Create a topic to handle the Customer details
+### Tarefa 2 – Criar um tópico para lidar com os detalhes do cliente
 
-1.  From the Overview page of the agent, select the Topics tab from the
-    top menu bar. Select the drop down next to **Add a topic -\> From
-    blank**.
+1.  Da página **Overview** do agente, selecione a guia **Topics** na
+    barra de menu superior. Selecione o menu suspenso ao lado de **Add a
+    topic -\> From blank**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-2.  Name the agent as +++Customer Details+++.
+2.  Nomeie o agente como +++**Customer Details**+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-3.  Select **Change trigger** and select **It’s redirected to** as the
-    trigger.
+3.  Selecione **Change trigger** e selecione **It’s redirected to** como
+    o gatilho.
 
-    ![Screens screenshot of a computer AI-generated content may be
+![Screens screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-4.  Select **Save** to save the topic.
+4.  Selecione **Save** para salvar o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-### Task 3 – Create an Agent flow to get the details of the customer
+### Tarefa 3 – Criar um fluxo de agente para obter os detalhes do cliente
 
-In this task, you will create an Agent flow, to which you will pass the
-Phone number entered by the customer as input and design the flow to
-check if the user exists or not and retrieve the information and return
-the details to the agent.
+Nesta tarefa, você criará um fluxo de Agente, para o qual passará o
+número de telefone informado pelo cliente como entrada e projetará o
+fluxo para verificar se o usuário existe ou não e recuperará as
+informações e retornará os detalhes ao agente.
 
-1.  Below the Trigger node, add a node, select **Add a tool** -\> **New
+1.  Abaixo do nódulo **Trigger**, selecione **Add a tool** -\> **New
     Agent flow**.
 
-    ![](./media/image39.png)
+![](./media/image39.png)
 
-2.  The Agent flow designer opens up. Select **Save draft** to save the
-    flow.
+2.  O designer de fluxo do agente é aberto. Selecione **Save draft**
+    para salvar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-3.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++GetCustomer+++. Then select **Save**.
+3.  Selecione **Overview** no menu superior, clique em **Edit** e insira
+    o nome do fluxo como +++**GetCustomer**+++. Em seguida, selecione
+    **Save**. ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image41.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
+4.  Navegue até a guia **Designer** novamente para projetar o fluxo.
+    Selecione o nódulo **When an agent calls the flow** e, em seguida,
+    selecione **+ Add an input**.
 
-5.  Navigate to the **Designer** tab again to design the flow. Select
-    the node **When an agent calls the flow** and then select **+ Add an
-    input**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-5.  Select **Text**.
+5.  Selecione **Text**.
 
-    ![](./media/image43.png)
+![](./media/image43.png)
 
-6.  Enter the input as +++Phone number+++ and then collapse the
-    **Parameters** tab.
+6.  Insira a entrada como +++**Phone number**+++ e, em seguida, feche a
+    guia **Parameters**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-7.  Click on **Add an action** between the 2 nodes in the flow. Search
-    for +++List rows+++ and select the **List rows** action under
+7.  Clique em **Add an action** entre os dois nódulos no fluxo. Procure
+    por +++**List rows**+++ e selecione a ação **List rows** em
     **Microsoft Dataverse**.
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image45.png)
 
-8.  Enter the connection name as +++**Dataverse**+++ and click **Sign
+8.  Insira o nome da conexão como +++**Dataverse**+++ e clique em **Sign
     in**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-9.  **Sign in** using your admin tenant credentials and click on **Allow
-    access** if prompted.
+9.  **Sign in** usando suas credenciais de locatário de administrador e
+    clique em **Allow access** se solicitado.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-10. Navigate to PowerApps at +++https://make.powerapps.com/+++ and open
-    the **Customer Record** table. Click on the drop down next to the
-    **Mobile number** field and select **Edit column**.
+10. Navegue até o PowerApps em +++https://make.powerapps.com/+++ e abra
+    a tabela **Customer Record**. Clique no menu suspenso ao lado do
+    campo **Mobile number** e selecione **Edit column**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-11. Scroll down and under **Advanced options**, there is a field named
-    **Logical name**. Make a note of its value in a note pad.
+11. Role para baixo e em **Advanced options**, há um campo chamado
+    **Logical name**. Anote seu valor em um bloco de notas.
 
-    >[!Alert] **Important:** Each filed will have an associated Logical name to it in
-    Dataverse. And while using it in the Agent flow, you will have to
-    specify only the logical names for all the fields.
-    >
-    > ![A screenshot of a computer AI-generated content may be
+**Importante:** Cada arquivo terá um nome lógico associado a ele no
+Dataverse. E ao usá-lo no fluxo do Agente, você terá que especificar
+apenas os nomes lógicos para todos os campos.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-12. In this case, for Phone number, it is **cr6dd_mobilecontact**. Make
-    a note of it
+12. Nesse caso, para Número de telefone, é **cr6dd_mobilecontact**.
+    Anote isso.
 
-13. Navigate back to the Copilot Studio – Agent flow tab. Open the
-    Getcustomer flow and select the **List rows** action.
+13. Navegue de volta para o Copilot Studio, na guia **Agent flow**. Abra
+    o fluxo **Getcustomer** e selecione a ação **List rows**.
 
-14. Under Filter rows, enter **<Logical name of Mobile number> eq ''**. Replace **<Logical name>** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+14. Em **Filter rows**, insira **\<Logical name of Mobile number\> eq '
+    '**. Substitua **\<Logical name\>** pelo valor obtido na etapa
+    anterior. Mantenha o cursor dentro das aspas e adicione o **Phone
+    number – dynamic variable**.
 
-    In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
+Neste caso, será **cr6dd_mobilecontact eq 'Phone number'**
 
-    ![](./media/image50.png)
+![](./media/image50.png)
 
-    ![](./media/image51.png)
+![](./media/image51.png)
 
-15. Below the List rows node, add a **Condition** node.
+15. Abaixo do nódulo **List rows**, adicione um nódulo **Condition**.
 
-    ![](./media/image52.png)
+![](./media/image52.png)
 
-16. Enter **/** and select **Insert expression**.
+16. Insira **/** e selecione **Insert expression**.
 
-    ![](./media/image53.png)
+![](./media/image53.png)
 
-17. Enter +++length(outputs('List_rows')?\['body'\]?\['value'\])+++ in
-    the function and select **Add**. This will check if the List rows
-    returns a value or not.
+17. Insira +++**length(outputs('List_rows')?\['body'\]?\['value'\])**+++
+    na função e selecione **Add**. Isso verificará se o List rows
+    fornece um valor ou não.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-18. Click on **Add an action** under the **True** branch of the
-    condition added and add a new **Condition** node.
+18. Clique em **Add an action** sob o **True** da condição adicionada e
+    adicione um novo nódulo **Condition**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
-    cr6dd_lastpurchasedproduct '\]))+++ in the function area of the
-    condition.
+19. Insira
+    +++**not(empty(first(outputs('List_rows')?\['body/value'\])?\[
+    cr6dd_lastpurchasedproduct '\]))**+++ na área de função da condição.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-    >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
-    >
-    > ![](./media/image58.png)
+> **Importante** – Certifique-se de substituir o
+> **cr6dd_lastpurchasedproduct** pelo **logical name** do campo **Recent
+> Products Purchased** da tabela **Customer Record**
+>
+> ![](./media/image58.png)
 
-20. Set the condition as **is equal to true**
+20. Defina a condição como **is equal to true**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-21. Add a new action below the **True** path of **Condition1** and
-    select the **Respond to the agent** node.
+21. Adicione uma nova ação abaixo do caminho **True** da **Condition1**
+    e selecione o nódulo **Respond to the agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image60.png)
 
-22. Select the added **Respond to the agent node** and rename it to
-    +++If the customer has made a previous purchase+++ and select **+ Add an output**.
+22. Selecione o **Respond to the agent node** e renomeie-o como +++**If
+    the customer has made a previous purchase**+++ e selecione **+ Add
+    an output**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image61.png)
 
-23. Select **Text**.
+23. Selecione **Text**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-24. Enter +++Customer ID+++ as the name and click on **Insert
+24. Insira +++**Customer ID**+++ como o nome e clique em **Insert
     expression**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-25. Enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
-    Customer ID of the Customer Record table. **Replace** it with your
-    value.
+25. Insira
+    +++**first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]**
+    +++ **cr6dd_customeridentifier** é o nome lógico da ID do cliente da
+    tabela Customer Record. Substitua-o pelo seu valor.
 
-26. Select **Add**.
+26. Selecione **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-27. Similarly, add the below output variables and expressions to each
-    one of it. For each variable, make sure to replace the logical name
-    with yours.
+27. Da mesma forma, adicione as variáveis e expressões de saída abaixo a
+    cada uma delas. Para cada variável, certifique-se de substituir o
+    nome lógico pelo seu.
 
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
+- +++Customer Name+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image65.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image66.png)
+- +++Product Category+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
 
-28. The **Respond to the agent** node will have 3 output variables as in
-    the screenshot below.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image66.png)
+
+28. O nódulo **Respond to the agent** terá 3 variáveis de saída como na
+    captura de tela abaixo.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-29. Add a Respond to the agent node under the **False** path of the
-    **Condition1** node. Rename it to +++If the customer has not made a
-    previous purchase+++. Click on **+ Add an output**.
+29. Adicione um nódulo **Respond to the agent** sob o caminho **False**
+    do nódulo **Condition1**. Renomeie-o para +++If the customer has not
+    made a previous purchase+++. Clique em **+ Add an output**.
 
-    ![](./media/image68.png)
+![](./media/image68.png)
 
-30. Enter the below output variables replacing the column logical names
-    with your logical names for the corresponding columns.
+30. Insira as variáveis de saída abaixo, substituindo os nomes lógicos
+    das colunas pelos nomes lógicos das colunas correspondentes.
 
-    - +++Customer ID+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++
-    
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+  +++
 
-31. The **Respond to the agent** node under the **False** path will look
-    like the one in the screenshot below.
+- +++Customer Name+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
+- +++Product Category+++ - +++’1’+++
+
+31. O nódulo **Respond to the agent** sob o caminho **False** será
+    parecido com o da captura de tela abaixo.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-32. Now, add a **Respond to the agent** node under the **False** path of
-    the Condition node, rename it to +++If the customer does not
-    exist+++ and add outputs to it as below.
+32. Agora, adicione um nódulo **Respond to the agent** sob o caminho
+    **False** do nódulo **Condition**, renomeie-o para +++If the
+    customer does not exist+++ e adicione saídas a ele como abaixo.
 
-    - +++Customer ID+++ - +++’1’+++
-    
-    - +++Customer Name+++ - +++’1’+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ - +++’1’+++
 
-    ![](./media/image70.png)
+- +++Customer Name+++ - +++’1’+++
 
-33. The **GetCustomer** flow will look like the one in the screenshot
-    below.
+- +++Product Category+++ - +++’1’+++
 
-    ![](./media/image71.png)
+![](./media/image70.png)
 
-34. Right click on the **Respond to the agent** that is there as a
-    common one at the end of the flow and select **Delete** to delete
-    it.
+33. O fluxo **GetCustomer** será parecido com o da captura de tela
+    abaixo.
 
-    ![A screenshot of a computer AI-generated content may be
+![](./media/image71.png)
+
+34. Clique com o botão direito do mouse no **Respond to the agent** que
+    está lá como um comum no final do fluxo e selecione **Delete** para
+    excluí-lo.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-35. Select **Save Draft** to save the lab. Once saved, click on
-    **Publish** to publish the flow.
+35. Selecione **Save Draft** para salvar o laboratório. Uma vez salvo,
+    clique em **Publish** para publicar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-### Task 4 – Create Agent flow to add customer
+### Tarefa 4 – Criar fluxo de agente para adicionar cliente
 
-In this task, you will create an Agent flow to add a new customer into
-the Dataverse when the customer is a new customer.
+Nesta tarefa, você criará um fluxo de agente para adicionar um novo
+cliente ao Dataverse quando o cliente for um novo cliente.
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  Na guia **Agent flows**, selecione **+ New agent flow.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-2.  Select **Add a trigger** node and replace it with **When an agent
-    calls the flow** node.
+2.  Selecione o nódulo **Add a trigger** e substitua-o pelo nódulo
+    **When an agent calls the flow**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image76.png)
 
-3.  Select **+ Add an input** and add a **Text** input.
+3.  Selecione **+ Add an input** e adicione uma entrada **Text**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
 
-4.  Enter +++Name+++ as the input name.
+4.  Insira +++Name+++ como o nome da entrada.
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image78.png)
 
-5.  Similarly, add the following input values.
+5.  Da mesma forma, adicione os seguintes valores de entrada.
 
-    +++Phone Number+++
-    
-    +++Email ID+++
-    
-    +++Address+++
++++Phone Number+++
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image79.png)
++++Email ID+++
 
-6.  Add an action below the node and select **Add a new row**.
++++Address+++
 
-    ![A screenshot of a computer AI-generated content may be
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image79.png)
+
+6.  Adicione uma ação abaixo do nódulo e selecione **Add a new row**.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-7.  Select the Table Name as **Customer Record** and then select **Show
-    all** in Advanced parameters.
+7.  Selecione o Table Name como **Customer Record** e, em seguida,
+    selecione **Show all** em **Advanced parameters**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-8.  Click in the **Address** field, select the **Dynamic value** and
-    then select the **Address** dynamic value.
+8.  Clique no campo **Address**, selecione **Dynamic value** e, em
+    seguida, selecione ícone **Address**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image83.png)
 
-9.  Similarly, add the dynamic values for
+9.  Da mesma forma, adicione os valores dinâmicos para
 
-    - Customer Name – Name
-    
-    - Email ID – Email ID
-    
-    - Mobile Number - Phone Number
+- Customer Name – Nome
 
-    ![A screenshot of a computer AI-generated content may be
+- Email ID – ID de e-mail
+
+- Mobile Number - Número de telefone
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-10. Ewqewqewq Open the insert expression for **Customer ID**, enter
-    +++guid()+++ and select **Add**. This is to add a unique value as
-    the ID for the customer.
+10. Abra a expressão de inserção para **Customer ID**, insira
+    +++guid()+++ e selecione **Add**. Isso é para adicionar um valor
+    exclusivo como o ID do cliente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-11. Add a new action and select **Respond to the agent**.
+11. Adicione uma nova ação e selecione **Respond to the agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-12. Add a output value named +++Customer ID+++ and insert an expression
-    and enter
+12. Adicione um valor de saída chamado +++Customer ID+++ e insira uma
+    expressão e digite
     +++string(outputs('Add_a_new_row')?\['body/cr6dd_customeridentifier'\])+++
-    as the value.
+    como o valor.
 
-    Replace **cr6dd_customeridentifier** with your logical name for the
-column **Customer ID**.
+Substitua **cr6dd_customeridentifier** pelo nome lógico da coluna
+**Customer ID**.
 
-    Select **Add**.
+Selecione **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image87.png)
 
-13. Select **Save draft** to save the flow.
+13. Selecione **Save draft** para salvar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image88.png)
 
-14. Once the flow is saved, select **Publish** to publish the flow.
+14. Depois que o fluxo for salvo, selecione **Publish** Para publicar o
+    fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image89.png)
 
-15. Select **Overview** tab. **Click on Edit.** Enter the name of the
-    flow as +++Add Customer+++ and then select **Save**.
+15. Selecione a guia **Overview**. Clique em **Edit.** Insira o nome do
+    fluxo como +++Add Customer+++ e, em seguida, selecione **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-### Task 5 – Add the flow and design the Customer Details topic
+### Tarefa 5 – Adicionar o fluxo e projetar o tópico detalhes do cliente
 
-In this task, you will design the Customer Details topic which will get
-the phone number of the customer, check if the detail is already present
-in the Dataverse and add it if not already present.
+Nesta tarefa, você criará o tópico Detalhes do Cliente que obterá o
+número de telefone do cliente, verificará se o detalhe já está presente
+no Dataverse e o adicionará se ainda não estiver presente.
 
-1.  Navigate back to the **Customer Details** topic.
+1.  Navegue de volta ao tópico **Customer Details**.
 
-2.  Add a node under the Trigger node, select **Add a tool -\>
-    GetCustomer**.
+2.  Adicionar um nódulo sob o nódulo **Trigger**, selecione **Add a tool
+    -\> GetCustomer**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image91.png)
 
-3.  In the Inputs, select the variable **MobileNumber**.
+3.  Em **Inputs**, selecione a variável **MobileNumber**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image92.png)
 
-4.  Select the **output** variables and mark the Customer ID and
-    ProductCategory as **Global** as in the screenshot below.
+4.  Selecione as variáveis **output** e marque o **Customer ID** e
+    **ProductCategory** como **Global** como na captura de tela abaixo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image93.png)
 
-5.  Below the **Action** node, add a **condition** node.
+5.  Abaixo do nódulo **Action**, adicione um nódulo **condition**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image94.png)
 
-6.  Select **CustomerID** in **Select a variable**.
+6.  Selecione **CustomerID** em **Select a variable**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image95.png)
 
-7.  Select the condition as **is not equal to** and enter +++'1'+++ in
-    the **Value** field. This checks if the customer detail is already
-    existing in the database.
+7.  Selecione a condição como **is not equal to** e digite +++ '1'+++ no
+    campo **Value**. Isso verifica se os detalhes do cliente já existem
+    no banco de dados.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image96.png)
 
-8.  Under the condition node, add a **Set a variable** node.
+8.  No nó de condição, adicione um nódulo **Set a variable**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image97.png)
 
-9.  Click on **Select a variable** and select **Create a new variable**.
+9.  Clique em **Select a variable** e selecione **Create a new
+    variable**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image98.png)
 
-10. Name the variable as +++IsNewCustomer+++ and mark it as **Global**.
+10. Nomeie a variável como +++IsNewCustomer+++ e marque-a como
+    **Global**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image99.png)
 
-11. Set the value as +++‘No’+++. This means that the customer is an old
-    customer whose data is already present in the Dataverse.
+11. Defina o valor como +++‘No’+++. Isso significa que o cliente é um
+    cliente antigo cujos dados já estão presentes no Dataverse.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image100.png)
 
-12. You will add a new node next to the variable node and give a Welcome
-    message to the customer.
+12. Você adicionará um novo nódulo ao lado do nódulo variável e enviará
+    uma mensagem de boas-vindas ao cliente.
 
-13. Select Add a node and select **Send a message** node. In the message
-    area, type +++Welcome+++ and then click on the {x} icon to select
-    the variable. Select the **Customer Name** variable.
+13. Selecione **Add a node** e selecione Nó **Send a message**. Na área
+    de mensagem, digite +++Welcome+++ e, em seguida, clique no ícone {x}
+    para selecionar a variável. Selecione a variável **Customer Name**.
 
-    ![](./media/image101.png)
+![](./media/image101.png)
 
-    Now, we have invoked the Agent flow **GetCustomer**, checked if the
-customer record already exist and if yes, Added a Welcome message to the
-customer.
+Agora, invocamos o fluxo do Agente **GetCustomer**, verificado se o
+registro do cliente já existe e, em caso afirmativo, adicionou uma
+mensagem de boas-vindas ao cliente.
 
-    Now, we will design the part of the topic if the customer record does
-not already exist.
+Agora, vamos projetar a parte do tópico se o registro do cliente ainda
+não existir.
 
-13. Under the **All other conditions** node, add a Set a variable node
-    and set the value for **isNewCustomer** variable as +++’Yes’+++.
+13. Sob o nódulo **All other conditions**, adicione um nódulo **Set a
+    variable** e defina o valor para a variável **isNewCustomer** como
+    +++’Yes’+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image102.png)
 
-14. Next to the variable node, add a **Message** node and enter +++We do
-    not have your details in our system. Please fill in your details
-    below to help us serve you better.+++
+14. Ao lado do nódulo variável, adicione um nódulo **Message** e digite
+    +++We do not have your details in our system. Please fill in your
+    details below to help us serve you better.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image103.png)
 
-15. Next to the Message node, add an **Ask with adaptive card** node.
+15. Ao lado do nódulo **Message**, adicionar um nódulo **Ask with
+    adaptive card**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image104.png)
 
-16. Click on the 3 dots on the top right of the screen and select
+16. Clique nos 3 pontos no canto superior direito da tela e selecione
     **Properties**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image105.png)
 
-17. Select **Edit adaptive card**.
+17. Selecione **Edit adaptive card**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image106.png)
 
-18. Enter the below **JSON** in the **Card payload editor** area. Select **Save**.
-    
-    ```
-    {
-        "type": "AdaptiveCard",
-        "body": [
-            {
-                "type": "TextBlock",
-                "size": "Medium",
-                "weight": "Bolder",
-                "text": "Please enter your details"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Name",
-                "label": "Name"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Mobile Number",
-                "label": "Mobile Number"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Email ID",
-                "label": "Email ID"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Address",
-                "label": "Address"
-            }
-        ],
-        "actions": [
-            {
-                "type": "Action.Submit",
-                "title": "Submit"
-            }
-        ],
-        "version": "1.5",
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
-    }
-    ```
+18. Digite os dados abaixo **JSON** na área **Card payload editor**.
+    Selecione **Save**.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image107.png)
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "body": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "size": "Medium",
+>
+> "weight": "Bolder",
+>
+> "text": "Please enter your details"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Name",
+>
+> "label": "Name"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Mobile Number",
+>
+> "label": "Mobile Number"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Email ID",
+>
+> "label": "Email ID"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Address",
+>
+> "label": "Address"
+>
+> }
+>
+> \],
+>
+> "actions": \[
+>
+> {
+>
+> "type": "Action.Submit",
+>
+> "title": "Submit"
+>
+> }
+>
+> \],
+>
+> "version": "1.5",
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
+>
+> }
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image107.png)
 
-20. Select **Close** to close the editor.
+19. Selecione **Close** para fechar o editor.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image108.png)
 
-20. Expand the Outputs section of the created Adaptive card node, select
-    the Mobile Number value and select the Global.MobileNumber variable
-    to save the user entered Phone number value in it.
+20. Expanda a seção **Outputs** do nódulo do cartão adaptável criado,
+    selecione o valor **Mobile Number** e selecione a variável
+    **Global.MobileNumber** para salvar o valor do número de telefone
+    inserido pelo usuário nele.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image109.png)
 
-21. Leave the other values to the default ones.
+21. Deixe os outros valores como os padrões.
 
-22. The Adaptive card is ready with the form to get the customer
-    details.
+22. O cartão adaptável está pronto com o formulário para obter os
+    detalhes do cliente.
 
-23. Next to the Adaptive card node, invoke the flow **Add Customer.**
+23. Ao lado do nódulo do cartão adaptável, invoque o fluxo **Add
+    Customer.**
 
-    ![](./media/image110.png)
+![](./media/image110.png)
 
-24. Click on the **three dots** in the **Enter or select a value** and
-    select **CustomerName** variable.
+24. Clique nos **três pontos** em **Enter or select a value** e
+    selecione a variável **CustomerName**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image111.png)
 
-25. Similarly, add the input variables for the other fields to be passed
-    to the flow.
+25. Da mesma forma, adicione as variáveis de entrada para os outros
+    campos a serem passados para o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image112.png)
 
-26. Select **Global.CustomerID** as the output variable to which the
-    output from the flow will be saved.
+26. Selecione **Global.CustomerID** como a variável de saída na qual a
+    saída do fluxo será salva.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image113.png)
 
-27. After the action node, add a **Message node** and enter the value,
-    +++Thank You! Customer detail has been added to the database. Please
-    select a product type to shop.+++
+27. Após o nódulo de ação, adicione um nódulo **Message** e insira o
+    valor, +++Thank You! Customer detail has been added to the database.
+    Please select a product type to shop.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image114.png)
 
-28. **Save** the topic.
+28. Clique em **Save** para salvar o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image115.png)
 
-29. Open the Conversation Start topic and invoke the Customer Details
-    topic from there.
+29. Abra o tópico Início da Conversa e chame o tópico Detalhes do
+    Cliente a partir daí.
 
-30. Add a node after the Question node in the topic. Select **Topic
-    management -> Go to another topic**.
+30. Adicione um nódulo após o nódulo **Question** no tópico. Selecione
+    **Topic management -\> Go to another topic**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image116.png)
 
-31. Select the **Customer Details** topic.
+31. Selecione o tópico **Customer Details**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image117.png)
 
-32. Select **Save** to save the topic.
+32. Clique em **Save** para salvar o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image118.png)
 
-### Task 6 – Create an agent flow to get the product details
+### Tarefa 6 – Criar um fluxo de agente para obter os detalhes do produto
 
-In this task, you will create an agent flow which will fetch the Product
-details from the Dataverse based on the selected product.
+Nesta tarefa, você criará um fluxo de agente que buscará os detalhes do
+produto no Dataverse com base no produto selecionado.
 
-1.  Select the **Flows** tab from the Copilot Studio and select **+ New
+1.  Selecione a guia **Flows** no Copilot Studio e selecione **+ New
     agent flow**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image119.png)
 
-2.  Select the trigger node and select **When an agent calls the flow**
-    action.
+2.  Selecione o nódulo **Add a trigger** e selecione ação **When an
+    agent calls the flow**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image120.png)
 
-3.  Add a Text input and name it as +++Product Name+++
+3.  Adicione uma entrada de texto e nomeie-a como +++Product Name+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image121.png)
 
-4.  Select **Save draft** to save the flow.
+4.  Selecione **Save draft** para salvar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image122.png)
 
-5.  Select the **Overview** tab and click on **Edit**. Enter the name as
-    +++GetProductDetails+++ and select **Save**.
+5.  Selecione a guia **Overview** e clique em **Edit**. Digite o nome
+    como +++GetProductDetails+++ e selecione **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image123.png)
 
-6.  Navigate back to the **Designer** tab and select **Add an action**
-    below the **When an agent calls the flow** node. Search for +++list
-    rows+++ and select the **List rows** action under **Microsoft
+6.  Navegue de volta para a guia **Designer** e selecione **Add an
+    action** abaixo do nódulo **When an agent calls the flow**. Procurar
+    +++list rows+++ e selecione a ação **List rows** em **Microsoft
     Dataverse**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image124.png)
 
-7.  Enter the below values
+7.  Insira os valores abaixo
 
-    - **Table name –** Select **Product Record**
-    
-    - Filter rows – +++cr6dd_producttitle eq '**<Product Name>**'+++
-      Replacing <Product Name> with the dynamic value ProductName.
+- **Table name –** Select **Product Record**
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
+- Filter rows – +++cr6dd_producttitle eq '**\<Product Name\>**'+++
+  Replacing \<Product Name\> com o valor dinâmico ProductName.
 
-8.  Add a **Respond to the agent** node under the **List rows** node.
-    Select **+ Add an output** and add a text output variable. Enter the
-    below values and click Add in **insert expression.**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image125.png)
+
+8.  Adicione um nódulo **Respond to the agent** sob o nódulo **List
+    rows**. Selecione **+ Add an output** e adicione uma variável de
+    saída de texto. Insira os valores abaixo e clique em **Add** em
+    **insert expression.**
 
     - Enter a name – Enter +++Product Name+++
 
     - Expression -
       +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_producttitle'\]+++
-      (Replace **cr6dd_producttitle** with the logical name of tha
-      column Product Name in your table.
+      (Substitua **cr6dd_producttitle** com o nome lógico da coluna
+      **Product Name** na sua tabela.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image126.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image126.png)
 
-9.  Similarly, add another output node with the below details
+9.  Da mesma forma, adicione outro nódulo de saída com os detalhes
+    abaixo
 
-    - Enter a name – Enter +++Price+++
-    
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
-      Replace **cr6dd_productprice** with the logical name of the column
-      **Price** in your table
+- Enter a name – Enter +++Price+++
 
-    The node should now look like this.
+- Expression -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
+  Substitua **cr6dd_productprice** com o nome lógico da coluna **Price**
+  na sua tabela
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image127.png)
+> O nódulo agora deve ficar assim.
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image127.png)
 
-10. Select **Save draft** to save the topic and then **Publish** to
-    Publish the flow.
+10. Selecione **Save draft** para salvar o tópico e, em seguida,
+    **Publish** para publicar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image128.png)
 
-### Task 7 – Create a topic to retrieve the Product category from the customer
+### Tarefa 7 – Criar um tópico para recuperar a categoria Produto do cliente
 
-1.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
+1.  Na guia Copilot Studio Topics, selecione **+ Add a topic -\> From
     blank**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image129.png)
 
-2.  Rename the topic to +++Place Order+++. Change the trigger of the
-    trigger node to **It’s redirected to**.
+2.  Renomeie o tópico para +++Place Order+++. **Change the trigger** do
+    nódulo de gatilho para **It’s redirected to**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image130.png)
 
-3.  **Save** the topic.
+3.  Clique em **Save** para salvar o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image131.png)
 
-4.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
+4.  Na guia Copilot Studio Topics, selecione **+ Add a topic -\> From
     blank**.
 
-    ![](./media/image129.png)
+![](./media/image129.png)
 
-5.  Rename the topic as +++Get Product Categories+++. Select the
-    **Change trigger** option in the **Trigger** node and select **It’s
-    redirect to** option.
+5.  Renomeie o tópico como +++Get Product Categories+++. Selecione a
+    opção **Change trigger** no nódulo **Trigger** e selecione a opção
+    **It’s redirect to**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image132.png)
 
-6.  Below the **Trigger** node, add a **Condition** node.
+6.  Abaixo do nódulo **Trigger**, adicione um nódulo **Condition**.
 
-    Select the Global variable **IsNewCustomer** and add the condition, **IsNewCustomer** **is equal to** +++**'Yes'**+++.
+Selecione a variável Global **IsNewCustomer** e adicione a condição,
+**IsNewCustomer** **is equal to** +++**'Yes'**+++.
 
-    Select **+ New condition.**
+Selecione **+ New condition.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image133.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image134.png)
 
-7.  Select **Or**.
+7.  Selecione **Or**.
 
-    Under the Or condition, select the Global variable **ProductCategory**
-add the condition, is equal to +++'1'+++
+Sob a condição **Or**, selecione a variável Global **ProductCategory**
+adicione a condição, é igual a +++'1'+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image135.png)
 
-    ![](./media/image136.png)
+![](./media/image136.png)
 
-8.  Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+8.  Sob o nódulo Condition, adicione um nódulo de pergunta e insira
+    +++Select a category+++ e selecione **+ New option**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-9.  Enter the option +++Laptop+++ and select + New option again.
+9.  Digite a opção +++Laptop+++ e selecione + New option again.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-10. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++. Select the variable under **Save user response
-    as**, and name the variable as +++**ProdCatchoice**+++
+10. Da mesma forma, adicione duas outras opções +++**Desktop**+++ e
+    +++**Tablet**+++. Selecione a variável em **Save user response as**,
+    e nomeie a variável como +++**ProdCatchoice**+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image139.png)
 
-11. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+11. No nódulo da pergunta, adicione um nódulo **Set a variable value**
+    para converter a opção recebida do nó da pergunta em String.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-12. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression
-    +++Text(Topic.ProdCatchoice)+++ and select **Insert**.
+12. Selecione a variável Global **ProductCategory** em Set variable. No
+    campo **To value**, Clique nos 3 pontos, selecione a guia
+    **Formula**. Insira a expressão +++Text(Topic.ProdCatchoice)+++ e
+    selecione **Insert**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image141.png)
 
-13. Below the Set variable value node, add a new node, **Topic
-    management** -> **Go to another topic** -\> **Place Order**.
+13. Abaixo do nódulo Set variable value, adicione um novo nódulo,
+    **Topic management** -\> **Go to another topic** -\> **Place
+    Order**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-14. Now, one path is fully complete. It will get the category from the
-    user and invoke the Place Order topic.
+14. Agora, um caminho está completo. Ele obterá a categoria do usuário e
+    invocará o tópico Place Order.
 
-15. Navigate back to the start of this topic. Under all other
-    conditions, add a **Question** node. Add the message +++Based on
-    your recent purchase we suggest you products in \<Product Category\>
-    category. Would you like to continue?+++
+15. Volte ao início deste tópico. Em todas as outras condições, adicione
+    um nódulo **Question**. Adicionar a mensagem +++Based on your recent
+    purchase we suggest you products in \<Product Category\> category.
+    Would you like to continue?+++
 
-    In the message replace **\<Product Category\>** with the **Global.ProductCategory** variable.
+Na mensagem, substitua **\<Product Category\>** pela variável
+**Global.ProductCategory**.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image143.png)
 
-16. Add 2 options, +++Yes+++ and +++No+++. Click on the variable under
-    Save user response as and rename it to +++Userschoiceofcategory+++
+16. Adicione duas opções, +++Yes+++ e +++No+++. Clique na variável em
+    **Save user response as** e renomeie-a para
+    +++Userschoiceofcategory+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image144.png)
 
-17. Under the **question** node, add a **condition** node.
+17. Sob o nódulo **question**, adicione um nódulo **condition**.
 
-    Set the first condition as **Userschoiceofcategory is equal to Yes**.
+Defina a primeira condição como **Userschoiceofcategory is equal to
+Yes**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image145.png)
 
-36. Under this node, add a **Topic management node** and invoke the
-    **Place Order** topic.
+36. Nesse nódulo, adicione um **Topic management node** e invoque o
+    tópico **Place Order**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image146.png)
 
-18. In the condition node, select the three dots in the top right corner
-    of the condition node and select **Insert new condition**.
+18. No nódulo de condição, selecione os três pontos no canto superior e
+    selecione **Insert new condition**.
 
-    ![](./media/image147.png)
+![](./media/image147.png)
 
-19. Add a condition, **Userschoiceofcategory is equal to No**.
+19. Adicione uma condição, **Userschoiceofcategory is equal to No**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image148.png)
 
-20. Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+20. Sob o nódulo **Condition**, adicione um nódulo **Question** e digite
+    +++Select a category+++ e selecione **+ New option**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-21. Enter the option +++Laptop+++ and select + New option again.
+21. Digite a opção +++Laptop+++ e selecione **+ New option** outra vez.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-22. Similarly add two other options +++**Desktop**+++ and
+22. Da mesma forma, adicione duas outras opções +++**Desktop**+++ e
     +++**Tablet**+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image149.png)
 
-23. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+23. No nódulo da pergunta, adicione um nódulo **Set a variable value**
+    para converter a opção recebida do nó da pergunta em String.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-24. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression +++Text(Topic.Var1)+++ and
-    select **Insert**.
+24. Selecione a variável Global **ProductCategory** em Set variable. No
+    campo **To value**, clique nos três pontos, selecione a guia
+    **Formula**. Insira a expressão +++Text(Topic.Var1)+++ e selecione
+    **Insert**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image150.png)
 
-25. Below the Set variable value node, add a new node, **Topic
-    management** -\> **Go to another topic** -\> **Place Order**.
+25. Abaixo do nódulo Set variable value, adicione um novo nódulo,
+    **Topic management** -\> **Go to another topic** -\> **Place
+    Order**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-26. Select **Save** to save the topic.
+26. Selecione **Save** para salvar o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image151.png)
 
-27. Open the Topic **Customer Details** and move to the last node.
+27. Abra o tópico **Customer Details** e vá para o último nódulo.
 
-28. **Add a new node** to invoke the topic **Get Product Categories**.
+28. **Add a new node** para invocar o tópico **Get Product Categories**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image152.png)
 
-29. Select **Save** to save the topic.
+29. Selecione **Save** para salvar o tópico.
 
-    ![](./media/image153.png)
+![](./media/image153.png)
 
-### Task 8 – Create Agent flow to place the order
+### Tarefa 8 – Criar fluxo de agente para fazer o pedido
 
-In this task, you will create an Agent flow to place the order based on
-the product chosen by the customer.
+Nesta tarefa, você criará um fluxo de Agente para fazer o pedido com
+base no produto escolhido pelo cliente.
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  Na guia **Agent flows**, selecione **+ New agent flow.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image154.png)
 
-2.  Click on the **Add a trigger node** and select **When an agent calls
-    the flow** node.
+2.  Clique no nódulo **Add a trigger** e selecione o nódulo **When an
+    agent calls the flow**.
 
-    ![](./media/image155.png)
+![](./media/image155.png)
 
-3.  Add 2 **Text** variables +++Product Name+++ and +++Customer ID+++ as
-    **Input**.
+3.  Adicione duas **variáveis** de texto+++Product Name+++ e +++Customer
+    ID+++ como **Input**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image156.png)
 
-4.  Click on **Save Draft** to save the flow.
+4.  Clique em **Save Draft** para salvar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image157.png)
 
-5.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++PlaceOrder+++. Then select **Save**.
+5.  Selecione **Overview** no menu superior, clique em **Edit** e insira
+    o nome do fluxo como +++PlaceOrder+++. Em seguida, selecione
+    **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image158.png)
 
-6.  Navigate back to the **Designer** tab. Select Add a new action and
-    select **Add a new row** under Dataverse.
+6.  Navegue de volta para a guia **Designer**. Selecione **Add a new
+    action** e selecione **Add a new row** em **Dataverse**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image159.png)
 
-7.  Select the Table name as **Order Record** and then click on **Show
-    all** under Advanced parameters.
+7.  Selecione o Nome da tabela como **Order Record** and then click on
+    **Show all**, em seguida, clique em Advanced parameters.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image160.png)
 
 8.  Enter the below values.
 
-    - Customer Identifier - **Customer ID** (Dynamic value)
-    
-    - Order identifier – Enter guid() in Insert expression
-    
-    - Order Status - +++**Order Placed**+++
+Customer Identifier - **Customer ID** (Dynamic value)
 
-    ![A screenshot of a computer AI-generated content may be
+Order identifier – Enter guid() in Insert expression
+
+Order Status - +++**Order Placed**+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image161.png)
 
-9.  Add a node, **Respond to the agent**.
+9.  Adicione um nódulo, **Respond to the agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image162.png)
 
-10. Add a output Text variable and name it as +++Order ID+++.
+10. Adicione uma variável de texto de saída e nomeie-a como +++Order
+    ID+++.
 
-    Enter its value as +++string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
-(Replace **cr6dd_orderidentifier** with the logical name value of the
-column Order ID from the Order Record table.
+Insira seu valor como +++
+string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
+(Substitua **cr6dd_orderidentifier** com o valor do nome lógico da
+coluna ID do pedido da tabela Order Record.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image163.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image163.png)
 
-11. Click on **Save draft** to save the flow and then click on
-    **Publish** to publish the flow.
+11. Clique em **Save draft** para salvar o fluxo e clique em **Publish**
+    para publicar o fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image164.png)
 
-### Task 9 – Design the Place Order topic 
+### Tarefa 9 – Projetar o tópico Fazer pedido 
 
-In this task, you will design the topic to place the order and update
-the Dataverse table.
+Nesta tarefa, você criará o tópico para fazer o pedido e atualizar a
+tabela do Dataverse.
 
-1.  Open the topic **Place Order** from the Agent’s **Topic** tab.
+1.  Abra o tópico **Place Order** na guia **Topic** do Agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image165.png)
 
-2.  Add a message node with the message +++Options based on the category
-    will be listed below.+++
+2.  Adicione um nódulo de mensagem com a mensagem +++Options based on
+    the category will be listed below.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image166.png)
 
-3.  Add a condition node. Enter the condition as ProductCategory(Global
-    variable) is equal to +++Laptop+++.
+3.  Adicione um nó de condição. Insira a condição como
+    ProductCategory(Global variable) is equal to +++Laptop+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image167.png)
 
-4.  Under the node, add a question node and enter the message +++Select
-    a Laptop product+++. Select **Laptop** under **Identity**.
+4.  No nódulo, adicione um nódulo de pergunta e insira a mensagem
+    +++Select a Laptop product+++. Selecione **Laptop** em **Identity**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image168.png)
 
-5.  Click on **Select** options for user and select all the 5 available
-    options.
+5.  Clique nas opções **Select** para o usuário e selecione todas as
+    cinco opções disponíveis.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image169.png)
 
-6.  Enter the variable name as +++ProdNameLapChoice+++
+6.  Insira o nome da variável como +++ProdNameLapChoice+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image170.png)
 
-7.  Now, follow the same procedure and add condition nodes for
-    ProductCategory is equal to +++Desktop+++ and +++Tablet+++.
+7.  Agora, siga o mesmo procedimento e adicione nós de condição para
+    ProductCategory é igual a +++Desktop+++ e +++Tablet+++.
 
-8.  Save the values in variable names.
+8.  Salve os valores em nomes de variáveis.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image171.png)
 
-9.  Select a **Set variable value** node under the **Select a Laptop
-    product** question node.
+9.  Selecione um nódulo **Set variable value** sob o nódulo de pergunta
+    **Select a Laptop product**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image172.png)
 
-10. Rename the created variable to +++ProdNameSelected+++ and set it as
-    **Global**.
+10. Renomeie a variável criada para +++ProdNameSelected+++ e a defina
+    como **Global**.![A screenshot of a computer AI-generated content
+    may be incorrect.](./media/image173.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image173.png)
+11. Defina o valor no campo **Formula** como
+    +++Text(Topic.ProdNameLapChoice)+++ (Substitua o nome da variável,
+    se você tiver usado um diferente)
 
-12. Set the value in the Formula field as
-    +++Text(Topic.ProdNameLapChoice)+++ (Replace the variable name, if you have used a different one)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image174.png)
 
-12. Similarly, add a **Set variable value** node under **Desktop** and
-    **Tablet** branches. Select the **Set variable** value as
-    **ProdNameSelected** and insert the expression for the To value
-    field with the variable name as per the one you used.
+12. Da mesma forma, adicione um nódulo **Set variable value** em
+    **Desktop** e **Tablet**. Selecione o valor **Set variable** como
+    **ProdNameSelected** e insira a expressão para o campo **To**
+    **value** com o nome da variável de acordo com o que você usou.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image175.png)
 
-13. Add an Action node under all these nodes in common and invoke the
-    GetProductDetails flow.
+13. Adicione um nódulo Action em todos esses nódulos em comum e invoque
+    o fluxo GetProductDetails.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image176.png)
 
-14. Select **ProdNameSelected** input variable to be passed to the flow.
-    Leave the other values as default.
+1.  Selecione **ProdNameSelected** variável de entrada a ser passada
+    para o fluxo. Deixe os outros valores como padrão.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image177.png)
 
-15. Add a Message node below the Action and enter the below message.
-    Replace <ProductName> and <Price> with the corresponding variable
-    names
+14. Adicione um nódulo Message sob Action e digite a mensagem abaixo.
+    Substitua \<roductName\> e \<Price\> pelos nomes de variáveis
+    correspondentes
 
-    Product Details
-    
-    - Product Name - <ProductName>
-    
-    - Price - <Price>
+Product Details
 
-    ![A screenshot of a computer AI-generated content may be
+- Product Name - \<ProductName\>
+
+> ​
+
+- Price - \<Price\>
+
+​
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image178.png)
 
-16. Below the message node, adda **Question node** with a message,
-    +++Would you like to place order for this item?+++ in it. Add
-    options **Yes** and **No** to it and name the variable as
+15. Abaixo do nódulo da mensagem, adicione um **Question node** com a
+    mensagem, +++Would you like to place order for this item?+++.
+    Adicione as opções **Yes** e **No** a ele e nomeie a variável como
     +++PlaceOrder+++.
 
-    ![](./media/image179.png)
+![](./media/image179.png)
 
-17. Under the Question node, add a condition node and in one branch, add
-    a condition **PlaceOrder isequal to Yes** and **all other
-    conditions** will be the **second branch**.
+16. Sob o nódulo Question, adicionar um nó de condição e, em uma
+    ramificação, adicionar uma condição **PlaceOrder isequal to Yes** e
+    **all other conditions** serão **second branch**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image180.png)
 
-18. Invoke the flow **PlaceOrder** as the next step.
+17. Invoque o fluxo **PlaceOrder** como o próximo passo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image181.png)
 
-19. Select the **ProductName** and **CustomerID** as the input to the
-    flow.
+18. Selecione **ProductName** e **CustomerID** como a entrada para o
+    fluxo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image182.png)
 
-20. Now, add a message node below this with the message, +++Your order
-    is placed. This is your Order ID for reference -<OrderID>+++
-    (Replace **<OrderID>** with the **variable OrderID** (the output
-    variable from the flow).
+19. Agora, adicione um nó de mensagem abaixo disso com a mensagem,
+    +++Your order is placed. This is your Order ID for reference
+    -\<OrderID\>+++ (Substituir **\<OrderID\>** com a variável
+    **OrderID** (a variável de saída do fluxo).
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image183.png)
 
-21. With this the **PlaceOrder isequal to Yes** branch is **complete**.
-    Now, navigate to **all other conditions branch**.
+20. Com isso, o ramo **PlaceOrder isequal to Yes** está **completo**.
+    Agora, navegue até o ramo **All other conditions**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image184.png)
 
-22. Below that, add a Question node with the message, +++Do you want to
-    go to the main menu?+++ with options **Yes** and **No**. Name the
-    variable as +++**GoToMainMenu**+++.
+21. Abaixo disso, adicione um nódulo Question com a mensagem, +++Do you
+    want to go to the main menu?+++ com opções **Yes** e **No**. Nomeie
+    a variável como +++**GoToMainMenu**+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image185.png)
 
-23. Under this node, add a condition node and in one branch add a
-    condition with **GoToMainMenu is equal to Yes**. The other branch of
-    this condition will be **All other conditions**.
+22. Nesse nódulo, adicione um nódulo de condição e, em uma ramificação,
+    adicione uma condição com **GoToMainMenu is equal to Yes**. O outro
+    ramo desta condição será **All other conditions**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image186.png)
 
-24. Under this condition node, add a question node with message
-    +++**Select Product Category**+++ and add 3 options,
-    +++**Laptop**+++, +++**Desktop**+++ and +++**Tablet**+++.
+23. Nesse nó de condição, adicione um nódulo de pergunta com a mensagem
+    +++**Select Product Category**+++ e adicione três opções,
+    +++**Laptop**+++, +++**Desktop**+++ e +++**Tablet**+++.
 
-    Make a note of the variable name to which the result is saved. We will
-convert it to text in the next step.
+Anote o nome da variável na qual o resultado é salvo. Vamos convertê-lo
+em texto na próxima etapa.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image187.png)
 
-25. Add a **Set variable value** node and select **ProductCategory**
-    variable under **set variable** and enter the value as
-    +++**Text(Topic.Var1)**+++ under the **Formula** tab.
+24. Adicione um nódulo **Set variable value** e selecione a variável
+    **ProductCategory** em **set variable** e insira o valor como
+    +++**Text(Topic.Var1)**+++ sob a guia **Formula**.
 
-    Replace **Var1** with your variable name if it is different.
+Substitua **Var1** com o nome da sua variável, se for diferente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image188.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image189.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image189.png)
 
-26. Under the Set variable value node, add a **Go to step** node.
+25. Sob o nódulo Set variable value, adicione um nódulo **Go to step**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image190.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image191.png)
 
-27. After adding the node, you will have to select the **step**, to
-    which the **control should pass** on at this point. **Scroll up**
-    and select the **Message node at the starting of this topic** since,
-    you have got the **ProductCategory** from the customer now and need
-    to execute from the beginning.
+26. Depois de adicionar o nódulo, você terá que selecionar o **step**,
+    para o qual o **control should pass** neste momento. **Scroll up** e
+    selecione o **Message node at the starting of this topic** uma vez
+    que, você tem o **ProductCategory** do cliente agora e precisa
+    executar desde o início.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image192.png)
 
-28. Add a common message node at the end with the message +++Thank you
-    for shopping with us! Please visit again!+++ Then select **Save** to
-    save the topic.
+1.  Adicione um nódulo de mensagem comum no final com a mensagem
+    +++Thank you for shopping with us! Please visit again!+++ Em
+    seguida, selecione **Save** para salvar o tópico.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image193.png)
 
-## Exercise 4 – Add a trigger 
+## Exercício 4 – Adicionar um gatilho 
 
-In this exercise, you will add a trigger to get initiated when the Order
-table is added with a new row or an existing row is modified and send an
-email to the customer automatically. This defines the autonomous
-capability of the agent in this scenario,
+Neste exercício, você adicionará um gatilho para ser iniciado quando a
+tabela Order for adicionada com uma nova linha ou uma linha existente
+for modificada e enviará um email para o cliente automaticamente. Isso
+define a capacidade autônoma do agente neste cenário.
 
-1.  Select the Overview tab of the agent.
+1.  Selecione a guia Overview do agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image194.png)
 
-2.  Scroll down the page and select **Add trigger.**
+2.  Role a página para baixo e selecione **Add trigger.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image195.png)
 
-3.  Select **When a row is added, modified or deleted** option and then
-    select **Next**.
+3.  Selecione a opção **When a row is added, modified or deleted** e, em
+    seguida, selecione **Next**.
 
-    ![](./media/image196.png)
+![](./media/image196.png)
 
-4.  Once the **Microsoft Copilot Studio** and **Dataverse** are
-    connected, click on **Next**.
+4.  Uma vez que o **Microsoft Copilot Studio** e o **Dataverse** estejam
+    conectados, clique em **Next**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image196.png)
 
-5.  Select the below options, leave the rest as default and select
+5.  Selecione as opções abaixo, deixe o restante como padrão e selecione
     **Create trigger**.
 
-    - Change Type – Added or Modified or Deleted
-    
-    - Table name – Order Record
-    
-    - Scope - Organization
+- Change Type – Added or Modified or Deleted
 
-    ![A screenshot of a computer AI-generated content may be
+- Table name – Order Record
+
+- Scope - Organization
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image197.png)
 
-6.  This might take a few minutes to get completed. Once done, select
-    **Close** in the Add trigger dialog.
+6.  Isso pode levar alguns minutos para ser concluído. Uma vez feito
+    isso, selecione **Close** na caixa de diálogo Add trigger.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image198.png)
 
-7.  From the Trigger section in the **Overview** page of the agent,
-    click on the **3 dots** next to the added trigger and select **Edit
-    in Power Automate**.
+7.  Da seção Trigger na página **Overview** do agente, Clique nos **três
+    pontos** ao lado do gatilho adicionado e selecione **Edit in Power
+    Automate**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image199.png)
 
-8.  Select the first node in the flow and add the column names,
+8.  Selecione o primeiro nó no fluxo e adicione os nomes das colunas,
     +++cr6dd_orderidentifier, cr6dd_customeridentifier+++ under **Select
-    columns**. (**Replace** them with **your logical names** of the
-    **Order ID** and **Customer ID** columns from the **Order Record
-    table**).
+    columns**. ( **Substitua-os pelos** nomes lógicos das colunas
+    **Order ID** e **Customer ID** da tabela **Order Record**).
 
-    ![](./media/image200.png)
+![](./media/image200.png)
 
-9.  Add a new node and select **List rows** action in it.
+9.  Adicione um novo nódulo e selecione a ação **List rows**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image201.png)
 
-10. In the List rows action, select **Table name** as **Customer
-    Record**.
+10. Na ação List rows, selecione **Table name** as **Customer Record**.
 
-    Under **Filter rows**, enter +++**cr6dd_customeridentifier eq ''**+++,
-    replacing the column name with your **Customer ID’s logical name**. Keep
-    the **cursor** **inside** the **single quotes**.
+Em **Filter rows**, insira +++**cr6dd_customeridentifier eq ''**+++,
+substituindo o nome da coluna pelo seu **Customer ID’s logical name**.
+Mantenha o **cursor dentro** das aspas **simples**.
 
-    ![A screenshot of a list AI-generated content may be
+![A screenshot of a list AI-generated content may be
 incorrect.](./media/image202.png)
 
-11. Select Insert expression, enter
+11. Selecione Inserir expressão, insira
     +++String(triggerOutputs()?\['body/cr6dd_customeridentifier'\])+++,
-    replacing **cr6dd_customeridentifier** with your CustomerID’s
-    logical name and select **Add**.
+    Substitua **cr6dd_customeridentifier** pelo nome lógico do seu
+    CustomerID e selecione **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image203.png)
 
-12. Next to the **List rows**, add an action **Send an email (V2).**
+12. Ao lado de **List rows**, adicione uma ação **Send an email (V2).**
 
-    ![A screenshot of a mail box AI-generated content may be
+![A screenshot of a mail box AI-generated content may be
 incorrect.](./media/image204.png)
 
-13. Click on **Sign in** and sign in with your credentials.
+13. Clique em **Sign in** e faça login com suas credenciais.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image205.png)
 
-14. In the **To** field, insert expression and enter
+14. No campo **To**, inserir expressão e digite
     +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++,
-    replacing **cr6dd_emailaddress** with the logical name of your email
-    id field from Customer Record table and then select **Add**.
+    Substitua **cr6dd_emailaddress** com o nome lógico do campo de ID de
+    e-mail da tabela Customer Record e, em seguida, selecione **Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image206.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image207.png)
 
-15. Enter the below details,
+15. Insira os detalhes abaixo,
 
-    Subject - +++Order Placement+++
+Subject - +++Order Placement+++
 
-    Body –
-    ```
-    Hi,
-    
-    This is to update you that your order has been placed. Thank you for
-    shopping with us.
-    
-    Thank You.
-    ```
-16. **Save** the flow and then **Publish** it.
+Body –
 
-    ![A screenshot of a computer AI-generated content may be
+Hi,
+
+This is to update you that your order has been placed. Thank you for
+shopping with us.
+
+Thank You.
+
+16. Salve o fluxo e publique-o.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image208.png)
 
-17. Back in the Copilot Studio agent page, select **Publish** to publish
-    the agent.
+17. De volta à página do agente do Copilot Studio, selecione **Publish**
+    para publicar o agente.
 
-    ![](./media/image209.png)
+![](./media/image209.png)
 
-18. Select **Publish** in the confirmation dialog.
+18. Selecione **Publish** na caixa de diálogo de confirmação.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image210.png)
 
-## Exercise 5 – Test the agent
+## Exercise 5 – Testar o agente
 
-In this exercise, you will test how the agent works.
+Neste exercício, você testará como o agente funciona.
 
-1.  From the agent page, select **Test** to open the Test pane.
+1.  Na página do agente, selecione **Test** para abrir o painel Teste.
 
-2.  Enter +++3148987666+++. This is the Phone number of an existing
-    customer.
+2.  Insira +++3148987666+++. Este é o número de telefone de um cliente
+    existente.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image211.png)
 
-3.  Select **Yes** from the given options.
+3.  Selecione **Yes** das opções fornecidas.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image212.png)
 
-4.  Select a **product** from the given options.
+4.  Selecione um **product** das opções fornecidas.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image213.png)
 
-5.  Select Yes from the given options.
+5.  Selecione **Yes** das opções fornecidas.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image214.png)
 
-6.  The order gets placed and the reference id is provided to the
-    customer.
+6.  O pedido é feito e o ID de referência é fornecido ao cliente.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image215.png)
 
-7.  You can also ask other questions like track the order delivery for
-    the id you received. Though we have not configured the topics for
-    that, it will give you reply based on the knowledge source.
+7\. Você também pode fazer outras perguntas, como rastrear a entrega do
+pedido para o ID que você recebeu. Embora não tenhamos configurado os
+tópicos para isso, ele lhe dará uma resposta com base na fonte de
+conhecimento.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image216.png)
 
-    Test the other scenarios by selecting different options. Add a new
-customer and check that you have received a mail in your email id that
-gets added to the Customer Record table.
+Teste os outros cenários selecionando opções diferentes. Adicione um
+novo cliente e verifique se você recebeu um e-mail em seu ID de e-mail
+que foi adicionado à tabela Customer Record.
 
-8.  After testing for some time, click on the **Analytics** tab to know
-    the details of usage of topics and knowledge sources. This might
-    take some time to reflect.
+## Resumo:
 
-## Summary:
+Neste laboratório, você aprendeu a projetar um agente de compras
+autônomo. Os tópicos abordados incluem,
 
-In this lab, you have learnt to design an autonomous shopping agent. Topics covered include,
+- Variáveis
 
-- Variables
-    
-- Entities
-    
-- Topics
-    
-- Agent flows
-    
-- Trigger
-    
-- Analytics
-    
-- Knowledge sources
+- Entidades
 
+- Tópicos
+
+- Fluxos de agentes
+
+- Gatilho
+
+- Fontes de conhecimento
