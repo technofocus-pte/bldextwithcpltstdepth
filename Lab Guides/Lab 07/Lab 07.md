@@ -1,1644 +1,1709 @@
-# Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
+# Lab 07 – パーソナライズされたショッピング・　　　アシスタントを作成する
 
-## Objective
+## 客観的
 
-The objective of this lab is to create a personalized shopping agent for
-Contoso Electronics. This will use Dataverse tables as the knowledge
-source for the agent. It will suggest product categories to the customer
-based on their latest shopping and assist them throughout the shopping
-experience.
+このラボの目的は、Contoso Electronics
+向けにパーソナライズされたショッピング・エージェントを作成することです。エージェントのナレッジソースとして
+Dataverse
+テーブルを使用します。エージェントは、顧客の最新のショッピング履歴に基づいて　Product
+Categoryを提案し、ショッピング体験全体を通してサポートします。
 
-## Exercise 1 – Create Dataverse tables
+## 演習1 – Dataverseテーブルの作成
 
-In this exercise, you will create tables in the Dataverse to store the
-**Customer**, **Product** and **Order** details.
+**顧客**、**製品**、**注文**の詳細を保存するためのテーブルをDataverseに作成します。
 
-1.  Login to +++https://make.powerapps.com+++ using your admin tenant
-    credentials and select Dev One as your environment. Select Tables
-    form the eft navigation pane.
+1.  管理者テナントの資格情報を使用して +++https://make.powerapps.com+++
+    に ログインし、環境として Dev One
+    を選択します。左のナビゲーションペイン から「Tables」を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the drop down next to **+ New table** and select **Create new
-    tables** under it.
+2.  **「+ New
+    table」**の横にあるドロップダウンを選択し、その下の**「Create new
+    tables」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Select **Import an Excel file or .csv** to create a new table.
+3.  新しいテーブルを作成するには、**Import an Excel file or .csv**を選択
+    します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under Export an Excel or .CSV file, select the **Select from
-    device** option.
+4.  Excel または .CSV ファイルのエクスポートの下で、**Select from
+    device** オプションを選択します。
 
-    ![A screenshot of a file AI-generated content may be
+![A screenshot of a file AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
-    **Import** to import the data from the tracker and create the table.
+5.  **C:\Labfiles**からExcelファイル「
+    **Customers.xlsx」**を選択します。
+    **「Import」**を選択してトラッカーからデータをインポートし、テーブルを作成します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  The table gets created with the data from the tracker.
+6.  トラッカーからのデータを使用してテーブルが作成されます。
 
-7.  Here, that table name is **Customer Record**. The name might be
-    slightly different in your case since it is automatically generated.
-    Keep a note of it and use the appropriate Table name throughout the
-    lab execution.
+7.  ここで、そのテーブル名 は**Customer
+    Record**。自動生成されるため、実際のテーブル名とは多少異なる場合があります。このテーブル名をメモし、ラボ実行中は適切なテーブル名を使用してください。
 
-8.  Click on the table, and then select **View data** to view the data
-    added to the table.
+8.  テーブルをクリックし、 **「View
+    data」**を選択して、テーブルに追加されたデータを表示します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-9.  Select **Save and exit**.
+9.  **\[Save and exit\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-10. Click on **Save and exit** in the confirmation dialog.
+10. 確認ダイアログで**「Save and exit」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-11. Repeat the steps from 2 to 10 twice, to create tables once using the
-    tracker **Product Catalog.xlsx** and the next time using
-    **Orders.xls**
+11. 2 から 10 までの手順を 2 回繰り返し、トラッカー**Product
+    Catalog.xlsx**を使用して 1 回目、 **Orders.xls**を使用して 2
+    回目にテーブルを作成します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-12. Now, we will have 3 tables,
+12. 3つのテーブルがあります。
 
-    - Customer Record
+    - 顧客記録
 
-    - Product Record
+    - 製品記録
 
-    - Orders
+    - 注文
 
-## Exercise 2 – Create a Shopping agent
+## 演習2 – ショッピング・エージェントを作成する
 
-In this exercise, you will create a Shopping agent which will assist
-customers while shopping in Contoso Electronics.
+この演習では、Contoso Electronics
+でのショッピング中に顧客を支援するショッピング
+エージェントを作成します。
 
-### Task 1 – Create the agent
+### タスク1 – エージェントを作成する
 
-Create the agent in Copilot Studio by using Copilot. Chat with the
-Copilot and give it instructions on how the agent should be designed and
-how it should behave so that the Copilot will create the agent for you.
+Copilot Studio で Copilot を使用してエージェントを作成します。Copilot
+と　　　　チャットして、エージェントの設計方法や動作を指示すると、Copilot
+が自動的に　　　エージェントを作成します。
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com/+++ and select the **Dev
-    One** environment.
+1.  +++https://copilotstudio.microsoft.com/+++ で Copilot Studio
+    にログインし、 **Dev One**環境を選択します。
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-2.  Select **Agents** and then click on **+ New agent**.
+2.  **\[Agents\]**を選択し、 **\[+ New agent\]**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the below in the chat and send it.
+3.  チャットに以下を入力して送信してください。
 
-    +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
++++Create an agent that will assist the customers in shopping with
+Contoso Electronics. Name it as "Shopping agent".+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Enter +++Help the users in finding products and their prices, give
-    personalized suggestions and track order delivery.+++ and hit
-    **Enter**.
+4.  +++ Help the users in finding products and their prices, give
+    personalized suggestions and track order delivery+ ++
+    と入力して**Enter** キーを押します。
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-5.  Enter additional instructions as below.
+5.  以下のように追加の指示を入力してください。
 
-    +++Maintain a polite tone+++
++++ Maintain a polite tone +++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Click **Create** to create the **Shopping agent**.
+6.  **「Create」**をクリックして**ショッピング・エージェント**を作成します。
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image17.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image17.png)
 
-7.  The agent gets set up. This might take a few minutes. Once the agent
-    is ready, it gets displayed in Copilot Studio as in the screenshot
-    below.
+7.  エージェントのセットアップが完了します。数分かかる場合があります。エージェントの準備が完了すると、以下のスクリーンショットのようにCopilot
+    Studioに表示されます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-### Task 2 – Add Knowledge
+### タスク2 – 知識を追加する
 
-Adding knowledge to the agent makes it grounded to those knowledge
-resources enabling it to answer the user queries more effectively. In
-this task, you will add the Dataverse table created in the earlier
-exercise as a knowledge source to this agent.
+エージェントに知識を追加すると、エージェントはそれらの知識リソースに基盤を置くようになり、ユーザーのクエリにより効果的に回答できるようになります。このタスクでは、前の演習で作成したDataverseテーブルを知識ソースとしてこのエージェントに追加します。
 
-1.  Enter +++What is the status of the order o1001?+++ in the Test pane.
+1.  Test ペインに+++ What is the status of the order o 1001? + ++
+    と入力します。
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image19.png)
 
-2.  The response will be similar the one below since the agent does not
-    have any information on this.
+2.  エージェントにはこのことに関する情報がないため、応答は以下のものと同様になります。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image20.png)
 
-3.  Now, we will add knowledge source to the agent. From the **Home**
-    page of the agent, select **Add Knowledge** under the **Knowledge**
-    section.
+3.  次に、エージェントにナレッジソースを追加します。エージェントの**Home**
+    ページから、 **「Knowledge」**セクションの**「Add
+    Knowledge」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-4.  Select **Dataverse** from the list of available options.
+4.  利用可能なオプションのリストから**Dataverse を**選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-5.  Search for +++order+++, select the **Order Record** table and click
-    **Next**.
+5.  ++++order+++ を検索し、 **Order
+    Record**テーブルを選択して、**Next**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-6.  Select **Add**.
+6.  **\[Add\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-7.  Wait for a few minutes after the knowledge source is added before
-    testing the agent again.
+7.  ナレッジ ソースが追加された後、エージェントを再度テストする前に数分
+    間待機します。
 
-8.  Once the **Order Record** becomes **Ready** under the Knowledge
-    section, ask the same question in the Test pane.
+8.  「Knowledge」セクションで「**Order
+    Record**」が「**Ready**」になったら、「Test」ペインで同じ質問をします。
 
-    You can now see that the agent retrieves the information from the
-database and provides it to the user.
+エージェントがデータベースから情報を取得し、ユーザーに提供していることがわかります。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-### Task 3 – Create Entities
+### タスク3 – エンティティの作成
 
-1.  Select **Settings** from the Home screen of the agent.
+1.  エージェントのホーム画面から**\[Settings\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-2.  Select **Entities** from the left pane. Select **Add an entity -\> +
-    New entity**
+2.  左ペインから**Entities**を選択します。**Add an entity -\> + New
+    entity**を選択します。
 
-    ![](./media/image27.png)
+![](./media/image27.png)
 
-3.  Select **Closed list**.
+3.  **Closed list**を選択します。
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image28.png)
 
-4.  Enter the below details.
+4.  以下の詳細を入力してください。
 
-    - Name - +++Laptop+++
-    
-    - Description - +++Contains products under Laptop category+++
-    
-    Under **List items**, enter +++Apple MacBook Air M3+++ and click on
-    **Add**.
+Name - +++Laptop+++
 
-    ![A screenshot of a computer AI-generated content may be
+Description - +++ Contains products under Laptop category +++
+
+**\[List items\]**の下に+++Apple MacBook Air M3+++
+と入力し、**\[Add\]**をクリックします。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-5.  Similarly, add the below items and then select **Save**.
+5.  同様に、以下の項目を追加し、 **「Save」**を選択します。
 
-    +++Dell XPS 13 Plus+++
-    
-    +++HP Spectre x360 14+++
-    
-    +++Lenovo ThinkPad X1 Carbon Gen 12+++
-    
-    +++Asus ROG Zephyrus G14+++
++++Dell XPS 13 Plus+++
 
-    ![A screenshot of a computer AI-generated content may be
++++HP Spectre x360 14+++
+
++++Lenovo ThinkPad X1 Carbon Gen 12+++
+
++++Asus ROG Zephyrus G14+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-6.  Now, repeat steps 2 to 5 with the below data.
+6.  次に、以下のデータを使用して手順 2 ～ 5 を繰り返します。
 
-    - Name - +++Desktop+++
-    
-    - Description - +++Contains products under Desktop category+++
-    
-    Under **List items**, enter +++Apple iMac+++ and click on **Add**.
+Name - +++Desktop+++
 
-7.  Other items to be added in the list,
+Description - +++ Contains products under Desktop category +++
 
-    +++Microsoft Surface Studio 2+++
-    
-    +++HP Envy Desktop+++
-    
-    +++Dell Inspiron Desktop+++
-    
-    +++Lenovo IdeaCentre AIO 5i+++
+**\[List items\]**の下に+++Apple iMac+++ と入力し、
+**\[Add\]**をクリックします。
 
-8.  Again, repeat steps 2 to 5 with the below data.
+7.  リストに追加されるその他の項目
 
-    - Name - +++Tablet+++
++++ Microsoft Surface Studio 2+++
 
-    - Description - +++Contains products under Tablet category+++
++++ HP Envy Desktop +++
 
-    Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
++++ Dell Inspiron Desktop +++
 
-9.  Other items to be added in the list,
++++ Lenovo IdeaCentre AIO 5i +++
 
-    +++Samsung Galaxy Tab S9 Ultra+++
-    
-    +++Microsoft Surface Pro 10+++
-    
-    +++Lenovo Tab P12 Pro+++
-    
-    +++Apple iPad Air+++
+8.  再度、以下のデータを使用して手順 2 ～ 5 を繰り返します。
 
-## Exercise 3 – Create Topics and agent flows and design the agent
+Name - +++Tablet+++
 
-Designing Topics is a very important part in creating an agent since it
-deals with the logic behind how the user’s questions are answered and
-how the flow of the details will be.
+Description - +++ Contains products under Tablet category +++
 
-### Task 1 – Edit the Conversation Start topic
+**\[List items\]**の下に+++Apple iPad Pro+++ と入力し、
+**\[Add\]**をクリックします。
 
-The Conversation Start topic is the first topic to be invoked when
-testing the agent. It is a System Topic available by default in any
-agent that you create in the Copilot Studio. Now, you will edit this
-topic to continue the conversation from the greeting message from the
-agent.
+9.  リストに追加されるその他の項目
 
-1.  From the **Overview** page of the agent, select the **Topics** tab
-    from the top menu bar. Select **System** to view the list of System
-    topics. Select the Conversation Start topic from the list.
++++ Samsung Galaxy Tab S9 Ultra +++
 
-    ![A screenshot of a computer AI-generated content may be
++++ Microsoft Surface Pro 10+++
+
++++ Lenovo Tab P12 Pro +++
+
++++ Apple iPad Air +++
+
+## 演習3 – トピックとエージェント・フローを作成し、　　　　　　　　エージェントを設計する
+
+トピックの設計は、ユーザーの質問にどのように答えるか、詳細の流れはどうなるかというロジックを扱うため、エージェントを作成する上で非常に重要な部分です。
+
+### タスク1 – Conversation Startトピックを編集する
+
+Conversation
+Startトピックは、エージェントのテスト時に最初に呼び出されるトピックです。　これは、Copilot
+Studioで作成したすべてのエージェントでデフォルトで利用可能な　システムトピックです。ここでは、このトピックを編集して、エージェントからの挨拶メッセージから会話を継続できるようにしてみましょう。
+
+1.  エージェントの**Overview**ページで、上部のメニューバーから**「Topics」**タブを選択します。
+    **「Systems」**を選択して、システムトピックのリストを表示します。リストから「Conversation
+    Start」トピックを選択します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-2.  After the existing Message node, add a **Question node**.
+2.  既存のMessage ノードの後に、**Question ノード**を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Enter the below message,
+3.  以下のメッセージを入力してください。
 
-    +++Welcome to Contoso Electronics. Please enter your **Phone number** to proceed.+++ in the message     area and select **User’s entire response** under **Identity**. Click on the **Var1** under **Save user response as** field.
++++ Welcome to Contoso Electronics. Please enter your **Phone number**
+to 　proceed +++メッセージエリアに入力し**「Identity」**の**「User's
+entire 　　　　　　　response」**を選択してください。 **「Save user
+response as 」**フィールドの「 **Var1」**をクリックしてください。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image33.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image33.png)
 
-4.  Rename **Var 1** to +++MobileNumber+++ and select **Global** to use
-    it across topics and then select **Save**.
+4.  **Var 1 の**名前を+++ MobileNumber +++
+    に変更し、トピック間で使用できるように**\[Global\]**を選択してから**\[Save\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-### Task 2 – Create a topic to handle the Customer details
+### タスク2 – 顧客の詳細を処理するトピックを作成する
 
-1.  From the Overview page of the agent, select the Topics tab from the
-    top menu bar. Select the drop down next to **Add a topic -\> From
-    blank**.
+1.  エージェントのOverviewページで、上部のメニューバーから「Topics」タブを
+    選択します。**「Add a topic -\> From
+    blank」**の横にあるドロップダウンを選択 します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-2.  Name the agent as +++Customer Details+++.
+2.  エージェントの名前を +++Customer Details+++ にします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-3.  Select **Change trigger** and select **It’s redirected to** as the
-    trigger.
+3.  **\[Change trigger\]**を選択し、Triggerとして**\[It’s redirected
+    to\]** を選択 します。
 
-    ![Screens screenshot of a computer AI-generated content may be
+![Screens screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-4.  Select **Save** to save the topic.
+4.  トピックを保存するには、**\[Save\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-### Task 3 – Create an Agent flow to get the details of the customer
+### タスク3 – 顧客の詳細を取得するためのエージェント・フローを作成する
 
-In this task, you will create an Agent flow, to which you will pass the
-Phone number entered by the customer as input and design the flow to
-check if the user exists or not and retrieve the information and return
-the details to the agent.
+このタスクでは、エージェント
+フローを作成し、顧客が入力した電話番号を入力と　　して渡し、ユーザーが存在するかどうかを確認し、情報を取得して詳細をエージェントに返すフローを設計します。
 
-1.  Below the Trigger node, add a node, select **Add a tool** -\> **New
-    Agent flow**.
+1.  Triggerノードの下にノードを追加し、**\[Add a tool** -\> **New Agent
+    flow\]**を　　選択します。
 
-    ![](./media/image39.png)
+![](./media/image39.png)
 
-2.  The Agent flow designer opens up. Select **Save draft** to save the
-    flow.
+2.  エージェント・フローデザイナーが開きます。 **「Save
+    draft」**を選択してフローを保存します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-3.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++GetCustomer+++. Then select **Save**.
+3.  上部のメニューから**「Overview」**を選択し、
+    **「Edit」**をクリックしてフローの名前を「+++
+    GetCustomer+++」と入力します。 **「Save」**を選択します。![A
+    screenshot of a computer AI-generated content may be
+    incorrect.](./media/image41.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
+4.  フローを設計するには、もう一度**「Designer」**タブに移動します。
+    **「When an agent calls the flow」**ノードを選択し、 **「+ Add an
+    input」**を選択します。
 
-5.  Navigate to the **Designer** tab again to design the flow. Select
-    the node **When an agent calls the flow** and then select **+ Add an
-    input**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-5.  Select **Text**.
+5.  **Text**を選択します。
 
-    ![](./media/image43.png)
+![](./media/image43.png)
 
-6.  Enter the input as +++Phone number+++ and then collapse the
-    **Parameters** tab.
+6.  入力内容を +++Phone number+++ として入力し、
+    **\[Parameter\]**タブを折りたたみます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-7.  Click on **Add an action** between the 2 nodes in the flow. Search
-    for +++List rows+++ and select the **List rows** action under
-    **Microsoft Dataverse**.
+7.  フロー内の2つのノード間の**「Add an
+    action」**をクリックします。「+++List rows+++」を検索し、
+    **Microsoft Dataverse**の「 **List rows 」アクションを選択します**。
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image45.png)
 
-8.  Enter the connection name as +++**Dataverse**+++ and click **Sign
-    in**.
+8.  接続名を +++ **Dataverse** +++ と入力し、 **\[Sign
+    in\]**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-9.  **Sign in** using your admin tenant credentials and click on **Allow
-    access** if prompted.
+9.  管理者テナントの資格情報を使用して**Sign
+    in**し、プロンプトが表示されたら **「Allow
+    access」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-10. Navigate to PowerApps at +++https://make.powerapps.com/+++ and open
-    the **Customer Record** table. Click on the drop down next to the
-    **Mobile number** field and select **Edit column**.
+10. PowerApps（+++https://make.powerapps.com/+++）にアクセスし、
+    **「Customer Record」**テーブルを開きます。 **「Mobile
+    number」**フィールドの横にあるドロップダウンをクリックし、 **「Edit
+    column」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-11. Scroll down and under **Advanced options**, there is a field named
-    **Logical name**. Make a note of its value in a note pad.
+11. 下にスクロールすると、 **「Advanced option」**の下に**「Logical
+    name」**という
+    フィールドがあります。そのValueをメモ帳に書き留めておいてください。
 
-    >[!Alert] **Important:** Each filed will have an associated Logical name to it in
-    Dataverse. And while using it in the Agent flow, you will have to
-    specify only the logical names for all the fields.
-    >
-    > ![A screenshot of a computer AI-generated content may be
+**重要：** Dataverseでは、各フィールドにlogical nameが関連付けられます。
+エージェント・フローで使用する際は、すべてのフィールドにlogical
+nameのみを指定してください。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-12. In this case, for Phone number, it is **cr6dd_mobilecontact**. Make
-    a note of it
+12. この場合、電話番号は**cr6dd_mobilecontact**です。メモしておいてください。
 
-13. Navigate back to the Copilot Studio – Agent flow tab. Open the
-    Getcustomer flow and select the **List rows** action.
+13. Copilot Studio – Agent flowタブに戻り、「
+    Getcustomer」フローを開いて **「List
+    rows」**アクションを選択します。
 
-14. Under Filter rows, enter **<Logical name of Mobile number> eq ''**. Replace **<Logical name>** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+14. Filter行の下に、**\<Logical name of Mobile number\> eq
+    'と入力します。　　　\<Logical name\>
+    を**前の手順で取得したValueに置き換えます。カーソルを引用符で囲んだまま、「Phone
+    number – dynamic variable」を追加します。
 
-    In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
+この場合は**c cr6dd_mobilecontact eq 'Phone number'**となります。
 
-    ![](./media/image50.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image50.png)
 
-    ![](./media/image51.png)
+![A screenshot of a phone number AI-generated content may be
+incorrect.](./media/image51.png)
 
-15. Below the List rows node, add a **Condition** node.
+15. リスト行ノードの下に、**Condition**ノードを追加します。
 
-    ![](./media/image52.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image52.png)
 
-16. Enter **/** and select **Insert expression**.
+16. **/**を入力し、 **「Insert expression」**を選択します。
 
-    ![](./media/image53.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image53.png)
 
-17. Enter +++length(outputs('List_rows')?\['body'\]?\['value'\])+++ in
-    the function and select **Add**. This will check if the List rows
-    returns a value or not.
+17. 関数に+++ length(outputs(' List_rows ')?\['body'\]?\['value'\])+++
+    と入力し、 **「Add」**を選択します。これにより、List rows
+    がValueを返すかどうかがチェックされます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-18. Click on **Add an action** under the **True** branch of the
-    condition added and add a new **Condition** node.
+18. 追加されたConditionの**Trueブランチ**の下にある**\[Add an
+    action\]**をクリックし、 新しい**Condition**ノードを追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
-    cr6dd_lastpurchasedproduct '\]))+++ in the function area of the
-    condition.
+19. Conditionの機能領域に「+++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
+    cr6dd_lastpurchasedproduct '\]))+++」と入力します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-    >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
-    >
-    > ![](./media/image58.png)
+> **重要– cr6dd_lastpurchasedproduct をCustomer
+> Record**テーブルの**「Recent Products
+> Purchased」**フィールドの**logical name**に置き換えてください。
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image58.png)
 
-20. Set the condition as **is equal to true**
+20. Condition**を「is equal to true」に設定します。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-21. Add a new action below the **True** path of **Condition1** and
-    select the **Respond to the agent** node.
+21. **Condition1**の**Trueパス**の下に新しいアクションを追加し、**Respond
+    to the agent**ノードを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image60.png)
 
-22. Select the added **Respond to the agent node** and rename it to
-    +++If the customer has made a previous purchase+++ and select **+ Add an output**.
+22. 追加された**「Respond to the agent」**ノードを選択し、「+++ If the
+    customer has made a previous purchase +++」に名前を変更して、 **「+
+    Add an output」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image61.png)
 
-23. Select **Text**.
+23. **Text**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-24. Enter +++Customer ID+++ as the name and click on **Insert
-    expression**.
+24. 名前として +++Customer ID+++ と入力し、**Insert
+    expression**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-25. Enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
-    Customer ID of the Customer Record table. **Replace** it with your
-    value.
+25. +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+    +++ と 入力してください。**cr6dd_customeridentifier**は、Customer
+    RecordテーブルのCustomer IDのlogical
+    nameです。これを任意のValueに置き換えてください。
 
-26. Select **Add**.
+26. **\[Add\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-27. Similarly, add the below output variables and expressions to each
-    one of it. For each variable, make sure to replace the logical name
-    with yours.
+27. 同様に、以下の出力変数と式をそれぞれに追加します。各変数のlogical
+    nameを、 ご自身のlogical nameに置き換えてください。
 
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
+- +++ Customer Name +++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image65.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image66.png)
+- +++ Product Category +++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
 
-28. The **Respond to the agent** node will have 3 output variables as in
-    the screenshot below.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image66.png)
+
+28. **Respond to the agent**
+    ノードには、以下のスクリーンショットのように 3
+    つの出力変数があります。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-29. Add a Respond to the agent node under the **False** path of the
-    **Condition1** node. Rename it to +++If the customer has not made a
-    previous purchase+++. Click on **+ Add an output**.
+29. **Condition1ノード**の**False**パスの下に「Respond to the agent
+    」ノードを追加します。名前を「+++ If the customer has not made a
+    previous purchase +++」に変更します。 **「+ Add an
+    output」**をクリックします。
 
-    ![](./media/image68.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image68.png)
 
-30. Enter the below output variables replacing the column logical names
-    with your logical names for the corresponding columns.
+30. 列のlogical nameを対応する列のlogical
+    nameに置き換えて、以下の出力変数を入力します。
 
-    - +++Customer ID+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++
-    
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++ Customer ID +++ - +++
+  first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+  +++
 
-31. The **Respond to the agent** node under the **False** path will look
-    like the one in the screenshot below.
+- +++ Customer Name +++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
+- +++ Product Category +++ - +++'1'+++
+
+31. **Falseパス**の下の**Respond to the agent**
+    ノードは、以下のスクリーンショットのようになります。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-32. Now, add a **Respond to the agent** node under the **False** path of
-    the Condition node, rename it to +++If the customer does not
-    exist+++ and add outputs to it as below.
+32. ここで、 Condition ノードの**Falseパスの下にRespond to the
+    agent**ノードを追加し、名前を +++If the customer does not exist+++
+    に変更して、以下のように出力を追加します。
 
-    - +++Customer ID+++ - +++’1’+++
-    
-    - +++Customer Name+++ - +++’1’+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ - +++'1'+++
 
-    ![](./media/image70.png)
+- +++Customer Name+++ - +++'1'+++
 
-33. The **GetCustomer** flow will look like the one in the screenshot
-    below.
+- +++Product Category+++ - +++'1'+++
 
-    ![](./media/image71.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image70.png)
 
-34. Right click on the **Respond to the agent** that is there as a
-    common one at the end of the flow and select **Delete** to delete
-    it.
+33. **GetCustomer**フローは**、**以下のスクリーンショットのようになります。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image71.png)
+
+34. フローの最後にある共通の**Respond to the agent** を右クリックし、
+    **「Delete」**を選択して削除します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-35. Select **Save Draft** to save the lab. Once saved, click on
-    **Publish** to publish the flow.
+35. ラボを保存するには**、「Save draft」**を選択します。保存したら、
+    **「Publish」**をクリックしてフローを公開します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-### Task 4 – Create Agent flow to add customer
+### タスク4 – 顧客を追加するためのエージェント・フローを作成する
 
-In this task, you will create an Agent flow to add a new customer into
-the Dataverse when the customer is a new customer.
+このタスクでは、顧客が新規顧客である場合に、その新規顧客をDataverseに追加　するためのエージェント
+フローを作成します。
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  **\[Agent flows\]**タブから、 **\[+New agent flow\]** を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-2.  Select **Add a trigger** node and replace it with **When an agent
-    calls the flow** node.
+2.  **「Add a trigger」**を選択し、 **「When an agent calls the
+    flow」**に置き換えます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image76.png)
 
-3.  Select **+ Add an input** and add a **Text** input.
+3.  **\[+ Add an input\]**を選択し、**Text**入力を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
 
-4.  Enter +++Name+++ as the input name.
+4.  入力名として +++Name+++ と入力します。
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image78.png)
 
-5.  Similarly, add the following input values.
+5.  同様に、次の入力Valueを追加します。
 
-    +++Phone Number+++
-    
-    +++Email ID+++
-    
-    +++Address+++
++++**Phone Number**+++
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image79.png)
++++Email ID+++
 
-6.  Add an action below the node and select **Add a new row**.
++++ Address +++
 
-    ![A screenshot of a computer AI-generated content may be
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image79.png)
+
+6.  ノードの下にアクションを追加し、**Add a new row**を選択します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-7.  Select the Table Name as **Customer Record** and then select **Show
-    all** in Advanced parameters.
+7.  テーブル名として**Customer Record**を選択し、Advanced
+    parametersで**Show all**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-8.  Click in the **Address** field, select the **Dynamic value** and
-    then select the **Address** dynamic value.
+8.  **Address**フィールドをクリックし、**Dynamic
+    value**を選択してから、**Address**動的Valueを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image83.png)
 
-9.  Similarly, add the dynamic values for
+9.  同様に、動的なValueを追加します。
 
-    - Customer Name – Name
-    
-    - Email ID – Email ID
-    
-    - Mobile Number - Phone Number
+- Customer Name – Name
 
-    ![A screenshot of a computer AI-generated content may be
+- Email ID – Email ID
+
+- Mobile Number - Phone Number
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-10. Ewqewqewq Open the insert expression for **Customer ID**, enter
-    +++guid()+++ and select **Add**. This is to add a unique value as
-    the ID for the customer.
+10. Ewqewqewq **Customer ID**の挿入式を開き、「 +++ guid ()+++
+    」と入力して**「Add」**を選択します。これは、顧客のIDとして一意のValueを追加するためです。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-11. Add a new action and select **Respond to the agent**.
+11. 新しいアクションを追加し、**Respond to the agent**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-12. Add a output value named +++Customer ID+++ and insert an expression
-    and enter
+12. +++Customer ID+++
+    という名前の出力Valueを追加し、式を挿入して、Valueとして
     +++string(outputs('Add_a_new_row')?\['body/cr6dd_customeridentifier'\])+++
-    as the value.
+    を入力します。
 
-    Replace **cr6dd_customeridentifier** with your logical name for the
-column **Customer ID**.
+**cr6dd_customeridentifier を**、列**Customer IDの**logical
+name**に**置き換えます。
 
-    Select **Add**.
+**\[Add\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image87.png)
 
-13. Select **Save draft** to save the flow.
+13. フローを保存するには、 **\[Save draft\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image88.png)
 
-14. Once the flow is saved, select **Publish** to publish the flow.
+14. フローを保存したら、 **「Publish」**を選択してフローを公開します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image89.png)
 
-15. Select **Overview** tab. **Click on Edit.** Enter the name of the
-    flow as +++Add Customer+++ and then select **Save**.
+15. **「Overview」**タブを選択します。
+    **「Edit」**をクリックします。フローの名前を「+++Add customer
+    +++」と入力し、 **「Save」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-### Task 5 – Add the flow and design the Customer Details topic
+### タスク5 – フローを追加し、Customer Detailsトピックを設計する
 
-In this task, you will design the Customer Details topic which will get
-the phone number of the customer, check if the detail is already present
-in the Dataverse and add it if not already present.
+このタスクでは、顧客の電話番号を取得し、詳細がDataverse内に既に存在するかどうかを確認し、まだ存在しない場合は追加するCustomer
+Details トピックを設計します。
 
-1.  Navigate back to the **Customer Details** topic.
+1.  Customer Detailsトピックに戻ります。
 
-2.  Add a node under the Trigger node, select **Add a tool -\>
-    GetCustomer**.
+2.  Trigger ノードの下にノードを追加し、**Add a tool-\>
+    GetCustomer**を選択 します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image91.png)
 
-3.  In the Inputs, select the variable **MobileNumber**.
+3.  入力で、変数**MobileNumber**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image92.png)
 
-4.  Select the **output** variables and mark the Customer ID and
-    ProductCategory as **Global** as in the screenshot below.
+4.  **Output**Select a
+    variableし、下のスクリーンショットのように、Customer IDとProduct
+    Categoryを**Global**としてマークします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image93.png)
 
-5.  Below the **Action** node, add a **condition** node.
+5.  **Actionノード**の下に**Conditionノード**を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image94.png)
 
-6.  Select **CustomerID** in **Select a variable**.
+6.  **Select a variable**で**CustomerID を**選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image95.png)
 
-7.  Select the condition as **is not equal to** and enter +++'1'+++ in
-    the **Value** field. This checks if the customer detail is already
-    existing in the database.
+7.  Conditionとして**「is not equal to」**を選択し、と入力します。
+    **Value**
+    フィールドに+++「1」+++を入力します。これは、顧客の詳細がデータベースに既に存在するかどうかを確認します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image96.png)
 
-8.  Under the condition node, add a **Set a variable** node.
+8.  Conditionノードの下に、**Set a variable**ノードを追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image97.png)
 
-9.  Click on **Select a variable** and select **Create a new variable**.
+9.  **「Select a variable」**をクリックし、 **「Create a new
+    variable」**を選択 します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image98.png)
 
-10. Name the variable as +++IsNewCustomer+++ and mark it as **Global**.
+10. 変数に +++ IsNewCustomer +++ という名前を付け、
+    **Global**としてマーク します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image99.png)
 
-11. Set the value as +++‘No’+++. This means that the customer is an old
-    customer whose data is already present in the Dataverse.
+11. Valueを +++'No'+++
+    に設定してください。これは、顧客が既にDataverseにデータが存在する古い顧客であることを意味します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image100.png)
 
-12. You will add a new node next to the variable node and give a Welcome
-    message to the customer.
+12. 変数ノードの横に新しいノードを追加し、顧客にウェルカム Send a
+    messageします。
 
-13. Select Add a node and select **Send a message** node. In the message
-    area, type +++Welcome+++ and then click on the {x} icon to select
-    the variable. Select the **Customer Name** variable.
+13. 「ノードを追加」を選択し、 **「Send a
+    message**」ノードを選択します。
+    メッセージエリアに「+++Welcome+++」と入力し、{x}アイコンをクリックしてSelect
+    a variableします。「 **Customer Name」**Select a variableします。
 
-    ![](./media/image101.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image101.png)
 
-    Now, we have invoked the Agent flow **GetCustomer**, checked if the
-customer record already exist and if yes, Added a Welcome message to the
-customer.
+**GetCustomer**を呼び出し、Customer
+Recordがすでに存在するかどうかを確認し、存在する場合は顧客に Welcome
+メッセージを追加しました。
 
-    Now, we will design the part of the topic if the customer record does
-not already exist.
+ここで、Customer Recordがまだ存在しない場合のトピックの部分を設計
+します。
 
-13. Under the **All other conditions** node, add a Set a variable node
-    and set the value for **isNewCustomer** variable as +++’Yes’+++.
+13. **\[All other conditions\] ノード**の下に\[Set a variable\]
+    ノードを追加し、 **isNewCustomer**変数のValueを +++'Yes'+++
+    に設定します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image102.png)
 
-14. Next to the variable node, add a **Message** node and enter +++We do
-    not have your details in our system. Please fill in your details
-    below to help us serve you better.+++
+14. 変数ノードの横に**Message**ノードを追加し、「+++ We do not have your
+    details in our system. Please fill in your details below to help us
+    serve you better +++」と入力します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image103.png)
 
-15. Next to the Message node, add an **Ask with adaptive card** node.
+15. Messageノードの横に、**Ask with adaptive card**ノードを追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image104.png)
 
-16. Click on the 3 dots on the top right of the screen and select
-    **Properties**.
+16. 画面の右上にある 3 つのドットをクリックし、
+    **\[Properties\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image105.png)
 
-17. Select **Edit adaptive card**.
+17. **Edit adaptive card**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image106.png)
 
-18. Enter the below **JSON** in the **Card payload editor** area. Select **Save**.
-    
-    ```
-    {
-        "type": "AdaptiveCard",
-        "body": [
-            {
-                "type": "TextBlock",
-                "size": "Medium",
-                "weight": "Bolder",
-                "text": "Please enter your details"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Name",
-                "label": "Name"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Mobile Number",
-                "label": "Mobile Number"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Email ID",
-                "label": "Email ID"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Address",
-                "label": "Address"
-            }
-        ],
-        "actions": [
-            {
-                "type": "Action.Submit",
-                "title": "Submit"
-            }
-        ],
-        "version": "1.5",
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
-    }
-    ```
+18. **Card payload editor領域**に以下の**JSONを入力します**。
+    **「Save」を選択 します**。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image107.png)
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "body": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "size": "Medium",
+>
+> "weight": "Bolder",
+>
+> "text": "Please enter your details"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Name",
+>
+> "label": "Name"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Mobile Number",
+>
+> "label": "Mobile Number"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Email ID",
+>
+> "label": "Email ID"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Address",
+>
+> "label": "Address"
+>
+> }
+>
+> \],
+>
+> "actions": \[
+>
+> {
+>
+> "type": "Action.Submit",
+>
+> "title": "Submit"
+>
+> }
+>
+> \],
+>
+> "version": "1.5",
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
+>
+> }
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image107.png)
 
-20. Select **Close** to close the editor.
+19. エディターを閉じるには、 **\[Close\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image108.png)
 
-20. Expand the Outputs section of the created Adaptive card node, select
-    the Mobile Number value and select the Global.MobileNumber variable
-    to save the user entered Phone number value in it.
+20. 作成されたアダプティブ カード ノードの \[Outputs\]
+    セクションを展開し、\[Mobile Number\] のValueを選択し、
+    Global.MobileNumberSelect a
+    variableして、ユーザーが入力した電話番号のValueを保存します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image109.png)
 
-21. Leave the other values to the default ones.
+21. その他のValueはデフォルトのままにしておきます。
 
-22. The Adaptive card is ready with the form to get the customer
-    details.
+22. アダプティブ
+    カードには、顧客の詳細を取得するためのフォームが用意されています。
 
-23. Next to the Adaptive card node, invoke the flow **Add Customer.**
+23. アダプティブ カード ノードの横で、フロー**「Add
+    Customer」**を呼び出します。
 
-    ![](./media/image110.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image110.png)
 
-24. Click on the **three dots** in the **Enter or select a value** and
-    select **CustomerName** variable.
+24. **「Enter or select a value」**の**3 つのドット**をクリックし、
+    **CustomerName**を　選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image111.png)
 
-25. Similarly, add the input variables for the other fields to be passed
-    to the flow.
+25. 同様に、フローに渡される他のフィールドの入力変数を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image112.png)
 
-26. Select **Global.CustomerID** as the output variable to which the
-    output from the flow will be saved.
+26. フローからの出力が保存される出力変数として**Global.CustomerID**を選択　　　します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image113.png)
 
-27. After the action node, add a **Message node** and enter the value,
-    +++Thank You! Customer detail has been added to the database. Please
-    select a product type to shop.+++
+27. アクションノードの後に**Message**ノードを追加し**、「+++** Thank
+    You! Customer detail has been added to the database. Please select a
+    product type to shop .+++」というValueを入力します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image114.png)
 
-28. **Save** the topic.
+28. トピック**を保存します。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image115.png)
 
-29. Open the Conversation Start topic and invoke the Customer Details
-    topic from there.
+29. Conversation Startトピックを開き、そこから Customer
+    Detailsトピックを 呼び出します。
 
-30. Add a node after the Question node in the topic. Select **Topic
-    management -> Go to another topic**.
+30. トピック内のQuestionノードの後にノードを追加します。 **「Topic
+    management -\> Go to another topic」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image116.png)
 
-31. Select the **Customer Details** topic.
+31. **Customer Details** トピックを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image117.png)
 
-32. Select **Save** to save the topic.
+32. トピックを保存するには、 \[Save\]を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image118.png)
 
-### Task 6 – Create an agent flow to get the product details
+### タスク6 – 製品の詳細を取得するためのエージェントフローを作成する
 
-In this task, you will create an agent flow which will fetch the Product
-details from the Dataverse based on the selected product.
+このタスクでは、選択した製品に基づいてDataverseから製品の詳細を取得するエージェント
+フローを作成します。
 
-1.  Select the **Flows** tab from the Copilot Studio and select **+ New
-    agent flow**.
+1.  Copilot Studio から**\[Flows\]**タブを選択し、 **\[+ New agent
+    flow\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image119.png)
 
-2.  Select the trigger node and select **When an agent calls the flow**
-    action.
+2.  Triggerノードを選択し、**When an agent calls the flow**アクションを
+    呼び出したときを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image120.png)
 
-3.  Add a Text input and name it as +++Product Name+++
+3.  テキスト入力を追加し、「+++Product Name +++」という名前を付けます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image121.png)
 
-4.  Select **Save draft** to save the flow.
+4.  フローを保存するには、 **\[Save draft\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image122.png)
 
-5.  Select the **Overview** tab and click on **Edit**. Enter the name as
-    +++GetProductDetails+++ and select **Save**.
+5.  **「Overview」**タブを選択し、
+    **「Edit」**をクリックします。名前を「+++ GetProductDetails
+    +++」と入力し、 **「Save」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image123.png)
 
-6.  Navigate back to the **Designer** tab and select **Add an action**
-    below the **When an agent calls the flow** node. Search for +++list
-    rows+++ and select the **List rows** action under **Microsoft
-    Dataverse**.
+6.  **「Designer」タブ**に戻り、 **「When an agent calls the
+    flow」ノード**の下にある「**Add an action」を選択します。「+++list
+    rows+++」を検索し、 「Microsoft Dataverse」の下にある「 List rows**
+    」アクションを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image124.png)
 
-7.  Enter the below values
+7.  以下のValueを入力してください
 
-    - **Table name –** Select **Product Record**
-    
-    - Filter rows – +++cr6dd_producttitle eq '**<Product Name>**'+++
-      Replacing <Product Name> with the dynamic value ProductName.
+- **Table name –Product Record**を選択
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
+- Filter rows – +++cr6dd_producttitle eq ' **\<Product Name \>** '+++ \<
+  **Product Name** \> を動的なValue ProductName に置き換えます。
 
-8.  Add a **Respond to the agent** node under the **List rows** node.
-    Select **+ Add an output** and add a text output variable. Enter the
-    below values and click Add in **insert expression.**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image125.png)
 
-    - Enter a name – Enter +++Product Name+++
+8.  **「List rows」ノード**の下に**「Respond to the
+    agent」ノード**を追加します。 **「+ Add an
+    output」を選択し**、テキスト出力変数を追加します。以下のValueを入力し、「**insert
+    expression**」で「Add」をクリックします**。**
 
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_producttitle'\]+++
-      (Replace **cr6dd_producttitle** with the logical name of tha
-      column Product Name in your table.
+    - 名前を入力してください - +++Product Name+++を入力してください
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image126.png)
+    - 式 - +++ first(outputs('List_rows' )?\[ 'body/value' \])\[
+      'cr6dd_producttitle '\]+ ++ (
+      **cr6dd_producttitleを**、テーブル内の列 Product Nameのlogical
+      nameに置き換えます。
 
-9.  Similarly, add another output node with the below details
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image126.png)
 
-    - Enter a name – Enter +++Price+++
-    
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
-      Replace **cr6dd_productprice** with the logical name of the column
-      **Price** in your table
+9.  同様に、以下の詳細を持つ別の出力ノードを追加します。
 
-    The node should now look like this.
+- 名前を入力してください - +++Price+++を入力してください
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image127.png)
+- 式 - +++ first(outputs(' List_rows ' )?\[ 'body/value' \])\[
+  'cr6dd_productprice '\] + ++
+  **cr6dd_productpriceを**テーブル内の列**Priceの**logical nameに
+  置き換えます
 
-10. Select **Save draft** to save the topic and then **Publish** to
-    Publish the flow.
+> ノードは次のようになります。
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image127.png)
 
-    ![A screenshot of a computer AI-generated content may be
+10. **\[Save draft\]**を選択してトピックを保存し、 **\[Publish\]
+    を選択して**フローを公開します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image128.png)
 
-### Task 7 – Create a topic to retrieve the Product category from the customer
+### タスク7 – 顧客から製品カテゴリを取得するためのトピックを作成する
 
-1.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
-    blank**.
+1.  Copilot Studio の \[Topics\] タブから、 **\[++ Add a topic -\> From
+    blank\]**を選択 します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image129.png)
 
-2.  Rename the topic to +++Place Order+++. Change the trigger of the
-    trigger node to **It’s redirected to**.
+2.  トピック名を「+++Place Order+++」に変更します。Triggerノードの
+    Triggerを**「It's redirected to」に変更します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image130.png)
 
-3.  **Save** the topic.
+3.  トピック**を保存します。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image131.png)
 
-4.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
-    blank**.
+4.  Copilot Studio の \[Topics\] タブから、 **\[+ Add a topic -\> From
+    blank\]**を選択 します。
 
-    ![](./media/image129.png)
+![](./media/image129.png)
 
-5.  Rename the topic as +++Get Product Categories+++. Select the
-    **Change trigger** option in the **Trigger** node and select **It’s
-    redirect to** option.
+5.  トピック名を「+++Get Product
+    Categories+++」に変更します。Trigger**ノード**で「**Change
+    trigger」**オプションを選択し、 **「It’s redirect to」**オプションを
+    選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image132.png)
 
-6.  Below the **Trigger** node, add a **Condition** node.
+6.  Trigger**ノード**の下に、**Condition**ノードを追加します。
 
-    Select the Global variable **IsNewCustomer** and add the condition, **IsNewCustomer** **is equal to** +++**'Yes'**+++.
+Global variable **IsNewCustomer** を選択し、Condition「**IsNewCustomer**
+**is equal to** +++**'Yes'**+++.」を追加します。。
 
-    Select **+ New condition.**
+**+ New condition**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image133.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image134.png)
 
-7.  Select **Or**.
+7.  **Or を**選択します。
 
-    Under the Or condition, select the Global variable **ProductCategory**
-add the condition, is equal to +++'1'+++
+OrConditionの下で、Global
+Variable**ProductCategoryを選択し**、Conditionを追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image135.png)
 
-    ![](./media/image136.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image136.png)
 
-8.  Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+8.  Conditionノードの下にQuestionノードを追加し、「+++ Select a category
+    +++」と入力して、 **「+New option」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-9.  Enter the option +++Laptop+++ and select + New option again.
+9.  オプション +++Laptop+++ を入力し、+ New optionを再度選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-10. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++. Select the variable under **Save user response
-    as**, and name the variable as +++**ProdCatchoice**+++
+10. 同様に、他の2つのオプション「+++**Desktop**+++」と「+++**Tablet+++」を追加します。
+    「Save user response as」**で変数を選択し、「+++ **ProdCatchoice**
+    +++」という名前を付けます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image139.png)
 
-11. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+11. Questionノードの下に**Set a variable
+    value**ノードを追加して、Questionノードから受け取った選択肢を文字列に変換します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-12. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression
-    +++Text(Topic.ProdCatchoice)+++ and select **Insert**.
+12. Global Variable**「ProductCategory」を選択します**。「 **To
+    value」**フィールドで3つの点をクリックし、「**Formula」**タブを選択します。式「+++
+    Text( Topic.ProdCatchoice )+ ++」を入力し、
+    **「Insert」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image141.png)
 
-13. Below the Set variable value node, add a new node, **Topic
-    management** -> **Go to another topic** -\> **Place Order**.
+13. Set variableノードの下に、新しいノード**「Topic management** -\>
+    **Go to another topic** -\> **Place Order」を追加します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-14. Now, one path is fully complete. It will get the category from the
-    user and invoke the Place Order topic.
+14. これで、1つのパスが完全に完成しました。ユーザーからカテゴリーを取得し、「注文」トピックを呼び出します。
 
-15. Navigate back to the start of this topic. Under all other
-    conditions, add a **Question** node. Add the message +++Based on
-    your recent purchase we suggest you products in \<Product Category\>
-    category. Would you like to continue?+++
+15. このトピックの先頭に戻ります。その他のConditionに該当する場合は、Questionノードを追加してください。「**+++**
+    Based on your recent purchase we suggest you products in \<Product
+    Category\> category. Would you like to continue? +++
+    」というメッセージを追加します。
 
-    In the message replace **\<Product Category\>** with the **Global.ProductCategory** variable.
+メッセージ内の**\<Product
+Category\>をGlobal.ProductCategory**に置き換えます。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image143.png)
 
-16. Add 2 options, +++Yes+++ and +++No+++. Click on the variable under
-    Save user response as and rename it to +++Userschoiceofcategory+++
+16. 2つの選択肢「+++Yes+++」と「+++No+++」を追加します。「Save user
+    response as」の下の変数をクリックし、名前を「+++
+    Userschoiceofcategory +++」に変更します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image144.png)
 
-17. Under the **question** node, add a **condition** node.
+17. Questionノードの下にConditionノードを追加します。
 
-    Set the first condition as **Userschoiceofcategory is equal to Yes**.
+最初のConditionを**「Userschoiceofcategory is equal to
+Yes」**に設定します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image145.png)
 
-36. Under this node, add a **Topic management node** and invoke the
-    **Place Order** topic.
+36. このノードの下に**Topic management nodeし**、**Place
+    Order**トピックを呼び出します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image146.png)
 
-18. In the condition node, select the three dots in the top right corner
-    of the condition node and select **Insert new condition**.
+18. Conditionノードで、Conditionノードの右上隅にある 3
+    つのドットを選択し、**Insert new condition**を選択します。
 
-    ![](./media/image147.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image147.png)
 
-19. Add a condition, **Userschoiceofcategory is equal to No**.
+19. Condition「 **Userschoiceofcategory is equal to No」**を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image148.png)
 
-20. Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+20. Conditionノードの下にQuestionノードを追加し、「+++ Select a category
+    +++」と入力して、 **「+New option」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-21. Enter the option +++Laptop+++ and select + New option again.
+21. オプション +++Laptop+++ を入力し、+ New optionを再度選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-22. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++.
+22. 同様に、他の 2 つのオプション +++**Desktop**+++ と +++Tablet+++
+    を追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image149.png)
 
-23. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+23. Questionノードの下に**Set a variable
+    value**ノードを追加して、Questionノードから受け取った選択肢を文字列に変換します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-24. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression +++Text(Topic.Var1)+++ and
-    select **Insert**.
+24. Global Variable**「ProductCategory」**を選択します。 **「To
+    value」**フィールドで3つの点をクリックし**、「Formula」**タブを選択します。式「+++
+    Text( Topic.Var 1)+ ++」を入力し、 **「Insert」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image150.png)
 
-25. Below the Set variable value node, add a new node, **Topic
-    management** -\> **Go to another topic** -\> **Place Order**.
+25. Set variable valueノードの下に、新しいノード**「Topic management**
+    -\> **Go to another topic** -\> **Place Order」を追加します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-26. Select **Save** to save the topic.
+26. トピックを保存するには、 \[Save\]を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image151.png)
 
-27. Open the Topic **Customer Details** and move to the last node.
+27. トピック**「Customer Details」**を開き、最後のノードに移動します。
 
-28. **Add a new node** to invoke the topic **Get Product Categories**.
+28. トピック**Get Product Categories**を呼び出すための**Add a new
+    node**します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image152.png)
 
-29. Select **Save** to save the topic.
+29. トピックを保存するには、 \[Save\]を選択します。
 
-    ![](./media/image153.png)
+![](./media/image153.png)
 
-### Task 8 – Create Agent flow to place the order
+### タスク8 – 注文を行うエージェント・フローを作成する
 
-In this task, you will create an Agent flow to place the order based on
-the product chosen by the customer.
+このタスクでは、顧客が選択した製品に基づいて注文を行うエージェント
+フローを　　作成します。
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  **\[Agent flows\]タブ**から、 **\[+ New agent flow\]**
+    を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image154.png)
 
-2.  Click on the **Add a trigger node** and select **When an agent calls
-    the flow** node.
+2.  **Add a trigger ノード**をクリックし、**When an agent calls the
+    flow**ノードを選択します。
 
-    ![](./media/image155.png)
+![](./media/image155.png)
 
-3.  Add 2 **Text** variables +++Product Name+++ and +++Customer ID+++ as
-    **Input**.
+3.  2 つの**Text**変数 +++Product Name+++ と +++Customer ID+++
+    を**Input**として追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image156.png)
 
-4.  Click on **Save Draft** to save the flow.
+4.  フローを保存するには、 **「Save Draft」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image157.png)
 
-5.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++PlaceOrder+++. Then select **Save**.
+5.  上部のメニューから**「Overview」**を選択し、
+    **「Edit」をクリックして**フローの名前を「+++ PlaceOrder
+    +++」と入力します。 **「Save」を選択します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image158.png)
 
-6.  Navigate back to the **Designer** tab. Select Add a new action and
-    select **Add a new row** under Dataverse.
+6.  **「Designer」タブ**に戻り、「Add a new action」を選択し、
+    「Dataverse」の下の**「Add a new row」を選択します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image159.png)
 
-7.  Select the Table name as **Order Record** and then click on **Show
-    all** under Advanced parameters.
+7.  テーブル名として**「Order Record」を選択し**、 「Advanced
+    parameters」の**「Show all」をクリックします**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image160.png)
 
-8.  Enter the below values.
+8.  以下のValueを入力してください。
 
-    - Customer Identifier - **Customer ID** (Dynamic value)
-    
-    - Order identifier – Enter guid() in Insert expression
-    
-    - Order Status - +++**Order Placed**+++
+Customer Identifier - **Customer ID** (Dynamic value
 
-    ![A screenshot of a computer AI-generated content may be
+Order identifier – Insert expressionにguid( )を入力
+
+Order Status - +++**Order Placed**+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image161.png)
 
-9.  Add a node, **Respond to the agent**.
+9.  **Respond to the agent**ノードを追加します。![A screenshot of a
+    computer AI-generated content may be
+    incorrect.](./media/image162.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image162.png)
+10. 変数を追加し、+++Order ID+++ という名前を付けます。
 
-10. Add a output Text variable and name it as +++Order ID+++.
+Valueを次のように入力します +++ string(outputs('Add_a_new_row' )?\[
+'body/cr6dd_orderidentifier' \])+ ++ (
+**cr6dd_orderidentifier**を、Order Recordテーブルの列 Order ID のlogical
+nameValueに置き換えます。
 
-    Enter its value as +++string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
-(Replace **cr6dd_orderidentifier** with the logical name value of the
-column Order ID from the Order Record table.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image163.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image163.png)
+11. **「Save draft」**をクリックしてフローを保存し、
+    **「Publish」**をクリックして フローを公開します。
 
-11. Click on **Save draft** to save the flow and then click on
-    **Publish** to publish the flow.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image164.png)
 
-### Task 9 – Design the Place Order topic 
+### タスク9 –Place Orderトピックの設計
 
-In this task, you will design the topic to place the order and update
-the Dataverse table.
+このタスクでは、注文を配置して Dataverse
+テーブルを更新するトピックを設計 します。
 
-1.  Open the topic **Place Order** from the Agent’s **Topic** tab.
+1.  エージェントの**Topicタブから**トピック「**Place
+    Order」を開きます**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image165.png)
 
-2.  Add a message node with the message +++Options based on the category
-    will be listed below.+++
+2.  メッセージを含むMessage ノードを追加します +++ Options based on the
+    category will be listed below + ++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image166.png)
 
-3.  Add a condition node. Enter the condition as ProductCategory(Global
-    variable) is equal to +++Laptop+++.
+3.  「ProductCategory （Global Variable）が +++Laptop+++
+    と等しい」というConditionを入力します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image167.png)
 
-4.  Under the node, add a question node and enter the message +++Select
-    a Laptop product+++. Select **Laptop** under **Identity**.
+4.  ノードの下にQuestionノードを追加し、「+++ Select a Laptop product
+    +++」と いうメッセージを入力します。
+    **「Identity」**の下で**「Laptop」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image168.png)
 
-5.  Click on **Select** options for user and select all the 5 available
-    options.
+5.  **\[Select」**をクリックし、利用可能な 5
+    つのオプションをすべて選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image169.png)
 
-6.  Enter the variable name as +++ProdNameLapChoice+++
+6.  Variable nameを +++ProdNameLapChoice+++ と入力します
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image170.png)
 
-7.  Now, follow the same procedure and add condition nodes for
-    ProductCategory is equal to +++Desktop+++ and +++Tablet+++.
+7.  次に、同じ手順に従って、 ProductCategoryが+++Desktop+++ および
+    +++Tablet+++ に等しいConditionノードを追加します。
 
-8.  Save the values in variable names.
+8.  ValueをVariable namesに保存します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image171.png)
 
-9.  Select a **Set variable value** node under the **Select a Laptop
-    product** question node.
+9.  **「Select a Laptop product」**Questionノード**の**下にある**「Set
+    variable value」ノード**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image172.png)
 
-10. Rename the created variable to +++ProdNameSelected+++ and set it as
-    **Global**.
+10. 作成された変数の名前を +++ ProdNameSelected +++ に変更し、
+    **Globalに設定します**。![A screenshot of a computer AI-generated
+    content may be incorrect.](./media/image173.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image173.png)
+11. FormulaフィールドのValueを +++ Text( Topic.ProdNameLapChoice )+ ++
+    に設定 します。 (別のVariable
+    nameを使用している場合は置き換えてください)
 
-12. Set the value in the Formula field as
-    +++Text(Topic.ProdNameLapChoice)+++ (Replace the variable name, if you have used a different one)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image174.png)
 
-12. Similarly, add a **Set variable value** node under **Desktop** and
-    **Tablet** branches. Select the **Set variable** value as
-    **ProdNameSelected** and insert the expression for the To value
-    field with the variable name as per the one you used.
+12. 同様に、**Desktop**と**Tabletのブランチ**の下に**Set variable
+    valueノードを追加 します**。**Set variable
+    value**で**ProdNameSelectedを選択します。** 使用したVariable
+    nameに応じて、\[To value\] フィールドに式を挿入します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image175.png)
 
-13. Add an Action node under all these nodes in common and invoke the
-    GetProductDetails flow.
+13. これらすべてのノードの下に共通のActionノードを追加し、
+    GetProductDetailsフローを呼び出します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image176.png)
 
-14. Select **ProdNameSelected** input variable to be passed to the flow.
-    Leave the other values as default.
+14. フローに渡す入力変数**ProdNameSelected**を選択します。その他のValueは
+    デフォルトのままにしておきます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image177.png)
 
-15. Add a Message node below the Action and enter the below message.
-    Replace <ProductName> and <Price> with the corresponding variable
-    names
+15. アクションの下にMessageノードを追加し、以下のメッセージを入力します。\<roductName\>と\<Price\>を対応するVariable
+    nameに置き換えます。
 
-    Product Details
-    
-    - Product Name - <ProductName>
-    
-    - Price - <Price>
+Product Details
 
-    ![A screenshot of a computer AI-generated content may be
+- Product Name - \<ProductName\>
+
+> ​
+
+- Price - \<Price\>
+
+​
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image178.png)
 
-16. Below the message node, adda **Question node** with a message,
-    +++Would you like to place order for this item?+++ in it. Add
-    options **Yes** and **No** to it and name the variable as
-    +++PlaceOrder+++.
+16. Messageノードの下に、 「+++ Would you like to place order for this
+    item？+++」というメッセージを含むQuestionノードを追加します。オプションとして**「Yes」**と**「No」**を追加し、Variable
+    nameを「+++ PlaceOrder +++」にします。
 
-    ![](./media/image179.png)
+![](./media/image179.png)
 
-17. Under the Question node, add a condition node and in one branch, add
-    a condition **PlaceOrder isequal to Yes** and **all other
-    conditions** will be the **second branch**.
+17. Question ノードの下にConditionノードを追加し、 1 つのブランチに
+    **PlaceOrder isequal to Yes** というConditionを追加します。**all
+    other conditions**は 2 番目のブランチになります。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image180.png)
 
-18. Invoke the flow **PlaceOrder** as the next step.
+18. 次のステップとしてフロー**PlaceOrderを呼び出します。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image181.png)
 
-19. Select the **ProductName** and **CustomerID** as the input to the
-    flow.
+19. フローへの入力として**ProductName**と**CustomerID を**選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image182.png)
 
-20. Now, add a message node below this with the message, +++Your order
-    is placed. This is your Order ID for reference -<OrderID>+++
-    (Replace **<OrderID>** with the **variable OrderID** (the output
-    variable from the flow).
+20. 次に、この下に「+++ Your order is placed. This is your Order ID for
+    reference
+    -\<OrderID\>+++」というメッセージを含むメッセージノードを追加します（\<**OrderID**\>を変数OrderID（フローの出力変数）に置き換えます）。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image183.png)
 
-21. With this the **PlaceOrder isequal to Yes** branch is **complete**.
-    Now, navigate to **all other conditions branch**.
+21. これにより、**PlaceOrder isequal to
+    Yes**ブランチ**が完了しました**。次に、**all other conditions
+    ブランチに進みます**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image184.png)
 
-22. Below that, add a Question node with the message, +++Do you want to
-    go to the main menu?+++ with options **Yes** and **No**. Name the
-    variable as +++**GoToMainMenu**+++.
+22. その下に、「+++ Do you want to go to the main
+    menu?+++」というメッセージと「Yes」および「No」のオプションを含むQuestionノードを追加します。変数の名前を
+    +++GoToMainMenu+++ にします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image185.png)
 
-23. Under this node, add a condition node and in one branch add a
-    condition with **GoToMainMenu is equal to Yes**. The other branch of
-    this condition will be **All other conditions**.
+23. **「GoToMainMenu is equal to
+    Yes」**というConditionを追加します。このConditionのもう一方の分岐は**「All
+    other conditions」**になります。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image186.png)
 
-24. Under this condition node, add a question node with message
-    +++**Select Product Category**+++ and add 3 options,
-    +++**Laptop**+++, +++**Desktop**+++ and +++**Tablet**+++.
+24. **Select Product Category +++**を含むQuestionノードを追加し、3 つの
+    オプション +++ **Laptop** +++、+++ **Desktop** +++、および +++
+    **Tablet** +++ を追加 します。
 
-    Make a note of the variable name to which the result is saved. We will
-convert it to text in the next step.
+結果が保存されるVariable
+nameをメモしておいてください。次のステップでテキストに変換します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image187.png)
 
-25. Add a **Set variable value** node and select **ProductCategory**
-    variable under **set variable** and enter the value as
-    +++**Text(Topic.Var1)**+++ under the **Formula** tab.
+25. **Set variable valueノード**を追加し、**Set
+    variableの下のProductCategory** 変数を選択し、**Formulaタブの下に
+    +++ Text( Topic.Var 1)** + ++というValueを入力します。
 
-    Replace **Var1** with your variable name if it is different.
+**Var1 を**Variable nameに置き換えます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image188.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image189.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image189.png)
 
-26. Under the Set variable value node, add a **Go to step** node.
+26. Set variable valueノードの下に、**Go to step**ノードを追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image190.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image191.png)
 
-27. After adding the node, you will have to select the **step**, to
-    which the **control should pass** on at this point. **Scroll up**
-    and select the **Message node at the starting of this topic** since,
-    you have got the **ProductCategory** from the customer now and need
-    to execute from the beginning.
+27. ノードを追加したら、この時点で制御を渡すステップを選択する必要があります。上**にスクロールして、このトピックの先頭にある**Messageノードを選択してください。顧客から**ProductCategoryを**取得済みなので、最初から実行する必要があります。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image192.png)
 
-28. Add a common message node at the end with the message +++Thank you
-    for shopping with us! Please visit again!+++ Then select **Save** to
-    save the topic.
+28. 最後に、「+++ Thank you for shopping with us! Please visit again!+++
+    」という
+    メッセージを記載した共通Messageノードを追加します。次に、\[Save**\]
+    を選択して**トピックを保存します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image193.png)
 
-## Exercise 4 – Add a trigger 
+## 演習4 – Triggerを追加する
 
-In this exercise, you will add a trigger to get initiated when the Order
-table is added with a new row or an existing row is modified and send an
-email to the customer automatically. This defines the autonomous
-capability of the agent in this scenario,
+この演習では、Orderテーブルに新しい行が追加されたとき、または既存の行が変更されたときにトリガーを起動し、顧客に自動的にメールを送信するトリガーを追加します。これにより、このシナリオにおけるエージェントの自律機能が定義されます。
 
-1.  Select the Overview tab of the agent.
+1.  エージェントのOverviewタブを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image194.png)
 
-2.  Scroll down the page and select **Add trigger.**
+2.  ページを下にスクロールして、 **「Add trigger」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image195.png)
 
-3.  Select **When a row is added, modified or deleted** option and then
-    select **Next**.
+3.  **When a row is added, modified or
+    deleted**オプションを選択し、**Nextを選択 します**。
 
-    ![](./media/image196.png)
+![](./media/image196.png)
 
-4.  Once the **Microsoft Copilot Studio** and **Dataverse** are
-    connected, click on **Next**.
+4.  **Microsoft Copilot Studio**と**Dataverseが接続され**たら、
+    **\[Next\]をクリック します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image196.png)
 
-5.  Select the below options, leave the rest as default and select
-    **Create trigger**.
+5.  以下のオプションを選択し、残りはデフォルトのままにして**「Create
+    trigger」を選択します**。
 
-    - Change Type – Added or Modified or Deleted
-    
-    - Table name – Order Record
-    
-    - Scope - Organization
+- Change Type – Added or Modified or Deleted
 
-    ![A screenshot of a computer AI-generated content may be
+- Table name – Order Record
+
+- Scope - Organization
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image197.png)
 
-6.  This might take a few minutes to get completed. Once done, select
-    **Close** in the Add trigger dialog.
+6.  完了するまで数分かかる場合があります。完了したら、 「Add
+    trigger」ダイアログで**「Close」**を選択してください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image198.png)
 
-7.  From the Trigger section in the **Overview** page of the agent,
-    click on the **3 dots** next to the added trigger and select **Edit
-    in Power Automate**.
+7.  エージェントの**Overviewページ**のトリガー
+    セクションで、追加したトリガーの横にある**3
+    つのドットをクリックし、Edit in Power Automate**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image199.png)
 
-8.  Select the first node in the flow and add the column names,
-    +++cr6dd_orderidentifier, cr6dd_customeridentifier+++ under **Select
-    columns**. (**Replace** them with **your logical names** of the
-    **Order ID** and **Customer ID** columns from the **Order Record
-    table**).
+8.  フローの最初のノードを選択し、 **\[Select columns\]**の下に列名 +++
+    cr6dd_orderidentifier、cr6dd_customeridentifier+++を追加します(これを、**Order
+    Recordテーブル**の**Order ID列**と**Customer ID列**のlogical
+    nameに**置き換えます**)。
 
-    ![](./media/image200.png)
+![](./media/image200.png)
 
-9.  Add a new node and select **List rows** action in it.
+9.  新しいノードを追加し、その中で**List rows**アクションを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image201.png)
 
-10. In the List rows action, select **Table name** as **Customer
-    Record**.
+10. 行のリストアクションで、**Table name**として**Customer
+    Recordを選択します**。
 
-    Under **Filter rows**, enter +++**cr6dd_customeridentifier eq ''**+++,
-    replacing the column name with your **Customer ID’s logical name**. Keep
-    the **cursor** **inside** the **single quotes**.
+**Filter rows**の下に「+++ **cr6dd_customeridentifier eq ''**
++++」と入力し、列名を**Customer IDの**logical
+name**に置き換えます**。**カーソルを**
+一**重引用符の内側に入力します**。
 
-    ![A screenshot of a list AI-generated content may be
+![A screenshot of a list AI-generated content may be
 incorrect.](./media/image202.png)
 
-11. Select Insert expression, enter
-    +++String(triggerOutputs()?\['body/cr6dd_customeridentifier'\])+++,
-    replacing **cr6dd_customeridentifier** with your CustomerID’s
-    logical name and select **Add**.
+11. \[Insert expression\] を選択し、 +++String(triggerOutputs( )?\[
+    'body/cr6dd_customeridentifier' \])+ ++ と入力し、
+    **cr6dd_customeridentifier を**CustomerID のlogical
+    nameに置き換えて、 **\[Add\]を選択します**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image203.png)
 
-12. Next to the **List rows**, add an action **Send an email (V2).**
+12. **List rows**の横に、アクション**「Send an email
+    (V2).」**を追加します。
 
-    ![A screenshot of a mail box AI-generated content may be
+![A screenshot of a mail box AI-generated content may be
 incorrect.](./media/image204.png)
 
-13. Click on **Sign in** and sign in with your credentials.
+13. **「Sign in」**をクリックし、資格情報でサインインします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image205.png)
 
-14. In the **To** field, insert expression and enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++,
-    replacing **cr6dd_emailaddress** with the logical name of your email
-    id field from Customer Record table and then select **Add**.
+14. **\[To\] フィールド**に式を挿入し、 +++first(outputs('List_rows'
+    )?\[ 'body/value' \])\[ 'cr6dd_emailaddress '\]+ ++ と入力
+    します。cr6dd_emailaddress**を**Customer Recordテーブルの電子メール
+    ID フィールドのlogical nameに置き換えて、 **\[Add\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image206.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image207.png)
 
-15. Enter the below details,
+15. 以下の詳細を入力してください。
 
-    Subject - +++Order Placement+++
+> Subject - +++Order Placement+++
 
-    Body –
-    ```
-    Hi,
-    
-    This is to update you that your order has been placed. Thank you for
-    shopping with us.
-    
-    Thank You.
-    ```
-16. **Save** the flow and then **Publish** it.
+Body –
 
-    ![A screenshot of a computer AI-generated content may be
+Hi,
+
+This is to update you that your order has been placed. Thank you for
+shopping with us.
+
+Thank You.
+
+16. フローを保存して公開します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image208.png)
 
-17. Back in the Copilot Studio agent page, select **Publish** to publish
-    the agent.
+17. Copilot Studio エージェント ページに戻り、
+    **\[Publish\]を選択して**エージェントを公開します。
 
-    ![](./media/image209.png)
+![](./media/image209.png)
 
-18. Select **Publish** in the confirmation dialog.
+18. 確認ダイアログで**「Publish」を**選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image210.png)
 
-## Exercise 5 – Test the agent
+19. うわぁぁぁぁぁ
 
-In this exercise, you will test how the agent works.
+## 演習5 – エージェントのテスト
 
-1.  From the agent page, select **Test** to open the Test pane.
+この演習では、エージェントがどのように動作するかをテストします。
 
-2.  Enter +++3148987666+++. This is the Phone number of an existing
-    customer.
+1.  エージェント ページから**\[Test\]を選択して**\[Test\]
+    ペインを開きます。
 
-    ![A screenshot of a phone AI-generated content may be
+2.  +++3148987666+++
+    と入力してください。これは既存の顧客の電話番号です。
+
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image211.png)
 
-3.  Select **Yes** from the given options.
+3.  指定されたオプションから**「Yes」**を選択します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image212.png)
 
-4.  Select a **product** from the given options.
+4.  指定されたオプションから**product**を選択します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image213.png)
 
-5.  Select Yes from the given options.
+5.  指定されたオプションから「Yes」を選択します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image214.png)
 
-6.  The order gets placed and the reference id is provided to the
-    customer.
+6.  注文が確定し、参照 ID が顧客に提供されます。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image215.png)
 
-7.  You can also ask other questions like track the order delivery for
-    the id you received. Though we have not configured the topics for
-    that, it will give you reply based on the knowledge source.
+7\.
+受け取ったIDの注文の配送状況を追跡するなど、他の質問もできます。そのためのトピックは設定していませんが、ナレッジソースに基づいて回答が提供されます。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image216.png)
 
-    Test the other scenarios by selecting different options. Add a new
-customer and check that you have received a mail in your email id that
-gets added to the Customer Record table.
+異なるオプションを選択して、他のシナリオをテストしてください。新しい顧客を追加し、顧客レコードテーブルに追加されたメールが自分のメールアドレスに届いていることを確認してください。
 
-8.  After testing for some time, click on the **Analytics** tab to know
-    the details of usage of topics and knowledge sources. This might
-    take some time to reflect.
+## まとめ：
 
-## Summary:
+このラボでは、自律型ショッピングエージェントの設計を学びました。主なトピックは以下のとおりです。
 
-In this lab, you have learnt to design an autonomous shopping agent. Topics covered include,
+- 変数
 
-- Variables
-    
-- Entities
-    
-- Topics
-    
-- Agent flows
-    
-- Trigger
-    
-- Analytics
-    
-- Knowledge sources
+- エンティティ
 
+- トピック
+
+- エージェントフロー
+
+- トリガー
+
+- 知識源
