@@ -1,416 +1,433 @@
-# Lab 05 – Enhance the Safe Travels agent and implement Multi agent orchestration
+# Laboratorio 05 – Mejorar el agente Safe Travels e implementar la coordinación multigente
 
-## Objective
+# Objetivo
 
-You created an agent named **Safe Travels** by using a template provided
-in the Copilot Studio in a previous lab. In this lab, you will
-understand how that agent can be enhanced to suit the needs of specific
-customers.
+Ha creado un agente llamado **Safe Travels** utilizando una plantilla
+proporcionada en Copilot Studio en un laboratorio anterior. En este
+laboratorio, comprenderá cómo se puede mejorar ese agente para adaptarlo
+a las necesidades de clientes específicos.
 
-In the process of doing that, you will learn the concepts of Agent Flow
-creation and Multi agent orchestration in Copilot Studio.
+En el proceso, aprenderá los conceptos de creación de flujos de agentes
+y orquestación de múltiples agentes en Copilot Studio.
 
-## Exercise 1 – Test the existing Safe Travels agent
+## Ejercicio 1 – Pruebe el agente Safe Travels existente
 
-In this exercise, we will test the **Safe Travels** agent to see how it
-responds when asked about travel approval.
+En este ejercicio, probaremos el agente **Safe Travels** para ver cómo
+responde cuando se le pregunta sobre la aprobación de viajes.
 
-1.  Open the **Copilot Studio** at
-    +++https://copilotstudio.microsoft.com+++ from a browser. Navigate
-    to the **Dev One** environment and open the **Safe Travels** agent.
+1.  Abra **Copilot Studio** en +++https://copilotstudio.microsoft.com+++
+    desde un navegador. Vaya al entorno **Dev One** y abra el
+    agente **Safe Travels**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the **Test** icon to test the agent.
+2.  Seleccione el icono **Test** para probar el agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Enter +++Need travel approval+++ in the Test window and click on
-    **Enter**.
+3.  Ingrese +++Need travel approval+++ en la ventana Test y haga clic
+    en **Enter**.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  You can see that the agent responds with a generalized instruction
-    set to be followed to get the travel approval.
+4.  Puede ver que el agente responde con un conjunto de instrucciones
+    generalizadas que deben seguirse para obtener la autorización de
+    viaje.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image4.png)
 
-## Exercise 2 – Enhance the agent with company specific Knowledge assets
+## Ejercicio 2 – Mejorar al agente con activos de conocimiento específicos de la empresa
 
-In this exercise, we will add knowledge asset - **Travel Policy**
-specific to Contoso.
+En este ejercicio, añadiremos un activo de conocimiento - **Travel
+Policy**, específico de Contoso.
 
-1.  From the Overview page of the agent, scroll down and select **+ Add
-    knowledge**
+1.  En la página Overview del agente, desplácese hacia abajo y
+    seleccione **+ Add knowledge**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-2.  Click on **select to browse** option.
+2.  Haga clic en la opción **select to browse**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-3.  From **C:\Labfiles\Lab Files** folder, select **Travel Policy.docx** and click
-    **Open**.
+3.  En la carpeta **C:\Labfiles**, seleccione **Travel Policy.docx** y
+    haga clic en **Open**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-4.  Click **Add** to the add the file.
+4.  Haga clic en **Add** para añadir el archivo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
+> ![A screenshot of a computer error AI-generated content may be
+> incorrect.](./media/image9.png)
 
-5.  Ensure that the file is added. Wait till the status changes from
-    **In progress** to **Ready** before proceeding to the next step.
+5.  Asegúrese de que el archivo se ha añadido. Espere hasta que el
+    estado cambie de **In progress** a **Ready** antes de continuar con
+    el siguiente paso.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-## Exercise 3 – Create a Team and Channel in Microsoft Teams
+## Ejercicio 3 – Crear un equipo y un canal en Microsoft Teams
 
-In this exercise, we will create a team and a channel in MS Teams to
-which the travel approval request will be sent.
+En este ejercicio, crearemos un equipo y un canal en MS Teams al que se
+enviará la solicitud de aprobación de viaje.
 
-1.  Open Microsoft Teams and select **See all your teams** option from
-    the left pane.
+1.  Abra Microsoft Teams y seleccione la opción **See all your
+    teams **en el panel izquierdo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-2.  Select **Create team** to create a new team.
+2.  Seleccione **Create team **para crear un nuevo equipo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the Team name as +++**HR Team**+++ and First channel name as
-    +++**Travel Approval Channel**+++ and select **Create**.
+3.  Ingrese el nombre del equipo como +++**HR Team**+++ y el nombre del
+    primer canal como +++**Travel Approval Channel**+++ y seleccione
+    **Create**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Select **Skip** in the Add members to HR Team dialog.
+4.  Seleccione **Skip** en el cuadro de diálogo Add members to HR Team.
 
-    ![A screenshot of a email AI-generated content may be
+![A screenshot of a email AI-generated content may be
 incorrect.](./media/image15.png)
 
-5.  Now, the Team and Channel creation is completed.
+Ahora, la creación del equipo y del canal se ha completado.
 
-    <img width="633" alt="image" src="https://github.com/user-attachments/assets/9645537b-29a1-42d4-891b-6b36061043b2" />
+## Ejercicio 4 – Crear un flujo de agente
 
+En este ejercicio, crearemos un nuevo flujo de agente para publicar la
+solicitud de viaje en el canal Teams
 
-## Exercise 4 – Create an Agent Flow
+1.  Seleccione **Flows** en el panel izquierdo.
 
-In this exercise, we will create a new AgentFlow to post the travel
-request to the Teams channel
-
-1.  Select **Flows** from the left pane.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-2.  Select **New agent flow** to create a new flow.
+2.  Seleccione **New agent flow **para crear un nuevo flujo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-3.  Select **Add a trigger**.
+3.  Seleccione **Add a trigger**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-4.  Select **When an agent calls the flow** under **AI capabilities**.
+4.  Seleccione **When an agent calls the flow** en **AI capabilities**.
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image19.png)
 
-5.  Select **+ Add an input**.
+5.  Seleccione **+ Add an input**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-6.  Select **Number** and name it as +++**Employee ID**+++. Then select
-    **+ Add an input**.
+6.  Seleccione **Number** y asígnele el nombre +++**Employee ID**+++. A
+    continuación, seleccione **+ Add an input**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image22.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image22.png)
 
-7.  Now, select a **Text** input and name it as +++**Purpose**+++.
+7.  Ahora, seleccione una entrada de **Texto** y asígnele el nombre
+    +++**Purpose**+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-8.  Select **Add an action** below the trigger node.
+8.  Seleccione **Add an action** debajo del nodo desencadenante.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-9.  Search for +++**Teams**+++ and click on **See more** under the Teams
-    group of actions.
+9.  Busque +++**Teams**+++ y haga clic en **See more** debajo del grupo
+    de acciones de Teams.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-10. Select **Post message in a chat or channel**.
+10. Seleccione **Post message in a chat or channel**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image26.png)
 
-11. Select **Sign in** and **login** using your credentials.
+11. Seleccione **Sign in** e **inicie sesión **con sus credenciales.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-12. Select the below details
+12. Seleccione los siguientes datos
 
-    Post as – Select **User**
-    
-    Post in – Select **Channel**
-    
-    Team – Select **HR Team**
-    
-    Channel – Select **Travel Approval Channel**
+Post as – Seleccione **User**
 
-    ![A screenshot of a chat AI-generated content may be
+Post in – Seleccione **Channel**
+
+Team – Seleccione **HR Team**
+
+Channel – Seleccione **Travel Approval Channel**
+
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image29.png)
 
-13. In the Message field, enter the following
+13. En el campo Message, ingrese lo siguiente
 
-    ```
-    Travel Request from 
-    Employee ID - <Employee ID>
-    Purpose - <Purpose>
-    ```
+\`\`\`
 
-    Replace **<Employee ID>** and **<Purpose>** with the dynamic content variables, **Employee ID** and **Purpose** as in the below screenshots.
+> Travel Request from
+>
+> Employee ID - \<Employee ID\>
+>
+> Purpose - \<Purpose\>
+>
+> \`\`\`
+>
+> Reemplace **\<Employee ID\>** y **\<Purpose\>** por las variables de
+> contenido dinámico, **Employee ID** y **Purpose**, tal y como se
+> muestra en las siguientes capturas de pantalla.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-14. The Parameters tab will now look like below.
+14. La pestaña Parameters tendrá ahora el siguiente aspecto.
 
-    ![](./media/image32.png)
+![](./media/image32.png)
 
-15. Close the Parameters tab.
+15. Cierre la pestaña Parameters.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-16. Add another **action** after the Post message node.
+16. Añada otra **acción** después del nodo Post message.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image34.png)
 
-17. Select **Respond to the agent** under **Skills**.
+17. Seleccione **Respond to the agent** en **Skills**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image35.png)
 
-18. Select **Add an output**. Add a **Text** output. Name it as +++Output+++ and enter the value as
-    +++Request submitted+++.
+18. Seleccione Add an output. Asígnele el nombre +++Output+++ e ingrese
+    el valor +++Request submitted+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-19. Click on **Save draft** to save the flow.
+19. Haga clic en **Save draft** para guardar el flujo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-20. Once the flow is saved, select **Publish**.
+20. Una vez guardado el flujo, seleccione **Publish**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-21. Ensure that the flow has been published.
+21. Asegúrese de que el flujo se ha publicado.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image39.png)
 
-22. Click on the **Overview** tab of the agent flow.
+22. Haga clic en la pestaña **Overview** del flujo del agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-23. Select **Edit** and name the flow as +++Request Travel Approval
-    Flow+++ in the **Details** pane. Select **Save**.
+23. Seleccione **Edit** y asigne al flujo el nombre +++Request Travel
+    Approval Flow+++ en el panel **Details**. Seleccione **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image41.png)
 
-## Exercise 5 – Add the Agent flow as a tool to the agent
+## Ejercicio 5 – Añadir el flujo del agente como herramienta al agente
 
-In this exercise, we will add the create Agent flow to the agent Safe
-Travels in order to leverage the flow functionality.
+En este ejercicio, añadiremos el flujo Create Agent al agente Safe
+Travels con el fin de aprovechar la funcionalidad del flujo.
 
-1.  From the left pane, select **Agents**.
+1.  En el panel izquierdo, seleccione **Agents**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-2.  Select the **Safe Travels** agent.
+2.  Seleccione el agente **Safe Travels**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-3.  Scroll down in the Overview page and select **Add tool**.
+3.  Desplácese hacia abajo en la página Overview y seleccione **Add
+    tool**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-4.  From the **Flow** tab, select the created **Request Travel Approval Flow**.
+4.  Seleccione el creado **Request Travel Approval Flow**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-5.  Select **Add to agent**.
+5.  Seleccione **Add to agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-6.  Once added, the flow will get listed under **Tools** section of the
-    **Overview** page of the **agent**.
+6.  Una vez añadido, el flujo aparecerá en la sección **Tools** de la
+    página **Overview** del **agente**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-## Exercise 6 – Create Topic
+## Ejercicio 6 – Crear tema
 
-In this exercise, we will create a Topic to use the created travel
-approval flow.
+En este ejercicio, crearemos un tema para utilizar el flujo de
+aprobación de viajes creado.
 
-1.  Select **Topics** from the top menu. Select **+ Add a topic** -\>
-    **Add from description with Copilot**.
+1.  Seleccione **Topics** en el menú superior. Seleccione **+ Add a
+    topic** -\> **Add from description with Copilot**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-2.  Enter the below details and then select **Create**.
+2.  Ingrese los siguientes datos y luego seleccione **Create**.
 
-    **Name** - +++Travel Approval+++
-    
-    **Create a topic to** - +++This topic should get the Employee ID
-    (Number) and Purpose of travel (Text) details from the user and invoke
-    the Tool "Request Travel Approval Flow"+++
+**Name** - +++Travel Approval+++
 
-    ![A screenshot of a computer AI-generated content may be
+**Create a topic to** - +++This topic should get the Employee ID
+(Number) and Purpose of travel (Text) details from the user and invoke
+the Tool "Request Travel Approval Flow"+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-3.  The **Topic** gets created as below.
+3.  El **Tema** se crea como se muestra a continuación.
 
-    ![](./media/image50.png)
+![](./media/image50.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image51.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image51.png)
 
-4.  See if the Flow is actually invoked. In this case, only a Message
-    node stating that the flow is invoked is added. In such a case,
-    delete such Message node and click on Add a node icon after the node
-    where the Purpose is requested from the user.
+4.  Compruebe si realmente se invoca el flujo. En este caso, solo se
+    añade un nodo Message que indica que se ha invocado el flujo. En tal
+    caso, elimine dicho nodo Message y haga clic en el icono Add a node
+    después del nodo en el que se solicita el propósito al usuario.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
 
-5.  Select **Add a tool** -> **Request Travel Approval Flow**
+5.  Seleccione **Add a tool** -\> **Request Travel Approval Flow**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-6.  Add the Variable **EmployeeID** for the flow variable **Employee
-    ID.**
+6.  Añada la variable **EmployeeID** para la variable de
+    flujo **Employee ID.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-7.  Similarly add the Purpose of travel input.
+7.  De manera similar, añada la información sobre el propósito del
+    viaje.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-8.  Add a **Send a message** node and add the Output Variable to it as
-    in the screenshots below.
+8.  Añada un nodo **Send a message** y añada la variable de salida como
+    se muestra en las capturas de pantalla siguientes.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-9.  Select **Save** and then **Publish** to publish the agent.
+9.  Seleccione **Save** y, a continuación, **Publish** para publicar el
+    agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image60.png)
 
-10. Select **Publish** in the confirmation dialog box.
+10. Seleccione **Publish** en el cuadro de diálogo de confirmación.
 
-    ![A close-up of a white background AI-generated content may be
+![A close-up of a white background AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Select the Test icon and enter +++Travel Approval+++ and send from
-    the test pane.
+11. Seleccione el icono Test, ingrese +++Travel Approval+++ y envíelo
+    desde el panel de prueba.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-12. Converse by giving the below details to the agent
+12. Responda facilitando los siguientes datos al agente
 
-    Employee ID – +++1234+++
-    
-    Purpose of travel - +++Client meeting for finalizing proposal of XYZ project+++
+> Employee ID – +++1234+++
+>
+> Purpose of travel - +++Client meeting for finalizing proposal of XYZ
+> project+++
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image63.png)
 
-13. You will get a **Request submitted** message from the agent.
+13. Recibirá un mensaje del agente indicando que se ha **enviado la
+    solicitud**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image64.png)
 
-14. Open the Teams Channel and you will see the details posted there for
-    the Travel approval.
+14. Abra el canal Teams y verá los datos publicados allí para la
+    aprobación del viaje.
 
-    ![](./media/image65.png)
+![](./media/image65.png)
 
-## Exercise 7 – Create Leave Management agent 
+## Ejercicio 7 – Crear agente de gestión de permisos
 
-In this exercise, we will build a Leave management agent which can be
-used to learn about the leaves, leave balance for employees and so on.
+En este ejercicio, crearemos un agente de gestión de permisos que se
+puede utilizar para obtener información sobre los permisos, el balance
+de permisos de los empleados, etc.
 
-1.  From the Copilot Studio Home page, select **Agents** -\> **+ New
-    agent**.
+1.  En la página de inicio de Copilot Studio, seleccione **Agents** -\>
+    **+ New agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-2.  Select **Skip to configure**.
+2.  Seleccione **Skip to configure**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-3.  In the configuration page, enter the below details and select
-    **Create**.
+3.  En la página de configuración, ingrese los siguientes detalles y
+    seleccione **Create**.
 
     - Name - +++Leave Manager Agent+++
 
@@ -421,165 +438,172 @@ incorrect.](./media/image67.png)
     - Instructions - +++Track the leaves of employees. Track their leave
       balance. Apply/Reject leaves based on their balance.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-4.  Once the agent gets created, scroll down in the Overview page and
-    select **Add knowledge** under the **Knowledge** section.
+4.  Una vez creado el agente, desplácese hacia abajo en la página
+    Overview y seleccione **Add knowledge** en la sección **Knowledge**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-5.  Click on **select to browse**.
+5.  Haga clic en **select to browse**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-6.  Select the file **Leave balance Tracker** from **C:\Labfiles\Lab Files** and click
-    **Open**.
+6.  Seleccione el archivo **Leave balance Tracker** en C:\Labfiles y
+    haga clic en **Open**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image71.png)
 
-7.  Select **Add** to add the tracker to the agent.
+7.  Seleccione **Add** para añadir el rastreador al agente.
 
-    ![](./media/image72.png)
+![](./media/image72.png)
 
-8.  The file gets added. Wait until the status is Ready before
-    proceeding to the next step.
+8.  El archivo se añade. Espere hasta que el estado sea Ready antes de
+    continuar con el siguiente paso.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-9.  Select **+ Add a topic** -\> **Add from description with Copilot**
-    from the Topics tab.
+9.  Seleccione **+ Add a topic** -\> **Add from description with
+    Copilot** desde la pestaña Topics.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-10. Enter the below details and click on **Create**.
+10. Ingrese los siguientes datos y haga clic en **Create**.
 
-    - Name - +++Leave Balance Checker+++
-    
-    - Create a topic to - +++Get the Employee ID from the user and check and
-      reply with the leave balance based on the tracker added as knowledge
-      source+++
+- Name - +++Leave Balance Checker+++
 
-    ![A screenshot of a computer AI-generated content may be
+- Create a topic to - +++Get the Employee ID from the user and check and
+  reply with the leave balance based on the tracker added as knowledge
+  source+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-11. Check if the topic has the node to get the Employee ID and then
-    click **Save**. Here, we have a node for getting the Employee ID and
-    a Message node stating that the balance is being retrieved.
+11. Compruebe si el tema tiene el nodo para obtener el ID de empleado y,
+    a continuación, haga clic en Save. Aquí tenemos un nodo para obtener
+    el ID de empleado y un nodo de mensaje que indica que se está
+    recuperando el balance.
 
-    Check the topic once and remove other nodes that have got created apart from the above ones.
+> Compruebe el tema una vez y elimine los demás nodos que se hayan
+> creado aparte de los anteriores.
 
-    Then **Save** the topic.
+A continuación, **guarde** el tema haciendo clic en Save.
 
-    ![](./media/image76.png)
+![](./media/image76.png)
 
-12. Send a message +++Check Leave balance+++ from the Test pane.
+12. Envíe un mensaje +++Check Leave balance+++ desde el panel de prueba.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image77.png)
 
-13. Enter +++1234+++ for Employee ID.
+13. Ingrese +++1234+++ como ID de empleado.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image78.png)
 
-14. Check the response from the agent. This is retrieved from the
-    knowledge asset added to the agent.
+14. Compruebe la respuesta del agente. Se recupera del activo de
+    conocimiento añadido al agente.
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image79.png)
 
-15. Select **Publish** and wait till the agent is published.
+15. Seleccione Publish y espere hasta que el agente se publique.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-## Exercise 8 - Implement Multi agent orchestration in Copilot Studio
+## Ejercicio 8 - Implementar la orquestación multiagente en Copilot Studio
 
-Rather than relying on a single agent to do everything—or managing
-disconnected agents in silos—organizations can now build multi-agent
-systems in Copilot Studio (preview), where agents delegate tasks to one
-another. This includes those built with the Microsoft 365 agent builder,
-Microsoft Azure AI Agents Service, and Microsoft Fabric. These agents
-can now all work together to achieve a shared goal: completing complex,
-business-critical tasks that span systems, teams, and workflows.
+En lugar de depender de un único agente para hacerlo todo, o de
+gestionar agentes desconectados en silos, las organizaciones ahora
+pueden crear sistemas multiagente en Copilot Studio (vista previa),
+donde los agentes se delegan tareas entre sí. Esto incluye los creados
+con el generador de agentes de Microsoft 365, Microsoft Azure AI Agents
+Service y Microsoft Fabric. Ahora, todos estos agentes pueden trabajar
+juntos para lograr un objetivo común: completar tareas complejas y
+críticas para el negocio que abarcan sistemas, equipos y flujos de
+trabajo.
 
-In this exercise, we will add the Leave management agent to the Safe
-Travels agent which can be used to learn about the leaves when planning
-to travel.
+En este ejercicio, agregaremos el agente Leave management al agente Safe
+Travels, que se puede usar para obtener información sobre las vacaciones
+cuando se planifica un viaje.
 
-1.  Select the **Safe Travels** agent from Copilot Studio.
+1.  Seleccione el agente **Safe Travels** desde Copilot Studio.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-2.  We will first test this agent to see what information it can give on
-    leaves. From the Test pane, enter +++Check Leave balance+++ and hit
-    enter.
+2.  Primero probaremos este agente para ver qué información puede
+    proporcionar sobre las ausencias. En el panel Test, ingrese +++Check
+    Leave balance+++ y presione enter.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-3.  You can see that the agent responds with a generalized information
-    on how to check the leave balance. It also refers to the Travel
-    Policy document while doing this.
+3.  Puede ver que el agente responde con información generalizada sobre
+    cómo comprobar el saldo de vacaciones. Al hacerlo, también hace
+    referencia al documento de la política de viajes.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image83.png)
 
-4.  Select the **Agents** tab from the top menu and select **+ Add**.
+4.  Seleccione la pestaña **Agents** en el menú superior y seleccione
+    **+ Add**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-5.  Under **Choose how do you want to extend your agent**, select
+5.  En **Choose how do you want to extend your agent**, seleccione
     **Copilot Studio**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-6.  From the list, select **Leave Manager Agent**. It can be added only
-    if it is published. Please wait if it is in the process of
-    publishing.
+6.  En la lista, seleccione **Leave Manager Agent**. Solo se puede
+    añadir si está publicado. Espere si se encuentra en proceso de
+    publicación.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-7.  Select **Add agent** to add this agent to **Safe Travels**.
+7.  Seleccione **Add agent** para añadir este agente a **Safe Travels**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image87.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image88.png)
 
-8.  Wait for few minutes after the agent is added and then click on
-    **Publish**.
+8.  Espere unos minutos después de añadir el agente y, a continuación,
+    haga clic en **Publish**.
 
-    ![](./media/image89.png)
+![](./media/image89.png)
 
-9.  Wait for few more minutes after the agent is published and then
-    enter +++Check Leave balance+++ in the Test pane of the **Safe
-    Travels agent**.
+9.  Espere unos minutos más después de que se publique el agente y, a
+    continuación, ingrese +++Check Leave balance+++ en el panel de
+    prueba del **agente** **Safe Travels**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-10. You can see that the **Leave Manager** agent is accessed
-    automatically and the agent replies with the **Enter Employee ID**
-    question from the **Leave Manager agent’s topic**.
+10. Puede ver que se accede automáticamente al agente **Leave
+    Manager** y que este responde con la pregunta **Enter Employee
+    ID** del **tema del agente Leave Manager**.
 
-11. Enter the Employee ID as +++1234+++ and you can see that the agent
-    replies based on the Leave Manager agent’s knowledge asset.
+11. Ingrese el Employee ID como +++1234+++ y podrá ver que el agente
+    responde basándose en los conocimientos del agente de Leave Manager.
 
-    ![](./media/image91.png)
+![](./media/image91.png)
 
-## Summary
+## Resumen
 
-In this lab, we have learnt how to enhance an agent created from a
-template to suit the individual needs. We have also learnt to implement
-Multi agent orchestration in the Copilot Studio
+En este laboratorio, hemos aprendido a mejorar un agente creado a partir
+de una plantilla para adaptarlo a las necesidades individuales. También
+hemos aprendido a implementar la coordinación de múltiples agentes en
+Copilot Studio
