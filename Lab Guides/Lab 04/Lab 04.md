@@ -1,485 +1,468 @@
-# Lab 04 - Integrate an agent with the Dynamics 365 Customer Service app and implement automated case escalation to the live agent
+# 实验 04 - 将代理与 Dynamics 365 Customer Service 应用程序集成，并实施自动案例升级到实时代理
 
-## Objective
+## 目的
 
-This lab details the steps to escalate a conversation to a live agent
-from the agents.
+此实验室详细介绍了将对话从代理升级到人工代理的步骤。
 
->[!Alert] **Important:** This lab can be executed only if the Dynamics
-365 trial has been enabled as per **Lab 02 - Configure the Dynamics 365
-Customer Service**
+**\[！重要提示**：仅当已按照**实验 02 - 配置 Dynamics 365** 客户服务启用
+Dynamics 365 试用版时，才能执行此实验
 
-## Exercise 1: Configure the Dynamics 365 Customer Service workspace
+## 练习 1：配置 Dynamics 365 Customer Service 工作区
 
-### Task 1: Configure Omnichannel Power Virtual Agent Extension
+### 任务 1：配置全渠道 Power Virtual 代理扩展
 
-1.  Open the link,
-    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++ and click on **Get it now** in the Omnichannel Power Virtual Agent Extension page.
+1.  打开链接
+    +++<https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++> ，然后单击
+    全渠道 Power Virtual 代理扩展 页面中的 Get it now。
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  Sign in with the tenant credentials from the **Resources** tab.
+2.  使用 **Resources** 选项卡中的租户凭证登录。
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  Click on **Get it now**.
+3.  单击 **Get it now**。
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  Select the **CustomerService Trial** under **Select an
-    environment**, select the check boxes and click on **Install**.
+4.  在 **Select an environment** 下选择 **CustomerService
+    Trial**，选中复选框并单击 **Install**。
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-## Task 2: Configure search settings in the Power Platform admin center
+## 任务 2：在 Power Platform 管理中心配置搜索设置
 
-1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
-    your tenant details. Select **Manage** from the left pane and then
-    select **CustomerService Trial** environment from the list of
-    environments.
+1.  使用您的租户详细信息登录
+    +++<https://admin.powerplatform.microsoft.com/+++>。从左侧窗格中选择
+    **Manage**，然后从环境列表中选择 **CustomerService Trial**
+    environment。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-2.  Select **Settings** from the top pane.
+2.  选择 **Settings**从顶部窗格中。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-3.  Select **Product** -\> **Features**.
+3.  选择 **Product** -\> **Features**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-4.  Toggle **Dataverse Search** and **Single table search** option
-    to **ON** and select **Save**.
+4.  将 **Dataverse Search** 和 **Single table search** 选项切换为
+    **ON**，然后选择**Save**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-## Exercise 2: Create an agent
+## 练习 2：创建代理
 
-1.  From the Copilot Studio home page,
-    +++https://copilotstudio.microsoft.com+++, select the **CustomerService Trial** Environment from the top right.
+1.  在 Copilot Studio 主页
+    +++[https://copilotstudio.microsoft.com+++](https://copilotstudio.microsoft.com+++/)
+    中，从右上角选择 **CustomerService Trial** 环境。
 
-    ![](./media/image10.png)
+![](./media/image10.png)
 
-2.  Select **Agents** from the left pane. Click on the **+ New
-    Agent** to create a new agent.
+2.  从左侧窗格中选择 **Agents**。单击 **+ New Agent** 创建新代理。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-3.  In the Type your message text area, type +++**You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
+3.  在 Type your message text 区域中，键入 **+++You are a Customer
+    service agent that help identify some stores.+++**
+    然后点击**send**。
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-4.  The agent might suggest a **name** for the Agent being created.
-    Either accept it or suggest a new name.
+4.  代理可能会为正在创建的代理建议
+    **Name**。要么接受它，要么建议一个新名字。
 
-5.  Type the message +++**Maintain a polite tone**+++ next and
-    hit **send**.
+5.  输入消息 **+++Maintain a polite tone+++**接下来，然后点击 **Send**。
 
-    ![](./media/image13.png)
+![](./media/image13.png)
 
-6.  Click on **Create**.
+6.  单击 **Create**。
 
-    ![](./media/image14.png)
+![](./media/image14.png)
 
-7.  The created agent opens up with a message, **Your agent is ready**.
+7.  创建的代理将打开一条消息，**Your agent is ready**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image15.png)
 
-## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
+## 练习 3：将 Copilot 连接到 Dynamics 365 Customer Service 并配置“升级”主题
 
-### Task 1: Configure the Escalate topic
+### 任务 1：配置 Escalate 主题
 
-We are focusing here on showcasing the escalation to live agent concept.
-So, we will directly work towards it without creating any other new
-topics.
+我们在这里重点介绍升级到实时代理的概念。因此，我们将直接朝着这个方向努力，而不会创建任何其他新主题。
 
-1.  Select the **Topics** tab and then select the **System** tab. Select
-    the **Escalate** topic.
+1.  选择 **Topics** 选项卡，然后选择 **System** 选项卡。选择
+    **Escalate** 主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-2.  Select the message node of the topic and replace the existing
-    content with, +++You will be transferred to a live agent shortly+++
+2.  选择主题的 message 节点，并将现有内容替换为 +++You will be
+    transferred to a live agent shortly+++
 
-    ![](./media/image17.png)
+![](./media/image17.png)
 
-3.  Click on the + symbol to add a node next to the Message node.
+3.  单击 + 符号以在 Message 节点旁边添加一个节点。
 
-4.  Select **Topic management** -\> **Transfer conversation**.
+4.  选择 **Topic management** -\> **Transfer conversation**。
 
-    ![](./media/image18.png)
+![](./media/image18.png)
 
-5.  Give a message +++The customer wants to talk to a live agent+++ in
-    the Transfer conversation node.
+5.  发送消息 +++The customer wants to talk to a live agent+++在 Transfer
+    conversation 节点中。
 
-    ![ ](./media/image19.png)
+![ ](./media/image19.png)
 
-6.  **Save** the Topic.
+6.  **Save** 主题。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-7.  **Publish** the agent.
+7.  **Publish** 代理。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-### Task 2: Connect the copilot to Dynamics 365 Customer Service
+### 任务 2：将 Copilot 连接到 Dynamics 365 Customer Service
 
-1.  Once published, from the copilot page top right, click
-    on **Settings**.
+1.  发布后，从 copilot 页面右上角单击“**Settings**”。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-2.  Select **Security**, and **Authentication** under Security.
+2.  选择 **“Security**”，然后在 **“Security”** 下选择
+    “**Authentication**”。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-3.  Select the **No authentication** option and then click on **Save**.
+3.  选择 **No authentication** 选项，然后单击 **Save** 。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-4.  Select **Save** in the confirmation dialog box.
+4.  在 确认对话框中选择 **Save** 。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image25.png)
 
-5.  Close the **Settings** pane.
+5.  关闭 **Settings** 窗格。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image26.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image26.png)
 
-6.  Click on **Channels** (If the Channels is not visible, click on the
-    +1 to view the **Channels** option)
+6.  单击 **Channels** （如果 Channels 不可见，请单击 +1 以查看
+    **Channels** 选项）
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image27.png)
 
-7.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
+7.  从 Customer engagement 中心窗格中选择 **Dynamics 365 Customer
+    Service**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-8.  On the Dynamics 365 Customer Service page, click on **Connect**.
+8.  在 Dynamics 365 Customer Service 页面上，单击 **Connect**。
 
-    ![A screenshot of a message AI-generated content may be
+![A screenshot of a message AI-generated content may be
 incorrect.](./media/image29.png)
 
-9.  Once you get a **successfully connected** message, click
-    on **Close**.
+9.  收到 **successfully connected** 的消息后，单击 **Close**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-## Exercise 4: Create workstream and channel in Dynamics 365 admin center
+## 练习 4：在 Dynamics 365 管理中心中创建工作流和渠道
 
-### Task 1: Manage a user in Omnichannel for Customer Service
+### 任务 1：在 Customer Service 全渠道中管理用户
 
-1.  Login to +++https://admin.powerplatform.microsoft.com+++ using your admin tenant credentials. Select **Manage** from the left pane. Select **CustomerService Trial** environment **under Environments**.
+1.  使用您的管理员租户凭据登录到
+    +++[https://admin.powerplatform.microsoft.com+++](https://admin.powerplatform.microsoft.com+++/)。从左侧窗格中选择
+    **Manage**。在 **Environments**下选择 **CustomerService Trial**
+    environment。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-2.  Click on the **url value** under **Environment URL**.
+2.  单击 **Environment URL** 下的 **url value**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Select **Customer Service workspace** from the header bar.
+3.  从标题栏中选择 **Customer Service workspace**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  This opens the **Apps** page. Select **Copilot Service admin
-    center** from it.
+4.  这将打开 **Apps** 页面。从中选择 **Customer Service admin center**。
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img2.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image34.png)
 
+5.  这将打开 **Dynamics 365 Customer Service admin center** 页面。
 
-5.  This opens up the **Dynamics 365 Customer Service admin
-    center** page.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image35.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img3.png)
+### 任务 2：配置工作流
 
+1.  在管理中心页面中，从左侧窗格中的 **Customer
+    support** 下选择**Workstreams** ，然后选择 **+ New
+    workstream** 选项。
 
-### Task 2: Configure workstream
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image36.png)
 
-1.  From the admin center page, select **Workstreams** under **Customer
-    support** from the left pane and then select the **+ New
-    workstream** option.
+2.  选择 **Inbound**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img4.png)
+![](./media/image37.png)
 
-2.  Select Inbound
-
-    ![](./media/image37.png)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-3.  Fill in the below details, scroll down and click on **Create**.
+3.  填写以下详细信息，向下滚动并单击 **Create**。
 
-    - Name - +++**New Workstream**+++
+    - 名字 - +++**New Workstream**+++
 
-    - Owner – **MOD Administrator** (Selected by default)
+    - 所有者 – **MOD Administrator** (默认选中)
 
-    - Type – **Messaging**
+    - 类型 – **Messaging**
 
-    - Channel – **Chat**
+    - 渠道 – **Chat**
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image39.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image39.png)
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image40.png)
 
-4.  Once the workstream is created, click on **Set up chat** to set up
-    the chat channel.
+4.  创建工作流后，单击 **Set up chat ** 以设置聊天渠道。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image41.png)
 
-5.  In the **Live chat setup – Channel details** screen, fill in the
-    below details.
+5.  在 **Live chat setup – Channel details** 屏幕中，填写以下详细信息。
 
-    - Name - +++**Chat Channel**+++
+    - 名字 - +++**Chat Channel**+++
 
-    - Language – **English - United States**
+    &nbsp;
 
-    ![A screenshot of a chat channel AI-generated content may be
+    - 语言 – **英语 - 美国**
+
+![A screenshot of a chat channel AI-generated content may be
 incorrect.](./media/image42.png)
 
-6.  Scroll down and click **Next**.
+6.  向下滚动并单击 **Next**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-7.  Accept the defaults in the next 2 pages until you reach the Chat
-    widget screen. In the Live chat setup – Chat widget screen, provide
-    the name as +++**Store Locator Assistant**+++, accept the other
-    defaults and click on **Next**.
+7.  接受接下来 2 页中的默认值，直到您到达 Chat widget 屏幕。在 Live chat
+    setup – Chat 小部件屏幕中，提供名称 **+++Store Locator
+    Assistant+++**，接受其他默认值，然后单击 **Next**。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image44.png)
 
-8.  In the **Live chat setup – Behaviors** screen, accept the defaults
-    and click on **Next**.
+8.  在 **Live chat setup – Behaviors** 屏幕中，接受默认值，然后单击
+    **Next**。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image45.png)
 
-9.  In the **Live chat setup – User features** screen, toggle **File
-    attachment** and **Voice and video calls** options to **off** and
-    click on **Next**.
+9.  在 **Live chat setup – User features** 屏幕中，将 **File
+    attachment** and **Voice and video calls** 选项切换为
+    **off**，然后单击 **Next**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-10. Accept the default value in the Notification screen and click
-    **Next**.
+10. 接受 Notification 屏幕中的默认值，然后单击 **Next** 。
 
-11. In the **Live chat setup – Review and finish** screen,
-    select **Create channel**.
+11. 在 **Live chat setup – Review and finish** 屏幕中，选择 **Create
+    channel**。
 
-    ![](./media/image47.png)
+![](./media/image47.png)
 
-12. **Copy** the value of the widget that appears in the **Live chat
-    setup – Success** screen and **save** it in a notepad to add it to a
-    webpage in the upcoming exercises. Then, click on **Done** to
-    complete the configuration.
+12. **复制 Live chat setup – Success** 屏幕中显示的小组件的值
+    ，并将其**Save**
+    在记事本中，以将其添加到即将进行的练习中的网页中。然后，单击
+    **Done** 完成配置。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image48.png)
 
-### Task 3: Add the agent to the workstream
+### 任务 3：将代理添加到工作流
 
-1.  Back in the **New Workstream** page, scroll down and click on **+ Add bot** in the **Add an AI agent** section.
+1.  返回 **New Workstream** 页面，向下滚动并单击 Bot 部分中的 **+ Add
+    bot**。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
+2.  从 添加机器人 屏幕上的副驾驶列表中，选择 **Store Locator Assistant**
+    代理，然后单击 **Connect**。
 
-2.  From the list of bots on the Add a bot screen, select the **Store
-    Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
-
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image50.png)
 
+3.  确保将机器人添加到工作流中，如下面的屏幕截图所示。
 
-3.  Ensure that the bot is added to the workstream as in the screenshot below.
-
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
+4.  从左侧窗格中，选择 **AI Agents**。
 
-4.  From the left pane, select **AI Agents**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-5.  Ensure that the **Store locator** agent is connected.
+5.  确保 **Store locator** 代理已连接。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
 
-## Exercise 5: Create a webpage and test the escalation to agent
+## 练习 5：创建网页并测试升级到代理
 
-1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
-    tenant admin credentials.
+1.  使用您的租户管理员凭据[登录到
+    +++](https://make.powerpages.microsoft.com/+++)
+    <https://make.powerpages.microsoft.com/+++>。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-2.  Ensure that you are in **CustomerService Trial** environment.
+2.  确保您处于 **CustomerService Trial**环境中。
 
-3.  Click on **Get started**.
+3.  单击 **Get started**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-4.  Click on Skip in the **Tell us about yourself** page.
+4.  单击  **Tell us about yourself** 页面中的 **Skip**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-5.  Scroll down in the next page and click on **Start with a
-    template** option to start creating the site with a template.
+5.  在下一页向下滚动，然后单击 **Start with a template**
+    选项以开始使用模板创建站点。
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image57.png)
 
-6.  Select a template and click on **Choose this template**.
+6.  选择一个模板，然后单击 **Choose this template**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-7.  In the Give your site a name textbox, enter the name as +++**Contoso
-    Store assistant**+++, accept the other defaults and click
-    on **Done**.
+7.  在 为您的网站命名 文本框中，输入名称 **+++Contoso Store
+    assistant+++**，接受其他默认值，然后单击 **Done**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-8.  Once the site is created, click on **Edit**.
+8.  创建站点后，单击 **Edit**。
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-9.  Click on **Edit site header** in the **Company name** title.
+9.  单击 **Company name** 标题中的 ** Edit site header** 。
 
-    ![](./media/image61.png)
+![](./media/image61.png)
 
-10. In the **Edit site header** pane, provide the **Site title** as
-    +++**Contoso Store assistant**+++ and close the dialog.
+10. 在 **Edit site header** 窗格中，将 站点标题 提供为 **+++Contoso
+    Store assistant+++** 并关闭对话框。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-11. Click on **Edit code** in the top right corner of the page.
+11. 单击 页面右上角的 **Edit code**。
 
-    ![](./media/image63.png)
+![](./media/image63.png)
 
-12. Click on **Open Visual Studio Code**.
+12. 单击 **Open Visual Studio Code**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-13. Click **Allow**. **Login** using your tenant credentials if
-    required.
+13. 单击 **Allow**。 如果需要，请使用您的租户凭据 **Login**。
 
-    ![A black screen with white text AI-generated content may be
+![A black screen with white text AI-generated content may be
 incorrect.](./media/image65.png)
 
-14. The Home page of the web page opens up in the Visual Studio Code.
+14. 网页的 Home page 将在 Visual Studio Code 中打开。
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image66.png)
 
-15. Scroll to the end of the file. Add the **script** copied while
-    creating the workstream, after the last line of this file.
+15. 滚动到文件末尾。将
+    创建工作流时复制的 **script** 添加到此文件的最后一行之后。
 
-    ![A screen shot of a computer screen AI-generated content may be
+![A screen shot of a computer screen AI-generated content may be
 incorrect.](./media/image67.png)
 
-16. Save the file, close the Visual Studio Code tab and return to the
-    Power pages. Click on **Sync**.
+16. 保存文件，关闭 Visual Studio Code 选项卡并返回到 Power 页面。单击
+    **Sync**。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-17. Please wait for few minutes before proceeding to the next step.
-    
-18. Once the Sync is completed, select **Preview** -\> **Desktop.**
+17. 同步完成后，选择 **Preview** -\> **Desktop。**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-19. Your web page opens in a new tab. Find the **Store Locator
-    Assistant** embedded to the page at the bottom right of the web
-    page. **Click** on it.
+18. 您的网页将在新选项卡中打开。在 网页右下角找到嵌入到页面的 **Store
+    Locator Assistant**。**点击**它。
 
-    ![A screenshot of a website AI-generated content may be
+![A screenshot of a website AI-generated content may be
 incorrect.](./media/image70.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/img5.png)
+19. 输入 +++Talk to agent+++。
 
-21. Enter +++Talk to agent+++.
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image71.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/img6.png)
+20. 在 Customer Service admin 页面中，单击 **Customer Service admin
+    center**，然后从中选择应用 **Customer Service workspace**。
 
-22. From the Customer Service admin page, click on **Customer Service
-    admin center** and select the app **Customer Service
-    workspace** from it.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-23. In the Customer Service workspace page, you will get a **chat
-    request**. **Accept** it.
+21. 在 Customer Service workspace 页面中，您将收到一个 **chat
+    request**。 **接受**它。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-24. Once accepted, the chat screen opens up with the message that we had
-    given in the Escalate topic. We can also add any other information
-    provided by the user here to the live agent.
+22. 接受后，聊天屏幕将打开，其中包含我们在 Escalate
+    主题中提供的消息。我们还可以将用户在此处提供的任何其他信息添加到实时代理中。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image75.png)
 
-25. Simulate the chat between the live agent and the customer if you
-    wish to see how it works and then ends.
+23. 如果您想了解实时代理与客户之间的聊天，请模拟其工作原理，然后结束。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image76.png)
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image77.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image77.png)
 
-## Summary
+## 总结
 
-In this lab, we have learnt to
+在本实验中，我们学习了
 
-- Build an agent from the Copilot Studio and configure the Escalate
-  topic.
+- 从 Copilot Studio 构建代理并配置 Escalate 主题。
 
-- Publish the agent to Dynamics 365 workspace and integrate it in a web
-  page. 
+- 将代理发布到 Dynamics 365 工作区，并将其集成到网页中。
