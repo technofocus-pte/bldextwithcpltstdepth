@@ -1,85 +1,83 @@
-# Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
+# 실습 07 – 개인 맞춤형 쇼핑 도우미 생성
 
-## Objective
+## 목표
 
-The objective of this lab is to create a personalized shopping agent for
-Contoso Electronics. This will use Dataverse tables as the knowledge
-source for the agent. It will suggest product categories to the customer
-based on their latest shopping and assist them throughout the shopping
-experience.
+이 실습의 목표는 Contoso Electronics를 위한 개인 맞춤형 쇼핑 에이전트를
+만드는 것입니다. 에이전트는 Dataverse 테이블을 지식 소스로 사용하며,
+고객의 최신 쇼핑 이력을 기반으로 적절한 제품 카테고리를 제안하고 쇼핑
+전반에 걸쳐 지원 역할을 수행합니다.
 
-## Exercise 1 – Create Dataverse tables
+## 연습 1 – Dataverse 테이블 만들기
 
-In this exercise, you will create tables in the Dataverse to store the
-**Customer**, **Product** and **Order** details.
+이 연습에서는 **Customer**, **Product**, **Order정보**를 저장하기 위해
+Dataverse에 테이블을 생성합니다.
 
-1.  Login to +++https://make.powerapps.com+++ using your admin tenant
-    credentials and select Dev One as your environment. Select Tables
-    form the eft navigation pane.
+1.  +++https://make.powerapps.com+++ 에 관리자 테넌트 계정으로 로그인한
+    후,  Dev One 환경을 선택하세요. 왼쪽 탐색 창에서 Tables을
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the drop down next to **+ New table** and select **Create new
-    tables** under it.
+2.  **+ New table** 옆의 드롭다운을 클릭하고, **Create new tables**를
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Select **Import an Excel file or .csv** to create a new table.
+3.  **Import an Excel file or .csv**를 선택해 새 테이블을 생성하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under Export an Excel or .CSV file, select the **Select from
-    device** option.
+4.  Export an Excel or .CSV file에서 **Select from device** 옵션을
+    선택하세요.
 
-    ![A screenshot of a file AI-generated content may be
+![A screenshot of a file AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
-    **Import** to import the data from the tracker and create the table.
+5.  **C:\Labfiles** 폴더에서**Customers.xlsx** 엑셀 파일을 선택하세요.
+    **Import** 를 클릭해 트래커의 데이터를 가져오고 테이블을 생성하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  The table gets created with the data from the tracker.
+6.  트래커의 데이터를 기반으로 테이블이 생성됩니다.
 
-7.  Here, that table name is **Customer Record**. The name might be
-    slightly different in your case since it is automatically generated.
-    Keep a note of it and use the appropriate Table name throughout the
-    lab execution.
+7.  여기서는 테이블 이름이 **Customer Record**로 설정되어 있습니다. 자동
+    생성되는 이름이므로 사용자마다 다를 수 있으니, 반드시 테이블 이름을
+    확인하고 실습 내내 동일한 이름을 사용하세요.
 
-8.  Click on the table, and then select **View data** to view the data
-    added to the table.
+8.  생성된 테이블을 클릭한 후, **View data**를 선택해 테이블에 추가된
+    데이터를 확인하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-9.  Select **Save and exit**.
+9.  **Save and exit** 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-10. Click on **Save and exit** in the confirmation dialog.
+10. 확인 창에서 **Save and exit**를 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-11. Repeat the steps from 2 to 10 twice, to create tables once using the
-    tracker **Product Catalog.xlsx** and the next time using
-    **Orders.xls**
+11. 2번부터 10번까지의 과정을 두 번 반복하세요. 첫 번째는 **Product
+    Catalog.xlsx** 파일을 사용해 테이블을 생성하고, 두
+    번째는 **Orders.xlsx** 파일을 사용해 테이블을 생성하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-12. Now, we will have 3 tables,
+12. 이제 세 개의 테이블이 만들어졌습니다.
 
     - Customer Record
 
@@ -87,1558 +85,1631 @@ incorrect.](./media/image11.png)
 
     - Orders
 
-## Exercise 2 – Create a Shopping agent
+## 연습 2 – 쇼핑 에이전트 만들기
 
-In this exercise, you will create a Shopping agent which will assist
-customers while shopping in Contoso Electronics.
+이번 실습에서는 Contoso Electronics에서 고객의 쇼핑을 돕는 쇼핑
+에이전트를 생성하게 됩니다.
 
-### Task 1 – Create the agent
+### 작업 1 – 에이전트 생성하기
 
-Create the agent in Copilot Studio by using Copilot. Chat with the
-Copilot and give it instructions on how the agent should be designed and
-how it should behave so that the Copilot will create the agent for you.
+Copilot Studio에서 Copilot을 활용해 에이전트를 생성합니다. Copilot과
+대화를 통해 에이전트의 설계 방향과 동작 방식을 지시하면, Copilot이
+자동으로 에이전트를 만들어 줍니다.
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com/+++ and select the **Dev
-    One** environment.
+1.  +++https://copilotstudio.microsoft.com/+++에 접속해 Copilot Studio에
+    로그인한 후, **Dev One** 환경을 선택하세요.
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-2.  Select **Agents** and then click on **+ New agent**.
+2.  왼쪽 메뉴에서**Agents**를 선택한 후,  **+ New agent** 버튼을
+    클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the below in the chat and send it.
+3.  아래 내용을 채팅창에 입력한 후 전송하세요.
 
-    +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
++++Create an agent that will assist the customers in shopping with
+Contoso Electronics. Name it as "Shopping agent".+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Enter +++Help the users in finding products and their prices, give
-    personalized suggestions and track order delivery.+++ and hit
-    **Enter**.
+4.  다음 문장을 입력한 후 **Enter** 키를 누르세요:+++Help the users in
+    finding products and their prices, give personalized suggestions and
+    track order delivery.+++
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-5.  Enter additional instructions as below.
+5.  다음 추가 지시사항을 입력하세요.
 
-    +++Maintain a polite tone+++
++++Maintain a polite tone+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Click **Create** to create the **Shopping agent**.
+6.  **Create** 버튼을 클릭해 **Shopping agent**를 생성하세요.
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image17.png)
+> ![A screenshot of a chat AI-generated content may be
+> incorrect.](./media/image17.png)
 
-7.  The agent gets set up. This might take a few minutes. Once the agent
-    is ready, it gets displayed in Copilot Studio as in the screenshot
-    below.
+7.  에이전트가 설정됩니다. 몇 분 정도 소요될 수 있습니다. 설정이
+    완료되면 아래 스크린샷과 같이 Copilot Studio에 에이전트가
+    표시됩니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-### Task 2 – Add Knowledge
+### 작업 2 – 지식 추가하기
 
-Adding knowledge to the agent makes it grounded to those knowledge
-resources enabling it to answer the user queries more effectively. In
-this task, you will add the Dataverse table created in the earlier
-exercise as a knowledge source to this agent.
+에이전트에 지식을 추가하면 해당 리소스를 기반으로 작동하게 되어, 사용자
+질문에 더 정확하고 효과적으로 응답할 수 있습니다. 이번 단계에서는 앞에서
+생성한 Dataverse 테이블을 에이전트의 지식 소스로 추가할 것입니다.
 
-1.  Enter +++What is the status of the order o1001?+++ in the Test pane.
+1.  **테스트 창**에 +++What is the status of the order o1001?+++를
+    입력하세요.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image19.png)
 
-2.  The response will be similar the one below since the agent does not
-    have any information on this.
+2.  에이전트가 해당 정보에 대한 연결된 데이터가 없기 때문에, 아래와
+    비슷한 응답이 표시됩니다.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image20.png)
 
-3.  Now, we will add knowledge source to the agent. From the **Home**
-    page of the agent, select **Add Knowledge** under the **Knowledge**
-    section.
+3.  이제 에이전트에 지식 소스를 추가해 보겠습니다.
+    에이전트 **Home페이지**에서 **Knowledge** 섹션 아래에 있는 **Add
+    Knowledge**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-4.  Select **Dataverse** from the list of available options.
+4.  사용 가능한 옵션 목록에서**Dataverse**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-5.  Search for +++order+++, select the **Order Record** table and click
-    **Next**.
+5.  +++order+++를 검색한 후, **Order Record** 테이블을 선택하고
+    **Next**를 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-6.  Select **Add**.
+6.  **Add** 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-7.  Wait for a few minutes after the knowledge source is added before
-    testing the agent again.
+7.  지식 소스가 추가된 후, 에이전트를 다시 테스트하기 전에 몇 분 정도
+    기다리세요.
 
-8.  Once the **Order Record** becomes **Ready** under the Knowledge
-    section, ask the same question in the Test pane.
+8.  Once the becomes under the Knowledge 섹션에서 **Order Record**
+    상태가**Ready**로 표시되면, Test 창에 이전에 입력했던 질문을 다시
+    입력하세요.
 
-    You can now see that the agent retrieves the information from the
-database and provides it to the user.
+이제 에이전트가 데이터베이스에서 정보를 불러와 사용자에게 응답하는 것을
+확인할 수 있습니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-### Task 3 – Create Entities
+### 작업 3 – 엔터티 만들기
 
-1.  Select **Settings** from the Home screen of the agent.
+1.  에이전트 홈 화면에서**Settings**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-2.  Select **Entities** from the left pane. Select **Add an entity -\> +
-    New entity**
+2.  왼쪽 메뉴에서 **Entities**를 선택한 후, **Add an entity -\> + New
+    entity** 선택하세요.
 
-    ![](./media/image27.png)
+![](./media/image27.png)
 
-3.  Select **Closed list**.
+3.  **Closed list** 선택하세요.
 
-    ![A screenshot of a web page AI-generated content may be
+![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image28.png)
 
-4.  Enter the below details.
+4.  다음 정보를 입력하세요.
 
-    - Name - +++Laptop+++
-    
-    - Description - +++Contains products under Laptop category+++
-    
-    Under **List items**, enter +++Apple MacBook Air M3+++ and click on
-    **Add**.
+Name - +++Laptop+++
 
-    ![A screenshot of a computer AI-generated content may be
+Description - +++Contains products under Laptop category+++
+
+**List items**에서 +++Apple MacBook Air M3+++ 를 입력한 후, **Add**을
+클릭하세요.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-5.  Similarly, add the below items and then select **Save**.
+5.  동일한 방식으로 아래 항목들도 추가한 후  **Save**을 클릭하세요.
 
-    +++Dell XPS 13 Plus+++
-    
-    +++HP Spectre x360 14+++
-    
-    +++Lenovo ThinkPad X1 Carbon Gen 12+++
-    
-    +++Asus ROG Zephyrus G14+++
++++Dell XPS 13 Plus+++
 
-    ![A screenshot of a computer AI-generated content may be
++++HP Spectre x360 14+++
+
++++Lenovo ThinkPad X1 Carbon Gen 12+++
+
++++Asus ROG Zephyrus G14+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-6.  Now, repeat steps 2 to 5 with the below data.
+6.  이제 아래 데이터를 사용해 2~5단계를 반복하세요.
 
-    - Name - +++Desktop+++
-    
-    - Description - +++Contains products under Desktop category+++
-    
-    Under **List items**, enter +++Apple iMac+++ and click on **Add**.
+Name - +++Desktop+++
 
-7.  Other items to be added in the list,
+Description - +++Contains products under Desktop category+++
 
-    +++Microsoft Surface Studio 2+++
-    
-    +++HP Envy Desktop+++
-    
-    +++Dell Inspiron Desktop+++
-    
-    +++Lenovo IdeaCentre AIO 5i+++
+**List items**에서 +++Apple iMac+++을 입력한 후**Add**를 클릭하세요.
 
-8.  Again, repeat steps 2 to 5 with the below data.
+7.  목록에 추가해야 할 다른 항목은 다음과 같습니다:
 
-    - Name - +++Tablet+++
++++Microsoft Surface Studio 2+++
 
-    - Description - +++Contains products under Tablet category+++
++++HP Envy Desktop+++
 
-    Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
++++Dell Inspiron Desktop+++
 
-9.  Other items to be added in the list,
++++Lenovo IdeaCentre AIO 5i+++
 
-    +++Samsung Galaxy Tab S9 Ultra+++
-    
-    +++Microsoft Surface Pro 10+++
-    
-    +++Lenovo Tab P12 Pro+++
-    
-    +++Apple iPad Air+++
+8.  다시 한 번 2단계부터 5단계까지 아래 정보를 사용해 반복해 주세요.
 
-## Exercise 3 – Create Topics and agent flows and design the agent
+Name - +++Tablet+++
 
-Designing Topics is a very important part in creating an agent since it
-deals with the logic behind how the user’s questions are answered and
-how the flow of the details will be.
+Description - +++Contains products under Tablet category+++
 
-### Task 1 – Edit the Conversation Start topic
+**List items**에서 +++Apple iPad Pro+++을 입력한 후 **Add**를
+클릭하세요.
 
-The Conversation Start topic is the first topic to be invoked when
-testing the agent. It is a System Topic available by default in any
-agent that you create in the Copilot Studio. Now, you will edit this
-topic to continue the conversation from the greeting message from the
-agent.
+9.  목록에 추가해야 할 나머지 항목은 아래와 같습니다:
 
-1.  From the **Overview** page of the agent, select the **Topics** tab
-    from the top menu bar. Select **System** to view the list of System
-    topics. Select the Conversation Start topic from the list.
++++Samsung Galaxy Tab S9 Ultra+++
 
-    ![A screenshot of a computer AI-generated content may be
++++Microsoft Surface Pro 10+++
+
++++Lenovo Tab P12 Pro+++
+
++++Apple iPad Air+++
+
+## 연습 3 – 토픽과 에이전트 흐름 만들기 및 에이전트 설계하기
+
+에이전트를 설계할 때 **토픽(Topic)** 설정은 매우 중요한 단계입니다.
+사용자의 질문에 어떻게 응답할지, 대화가 어떤 흐름으로 전개될지를
+정의하는 핵심 요소이기 때문입니다.
+
+### **작업 1 – 대화 시작(Conversation Start) 토픽 수정하기**
+
+Conversation Start 토픽은 에이전트를 테스트할 때 가장 먼저 실행되는 기본
+**시스템** 토픽입니다. Copilot Studio에서 에이전트를 생성하면 자동으로
+포함되며, 사용자가 에이전트와 처음 대화를 시작할 때 호출됩니다. 이제 이
+토픽을 수정해 에이전트의 인사 메시지 이후 대화를 자연스럽게 이어갈 수
+있도록 구성하겠습니다.
+
+1.  에이전트의 **Overview** 페이지 상단 메뉴에서 **Topics** 탭을 선택한
+    후, **System** 을 클릭하면 시스템 토픽 목록이 표시됩니다. 이
+    목록에서 Conversation Start 토픽을 선택하세요.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-2.  After the existing Message node, add a **Question node**.
+2.  기존 메시지(Message) 노드 다음에 **Question node**를 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Enter the below message,
+3.  다음 메시지를 입력하세요:
 
-    +++Welcome to Contoso Electronics. Please enter your **Phone number** to proceed.+++ in the message     area and select **User’s entire response** under **Identity**. Click on the **Var1** under **Save user response as** field.
+메시지 영역에 +++Welcome to Contoso Electronics. Please enter your
+**Phone number** to proceed.+++ 를 입력한 후, **Identity** 옵션에서
+**User’s entire response**을 선택하세요. 그 후, **Save user response
+as** 필드에서 **Var1**을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image33.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image33.png)
 
-4.  Rename **Var 1** to +++MobileNumber+++ and select **Global** to use
-    it across topics and then select **Save**.
+4.  **Var 1**의 이름을 +++MobileNumber+++로 변경하고, 다른 토픽에서도
+    사용할 수 있도록 **Global** 을 선택한 후, **Save**을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-### Task 2 – Create a topic to handle the Customer details
+### 작업 2 – 고객 정보를 처리하는 토픽 생성하기
 
-1.  From the Overview page of the agent, select the Topics tab from the
-    top menu bar. Select the drop down next to **Add a topic -\> From
-    blank**.
+1.  에이전트의 Overview 페이지 상단 메뉴에서 Topics 탭을 선택하세요. 그
+    후, **Add a topic -\> From blank** 옆의 드롭다운 메뉴를 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-2.  Name the agent as +++Customer Details+++.
+2.  에이전트 이름을 +++Customer Details+++로 지정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-3.  Select **Change trigger** and select **It’s redirected to** as the
-    trigger.
+3.  **Change trigger** 를 선택한 후, **It’s redirected to**를 트리거로
+    설정하세요.
 
-    ![Screens screenshot of a computer AI-generated content may be
+![Screens screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-4.  Select **Save** to save the topic.
+4.  **Save**을 선택해 토픽을 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-### Task 3 – Create an Agent flow to get the details of the customer
+### 작업 3 – 고객 정보를 가져오는 에이전트 플로우 만들기
 
-In this task, you will create an Agent flow, to which you will pass the
-Phone number entered by the customer as input and design the flow to
-check if the user exists or not and retrieve the information and return
-the details to the agent.
+이번 작업에서는 고객이 입력한 전화번호를 입력값으로 받아, 해당
+고객이 데이터에 존재하는지 확인한 후, 고객 정보를 조회해 에이전트에게
+전달하는 에이전트 플로우를 만들어 보겠습니다.
 
-1.  Below the Trigger node, add a node, select **Add a tool** -\> **New
-    Agent flow**.
+1.  트리거 노드 아래에 새 노드를 추가한 다음, **Add a tool** -\> **New
+    Agent flow**를 선택하세요.
 
-    ![](./media/image39.png)
+![](./media/image39.png)
 
-2.  The Agent flow designer opens up. Select **Save draft** to save the
-    flow.
+2.  에이전트 플로우 디자이너 화면이 열리면 **Save draft** 을 클릭해
+    플로우를 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-3.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++GetCustomer+++. Then select **Save**.
+3.  상단 메뉴에서 **Overview** 를 선택한 후 **Edit** 을 클릭하고 플로우
+    이름을 +++GetCustomer+++로 입력하세요. 그 후, **Save**을
+    클릭하세요.![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image41.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
+4.  다시**Designer** 탭으로 이동해 플로우를 설계하세요. **When an agent
+    calls the flow** 노드를 선택한 후, **+ Add an input**를 클릭하세요.
 
-5.  Navigate to the **Designer** tab again to design the flow. Select
-    the node **When an agent calls the flow** and then select **+ Add an
-    input**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-5.  Select **Text**.
+5.  **Text** 선택하세요.
 
-    ![](./media/image43.png)
+![](./media/image43.png)
 
-6.  Enter the input as +++Phone number+++ and then collapse the
-    **Parameters** tab.
+6.  입력란에 +++Phone number+++를 입력한 후, **Parameters** 탭을
+    닫으세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-7.  Click on **Add an action** between the 2 nodes in the flow. Search
-    for +++List rows+++ and select the **List rows** action under
-    **Microsoft Dataverse**.
+7.  흐름 내 두 노드 사이에 있는 **Add an action** 버튼을 클릭하세요.
+    검색창에 +++List rows+++를 입력한 후, **Microsoft Dataverse** 아래의
+    **List rows** 작업을 선택하세요.
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image45.png)
 
-8.  Enter the connection name as +++**Dataverse**+++ and click **Sign
-    in**.
+8.  연결 이름에 +++**Dataverse**+++를 입력한 후, **Sign in** 버튼을
+    클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-9.  **Sign in** using your admin tenant credentials and click on **Allow
-    access** if prompted.
+9.  관리자 테넌트 자격 증명으로 로그인(**Sign in)**한 후, 세스 허용
+    메시지가 나타나면 **Allow access** 을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-10. Navigate to PowerApps at +++https://make.powerapps.com/+++ and open
-    the **Customer Record** table. Click on the drop down next to the
-    **Mobile number** field and select **Edit column**.
+10. +++https://make.powerapps.com/+++에서 PowerApps에 접속한
+    후, **Customer Record** 테이블을 여세요. **Mobile number** 필드 옆의
+    드롭다운을 클릭하고, **Edit column**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-11. Scroll down and under **Advanced options**, there is a field named
-    **Logical name**. Make a note of its value in a note pad.
+11. 아래로 스크롤해 **Advanced options** 항목에서**Logical name**이라는
+    필드를 찾으세요. 해당 값(논리 이름)을 메모장 등에 꼭 기록해 두세요.
 
-    >[!Alert] **Important:** Each filed will have an associated Logical name to it in
-    Dataverse. And while using it in the Agent flow, you will have to
-    specify only the logical names for all the fields.
-    >
-    > ![A screenshot of a computer AI-generated content may be
+**중요:** Dataverse에서는 각 필드마다 고유한 **논리 이름(Logical
+name)** 이 지정되어 있으며, Agent Flow에서 필드를 참조할 때는 반드시
+이 **논리 이름만** 사용해야 합니다.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-12. In this case, for Phone number, it is **cr6dd_mobilecontact**. Make
-    a note of it
+12. 이 예시에서는 휴대폰 번호 필드의 논리 이름이
+    **cr6dd_mobilecontact**입니다. 이 값을 꼭 기록해 두세요.
 
-13. Navigate back to the Copilot Studio – Agent flow tab. Open the
-    Getcustomer flow and select the **List rows** action.
+13. Copilot Studio의Agent flow 탭으로 다시 이동한 후, Getcustomer
+    플로우를 열고 **List rows** 업을 선택하세요.
 
-14. Under Filter rows, enter **<Logical name of Mobile number> eq ''**. Replace **<Logical name>** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+14. Filter rows 필드에**\<Logical name of Mobile number\> eq ' '**
+    형식으로 입력하세요. 이때 **\<Logical name\>** 은 이전 단계에서
+    확인한 값을 사용하고, 따옴표 안에는Phone number 입력값(동적 변수)을
+    넣으세요.
 
-    In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
+이 경우 **cr6dd_mobilecontact eq 'Phone number'**입니다.
 
-    ![](./media/image50.png)
+![](./media/image50.png)
 
-    ![](./media/image51.png)
+![](./media/image51.png)
 
-15. Below the List rows node, add a **Condition** node.
+15. **List rows** 노드 아래에 **Condition** 노드를 추가하세요.
 
-    ![](./media/image52.png)
+![](./media/image52.png)
 
-16. Enter **/** and select **Insert expression**.
+16. **/**를 입력한 뒤, **Insert expression**을 선택하세요.
 
-    ![](./media/image53.png)
+![](./media/image53.png)
 
-17. Enter +++length(outputs('List_rows')?\['body'\]?\['value'\])+++ in
-    the function and select **Add**. This will check if the List rows
-    returns a value or not.
+17. 함수 입력란에 다음 식을 입력한 뒤 **Add**를 선택하세요:
+    +++length(outputs('List_rows')?\['body'\]?\['value'\])+++. 이
+    식은 List rows에서 반환된 결과의 항목 수를 확인해 고객 정보가
+    존재하는지를 판단합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-18. Click on **Add an action** under the **True** branch of the
-    condition added and add a new **Condition** node.
+18. 조건 노드의 **True** 분기 아래에서 **Add an action**를 클릭한 후, 새
+    **Condition** 노드를 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
-    cr6dd_lastpurchasedproduct '\]))+++ in the function area of the
-    condition.
+19. 조건의 함수 영역에
+    +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
+    cr6dd_lastpurchasedproduct '\]))+++를 입력하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-    >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
-    >
-    > ![](./media/image58.png)
+> **중요** – Make sure to replace the **cr6dd_lastpurchasedproduct**를
+> **Customer Record** 테이블의 **Recent Products Purchased** 필드에
+> 해당하는 **logical name**으로 바꿔서 입력하세요.
+>
+> ![](./media/image58.png)
 
-20. Set the condition as **is equal to true**
+20. 조건을 **is equal to true**으로 설정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-21. Add a new action below the **True** path of **Condition1** and
-    select the **Respond to the agent** node.
+21. **Condition1**의 **True** 경로 아래에 새 작업을 추가하고, **Respond
+    to the agent** 노드를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image60.png)
 
-22. Select the added **Respond to the agent node** and rename it to
-    +++If the customer has made a previous purchase+++ and select **+ Add an output**.
+22. 추가한 **Respond to the agent node**를 선택하고, 이름을 기존 구매
+    이력이 있는 경우로 변경한 후, **+ Add an output**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image61.png)
 
-23. Select **Text**.
+23. **Text** 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-24. Enter +++Customer ID+++ as the name and click on **Insert
-    expression**.
+24. 출력 이름란에 +++Customer ID+++를 입력한 후, **Insert expression**을
+    클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-25. Enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
-    Customer ID of the Customer Record table. **Replace** it with your
-    value.
+25. 다음 표현식을 입력하세요:
+    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+    +++ 여기서 **cr6dd_customeridentifier**는 Customer Record 테이블에서
+    Customer ID 필드의 논리 이름입니다. 본인의 환경에서 확인한 값으로
+    **바꿔** 입력하세요.
 
-26. Select **Add**.
+26. **Add** 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-27. Similarly, add the below output variables and expressions to each
-    one of it. For each variable, make sure to replace the logical name
-    with yours.
+27. 위와 같은 방식으로 다음 출력 변수(Output variable)와 해당 표현식을
+    추가하세요. 각 변수의 논리 이름(Logical name)은 본인의 환경에 맞게
+    수정해야 합니다.
 
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
+- +++Customer Name+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image65.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image66.png)
+- +++Product Category+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
 
-28. The **Respond to the agent** node will have 3 output variables as in
-    the screenshot below.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image65.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image66.png)
+
+28. **Respond to the agent** 노드에는 아래 스크린샷처럼 3개의 출력
+    변수(Output variable)가 포함되어 있어야 합니다:
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-29. Add a Respond to the agent node under the **False** path of the
-    **Condition1** node. Rename it to +++If the customer has not made a
-    previous purchase+++. Click on **+ Add an output**.
+29. **Condition1** 노드의 **False** 경로 아래에 Respond to the
+    agent 노드를 추가하세요. 해당 노드의 이름을 +++If the customer has
+    not made a previous purchase+++로 변경하세요. 그런 후, **+ Add an
+    output** 버튼을 클릭하세요.
 
-    ![](./media/image68.png)
+![](./media/image68.png)
 
-30. Enter the below output variables replacing the column logical names
-    with your logical names for the corresponding columns.
+30. 아래 출력 변수(Output variable)를 입력하세요. 각 필드에 대해 앞서
+    확인한 **해당 열의 논리 이름(Logical Name)**으로 값을 교체해야
+    합니다.
 
-    - +++Customer ID+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++
-    
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]
+  +++
 
-31. The **Respond to the agent** node under the **False** path will look
-    like the one in the screenshot below.
+- +++Customer Name+++ -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
 
-    ![A screenshot of a computer AI-generated content may be
+- +++Product Category+++ - +++’1’+++
+
+31. **False** 경로 아래의 **Respond to the agent** 노드는 아래
+    스크린샷과 같이 표시됩니다.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-32. Now, add a **Respond to the agent** node under the **False** path of
-    the Condition node, rename it to +++If the customer does not
-    exist+++ and add outputs to it as below.
+32. 이제 Condition노드의 **False** 경로 아래에 **Respond to the
+    agent** 노드를 추가하고, 이름을 +++If the customer does not
+    exist+++로 변경한 후, 아래와 같이 출력 변수를 추가하세요:
 
-    - +++Customer ID+++ - +++’1’+++
-    
-    - +++Customer Name+++ - +++’1’+++
-    
-    - +++Product Category+++ - +++’1’+++
+- +++Customer ID+++ - +++’1’+++
 
-    ![](./media/image70.png)
+- +++Customer Name+++ - +++’1’+++
 
-33. The **GetCustomer** flow will look like the one in the screenshot
-    below.
+- +++Product Category+++ - +++’1’+++
 
-    ![](./media/image71.png)
+![](./media/image70.png)
 
-34. Right click on the **Respond to the agent** that is there as a
-    common one at the end of the flow and select **Delete** to delete
-    it.
+33. **GetCustomer** 플로우는 아래 스크린샷과 유사한 형태로 구성됩니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![](./media/image71.png)
+
+34. 플로우 마지막에 공통으로 생성되어 있는 **Respond to the agent**
+    노드에서 마우스 오른쪽 버튼을 클릭한 후, **Delete**를 선택해 해당
+    노드를 제거하세요.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-35. Select **Save Draft** to save the lab. Once saved, click on
-    **Publish** to publish the flow.
+35. **Save Draft** 를 선택해 플로우를 임시 저장하세요. 저장이
+    완료되면, **Publish**를 클릭해 플로우를 게시하세요.![A screenshot of
+    a computer AI-generated content may be
+    incorrect.](./media/image73.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image73.png)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-### Task 4 – Create Agent flow to add customer
+### 작업 4 – 신규 고객 추가를 위한 에이전트 플로우 만들기
 
-In this task, you will create an Agent flow to add a new customer into
-the Dataverse when the customer is a new customer.
+이 작업에서는 고객이 신규 고객일 경우, Dataverse에 고객 정보를 추가하는
+에이전트 플로우를 생성할 것입니다.
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  **Agent flows** 탭에서 **+ New agent flow**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-2.  Select **Add a trigger** node and replace it with **When an agent
-    calls the flow** node.
+2.  **Add a trigger** 를 선택한 후, 이를 **When an agent calls the
+    flow** 노드로 교체하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image76.png)
 
-3.  Select **+ Add an input** and add a **Text** input.
+3.  **+ Add an input** 를 선택한 후, **Text** 입력을 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
 
-4.  Enter +++Name+++ as the input name.
+1.  입력 이름으로 +++Name+++을 입력하세요.
 
-    ![A screenshot of a computer program AI-generated content may be
+![A screenshot of a computer program AI-generated content may be
 incorrect.](./media/image78.png)
 
-5.  Similarly, add the following input values.
+4.  마찬가지로 다음 입력 값을 추가하세요.
 
-    +++Phone Number+++
-    
-    +++Email ID+++
-    
-    +++Address+++
++++Phone Number+++
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image79.png)
++++Email ID+++
 
-6.  Add an action below the node and select **Add a new row**.
++++Address+++
 
-    ![A screenshot of a computer AI-generated content may be
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image79.png)
+
+5.  해당 노드 아래에 작업을 추가하고 **Add a new row**를 선택하세요.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-7.  Select the Table Name as **Customer Record** and then select **Show
-    all** in Advanced parameters.
+6.  Table Name으로**Customer Record** 를 선택한 후, Advanced
+    parameters에서 **Show all**을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-8.  Click in the **Address** field, select the **Dynamic value** and
-    then select the **Address** dynamic value.
+7.  **Address** 필드를 클릭한 후, **Dynamic value** 를 선택하고,
+    **Address** 동적 값을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image83.png)
 
-9.  Similarly, add the dynamic values for
+8.  마찬가지로 아래 항목들에 대해서도 동적 값을 추가하세요:
 
-    - Customer Name – Name
-    
-    - Email ID – Email ID
-    
-    - Mobile Number - Phone Number
+- Customer Name – Name
 
-    ![A screenshot of a computer AI-generated content may be
+- Email ID – Email ID
+
+- Mobile Number - Phone Number
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-10. Ewqewqewq Open the insert expression for **Customer ID**, enter
-    +++guid()+++ and select **Add**. This is to add a unique value as
-    the ID for the customer.
+9.  **Customer ID** 필드에 대해 \*\*표현식 삽입을 열고, +++guid()+++를
+    입력한 후**Add**를 선택하세요. 이 함수는 고객 ID로 사용할 **고유한
+    값**을 생성합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-11. Add a new action and select **Respond to the agent**.
+10. 새 작업(Action)을 추가하고  **Respond to the agent**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-12. Add a output value named +++Customer ID+++ and insert an expression
-    and enter
-    +++string(outputs('Add_a_new_row')?\['body/cr6dd_customeridentifier'\])+++
-    as the value.
+11. +++Customer ID+++ 라는 이름의 출력 값을 추가하고,
+    표현식(Expression)을 삽입한 후 다음 값을 입력하세요:
+    +++string(outputs('Add_a_new_row')?\['body/cr6dd_customeridentifier'\])+++.
 
-    Replace **cr6dd_customeridentifier** with your logical name for the
-column **Customer ID**.
+여기서**cr6dd_customeridentifier** 는 **Customer ID** 열의 논리
+이름입니다.  
+사용자의 논리 이름으로 교체하세요.
 
-    Select **Add**.
+**Add**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image87.png)
 
-13. Select **Save draft** to save the flow.
+12. **Save draft** 를 선택해 플로우를 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image88.png)
 
-14. Once the flow is saved, select **Publish** to publish the flow.
+13. 플로우가 저장되면**Publish**를 선택해 플로우를 게시하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image89.png)
 
-15. Select **Overview** tab. **Click on Edit.** Enter the name of the
-    flow as +++Add Customer+++ and then select **Save**.
+14. **Overview** 탭을 선택한 후 **Edit**을 클릭하세요. 플로우 이름을
+    +++Add Customer+++로 입력한 다음 **Save**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-### Task 5 – Add the flow and design the Customer Details topic
+### 작업 5 – 플로우 추가 및 고객 정보(Customer Details) 토픽 구성하기
 
-In this task, you will design the Customer Details topic which will get
-the phone number of the customer, check if the detail is already present
-in the Dataverse and add it if not already present.
+이번 작업에서는 고객의 휴대폰 번호를 입력받아 Dataverse에 해당 정보가
+이미 등록되어 있는지 확인한 뒤, 등록되어 있지 않다면 자동으로
+추가하는 **Customer Details** 토픽을 구성합니다.
 
-1.  Navigate back to the **Customer Details** topic.
+1.  다시 **Customer Details** 토픽으로 이동하세요 .
 
-2.  Add a node under the Trigger node, select **Add a tool -\>
-    GetCustomer**.
+2.  **Trigger 노드** 아래에 새 노드를 추가한 후, **Add a tool -\>
+    GetCustomer**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image91.png)
 
-3.  In the Inputs, select the variable **MobileNumber**.
+3.  **Inputs(입력값)** 항목에서 변수 **MobileNumber**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image92.png)
 
-4.  Select the **output** variables and mark the Customer ID and
-    ProductCategory as **Global** as in the screenshot below.
+4.  **Output** 변수 중Customer ID와 ProductCategory를 선택한 후,
+    스크린샷과 같이 이 두 변수를 **Global** 변수로 설정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image93.png)
 
-5.  Below the **Action** node, add a **condition** node.
+5.  **Action** 노드 아래에 **condition** 노드를 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image94.png)
 
-6.  Select **CustomerID** in **Select a variable**.
+6.  **Select a variable**에서 **CustomerID**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image95.png)
 
-7.  Select the condition as **is not equal to** and enter +++'1'+++ in
-    the **Value** field. This checks if the customer detail is already
-    existing in the database.
+7.  조건을 **is not equal to**로 설정한 후, **Value** 입력란에 +++
+    '1'+++ 을 입력하세요. 이는 고객 정보가 데이터베이스에 **이미
+    존재하지 않는 경우**를 확인하기 위한 조건입니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image96.png)
 
-8.  Under the condition node, add a **Set a variable** node.
+8.  조건 노드 아래에 **Set a variable** 노드를 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image97.png)
 
-9.  Click on **Select a variable** and select **Create a new variable**.
+9.  **Select a variable**을 클릭한 후, **Create a new variable**를
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image98.png)
 
-10. Name the variable as +++IsNewCustomer+++ and mark it as **Global**.
+10. 변수 이름을 +++IsNewCustomer+++로 지정하고, **Global** 변수로
+    설정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image99.png)
 
-11. Set the value as +++‘No’+++. This means that the customer is an old
-    customer whose data is already present in the Dataverse.
+11. 값은 +++‘No’+++로 설정하세요. 이는 해당 고객의 정보가 이미
+    Dataverse에 존재하는 기존 고객임을 의미합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image100.png)
 
-12. You will add a new node next to the variable node and give a Welcome
-    message to the customer.
+12. 변수 노드 옆에 새로운 노드를 추가하고 고객에게 환영 메시지를
+    전달합니다.
 
-13. Select Add a node and select **Send a message** node. In the message
-    area, type +++Welcome+++ and then click on the {x} icon to select
-    the variable. Select the **Customer Name** variable.
+13. Add a node를 선택한 후, **Send a message** 노드를 선택하세요. 메시지
+    입력란에 +++Welcome+++을 입력한 후, {x} 아이콘을 클릭해 변수
+    목록에서**Customer Name** 변수를 선택하세요.
 
-    ![](./media/image101.png)
+![](./media/image101.png)
 
-    Now, we have invoked the Agent flow **GetCustomer**, checked if the
-customer record already exist and if yes, Added a Welcome message to the
-customer.
+> 이제 Agent 플로우인 **GetCustomer**를 호출해 고객 정보가 이미
+> 존재하는지 확인하고, 기존 고객일 경우 환영 메시지를 추가했습니다.
+>
+> 이제 고객 정보가 존재하지 않을 경우의 흐름을 설계하겠습니다.
 
-    Now, we will design the part of the topic if the customer record does
-not already exist.
+13. **All other conditions** 노드 아래에 Set a variable 노드를 추가하고,
+    **isNewCustomer** 변수의 값을 +++’Yes’+++로 설정하세요.
 
-13. Under the **All other conditions** node, add a Set a variable node
-    and set the value for **isNewCustomer** variable as +++’Yes’+++.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image102.png)
 
-14. Next to the variable node, add a **Message** node and enter +++We do
-    not have your details in our system. Please fill in your details
-    below to help us serve you better.+++
+14. 변수 노드 옆에 **Message** 노드를 추가하고, 다음과 같이 입력하세요:
+    +++We do not have your details in our system. Please fill in your
+    details below to help us serve you better.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image103.png)
 
-15. Next to the Message node, add an **Ask with adaptive card** node.
+15. Message 노드 옆에 **Ask with adaptive card** 노드를 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image104.png)
 
-16. Click on the 3 dots on the top right of the screen and select
-    **Properties**.
+16. 화면 오른쪽 상단에 있는 아이콘을 클릭한 후, **Properties**을
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image105.png)
 
-17. Select **Edit adaptive card**.
+17. **Edit adaptive card** 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image106.png)
 
-18. Enter the below **JSON** in the **Card payload editor** area. Select **Save**.
-    
-    ```
-    {
-        "type": "AdaptiveCard",
-        "body": [
-            {
-                "type": "TextBlock",
-                "size": "Medium",
-                "weight": "Bolder",
-                "text": "Please enter your details"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Name",
-                "label": "Name"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Mobile Number",
-                "label": "Mobile Number"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Email ID",
-                "label": "Email ID"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Address",
-                "label": "Address"
-            }
-        ],
-        "actions": [
-            {
-                "type": "Action.Submit",
-                "title": "Submit"
-            }
-        ],
-        "version": "1.5",
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
-    }
-    ```
+18. **Card payload editor** 영역에 아래 **JSON**을 입력한 후, **Save**을
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image107.png)
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "body": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "size": "Medium",
+>
+> "weight": "Bolder",
+>
+> "text": "Please enter your details"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Name",
+>
+> "label": "Name"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Mobile Number",
+>
+> "label": "Mobile Number"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Email ID",
+>
+> "label": "Email ID"
+>
+> },
+>
+> {
+>
+> "type": "Input.Text",
+>
+> "id": "Address",
+>
+> "label": "Address"
+>
+> }
+>
+> \],
+>
+> "actions": \[
+>
+> {
+>
+> "type": "Action.Submit",
+>
+> "title": "Submit"
+>
+> }
+>
+> \],
+>
+> "version": "1.5",
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
+>
+> }
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image107.png)
 
-20. Select **Close** to close the editor.
+19. **Close**를 선택해 편집기를 종료하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image108.png)
 
-20. Expand the Outputs section of the created Adaptive card node, select
-    the Mobile Number value and select the Global.MobileNumber variable
-    to save the user entered Phone number value in it.
+20. 생성된Adaptive card 노드의 Outputs 섹션을 확장한 후, Mobile Number
+    값을 선택하고 Global.MobileNumber 변수에 연결하여 사용자가 입력한
+    전화번호 값을 해당 변수에 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image109.png)
 
-21. Leave the other values to the default ones.
+21. 나머지 값들은 기본값으로 그대로 두세요.
 
-22. The Adaptive card is ready with the form to get the customer
-    details.
+22. 고객 정보를 입력받기 위한 **입력 양식이 포함된 Adaptive Card**가
+    준비되었습니다.
 
-23. Next to the Adaptive card node, invoke the flow **Add Customer.**
+23. Adaptive Card 노드 옆에 **Add Customer** 플로우를 호출하는 노드를
+    추가하세요.
 
-    ![](./media/image110.png)
+![](./media/image110.png)
 
-24. Click on the **three dots** in the **Enter or select a value** and
-    select **CustomerName** variable.
+24. **Enter or select a value** 필드 옆의 **세 점** 아이콘을
+    클릭하고** CustomerName** 변수를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image111.png)
 
-25. Similarly, add the input variables for the other fields to be passed
-    to the flow.
+25. 같은 방식으로, 나머지 필드들도 플로우에 전달될 수 있도록 입력 변수를
+    추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image112.png)
 
-26. Select **Global.CustomerID** as the output variable to which the
-    output from the flow will be saved.
+26. 플로우의 출력값이 저장될 출력 변수로 **Global.CustomerID**를
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image113.png)
 
-27. After the action node, add a **Message node** and enter the value,
+27. 액션 노드 다음에 메시지 노드를 추가하고, 아래 내용을 입력합니다:
     +++Thank You! Customer detail has been added to the database. Please
     select a product type to shop.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image114.png)
 
-28. **Save** the topic.
+28. 토픽을 저장(**Save**)하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image115.png)
 
-29. Open the Conversation Start topic and invoke the Customer Details
-    topic from there.
+29. Conversation Start 토픽을 열고, Customer Details 토픽을 호출하세요.
 
-30. Add a node after the Question node in the topic. Select **Topic
-    management -> Go to another topic**.
+30. 해당 토픽의 Question 노드 아래에 노드를 추가하고, **Topic management
+    -\> Go to another topic**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image116.png)
 
-31. Select the **Customer Details** topic.
+31. **Customer Details** 토픽을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image117.png)
 
-32. Select **Save** to save the topic.
+32. **Save**을 선택해 토픽을 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image118.png)
 
-### Task 6 – Create an agent flow to get the product details
+### 작업 6 – 제품 정보를 가져오는 에이전트 플로우 만들기
 
-In this task, you will create an agent flow which will fetch the Product
-details from the Dataverse based on the selected product.
+이 작업에서는 사용자가 선택한 제품을 기준으로 Dataverse에서 제품 정보를
+가져오는 에이전트 플로우를 생성하세요.
 
-1.  Select the **Flows** tab from the Copilot Studio and select **+ New
-    agent flow**.
+1.  Copilot Studio에서 **Flows** 탭을 선택한 후, **+ New agent flow**를
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image119.png)
 
-2.  Select the trigger node and select **When an agent calls the flow**
-    action.
+2.  트리거 노드를 선택한 후, **When an agent calls the flow** 동작을
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image120.png)
 
-3.  Add a Text input and name it as +++Product Name+++
+3.  텍스트 입력 항목을 추가하고 이름을 +++Product Name+++으로
+    지정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image121.png)
 
-4.  Select **Save draft** to save the flow.
+4.  **Save draft**를 선택해 플로우를 임시 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image122.png)
 
-5.  Select the **Overview** tab and click on **Edit**. Enter the name as
-    +++GetProductDetails+++ and select **Save**.
+5.  **Overview** 탭을 선택하고  **Edit**을 클릭한 후, 이름을
+    +++GetProductDetails+++로 입력하고 **Save**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image123.png)
 
-6.  Navigate back to the **Designer** tab and select **Add an action**
-    below the **When an agent calls the flow** node. Search for +++list
-    rows+++ and select the **List rows** action under **Microsoft
-    Dataverse**.
+6.  **Designer** 탭으로 다시 이동한 후, **When an agent calls the
+    flow** 노드 아래에 **Add an action**을 선택하세요. +++list rows+++를
+    검색한 후, **Microsoft Dataverse** 아래에 있는 **List rows** 작업을
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image124.png)
 
-7.  Enter the below values
+7.  다음 값을 입력하세요:
 
-    - **Table name –** Select **Product Record**
-    
-    - Filter rows – +++cr6dd_producttitle eq '**<Product Name>**'+++
-      Replacing <Product Name> with the dynamic value ProductName.
+- **Table name –Product Record** 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
+- Filter rows – +++cr6dd_producttitle eq '**\<Product Name\>**'+++
+  \<Product Name\> 부분을 동적 값인 ProductName으로 바꿔 입력하세요.
 
-8.  Add a **Respond to the agent** node under the **List rows** node.
-    Select **+ Add an output** and add a text output variable. Enter the
-    below values and click Add in **insert expression.**
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image125.png)
 
-    - Enter a name – Enter +++Product Name+++
+8.  **List rows** 노드 아래에 **Respond to the agent** 노드를
+    추가하세요. **+ Add an output**를 선택한 후 텍스트 출력 변수를
+    추가하세요. 아래 값을 입력하고 **Insert expression**에서 Add를
+    클릭하세요:
+
+    - Enter a name – +++Product Name+++ 입력
 
     - Expression -
       +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_producttitle'\]+++
-      (Replace **cr6dd_producttitle** with the logical name of tha
-      column Product Name in your table.
+      (여기서 **cr6dd_producttitle** 은 테이블에서 Product Name 열의
+      논리 이름입니다. 사용자 환경에 맞는 이름으로 변경하세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image126.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image126.png)
 
-9.  Similarly, add another output node with the below details
+9.  위와 같은 방식으로 출력 노드를 하나 더 추가하고 아래 내용을
+    입력하세요:
 
-    - Enter a name – Enter +++Price+++
-    
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
-      Replace **cr6dd_productprice** with the logical name of the column
-      **Price** in your table
+- Enter a name – +++Price+++
 
-    The node should now look like this.
+- Expression -
+  +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
+  **cr6dd_productprice** 는 테이블에서 **Price** 열의 논리 이름입니다.
+  본인의 환경에 맞는 이름으로 변경하세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image127.png)
+> 이제 노드가 다음과 같이 표시됩니다.
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image127.png)
 
-10. Select **Save draft** to save the topic and then **Publish** to
-    Publish the flow.
+10. **Save draft**를 선택해 플로우를 임시 저장한 후, **Publish**를
+    클릭해 플로우를 게시하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image128.png)
 
-### Task 7 – Create a topic to retrieve the Product category from the customer
+### 작업 7 – 고객의 제품 카테고리를 조회하는 토픽 생성하기
 
-1.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
-    blank**.
+1.  Copilot Studio의 **Topics** 탭에서 **+ Add a topic -\> From
+    blank**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image129.png)
 
-2.  Rename the topic to +++Place Order+++. Change the trigger of the
-    trigger node to **It’s redirected to**.
+2.  토픽 이름을 +++Place Order+++로 변경하고, 트리거 노드의 트리거
+    유형을 **It’s redirected to**로 변경하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image130.png)
 
-3.  **Save** the topic.
+3.  토픽을 **save** 버튼을 눌러 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image131.png)
 
-4.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
-    blank**.
+4.  Copilot Studio에서 **Topics** 탭으로 이동한 후, **+ Add a topic -\>
+    From blank**을 선택하세요.
 
-    ![](./media/image129.png)
+![](./media/image129.png)
 
-5.  Rename the topic as +++Get Product Categories+++. Select the
-    **Change trigger** option in the **Trigger** node and select **It’s
-    redirect to** option.
+5.  토픽 이름을 +++Get Product Categories+++로 변경하세요.
+    **Trigger**노드에서 **Change trigger** 옵션을 선택한 후, **It’s
+    redirect to** 옵션을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image132.png)
 
-6.  Below the **Trigger** node, add a **Condition** node.
+6.  **Trigger** 노드 아래에 **Condition** 노드를 추가하세요.
 
-    Select the Global variable **IsNewCustomer** and add the condition, **IsNewCustomer** **is equal to** +++**'Yes'**+++.
+Select the Global 변수인 **IsNewCustomer** 를 선택한 후,
+조건을**IsNewCustomer** **is equal to** 가 +++**'Yes'**+++와 같음으로
+설정하세요.
 
-    Select **+ New condition.**
+**+ New condition**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image133.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image134.png)
 
-7.  Select **Or**.
+7.  **Or**을 선택하세요.
 
-    Under the Or condition, select the Global variable **ProductCategory**
-add the condition, is equal to +++'1'+++
+Or 조건 아래에서 Global 변수**ProductCategory** 를 선택하고, 조건을
++++'1'+++과 같음으로 설정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image135.png)
 
-    ![](./media/image136.png)
+![](./media/image136.png)
 
-8.  Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+8.  Condition 노드 아래에 Question 노드를 추가하세요. 질문 텍스트에는
+    +++Select a category+++ 를 입력하고,  **+ New option**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-9.  Enter the option +++Laptop+++ and select + New option again.
+9.  옵션에 +++Laptop+++ 을 입력한 후, + New option을 다시 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-10. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++. Select the variable under **Save user response
-    as**, and name the variable as +++**ProdCatchoice**+++
+10. 마찬가지로 옵션에 +++**Desktop**+++과 +++**Tablet**+++을 추가하세요.
+    **Save user response as** 아래있는 변수를 선택하고, 해당 변수
+    이름을 +++**ProdCatchoice**+++로 지정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image139.png)
 
-11. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+11. 질문 노드 아래에 **Set a variable value** 노드를 추가하세요. 질문
+    노드에서  받은 선택값을 **문자열(String)** 형식으로 변환하기 위한
+    작업입니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-12. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression
-    +++Text(Topic.ProdCatchoice)+++ and select **Insert**.
+12. Set variable 단계에서 Global변수 **ProductCategory**를 선택하세요.
+    **To value** 필드에서 세 점 아이콘을 클릭한 후 **Formula** 탭을
+    선택하세요. 다음 수식을 입력하세요: +++Text(Topic.ProdCatchoice)+++.
+    **Insert**을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image141.png)
 
-13. Below the Set variable value node, add a new node, **Topic
-    management** -> **Go to another topic** -\> **Place Order**.
+13. Set variable 값 노드 아래에 새 노드를 추가하세요. **Topic
+    management** -\> **Go to another topic** -\> **Place Order**를
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-14. Now, one path is fully complete. It will get the category from the
-    user and invoke the Place Order topic.
+14. 이제 하나의 경로가 완성되었습니다. 이 경로는 사용자로부터 카테고리를
+    입력받고, Place Order 주제를 호출하게 됩니다.
 
-15. Navigate back to the start of this topic. Under all other
-    conditions, add a **Question** node. Add the message +++Based on
-    your recent purchase we suggest you products in \<Product Category\>
-    category. Would you like to continue?+++
+15. 이 토픽의 시작 지점으로 다시 이동하세요. 모든 기타 조건 아래에
+    **Question** 노드를 추가하세요. 메시지에는 다음과 같이 입력하세요:
+    +++Based on your recent purchase we suggest you products in
+    \<Product Category\> category. Would you like to continue?+++
 
-    In the message replace **\<Product Category\>** with the **Global.ProductCategory** variable.
+메시지의 **\<Product Category\>** 부분은 **Global.ProductCategory**
+변수로 바꿔 입력하세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image143.png)
 
-16. Add 2 options, +++Yes+++ and +++No+++. Click on the variable under
-    Save user response as and rename it to +++Userschoiceofcategory+++
+16. 옵션을 두 개 추가하세요:  +++Yes+++ 및 +++No+++. Save user response
+    as 아래에 있는 변수명을 클릭한 뒤, 변수 이름을
+    +++Userschoiceofcategory+++로 변경하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image144.png)
 
-17. Under the **question** node, add a **condition** node.
+17. **Question** 노드 아래에 **condition** 노드를 추가하세요.
 
-    Set the first condition as **Userschoiceofcategory is equal to Yes**.
+첫 번째 조건을 다음과 같이 설정하세요: **Userschoiceofcategory is equal
+to Yes**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image145.png)
 
-36. Under this node, add a **Topic management node** and invoke the
-    **Place Order** topic.
+36. 이 노드 아래에 **Topic management node**를 추가하고, **Place Order**
+    토픽을 호출하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image146.png)
 
-18. In the condition node, select the three dots in the top right corner
-    of the condition node and select **Insert new condition**.
+18. 조건 노드의 오른쪽 상단에 있는 세 개의 점을 클릭한 후, **Insert new
+    condition** 을 선택하세요.
 
-    ![](./media/image147.png)
+![](./media/image147.png)
 
-19. Add a condition, **Userschoiceofcategory is equal to No**.
+19. 다음 조건을 추가하세요: **Userschoiceofcategory is equal to No**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image148.png)
 
-20. Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+20. Condition 노드 아래에 question 노드를 추가하세요. 질문 영역에
+    +++Select a category+++를 입력하고, **+ New option**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-21. Enter the option +++Laptop+++ and select + New option again.
+21. 옵션에 +++Laptop+++을 입력하고, + New option을 다시 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
 
-22. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++.
+22. 같은 방식으로 +++**Desktop**+++과 +++**Tablet**+++ 옵션도
+    추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image149.png)
 
-23. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+23. 질문 노드 아래에 **Set a variable value** 노드를 추가한 후, 질문
+    노드에서 받은 선택 값을 문자열(String) 형식으로 변환하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
 
-24. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression +++Text(Topic.Var1)+++ and
-    select **Insert**.
+24. Set variable 단계에서 Global 변수 **ProductCategory**를 선택하세요.
+    **To value** 입력란에서 점 3개 아이콘을 클릭한 후, **Formula** 탭을
+    선택하세요. 다음 수식인 +++Text(Topic.Var1)+++ 를 입력한 뒤
+    **Insert**을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image150.png)
 
-25. Below the Set variable value node, add a new node, **Topic
-    management** -\> **Go to another topic** -\> **Place Order**.
+25. Set variable 노드 아래에 새 노드를 추가하세요. **Topic management**
+    -\> **Go to another topic** -\> **Place Order**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image142.png)
 
-26. Select **Save** to save the topic.
+26. **Save**을 선택해 토픽을 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image151.png)
 
-27. Open the Topic **Customer Details** and move to the last node.
+27. **Customer Details** 토픽을 열고 마지막 노드로 이동하세요.
 
-28. **Add a new node** to invoke the topic **Get Product Categories**.
+28. **Add a new node** (새 노드를 추가한 후), **Get Product Categories**
+    토픽을 호출하도록 설정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image152.png)
 
-29. Select **Save** to save the topic.
+29. **Save**을 선택해 토픽을 저장하세요.
 
-    ![](./media/image153.png)
+![](./media/image153.png)
 
-### Task 8 – Create Agent flow to place the order
+### 작업 8 – 주문 접수를 위한 에이전트 플로우 생성
 
-In this task, you will create an Agent flow to place the order based on
-the product chosen by the customer.
+이 작업에서는 고객이 선택한 제품을 기반으로 주문을 접수하는 에이전트
+플로우를 생성합니다.
 
-1.  From **Agent flows** tab, select **+ New agent flow.**
+1.  **Agent flows** 탭에서 **+ New agent flow**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image154.png)
 
-2.  Click on the **Add a trigger node** and select **When an agent calls
-    the flow** node.
+2.  **Add a trigger node**를 클릭한 후, **When an agent calls the flow**
+    노드를 선택하세요.
 
-    ![](./media/image155.png)
+![](./media/image155.png)
 
-3.  Add 2 **Text** variables +++Product Name+++ and +++Customer ID+++ as
-    **Input**.
+3.  2개의 **Text** 변수 +++Product Name+++ 및 +++Customer ID+++를
+    **Input**으로 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image156.png)
 
-4.  Click on **Save Draft** to save the flow.
+4.  **Save Draft**을 클릭해 플로우를 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image157.png)
 
-5.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++PlaceOrder+++. Then select **Save**.
+5.  상단 메뉴에서 **Overview** 를 선택한 후, **Edit**을 클릭하세요.
+    플로우 이름에 +++PlaceOrder+++를 입력한 후, **Save**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image158.png)
 
-6.  Navigate back to the **Designer** tab. Select Add a new action and
-    select **Add a new row** under Dataverse.
+6.  **Designer** 탭으로 다시 이동하세요. Add a new action를 선택한  후,
+    Dataverse 아래에서 **Add a new row**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image159.png)
 
-7.  Select the Table name as **Order Record** and then click on **Show
-    all** under Advanced parameters.
+7.  **Table name**에서 **Order Record**를 선택한 후, **Advanced
+    parameters** 아래의 **Show all**을 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image160.png)
 
-8.  Enter the below values.
+8.  아래 값을 입력하세요:
 
-    - Customer Identifier - **Customer ID** (Dynamic value)
-    
-    - Order identifier – Enter guid() in Insert expression
-    
-    - Order Status - +++**Order Placed**+++
+Customer Identifier - **Customer ID** (Dynamic value)
 
-    ![A screenshot of a computer AI-generated content may be
+Order identifier – guid() (Insert expression 클릭 후 입력)
+
+Order Status - +++**Order Placed**+++
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image161.png)
 
-9.  Add a node, **Respond to the agent**.
+9.  다음 노드를 추가하세요: **Respond to the agent**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image162.png)
 
-10. Add a output Text variable and name it as +++Order ID+++.
+10. 텍스트 출력 변수를 추가하고 이름을 +++Order ID+++로 지정하세요.
 
-    Enter its value as +++string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
-(Replace **cr6dd_orderidentifier** with the logical name value of the
-column Order ID from the Order Record table.
+값에는 다음 식을 입력하세요: +++
+string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
+(**cr6dd_orderidentifier** 는 Order Record 테이블에서 **Order
+ID** 열의 논리 이름으로, 사용 중인 값으로 바꿔주세요.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image163.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image163.png)
 
-11. Click on **Save draft** to save the flow and then click on
-    **Publish** to publish the flow.
+11. 흐름을 저장하려면 **Save draft** 를 클릭하고,
+    배포하려면**Publish**를 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image164.png)
 
-### Task 9 – Design the Place Order topic 
+### 작업 9 – 주문 접수 토픽 설계하기 
 
-In this task, you will design the topic to place the order and update
-the Dataverse table.
+이 작업에서는 고객의 주문을 접수하고 Dataverse 테이블에 주문 정보를
+업데이트하는 토픽을 설계합니다.
 
-1.  Open the topic **Place Order** from the Agent’s **Topic** tab.
+1.  에이전트의 **Topic** 탭에서 **Place Order** 토픽을 여세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image165.png)
 
-2.  Add a message node with the message +++Options based on the category
-    will be listed below.+++
+2.  메시지 노드를 추가하고 메시지 입력란에 다음 내용을 입력하세요:
+    +++Options based on the category will be listed below.+++
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image166.png)
 
-3.  Add a condition node. Enter the condition as ProductCategory(Global
-    variable) is equal to +++Laptop+++.
+3.  조건 노드를 추가하세요. ProductCategory(Global variable)가
+    +++Laptop+++와 같으므로 조건을 입력하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image167.png)
 
-4.  Under the node, add a question node and enter the message +++Select
-    a Laptop product+++. Select **Laptop** under **Identity**.
+4.  해당 노드 아래에 질문 노드를 추가하고, 메시지 입력란에 다음을
+    입력하세요: +++Select a Laptop product+++. **Identity** 항목에서는
+    **Laptop**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image168.png)
 
-5.  Click on **Select** options for user and select all the 5 available
-    options.
+5.  **Select** options for user을 선택한 후, 표시되는 5가지 옵션을 모두
+    선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image169.png)
 
-6.  Enter the variable name as +++ProdNameLapChoice+++
+1.  변수 이름을 +++ProdNameLapChoice+++로 입력하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image170.png)
 
-7.  Now, follow the same procedure and add condition nodes for
-    ProductCategory is equal to +++Desktop+++ and +++Tablet+++.
+6.  이제 동일한 방식으로 조건 노드를 추가해 ProductCategory가
+    +++Desktop+++ 또는 +++Tablet+++일 때의 조건을 설정하세요.
 
-8.  Save the values in variable names.
+7.  변수 이름에 값을 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image171.png)
 
-9.  Select a **Set variable value** node under the **Select a Laptop
-    product** question node.
+8.  **Set variable value** 노드를 **Select a Laptop product** 질문 노드
+    아래에 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image172.png)
 
-10. Rename the created variable to +++ProdNameSelected+++ and set it as
-    **Global**.
+9.  생성한 변수의 이름을 +++ProdNameSelected+++로 변경하고, **Global**
+    변수로 설정하세요.![A screenshot of a computer AI-generated content
+    may be incorrect.](./media/image173.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image173.png)
+10. Formula 필드에 다음 값을 입력하세요:
+    +++Text(Topic.ProdNameLapChoice)+++ (만약 다른 변수명을 사용했다면,
+    해당 이름으로 바꿔 입력하세요.)
 
-12. Set the value in the Formula field as
-    +++Text(Topic.ProdNameLapChoice)+++ (Replace the variable name, if you have used a different one)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image174.png)
 
-12. Similarly, add a **Set variable value** node under **Desktop** and
-    **Tablet** branches. Select the **Set variable** value as
-    **ProdNameSelected** and insert the expression for the To value
-    field with the variable name as per the one you used.
+11. 마찬가지로, **Desktop** 및 **Tablet** 분기 아래에도 **Set variable
+    value** 노드를 추가하세요. **Set variable** 값로는
+    **ProdNameSelected**를 선택하고, To value 필드에는 해당 분기에서
+    사용한 변수명을 기반으로 한 표현식(expression) 을 입력하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image175.png)
 
-13. Add an Action node under all these nodes in common and invoke the
-    GetProductDetails flow.
+12. 이러한 모든 노드 아래에 공통적으로 Action 노드를 추가하고
+    GetProductDetails 흐름을 호출하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image176.png)
 
-14. Select **ProdNameSelected** input variable to be passed to the flow.
-    Leave the other values as default.
+13. 플로우에 전달할 입력 변수로 **ProdNameSelected**를 선택하세요.
+    나머지 값은 기본값 그대로 두세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image177.png)
 
-15. Add a Message node below the Action and enter the below message.
-    Replace <ProductName> and <Price> with the corresponding variable
-    names
+14. 액션 노드 아래에 메시지 노드를 추가하고 아래 메시지를 입력하세요.
+    Replace \<productName\>과 \<Price\>는 해당 변수 이름으로 교체하세요.
 
-    Product Details
-    
-    - Product Name - <ProductName>
-    
-    - Price - <Price>
+제품 정보
 
-    ![A screenshot of a computer AI-generated content may be
+- Product Name - \<ProductName\>
+
+> ​
+
+- Price - \<Price\>
+
+​
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image178.png)
 
-16. Below the message node, adda **Question node** with a message,
-    +++Would you like to place order for this item?+++ in it. Add
-    options **Yes** and **No** to it and name the variable as
-    +++PlaceOrder+++.
+15. 메시지 노드 아래에**Question node**를 추가하세요. 메시지 영역에 다음
+    문장을 입력하세요: +++Would you like to place order for this
+    item?+++. 옵션으로 **Yes**와 **No**를 추가하고, 사용자 응답 저장
+    변수 이름을 +++PlaceOrder+++로 지정하세요.
 
-    ![](./media/image179.png)
+![](./media/image179.png)
 
-17. Under the Question node, add a condition node and in one branch, add
-    a condition **PlaceOrder isequal to Yes** and **all other
-    conditions** will be the **second branch**.
+16. Question 노드 아래에  condition 노드를 추가하세요. 한
+    분기에는 **PlaceOrder isequal to Yes** 추가하고, **다른 분기**에는
+    **all other conditions**을 설정세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image180.png)
 
-18. Invoke the flow **PlaceOrder** as the next step.
+17. 다음 단계로 **PlaceOrder** 플로우를 호출하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image181.png)
 
-19. Select the **ProductName** and **CustomerID** as the input to the
-    flow.
+18. 플로우 입력값으로 **ProductName** 과 **CustomerID**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image182.png)
 
-20. Now, add a message node below this with the message, +++Your order
-    is placed. This is your Order ID for reference -<OrderID>+++
-    (Replace **<OrderID>** with the **variable OrderID** (the output
-    variable from the flow).
+19. 이제 그 아래에 메시지 노드를 추가하고, 아래와 같은 메시지를
+    입력하세요: +++Your order is placed. This is your Order ID for
+    reference -\<OrderID\>+++ (**\<OrderID\>** 부분은 플로우의 출력
+    변수인 **OrderID**로 대체하세요.)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image183.png)
 
-21. With this the **PlaceOrder isequal to Yes** branch is **complete**.
-    Now, navigate to **all other conditions branch**.
+20. 이제 **PlaceOrder is equal to Yes** 조건 분기 처리가 완료되었습니다.
+    이제 **All other conditions** 브랜치로 이동하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image184.png)
 
-22. Below that, add a Question node with the message, +++Do you want to
-    go to the main menu?+++ with options **Yes** and **No**. Name the
-    variable as +++**GoToMainMenu**+++.
+21. 그 아래에 Question 노드를 추가하고, 메시지에는 +++Do you want to go
+    to the main menu?+++ 라고 입력하세요. 옵션으로 **Yes**와 **No**를
+    추가하고, 사용자 응답을 저장할 변수 이름은 +++**GoToMainMenu**+++로
+    지정하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image185.png)
 
-23. Under this node, add a condition node and in one branch add a
-    condition with **GoToMainMenu is equal to Yes**. The other branch of
-    this condition will be **All other conditions**.
+22. 해당 노드 아래에 **조건(Condition)** 노드를 추가하세요. 첫 번째
+    분기에는 조건을 다음과 같이 설정하세요: **GoToMainMenu is equal to
+    Yes**. 다른 분기는 조건은 자동으로 **All other conditions**으로
+    설정됩니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image186.png)
 
-24. Under this condition node, add a question node with message
-    +++**Select Product Category**+++ and add 3 options,
-    +++**Laptop**+++, +++**Desktop**+++ and +++**Tablet**+++.
+23. 해당 조건(Condition) 노드 아래에 질문(Question) 노드를 추가하고,
+    메시지에는 +++**Select Product Category**+++라고 입력하세요.
+    옵션으로는 다음 세 가지를 추가하세요: +++**Laptop**+++,
+    +++**Desktop**+++ 및+++**Tablet**+++.
 
-    Make a note of the variable name to which the result is saved. We will
-convert it to text in the next step.
+결과가 저장되는 변수 이름을 꼭 기록해 두세요. 다음 단계에서 해당 값을
+문자열로 변환할 예정입니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image187.png)
 
-25. Add a **Set variable value** node and select **ProductCategory**
-    variable under **set variable** and enter the value as
-    +++**Text(Topic.Var1)**+++ under the **Formula** tab.
+24. **Set variable value** 노드를 추가하세요. 변수로는
+    **ProductCategory** 를 선택하고, **Formula** 탭에 다음 값을
+    입력하세요: +++**Text(Topic.Var1)**+++.
 
-    Replace **Var1** with your variable name if it is different.
+**Var1**은 이전 단계에서 사용한 변수 이름으로, 다를 경우 본인의
+변수명으로 바꿔 입력하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image188.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image189.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image189.png)
 
-26. Under the Set variable value node, add a **Go to step** node.
+25. Set variable value 노드 아래에**Go to step** 노드를 추가하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image190.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image191.png)
 
-27. After adding the node, you will have to select the **step**, to
-    which the **control should pass** on at this point. **Scroll up**
-    and select the **Message node at the starting of this topic** since,
-    you have got the **ProductCategory** from the customer now and need
-    to execute from the beginning.
+26. 노드를 추가한 후, 이 시점에서 흐름이 이동해야 할 **단계(Step)** 를
+    선택해야 합니다. 화면을 위로 스크롤해 이 토픽의 시작 부분에
+    있는 **Message 노드**를 선택하세요. 이제
+    고객으로부터 **ProductCategory** 정보를 받았으므로, 대화 흐름을
+    처음부터 다시 실행해야 합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image192.png)
 
-28. Add a common message node at the end with the message +++Thank you
-    for shopping with us! Please visit again!+++ Then select **Save** to
-    save the topic.
+27. 마지막에 공통 **메시지(Message)** 노드를 추가하고, 메시지 영역에
+    +++Thank you for shopping with us! Please visit again!+++ 를
+    입력하세요. 그 후, **Save**을 클릭해 토픽을 저장하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image193.png)
 
-## Exercise 4 – Add a trigger 
+## 연습 4 – 트리거 추가하기
 
-In this exercise, you will add a trigger to get initiated when the Order
-table is added with a new row or an existing row is modified and send an
-email to the customer automatically. This defines the autonomous
-capability of the agent in this scenario,
+이 실습에서는 **Order 테이블**에 새 행이 추가되거나 기존 행이 수정될 때
+자동으로 고객에게 이메일을 보내는 트리거를 추가합니다. 이 작업을 통해
+에이전트가 자율적으로 동작할 수 있는 기능을 정의하게 됩니다.
 
-1.  Select the Overview tab of the agent.
+1.  에이전트의 Overview 탭을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image194.png)
 
-2.  Scroll down the page and select **Add trigger.**
+2.  페이지를 아래로 스크롤한 후 **Add trigger**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image195.png)
 
-3.  Select **When a row is added, modified or deleted** option and then
-    select **Next**.
+3.  **When a row is added, modified or deleted** 옵션을 선택한 후,
+    **Next**를 선택하세요.
 
-    ![](./media/image196.png)
+![](./media/image196.png)
 
-4.  Once the **Microsoft Copilot Studio** and **Dataverse** are
-    connected, click on **Next**.
+4.  Microsoft Copilot Studio와 Dataverse 간 연결이 완료되면, **Next**를
+    클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image196.png)
 
-5.  Select the below options, leave the rest as default and select
-    **Create trigger**.
+5.  아래 옵션들을 선택하고, 나머지는 기본값으로 두고 **Create
+    trigger**를 선택하세요.
 
-    - Change Type – Added or Modified or Deleted
-    
-    - Table name – Order Record
-    
-    - Scope - Organization
+- Change Type – 추가됨, 수정됨 또는 삭제됨 (Added or Modified or
+  Deleted)
 
-    ![A screenshot of a computer AI-generated content may be
+- Table name – Order Record
+
+- Scope - Organization
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image197.png)
 
-6.  This might take a few minutes to get completed. Once done, select
-    **Close** in the Add trigger dialog.
+6.  이 작업은 몇 분 정도 소요될 수 있습니다. 완료되면 **트**리거
+    추가(Add trigger**)** 대화 상자에서 **Close**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image198.png)
 
-7.  From the Trigger section in the **Overview** page of the agent,
-    click on the **3 dots** next to the added trigger and select **Edit
-    in Power Automate**.
+7.  에이전트 **Overview** 페이지의 트리거 섹션에서, 추가된 트리거
+    오른쪽에 있는 **점 3개 메뉴**를 클릭한 후 **Edit in Power
+    Automate**을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image199.png)
 
-8.  Select the first node in the flow and add the column names,
-    +++cr6dd_orderidentifier, cr6dd_customeridentifier+++ under **Select
-    columns**. (**Replace** them with **your logical names** of the
-    **Order ID** and **Customer ID** columns from the **Order Record
-    table**).
+8.  로우의 첫 번째 노드를 선택한 후 **Select columns** 필드에
+    +++cr6dd_orderidentifier, cr6dd_customeridentifier+++를 입력하세요.
+    (이 값들은 Order Record 테이블의 **Order ID** 및 **Customer
+    ID** 열의 논리 이름이므로, 사용 중인 테이블에 맞는 논리 이름으로
+    바꿔 입력하세요.)
 
-    ![](./media/image200.png)
+![](./media/image200.png)
 
-9.  Add a new node and select **List rows** action in it.
+9.  새 노드를 추가한 후, 해당 노드에서 **List rows** 액션을 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image201.png)
 
-10. In the List rows action, select **Table name** as **Customer
-    Record**.
+10. List rows 액션에서 **Table name**은 **Customer Record**로
+    선택하세요. **Filter rows** 필드에는 **+++cr6dd_customeridentifier
+    eq ''+++** 를 입력하되, cr6dd_customeridentifier 부분은 본인의
+    Customer ID 컬럼 논리명으로 교체하세요. 작은따옴표('') 안에 커서를
+    위치시키세요.
 
-    Under **Filter rows**, enter +++**cr6dd_customeridentifier eq ''**+++,
-    replacing the column name with your **Customer ID’s logical name**. Keep
-    the **cursor** **inside** the **single quotes**.
-
-    ![A screenshot of a list AI-generated content may be
+![A screenshot of a list AI-generated content may be
 incorrect.](./media/image202.png)
 
-11. Select Insert expression, enter
-    +++String(triggerOutputs()?\['body/cr6dd_customeridentifier'\])+++,
-    replacing **cr6dd_customeridentifier** with your CustomerID’s
-    logical name and select **Add**.
+11. Insert expression를 선택한 후,
+    +++String(triggerOutputs()?\['body/cr6dd_customeridentifier'\])+++를
+    입력하세요. 여기서 **cr6dd_customeridentifier** 부분은 본인의
+    Customer ID 논리명으로 바꿔주고, **Add**를 클릭하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image203.png)
 
-12. Next to the **List rows**, add an action **Send an email (V2).**
+12. **List rows** 작업 옆에 새 작업을 추가하고, **Send an email (V2)**를
+    선택하세요.
 
-    ![A screenshot of a mail box AI-generated content may be
+![A screenshot of a mail box AI-generated content may be
 incorrect.](./media/image204.png)
 
-13. Click on **Sign in** and sign in with your credentials.
+13. **Sign in** 버튼을 클릭하고, 본인 계정으로 로그인하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image205.png)
 
-14. In the **To** field, insert expression and enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++,
-    replacing **cr6dd_emailaddress** with the logical name of your email
-    id field from Customer Record table and then select **Add**.
+14. **To** 필드에 표현식을 삽입하고,
+    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++
+    를 입력하세요. 여기서 **cr6dd_emailaddress** 고객 기록(Customer
+    Record) 테이블의 이메일 필드 논리 이름으로 변경해 주시고, 완료되면
+    **Add**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image206.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image207.png)
 
-15. Enter the below details,
+15. 다음 정보를 입력하세요:
 
-    Subject - +++Order Placement+++
+Subject - +++Order Placement+++
 
-    Body –
-    ```
-    Hi,
-    
-    This is to update you that your order has been placed. Thank you for
-    shopping with us.
-    
-    Thank You.
-    ```
-16. **Save** the flow and then **Publish** it.
+Body –
 
-    ![A screenshot of a computer AI-generated content may be
+Hi,
+
+This is to update you that your order has been placed. Thank you for
+shopping with us.
+
+Thank You.
+
+16. 플로우를 저장(Save)한 후, 게시(Publish)하세요.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image208.png)
 
-17. Back in the Copilot Studio agent page, select **Publish** to publish
-    the agent.
+17. Copilot Studio의 에이전트 페이지로 돌아가서, \[Publish\]를 선택하여
+    에이전트를 게시하세요.
 
-    ![](./media/image209.png)
+![](./media/image209.png)
 
-18. Select **Publish** in the confirmation dialog.
+18. 확인 창에서**Publish**를 선택하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image210.png)
 
-## Exercise 5 – Test the agent
+19. ewqewqew
 
-In this exercise, you will test how the agent works.
+## 연습 5 – 에이전트 테스트하기
 
-1.  From the agent page, select **Test** to open the Test pane.
+이 연습에서는 에이전트의 작동 방식을 테스트하게 됩니다.
 
-2.  Enter +++3148987666+++. This is the Phone number of an existing
-    customer.
+1.  에이전트 페이지에서 Test를 선택해 테스트 창을 여세요.
 
-    ![A screenshot of a phone AI-generated content may be
+2.  기존 고객의 전화번호인 +++3148987666+++을 입력하세요.
+
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image211.png)
 
-3.  Select **Yes** from the given options.
+3.  제공된 옵션 중에서**Yes**를 선택하세요.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image212.png)
 
-4.  Select a **product** from the given options.
+4.  제공된 옵션 중에서 원하는 **제품을** 선택하세요.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image213.png)
 
-5.  Select Yes from the given options.
+5.  제공된 옵션 중에서 Yes를 선택하세요.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image214.png)
 
-6.  The order gets placed and the reference id is provided to the
-    customer.
+6.  주문이 완료되면, 고객에게 참조 ID가 제공됩니다.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image215.png)
 
-7.  You can also ask other questions like track the order delivery for
-    the id you received. Though we have not configured the topics for
-    that, it will give you reply based on the knowledge source.
+7\. 받은 주문 ID로 배송 상황을 조회하는 등 다른 질문도 할 수 있습니다.
+비록 해당 주제는 아직 설정하지 않았지만, 지식 기반을 바탕으로 답변을
+제공합니다.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image216.png)
 
-    Test the other scenarios by selecting different options. Add a new
-customer and check that you have received a mail in your email id that
-gets added to the Customer Record table.
+다른 시나리오들도 선택해서 테스트해 보세요. 새로운 고객을 추가한 후,
+고객 정보가 Customer Record 테이블에 제대로 저장되었는지 확인하고, 해당
+고객 정보가 등록되었다는 이메일이 본인의 이메일로 잘 도착했는지
+확인하세요.
 
-8.  After testing for some time, click on the **Analytics** tab to know
-    the details of usage of topics and knowledge sources. This might
-    take some time to reflect.
+## 요약:
 
-## Summary:
+이번 실습에서는 자율 쇼핑 에이전트를 설계하는 방법을 배웠습니다. 주요
+학습 내용은 다음과 같습니다.
 
-In this lab, you have learnt to design an autonomous shopping agent. Topics covered include,
+- 변수(Variables)
 
-- Variables
-    
-- Entities
-    
-- Topics
-    
-- Agent flows
-    
-- Trigger
-    
-- Analytics
-    
-- Knowledge sources
+- 엔터티(Entities)
 
+- 토픽(Topics)
+
+- 에이전트 플로우(Agent flows)
+
+- 트리거(Trigger)
+
+- 지식 소스(Knowledge sources)
