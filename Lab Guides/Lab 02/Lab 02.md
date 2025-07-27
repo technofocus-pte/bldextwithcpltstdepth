@@ -13,6 +13,10 @@ documents.
 
 ## Exercise 1: Create an Azure AI Search resource
 
+In this exercise, you will create an Azure AI Search resource from the Azure portal. This will be used to search the documents using AI capability.
+
+**Azure AI Search** is a cloud-based service for searching within your privately curated data. It uses a combination of Microsoft’s AI and JSON-based indexes to provide fast, relevant search results.
+
 1.  Open a browser and login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
 
     -    Username - +++@lab.CloudPortalCredential(User1).Username+++
