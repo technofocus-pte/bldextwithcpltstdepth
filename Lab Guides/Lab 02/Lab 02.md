@@ -76,7 +76,7 @@ incorrect.](./media/image8.png)
 10.  Toggle the Status to **On** under **System assigned** and then click
     on **Save**.
 
-    ![A screenshot of a search engine AI-generated content may be
+     ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image9.png)
 
 11. Select **Yes** in the **Enable system assigned managed identity**
