@@ -1,6 +1,16 @@
 # Laboratorio 03 – Creación de un agente de Safe Travels a partir de una plantilla
 
+**Objetivo**
+
+Las plantillas de agente están diseñadas para facilitar el inicio con un agente personalizado. Corresponde al usuario evaluar todas las implicaciones legales y de seguridad derivadas del uso de una plantilla de agente y adaptarla según corresponda a las necesidades de la organización.
+
+Un agente creado a partir de la plantilla Safe Travels es un agente de tipo Business-to-Employee (B2E) diseñado para proporcionar asistencia de viaje a los empleados de una empresa. Este agente tiene como finalidad garantizar que los empleados estén debidamente informados y preparados para su próximo viaje de trabajo. Utiliza procesamiento de lenguaje natural para ofrecer una interfaz conversacional, lo que facilita el acceso intuitivo a la información requerida. No obstante, el sitio web predeterminado que utiliza este agente actualmente solo cubre destinos de viaje dentro de los Estados Unidos. Es posible reemplazar este sitio web predeterminado con una fuente de conocimiento propia.
+
+En este laboratorio, se creará un agente a partir de la plantilla Safe Travels el cual será optimizado en el laboratorio 05.
+
 ## Ejercicio 1: Crear agente de Safe Travels a partir de una plantilla
+
+En este ejercicio, se creará un agente en Copilot Studio utilizando la plantilla de agente Safe Travels.
 
 1.  Desde un navegador, inicie sesión en
     +++https://copilotstudio.microsoft.com+++. Se abrirá la página Start
@@ -69,6 +79,8 @@ incorrect.](./media/image10.png)
 
 ## Ejercicio 2: Publicar el agente en Teams y Microsoft 365 Copilot
 
+En este ejercicio, se procederá a publicar el agente creado en Copilot Studio en los canales de Microsoft Teams y Microsoft 365 Copilot.
+
 1.  Seleccione **Publish** en la parte superior derecha de la página del
     agente.
 
@@ -124,3 +136,4 @@ incorrect.](./media/image19.png)
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
