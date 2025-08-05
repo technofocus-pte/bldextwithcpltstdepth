@@ -1,6 +1,16 @@
 # 실습 03 – 템플릿에서 안전 여행 에이전트 만들기
 
+**목표**
+
+에이전트 템플릿은 사용자 지정 에이전트를 시작하는 데 도움이 되도록 설계되었습니다. 에이전트 템플릿 사용의 모든 안전 및 법적 영향을 평가하고 비즈니스에 맞게 사용자 지정할 책임이 있습니다. 
+
+Safe Travels 에이전트 템플릿에서 구축된 에이전트는 회사 직원에게 출장 지원을 제공하도록 설계된 Business-to-Employee (B2E) 에이전트입니다. 이 에이전트는 직원들이 다음 출장을 위해 잘 준비하고 정보를 얻을 수 있도록 도와줍니다. 이 에이전트는 자연어 처리를 사용하여 대화형 인터페이스를 제공하므로 직원이 필요한 정보에 쉽고 직관적으로 액세스할 수 있습니다. 그러나 에이전트가 사용하는 기본 웹사이트는 현재 미국 여행지에만 적용됩니다. 기본 웹사이트를 자신의 지식 소스로 바꿀 수 있습니다. 
+
+이 실습에서는 Safe Travels 템플릿에서 에이전트를 생성하고 실습 05에서 개선합니다.               
+
 ## 연습 1: 템플릿을 사용하여 Safe Travels 에이전트 만들기
+
+이 연습에서는 Safe Travels 에이전트 템플릿을 사용하여 Copilot Studio에서 에이전트를 생성합니다. 
 
 1.  브라우저에서 +++https://copilotstudio.microsoft.com+++에
     로그인합니다. 무료 평가판 시작 페이지가 열립니다. 국가를 선택하고
@@ -67,6 +77,8 @@ incorrect.](./media/image10.png)
 
 ## 연습 2: Teams 및 Microsoft 365 Copilot에 에이전트 게시하기
 
+이 연습에서는 Copilot Studio에서 생성한 에이전트를 Microsoft Teams 및 Microsoft 365 Copilot 채널에 게시합니다.
+
 1.  에이전트 페이지 오른쪽 상단에서 **Publish**를 선택합니다.
 
     ![A screenshot of a computer AI-generated content may be
@@ -120,4 +132,5 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
