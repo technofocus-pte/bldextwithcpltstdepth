@@ -2,13 +2,15 @@
 
 目的
 
-**Agent templates** 旨在帮助您入门一项 **custom agent** 您负责评估使用代理模板的所有安全和法律影响，并根据您的业务适当进行自定义。
+代理模板旨在帮助您快速上手自定义代理。您有责任评估使用代理模板的所有安全和法律影响，并根据您的业务需求进行定制。
 
-一个构建的代理 **Safe Travels agent template** 是一个旨在为公司员工提供旅行协助的员工对员工（B2E）代理。该智能助手帮助确保员工为下一个工作旅行做好充分准备并获得信息。该智能助手使用自然语言处理技术提供对话界面，使员工轻松直观地获取所需信息。然而，当前智能助手使用的默认网站仅涵盖美国旅行目的地。您可以用自己的知识来源替换默认网站。
+基于“安全旅行”代理模板构建的代理是企业对员工 (B2E) 代理，旨在为公司员工提供旅行协助。该代理有助于确保员工为下一次出差做好充分准备并获取相关信息。该代理使用自然语言处理技术提供对话式界面，使员工能够轻松直观地获取所需信息。但是，该代理使用的默认网站目前仅涵盖美国旅行目的地。您可以将默认网站替换为您自己的知识来源。
 
-在这个实验室里，你将创建一个代理从 **Safe Travels template** 并在实验室05中增强它。
+在本实验中，您将使用 Safe Travels 模板创建一个代理，并在实验 05 中对其进行增强。
 
 ## 练习 1：从模板创建 Safe Travels 代理
+
+在本练习中，您将使用 Safe Travels 代理模板在 Copilot Studio 中创建代理。
 
 1.  在浏览器中，登录到
     +++https://copilotstudio.microsoft.com+++。此时将打开 Start free
@@ -68,6 +70,8 @@ incorrect.](./media/image10.png)
 
 ## 练习 2：将代理发布到 Teams 和 Microsoft 365 Copilot
 
+在本练习中，您将把在 Copilot Studio 中创建的代理发布到 Microsoft Teams 和 Microsoft 365 Copilot 频道。
+
 1.  从 代理页面的右上角选择 **Publish**。
 
     ![A screenshot of a computer AI-generated content may be
@@ -117,5 +121,6 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
