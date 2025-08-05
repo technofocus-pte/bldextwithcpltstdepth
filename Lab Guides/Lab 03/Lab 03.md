@@ -1,6 +1,17 @@
 # Laboratório 03 – Criar agente Safe Travels a partir do modelo
 
+**Objetivo**
+
+Os modelos de agente são projetados para ajudá-lo a começar com um agente personalizado. Você é responsável por avaliar todas as implicações legais e de segurança do uso de um modelo de agente e personalizá-lo conforme apropriado para sua empresa. 
+
+Um agente criado a partir do modelo de agente **Safe Travels** é um agente Business-to-Employee (B2E) projetado para fornecer assistência de viagem aos funcionários de uma empresa. Esse agente ajuda a garantir que os funcionários estejam bem preparados e informados para sua próxima viagem de negócios. Esse agente usa o processamento de linguagem natural para oferecer uma interface de conversação, tornando fácil e intuitivo para os funcionários acessarem as informações que precisam. No entanto, o site padrão usado pelo agente atualmente só cobre destinos de viagem nos EUA. Você pode substituir o site padrão por sua própria fonte de conhecimento.
+
+Neste laboratório, você criará um agente com base no modelo Safe Travels e o aprimorará no Laboratório 05.
+
+
 ## Exercício 1: Criar um agente Safe Travels a partir do modelo
+
+Neste exercício, você criará o agente no Copilot Studio usando o modelo de agente Safe Travels.
 
 1.  Em um navegador, acesse +++https://copilotstudio.microsoft.com+++. A
     página Iniciar avaliação gratuita será aberta. Selecione seu país e
@@ -67,6 +78,8 @@ incorrect.](./media/image10.png)
 
 ## Exercício 2: Publicar o agente no Teams e Microsoft 365 Copilot
 
+Neste exercício, você publicará o agente criado no Copilot Studio no canal do Microsoft Teams e do Microsoft 365 Copilot.
+
 1.  Selecione **Publish** no canto superior direito da página do agente.
 
 ![A screenshot of a computer AI-generated content may be
@@ -121,3 +134,4 @@ incorrect.](./media/image19.png)
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
