@@ -1,6 +1,16 @@
 # ラボ 03 – テンプレートから Safe Travels エージェントを作成する
 
+**客観的**
+
+エージェントテンプレートは、カスタムエージェントの使用を開始する際に役立つように設計されています。エージェントテンプレートの使用に関するすべての安全性と法的影響を評価し、ビジネスに合わせてカスタマイズする責任はお客様にあります。
+
+Safe Travels エージェントテンプレートから構築されたエージェントは、企業の従業員に出張支援を提供するために設計された、企業対従業員 (B2E) エージェントです。このエージェントは、従業員が次の出張に向けて十分な準備を行い、十分な情報を得られるように支援します。このエージェントは自然言語処理を使用して会話型インターフェースを提供し、従業員が必要な情報に簡単かつ直感的にアクセスできるようにします。ただし、エージェントが使用するデフォルトのウェブサイトは現在、米国の旅行先のみをカバーしています。デフォルトのウェブサイトを独自のナレッジソースに置き換えることができます。
+
+このラボでは、Safe Travels テンプレートからエージェントを作成し、ラボ 05 で拡張します。
+
 ## 演習 1: テンプレートから Safe Travels エージェントを作成する
+
+この演習では、Safe Travelsエージェントテンプレートを使用してCopilot Studioでエージェントを作成します。
 
 1.  ブラウザから+++https://copilotstudio.microsoft.com+++にログイン
     します。「Start free trial」ページが開きます。国を選択し、 **「Start
@@ -69,6 +79,8 @@ incorrect.](./media/image10.png)
 
 ## 演習 2: エージェントを Teams と Microsoft 365 Copilot に公開する
 
+この演習では、Copilot Studioで作成したエージェントをMicrosoft TeamsおよびMicrosoft 365 Copilotチャネルに公開します。
+
 1.  エージェント・ページの右上から**\[Publish\]**を選択します。
 
     ![A screenshot of a computer AI-generated content may be
@@ -123,4 +135,5 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
