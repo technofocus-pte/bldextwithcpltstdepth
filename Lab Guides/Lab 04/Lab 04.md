@@ -287,9 +287,8 @@ incorrect.](./media/image48.png)
 
 1.  Back in the **New Workstream** page, scroll down and click on **+ Add an AI agent** in the **Add an AI agent** section.
 
-    <img width="940" height="584" alt="image" src="https://github.com/user-attachments/assets/b6d10eee-d97f-4a9c-ae5f-e1fe5be6da3c" />
-
-
+    ![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image78.png)
 
 2.  From the list of agents on the Add an AI Agent screen, select the **Store
     Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
@@ -300,16 +299,15 @@ incorrect.](./media/image50.png)
 
 3.  Ensure that the agent is added to the workstream as in the screenshot below.
 
-    <img width="940" height="501" alt="image" src="https://github.com/user-attachments/assets/61407386-3ac4-4a8a-beda-0c35f52e6051" />
+    ![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image79.png)
 
-
-
-4.  From the left pane, select **AI Agents**.
+5.  From the left pane, select **AI Agents**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-5.  Ensure that the **Store locator** agent is connected.
+6.  Ensure that the **Store locator** agent is connected.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
@@ -422,11 +420,12 @@ incorrect.](./media/img5.png)
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/img6.png)
 
-22. From the Customer Service admin page, click on **Customer Service
+22. From the Customer Service admin page, click on **Copilot Service
     admin center** and select the app **Customer Service
     workspace** from it.
 
-    <img width="940" height="557" alt="image" src="https://github.com/user-attachments/assets/31af168e-e28c-4782-a680-47bc0c839a0a" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image80.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
@@ -461,6 +460,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
