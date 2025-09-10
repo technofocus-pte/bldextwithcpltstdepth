@@ -1561,16 +1561,6 @@ incorrect.](./media/image207.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image208.png)
 
-17. Back in the Copilot Studio agent page, select **Publish** to publish
-    the agent.
-
-    ![](./media/image209.png)
-
-18. Select **Publish** in the confirmation dialog.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image210.png)
-
 ## Exercise 5 – Test the agent
 
 In this exercise, you will test how the agent works.
