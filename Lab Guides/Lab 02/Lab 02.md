@@ -456,17 +456,18 @@ incorrect.](./media/image76.png)
 
 6.  The AI Search service is added as a knowledge source to the agent
     and is in **Ready** state now.
+    Ensure that the **Web search** option is **disabled** in the Knowledge section.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-7.  Now, let us test the agent with the same question we tried before.
+8.  Now, let us test the agent with the same question we tried before.
 
-8.  In the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+9.  In the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
 
     <img width="285" height="315" alt="image" src="https://github.com/user-attachments/assets/b48e410f-6950-4d89-abdd-dc1e5d5ff81c" />
 
-9.  You can see that the response from the agent now is from the
+10.  You can see that the response from the agent now is from the
     document uploaded in the AI Search service.
 
     <img width="279" height="305" alt="image" src="https://github.com/user-attachments/assets/89622034-fa6e-4a07-a52b-757b1899bb12" />
@@ -476,6 +477,7 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
