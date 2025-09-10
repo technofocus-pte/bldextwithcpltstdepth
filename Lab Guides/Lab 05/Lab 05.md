@@ -63,7 +63,7 @@ incorrect.](./media/image7.png)
 
 4.  Click **Add to agent** to the add the file.
 
-    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image92.png)
+    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/Image92.png)
 
     ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
 
@@ -385,7 +385,7 @@ incorrect.](./media/image63.png)
 13. Select **Allow** to allow connection.
 
     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image93.png)
+incorrect.](./media/Image93.png)
 
 14. You will get a **Request submitted** message from the agent.
 
@@ -420,7 +420,7 @@ incorrect.](./media/image66.png)
       balance. Apply/Reject leaves based on their balance.+++
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image94.png)
+incorrect.](./media/Image94.png)
 
 4.  Once the agent gets created, scroll down in the Overview page and
     select **Add knowledge** under the **Knowledge** section.
@@ -442,7 +442,7 @@ incorrect.](./media/image71.png)
 7.  Select **Add to agent** to add the tracker to the agent.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image95.png)
+incorrect.](./media/Image95.png)
 
 8.  The file gets added. Wait until the status is Ready before
     proceeding to the next step.
@@ -587,6 +587,7 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
 
