@@ -399,13 +399,15 @@ incorrect.](./media/image67.png)
 incorrect.](./media/image68.png)
 
 17. Please wait for few minutes before proceeding to the next step.
+
+18. **Publish** the agent again from the **Copilot Studio** once.
     
-18. Once the Sync is completed, select **Preview** -\> **Desktop.**
+19. Once the Sync is completed, select **Preview** -\> **Desktop.**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-19. Your web page opens in a new tab. Find the **Store Locator
+20. Your web page opens in a new tab. Find the **Store Locator
     Assistant** embedded to the page at the bottom right of the web
     page. **Click** on it.
 
@@ -459,5 +461,6 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
