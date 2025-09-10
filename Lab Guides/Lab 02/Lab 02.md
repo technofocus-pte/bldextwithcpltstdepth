@@ -149,7 +149,7 @@ incorrect.](./media/image18.png)
     ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Select the **LeavePolicy.docx** from **C:\Labfiles** and then click
+9.  Select the **LeavePolicy.docx** from **C:\Labfiles\LabFiles** and then click
     on **Upload**.
 
     ![A screenshot of a computer AI-generated content may be
@@ -213,7 +213,7 @@ document and required Role permissions to it.
 
 ## Exercise 3: Create an Azure OpenAI Service and deploy a model 
 
-1.  From the Azure portal Home page, search for select +++Azure OpenAI+++.
+1.  From the Azure portal Home page, search for and select +++Azure OpenAI+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
