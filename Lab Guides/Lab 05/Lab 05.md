@@ -197,7 +197,7 @@ incorrect.](./media/image29.png)
     Purpose - <Purpose>
     ```
 
-    Replace **<Employee ID>** and **<Purpose>** with the dynamic content variables, **Employee ID** and **Purpose** as in the below screenshots.
+    Replace **< Employee ID >** and **< Purpose >** with the dynamic content variables, **Employee ID** and **Purpose** as in the below screenshots.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
@@ -583,3 +583,4 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
