@@ -63,7 +63,7 @@ incorrect.](./media/image7.png)
 
 4.  Click **Add to agent** to the add the file.
 
-    <img width="940" height="595" alt="image" src="https://github.com/user-attachments/assets/be58dae6-7b73-4ed4-b4c8-4ab0f22a5b3e" />
+    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image92.png)
 
     ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
 
@@ -384,7 +384,8 @@ incorrect.](./media/image63.png)
 
 13. Select **Allow** to allow connection.
 
-    <img width="583" height="452" alt="image" src="https://github.com/user-attachments/assets/190f932c-71ce-4d04-9e66-f9f5ecd03267" />
+    ![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image93.png)
 
 14. You will get a **Request submitted** message from the agent.
 
@@ -418,8 +419,8 @@ incorrect.](./media/image66.png)
     - Instructions - +++Track the leaves of employees. Track their leave
       balance. Apply/Reject leaves based on their balance.+++
 
-    <img width="940" height="539" alt="image" src="https://github.com/user-attachments/assets/8dfc6026-8895-487b-beb5-66531c87ab47" />
-
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image94.png)
 
 4.  Once the agent gets created, scroll down in the Overview page and
     select **Add knowledge** under the **Knowledge** section.
@@ -440,7 +441,8 @@ incorrect.](./media/image71.png)
 
 7.  Select **Add to agent** to add the tracker to the agent.
 
-    <img width="940" height="610" alt="image" src="https://github.com/user-attachments/assets/5d910ae4-67b8-4be0-8054-d0dc05e9e691" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image95.png)
 
 8.  The file gets added. Wait until the status is Ready before
     proceeding to the next step.
@@ -490,15 +492,17 @@ incorrect.](./media/image78.png)
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
     
->[!Alert] The Publish option is not working currently. So the next step cannot be done.
+
 15. Select **Publish** and wait till the agent is published.
+
+    >[!Alert] The Publish option is not working currently. So this step cannot be executed successfully.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
 ## Supplementry - Exercise 8 - Implement Multi agent orchestration in Copilot Studio
 
->![Alert] This exercise can be performed when the Leave Management agent is published.
+>[!Alert] This exercise can be performed when the Leave Management agent is published.
 
 Rather than relying on a single agent to do everything—or managing
 disconnected agents in silos—organizations can now build multi-agent
@@ -583,6 +587,7 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
 
