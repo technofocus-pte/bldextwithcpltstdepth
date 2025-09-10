@@ -61,10 +61,9 @@ incorrect.](./media/image6.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-4.  Click **Add** to the add the file.
+4.  Click **Add to agent** to the add the file.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+    <img width="940" height="595" alt="image" src="https://github.com/user-attachments/assets/be58dae6-7b73-4ed4-b4c8-4ab0f22a5b3e" />
 
     ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
 
@@ -383,12 +382,16 @@ incorrect.](./media/image62.png)
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image63.png)
 
-13. You will get a **Request submitted** message from the agent.
+13. Select **Allow** to allow connection.
+
+    <img width="583" height="452" alt="image" src="https://github.com/user-attachments/assets/190f932c-71ce-4d04-9e66-f9f5ecd03267" />
+
+14. You will get a **Request submitted** message from the agent.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image64.png)
 
-14. Open the Teams Channel and you will see the details posted there for
+15. Open the Teams Channel and you will see the details posted there for
     the Travel approval.
 
     ![](./media/image65.png)
@@ -404,13 +407,7 @@ used to learn about the leaves, leave balance for employees and so on.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-2.  Select **Skip to configure**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image67.png)
-
-3.  In the configuration page, enter the below details and select
-    **Create**.
+3.  Select the **Configure** tab, enter the below details and select **Create**.
 
     - Name - +++Leave Manager Agent+++
 
@@ -421,8 +418,8 @@ incorrect.](./media/image67.png)
     - Instructions - +++Track the leaves of employees. Track their leave
       balance. Apply/Reject leaves based on their balance.+++
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image68.png)
+    <img width="940" height="539" alt="image" src="https://github.com/user-attachments/assets/8dfc6026-8895-487b-beb5-66531c87ab47" />
+
 
 4.  Once the agent gets created, scroll down in the Overview page and
     select **Add knowledge** under the **Knowledge** section.
@@ -441,9 +438,9 @@ incorrect.](./media/image70.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image71.png)
 
-7.  Select **Add** to add the tracker to the agent.
+7.  Select **Add to agent** to add the tracker to the agent.
 
-    ![](./media/image72.png)
+    <img width="940" height="610" alt="image" src="https://github.com/user-attachments/assets/5d910ae4-67b8-4be0-8054-d0dc05e9e691" />
 
 8.  The file gets added. Wait until the status is Ready before
     proceeding to the next step.
@@ -583,4 +580,5 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
