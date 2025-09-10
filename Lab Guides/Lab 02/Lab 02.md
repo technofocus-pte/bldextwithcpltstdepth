@@ -449,10 +449,10 @@ incorrect.](./media/image67.png)
 incorrect.](./media/image68.png)
 
 5.  Once the connection is established, the available index is listed
-    and already selected. Click on **Add**.
+    and already selected. Click on **Add to agent**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image69.png)
+incorrect.](./media/image76.png)
 
 6.  The AI Search service is added as a knowledge source to the agent
     and is in **Ready** state now.
@@ -476,5 +476,6 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
