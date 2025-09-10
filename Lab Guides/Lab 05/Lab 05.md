@@ -502,7 +502,7 @@ incorrect.](./media/image80.png)
 
 ## Supplementry - Exercise 8 - Implement Multi agent orchestration in Copilot Studio
 
->[!Alert] This exercise can be performed when the Leave Management agent is published.
+>[!Alert] This exercise can be performed only when the Leave Management agent is published.
 
 Rather than relying on a single agent to do everything—or managing
 disconnected agents in silos—organizations can now build multi-agent
@@ -587,6 +587,7 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
 
