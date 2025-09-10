@@ -424,8 +424,7 @@ incorrect.](./media/img6.png)
     admin center** and select the app **Customer Service
     workspace** from it.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image72.png)
+    <img width="940" height="557" alt="image" src="https://github.com/user-attachments/assets/31af168e-e28c-4782-a680-47bc0c839a0a" />
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
@@ -460,4 +459,5 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
