@@ -328,7 +328,8 @@ incorrect.](./media/image48.png)
 
 1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
 
-    <img width="564" height="362" alt="image" src="https://github.com/user-attachments/assets/c68909a7-8c8a-4050-89e2-d6d470349e9b" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image73.png)
 
 2.  Select **Import and vectorize data**.
 
@@ -401,15 +402,15 @@ incorrect.](./media/image56.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-3.  The agent creation page gets opened. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
+3.  The agent creation page gets opened. Describe the agent in the **Describe** tab. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image74.png)
 
 4.  The copilot suggests a name to the agent. Click on **Create** to
     create the agent.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image61.png)
+incorrect.](./media/image75.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
@@ -475,4 +476,5 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
