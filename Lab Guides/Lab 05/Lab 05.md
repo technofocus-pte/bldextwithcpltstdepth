@@ -489,13 +489,16 @@ incorrect.](./media/image78.png)
     knowledge asset added to the agent.
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
-
+    
+>![Alert] The Publish option is not working currently. So the next step cannot be done.
 15. Select **Publish** and wait till the agent is published.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-## Exercise 8 - Implement Multi agent orchestration in Copilot Studio
+## Supplementry - Exercise 8 - Implement Multi agent orchestration in Copilot Studio
+
+>![Alert] This exercise can be performed when the Leave Management agent is published.
 
 Rather than relying on a single agent to do everything—or managing
 disconnected agents in silos—organizations can now build multi-agent
@@ -580,5 +583,6 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
