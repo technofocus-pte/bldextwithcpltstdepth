@@ -358,7 +358,7 @@ incorrect.](./media/image51.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-6.  In the Vectorize your text screen, the subscription is are pre-populated. Enter the below details
+6.  In the Vectorize your text screen, the subscription is pre-populated. Enter the below details
     and click **Next**.
 
     - Azure OpenAI Service – Select **openaiservice@lab.LabInstance.Id**
@@ -475,3 +475,4 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
