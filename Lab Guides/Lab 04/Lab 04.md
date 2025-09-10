@@ -11,30 +11,7 @@ Customer Service**
 
 ## Exercise 1: Configure the Dynamics 365 Customer Service workspace
 
-### Task 1: Configure Omnichannel Power Virtual Agent Extension
-
-1.  Open the link,
-    +++https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++ and click on **Get it now** in the Omnichannel Power Virtual Agent Extension page.
-
-    ![](./media/image1.png)
-
-2.  Sign in with the tenant credentials from the **Resources** tab.
-
-    ![](./media/image2.png)
-
-3.  Click on **Get it now**.
-
-    ![](./media/image3.png)
-
-4.  Select the **CustomerService Trial** under **Select an
-    environment**, select the check boxes and click on **Install**.
-
-    ![](./media/image4.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image5.png)
-
-## Task 2: Configure search settings in the Power Platform admin center
+## Task 1: Configure search settings in the Power Platform admin center
 
 1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
     your tenant details. Select **Manage** from the left pane and then
@@ -308,23 +285,23 @@ incorrect.](./media/image48.png)
 
 ### Task 3: Add the agent to the workstream
 
-1.  Back in the **New Workstream** page, scroll down and click on **+ Add bot** in the **Add an AI agent** section.
+1.  Back in the **New Workstream** page, scroll down and click on **+ Add an AI agent** in the **Add an AI agent** section.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image49.png)
+    <img width="940" height="584" alt="image" src="https://github.com/user-attachments/assets/b6d10eee-d97f-4a9c-ae5f-e1fe5be6da3c" />
 
 
-2.  From the list of bots on the Add a bot screen, select the **Store
+
+2.  From the list of agents on the Add an AI Agent screen, select the **Store
     Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image50.png)
 
 
-3.  Ensure that the bot is added to the workstream as in the screenshot below.
+3.  Ensure that the agent is added to the workstream as in the screenshot below.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image51.png)
+    <img width="940" height="501" alt="image" src="https://github.com/user-attachments/assets/61407386-3ac4-4a8a-beda-0c35f52e6051" />
+
 
 
 4.  From the left pane, select **AI Agents**.
@@ -483,3 +460,4 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
