@@ -357,23 +357,25 @@ incorrect.](./media/image58.png)
 
 9.  Select **Save** and then **Publish** to publish the agent.
 
+    >[!Alert] Ignore this step and the next one if the **Publish** option does not work. Continue directly with the Step 11.
+    
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
 
-10. Select **Publish** in the confirmation dialog box.
+11. Select **Publish** in the confirmation dialog box.
 
     ![A close-up of a white background AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Select the Test icon and enter +++Travel Approval+++ and send from
+12. Select the Test icon and enter +++Travel Approval+++ and send from
     the test pane.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-12. Converse by giving the below details to the agent
+13. Converse by giving the below details to the agent
 
     Employee ID – +++1234+++
     
@@ -382,17 +384,17 @@ incorrect.](./media/image62.png)
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image63.png)
 
-13. Select **Allow** to allow connection.
+14. Select **Allow** to allow connection.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/Image93.png)
 
-14. You will get a **Request submitted** message from the agent.
+15. You will get a **Request submitted** message from the agent.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image64.png)
 
-15. Open the Teams Channel and you will see the details posted there for
+16. Open the Teams Channel and you will see the details posted there for
     the Travel approval.
 
     ![](./media/image65.png)
@@ -587,6 +589,7 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
 
