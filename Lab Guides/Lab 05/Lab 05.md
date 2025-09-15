@@ -497,7 +497,7 @@ incorrect.](./media/image78.png)
 
 15. Select **Publish** and wait till the agent is published.
 
-    >[!Alert] The Publish option is not working currently. So this step cannot be executed successfully. This step can be ignoredfor now.
+    >[!Alert] The Publish option is not working currently. So this step cannot be executed successfully. This step can be ignored for now.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
@@ -589,6 +589,7 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
 
