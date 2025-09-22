@@ -86,9 +86,7 @@ incorrect.](./media/image9.png)
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image10.png)
 
->[!Alert] The Publish option is not working currently. So the following exercise can be executed only if you are able to publish the agent successfully. 
-
-## Supplementary Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
 
 In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
 
@@ -150,6 +148,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
