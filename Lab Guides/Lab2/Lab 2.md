@@ -2,102 +2,179 @@
 
 ## Objective
 
-In this lab, you will create a security group in Azure to update tenant settings in Copilot Studio and then activate the **Dynamics 365 Customer Service trial**.
+In this lab, you will create a security group in Azure to update
+settings in Copilot Studio and then activate the **Dynamics 365 Customer
+Service trial**.
 
 ## Task 1: Create Security Group in Entra ID and Configure Copilot Studio Authors
-1.	Navigate to +++https://portal.azure.com/+++ azure portal and login with your login credentials.
 
-  	![](./media/Picture1.jpg)
+1.  Navigate to +++https://portal.azure.com/+++ azure portal and login
+    with your login credentials.
 
-    ![](./media/Picture2.jpg)
-  	
-3.	Click **Yes** to stay signed in.
-   
-    ![](./media/Picture3.jpg)
-  	
-5.	Click **Postpone MFA** to delay multi-factor authentication.
+    ![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image1.jpeg)
 
-    ![](./media/Picture4.jpg)
-  	
-7.	Click **Confirm** postpone.
+    ![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image2.jpeg)
 
-    ![](./media/Picture5.jpg)
-  	
-9.	Click **Continue sign in without MFA**.
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image3.png)
 
-    ![](./media/Picture6.jpg)
-  	
-11.	Click **Get started** to proceed.
+2.  Select **Next** in the Keep your account secure window and follow
+    the **prompts**.
 
-    ![](./media/Picture7.jpg)
-   	
-13.	Click **Skip**, then click **Skip** again.
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image4.png)
 
-    ![](./media/Picture8.jpg)
+3.  Download the Authenticator app in your phone if you do not have it
+    already.
 
-    ![](./media/Picture9.jpg)
-   	
-15.	From the Azure home page, search for and  select +++**Microsoft Entra ID**+++.
+    ![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image5.png)
 
-    ![](./media/Picture10.jpg)
-   	
-17.	Under **Manage**, select **Groups** to create a new security group.
+4.  Follow the prompts and complete the setup.
 
-     ![](./media/Picture11.jpg)
-   	
-19.	Click **New group** from the top bar.
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image6.png)
 
-    ![](./media/Picture12.jpg)
-   	
-21.	Select **Security** as the group type.
-22.	In the Group name field, enter +++copilotagentsecurity+++.
-23.	Set the Role assign to group option to **Yes**.
-24.	Click **No owner selected**, enter MOD, select MOD Administrator, and click **Select**.    
-25.	Click **No role selected**, enter MOD, select MOD Administrator as a member, and click **Select**.  
-26.	Click **No member selected**, enter MOD, select MOD Administrator as a member, and click **Select**.  
-27.	Enter +++Global Admin+++ in the field and select **Global Administrator Role**. From the bottom click on the **Select** button.  
-28.	Click **Create** to create the new Entra group.  
-29.	Click **Yes** to confirm.  
-30.	Navigate to +++https://admin.powerplatform.microsoft.com/+++ power platform admin center and login with your credentials.
- 
-31.	Click **Yes** to stay signed in.  
-32.	From the left menu, select **Manage**, then **Tenant settings**, and choose **Copilot Studio authors (preview)** setting.  
-33.	Select **Edit** icon to add a security group.  
-34.	Enter **+++copilotagentsecurity+++** in the field, select the security group, and click **Done**.  
-35.	Click **Save** to apply the settings.  
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image7.png)
 
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image8.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image9.png)
+
+5.  In the Azure welcome screen, select **Get Started**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image10.png)
+
+6.  Search for and select +++Microsoft EntraID+++.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image11.png)
+
+7.  From the left pane, select **Manage** -\> **Groups**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image12.png)
+
+8.  Select **New group** to create a new security group.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image13.png)
+
+9.  Enter the below details
+
+    - Group type – Select **Security**
+
+    - Group name – Enter +++**copilotagentsecurity**+++
+
+    - Microsoft Entra roles can be assigned to the group – Select **Yes**
+
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image14.png)
+
+10. Select **No owners selected**, select the **MOD Administrator** from
+    the **Add owners** page and click on **Select**.
+
+    ![A screenshot of a group AI-generated content may be
+incorrect.](./media/image15.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image16.png)
+
+11. Similarly, select **No members selected**, and add the **MOD
+    Administrator** from the list and click on **Select**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image17.png)
+
+12. Select **No roles selected**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image18.png)
+
+13. Search for and select +++**Global admin**+++ and select **Select**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image19.png)
+
+14. Select **Create** once all the details are added and select **Yes**
+    in the confirmation dialog.
+
+    ![A screenshot of a group AI-generated content may be
+incorrect.](./media/image20.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
+
+15. Ensure that you get a **success** message.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
+
+16. From a new tab, navigate to
+    +++https://powerplatform.microsoft.com+++. Select **Manage** from
+    the left pane and then select the **Tenant Settings** option.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image23.png)
+
+17. Select **Copilot Studio Authors** from the list available.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image24.png)
+
+18. Click on the **Edit** icon to edit the settings.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
+
+19. Search for and select the **copilotagentsecurity** group that you
+    created earlier.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
+
+20. Select **Save** to save the settings.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image27.png)
 
 ## Task 2: Sign up for Dynamics 365 Customer Service trial
 
-1.  Open a browser and login to
+1.  Login to
     +++https://dynamics.microsoft.com/en-us/customer-service/overview/+++
 
-2.  Login using your tenant credentials.
+2.  Login using the **Office 365 Tenant details** from the **Resources** tab
+    if prompted.
 
-    - Username - +++@lab.CloudPortalCredential(User1).Username+++
-    
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+3.  Click on **Try for free**
 
-4.  Click on **Try for free**
+    ![](./media/image28.png)
 
-    ![](./media/image1.png)
+4.  Enter your **Office 365 Administrative Username** from
+    the **Resources** tab, select the check box and click on **Start
+    your free trial**.
 
-5.  Enter your Username, +++@lab.CloudPortalCredential(User1).Username+++, **select** the **check box** and click on **Start your free trial**.
+    ![](./media/image29.png)
 
-    ![](./media/image2.png)
+5.  Enter the region as **United States**, enter your **Phone
+    number** and click on **Submit**.
 
-6.  Enter the region as **United States**, enter your **Phone number** and click on **Submit**.
+    ![](./media/image30.png)
 
-    ![](./media/image3.png)
-
-7.  If you see an option to Launch Trial for Engage customers, click
+6.  If you see an option to Launch Trial for Engage customers, click
     on **Launch Trial**.
 
-    ![](./media/image4.png)
+    ![](./media/image31.png)
 
-8.  Once activated, your Customer Service workspace will get opened.
+7.  Once activated, your Customer Service workspace will get opened.
 
-    ![](./media/image5.png)
+    ![](./media/image32.png)
 
 ## Summary
 
@@ -105,5 +182,3 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**.
-
-
