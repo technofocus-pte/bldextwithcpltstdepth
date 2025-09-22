@@ -356,8 +356,6 @@ incorrect.](./media/image57.png)
 incorrect.](./media/image58.png)
 
 9.  Select **Save** and then **Publish** to publish the agent.
-
-    >[!Alert] Ignore this step and the next one if the **Publish** option does not work. Continue directly with the Step 11.
     
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
@@ -497,14 +495,10 @@ incorrect.](./media/image78.png)
 
 15. Select **Publish** and wait till the agent is published.
 
-    >[!Alert] The Publish option is not working currently. So this step cannot be executed successfully. This step can be ignored for now.
-
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-## Supplementary - Exercise 8 - Implement Multi agent orchestration in Copilot Studio
-
->[!Alert] This exercise can be performed only when the Leave Management agent is published.
+## Exercise 8 - Implement Multi agent orchestration in Copilot Studio
 
 Rather than relying on a single agent to do everything—or managing
 disconnected agents in silos—organizations can now build multi-agent
@@ -589,6 +583,7 @@ incorrect.](./media/image90.png)
 In this lab, we have learnt how to enhance an agent created from a
 template to suit the individual needs. We have also learnt to implement
 Multi agent orchestration in the Copilot Studio
+
 
 
 
