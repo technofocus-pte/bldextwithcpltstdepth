@@ -63,7 +63,7 @@ In this lab, you will create a security group in Azure to update tenant settings
 31.	Click **Yes** to stay signed in.  
 32.	From the left menu, select **Manage**, then **Tenant settings**, and choose **Copilot Studio authors (preview)** setting.  
 33.	Select **Edit** icon to add a security group.  
-34.	Enter **++copilotagentsecurity++** in the field, select the security group, and click **Done**.  
+34.	Enter **+++copilotagentsecurity+++** in the field, select the security group, and click **Done**.  
 35.	Click **Save** to apply the settings.  
 
 
@@ -105,4 +105,5 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**.
+
 
