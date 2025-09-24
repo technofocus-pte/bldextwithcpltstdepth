@@ -117,7 +117,7 @@ incorrect.](./media/image21.png)
 incorrect.](./media/image22.png)
 
 16. From a new tab, navigate to
-    +++https://powerplatform.microsoft.com+++. Select **Manage** from
+    +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from
     the left pane and then select the **Tenant Settings** option.
 
     ![A screenshot of a computer AI-generated content may be
@@ -182,4 +182,5 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**.
+
 
