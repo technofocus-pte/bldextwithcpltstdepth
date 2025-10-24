@@ -470,13 +470,15 @@ incorrect.](./media/image70.png)
 10.  You can see that the response from the agent now is from the
     document uploaded in the AI Search service.
 
-    <img width="279" height="305" alt="image" src="https://github.com/user-attachments/assets/89622034-fa6e-4a07-a52b-757b1899bb12" />
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im6.png)
 
 
 ## Summary:
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
