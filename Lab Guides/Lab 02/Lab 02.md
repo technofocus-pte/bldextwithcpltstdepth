@@ -467,17 +467,17 @@ incorrect.](./media/image70.png)
 
     <img width="285" height="315" alt="image" src="https://github.com/user-attachments/assets/b48e410f-6950-4d89-abdd-dc1e5d5ff81c" />
 
-10.  You can see that the response from the agent now is from the
+10. You can see that the response from the agent now is from the
     document uploaded in the AI Search service.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im6.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im6.png)
 
 
 ## Summary:
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
