@@ -580,9 +580,20 @@ incorrect.](./media/image90.png)
 
 ## Summary
 
-In this lab, we have learnt how to enhance an agent created from a
-template to suit the individual needs. We have also learnt to implement
-Multi agent orchestration in the Copilot Studio
+In this lab, you learned how to:
+
+-    Extend agents with custom knowledge assets.
+
+-    Design and connect Agent Flows to automate tasks via Teams.
+
+-    Create topics using natural language prompts and integrate flows as tools.
+
+-    Publish agents to Teams and Microsoft 365 Copilot for enterprise use.
+
+-    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
+
+By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
