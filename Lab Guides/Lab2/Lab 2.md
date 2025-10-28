@@ -133,7 +133,7 @@ incorrect.](./media/image24.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-19. Search for and select the **copilotagentsecurity** group that you
+19. Search for and select the **+++copilotagentsecurity+++** group that you
     created earlier.
 
     ![A screenshot of a computer AI-generated content may be
@@ -182,5 +182,6 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**.
+
 
 
