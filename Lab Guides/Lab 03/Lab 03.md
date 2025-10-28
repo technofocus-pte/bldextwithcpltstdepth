@@ -28,10 +28,12 @@ incorrect.](./media/image2.png)
 
     >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
     >
-    ><img width="794" height="335" alt="image" src="https://github.com/user-attachments/assets/aa733c94-334a-4f69-88b4-59fbbe93bb08" />
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im5.png)
     >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments** and select the value of the **Environment ID**.
-    ><img width="459" height="327" alt="image" src="https://github.com/user-attachments/assets/37585a91-e802-47d5-aaa1-37d7f96058a4" />
+    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im6.png)
     >
     > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
 
@@ -148,6 +150,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
