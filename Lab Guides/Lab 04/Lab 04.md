@@ -50,26 +50,28 @@ incorrect.](./media/image9.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-3.  In the Type your message text area, type +++**You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
+3.  Select the **Describe** tab. In the Type your message text area, type +++**You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
 
-    ![](./media/image12.png)
+    ![](./media/im8.png)
 
 4.  The agent might suggest a **name** for the Agent being created.
     Either accept it or suggest a new name.
 
+    ![](./media/im9.png)
+
 5.  Type the message +++**Maintain a polite tone**+++ next and
     hit **send**.
 
-    ![](./media/image13.png)
+    ![](./media/im11.png)
 
 6.  Click on **Create**.
 
-    ![](./media/image14.png)
+    ![](./media/im12.png)
 
-7.  The created agent opens up with a message, **Your agent is ready**.
+7.  The agent creation succeeds and the agents **Overview** page gets opened.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image15.png)
+incorrect.](./media/im13.png)
 
 ## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
 
