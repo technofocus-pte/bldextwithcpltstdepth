@@ -109,7 +109,7 @@ how it should behave so that the Copilot will create the agent for you.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Enter the below in the chat and send it.
+3.  Select the **Describe** tab. Enter the below in the chat and send it.
 
     +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
 
