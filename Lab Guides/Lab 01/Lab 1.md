@@ -1,102 +1,89 @@
-# Laboratório 01 - Criar um agente assistente de jardinagem usando o Agent Builder do Copilot Studio
+# 實驗 01 - 使用 Copilot Studio Agent Builder 創建園藝助理代理
 
-## Objetivo
+## 目的
 
-Neste laboratório, você começará a criar um agente de jardinagem usando
-o Agent Builder do Copilot Studio e fornecerá um conjunto de instruções
-de exemplo.
+在本實驗中，您將開始使用 Copilot Studio
+代理生成器構建園藝代理，並提供一組示例說明。
 
-## Exercício 1: Criando o agente
+## 練習 1：創建代理
 
-1.  Abra o link +++<https://www.microsoft365.com/chat>+++ e faça login
-    com suas credenciais.
+1.  打開鏈接 +++ <https://www.microsoft365.com/chat>+++
+    並使用您的憑據登錄。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Selecione **Create agent** no painel esquerdo.
+2.  從 左側窗格中選擇 **Create agent**。
 
-> ![](./media/image2.png)
+    ![](./media/image2.png)
 
-3.  O Agent Builder do Copilot Studio será exibido e você poderá começar
-    a definir o agente personalizado. Você pode escolher um modelo para
-    começar ou simplesmente *descrever* o agente em linguagem natural.
-    Vamos fornecer a seguinte descrição inicial:
+3.  Copilot Studio
+    代理構建器彈出，您可以開始定義自定義代理。您可以選擇一個模板作為起點，也可以簡單地
+    通過以自然語言提供描述來描述代理。讓我們提供以下初始描述
 
-+++You are an expert gardener and you help users to maintain and improve
-their home garden
-
-providing detailed instructions and advice about the best practices for
+    +++You are an expert gardener and you help users to maintain and improve
+their home garden providing detailed instructions and advice about the best practices for
 home gardening.+++
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Depois de fornecer as instruções, o Agent Builder perguntará sobre o
-    nome do novo agente.
+4.  提供說明後，代理構建器將詢問您有關新代理的名稱。
 
-5.  Forneça o nome: +++Gardening assistant+++.
+5.  提供名稱: +++Gardening assistant+++。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image4.png)
 
-6.  Ao interagir com o Agent Builder, no lado direito da caixa de
-    diálogo, você verá uma prévia do próprio agente, incluindo algumas
-    sugestões para iniciar conversas. Se o Agent Builder solicitar
-    instruções mais detalhadas, informe a seguinte frase.
+6.  當您與代理構建器交互時，您可以在對話框的右側看到代理本身的預覽，包括一些建議的對話啟動器。如果代理生成器詢問您進一步優化說明，請提供以下句子。
 
-+++Suggest ways to keep plants and flowers shining and gorgeous+++
+    +++Suggest ways to keep plants and flowers shining and gorgeous+++
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image5.png)
 
-7.  Continue interagindo com o Agent Builder até que ele tenha todas as
-    informações necessárias para criá-lo. Se o Agent Builder perguntar o
-    que deve ser enfatizado, informe a seguinte frase.
+7.  繼續與 Agent Builder
+    交互，直到它擁有創建代理所需的所有信息。如果代理構建者詢問您應該強調什麼，請提供以下句子。
 
-+++ Highlight the importance of nature and plants/flowers to be present
+    +++Highlight the importance of nature and plants/flowers to be present
 in every house!+++
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-8.  Quando o Agent Builder perguntar sobre como o agente deve falar,
-    responda com a seguinte frase.
+8.  當代理構建者詢問您代理應該如何交談時，請用以下句子回答。
 
-+++Use a professional, yet friendly, tone.+++
+    +++Use a professional, yet friendly, tone.+++
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image7.png)
 
-9.  Clique nos 3 pontos no canto superior direito e selecione
-    **Create**.
+9.  單擊右上角的 3 個點，然後選擇 **Create**。
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image8.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image8.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image9.png)
 
-10. Selecione **Go to agent** depois que o agente for criado.
+10. 創建代理後**，**選擇 **Go to agent，**
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-11. Isso abre o agente criado.
+11. 這將打開創建的代理。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image11.png)
 
-12. Selecione qualquer prompt no agente, clique em **Send** e observe a
-    resposta.
+12. 在代理中選擇任何提示，然後單擊 **Send** 並觀察響應。
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image12.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image12.png)
 
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image13.png)
+    ![A screenshot of a chat AI-generated content may be
+    incorrect.](./media/image13.png)
 
-## Resumo:
+## 總結：
 
-Neste laboratório, você aprendeu a criar um agente a partir do Agent
-Builder do Copilot Studio.
+在本實驗中，您學習了如何從 Copilot Studio Agent Builder 創建代理。
