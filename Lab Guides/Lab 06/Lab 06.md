@@ -1,125 +1,117 @@
+# 實驗 06 - 在利用 Azure AI 搜索的 Copilot Studio 中創建 HR 知識助手代理
 
-# Laboratório 06 - Criar um Agente assistente de Conhecimento para RH no Copilot Studio que aproveita o Azure AI Search
+## 目的
 
-## Objetivo:
+一家大型企業希望減少員工在 SharePoint、PDF、內部 Wiki 和文檔中搜索 HR
+相關信息（政策、福利、休假指南等）所花費的時間。
 
-Uma grande empresa quer reduzir o tempo que os funcionários gastam
-procurando informações relacionadas a RH (políticas, benefícios,
-diretrizes de licença, etc.) espalhadas no SharePoint, PDFs, wikis
-internos e documentos.
+為了克服這個問題，在本實驗中，您將在 **Copilot Studio** 中構建一個
+**Knowledge assistant agent**，該代理使用 **Azure AI Search** 在企業 HR
+文檔中進行索引和語義搜索。
 
-Para superar esse problema, neste laboratório, você criará um **Agente
-assistente de conhecimento** no **Copilot Studio** que usa o **Azure AI
-Search** para indexar e pesquisar semanticamente em documentos de RH
-corporativos.
+## 練習 1：創建 Azure AI 搜索資源
 
-## Exercício 1: Criar um recurso do Azure AI Search
-
-1.  Na página inicial do portal do Azure, selecione **Azure AI
-    Foundry.**
+1.  在 Azure 門戶的主頁中，選擇 **Azure AI Foundry。**
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Na **página AI Foundry**, selecione **AI Search** no painel esquerdo
-    e depois selecione **+ Create**.
+2.  在 **AI Foundry** 頁面中，從左側窗格中選擇 **AI Search**，然後選擇
+    **+ Create**。
 
 ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Insira os detalhes abaixo e selecione **Review + create**.
+3.  輸入以下詳細信息，然後選擇 **Review + create**。
 
-- Subscription – Selecione sua **assinatura atribuída**
+- Subscription – 選擇您的 **assigned subscription**
 
-- Resource group – Selecione o **grupo de recursos atribuído**
+- Resource group – 選擇您的 **assigned Resource group**
   (**ResourceGroup1**)
 
-- Storage account name – +++**searchleaves**+++
+- 存儲帳戶名稱 – +++**searchleaves**+++
 
-- Location – Selecione a **região atribuída**
+- 位置 – 選擇您的 **assigned region**
 
 ![A screenshot of a search service AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Após a validação, selecione **Create**.
+4.  驗證通過後，選擇 **Create** 。
 
 ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  A implementação leva alguns minutos. Selecione **Go to resource**
-    após a criação do serviço de pesquisa.
+5.  部署需要幾分鐘時間。創建 搜索服務後，選擇 **Go to resource**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  Na página **Overview**, copie o valor da URL e salve-o em um bloco
-    de notas para ser usado em um exercício futuro.
+6.  在 **Overview** 頁面中，複製 Url
+    值並將其保存在記事本中，以便在將來的練習中使用。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-7.  Selecione **Key** em **Settings** no painel esquerdo. Copie a
-    **Primary admin key** e salve-a em um bloco de notas para usá-la nos
-    próximos exercícios.
+7.  選擇 **Keys** 下 **Settings** 從左側窗格中。複製 **Primary admin
+    key** 並將其保存在記事本中，以便在即將到來的練習中使用。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-8.  Selecione **Identity** em **Settings** no painel esquerdo.
+8.  在 左側窗格中的 **Settings** 下選擇 **Identity**。
 
 ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image8.png)
 
-9.  Alterne o Status para **On** em **System assigned** e clique em
-    **Save**.
+9.  將 狀態 切換為 **On** 在 系 **System assigned** 下，然後單擊
+    **Save**。
 
 ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image9.png)
 
-10. Selecione **Yes** na caixa de diálogo **Enable system assigned
-    managed identity**.
+10. 在“**Enable system assigned managed
+    identity**”對話框中選擇“**Yes**”。
 
 ![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercício 2: Criar uma conta de armazenamento
+## 練習 2：創建存儲帳戶
 
-1.  Acesse o portal do Azure em +++https://portal.azure.com/+++ e use
-    suas credenciais. Selecione **Storage accounts** na tela inicial.
+1.  通過 +++https://portal.azure.com/+++ 登錄到 Azure
+    門戶，並使用您的憑據登錄。從主屏幕中選擇 Storage accounts。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Selecione **+ Create** para criar uma nova conta de armazenamento.
+2.  選擇“**+ Create**”以創建新的存儲帳戶。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-3.  Insira os detalhes abaixo, aceite os valores padrão nos outros
-    campos e clique em **Review + create**.
+3.  輸入以下詳細信息，接受其他字段中的默認值，然後單擊 **Review +
+    create**。
 
-- Subscription – Selecione sua **assinatura atribuída**
+- Subscription – 選擇您的 **assigned subscription**
 
-- Resource group – Selecione o **grupo de recursos atribuído**
+- Resource group – 選擇您的 **assigned Resource group**
   (**ResourceGroup1**)
 
-- Region – Selecione a **região atribuída**
+- Region – 選擇您的 **assigned region**
 
-- Storage account name – +++**leavepolicystorage**+++
+- 存儲帳戶名稱 – +++**leavepolicystorage**+++
 
-- Primary service – Selecione **Azure Blob Storage ou Azure Data Lake
-  Storage Gen 2**
+- 主要服務 – 選擇 **Azure Blob Storage or Azure Data Lake Storage Gen
+  2**
 
 > ![A screenshot of a computer AI-generated content may be
 > incorrect.](./media/image13.png)
 
-4.  Após a validação, clique em **Create**.
+4.  驗證通過後，單擊 **Create**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Após a criação do recurso ser bem-sucedida, clique em **Go to
-    resource**.
+5.  資源創建成功後，單擊 **Go to resource**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image15.png)
@@ -127,26 +119,25 @@ incorrect.](./media/image15.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Selecione **Containers** em **Data storage**. Selecione **+
-    Container**, insira o nome +++ **document**+++ e clique em
-    **Create** para criar o contêiner.
+6.  在 **Data storage** 下選擇 **Containers**。選擇 **+
+    Container**，輸入名稱 +++**document**+++，然後單擊 **Create**
+    創建容器。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-7.  Selecione o contêiner **document** criado para carregar o documento
-    de política de licença nele.
+7.  選擇創建的容器 **document** ，將休假策略文檔上傳到其中。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Clique em **Upload** e depois selecione **Browse for files**.
+8.  單擊 **Upload**，然後選擇 **Browse for files**。
 
 ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Selecione **LeavePolicy.docx** em **C:\Labfiles** e clique em
-    **Upload**.
+9.  從 **C：\Labfiles** 中選擇 **LeavePolicy.docx**，然後單擊
+    **Upload**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
@@ -154,85 +145,81 @@ incorrect.](./media/image20.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-10. Navegue até a conta de armazenamento **leavepolicystorage**
-    (Selecione **Storageaccounts** na **Home page** do portal do Azure e
-    selecione **leavepolicystorage**) e selecione **Access Control
-    (IAM)** no painel esquerdo. Selecione **Add -\> Add role
-    assignment**.
+10. 導航到 **leavepolicystorage** 存儲帳戶（從 Azure 門戶的 **Home
+    page** 中選擇 **Storageaccounts**，然後選擇
+    leavepolicystorage），**Access Control (IAM)**。選擇 **Add -\> Add
+    role assignment**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-11. Procure por +++**Storage Blob Data Reader**+++, selecione-o e clique
-    em **Next**.
+11. 搜索 **+++Storage Blob Data Reader+++**，選擇它，然後單擊“
+    **Next**”。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-12. Clique em **+ Select members**, pesquise e selecione seu **user
-    id**, selecione o **user id** listado e clique em **Select**. Isso
-    adiciona a função Storage Blob Data Reader ao seu ID de usuário.
+12. 點擊 **+Select members**，搜索並選擇您的 **user id**，選擇列出的
+    **user id**，然後單擊 **Select**。這會將“存儲 Blob
+    數據讀取者”角色添加到你的用戶 ID 中。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-13. Selecione **Managed identity** e, em seguida, **+ Select members**.
-    Selecione **Search service** em **Managed identity** e selecione o
-    serviço de **searchleaves** que será listado.
+13. 選擇“**Managed identity**”，然後選擇**+ Select
+    members**”。在“**Managed identity**”下選擇“**Search
+    service**”，然後選擇列出的 **searchleaves** 搜索服務。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-14. Clique em **Select** para selecionar o serviço de pesquisa.
+14. 單擊 **Select** 以選擇搜索服務。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-15. De volta à tela **Add role assignment**, clique em **Review +
-    assign**.
+15. 返回 Add role assignment 屏幕，單擊 **Review + assign**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-16. Selecione **Review + assign** novamente na próxima tela.
+16. 在下一個屏幕中再次選擇 **Review + assign**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-17. Prossiga para a próxima etapa depois que as funções forem
-    adicionadas.
+17. 添加角色後，請繼續執行下一步。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-Neste exercício, criamos uma conta de armazenamento e adicionamos o
-documento e as permissões de função necessárias.
+在本練習中，我們創建了一個 Storage 帳戶，並向其添加了文檔和所需的 Role
+權限。
 
-## Exercício 3: Criar um Azure OpenAI Service e implementar um modelo
+## 練習 3：創建 Azure OpenAI 服務並部署模型 
 
-1.  Na página inicial do portal do Azure, pesquise por select +++Azure
-    OpenAI++.
+1.  在 Azure 門戶主頁中，搜索選擇“+++Azure OpenAI++”。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-2.  Selecione **+ Create**.
+2.  選擇 **+ Create**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-3.  Insira os detalhes abaixo e selecione **Next**.
+3.  輸入以下詳細信息，然後選擇 **Next**。
 
-- Subscription – Selecione sua **assinatura atribuída**
+- Subscription – 選擇您的 **assigned subscription**
 
-- Resource group – Selecione o **grupo de recursos atribuído**
-  (ResourceGroup1)
+- Resource group – 選擇您的 **assigned Resource group**
+  (**ResourceGroup1**)
 
-- Region – Selecione a **região atribuída**
+- Region – 選擇您的 **assigned region**
 
-- Name – +++**openaiservice52374668**+++
+- 名字 – +++**openaiservice52374668**+++
 
-- Pricing tier – Selecione **Standard**
+- 定價層 – Select **Standard**
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
@@ -240,135 +227,128 @@ incorrect.](./media/image32.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  Selecione **Next** nas próximas 2 telas e selecione **Create** na
-    tela **Review + submit**.
+4.  在接下來的 2 個屏幕中選擇 **Next**，在 **Review + submit**
+    屏幕中選擇 **Create**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-5.  Clique em **Go to resource** quando o serviço for criado.
+5.  創建服務後**，**單擊 **Go to resource**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-6.  Selecione **Access Control (IAM)** no painel esquerdo, selecione
-    **Add -\> Add role assignment**.
+6.  從 左側窗格中選擇 **Access control （IAM），**然後選擇 **Add -\> Add
+    role assignment**。
 
 ![](./media/image36.png)
 
-7.  Pesquise por +++**Cognitive Services OpenAI User**+++, selecione a
-    função e clique em **Next**.
+7.  搜索 **+++Cognitive Services OpenAI User+++**，選擇角色，然後單擊
+    **Next**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-8.  Selecione **+ Select members**, procure seu **user id**, selecione-o
-    e clique em **Select**.
+8.  選擇 **+ Select members**，搜索您的 **user id**，選擇它，然後單擊
+    **Select**。
 
 ![](./media/image38.png)
 
-9.  De volta à tela **Add role assignment**, selecione **Managed
-    identity**. Em seguida, selecione **+ Select members**. Na tela
-    **Select managed identities**, selecione **Search service** em
-    **Managed identity** e selecione o serviço **seachleaves**.
+9.  返回 **Add role assignment** 屏幕，選擇 **Managed
+    identity**。然後選擇 **+ Select members**。在 **Select managed
+    identities** 屏幕中，選擇 **Managed identity** 下的 **Search
+    service**，然後選擇 **seachleaves** 服務。
 
 ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image39.png)
 
-10. Uma vez selecionado, clique em **Select**.
+10. 選擇後，單擊 **Select**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-11. Selecione **Review + assign** nas próximas 2 telas.
+11. 在接下來的 2 個屏幕中選擇 Review + assign。
 
 ![](./media/image41.png)
 
-12. Aguarde a mensagem **success** sobre as adições de funções antes de
-    prosseguir com as próximas tarefas.
+12. 請等待有關 角色添加的 **success** 消息，然後再繼續執行下一個任務。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-13. Na página **Overview** de recurso do Azure OpenAI Service, selecione
-    **Ir para o portal do Azure AI Foundry** para abrir o Azure OpenAI
-    Service e implementar um modelo.
+13. 在 Azure OpenAI 服務資源的“**Overview**”頁中，選擇“**Go to Azure AI
+    Foundry portal**”，在其中打開 Azure OpenAI 服務並部署模型。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-14. Selecione **Deployments** no painel esquerdo.
+14. 從 左側窗格中選擇 Deployments。
 
 ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image44.png)
 
-15. Selecione **+ Deploy model** -\> **From base models**.
+15. 選擇 **+ Deploy model -\> From base models**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-16. Pesquise por +++ **text-embedding**+++, selecione
-    **text-embedding-3-large** e então selecione **Confirm**.
+16. 搜索 **+++text-embedding+++**，選擇 **text-embedding-3-large**
+    ，然後選擇 **Confirm**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-17. Selecione **Deploy** em **Deploy text-embedding-3-large**.
+17. 在 Deploy text-embedding-3-large 中選擇 **Deploy**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-18. O modelo é implementado e a tela é carregada com os detalhes da
-    implementação.
+18. 模型將部署，並且屏幕將加載部署詳細信息。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-## Exercício 4: Criar um índice vetorial
+## 練習 4：創建向量索引
 
-1.  Acesse o recurso do serviço de pesquisa de AI da **searchleaves.**
-    Selecione **Import and vectorize data**.
+1.  轉到 **searchleaves** AI Search 服務資源。選擇 **Import and
+    vectorize data**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-2.  Selecione a opção **Azure Blob Storage**.
+2.  選擇 **Azure Blob Storage** 選項。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image50.png)
 
-3.  Selecione a opção **RAG** na tela **What scenarios are you
-    targeting?.**
+3.  在“**What scenarios are you targeting?**”屏幕中選擇 **RAG** 選項。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-4.  Insira os detalhes abaixo, aceite os outros valores como padrão e
-    clique em **Next**.
+4.  輸入以下詳細信息，接受其他值作為默認值，然後單擊 **Next**。
 
-- Subscription – Selecione sua **assinatura atribuída**
+- Subscription – 選擇您的 **assigned subscription**
 
-- Storage account - Selecione **leavepolicystorage**
+- 存儲帳戶 - 選擇 **leavepolicystorage**
 
-- Blob-container – Selecione **document**
+- Blob 容器 – 選擇 **document**
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-5.  Na tela **Vectorize your text**, a assinatura e os detalhes do
-    recurso do Azure OpenAI são preenchidos previamente. Insira os
-    detalhes abaixo e clique em **Next**.
+5.  在 Vectorize your text 屏幕中，訂閱和 Azure OpenAI
+    資源詳細信息已預先填充。輸入以下詳細信息，然後單擊 **Next**。
 
-- Model deployment – Selecione **text-embedding-3-large**
+- 模型部署 – 選擇 **text-embedding-3-large**
 
-- Authentication type – Selecione **System assigned identity**
+- Authentication type – 選擇 **System assigned identity**
 
-- Marque a caixa de seleção para confirmar o alerta de custo do Azure
-  OpenAI.
+- 選中複選框以確認 Azure OpenAI 的成本警報。
 
-1.  Selecione **Next** na tela **Vectorize and enrich your images,** já
-    que não estamos lidando com imagens aqui, e selecione **Next**
-    também na tela **Advanced settings.**
+6.  在 **Vectorize and enrich your images** 屏幕中選擇 下一步
+    ，因為我們在這裡不處理圖像，然後在 **Advanced settings** 屏幕中選擇
+    **Next** 。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
@@ -376,43 +356,41 @@ incorrect.](./media/image53.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-2.  Selecione **Create** na tela **Review + create**.
+7.  在 **Review + create** 屏幕中選擇 **Create** 。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-3.  Clique em **Close** na caixa de diálogo de sucesso.
+8.  單擊 成功對話框中的 **Close**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-## Exercício 5: Criar um Agente assistente de conhecimento
+## 練習 5：創建知識助手代理
 
-1.  Faça login em +++https://copilotstudio.microsoft.com+++ usando suas
-    credenciais de login.
+1.  使用您的登錄憑證登錄 +++https://copilotstudio.microsoft.com+++。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-2.  Selecione **Create** no painel esquerdo.
+2.  從 左側窗格中選擇 **Create**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-3.  Selecione **+ New agent** para criar um novo agente.
+3.  選擇 **+ New agent** 創建新代理。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-4.  Digite +++You are a Knowledge assistant agent for HR who will answer
-    questions related to leaves and leave policies to the employees.+++
-    e selecione **Send**.
+4.  輸入 +++ You are a Knowledge assistant agent for HR who will answer
+    questions related to leaves and leave policies to the
+    employees.+++，然後選擇 **Send**。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image60.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image60.png)
 
-5.  O copilot sugere um nome ao agente. Clique em **Create** para criar
-    o agente.
+5.  Copilot 向代理建議一個名稱。單擊 **Create** 以創建代理。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image61.png)
@@ -420,72 +398,65 @@ incorrect.](./media/image61.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-6.  Depois que o agente for criado, no painel Test, insira +++How many
-    days can I avail Maternity leaves?+++ e clique em **Send.**
+6.  創建代理後，在 Test 窗格中輸入 +++How many days I can avail PARITIES
+    leaves？+++，然後單擊 **Send。**
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-7.  Fornece uma resposta generalizada como na captura de tela abaixo.
+7.  它給出了一個通用的回答，如下面的屏幕截圖所示。
 
 ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image64.png)
 
-## Exercício 6: Adicione o Azure AI Search como fonte de conhecimento
+## 練習 6：將 Azure AI 搜索添加為知識源
 
-1.  Na página **Overview** do agente, selecione **Add knowledge**.
+1.  從 代理的 **Overview** 頁面中，選擇 **Add knowledge**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image65.png)
 
-2.  Selecione Azure AI Search na lista de fontes de conhecimento
-    disponíveis.
+2.  從可用知識源列表中選擇 Azure AI 搜索。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-3.  Clique no **menu suspenso** ao lado de **Not connected** na próxima
-    tela e selecione **Create new connection**.
+3.  單擊下一個屏幕中 **Not connected**旁邊的 **drop down**
+    菜單，然後選擇 **Create new connection**。
 
 ![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image67.png)
 
-4.  Insira a **Endpoint url** e os valores **Admin key** que salvamos em
-    um bloco de notas em um exercício anterior e clique em **Create**
-    para criar a conexão.
+4.  輸入 我們在上一個練習中保存到記事本的 **Endpoint url** 和 **Admin
+    key** 值，然後單擊 **Create** 以創建連接。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-5.  Após o estabelecimento da conexão, o índice disponível será listado
-    e selecionado. Clique em **Add**.
+5.  建立連接後，將列出可用索引並已選中。單擊 **Add**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-6.  O serviço AI Search é adicionado como fonte de conhecimento ao
-    agente e agora está no estado **Ready.**
+6.  AI Search 服務已作為知識源添加到代理，現在處於 **Ready** 狀態。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-7.  Agora, vamos testar o agente com a mesma pergunta que tentamos
-    antes.
+7.  現在，讓我們使用之前嘗試的相同問題來測試代理。
 
-8.  No painel **Test**, insira +++How many days can I avail Maternity
-    leaves?+++ e clique em **Send.**
+8.  在 Test 窗格中，輸入 +++How many days I can avail
+    falls？+++，然後單擊 **Send。**
 
 ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image71.png)
 
-9.  Você pode ver que a resposta do agente agora vem do documento
-    carregado no serviço **AI Search**.
+9.  您可以看到，代理現在的響應來自在 AI Search 服務中上傳的文檔。
 
 ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image72.png)
 
-Resumo:
+## 總結
 
-Neste laboratório, aprendemos a conectar o agente a um serviço Azure AI
-Search como fonte de conhecimento. Também testamos o agente com base
-nessa fonte.
+在本實驗中，我們學習了如何將代理連接到作為知識源的 Azure AI
+搜索服務，並根據源測試代理。
