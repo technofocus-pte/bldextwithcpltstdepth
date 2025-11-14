@@ -1,600 +1,551 @@
-#  Laboratório 05 – Aprimorar o agente Safe Travels e implementar a orquestração de múltiplos agentes
+# 實驗室 05 – 增強 Safe Travels 代理並實施多代理編排
 
-## Objetivo
+## 目的
 
-Você criou um agente chamado **Safe Travels** usando um modelo fornecido
-no Copilot Studio em um laboratório anterior. Neste laboratório, você
-entenderá como esse agente pode ser aprimorado para atender às
-necessidades de clientes específicos.
+您在上一個實驗中使用 Copilot Studio 中提供的模板創建了一個名為 **Safe
+Travels**
+的代理。在本實驗中，您將瞭解如何增強該代理以滿足特定客戶的需求。
 
-No processo, você aprenderá os conceitos de criação de fluxo de agente e
-orquestração de múltiplos agentes no Copilot Studio.
+在此過程中，您將學習 Copilot Studio 中的代理流創建和多代理編排的概念。
 
-## Exercício 1 – Testar o agente Safe Travels existente
+## 練習 1 – 測試現有的 Safe Travels 代理
 
-Neste exercício, testaremos o agente **Safe Travels** para ver como ele
-responde quando questionado sobre a aprovação da viagem.
+在本練習中，我們將測試 **Safe Travels**
+代理，以瞭解當被問及差旅批准時，代理如何回答。
 
-1.  Abra o **Copilot Studio** em
-    +++https://copilotstudio.microsoft.com+++ em um navegador. Navegue
-    até o ambiente **Dev One** e abra o agente **Safe Travels**.
+1.  從瀏覽器以 +++https://copilotstudio.microsoft.com+++ 打開 **Copilot
+    Studio**。導航到 **Dev One** 環境並打開 **Safe Travels** 代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Selecione o ícone **Test** para testar o agente.
+2.  選擇 **Test** 圖標以測試代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Digite +++Need travel approval+++ na janela Test e clique em
-    **Enter**.
+3.  在 Test 窗口中輸入 +++Need travel approval +++，然後單擊 **Enter**。
 
-![A screenshot of a phone AI-generated content may be
+    ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Você pode ver que o agente responde com um conjunto de instruções
-    generalizadas a serem seguidas para obter a aprovação da viagem.
+4.  您可以看到，代理使用通用指令集進行響應，以便獲得旅行批准。
 
-![A screenshot of a computer screen AI-generated content may be
+    ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image4.png)
 
-## Exercício 2 – Aprimorar o agente com ativos de conhecimento específicos da empresa
+## 練習 2 – 使用公司特定的知識資產增強代理
 
-Neste exercício, adicionaremos o ativo de conhecimento - **Política de
-viagens** específica da Contoso.
+在本練習中，我們將添加特定於 Contoso 的知識資產 - **Travel Policy** 。
 
-1.  Na página Visão geral do agente, role para baixo e selecione **+ Add
-    knowledge**
+1.  在代理的 概述 頁面中，向下滾動並選擇 **+ Add knowledge**
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-2.  Clique na opção **select to browse**.
+2.  單擊 **select to browse** 選項。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-3.  Na pasta **C:\Labfiles**, selecione **Travel Policy.docx** e clique
-    em **Open**.
+3.  從 **C：\Labfiles** 文件夾中，選擇 **Travel Policy.docx** 然後單擊
+    **Open**。
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-4.  Clique em **Add** para adicionar o arquivo.
+4.  單擊 **Add** 以添加文件。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-> ![A screenshot of a computer error AI-generated content may be
-> incorrect.](./media/image9.png)
+    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
 
-5.  Certifique-se de que o arquivo foi adicionado. Aguarde até que o
-    status mude de **In progress** para **Ready** antes de prosseguir
-    para a próxima etapa.
+5.  確保已添加文件。請等待狀態從 **In progress** 更改為 **Ready**
+    ，然後再繼續下一步。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image10.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image10.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image11.png)
 
-## Exercício 3 – Criar um Team e um canal no Microsoft Teams
+## 練習 3 – 在 Microsoft Teams 中創建團隊和頻道
 
-Neste exercício, criaremos um Team e um canal no MS Teams para onde a
-solicitação de aprovação de viagem será enviada.
+在本練習中，我們將在 MS Teams
+中創建一個團隊和一個頻道，差旅審批請求將發送到該團隊和頻道。
 
-1.  Abra o Microsoft Teams e selecione a opção **See all your teams** no
-    painel esquerdo.
+1.  打開 Microsoft Teams 並從左側窗格中選擇“**See all your
+    teams**”選項。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-2.  Selecione **Create team** para criar uma nova equipe.
+2.  選擇 **Create team** 以創建新團隊。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Insira o nome da equipe como +++**HR Team**+++ e o nome do primeiro
-    canal como +++**Travel Approval Channel**+++ e selecione **Create**.
+3.  將 團隊名稱 輸入為 +++**HR Team**+++，將 第一個渠道名稱 輸入為
+    +++**Travel Approval Channel**+++，然後選擇 **Create**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Selecione **Skip** na caixa de diálogo **Add members to HR Team**.
+4.  在 Add members to HR Team 對話框中選擇 **Skip**。
 
-![A screenshot of a email AI-generated content may be
+    ![A screenshot of a email AI-generated content may be
 incorrect.](./media/image15.png)
 
-Agora, a criação do Team e do canal está concluída.
+現在，團隊和渠道創建已完成。
 
-## Exercício 4 – Criar um fluxo de agente
+## 練習 4 – 創建代理流
 
-Neste exercício, criaremos um novo AgentFlow para postar a solicitação
-de viagem no canal Teams
+在本練習中，我們將創建一個新的 AgentFlow 來將差旅請求發佈到 Teams 渠道
 
-1.  Selecione **Flows** no painel esquerdo.
+1.  從 左側窗格中選擇 **Flows**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-2.  Selecione **New agent flow** para criar um novo fluxo.
+2.  選擇 **New agent flow** 以創建新流程。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-3.  Selecione **Add a trigger**.
+3.  選擇 **Add a trigger**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-4.  Selecione **When an agent calls the flow** em **AI capabilities**.
+4.  在 **AI capabilities**下選擇 **When an agent calls the flow**。
 
-![A screenshot of a web page AI-generated content may be
+    ![A screenshot of a web page AI-generated content may be
 incorrect.](./media/image19.png)
 
-5.  Selecione **+ Add an input**.
+5.  選擇 **+ Add an input**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-6.  Selecione **Number** e nomeie-o como +++**Employee ID**+++. Em
-    seguida, selecione **+ Add an input**.
+6.  選擇 **Number** 並將其命名為 +++**Employee ID**+++。然後選擇 **+ Add
+    an input**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image22.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image22.png)
 
-7.  Agora, selecione uma entrada **Text** e nomeie-a como
-    +++**Purpose**+++.
+7.  現在，選擇一個 **Text** input 並將其命名為 +++**Purpose**+++。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-8.  Selecione **Add an action** abaixo do nó do gatilho.
+8.  選擇 **Add an action** 在觸發器節點下方。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-9.  Pesquise por +++**Teams**+++ e clique em **See more** no grupo de
-    ações **Teams**.
+9.  搜索 +++**Teams**+++，然後單擊 Teams作組下的 **See more**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-10. Selecione **Post message in a chat or channel**.
+10. 選擇 **Post message in a chat or channel** 。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image26.png)
 
-11. Selecione **Sign in** e faça **login** usando suas credenciais.
+11. 選擇 **Sign in** 並使用 您的憑證 login。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image27.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image27.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image28.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image28.png)
 
-12. Selecione os detalhes abaixo
+12. 選擇以下詳細信息
 
-Post as – Selecionar **User**
+    發佈為 – 選擇 **User**
 
-Publicar – Selecionar **Channel**
+    Post in – 選擇 **Channel**
 
-Team – Selecione **HR Team**
+    團隊 – 選擇 **HR Team**
 
-Channel – Selecione **Travel Approval Channel**
+    Channel – 選擇 **Travel Approval Channel**
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image29.png)
 
-13. No campo Mensagem, digite o seguinte
+13. 在 Message 字段中，輸入以下內容
 
-\`\`\`
+    ```
+    Travel Request from 
+    Employee ID - <Employee ID>
+    Purpose - <Purpose>
+    ```
 
-> Travel Request from
->
-> Employee ID - \<Employee ID\>
->
-> Purpose - \<Purpose\>
->
-> \`\`\`
->
-> Substitua **\<Employee ID\>** e **\<Purpose\>** pelas variáveis de
-> conteúdo dinâmico, **Employee ID** e **Purpose,** como nas capturas de
-> tela abaixo.
+    將 **\<Employee ID\>** 和 **\<Purpose\>** 替換為動態內容變量 **Employee ID** 和 **Purpose**，如下面的屏幕截圖所示。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image30.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image31.png)
 
-14. A aba **Parameters** agora terá a aparência abaixo.
+14. Parameters 選項卡現在如下所示。
 
-![](./media/image32.png)
+    ![](./media/image32.png)
 
-15. Feche a aba **Parameters**.
+15. 關閉 Parameters 選項卡。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-16. Adicione outra ação após o nó Post message.
+16. 在 Post message 節點後添加另一個action。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image34.png)
 
-17. Selecione **Respond to the agent** em **Skills**.
+17. 在 **Skills** 下選擇 **Respond to the agent**。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image35.png)
 
-18. Selecione Add an output. Nomeie-a como +++Output+++ e insira o valor
-    como +++Request submitted+++.
+18. 選擇 Add an output。將其命名為 +++**Output**+++，並將值輸入為
+    +++**Request submitted**+++。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-19. Clique em **Save draft** para salvar o fluxo.
+19. 單擊 **Save draft** 以保存流。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-20. Depois que o fluxo for salvo, selecione **Publish**.
+20. 保存流程後，選擇 **Publish**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-21. Certifique-se de que o fluxo foi publicado.
+21. 確保流程已發佈。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image39.png)
 
-22. Clique na aba **Overview** do fluxo do agente.
+22. 單擊 代理流程的 **Overview** 選項卡。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-23. Selecione **Edit** e nomeie o fluxo como +++Request Travel Approval
-    Flow+++ no painel **Details**. Selecione **Save**.
+23. 選擇 **Edit，**然後在 **Details** 窗格中將流命名為 +++Request Travel
+    Approval Flow+++。選擇 **Save** 。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image41.png)
 
-## Exercício 5 – Adicionar o fluxo do agente como uma ferramenta ao agente
+## 練習 5 – 將代理流程作為工具添加到代理
 
-Neste exercício, adicionaremos o fluxo de criação de agente ao agente
-Safe Travels para aproveitar a funcionalidade do fluxo.
+在本練習中，我們將創建代理流程添加到代理 Safe Travels
+中，以便利用流程功能。
 
-1.  No painel esquerdo, selecione **Agents**.
+1.  從左側窗格中，選擇 **Agents**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-2.  Selecione o agente **Safe Travels.**
+2.  選擇 **Safe Travels** 代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-3.  Role para baixo na página **Overview** e selecione **Add tool**.
+3.  在 Overview 頁面中向下滾動，然後選擇 **Add tool**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-4.  Selecione o **Request Travel Approval Flow** criado.
+4.  選擇已創建的 **Request Travel Approval Flow**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-5.  Selecione **Add to agent**.
+5.  選擇 **Add to agent**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-6.  Depois de adicionado, o fluxo será listado na seção **Tools** da
-    página **Overview** do **agente**.
+6.  添加後，該流將列在代理的 **Overview** 頁面的 **Tools** 部分下。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-## Exercício 6 – Criar Tópico
+## 練習 6 – 創建主題
 
-Neste exercício, criaremos um Tópico para usar o fluxo de aprovação de
-viagem criado.
+在本練習中，我們將創建一個 Topic 以使用創建的差旅審批流程。
 
-1.  Selecione **Topics** no menu superior. Selecione **+ Add a topic**
-    -\> **Add from description with Copilot**.
+1.  從 頂部菜單中選擇 Topics。選擇 **+ Add a topic -\> Add from
+    description with Copilot**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-2.  Insira os detalhes abaixo e selecione **Create**.
+2.  輸入以下詳細信息，然後選擇 **Create**。
 
-**Name** - +++Travel Approval+++
+    **Name** - +++Travel Approval+++
 
-**Create a topic to** - +++This topic should get the Employee ID
-(Number) and Purpose of travel (Text) details from the user and invoke
-the Tool "Request Travel Approval Flow"+++
+    **Create a topic to** - +++This topic should get the Employee ID
+    (Number) and Purpose of travel (Text) details from the user and invoke
+    the Tool "Request Travel Approval Flow"+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image49.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image49.png)
 
-3.  O **Topic** é criado conforme abaixo.
+3.  **主題**將按如下方式創建。
 
-![](./media/image50.png)
+    ![](./media/image50.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image51.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image51.png)
 
-4.  Veja se o fluxo foi realmente acionado. Nesse caso, apenas um nó de
-    mensagem informando que o fluxo foi acionado é adicionado. Nesse
-    caso, exclua esse nó de mensagem e clique no ícone Adicionar um nó
-    após o nó onde o **Propósito** é solicitado ao usuário.
+4.  查看是否實際調用了 Flow。在這種情況下，僅添加一個 Message
+    節點，說明已調用流。在這種情況下，請刪除此類 Message
+    節點，然後單擊向用戶請求 Purpose 的節點後的 Add a node 圖標。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image52.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image52.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image53.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image53.png)
 
-5.  Selecione **Add a tool** -\> **Request Travel Approval Flow**
+5.  選擇 **Add a tool** -\> **Request Travel Approval Flow**
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-6.  Adicione a variável **EmployeeID** para a variável de fluxo
-    **Employee ID.**
+6.  為流變量 **Employee ID** 添加變量 **EmployeeID。**
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-7.  Da mesma forma, adicione a entrada **Purpose of travel**.
+7.  同樣，添加 Purpose of travel 輸入。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-8.  Adicione um nó **Send a message** e adicione a Variável **Output**,
-    como nas capturas de tela abaixo.
+8.  添加 **Send a message** 節點，並向其添加 Output
+    Variable，如下面的屏幕截圖所示。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image57.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image57.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image58.png)
 
-9.  Selecione **Save** e depois **Publish** para publicar o agente.
+9.  選擇 **Save**，然後選擇 **Publish** 以發佈代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image60.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
 
-10. Selecione **Publish** na caixa de diálogo de confirmação.
+10. 在 確認對話框中選擇 **Publish**。
 
-![A close-up of a white background AI-generated content may be
+    ![A close-up of a white background AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Selecione o ícone Teste e insira +++Travel Approval+++ e envie no
-    painel de teste.
+11. 選擇 測試 圖標，輸入 +++Travel Approval +++ 並從測試窗格發送。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-12. Converse fornecendo os detalhes abaixo ao agente
+12. 通過向代理提供以下詳細信息進行交談
 
-> Employee ID – +++1234+++
->
-> Purpose of travel - +++Client meeting for finalizing proposal of XYZ
-> project+++
+    員工 ID – +++1234+++
 
-![A screenshot of a chat AI-generated content may be
+    旅行目的 - +++Client meeting for finalizing proposal of XYZ project+++
+
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image63.png)
 
-13. Você receberá uma mensagem **Request submitted** do agente.
+13. 您將從代理處收到 **Request submitted** 消息。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image64.png)
 
-14. Abra o Canal de Teams e você verá os detalhes publicados lá para
-    aprovação de Viagem.
+14. 打開 Teams 頻道，您將看到那裡發佈的旅行批准的詳細信息。
 
-![](./media/image65.png)
+    ![](./media/image65.png)
 
-## Exercício 7 – Criar agente de gerenciamento de licenças
+## 練習 7 – 創建 Leave Management 代理 
 
-Neste exercício, criaremos um agente de gerenciamento de licenças que
-pode ser usado para aprender sobre licenças, saldo de licenças de
-funcionários e assim por diante.
+在本練習中，我們將構建一個休假管理代理，該代理可用於瞭解休假、員工的休假餘額等。
 
-1.  Na página inicial do Copilot Studio, selecione **Agents** -\> **+
-    New agent**.
+1.  在 Copilot Studio 主頁上，選擇 **Agents -\> + New agent**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-2.  Selecione **Skip to configure**.
+2.  選擇 **Skip to configure**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-3.  Na página de configuração, insira os detalhes abaixo e selecione
-    **Create**.
+3.  在配置頁面中，輸入以下詳細信息，然後選擇 **Create**。
 
-    - Name - +++Leave Manager Agent+++
+    - 名字 - +++Leave Manager Agent+++
 
-    - Description - +++This agent is to track the leaves of all the
-      employees, their leave balance and leave history to approve or
-      reject any new leave requests.+++
+    - 描述 - +++This agent is to track the leaves of all the employees,
+      their leave balance and leave history to approve or reject any new
+      leave requests.+++
 
-    - Instructions - +++Track the leaves of employees. Track their leave
+    - 指示 - +++Track the leaves of employees. Track their leave
       balance. Apply/Reject leaves based on their balance.+++
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-4.  Depois que o agente for criado, role para baixo na página Visão
-    geral e selecione **Add knowledge** na seção **Knowledge**.
+4.  創建代理後，在 概述 頁面中向下滾動，然後選擇 **Knowledge** 部分下的
+    **Add knowledge**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-5.  Clique em **select to browse**.
+5.  點擊 **select to browse**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-6.  Selecione o arquivo **Leave balance Tracker** em C:\Labfiles e
-    clique em **Open**.
+6.  從 C：\Labfiles 中選擇文件 **Leave balance Tracker**，然後單擊
+    **Open**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image71.png)
 
-7.  Selecione **Add** para adicionar o rastreador ao agente.
+7.  選擇 **Add** 將跟蹤鏈接添加到代理。
 
-![](./media/image72.png)
+    ![](./media/image72.png)
 
-8.  O arquivo será adicionado. Aguarde até que o status seja **Ready**
-    antes de prosseguir para a próxima etapa.
+8.  文件已添加。請等待狀態為 Ready，然後再繼續下一步。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-9.  Selecione **+ Add a topic** -\> **Add from description with
-    Copilot** na aba **Topics**.
+9.  從主題選項卡中選擇 **+ Add a topic -\> Add from description with
+    Copilot**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-10. Insira os detalhes abaixo e clique em **Create**.
+10. 輸入以下詳細信息，然後單擊 **Create**。
 
-- Name - +++Leave Balance Checker+++
+    - 名字 - +++Leave Balance Checker+++
 
-- Create a topic to - +++Get the Employee ID from the user and check and
-  reply with the leave balance based on the tracker added as knowledge
-  source+++
+    - 創建主題以 - +++Get the Employee ID from the user and check and reply
+    with the leave balance based on the tracker added as knowledge
+    source+++
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image75.png)
 
-11. Verifique se o tópico possui o nó para obter o ID do Funcionário, e
-    clique em **Save**. Aqui, temos um nó para obter o ID do Funcionário
-    e um nó de Mensagem informando que o saldo está sendo recuperado.
+11. 檢查主題是否具有用於獲取員工 ID 的節點，然後單擊
+    **Save**。在這裡，我們有一個用於獲取 Employee ID 的節點和一個
+    Message 節點，用於聲明正在檢索餘額。
 
-> Verifique o tópico uma vez e remova outros nós que foram criados além
-> dos acima.
+    檢查主題一次，然後刪除除上述節點之外已創建的其他節點。
 
-Então **Save** o tópico.
+    然後 **Save** 主題。
 
-![](./media/image76.png)
+    ![](./media/image76.png)
 
-12. Enviar uma mensagem +++Check Leave balance+++ no painel Teste.
+12. 發送消息 +++ Check Leave balance+++ 從 Test 窗格中。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image77.png)
 
-13. Digite +++1234+++ para o ID do funcionário.
+13. 輸入 +++1234+++ 作為員工 ID。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image78.png)
 
-14. Verifique a resposta do agente. Ela é recuperada do ativo de
-    conhecimento adicionado ao agente.
+14. 檢查代理的響應。這是從添加到代理的知識資產中檢索的。
 
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image79.png)
+    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
 
-15. Selecione **Publish** e aguarde até que o agente seja publicado.
+15. 選擇 Publish 並等待代理發佈。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
 
-## Exercício 8 - Implementar orquestração multiagente no Copilot Studio
+## 練習 8 - 在 Copilot Studio 中實施多代理編排
 
-Em vez de depender de um único agente para fazer tudo ou gerenciar
-agentes desconectados em silos, as organizações agora podem criar
-sistemas multiagentes no Copilot Studio (preview), onde os agentes
-delegam tarefas uns aos outros Isso inclui agentes criados com o
-Microsoft 365 agent builder, Microsoft Azure AI Agents Service e
-Microsoft Fabric. Agora, todos esses agentes podem trabalhar juntos para
-atingir um objetivo comum: concluir tarefas complexas e críticas aos
-negócios que abrangem sistemas, equipes e fluxos de trabalho.
+組織現在可以在 Copilot
+Studio（預覽版）中構建多代理系統，而不是依賴單個代理來完成所有工作，或在孤島中管理斷開連接的代理，代理可以在其中相互委派任務。這包括使用
+Microsoft 365 代理生成器、Microsoft Azure AI 代理服務和 Microsoft Fabric
+構建的設備。這些代理現在可以協同工作以實現一個共同的目標：完成跨系統、團隊和工作流的複雜關鍵業務任務。
 
-Neste exercício, adicionaremos o agente de gerenciamento de licenças ao
-agente Safe Travels, que pode ser usado para aprender sobre licenças ao
-planejar uma viagem.
+在本練習中，我們將把 Leave management 代理添加到 Safe Travels
+代理中，該代理可用於在計劃旅行時瞭解休假。
 
-1.  Selecione o agente **Safe Travels** no Copilot Studio.
+1.  從 Copilot Studio 中選擇 **Safe Travels** 代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image81.png)
 
-2.  Primeiro, testaremos este agente para ver quais informações pode
-    fornecer sobre as licenças. No painel de teste, digite +++Check
-    Leave balance+++ e pressione Enter.
+2.  我們將首先測試這個代理，看看它可以在 leaves 上提供什麼信息。在 Test
+    窗格中，輸入 +++Check Leave balance+++ 並按 Enter。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image82.png)
 
-3.  Você pode ver que o agente responde com uma informação generalizada
-    sobre como verificar o saldo de licenças. Ele também faz referência
-    ao documento de Política de Viagem ao fornecer essa informação.
+3.  您可以看到，代理會提供有關如何檢查休假餘額的一般信息。在執行此作時，它還引用了
+    Travel Policy 文檔。
 
-![A screenshot of a phone AI-generated content may be
+    ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image83.png)
 
-4.  Selecione a aba **Agents** no menu superior e selecione **+ Add**.
+4.  從 頂部菜單中選擇 **Agents** 選項卡，然後選擇 **+ Add**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-5.  Em **Choose how do you want to extend your agent**, selecione
-    **Copilot Studio**.
+5.  在 **“Choose how do you want to extend your agent”** 下，選擇
+    **“Copilot Studio**”。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image85.png)
 
-6.  Na lista, selecione **Leave Manager Agent**. Ele só poderá ser
-    adicionado se estiver publicado. Aguarde se estiver em processo de
-    publicação.
+6.  從列表中，選擇 **Leave Manager
+    Agent**。只有在發佈後才能添加它。如果它正在發佈過程中，請稍候。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image86.png)
 
-7.  Selecione **Add agent** para adicionar este agente ao **Safe
-    Travels**.
+7.  選擇 **Add agent** 將此代理添加到 **Safe Travels**。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image87.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image87.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image88.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image88.png)
 
-8.  Aguarde alguns minutos após o agente ser adicionado e clique em
-    **Publish**.
+8.  添加代理後等待幾分鐘，然後單擊 **Publish**。
 
-![](./media/image89.png)
+    ![](./media/image89.png)
 
-9.  Aguarde mais alguns minutos após a publicação do agente e insira
-    +++Check Leave balance+++ no painel Teste do **Safe Travels agent**.
+9.  發佈代理後再等待幾分鐘，然後在 **Safe Travels** 代理的 Test
+    窗格中輸入 +++Check Leave balance+++。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image90.png)
 
-10. Você pode ver que o agente **Leave Manager** é acessado
-    automaticamente e o agente responde com a pergunta **Enter Employee
-    ID** do **Leave Manager agent’s topic**.
+10. 您可以看到 **Leave Manager** 代理是自動訪問的，並且代理回答了
+    **Leave Manager** 代理主題中的 **Enter Employee ID** 問題。
 
-11. Insira o ID do funcionário como +++1234+++ e você poderá ver que o
-    agente responde com base no ativo de conhecimento do agente do Leave
-    Manager.
+11. 將員工 ID 輸入為
+    +++1234+++，您可以看到座席根據休假管理器座席的知識資產進行回復。
 
-![](./media/image91.png)
+    ![](./media/image91.png)
 
-## Resumo
+## 總結
 
-Neste laboratório, aprendemos como aprimorar um agente criado a partir
-de um modelo para atender às necessidades individuais. Também aprendemos
-a implementar a orquestração multiagente no Copilot Studio.
+在本實驗中，我們學習了如何增強從模板創建的代理以滿足個人需求。我們還學習了在
+Copilot Studio 中實施多代理編排
