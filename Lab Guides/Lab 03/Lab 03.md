@@ -1,137 +1,111 @@
-# Laboratório 03 – Criar agente Safe Travels a partir do modelo
+# 實驗 03 – 從模板創建 Safe Travels 代理
 
-**Objetivo**
+## 練習 1：從模板創建 Safe Travels 代理
 
-Os modelos de agente são projetados para ajudá-lo a começar com um agente personalizado. Você é responsável por avaliar todas as implicações legais e de segurança do uso de um modelo de agente e personalizá-lo conforme apropriado para sua empresa. 
+1.  在瀏覽器中，登錄到
+    +++https://copilotstudio.microsoft.com+++。此時將打開 Start free
+    trial 頁面。選擇您所在的國家/地區，然後單擊 **Start free trial**。
 
-Um agente criado a partir do modelo de agente **Safe Travels** é um agente Business-to-Employee (B2E) projetado para fornecer assistência de viagem aos funcionários de uma empresa. Esse agente ajuda a garantir que os funcionários estejam bem preparados e informados para sua próxima viagem de negócios. Esse agente usa o processamento de linguagem natural para oferecer uma interface de conversação, tornando fácil e intuitivo para os funcionários acessarem as informações que precisam. No entanto, o site padrão usado pelo agente atualmente só cobre destinos de viagem nos EUA. Você pode substituir o site padrão por sua própria fonte de conhecimento.
+    ![](./media/image1.png)
 
-Neste laboratório, você criará um agente com base no modelo Safe Travels e o aprimorará no Laboratório 05.
+2.  選擇 **Dev One** 環境。
 
-
-## Exercício 1: Criar um agente Safe Travels a partir do modelo
-
-Neste exercício, você criará o agente no Copilot Studio usando o modelo de agente Safe Travels.
-
-1.  Em um navegador, acesse +++https://copilotstudio.microsoft.com+++. A
-    página Iniciar avaliação gratuita será aberta. Selecione seu país e
-    clique em **Start free trial**.
-
-![](./media/image1.png)
-
-2.  Selecione o ambiente **Dev One.**
-
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Selecione **+ Create** no painel esquerdo para criar um novo agente.
+3.  從左側窗格中選擇 **+ Create** 以創建新代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Em **Start with an agent template**, selecione **Safe Travels**.
+4.  在 **Start with an agent template** 下，選擇 **Safe Travels**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  O modelo Safe Travels cria um novo agente projetado para fornecer
-    assistência de viagem aos funcionários de uma empresa.
+5.  Safe Travels 模板創建一個新代理，旨在為公司員工提供差旅幫助。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  Navegue pela página de configuração. Em **Knowledge**, você verá que
-    o site **US Travel** já foi adicionado como fonte de conhecimento.
-    Pode ser editado, se necessário. Aqui, estamos usando o mesmo site.
+6.  瀏覽設置頁面。在 **Knowledge** 下，您會發現 **US Travel Website**
+    已添加為 Knowledge
+    源。如果需要，可以對其進行編輯。在這裡，我們使用的是同一個網站。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-7.  Selecione **Create** para criar o agente Safe Travels. Não faremos
-    nenhuma alteração aqui, mas usaremos o modelo como está. O agente
-    pode ser atualizado a qualquer momento, de acordo com as
-    necessidades do usuário.
+7.  選擇 **Create** 以創建 Safe Travels
+    代理。我們在這裡沒有更改任何內容，也沒有使用模板。在任何時候，都可以根據用戶要求升級代理。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-8.  O **agente** é **criado** e é aberto automaticamente, exibindo a
-    página **Overview**.
+8.  **Agent 已創建**並自動打開，顯示**Overview** 頁面。![A screenshot of
+    a computer AI-generated content may be
+    incorrect.](./media/image8.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+9.  在 Test 窗格中，輸入 +++How to apply for passport？+++，然後點擊
+    **Send** 。
 
-9.  No painel Teste, digite +++How to apply for passport?+++ e clique em
-    **Send**.
+    默認情況下，Test 窗格處於打開狀態。如果沒有，請單擊右上角的 Test 圖標。
 
-O painel **Test** está aberto por padrão. Caso contrário, clique no
-ícone Test no canto superior direito.
-
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-10. Você pode ver que o agente fornece informações sobre como solicitar
-    o passaporte em sua fonte de conhecimento.
+10. 您可以看到，代理從其知識源提供了有關如何申請 passport 的信息。
 
-![A screenshot of a phone AI-generated content may be
+    ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercício 2: Publicar o agente no Teams e Microsoft 365 Copilot
+## 練習 2：將代理發佈到 Teams 和 Microsoft 365 Copilot
 
-Neste exercício, você publicará o agente criado no Copilot Studio no canal do Microsoft Teams e do Microsoft 365 Copilot.
+1.  從 代理頁面的右上角選擇 **Publish**。
 
-1.  Selecione **Publish** no canto superior direito da página do agente.
-
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Selecione **Publish** na caixa de diálogo de confirmação.
+2.  在 確認對話框中選擇 **Publish**。
 
-![](./media/image12.png)
+    ![](./media/image12.png)
 
-3.  Selecione **Channels** na barra de navegação superior.
+3.  選擇 **Channels** 從頂部導航欄中。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-4.  Selecione **Teams e Microsoft 365 Copilot** na lista de canais
-    disponíveis.
+4.  從 可用通道列表中選擇 **Teams 和 Microsoft 365 Copilot**。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Selecione **Add channel**.
+5.  選擇 **Add channel**。
 
-![](./media/image15.png)
+    ![](./media/image15.png)
 
-6.  Clique na opção **See agent in Teams** para adicionar o agente ao
-    Teams.
+6.  單擊 **See agent in Teams** 選項，將代理添加到 Teams。
 
-![A screenshot of a computer AI-generated content may be
+     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-7.  Isso abrirá o agente no Microsoft Teams. Selecione **Add** para
-    adicionar o agente.
+7.  這將在 Microsoft Teams 中打開代理。選擇 **Add** 以添加代理。
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image17.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image17.png)
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
+    ![A screenshot of a computer AI-generated content may be
+    incorrect.](./media/image18.png)
 
-8.  Após a adição, você terá a opção de abrir o agente. Selecione
-    **Open**.
+8.  添加後，您將獲得打開代理的選項。選擇 **“Open**”。
 
-![A screenshot of a chat AI-generated content may be
+    ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Teste o agente do Teams.
+9.  從 Teams 測試代理。
 
-![](./media/image20.png)
+    ![](./media/image20.png)
 
-10. Voltando ao Copilot Studio, feche a janela do canal **Teams e
-    Microsoft 365 Copilot**.
+10. 返回 Copilot Studio，關閉 Teams 和 Microsoft 365 Copilot 頻道窗口。
 
-![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
-
