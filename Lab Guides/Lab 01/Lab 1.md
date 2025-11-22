@@ -1,4 +1,4 @@
-# Lab 01 - Create a gardening assistant agent using Copilot Studio Agent Builder
+# Lab 01 - Create a gardening assistant agent using Copilot Studio lite experience
 
 ## Objective
 
@@ -22,16 +22,11 @@ incorrect.](./media/image1.png)
     >![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im1.png)
 
-4.  Select **Create agent** from the **right** pane. If you are **not** able to see the **Create agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
+4.  Select **New agent** from the **left** pane. If you are **not** able to see the **Create agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
 
-    ![image](https://github.com/user-attachments/assets/85aea6c5-008d-4d54-9b2e-f297d5f12a75)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im14.png)
 
-    >[!Alert] **Important:** The menu might be present in the right pane as well similar to the one in the below screenshot. Since it is evolving, there might be differences in the screenshots captured in the lab guide and the actual one.
-    >
-    >![](./media/image2.png)
-
-
-5.  The Copilot Studio agent builder pops up and you can start defining
+5.  The Copilot Studio lite experience pops up and you can start defining
     the custom agent. You can choose a template to start from, or you
     can simply *describe* the agent by providing a description in
     natural language. Let's provide the following initial description
@@ -39,56 +34,50 @@ incorrect.](./media/im1.png)
     +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image3.png)
+incorrect.](./media/im15.png)
 
-6.  Once you have provided the instructions, the agent builder will ask
-    you about the name for the new agent.
+6.  Once you have provided the instructions, you will be asked about the name for the new agent.
 
 7.  Provide the name: +++Gardening assistant+++.
 
     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image4.png)
+incorrect.](./media/im16.png)
 
-8.  While you interact with the agent builder, on the right side of the
-    dialog you can see there is a preview of the agent itself, including
-    some suggested conversation starters. If the agent builder asks you
-    about refining instructions further, provide the following sentence.
+8.  If you are asked about refining instructions further, provide the following sentence.
 
     +++Suggest ways to keep plants and flowers shining and gorgeous+++
 
     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image5.png)
+incorrect.](./media/im17.png)
 
 9.  Keep on interacting with the agent builder until it does have all
-    the information needed to create the agent. If the agent builder
-    asks you about what should be emphasized, provide the following
+    the information needed to create the agent. Provide the following
     sentence.
 
     +++Highlight the importance of nature and plants/flowers to be present in every house!+++
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image6.png)
+incorrect.](./media/im18.png)
 
-10.  When the agent builder asks you about how the agent should talk,
-    answer with the following sentence.
+10.  Then give an instruction of the agent tonr as below.
 
     +++Use a professional, yet friendly, tone.+++
 
     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image7.png)
+incorrect.](./media/im19.png)
 
 11.  Click on **Create** on the top right to create the agent.
 
      ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image8.png)
+incorrect.](./media/im20.png)
 
      ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+incorrect.](./media/im21.png)
 
 12. Select **Go to agent** once the agent is created.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image10.png)
+incorrect.](./media/im22.png)
 
 13. This opens the created agent.
 
@@ -113,4 +102,5 @@ incorrect.](./media/image13.png)
 
 In this lab, you have learnt to create an agent from the Copilot Studio
 Agent Builder.
+
 
