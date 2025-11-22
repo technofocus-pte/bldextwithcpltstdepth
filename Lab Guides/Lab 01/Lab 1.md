@@ -22,7 +22,7 @@ incorrect.](./media/image1.png)
     >![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im1.png)
 
-4.  Select **New agent** from the **left** pane. If you are **not** able to see the **Create agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
+4.  Select **New agent** from the **left** pane. If you are **not** able to see the **New agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/im14.png)
 
@@ -102,5 +102,6 @@ incorrect.](./media/image13.png)
 
 In this lab, you have learnt to create an agent from the Copilot Studio
 Agent Builder.
+
 
 
