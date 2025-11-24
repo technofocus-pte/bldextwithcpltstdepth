@@ -296,8 +296,7 @@ incorrect.](./media/image48.png)
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image50.png)
 
-
-3.  Ensure that the agent is added to the workstream as in the screenshot below.
+3.  The agent is now added to the workstream.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image79.png)
@@ -460,6 +459,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
