@@ -289,7 +289,7 @@ incorrect.](./media/image48.png)
 
 1.  Back in the **New Workstream** page, scroll down and click on **+ Add an AI agent** in the **Add an AI agent** section.
 
-    ![A screenshot of a chat AI-generated content may be
+   ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image78.png)
 
 2.  From the list of agents on the Add an AI Agent screen, select the **Store
@@ -462,6 +462,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
