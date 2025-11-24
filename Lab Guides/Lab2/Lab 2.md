@@ -9,7 +9,7 @@ Service trial**.
 ## Task 1: Create Security Group in Entra ID and Configure Copilot Studio Authors
 
 1.  Navigate to the Azure portal at
-    +++<https://portal.azure.com/+++ and login with your tenant
+    +++https://portal.azure.com/+++ and login with your tenant
     credentials present in the **Resources** tab.
 
     ![A screenshot of a computer login AI-generated content may be
@@ -143,11 +143,25 @@ incorrect.](./media/image22.png)
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image28.png)
 
-22. Select the **MOD Admin id** and select **Add**.
+21. Select **No members selected**.
+
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im23.png)
+    
+23. Select the **MOD Admin id** and select **Next**.
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image29.png)
 
-23. From a new tab, navigate to
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im24.png)
+
+25. Select **Assign**.
+
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im25.png)
+
+26. Ensure that the role assignment is successful.
+
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im26.png)
+    
+25. From a new tab, navigate to
     +++https://admin.powerplatform.microsoft.com/+++.
     Select **Manage** from the left pane and then select the **Tenant
     Settings** option.
@@ -155,23 +169,23 @@ incorrect.](./media/image22.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-24. Select **Copilot Studio Authors** from the list available.
+26. Select **Copilot Studio Authors** from the list available.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-25. Click on the **Edit** icon to edit the settings.
+27. Click on the **Edit** icon to edit the settings.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-26. Search for and select the **+++copilotagentsecurity+++** group that
+28. Search for and select the **+++copilotagentsecurity+++** group that
     you created earlier.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-27. Select **Save** to save the settings.
+29. Select **Save** to save the settings.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
@@ -196,10 +210,10 @@ incorrect.](./media/image35.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-5.  Enter the region as **United States**, enter your **Phone
+5.  Enter your Job Title, region as **United States**, enter your **Phone
     number** and click on **Submit**.
 
-    ![](./media/image37.png)
+    ![](./media/im27.png)
 
 6.  If you see an option to Launch Trial for Engage customers, click
     on **Launch Trial**.
@@ -218,4 +232,5 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**. 
+
 
