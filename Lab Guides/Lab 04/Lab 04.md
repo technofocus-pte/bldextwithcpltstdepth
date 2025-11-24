@@ -298,15 +298,12 @@ incorrect.](./media/image48.png)
 
 3.  The agent is now added to the workstream.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image79.png)
-
-5.  From the left pane, select **AI Agents**.
+4.  From the left pane, select **AI Agents**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-6.  Ensure that the **Store locator** agent is connected.
+5.  Ensure that the **Store locator** agent is connected.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
@@ -459,6 +456,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
