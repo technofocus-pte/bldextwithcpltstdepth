@@ -177,10 +177,10 @@ incorrect.](./media/image31.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Select **Customer Service workspace** from the header bar.
+3.  Select **Copilot Service workspace** from the header bar.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image33.png)
+incorrect.](./media/im28.png)
 
 4.  This opens the **Apps** page. Select **Copilot Service admin
     center** from it.
@@ -456,6 +456,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
