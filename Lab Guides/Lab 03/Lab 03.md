@@ -126,7 +126,7 @@ incorrect.](./media/image14.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-7.  This opens up the agent in the Microsoft Teams. Select **Add** to
+7.  This opens up the agent in the Microsoft Teams (Select **Use the Web App instead** option). Select **Add** to
     add the agent.
 
     ![A screenshot of a computer AI-generated content may be
@@ -150,6 +150,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
