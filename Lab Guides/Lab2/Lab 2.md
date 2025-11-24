@@ -9,8 +9,8 @@ Service trial**.
 ## Task 1: Create Security Group in Entra ID and Configure Copilot Studio Authors
 
 1.  Navigate to the Azure portal at
-    +++<https://portal.azure.com/+++%C2%A0and> login with your tenant
-    credentials present in the Resources tab.
+    +++<https://portal.azure.com/+++ and login with your tenant
+    credentials present in the **Resources** tab.
 
     ![A screenshot of a computer login AI-generated content may be
 incorrect.](./media/image1.jpeg)
@@ -218,3 +218,4 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**. 
+
