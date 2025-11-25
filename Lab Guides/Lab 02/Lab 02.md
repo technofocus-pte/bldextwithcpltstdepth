@@ -330,9 +330,6 @@ incorrect.](./media/image48.png)
 
 1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image73.png)
-
 2.  Select **Import and vectorize data**.
 
     ![A screenshot of a computer AI-generated content may be
@@ -479,6 +476,7 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
