@@ -23,10 +23,10 @@ In this exercise, you will create an Azure AI Search resource from the Azure por
     
     -    Password - +++@lab.CloudPortalCredential(User1).Password+++
 
-    From the Home page of the Azure portal, select **Azure AI Foundry.**
+    From the Home page of the Azure portal, select **Microsoft Foundry** and select **Microsoft Foundry** under Services.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
+incorrect.](./media/im1.png)
 
 3.  In the **AI Foundry page**, select **AI Search** under **Use with AI Foundry** from the left pane
     and then select **+ Create**.
@@ -308,17 +308,22 @@ incorrect.](./media/image44.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-16. Search for +++**text-embedding**+++, select
+16. Select **Embeddings** under **Inference tasks**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im5.png)
+
+17. Search for +++**text-embedding**+++, select
     **text-embedding-3-large** and then select **Confirm**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
+incorrect.](./media/im7.png)
 
-17. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
+18. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
 
     <img width="375" alt="image" src="https://github.com/user-attachments/assets/3c36852b-1ec3-4a95-a326-63cbfe2ae404" />
 
-18. The model gets deployed and the screen is loaded with the deployment
+19. The model gets deployed and the screen is loaded with the deployment
     details.
 
     ![A screenshot of a computer AI-generated content may be
@@ -477,6 +482,7 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
