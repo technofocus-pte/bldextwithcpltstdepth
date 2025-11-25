@@ -25,8 +25,7 @@ In this exercise, you will create an Azure AI Search resource from the Azure por
 
     From the Home page of the Azure portal, select **Microsoft Foundry** and select **Microsoft Foundry** under Services.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im1.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im2.png)
 
 3.  In the **AI Foundry page**, select **AI Search** under **Use with AI Foundry** from the left pane
     and then select **+ Create**.
@@ -310,14 +309,12 @@ incorrect.](./media/image45.png)
 
 16. Select **Embeddings** under **Inference tasks**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im5.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im5.png)
 
 17. Search for +++**text-embedding**+++, select
     **text-embedding-3-large** and then select **Confirm**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im7.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im7.png)
 
 18. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
 
@@ -482,6 +479,7 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
