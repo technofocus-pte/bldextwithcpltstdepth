@@ -489,7 +489,7 @@ incorrect.](./media/im13.png)
 13. Select **Publish** and wait till the agent is published.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image80.png)
+incorrect.](./media/im22.png)
 
 ## Exercise 8 - Implement Multi agent orchestration in Copilot Studio
 
@@ -547,7 +547,7 @@ incorrect.](./media/im16.png)
     ![](./media/im17.png)
 
 
-9. Select **Settings** and ensure that the **Generative AI** is turned **On**. Also, toggle the **Use Generla knowledge** under Knowledge section to **Off** and then select **Save**.
+9. Select **Settings** and ensure that the **Generative AI** is turned **On**. Also, toggle the **Use General knowledge** under Knowledge section to **Off** and then select **Save**.
 
     ![](./media/im18.png)
 
@@ -578,6 +578,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
