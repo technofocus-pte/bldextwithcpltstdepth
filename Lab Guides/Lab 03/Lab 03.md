@@ -40,7 +40,7 @@ incorrect.](./media/im6.png)
 3.  Select **Agents** from the left pane and then select the **Safe Travels** template under **Start with an agent template**. 
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im6.png)
+incorrect.](./media/im8.png)
 
 5.  The Safe Travels template creates a new agent that is designed to
     provide employees of a company with travel assistance. 
@@ -145,6 +145,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
