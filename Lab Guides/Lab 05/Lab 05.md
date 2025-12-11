@@ -468,26 +468,23 @@ incorrect.](./media/image73.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im10.png)
 
-10. Ensure that **Yes** is selected under **Use generative AI orchestration** and toggle **Use general knowledge** option under Knowledge section to **Off** nad then select **Save**.
+10. Ensure that **Yes** is selected under **Use generative AI orchestration** and toggle **Use general knowledge** option under Knowledge section to **Off** and then select **Save**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im11.png)
 
-   ![A screenshot of a computer AI-generated content may be
+    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im12.png)
-
-   ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im13.png)
 
 11. **Send** a message +++Check Leave balance for Employee ID 1234+++ from the **Test** pane.
 
     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im14.png)
+incorrect.](./media/im13.png)
 
 12. Check the **response** from the agent. This is retrieved from the
     knowledge asset added to the agent.
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/im15.png)
+    ![A screenshot of a chat AI-generated content may be incorrect.](./media/im14.png)
     
 13. Select **Publish** and wait till the agent is published.
 
@@ -581,6 +578,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
