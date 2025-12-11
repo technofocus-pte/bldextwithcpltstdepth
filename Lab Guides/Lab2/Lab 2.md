@@ -213,7 +213,7 @@ incorrect.](./media/image36.png)
 5.  Enter your Job Title, region as **United States**, enter your **Phone
     number** and click on **Submit**.
 
-    ![](./media/im27.png)
+    ![](./media/im14.png)
 
 6.  If you see an option to Launch Trial for Engage customers, click
     on **Launch Trial**.
@@ -232,5 +232,6 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**. 
+
 
 
