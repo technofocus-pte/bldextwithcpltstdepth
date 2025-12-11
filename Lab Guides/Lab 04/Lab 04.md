@@ -31,7 +31,7 @@ incorrect.](./media/image7.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-4.  Toggle **Dataverse Search** and **Single table search** option
+4.  Toggle **Dataverse Search** to **On** and click on **Save**. Then, select **Single table search** option
     to **ON** and select **Save**.
 
     ![A screenshot of a computer AI-generated content may be
@@ -456,6 +456,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
