@@ -37,15 +37,10 @@ incorrect.](./media/im6.png)
     >
     > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
 
-3.  Select **+ Create** from the left pane to create a new agent.
+3.  Select **Agents** from the left pane and then select the **Safe Travels** template under **Start with an agent template**. 
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image3.png)
-
-4.  Under **Start with an agent template**, select **Safe Travels**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image4.png)
+incorrect.](./media/im6.png)
 
 5.  The Safe Travels template creates a new agent that is designed to
     provide employees of a company with travel assistance. 
@@ -150,6 +145,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
