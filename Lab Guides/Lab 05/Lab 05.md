@@ -22,6 +22,18 @@ responds when asked about travel approval.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
+    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
+    >
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im5.png)
+    >
+    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im6.png)
+    >
+    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+
+    
 2.  Select the **Test** icon to test the agent.
 
     ![A screenshot of a computer AI-generated content may be
@@ -593,6 +605,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
