@@ -128,10 +128,10 @@ incorrect.](./media/image17.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-4.  Select **When an agent calls the flow** under **AI capabilities**.
+4.  Search for +++agent+++ and select **When an agent calls the flow** under **Skills**.
 
     ![A screenshot of a web page AI-generated content may be
-incorrect.](./media/image19.png)
+incorrect.](./media/im1.png)
 
 5.  Select **+ Add an input**.
 
@@ -593,6 +593,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
