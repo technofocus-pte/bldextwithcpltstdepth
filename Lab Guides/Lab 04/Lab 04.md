@@ -35,7 +35,10 @@ incorrect.](./media/image8.png)
     to **ON** and select **Save**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+incorrect.](./media/im4.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im5.png)
 
 ## Exercise 2: Create an agent
 
@@ -456,6 +459,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
