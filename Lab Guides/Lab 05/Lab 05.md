@@ -414,7 +414,7 @@ incorrect.](./media/image64.png)
 In this exercise, we will build a Leave management agent which can be
 used to learn about the leaves, leave balance for employees and so on.
 
-1.  From the Copilot Studio Home page, select **+ Create blank agent**.
+1.  From the Copilot Studio Home page, select **Agents** from the left pane. Then, select **+ Create blank agent**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im7.png)
@@ -581,6 +581,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
