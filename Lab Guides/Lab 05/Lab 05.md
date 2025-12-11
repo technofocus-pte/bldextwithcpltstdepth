@@ -414,13 +414,17 @@ incorrect.](./media/image64.png)
 In this exercise, we will build a Leave management agent which can be
 used to learn about the leaves, leave balance for employees and so on.
 
-1.  From the Copilot Studio Home page, select **Agents** -\> **+ New
-    agent**.
+1.  From the Copilot Studio Home page, select **+ Create blank agent**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image66.png)
+incorrect.](./media/im7.png)
 
-3.  Select the **Configure** tab, enter the below details and select **Create**.
+2.  Once the agent is created, select **Edit**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im8.png)
+
+3.  Enter the below details and select **Save**.
 
     - Name - +++Leave Manager Agent+++
 
@@ -428,13 +432,10 @@ incorrect.](./media/image66.png)
       employees, their leave balance and leave history to approve or
       reject any new leave requests.+++
 
-    - Instructions - +++Track the leaves of employees. Track their leave
-      balance. Apply/Reject leaves based on their balance.+++
-
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/Image94.png)
+incorrect.](./media/im9.png)
 
-4.  Once the agent gets created, scroll down in the Overview page and
+4.  Once it is saved, scroll down in the Overview page and
     select **Add knowledge** under the **Knowledge** section.
 
     ![A screenshot of a computer AI-generated content may be
@@ -456,56 +457,39 @@ incorrect.](./media/image71.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/Image95.png)
 
-8.  The file gets added. Wait until the status is Ready before
+8.  The file gets added. Wait until the status is **Ready** before
     proceeding to the next step.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-9.  Select **+ Add a topic** -\> **Add from description with Copilot**
-    from the Topics tab.
+9.  Select **Settings** from the top right.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image74.png)
+incorrect.](./media/im10.png)
 
-10. Enter the below details and click on **Create**.
-
-    - Name - +++Leave Balance Checker+++
-    
-    - Create a topic to - +++Get the Employee ID from the user and check and
-      reply with the leave balance based on the tracker added as knowledge
-      source+++
+10. Ensure that **Yes** is selected under **Use generative AI orchestration** and toggle **Use general knowledge** option under Knowledge section to **Off** nad then select **Save**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
+incorrect.](./media/im11.png)
 
-11. Check if the topic has the node to get the Employee ID and then
-    click **Save**. Here, we have a node for getting the Employee ID and
-    a Message node stating that the balance is being retrieved.
+   ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im12.png)
 
-    Check the topic once and remove other nodes that have got created apart from the above ones.
+   ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im13.png)
 
-    Then **Save** the topic.
-
-    ![](./media/image76.png)
-
-12. Send a message +++Check Leave balance+++ from the Test pane.
+11. **Send** a message +++Check Leave balance for Employee ID 1234+++ from the **Test** pane.
 
     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image77.png)
+incorrect.](./media/im14.png)
 
-13. Enter +++1234+++ for Employee ID.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image78.png)
-
-14. Check the response from the agent. This is retrieved from the
+12. Check the **response** from the agent. This is retrieved from the
     knowledge asset added to the agent.
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image79.png)
+    ![A screenshot of a chat AI-generated content may be incorrect.](./media/im15.png)
     
-
-15. Select **Publish** and wait till the agent is published.
+13. Select **Publish** and wait till the agent is published.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
@@ -548,47 +532,39 @@ incorrect.](./media/image83.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-5.  Under **Choose how do you want to extend your agent**, select
-    **Copilot Studio**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image85.png)
-
-6.  From the list, select **Leave Manager Agent**. It can be added only
+5.  From the list, select **Leave Manager Agent**. It can be added only
     if it is published. Please wait if it is in the process of
     publishing.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image86.png)
+incorrect.](./media/im15.png)
 
-7.  Select **Add agent** to add this agent to **Safe Travels**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image87.png)
+7.  Select **Add and configure** to add this agent to **Safe Travels**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image88.png)
+incorrect.](./media/im16.png)
 
 8.  Wait for few minutes after the agent is added and then click on
     **Publish**.
 
-    ![](./media/image89.png)
+    ![](./media/im17.png)
 
-9.  Wait for few more minutes after the agent is published and then
-    enter +++Check Leave balance+++ in the Test pane of the **Safe
-    Travels agent**.
+
+9. Select **Settings** and ensure that the **Generative AI** is turned **On**. Also, toggle the **Use Generla knowledge** under Knowledge section to **Off** and then select **Save**.
+
+    ![](./media/im18.png)
+
+    ![](./media/im19.png)
+   
+9.  From the **Test** pane of the **Safe Travels agent**, enter +++Check Leave balance of Employee ID 1234+++ and hit **Send**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image90.png)
+incorrect.](./media/im20.png)
 
 10. You can see that the **Leave Manager** agent is accessed
-    automatically and the agent replies with the **Enter Employee ID**
-    question from the **Leave Manager agent’s topic**.
+    automatically and the agent replies with the leave details from the Leave balance tracker.
 
-11. Enter the Employee ID as +++1234+++ and you can see that the agent
-    replies based on the Leave Manager agent’s knowledge asset.
-
-    ![](./media/image91.png)
+    ![](./media/im21.png)
 
 ## Summary
 
@@ -605,6 +581,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
