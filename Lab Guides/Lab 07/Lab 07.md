@@ -109,35 +109,47 @@ how it should behave so that the Copilot will create the agent for you.
 
     ![](./media/image12.png)
 
-2.  Select **Agents** and then click on **+ New agent**.
+    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
+    >
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im2.png)
+    >
+    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im3.png)
+    >
+    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+
+
+3.  Select **Agents** and then click on **+ New agent**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-3.  Select the **Describe** tab. Enter the below in the chat and send it.
+4.  Select the **Describe** tab. Enter the below in the chat and send it.
 
     +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-4.  Enter +++Help the users in finding products and their prices, give personalized suggestions and track order delivery.+++ and hit
+5.  Enter +++Help the users in finding products and their prices, give personalized suggestions and track order delivery.+++ and hit
     **Enter**.
 
     ![](./media/image15.png)
 
-5.  Enter additional instructions as below.
+6.  Enter additional instructions as below.
 
     +++Maintain a polite tone+++
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Click **Create** to create the **Shopping agent**.
+7.  Click **Create** to create the **Shopping agent**.
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image17.png)
 
-7.  The agent gets set up. This might take a few minutes. Once the agent
+8.  The agent gets set up. This might take a few minutes. Once the agent
     is ready, it gets displayed in Copilot Studio as in the screenshot
     below.
 
