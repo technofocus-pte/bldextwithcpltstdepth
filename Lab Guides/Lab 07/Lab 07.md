@@ -1,4 +1,4 @@
-<img width="636" height="330" alt="image" src="https://github.com/user-attachments/assets/88676531-d4df-4317-a4a9-ae5576d11d78" /># Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
+# Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
 
 ## Objective
 
