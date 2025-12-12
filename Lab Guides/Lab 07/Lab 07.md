@@ -795,12 +795,12 @@ incorrect.](./media/image106.png)
             },
             {
                 "type": "Input.Text",
-                "id": "Mobile Number",
+                "id": "MobileNumber",
                 "label": "Mobile Number"
             },
             {
                 "type": "Input.Text",
-                "id": "Email ID",
+                "id": "EmailID",
                 "label": "Email ID"
             },
             {
