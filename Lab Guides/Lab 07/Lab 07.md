@@ -14,7 +14,7 @@ In this exercise, you will create tables in the Dataverse to store the
 **Customer**, **Product** and **Order** details.
 
 1.  Login to +++https://make.powerapps.com+++ using your admin tenant
-    credentials and select Dev One as your environment. Select Tables
+    credentials from the **Resources** tab, and select **Dev One** as your environment. Select **Tables**
     form the eft navigation pane.
 
     ![A screenshot of a computer AI-generated content may be
