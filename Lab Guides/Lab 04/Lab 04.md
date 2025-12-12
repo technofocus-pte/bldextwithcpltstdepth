@@ -47,6 +47,18 @@ incorrect.](./media/im5.png)
 
     ![](./media/image10.png)
 
+    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
+    >
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im1.png)
+    >
+    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Customer Service Trial** and select the value of the **Environment ID**.
+    >![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im2.png)
+    >
+    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+
+
 2.  Select **Agents** from the left pane. Click on the **+ New
     Agent** to create a new agent.
 
@@ -459,6 +471,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
