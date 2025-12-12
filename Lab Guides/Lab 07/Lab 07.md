@@ -13,60 +13,65 @@ experience.
 In this exercise, you will create tables in the Dataverse to store the
 **Customer**, **Product** and **Order** details.
 
-1.  Login to +++https://make.powerapps.com+++ using your admin tenant
-    credentials from the **Resources** tab, and select **Dev One** as your environment. Select **Tables**
-    form the eft navigation pane.
+1.  Open +++https://make.powerapps.com+++ in a browser and select Get Started.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im1.png)
+
+2.  Login using your admin tenant credentials from the **Resources** tab if prompted.
+
+3.  Select **Dev One** as your environment. Select **Tables** form the left navigation pane.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Select the drop down next to **+ New table** and select **Create new
+4.  Select the drop down next to **+ New table** and select **Create new
     tables** under it.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Select **Import an Excel file or .csv** to create a new table.
+5.  Select **Import an Excel file or .csv** to create a new table.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  Under Export an Excel or .CSV file, select the **Select from
+6.  Under Import an Excel or .CSV file, select the **Select from
     device** option.
 
     ![A screenshot of a file AI-generated content may be
 incorrect.](./media/image4.png)
 
-5.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
+7.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
     **Import** to import the data from the tracker and create the table.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-6.  The table gets created with the data from the tracker.
+8.  The table gets created with the data from the tracker.
 
-7.  Here, that table name is **Customer Record**. The name might be
+9.  Here, that table name is **Customer Record**. The name might be
     slightly different in your case since it is automatically generated.
-    Keep a note of it and use the appropriate Table name throughout the
+    Keep a note of it and use the appropriate **Table name** throughout the
     lab execution.
 
-8.  Click on the table, and then select **View data** to view the data
+10.  Click on the table, and then select **View data** to view the data
     added to the table.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-9.  Select **Save and exit**.
+11.  Select **Save and exit**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-10. Click on **Save and exit** in the confirmation dialog.
+11. Click on **Save and exit** in the confirmation dialog.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-11. Repeat the steps from 2 to 10 twice, to create tables once using the
+12. Repeat the steps from 4 to 12 twice, to create tables once using the
     tracker **Product Catalog.xlsx** and the next time using
     **Orders.xls**
 
@@ -79,13 +84,13 @@ incorrect.](./media/image10.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-12. Now, we will have 3 tables,
+13. Now, we will have 3 tables,
 
-    - Customer Record
+    - **Customer Record**
 
-    - Product Record
+    - **Product Record**
 
-    - Orders
+    - **Orders**
 
 ## Exercise 2 – Create a Shopping agent
 
