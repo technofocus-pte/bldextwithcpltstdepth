@@ -437,9 +437,7 @@ incorrect.](./media/image55.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[
-    cr6dd_lastpurchasedproduct '\]))+++ in the function area of the
-    condition.
+19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\[cr6dd_lastpurchasedproduct '\]))+++ in the function area of the condition.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
