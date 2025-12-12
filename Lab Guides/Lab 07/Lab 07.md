@@ -442,49 +442,51 @@ incorrect.](./media/image56.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
+    >[!Note] **Note:** Please ensure that the expression gets pasted exactly like in the screenshot above. Please remove extra characters if any
+
     >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
     >
     > ![](./media/image58.png)
 
-20. Set the condition as **is equal to true**
+21. Set the condition as **is equal to true**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-21. Add a new action below the **True** path of **Condition1** and
+22. Add a new action below the **True** path of **Condition1** and
     select the **Respond to the agent** node.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image60.png)
 
-22. Select the added **Respond to the agent node** and rename it to
+23. Select the added **Respond to the agent node** and rename it to
     +++If the customer has made a previous purchase+++ and select **+ Add an output**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image61.png)
 
-23. Select **Text**.
+24. Select **Text**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image62.png)
 
-24. Enter +++Customer ID+++ as the name and click on **Insert
+25. Enter +++Customer ID+++ as the name and click on **Insert
     expression**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-25. Enter
+26. Enter
     +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
     Customer ID of the Customer Record table. **Replace** it with your
     value.
 
-26. Select **Add**.
+27. Select **Add**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-27. Similarly, add the below output variables and expressions to each
+28. Similarly, add the below output variables and expressions to each
     one of it. For each variable, make sure to replace the logical name
     with yours.
 
@@ -500,19 +502,19 @@ incorrect.](./media/image64.png)
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image66.png)
 
-28. The **Respond to the agent** node will have 3 output variables as in
+29. The **Respond to the agent** node will have 3 output variables as in
     the screenshot below.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-29. Add a Respond to the agent node under the **False** path of the
+30. Add a Respond to the agent node under the **False** path of the
     **Condition1** node. Rename it to +++If the customer has not made a
     previous purchase+++. Click on **+ Add an output**.
 
     ![](./media/image68.png)
 
-30. Enter the below output variables replacing the column logical names
+31. Enter the below output variables replacing the column logical names
     with your logical names for the corresponding columns.
 
     - +++Customer ID+++ -
@@ -523,13 +525,13 @@ incorrect.](./media/image67.png)
     
     - +++Product Category+++ - +++’1’+++
 
-31. The **Respond to the agent** node under the **False** path will look
+32. The **Respond to the agent** node under the **False** path will look
     like the one in the screenshot below.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-32. Now, add a **Respond to the agent** node under the **False** path of
+33. Now, add a **Respond to the agent** node under the **False** path of
     the Condition node, rename it to +++If the customer does not
     exist+++ and add outputs to it as below.
 
@@ -541,19 +543,19 @@ incorrect.](./media/image69.png)
 
     ![](./media/image70.png)
 
-33. The **GetCustomer** flow will look like the one in the screenshot
+34. The **GetCustomer** flow will look like the one in the screenshot
     below.
 
     ![](./media/image71.png)
 
-34. Right click on the **Respond to the agent** that is there as a
+35. Right click on the **Respond to the agent** that is there as a
     common one at the end of the flow and select **Delete** to delete
     it.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-35. Select **Save Draft** to save the lab. Once saved, click on
+36. Select **Save Draft** to save the lab. Once saved, click on
     **Publish** to publish the flow.
 
     ![A screenshot of a computer AI-generated content may be
