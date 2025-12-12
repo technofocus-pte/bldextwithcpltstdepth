@@ -80,14 +80,14 @@ incorrect.](./media/image7.png)
     ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
 
 5.  Ensure that the file is added. Wait till the status changes from
-    **In progress** to **Ready** before proceeding to the next step.
+    **In progress** to **Ready**. You can continue with the next step while it is changing to the Ready state if it takes more than few minutes.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
-
+    
 ## Exercise 3 – Create a Team and Channel in Microsoft Teams
 
 In this exercise, we will create a team and a channel in MS Teams to
@@ -457,12 +457,13 @@ incorrect.](./media/image71.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/Image95.png)
 
-8.  The file gets added. Wait until the status is **Ready** before
-    proceeding to the next step.
+8.  The file gets added. Wait until the status is **Ready**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
+    >[!Alert] **Important:** The **Knowledge source** at times takes more **time** to come to the **Ready** state. If it takes more than **5 minutes**, please **continue** with the **next step** to check if you are able to get the **result** from the **added source**. Because, it gets added at the back end and takes time to reflect the same in the UI. If you are able to get **proper results**, please **proceed** with the next steps. **Else**, **wait** for some time.
+    
 9.  Select **Settings** from the top right.
 
     ![A screenshot of a computer AI-generated content may be
@@ -578,6 +579,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
