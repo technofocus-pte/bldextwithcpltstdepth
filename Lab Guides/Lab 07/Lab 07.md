@@ -55,13 +55,13 @@ incorrect.](./media/image5.png)
     Keep a note of it and use the appropriate **Table name** throughout the
     lab execution.
 
-10.  Click on the table, and then select **View data** to view the data
+10. Click on the table, and then select **View data** to view the data
     added to the table.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-11.  Select **Save and exit**.
+11. Select **Save and exit**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
