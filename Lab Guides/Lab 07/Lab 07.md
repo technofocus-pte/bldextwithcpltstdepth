@@ -163,20 +163,16 @@ incorrect.](./media/image21.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-5.  Search for +++order+++, select the **Order Record** table and click
-    **Next**.
+5.  Search for +++order+++, select the **Order** (the table name might slightly differ in each case. Select your appropriate table) table and select **Add to agent**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image23.png)
-
-6.  Select **Add**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image24.png)
+incorrect.](./media/im9.png)
 
 7.  Wait for a few minutes after the knowledge source is added before
     testing the agent again.
 
+    >[!Alert] **Important:** The **Knowledge source** at times takes more **time** to come to the **Ready** state. If it takes more than **5 minutes**, please **continue** with the **next step** to check if you are able to get the **result** from the **added source**. Because, it gets added at the back end and takes time to reflect the same in the UI. If you are able to get **proper results**, please **proceed** with the next steps. **Else**, **wait** for some time.
+    
 8.  Once the **Order Record** becomes **Ready** under the Knowledge
     section, ask the same question in the Test pane.
 
