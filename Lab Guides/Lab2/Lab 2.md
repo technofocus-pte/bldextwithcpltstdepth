@@ -134,8 +134,7 @@ incorrect.](./media/image22.png)
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image26.png)
 
-20. Search for +++privileged role admin+++ and select the **Privileged
-    Role Administrator** role.
+20. Search for +++privileged role admin+++ and click on the **Privileged Role Administrator** role (**Do not select the checkbox**, click on its name).
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image27.png)
 
@@ -232,6 +231,7 @@ In this lab, we have activated the Dynamics 365 Customer Service which
 will be used in the **Lab 04 - Integrate an agent with the Dynamics 365
 Customer Service app and implement automated case escalation to the live
 agent**. 
+
 
 
 
