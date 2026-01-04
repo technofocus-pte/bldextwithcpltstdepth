@@ -150,19 +150,6 @@ incorrect.](./media/image19.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
+**Summary**
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+In this lab, you created a **Business-to-Employee (B2E) travel assistance** agent by using the **Safe Travels agent template** in Microsoft Copilot Studio. You explored how agent templates provide a quick starting point by preconfiguring conversational capabilities and knowledge sources, while still allowing for future customization to meet organizational and legal requirements. Using the built-in **US travel website** as a **knowledge source**, you tested the agent’s ability to answer employee travel-related questions through natural language interactions. Finally, you **published** the agent to **Microsoft Teams and Microsoft 365 Copilot**, validated its availability in Teams, and confirmed that employees can access and interact with the Safe Travels agent directly within their everyday collaboration tools.
