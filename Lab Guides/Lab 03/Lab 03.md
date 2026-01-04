@@ -103,7 +103,7 @@ incorrect.](./media/im33.png)
 4.  Select **Channels** from the top navigation bar.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image37.png)
+incorrect.](./media/im37.png)
 
 5.  Select **Teams and Microsoft 365 Copilot** from the list of
     available channels.
@@ -124,7 +124,7 @@ incorrect.](./media/image16.png)
 8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in the **This site is trying to open Microsoft Teams** pop up and then select **Use the Web App instead** option.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image38.png)
+incorrect.](./media/im38.png)
 
 9.  Select **Add** to add the agent.
 
@@ -149,6 +149,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
