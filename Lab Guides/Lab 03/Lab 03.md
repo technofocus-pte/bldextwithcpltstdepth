@@ -1,4 +1,4 @@
-# Lab 03 – Create Safe Travels agent from Template
+<img width="540" height="361" alt="image" src="https://github.com/user-attachments/assets/f5f3e088-7880-4ebc-9362-5efd52c7e4a5" /># Lab 03 – Create Safe Travels agent from Template
 
 **Objective**
 
@@ -23,24 +23,24 @@ In this exercise, you will create the agent in Copilot Studio using the Safe Tra
 
     ![image](https://github.com/user-attachments/assets/7a2b18ab-7d57-44f6-a6a4-2993d60bbcd8)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image2.png)
-
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
+    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
     >
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im5.png)
+    >![A screenshot of a computer AI-generated content may be incorrect.](./media/im30.png)
     >
     > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im6.png)
+    >![A screenshot of a computer AI-generated content may be incorrect.](./media/im6.png)
     >
     > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
 
+3.  Select Skip in the Welcome screen.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im31.png)
+    
 3.  Select **Agents** from the left pane and then select the **Safe Travels** template under **Start with an agent template**. 
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im8.png)
+incorrect.](./media/im32.png)
 
 5.  The Safe Travels template creates a new agent that is designed to
     provide employees of a company with travel assistance. 
@@ -92,35 +92,41 @@ In this exercise, you will **publish** the agent created in Copilot Studio to th
 1.  Back in the Copilot Studio, select **Publish** from the top right of the agent page.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
+incorrect.](./media/im33.png)
 
-2.  Select **Publish** in the confirmation dialog.
+2.  Check the **Force newest version** checkbox and then select **Publish** in the confirmation dialog.
 
-    ![](./media/image12.png)
+    ![](./media/im34.png)
 
-3.  Select **Channels** from the top navigation bar.
+    ![](./media/im35.png)
+    
+4.  Select **Channels** from the top navigation bar.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image13.png)
+incorrect.](./media/image37.png)
 
-4.  Select **Teams and Microsoft 365 Copilot** from the list of
+5.  Select **Teams and Microsoft 365 Copilot** from the list of
     available channels.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Select **Add channel**.
+6.  Select **Add channel**.
 
     ![](./media/image15.png)
 
-6.  Click on the **See agent in Teams** option add the agent to the
+7.  Click on the **See agent in Teams** option add the agent to the
     Teams.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-7.  This opens up the agent in the Microsoft Teams (Select **Use the Web App instead** option). Select **Add** to
-    add the agent.
+8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in the **This site is trying to open Microsoft Teams** pop up and then select **Use the Web App instead** option.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image38.png)
+
+9.  Select **Add** to add the agent.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
@@ -128,21 +134,22 @@ incorrect.](./media/image17.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Once added, you will get an option to open the agent. Select
+10.  Once added, you will get an option to open the agent. Select
     **Open**.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Test the agent from Teams.
+11.  Test the agent from Teams.
 
     ![](./media/image20.png)
 
-10. Back in the Copilot Studio, close the Teams and Microsoft 365
+11. Back in the Copilot Studio, close the Teams and Microsoft 365
     Copilot channel window.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
