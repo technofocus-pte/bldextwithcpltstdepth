@@ -1,4 +1,4 @@
-<img width="540" height="361" alt="image" src="https://github.com/user-attachments/assets/f5f3e088-7880-4ebc-9362-5efd52c7e4a5" /># Lab 03 – Create Safe Travels agent from Template
+# Lab 03 – Create Safe Travels agent from Template
 
 **Objective**
 
@@ -149,6 +149,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
