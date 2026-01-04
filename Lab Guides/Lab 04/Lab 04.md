@@ -45,12 +45,12 @@ incorrect.](./media/im5.png)
 1.  From the Copilot Studio home page,
     +++https://copilotstudio.microsoft.com+++, select the **CustomerService Trial** Environment from the top right.
 
-    ![](./media/image10.png)
+    ![](./media/im39.png)
 
     >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
     >
     >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im1.png)
+incorrect.](./media/im30.png)
     >
     > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Customer Service Trial** and select the value of the **Environment ID**.
     >![A screenshot of a computer AI-generated content may be
@@ -59,34 +59,15 @@ incorrect.](./media/im2.png)
     > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
 
 
-2.  Select **Agents** from the left pane. Click on the **+ New
-    Agent** to create a new agent.
+2.  Select **Agents** from the left pane. In the **Start building by describing what your agent needs to do** text area, type +++**You are a customer service agent who helps in identifying stores nearby**+++ and hit **Send**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
+incorrect.](./media/im40.png)
 
-3.  Select the **Describe** tab. In the Type your message text area, type +++**You are a customer service agent who helps in identifying stores nearby.**+++ And hit **send**.
-
-    ![](./media/im8.png)
-
-4.  The agent might suggest a **name** for the Agent being created.
-    Either accept it or suggest a new name.
-
-    ![](./media/im9.png)
-
-5.  Type the message +++**Maintain a polite tone**+++ next and
-    hit **send**.
-
-    ![](./media/im11.png)
-
-6.  Click on **Create**.
-
-    ![](./media/im12.png)
-
-7.  The agent creation succeeds and the agents **Overview** page gets opened.
+3.  The agent creation succeeds and the agents **Overview** page gets opened. Any updates to the Name, description or the instructions can be made from this page if needed.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im13.png)
+incorrect.](./media/im41.png)
 
 ## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
 
@@ -204,7 +185,7 @@ incorrect.](./media/im28.png)
 incorrect.](./media/img2.png)
 
 
-5.  This opens up the **Dynamics 365 Customer Service admin
+5.  This opens up the **Dynamics 365 Copilot Service admin
     center** page.
 
     ![A screenshot of a computer AI-generated content may be
@@ -263,9 +244,9 @@ incorrect.](./media/image42.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-7.  Accept the defaults in the next 2 pages until you reach the Chat
-    widget screen. In the Live chat setup – Chat widget screen, provide
-    the name as +++**Store Locator Assistant**+++, accept the other
+7.  Accept the defaults in the next 2 pages until you reach the **Chat
+    widget** screen. In the **Live chat setup – Chat widget** screen, provide
+    the **Title** as +++**Store Locator Assistant**+++, accept the other
     defaults and click on **Next**.
 
     ![A screenshot of a chat AI-generated content may be
@@ -361,11 +342,7 @@ incorrect.](./media/image58.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
 
-8.  Once the site is created, click on **Edit**.
-
-    ![](./media/image60.png)
-
-9.  Click on **Edit site header** in the **Company name** title.
+8.  Once the site is created, click on **Edit site header** in the **Company name** title.
 
     ![](./media/image61.png)
 
@@ -410,13 +387,16 @@ incorrect.](./media/image68.png)
 17. Please wait for few minutes before proceeding to the next step.
 
 18. **Publish** the agent again from the **Copilot Studio** once.
-    
-19. Once the Sync is completed, select **Preview** -\> **Desktop.**
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image21.png)
+
+20. Once the Sync is completed, select **Preview** -\> **Desktop.**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-20. Your web page opens in a new tab. Find the **Store Locator
+21. Your web page opens in a new tab. Find the **Store Locator
     Assistant** embedded to the page at the bottom right of the web
     page. **Click** on it.
 
@@ -426,12 +406,12 @@ incorrect.](./media/image70.png)
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/img5.png)
 
-21. Enter +++Talk to agent+++.
+22. Enter +++Talk to agent+++.
 
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/img6.png)
 
-22. From the Customer Service admin page, click on **Copilot Service
+23. From the Customer Service admin page, click on **Copilot Service
     admin center** and select the app **Customer Service
     workspace** from it.
 
@@ -441,20 +421,20 @@ incorrect.](./media/image80.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-23. In the Customer Service workspace page, you will get a **chat
+24. In the Customer Service workspace page, you will get a **chat
     request**. **Accept** it.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image74.png)
 
-24. Once accepted, the chat screen opens up with the message that we had
+25. Once accepted, the chat screen opens up with the message that we had
     given in the Escalate topic. We can also add any other information
     provided by the user here to the live agent.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image75.png)
 
-25. Simulate the chat between the live agent and the customer if you
+26. Simulate the chat between the live agent and the customer if you
     wish to see how it works and then ends.
 
     ![A screenshot of a chat AI-generated content may be
@@ -471,6 +451,7 @@ In this lab, we have learnt to
 
 - Publish the agent to Dynamics 365 workspace and integrate it in a web
   page. 
+
 
 
 
