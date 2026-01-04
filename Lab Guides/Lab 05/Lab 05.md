@@ -17,15 +17,18 @@ responds when asked about travel approval.
 
 1.  Open the **Copilot Studio** at
     +++https://copilotstudio.microsoft.com+++ from a browser. Navigate
-    to the **Dev One** environment and open the **Safe Travels** agent.
+    to the **Dev One** environment. Select **Agents** from the left pane and then select the **Safe Travels** agent.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
+incorrect.](./media/im42.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im43.png)
 
     >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
     >
     >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im5.png)
+incorrect.](./media/im30.png)
     >
     > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
     >![A screenshot of a computer AI-generated content may be
@@ -34,18 +37,18 @@ incorrect.](./media/im6.png)
     > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
 
     
-2.  Select the **Test** icon to test the agent.
+3.  Select the **Test** icon to test the agent.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Enter +++Need travel approval+++ in the Test window and click on
+4.  Enter +++Need travel approval+++ in the Test window and click on
     **Enter**.
 
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image3.png)
 
-4.  You can see that the agent responds with a generalized instruction
+5.  You can see that the agent responds with a generalized instruction
     set to be followed to get the travel approval.
 
     ![A screenshot of a computer screen AI-generated content may be
@@ -93,7 +96,7 @@ incorrect.](./media/image11.png)
 In this exercise, we will create a team and a channel in MS Teams to
 which the travel approval request will be sent.
 
-1.  Open Microsoft Teams and select **See all your teams** option from
+1.  Open Microsoft Teams at +++https://teams.microsoft.com/v2/+++ and select **See all your teams** option from
     the left pane.
 
     ![A screenshot of a computer AI-generated content may be
@@ -133,14 +136,9 @@ incorrect.](./media/image16.png)
 2.  Select **New agent flow** to create a new flow.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image17.png)
+incorrect.](./media/im44.png)
 
-3.  Select **Add a trigger**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
-
-4.  Search for +++agent+++ and select **When an agent calls the flow** under **Skills**.
+4.  In the **Add a trigger** node, search for +++agent+++ and select **When an agent calls the flow** under **Skills**.
 
     ![A screenshot of a web page AI-generated content may be
 incorrect.](./media/im1.png)
@@ -220,17 +218,12 @@ incorrect.](./media/image31.png)
 
     ![](./media/image32.png)
 
-15. Close the Parameters tab.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image33.png)
-
-16. Add another **action** after the Post message node.
+16. Scroll down and add another **action** after the Post message node.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image34.png)
 
-17. Select **Respond to the agent** under **Skills**.
+17. Select **Respond to the agent** under **Skills** or **AI Capabilities**.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image35.png)
@@ -261,8 +254,7 @@ incorrect.](./media/image39.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-23. Select **Edit** and name the flow as +++Request Travel Approval
-    Flow+++ in the **Details** pane. Select **Save**.
+23. Select **Edit** and name the flow as +++Request Travel Approval Flow+++ in the **Details** pane. Select **Save**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image41.png)
@@ -292,16 +284,15 @@ incorrect.](./media/image44.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-5.  Select **Add to agent**.
+5.  Select **Add and configure**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
+incorrect.](./media/im45.png)
 
-6.  Once added, the flow will get listed under **Tools** section of the
-    **Overview** page of the **agent**.
+6.  Once added, the flow will get listed under **Tools**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image47.png)
+incorrect.](./media/im46.png)
 
 ## Exercise 6 – Create Topic
 
@@ -579,6 +570,7 @@ In this lab, you learned how to:
 -    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
 
 By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
+
 
 
 
