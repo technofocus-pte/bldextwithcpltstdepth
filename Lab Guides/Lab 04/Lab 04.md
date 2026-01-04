@@ -2,8 +2,7 @@
 
 ## Objective
 
-This lab details the steps to escalate a conversation to a live agent
-from the agents.
+The objective of this lab is to demonstrate how to integrate a **Copilot Studio agent** with **Dynamics 365 Customer Service** and enable seamless **escalation from an AI agent** to a **live human agent**. Participants will learn how to configure the Customer Service workspace, create and publish an agent, connect it to Dynamics 365 Omnichannel, and validate real-time escalation through a web-based chat experience.
 
 >[!Alert] **Important:** This lab can be executed only if the Dynamics
 365 trial has been enabled as per **Lab 02 - Configure the Dynamics 365
@@ -11,7 +10,11 @@ Customer Service**
 
 ## Exercise 1: Configure the Dynamics 365 Customer Service workspace
 
+This exercise is to prepare the Dynamics 365 Customer Service environment by enabling required Dataverse search capabilities that support efficient customer data retrieval during live-agent interactions.
+
 ## Task 1: Configure search settings in the Power Platform admin center
+
+Enable Dataverse Search and Single Table Search to ensure optimized data access and search performance within the Dynamics 365 Customer Service workspace.
 
 1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
     your tenant details. Select **Manage** from the left pane and then
@@ -42,6 +45,8 @@ incorrect.](./media/im5.png)
 
 ## Exercise 2: Create an agent
 
+This task is to create a Copilot Studio agent using natural language instructions and define its tone and behavior for customer service interactions.
+
 1.  From the Copilot Studio home page,
     +++https://copilotstudio.microsoft.com+++, select the **CustomerService Trial** Environment from the top right.
 
@@ -71,11 +76,11 @@ incorrect.](./media/im41.png)
 
 ## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
 
+In this exercise, you configure the agent’s escalation logic and connect it to Dynamics 365 Customer Service so that conversations can be transferred to a live agent when required.
+
 ### Task 1: Configure the Escalate topic
 
-We are focusing here on showcasing the escalation to live agent concept.
-So, we will directly work towards it without creating any other new
-topics.
+Customize the system Escalate topic to trigger a live-agent handoff by displaying a transition message and invoking the conversation transfer action.
 
 1.  Select the **Topics** tab and then select the **System** tab. Select
     the **Escalate** topic.
@@ -110,6 +115,8 @@ incorrect.](./media/image20.png)
 incorrect.](./media/image21.png)
 
 ### Task 2: Connect the copilot to Dynamics 365 Customer Service
+
+Establish a secure connection between the Copilot Studio agent and Dynamics 365 Customer Service using the Customer Engagement channel.
 
 1.  Once published, from the copilot page top right, click
     on **Settings**.
@@ -161,7 +168,11 @@ incorrect.](./media/image30.png)
 
 ## Exercise 4: Create workstream and channel in Dynamics 365 admin center
 
+This exercise is to configure **Omnichannel capabilities** that route escalated conversations from the AI agent to human agents.
+
 ### Task 1: Manage a user in Omnichannel for Customer Service
+
+Access the Dynamics 365 Customer Service admin center and ensure the environment is ready for Omnichannel configuration and agent assignment.
 
 1.  Login to +++https://admin.powerplatform.microsoft.com+++ using your admin tenant credentials. Select **Manage** from the left pane. Select **CustomerService Trial** environment **under Environments**.
 
@@ -193,6 +204,8 @@ incorrect.](./media/img3.png)
 
 
 ### Task 2: Configure workstream
+
+Create an **inbound messaging workstream** and configure a live chat channel that will receive escalated conversations from the AI agent.
 
 1.  From the admin center page, select **Workstreams** under **Customer
     support** from the left pane and then select the **+ New
@@ -283,6 +296,8 @@ incorrect.](./media/image48.png)
 
 ### Task 3: Add the agent to the workstream
 
+Associate the Copilot Studio agent with the Omnichannel workstream so it can participate in customer conversations and escalate them when necessary.
+
 1.  Back in the **New Workstream** page, scroll down and click on **+ Add an AI agent** in the **Add an AI agent** section.
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image78.png)
@@ -305,6 +320,8 @@ incorrect.](./media/image52.png)
 incorrect.](./media/image53.png)
 
 ## Exercise 5: Create a webpage and test the escalation to agent
+
+This exercise is to embed the AI agent into a Power Pages website and validate the complete escalation flow from an AI-driven conversation to a live agent interaction.
 
 1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
     tenant admin credentials.
@@ -416,9 +433,6 @@ incorrect.](./media/img6.png)
     workspace** from it.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image80.png)
-
-    ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
 24. In the Customer Service workspace page, you will get a **chat
@@ -442,15 +456,20 @@ incorrect.](./media/image76.png)
 
     ![A screenshot of a chat AI-generated content may be incorrect.](./media/image77.png)
 
+**Exercise Summary**
+
+You have successfully verified that:
+
+-    The AI agent responds to user queries
+
+-    An escalation request transfers the conversation
+
+-    A live agent receives and continues the chat in the Customer Service workspace
+
 ## Summary
 
-In this lab, we have learnt to
+In this lab, you integrated a **Copilot Studio agent** with **Dynamics 365 Customer Service** to support **live-agent escalation** scenarios. You created a **customer service agent**, **customized** the built-in **Escalate** topic, and connected the agent to the **Dynamics 365 Customer Service channel**. You then set up Omnichannel workstreams and chat channels, embedded the agent into a Power Pages website, and validated the end-to-end escalation flow by transferring a conversation from the AI agent to a human agent in the Customer Service workspace. This lab highlights how AI agents and human agents can work together to deliver efficient, real-world customer support experiences.
 
-- Build an agent from the Copilot Studio and configure the Escalate
-  topic.
-
-- Publish the agent to Dynamics 365 workspace and integrate it in a web
-  page. 
 
 
 
