@@ -134,13 +134,13 @@ incorrect.](./media/image17.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-10.  Once added, you will get an option to open the agent. Select
+10. Once added, you will get an option to open the agent. Select
     **Open**.
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image19.png)
 
-11.  Test the agent from Teams.
+11. Test the agent from Teams.
 
     ![](./media/image20.png)
 
@@ -149,6 +149,7 @@ incorrect.](./media/image19.png)
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
