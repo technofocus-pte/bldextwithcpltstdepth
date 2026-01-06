@@ -130,7 +130,7 @@ incorrect.](./media/im3.png)
     +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
     
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im7.png)
+incorrect.](./media/im47.png)
 
 4. Wait till your **agent is provisioned** and then proceed to the next step.
 
@@ -155,7 +155,7 @@ incorrect.](./media/image19.png)
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image20.png)
 
-3.  Now, we will add knowledge source to the agent. From the **Home**
+3.  Now, we will add knowledge source to the agent. From the **Overview**
     page of the agent, select **Add Knowledge** under the **Knowledge**
     section.
 
@@ -178,7 +178,7 @@ incorrect.](./media/im9.png)
     >[!Alert] **Important:** The **Knowledge source** at times takes more **time** to come to the **Ready** state. If it takes more than **5 minutes**, please **continue** with the **next step** to check if you are able to get the **result** from the **added source**. Because, it gets added at the back end and takes time to reflect the same in the UI. If you are able to get **proper results**, please **proceed** with the next steps. **Else**, **wait** for some time.
     
 8.  Once the **Order Record** becomes **Ready** under the Knowledge
-    section, ask the same question in the Test pane.
+    section, ask the same question (+++What is the status of the order o1001?+++) in the Test pane.
 
     You can now see that the agent retrieves the information from the
 database and provides it to the user.
@@ -215,7 +215,7 @@ incorrect.](./media/image28.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-5.  Similarly, add the below items and then select **Save**.
+5.  Similarly, add the below items and then select **Save** and then **Close**.
 
     +++Dell XPS 13 Plus+++
     
@@ -228,7 +228,16 @@ incorrect.](./media/image29.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-6.  Now, repeat steps 2 to 5 with the below data.
+6.  Select **Add an entity -\> + New entity**
+
+    ![](./media/image27.png)
+
+7.  Select **Closed list**.
+
+    ![A screenshot of a web page AI-generated content may be
+incorrect.](./media/image28.png)
+
+8.  Enter the below data.
 
     - Name - +++Desktop+++
     
@@ -236,7 +245,7 @@ incorrect.](./media/image30.png)
     
     Under **List items**, enter +++Apple iMac+++ and click on **Add**.
 
-7.  Other items to be added in the list,
+9.  Other items to be added in the list are as below. Once done select **Save** and **Close**.
 
     +++Microsoft Surface Studio 2+++
     
@@ -246,7 +255,16 @@ incorrect.](./media/image30.png)
     
     +++Lenovo IdeaCentre AIO 5i+++
 
-8.  Again, repeat steps 2 to 5 with the below data.
+10. Select **Add an entity -\> + New entity**
+
+    ![](./media/image27.png)
+
+11. Select **Closed list**.
+
+    ![A screenshot of a web page AI-generated content may be
+incorrect.](./media/image28.png)
+
+12.  Enter the below data.
 
     - Name - +++Tablet+++
 
@@ -254,7 +272,7 @@ incorrect.](./media/image30.png)
 
     Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
 
-9.  Other items to be added in the list,
+13.  Other items to be added in the list. Select **Save** and **Close** once done.
 
     +++Samsung Galaxy Tab S9 Ultra+++
     
@@ -263,6 +281,10 @@ incorrect.](./media/image30.png)
     +++Lenovo Tab P12 Pro+++
     
     +++Apple iPad Air+++
+
+14. **Close** the **Settings** pane.
+
+In this tasak, all the entites required are created and updated.
 
 ## Exercise 3 – Create Topics and agent flows and design the agent
 
@@ -280,7 +302,7 @@ agent.
 
 1.  From the **Overview** page of the agent, select the **Topics** tab
     from the top menu bar. Select **System** to view the list of System
-    topics. Select the Conversation Start topic from the list.
+    topics. Select the **Conversation Start** topic from the list.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
@@ -311,7 +333,7 @@ incorrect.](./media/image34.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-2.  Name the agent as +++Customer Details+++.
+2.  Name the topic as +++Customer Details+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
@@ -361,8 +383,7 @@ incorrect.](./media/image42.png)
 
     ![](./media/image43.png)
 
-6.  Enter the input as +++Phone number+++ and then collapse the
-    **Parameters** tab.
+6.  Enter the input as +++Phone number+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
@@ -409,7 +430,7 @@ incorrect.](./media/image49.png)
 13. Navigate back to the Copilot Studio – Agent flow tab. Open the
     Getcustomer flow and select the **List rows** action.
 
-14. Under Filter rows, enter **<Logical name of Mobile number> eq ''**. Replace **<Logical name>** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+14. Under Filter rows, enter **+++< Logical name of Mobile number > eq ''+++**. Replace **< Logical name >** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
 
     In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
 
