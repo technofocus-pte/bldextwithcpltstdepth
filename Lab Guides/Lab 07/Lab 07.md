@@ -1343,14 +1343,12 @@ incorrect.](./media/image178.png)
 
     ![](./media/image179.png)
 
-17. Under the Question node, add a condition node and in one branch, add
-    a condition **PlaceOrder isequal to Yes** and **all other
-    conditions** will be the **second branch**.
+17. Remove the node, **PlaceOrder is equal to No**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image180.png)
+incorrect.](./media/im49.png)
 
-18. Invoke the flow **PlaceOrder** as the next step.
+18. Invoke the flow **PlaceOrder** as the next step, under the **Yes** branch.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image181.png)
@@ -1361,30 +1359,24 @@ incorrect.](./media/image181.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image182.png)
 
-20. Now, add a message node below this with the message, +++Your order
-    is placed. This is your Order ID for reference -<OrderID>+++
-    (Replace **<OrderID>** with the **variable OrderID** (the output
+20. Now, add a message node below this with the message, +++Your order is placed. This is your Order ID for reference - < OrderID >+++ (Replace **< OrderID >** with the variable, **+++OrderID+++** (the output
     variable from the flow).
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image183.png)
 
-21. With this the **PlaceOrder isequal to Yes** branch is **complete**.
+21. With this the **PlaceOrder is equal to Yes** branch is **complete**.
     Now, navigate to **all other conditions branch**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image184.png)
 
-22. Below that, add a Question node with the message, +++Do you want to
-    go to the main menu?+++ with options **Yes** and **No**. Name the
-    variable as +++**GoToMainMenu**+++.
+22. Below that, add a Question node with the message, +++Do you want to go to the main menu?+++ with options **Yes** and **No**. Name the variable as +++**GoToMainMenu**+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image185.png)
 
-23. Under this node, add a condition node and in one branch add a
-    condition with **GoToMainMenu is equal to Yes**. The other branch of
-    this condition will be **All other conditions**.
+23. Remove the **GoToMainMenu is equal to No**. So now there will be one branch - **GoToMainMenu is equal to Yes** and the other branch will be **All other conditions**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image186.png)
@@ -1396,10 +1388,12 @@ incorrect.](./media/image186.png)
     Make a note of the variable name to which the result is saved. We will
 convert it to text in the next step.
 
+    Delete the nodes that created as a result of the condition(The 4 nodes - one for each category and the All other conditions node).
+    
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image187.png)
 
-25. Add a **Set variable value** node and select **ProductCategory**
+26. Add a **Set variable value** node and select **ProductCategory**
     variable under **set variable** and enter the value as
     +++**Text(Topic.Var1)**+++ under the **Formula** tab.
 
@@ -1410,7 +1404,7 @@ incorrect.](./media/image188.png)
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image189.png)
 
-26. Under the Set variable value node, add a **Go to step** node.
+27. Under the Set variable value node, add a **Go to step** node.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image190.png)
@@ -1418,7 +1412,7 @@ incorrect.](./media/image190.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image191.png)
 
-27. After adding the node, you will have to select the **step**, to
+28. After adding the node, you will have to select the **step**, to
     which the **control should pass** on at this point. **Scroll up**
     and select the **Message node at the starting of this topic** since,
     you have got the **ProductCategory** from the customer now and need
@@ -1427,8 +1421,7 @@ incorrect.](./media/image191.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image192.png)
 
-28. Add a common message node at the end with the message +++Thank you
-    for shopping with us! Please visit again!+++ Then select **Save** to
+29. Add a common message node at the end with the message +++Thank you for shopping with us! Please visit again!+++ Then select **Save** to
     save the topic.
 
     ![A screenshot of a computer AI-generated content may be
