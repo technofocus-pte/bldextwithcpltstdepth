@@ -430,7 +430,9 @@ incorrect.](./media/image49.png)
 13. Navigate back to the Copilot Studio – Agent flow tab. Open the
     Getcustomer flow and select the **List rows** action.
 
-14. Under Filter rows, enter **+++< Logical name of Mobile number > eq ''+++**. Replace **< Logical name >** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+14. Select the Table name as **Customer Record**(or your crresponding table name).
+
+15. Under Filter rows, enter **+++< Logical name of Mobile number > eq ''+++**. Replace **< Logical name of Mobile number >** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
 
     In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
 
@@ -447,8 +449,7 @@ incorrect.](./media/image49.png)
     ![](./media/image53.png)
 
 17. Enter +++length(outputs('List_rows')?\['body'\]?\['value'\])+++ in
-    the function and select **Add**. This will check if the List rows
-    returns a value or not.
+    the function and select **Add**. Select the condition as **is greater than** and enter the value as +++0+++. This will check if the List rows returns a value or not.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
@@ -462,7 +463,7 @@ incorrect.](./media/image55.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-19. Enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\['cr6dd_lastpurchasedproduct'\]))+++ in the function area of the condition.
+19. Select / -> Insert expression and then enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\['cr6dd_lastpurchasedproduct'\]))+++ in the function area of the condition.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
@@ -519,7 +520,7 @@ incorrect.](./media/image64.png)
       +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
     
     - +++Product Category+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++
+      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++ (This is the last/recent purchased product column)
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image65.png)
@@ -656,7 +657,7 @@ incorrect.](./media/image83.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image84.png)
 
-10. Ewqewqewq Open the insert expression for **Customer ID**, enter
+10. Open the insert expression for **Customer ID**, enter
     +++guid()+++ and select **Add**. This is to add a unique value as
     the ID for the customer.
 
