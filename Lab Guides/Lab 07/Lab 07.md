@@ -20,9 +20,9 @@ incorrect.](./media/im1.png)
 
 2.  Login using your admin tenant credentials below if prompted.
 
-    - Username - +++@lab.CloudPortalCredential(User1).Username+++
+    - Username - +++lab.CloudCredential(M365).AdministrativeUsername+++
       
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+    - Password - +++@lab.CloudCredential(M365).AdministrativePassword+++
       
 3.  Select **Dev One** as your environment. Select **Tables** form the left navigation pane.
 
