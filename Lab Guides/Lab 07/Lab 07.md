@@ -600,8 +600,7 @@ the Dataverse when the customer is a new customer.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-2.  Select **Add a trigger** node and replace it with **When an agent
-    calls the flow** node.
+2.  Select **Add a trigger** node and replace it with **When an agent calls the flow** (This will be available either under +++Skills+++ or +++AI capabilities+++) node.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image76.png)
@@ -626,7 +625,7 @@ incorrect.](./media/image78.png)
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image79.png)
 
-6.  Add an action below the node and select **Add a new row**.
+6.  Add an action below the node and select +++**Add a new row**+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
@@ -804,7 +803,7 @@ incorrect.](./media/image105.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image106.png)
 
-18. Enter the below **JSON** in the **Card payload editor** area. Select **Save**.
+18. Enter the below **JSON** (Select the **Copy** option and **Paste** it in the UI) in the **Card payload editor** area. Select **Save**.
     
     ```
     {
@@ -855,8 +854,8 @@ incorrect.](./media/image106.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image108.png)
 
-20. Expand the Outputs section of the created Adaptive card node, select
-    the Mobile Number value and select the Global.MobileNumber variable
+20. Expand the **Outputs** section of the created Adaptive card node, select
+    the **Mobile Number** value and select the **Global.MobileNumber** variable
     to save the user entered Phone number value in it.
 
     ![A screenshot of a computer AI-generated content may be
@@ -953,9 +952,7 @@ incorrect.](./media/image122.png)
 incorrect.](./media/image123.png)
 
 6.  Navigate back to the **Designer** tab and select **Add an action**
-    below the **When an agent calls the flow** node. Search for +++list
-    rows+++ and select the **List rows** action under **Microsoft
-    Dataverse**.
+    below the **When an agent calls the flow** node. Search for +++list rows+++ and select the **List rows** action under **Microsoft Dataverse**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image124.png)
@@ -965,7 +962,7 @@ incorrect.](./media/image124.png)
     - **Table name –** Select **Product Record**
     
     - Filter rows – +++cr6dd_producttitle eq '**< Product Name >**'+++
-      Replacing < Product Name > with the dynamic value **ProductName**.
+      Replacing < Product Name > with the dynamic value **ProductName**. (Replace **cr6dd_producttitle** with the **logical name** of your **product name** field)
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
 
@@ -1054,8 +1051,7 @@ incorrect.](./media/image135.png)
 
     ![](./media/image136.png)
 
-8.  Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+8.  Under the Condition node, add a question node and enter +++Select a category+++ and select **+ New option**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
@@ -1073,7 +1069,7 @@ incorrect.](./media/image138.png)
 incorrect.](./media/image139.png)
 
 11. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+    convert the choice received from the question node to String. (The 3 different paths formed based on the options will not be used in this case. They can either be deleted or left as such. In this case, we will leave thema as such and add the **Set variable value** node before the branches, immediately after the question node).
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
@@ -1096,9 +1092,7 @@ incorrect.](./media/image142.png)
     user and invoke the Place Order topic.
 
 15. Navigate back to the start of this topic. Under all other
-    conditions, add a **Question** node. Add the message +++Based on
-    your recent purchase we suggest you products in < Product Category >
-    category. Would you like to continue?+++
+    conditions, add a **Question** node. Add the message +++Based on your recent purchase we suggest you products in <Product Category > category. Would you like to continue?+++
 
     In the message replace **< Product Category >** with the **Global.ProductCategory** variable.
 
@@ -1110,36 +1104,18 @@ incorrect.](./media/image142.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image144.png)
 
-17. Under the **question** node, add a **condition** node.
-
-    Set the first condition as **Userschoiceofcategory is equal to Yes**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image145.png)
-
-36. Under this node, add a **Topic management node** and invoke the
+17. Under the **Userschoiceofcategory is equal to Yes** condition node path, add a **Topic management node** and invoke the
     **Place Order** topic.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image146.png)
 
-18. In the condition node, select the three dots in the top right corner
-    of the condition node and select **Insert new condition**.
-
-    ![](./media/image147.png)
-
-19. Add a condition, **Userschoiceofcategory is equal to No**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image148.png)
-
-20. Under the Condition node, add a question node and enter +++Select a
-    category+++ and select **+ New option**.
+18. Under the Condition **Userschoiceofcategory is equal to No**, add a question node and enter +++Select a category+++ and select **+ New option**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image137.png)
 
-21. Enter the option +++Laptop+++ and select + New option again.
+19. Enter the option +++Laptop+++ and select + New option again.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image138.png)
@@ -1151,7 +1127,7 @@ incorrect.](./media/image138.png)
 incorrect.](./media/image149.png)
 
 23. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.
+    convert the choice received from the question node to String.  (The 3 different paths formed based on the options will not be used in this case. They can either be deleted or left as such. In this case, we will leave thema as such and add the **Set variable value** node before the branches, immediately after the question node).
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image140.png)
@@ -1281,8 +1257,7 @@ incorrect.](./media/image166.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image167.png)
 
-4.  Under the node, add a question node and enter the message +++Select
-    a Laptop product+++. Select **Laptop** under **Identity**.
+4.  Under the node, add a question node and enter the message +++Select a Laptop product+++. Select **Laptop** under **Identity**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image168.png)
@@ -1298,10 +1273,15 @@ incorrect.](./media/image169.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image170.png)
 
-7.  Now, follow the same procedure and add condition nodes for
+7. Select the **3 dots** in the top right corner of the **Laptop condition** node and select **Insert new condition**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im48.png)
+
+8.  Now, follow the same procedure and add condition nodes for
     ProductCategory is equal to +++Desktop+++ and +++Tablet+++.
 
-8.  Save the values in variable names.
+8.  Save the values in variable names +++ProdNameDeskChoice+++ and +++ProdNameTabChoice+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image171.png)
