@@ -18,8 +18,12 @@ In this exercise, you will create tables in the Dataverse to store the
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im1.png)
 
-2.  Login using your admin tenant credentials from the **Resources** tab if prompted.
+2.  Login using your admin tenant credentials below if prompted.
 
+    - Username - +++@lab.CloudPortalCredential(User1).Username+++
+      
+    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+      
 3.  Select **Dev One** as your environment. Select **Tables** form the left navigation pane.
 
     ![A screenshot of a computer AI-generated content may be
@@ -112,7 +116,7 @@ how it should behave so that the Copilot will create the agent for you.
     >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
     >
     >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im2.png)
+incorrect.](./media/im30.png)
     >
     > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
     >![A screenshot of a computer AI-generated content may be
