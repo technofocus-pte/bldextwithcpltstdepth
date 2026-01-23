@@ -1,486 +1,178 @@
-# Lab 04 - Integrate an agent with the Dynamics 365 Customer Service app and implement automated case escalation to the live agent
+# Lab 4: Creating an intelligent hiring agent for talent acquisition
 
-## Objective
+In this lab, you'll establish the foundation for your hiring automation
+system. You'll begin by importing a pre-configured solution that
+contains all the necessary Dataverse tables and data structure for
+managing candidates, job positions, and hiring workflows. Next, you'll
+populate these tables with sample data that will support your learning
+throughout this module and provide realistic scenarios for testing.
+Finally, you'll create the Hiring Agent in Copilot Studio, setting up
+the basic conversational interface that will serve as the cornerstone
+for all the other features you'll add in future missions.
 
-The objective of this lab is to demonstrate how to integrate a **Copilot Studio agent** with **Dynamics 365 Customer Service** and enable seamless **escalation from an AI agent** to a **live human agent**. Participants will learn how to configure the Customer Service workspace, create and publish an agent, connect it to Dynamics 365 Omnichannel, and validate real-time escalation through a web-based chat experience.
+## Exercise 1: Import solution
 
->[!Alert] **Important:** This lab can be executed only if the Dynamics
-365 trial has been enabled as per **Lab 02 - Configure the Dynamics 365
-Customer Service**
+In this exercise, you will import a pre existing Solution.
 
-## Exercise 1: Configure the Dynamics 365 Customer Service workspace
+1.  Go to Copilot Studio at +++https://copilotstudio.microsoft.com+++
 
-This exercise is to prepare the Dynamics 365 Customer Service environment by enabling required Dataverse search capabilities that support efficient customer data retrieval during live-agent interactions.
+2.  Select the **...** in the left navigation and select **Solutions.**
 
-## Task 1: Configure search settings in the Power Platform admin center
+![](./media/image1.png)
 
-Enable Dataverse Search and Single Table Search to ensure optimized data access and search performance within the Dynamics 365 Customer Service workspace.
+3.  Select **Import solution**. Click on **Browse** and select the
+    **zip** file starting with **Operative** form **C:\LabFiles** and
+    select **Open**.
 
-1.  Login to +++https://admin.powerplatform.microsoft.com/+++ using
-    your tenant details. Select **Manage** from the left pane and then
-    select **CustomerService Trial** environment from the list of
-    environments.
+![](./media/image2.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image6.png)
+![](./media/image3.png)
 
-2.  Select **Settings** from the top pane.
+![](./media/image4.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image7.png)
+4.  Once selected, select **Next** and then select **Import**.
 
-3.  Select **Product** -\> **Features**.
+![](./media/image5.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+![](./media/image6.png)
 
-4.  Toggle **Dataverse Search** to **On** and click on **Save**. Then, select **Single table search** option
-    to **ON** and select **Save**.
+5.  This will take some time of around 3 to 5 minutes. On success, you
+    will see a green notification bar with the following message when
+    it's done: "Solution "Operative" imported successfully."
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im4.png)
+![](./media/image7.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im5.png)
+6.  Once you see the "imported successfully" message, take a look at
+    what you imported by selecting the display name of the solution
+    (**Operative**) in the solutions list.
 
-## Exercise 2: Create an agent
+![](./media/image8.png)
 
-This task is to create a Copilot Studio agent using natural language instructions and define its tone and behavior for customer service interactions.
+7.  Review the solution and ensure that the following components are
+    imported.
 
-1.  From the Copilot Studio home page,
-    +++https://copilotstudio.microsoft.com+++, select the **CustomerService Trial** Environment from the top right.
+![](./media/image9.png)
 
-    ![](./media/im39.png)
+8.  Select the Publish all customizations button at the top of the page.
 
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im30.png)
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Customer Service Trial** and select the value of the **Environment ID**.
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im2.png)
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+![](./media/image10.png)
 
+## Exercise 2 - Import sample data
 
-2.  Select **Agents** from the left pane. In the **Start building by describing what your agent needs to do** text area, type +++**You are a customer service agent who helps in identifying stores nearby**+++ and hit **Send**.
+In this exercise, you will add sample data to some of the tables that
+you imported in the previous exercise.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im40.png)
+1.  From the solution that you imported in the last exercise, select
+    the **Hiring Hub** Model-Driven App by selecting the checkmark in
+    front of the row and select the **Play** button at the top.
 
-3.  The agent creation succeeds and the agents **Overview** page gets opened. Any updates to the Name, description or the instructions can be made from this page if needed.
+> ![](./media/image11.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im41.png)
+2.  Select **Job Roles** in the left navigation. Select
+    the **More** icon (three dots below each other) in the command bar
+    and then select the **right arrow** next to **Import from Excel.**
 
-## Exercise 3: Connect the copilot to Dynamics 365 Customer Service and configure the Escalate topic
+![](./media/image12.png)
 
-In this exercise, you configure the agent’s escalation logic and connect it to Dynamics 365 Customer Service so that conversations can be transferred to a live agent when required.
+3.  Select **Import from CSV**.
 
-### Task 1: Configure the Escalate topic
+![](./media/image13.png)
 
-Customize the system Escalate topic to trigger a live-agent handoff by displaying a transition message and invoking the conversation transfer action.
+4.  Select the **Choose File** button, select the **job-roles.csv** file
+    from **C:\LabFiles** and then select **Open**.
 
-1.  Select the **Topics** tab and then select the **System** tab. Select
-    the **Escalate** topic.
+![](./media/image14.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
+5.  Select **Next.** Leave the next step as is and select **Review
+    Mapping**
 
-2.  Select the message node of the topic and replace the existing
-    content with, +++You will be transferred to a live agent shortly+++
+![](./media/image15.png)
 
-    ![](./media/image17.png)
+![](./media/image16.png)
 
-3.  Click on the + symbol to add a node next to the Message node.
+6.  Make sure the mapping is correct and select **Finish Import**.
 
-4.  Select **Topic management** -\> **Transfer conversation**.
+![](./media/image17.png)
 
-    ![](./media/image18.png)
+7.  Select **Done**. This can take a little while, but you can hit
+    the **Refresh** button to see if the import has succeeded.
 
-5.  Give a message +++The customer wants to talk to a live agent+++ in
-    the Transfer conversation node.
+![](./media/image18.png)
 
-    ![ ](./media/image19.png)
+![](./media/image19.png)
 
-6.  **Save** the Topic.
+8.  Now, you will import the **Evaluation Criteria sample data**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image20.png)
+9.  Select **Evaluation Criteria** in the left navigation.
 
-7.  **Publish** the agent.
+10. Select **Import from CSV** like you did earlier. Select the **Choose
+    File** button, select the **evaluation-criteria.csv** from
+    **C:\LabFiles**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
+![](./media/image20.png)
 
-### Task 2: Connect the copilot to Dynamics 365 Customer Service
+11. Select **Next**. Leave the next step as is and select **Review
+    Mapping**.
 
-Establish a secure connection between the Copilot Studio agent and Dynamics 365 Customer Service using the Customer Engagement channel.
+![](./media/image21.png)
 
-1.  Once published, from the copilot page top right, click
-    on **Settings**.
+![](./media/image22.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image22.png)
+12. Now we have to do a bit more work for the mapping. Select the
+    **magnifying glass icon** next to the **Job Role** field.
 
-2.  Select **Security**, and **Authentication** under Security.
+![](./media/image23.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image23.png)
+13. Make sure **Job Title** is selected here, and if not - add it and
+    select **OK**.
 
-3.  Select the **No authentication** option and then click on **Save**.
+![](./media/image24.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image24.png)
+14. Make sure the rest of the mapping is correct too and select **Finish
+    Import** and then select **Done**.
 
-4.  Select **Save** in the confirmation dialog box.
+![](./media/image25.png)
 
-    ![A screenshot of a computer screen AI-generated content may be
-incorrect.](./media/image25.png)
+15. This can take a little while, but you can hit the **Refresh** button
+    to see if the import has succeeded.
 
-5.  Close the **Settings** pane.
+![](./media/image26.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image26.png)
+## Exercise 3 - Create the hiring agent
 
-6.  Click on **Channels** (If the Channels is not visible, click on the
-    +1 to view the **Channels** option)
+Now you are done with the setup of the prerequisites, it's time for the
+actual work! Let's add our Hiring Agent first!
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image27.png)
+1.  From the Copilot Studio, select Agents from the left pane. Select
+    the drop down next to the + Create blank agent and select Advanced
+    create.
 
-7.  Select **Dynamics 365 Customer Service** from the Customer
-    engagement hub pane.
+![](./media/image27.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image28.png)
+2.  In the Agent settings, select the Solution as **Operative** and then
+    select **Confirm and create**.
 
-8.  On the Dynamics 365 Customer Service page, click on **Connect**.
+![](./media/image28.png)
 
-    ![A screenshot of a message AI-generated content may be
-incorrect.](./media/image29.png)
+3.  Select **Edit** against the Details of the created agent.
 
-9.  Once you get a **successfully connected** message, click
-    on **Close**.
+![](./media/image29.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
+4.  Enter the name as +++**Hiring Agent**+++ and Description as
+    +++**Central orchestrator for all hiring activities**+++ and select
+    **Save**.
 
-## Exercise 4: Create workstream and channel in Dynamics 365 admin center
-
-This exercise is to configure **Omnichannel capabilities** that route escalated conversations from the AI agent to human agents.
-
-### Task 1: Manage a user in Omnichannel for Customer Service
-
-Access the Dynamics 365 Customer Service admin center and ensure the environment is ready for Omnichannel configuration and agent assignment.
-
-1.  Login to +++https://admin.powerplatform.microsoft.com+++ using your admin tenant credentials. Select **Manage** from the left pane. Select **CustomerService Trial** environment **under Environments**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
-
-2.  Click on the **url value** under **Environment URL**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image32.png)
-
-3.  Select **Copilot Service workspace** from the header bar.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im28.png)
-
-4.  This opens the **Apps** page. Select **Copilot Service admin
-    center** from it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img2.png)
-
-
-5.  This opens up the **Dynamics 365 Copilot Service admin
-    center** page.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img3.png)
-
-
-### Task 2: Configure workstream
-
-Create an **inbound messaging workstream** and configure a live chat channel that will receive escalated conversations from the AI agent.
-
-1.  From the admin center page, select **Workstreams** under **Customer
-    support** from the left pane and then select the **+ New
-    workstream** option.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/img4.png)
-
-2.  Select Inbound
-
-    ![](./media/image37.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image38.png)
-
-3.  Fill in the below details, scroll down and click on **Create**.
-
-    - Name - +++**New Workstream**+++
-
-    - Owner – **MOD Administrator** (Selected by default)
-
-    - Type – **Messaging**
-
-    - Channel – **Chat**
-
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image39.png)
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image40.png)
-
-4.  Once the workstream is created, click on **Set up chat** to set up
-    the chat channel.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image41.png)
-
-5.  In the **Live chat setup – Channel details** screen, fill in the
-    below details.
-
-    - Name - +++**Chat Channel**+++
-
-    - Language – **English - United States**
-
-    ![A screenshot of a chat channel AI-generated content may be
-incorrect.](./media/image42.png)
-
-6.  Scroll down and click **Next**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image43.png)
-
-7.  Accept the defaults in the next 2 pages until you reach the **Chat
-    widget** screen. In the **Live chat setup – Chat widget** screen, provide
-    the **Title** as +++**Store Locator Assistant**+++, accept the other
-    defaults and click on **Next**.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image44.png)
-
-8.  In the **Live chat setup – Behaviors** screen, accept the defaults
-    and click on **Next**.
-
-    ![A screenshot of a computer screen AI-generated content may be
-incorrect.](./media/image45.png)
-
-9.  In the **Live chat setup – User features** screen, toggle **File
-    attachment** and **Voice and video calls** options to **off** and
-    click on **Next**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
-
-10. Accept the default value in the Notification screen and click
-    **Next**.
-
-11. In the **Live chat setup – Review and finish** screen,
-    select **Create channel**.
-
-    ![](./media/image47.png)
-
-12. **Copy** the value of the widget that appears in the **Live chat
-    setup – Success** screen and **save** it in a notepad to add it to a
-    webpage in the upcoming exercises. Then, click on **Done** to
-    complete the configuration.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image48.png)
-
-### Task 3: Add the agent to the workstream
-
-Associate the Copilot Studio agent with the Omnichannel workstream so it can participate in customer conversations and escalate them when necessary.
-
-1.  Back in the **New Workstream** page, scroll down and click on **+ Add an AI agent** in the **Add an AI agent** section.
-
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image78.png)
-
-2.  From the list of agents on the Add an AI Agent screen, select the **Store
-    Locator Assistant** (the name might differ based on the agent that you created earlier) agent and click on **Connect**.
-
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image50.png)
-
-3.  The agent is now added to the workstream.
-
-4.  From the left pane, select **AI Agents**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image52.png)
-
-5.  Ensure that the **Store locator** agent is connected.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image53.png)
-
-## Exercise 5: Create a webpage and test the escalation to agent
-
-This exercise is to embed the AI agent into a Power Pages website and validate the complete escalation flow from an AI-driven conversation to a live agent interaction.
-
-1.  Login to +++https://make.powerpages.microsoft.com/+++ using your
-    tenant admin credentials.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image54.png)
-
-2.  Ensure that you are in **CustomerService Trial** environment.
-
-3.  Click on **Get started**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image55.png)
-
-4.  Click on Skip in the **Tell us about yourself** page.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image56.png)
-
-5.  Scroll down in the next page and click on **Start with a
-    template** option to start creating the site with a template.
-
-    ![A screenshot of a web page AI-generated content may be
-incorrect.](./media/image57.png)
-
-6.  Select a template and click on **Choose this template**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
-
-7.  In the Give your site a name textbox, enter the name as +++**Contoso
-    Store assistant**+++, accept the other defaults and click
-    on **Done**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image59.png)
-
-8.  Once the site is created, click on **Edit site header** in the **Company name** title.
-
-    ![](./media/image61.png)
-
-10. In the **Edit site header** pane, provide the **Site title** as
-    +++**Contoso Store assistant**+++ and close the dialog.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
-
-11. Click on **Edit code** in the top right corner of the page.
-
-    ![](./media/image63.png)
-
-12. Click on **Open Visual Studio Code**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image64.png)
-
-13. Click **Allow**. **Login** using your tenant credentials if
-    required.
-
-    ![A black screen with white text AI-generated content may be
-incorrect.](./media/image65.png)
-
-14. The Home page of the web page opens up in the Visual Studio Code.
-
-    ![A screenshot of a computer program AI-generated content may be
-incorrect.](./media/image66.png)
-
-15. Scroll to the end of the file. Add the **script** copied while
-    creating the workstream, after the last line of this file.
-
-    ![A screen shot of a computer screen AI-generated content may be
-incorrect.](./media/image67.png)
-
-16. Save the file, close the Visual Studio Code tab and return to the
-    Power pages. Click on **Sync**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image68.png)
-
-17. Please wait for few minutes before proceeding to the next step.
-
-18. **Publish** the agent again from the **Copilot Studio** once.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
-
-20. Once the Sync is completed, select **Preview** -\> **Desktop.**
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image69.png)
-
-21. Your web page opens in a new tab. Find the **Store Locator
-    Assistant** embedded to the page at the bottom right of the web
-    page. **Click** on it.
-
-    ![A screenshot of a website AI-generated content may be
-incorrect.](./media/image70.png)
-
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/img5.png)
-
-22. Enter +++Talk to agent+++.
-
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/img6.png)
-
-23. From the Customer Service admin page, click on **Copilot Service
-    admin center** and select the app **Customer Service
-    workspace** from it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image73.png)
-
-24. In the Customer Service workspace page, you will get a **chat
-    request**. **Accept** it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image74.png)
-
-25. Once accepted, the chat screen opens up with the message that we had
-    given in the Escalate topic. We can also add any other information
-    provided by the user here to the live agent.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image75.png)
-
-26. Simulate the chat between the live agent and the customer if you
-    wish to see how it works and then ends.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image76.png)
-
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/image77.png)
-
-**Exercise Summary**
-
-You have successfully verified that:
-
--    The AI agent responds to user queries
-
--    An escalation request transfers the conversation
-
--    A live agent receives and continues the chat in the Customer Service workspace
+> ![](./media/image30.png)
 
 ## Summary
 
-In this lab, you integrated a **Copilot Studio agent** with **Dynamics 365 Customer Service** to support **live-agent escalation** scenarios. You created a **customer service agent**, **customized** the built-in **Escalate** topic, and connected the agent to the **Dynamics 365 Customer Service channel**. You then set up Omnichannel workstreams and chat channels, embedded the agent into a Power Pages website, and validated the end-to-end escalation flow by transferring a conversation from the AI agent to a human agent in the Customer Service workspace. This lab highlights how AI agents and human agents can work together to deliver efficient, real-world customer support experiences.
+> In this lab, you now have complete the following.
 
+- **Scenario Understanding**: Comprehensive knowledge of hiring
+  automation challenges and the solution you will be building.
 
+- **Solution Deployment**: Successfully imported and configured the
+  building blocks of the hiring management system.
 
-
-
-
-
-
-
-
-
-
-
-
-
+- **Agent Creation**: Built an hiring agent that is the start of the
+  scenario you're going to build as an Agent Academy Operative
