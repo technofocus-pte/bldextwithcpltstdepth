@@ -1,593 +1,838 @@
-# Lab 05 – Enhance the Safe Travels agent and implement Multi agent orchestration
+# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
 
-## Objective
+In the earlier lab, you built your main Hiring Agent giving you a solid
+foundation for managing recruitment workflows. But one agent can only do
+so much.
 
-You created an agent named **Safe Travels** by using a template provided
-in the Copilot Studio in a previous lab. In this lab, you will
-understand how that agent can be enhanced to suit the needs of specific
-customers.
+Your assignment, should you choose to accept it, is **Operation
+Symphony** - transforming your single agent into a **multi-agent
+system**: an orchestrated team of specialized agents that work together
+to handle complex hiring challenges. Think of it as upgrading from a
+solo operator to commanding a specialized task force.
 
-In the process of doing that, you will learn the concepts of Agent Flow
-creation and Multi agent orchestration in Copilot Studio.
+Like a symphony orchestra where each musician plays their part in
+perfect harmony, you'll add two critical specialists to your existing
+Hiring Agent: an Application Intake Agent to process resumes
+automatically, and an Interview Prep Agent to create comprehensive
+interview materials. These agents will work together seamlessly under
+your main orchestrator.
 
-## Exercise 1 – Test the existing Safe Travels agent
+After creating multi agents, you'll transform your agents from waiting
+for human input to proactively responding to external events and taking
+intelligent action without supervision.
 
-In this exercise, we will test the **Safe Travels** agent to see how it
-responds when asked about travel approval.
+Think of it as upgrading from agents that *answer questions* to agents
+that *anticipate needs* and *act independently*. Through event triggers
+and automated workflows, your Hiring Agent will detect incoming resume
+emails, process attachments automatically, store data in Dataverse, and
+notify your HR recruitment team via Microsoft Teams - all while you
+focus on higher-value tasks.
 
-1.  Open the **Copilot Studio** at
-    +++https://copilotstudio.microsoft.com+++ from a browser. Navigate
-    to the **Dev One** environment. Select **Agents** from the left pane and then select the **Safe Travels** agent.
+## Objectives
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im42.png)
+In this mission, you'll learn:
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im43.png)
+1.  When to use **child agents** vs **connected agents**
 
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im30.png)
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im6.png)
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+2.  How to design **multi-agent architectures** that scale
 
-    
-3.  Select the **Test** icon to test the agent.
+3.  Creating **child agents** for focused tasks
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image2.png)
+4.  Establishing **communication patterns** between agents
 
-4.  Enter +++Need travel approval+++ in the Test window and click on
-    **Enter**.
+5.  Building the Application Intake Agent and Interview Prep Agent
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image3.png)
+6.  How event triggers enable autonomous agent behavior without user
+    interaction
 
-5.  You can see that the agent responds with a generalized instruction
-    set to be followed to get the travel approval.
+7.  The differences between interactive and autonomous agents in Copilot
+    Studio
 
-    ![A screenshot of a computer screen AI-generated content may be
-incorrect.](./media/image4.png)
+8.  How to create event triggers that automatically process email
+    attachments and upload files to Dataverse
 
-## Exercise 2 – Enhance the agent with company specific Knowledge assets
+9.  How to build agent flows that post adaptive cards to Teams channels
+    for notifications
 
-In this exercise, we will add knowledge asset - **Travel Policy**
-specific to Contoso.
+10. How to pass data between event triggers and agent flows for
+    end-to-end automation
 
-1.  From the Overview page of the agent, scroll down and select **+ Add
-    knowledge**
+## Child agent: Application Intake Agent
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image5.png)
+Let's start building our multi-agent hiring system. Our first specialist
+will be the **Application Intake Agent** - a child agent responsible for
+processing incoming resumes and candidate information.
 
-2.  Click on **select to browse** option.
+![](./media/image1.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image6.png)
+**Application Intake Agent responsibilities**
 
-3.  From **C:\Labfiles\Lab Files** folder, select **Travel Policy.docx** and click
-    **Open**.
+- **Parse resume content** from PDFs provided via interactive chat (In a
+  future mission you'll learn how to process resumes autonomously).
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image7.png)
+- **Extract structured data** (name, skills, experience, education)
 
-4.  Click **Add to agent** to the add the file.
+- **Match candidates to open roles** based on qualifications and cover
+  letter
 
-    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/Image92.png)
+- **Store candidate information** in Dataverse for later processing
 
-    ![A screenshot of a computer error AI-generated content may be incorrect.](./media/image9.png)
+- **Deduplicate applications** to avoid creating the same candidate
+  twice, match to existing records using the email address extracted
+  from the resume.
 
-5.  Ensure that the file is added. Wait till the status changes from
-    **In progress** to **Ready**. You can continue with the next step while it is changing to the Ready state if it takes more than few minutes.
+**Why this should be a child agent**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image10.png)
+The Application Intake Agent fits perfectly as a child agent because:
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
-    
-## Exercise 3 – Create a Team and Channel in Microsoft Teams
+- It's specialized for document processing and data extraction
 
-In this exercise, we will create a team and a channel in MS Teams to
-which the travel approval request will be sent.
+- It doesn't need separate publishing
 
-1.  Open Microsoft Teams at +++https://teams.microsoft.com/v2/+++ and select **See all your teams** option from
-    the left pane.
+- It's part of our overall hiring solution managed by the same team
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image12.png)
+- It focuses on a specific trigger (new resume received) and is invoked
+  from the Hiring Agent.
 
-2.  Select **Create team** to create a new team.
+## Connected agent: Interview Prep Agent
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image13.png)
+Our second specialist will be the **Interview Prep Agent** - a connected
+agent that helps create comprehensive interview materials and evaluates
+candidate responses.
 
-3.  Enter the Team name as +++**HR Team**+++ and First channel name as
-    +++**Travel Approval Channel**+++ and select **Create**.
+**Interview Prep Agent responsibilities**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image14.png)
+- **Create interview packs** with company information, role
+  requirements, and evaluation criteria
 
-4.  Select **Skip** in the Add members to HR Team dialog.
+- **Generate interview questions** tailored to specific roles and
+  candidate backgrounds
 
-    ![A screenshot of a email AI-generated content may be
-incorrect.](./media/image15.png)
+- **Answer general questions** about the job roles and applications for
+  stakeholder communication
 
-5.  Now, the Team and Channel creation is completed.
+**Why this should be a connected agent**
 
-    <img width="633" alt="image" src="https://github.com/user-attachments/assets/9645537b-29a1-42d4-891b-6b36061043b2" />
+The Interview Prep Agent works better as a connected agent because:
 
+- The talent acquisition team might want to use it independently across
+  multiple hiring processes
 
-## Exercise 4 – Create an Agent Flow
+- It needs its own knowledge base of interview best practices and
+  evaluation criteria
 
-In this exercise, we will create a new AgentFlow to post the travel
-request to the Teams channel
+- Different hiring managers might want to customize its behavior for
+  their teams
 
-1.  Select **Flows** from the left pane.
+- It could be reused for internal positions, not just external hiring
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
+## Exercise 1 - Adding the Application Intake Agent
 
-2.  Select **New agent flow** to create a new flow.
+Let's add our first child agent to your existing Hiring Agent.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im44.png)
+### Task 1 - Solution setup
 
-4.  In the **Add a trigger** node, search for +++agent+++ and select **When an agent calls the flow** under **Skills**.
+1.  Inside Copilot Studio, select the ellipsis (...) below Tools in the
+    left hand navigation.
 
-    ![A screenshot of a web page AI-generated content may be
-incorrect.](./media/im1.png)
+2.  Select **Solutions**.
 
-5.  Select **+ Add an input**.
+> ![](./media/image2.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image20.png)
+3.  Locate your **Operative** solution, select the **ellipsis
+    (...)** next to it, and choose **Set preferred solution**.
+    Select **Apply** in the dialogue box that pops up. This will ensure
+    that all your work will be added to this solution.
 
-6.  Select **Number** and name it as +++**Employee ID**+++. Then select
-    **+ Add an input**.
+> ![](./media/image3.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
+4.  Select Apply in the Set your preferred solution dialog box.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image22.png)
+![](./media/image4.png)
 
-7.  Now, select a **Text** input and name it as +++**Purpose**+++.
+### Task 2 - Configure your Hiring Agent instructions
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image23.png)
+1.  **Navigate** to Copilot Studio. Ensure your environment is selected
+    in the top right **Environment Picker**.
 
-8.  Select **Add an action** below the trigger node.
+2.  Open the **Hiring Agent**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image24.png)
+3.  Select **Edit** in the **Instructions** section of
+    the **Overview** tab of the agent.
 
-9.  Search for +++**Teams**+++ and click on **See more** under the Teams
-    group of actions.
+![](./media/image5.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image25.png)
+4.  Copy and paste the following instructions in the instructions input.
 
-10. Select **Post message in a chat or channel**.
+**You are the central orchestrator for the hiring process. You
+coordinate activities, provide summaries, and delegate work to
+specialized agents.**
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image26.png)
+5.  Select **Save**.
 
-11. Select **Sign in** and **login** using your credentials.
+> ![](./media/image6.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image27.png)
+6.  Select the **Settings** button in the top right of the screen.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image28.png)
+> ![](./media/image7.png)
 
-12. Select the below details
+7.  Review the page and ensure the following settings are applied and
+    then select **Save**.
 
-    Post as – Select **User**
-    
-    Post in – Select **Channel**
-    
-    Team – Select **HR Team**
-    
-    Channel – Select **Travel Approval Channel**
+[TABLE]
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image29.png)
+> ![](./media/image8.png)
+>
+> ![](./media/image9.png)
+>
+> ![](./media/image10.png)
+>
+> ![](./media/image11.png)
 
-13. In the Message field, enter the following
+8.  Click the **X** in the upper right hand corner to close out of the
+    settings menu
 
-    ```
-    Travel Request from 
-    Employee ID - <Employee ID>
-    Purpose - <Purpose>
-    ```
+> ![](./media/image12.png)
 
-    Replace **< Employee ID >** and **< Purpose >** with the dynamic content variables, **Employee ID** and **Purpose** as in the below screenshots.
+### Task 3 - Add the Application Intake child agent
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
+In this task, you will add a child agent to the Hiring agent.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
+1.  **Navigate** to the **Agents** tab within your Hiring Agent (this is
+    where you'll add specialist agents) and select **Add**.
 
-14. The Parameters tab will now look like below.
+![](./media/image13.png)
 
-    ![](./media/image32.png)
+2.  Select **New child agent**.
 
-16. Scroll down and add another **action** after the Post message node.
+![](./media/image14.png)
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image34.png)
+3.  **Name** your agent +++Application Intake Agent+++
 
-17. Select **Respond to the agent** under **Skills** or **AI Capabilities**.
+4.  Select **The agent chooses** - Based on description in the **When
+    will this be used?** dropdown. These options are similar to the
+    triggers that can be configured for topics.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image35.png)
+5.  Set the **Description** to be - +++Processes incoming resumes and
+    stores candidates in the system+++
 
-18. Select **Add an output**. Add a **Text** output. Name it as +++Output+++ and enter the value as
-    +++Request submitted+++.
+![](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image36.png)
+6.  Expand **Advanced**, and set the Priority to be 10000. This will
+    ensure that later the Interview Agent will be used to answer general
+    questions before this one. A condition could be set here as well
+    such as ensuring that there is at least one attachment.
 
-19. Click on **Save draft** to save the flow.
+![](./media/image16.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image37.png)
+7.  Ensure that the toggle **Web Search** is set to **Disabled**. This
+    is because we only want to use information provided by the parent
+    agent. Select **Save**
 
-20. Once the flow is saved, select **Publish**.
+![](./media/image17.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image38.png)
+### Task 4 - Configure Resume Upload agent flow
 
-21. Ensure that the flow has been published.
+Agents can't perform any actions without being given tools or topics.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image39.png)
+We're using **Agent Flow tools** rather than Topics for the *Upload
+Resume* step because this multi-step backend process requires
+deterministic execution and integration with external systems. While
+Topics are best for guiding the conversational dialog, Agent Flows
+provide the structured automation needed to reliably handle file
+processing, data validation, and database upserts (insert new or update
+existing) without depending on user interaction.
 
-22. Click on the **Overview** tab of the agent flow.
+1.  Locate the **Tools** section inside the Application Intake Agent
+    page. 
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image40.png)
+> **Important:** This isn't the Tools tab of the parent agent, but can
+> be found if you scroll down underneath the child agent instructions.
 
-23. Select **Edit** and name the flow as +++Request Travel Approval Flow+++ in the **Details** pane. Select **Save**.
+2.  Select **+ Add**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image41.png)
+> ![](./media/image18.png)
 
-## Exercise 5 – Add the Agent flow as a tool to the agent
+3.  Select **+ New tool**.
 
-In this exercise, we will add the create Agent flow to the agent Safe
-Travels in order to leverage the flow functionality.
+> ![](./media/image19.png)
 
-1.  From the left pane, select **Agents**.
+4.  Select **Agent flow**. The Agent Flow designer will open, this is
+    where we will add the upload resume logic.  
+    ![](./media/image20.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image42.png)
+5.  Select the **When an agent calls the flow** node, and select **+ Add
+    an input**
 
-2.  Select the **Safe Travels** agent.
+> ![](./media/image21.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image43.png)
+6.  Add **inputs** for each of the following Parameters listed in the
+    table below. Select the appropriate input type as shown in the table
+    and be sure to add both the name and the description. It's important
+    to include the description because it will help the agent know what
+    to fill in the input.
 
-3.  Scroll down in the Overview page and select **Add tool**.
+[TABLE]
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image44.png)
+> ![](./media/image22.png)
 
-4.  From the **Flow** tab, select the created **Request Travel Approval Flow**.
+7.  Select the **+ icon** below the when an agent calls the flow node
+    and search for +++Dataverse add+++, then select the **Add a new
+    row** action in the **Microsoft Dataverse** section.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image45.png)
+> ![](./media/image23.png)
+>
+> ![](./media/image24.png)
 
-5.  Select **Add and configure**.
+**NOTE**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im45.png)
+You may be prompted to create a new connection to Dataverse after you
+add the action. Enter any name for the connection and click add to
+create that connection.
 
-6.  Once added, the flow will get listed under **Tools**.
+8.  Name the node +++**Create Resume**+++, by selecting the 3 dot and
+    select **Rename**.  
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im46.png)
+> ![](./media/image25.png)
 
-## Exercise 6 – Create Topic
+9.  Set the **Table name** to **Resumes**, then select **Show all**, to
+    show all the parameters.
 
-In this exercise, we will create a Topic to use the created travel
-approval flow.
+> ![](./media/image26.png)
 
-1.  Select **Topics** from the top menu. Select **+ Add a topic** -\>
-    **Add from description with Copilot**.
+10. Set the following **properties**:
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image48.png)
+[TABLE]
 
-2.  Enter the below details and then select **Create**.
+> ![](./media/image27.png)
+>
+> ![](./media/image28.png)
+>
+> ![](./media/image29.png)
 
-    **Name** - +++Travel Approval+++
-    
-    **Create a topic to** - +++This topic should get the Employee ID
-    (Number) and Purpose of travel (Text) details from the user and invoke
-    the Tool "Request Travel Approval Flow"+++
+11. Select the **+ icon** below the Create Resume node, search
+    for +++Dataverse upload+++ and select the **Upload a file or an
+    image** action.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image49.png)
+![](./media/image30.png)
 
-3.  The **Topic** gets created as below.
+12. Name the node to +++**Upload Resume File**+++.
 
-    ![](./media/image50.png)
+> ![](./media/image31.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image51.png)
+13. Set the following **properties**:
 
-4.  See if the Flow is actually invoked. In this case, only a Message
-    node stating that the flow is invoked is added. In such a case,
-    delete such Message node and click on Add a node icon after the node
-    where the Purpose is requested from the user.
+[TABLE]
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image52.png)
+> ![](./media/image32.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image53.png)
+14. Select the **Respond to the agent node**, and then select **+ Add an
+    output**. Create an output with the properties defined in the table
+    below.
 
-5.  Select **Add a tool** -> **Request Travel Approval Flow**
+> ![](./media/image33.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image54.png)
+[TABLE]
 
-6.  Add the Variable **EmployeeID** for the flow variable **Employee
-    ID.**
+> ![](./media/image34.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image55.png)
+15. Select **Save draft** on the top right
 
-7.  Similarly add the Purpose of travel input.
+> ![](./media/image35.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image56.png)
+16. Select the **Overview** tab, Select **Edit** on
+    the **Details** panel. Fill in the name and description as shown
+    below and select **Save**
 
-8.  Add a **Send a message** node and add the Output Variable to it as
-    in the screenshots below.
+    1.  **Flow name**:+++Resume Upload+++
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image57.png)
+    2.  **Description**:+++Uploads a Resume when instructed+++
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
+> ![](./media/image36.png)
 
-9.  Select **Save** and then **Publish** to publish the agent.
-    
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image59.png)
+17. Select the **Designer** tab again and select **Publish**.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image60.png)
+> ![](./media/image37.png)
 
-11. Select **Publish** in the confirmation dialog box.
+### Task 5 - Connect the flow to your agent
 
-    ![A close-up of a white background AI-generated content may be
-incorrect.](./media/image61.png)
+Now you'll connect the published flow to your Application Intake Agent.
 
-12. Select the Test icon and enter +++Travel Approval+++ and send from
-    the test pane.
+1.  Navigate back to the **Hiring Agent** and select the **Agents** tab.
+    Open the **Application Intake Agent**, locate the **Tools** panel
+    and select **+Add**.  
+    ![](./media/image38.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
+2.  Select the **Flow** filter and select the **Resume Upload** flow.
 
-13. Converse by giving the below details to the agent
+> ![](./media/image39.png)
 
-    Employee ID – +++1234+++
-    
-    Purpose of travel - +++Client meeting for finalizing proposal of XYZ project+++
+3.  Select **Add and configure**.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image63.png)
+> ![](./media/image40.png)
 
-14. Select **Allow** to allow connection.
+4.  Set the following parameters for the **description** and **when the
+    tool should be used**.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/Image93.png)
+[TABLE]
 
-15. You will get a **Request submitted** message from the agent.
+> ![](./media/image41.png)
+>
+> **Note:** This description tells the agent when it should call this
+> tool. Notice the use of "strict rule" in the description. This gives a
+> way to provide additional guardrails on when the tool should be used,
+> in this case, only if there are attachments and the context of the
+> conversation is a resume upload. Choosing when this tool can be used
+> is important as well. Since we are building a multi-agent system and
+> we have a child agent, we want to be sure this tool is ONLY called in
+> the child agent, not the main agent. Setting tha value to "only when
+> referenced by topics or agents" ensure this.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image64.png)
+5.  Scroll down to the inputs section and select **Add Input** to add
+    the following inputs:
 
-16. Open the Teams Channel and you will see the details posted there for
-    the Travel approval.
+[TABLE]
 
-    ![](./media/image65.png)
+> ![](./media/image42.png)
 
-## Exercise 7 – Create Leave Management agent 
+6.  Now we need to set the properties of the inputs. We'll start with
+    the **contentBytes** input which will store the actual resume file.
+    Select **Custom value** from the **Fill using** dropdown next to
+    the **contentBytes** input. In the **Value** property, select
+    the **three dots (...)**.
 
-In this exercise, we will build a Leave management agent which can be
-used to learn about the leaves, leave balance for employees and so on.
+> ![](./media/image43.png)
 
-1.  From the Copilot Studio Home page, select **Agents** from the left pane. Then, select **+ Create blank agent**.
+7.  Select the **Formula** tab. Paste in the following formula which
+    extracts the file from the chat and click the **Insert** button.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im7.png)
++++First(System.Activity.Attachments).Content+++
 
-2.  Once the agent is created, select **Edit**.
+> ![](./media/image44.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im8.png)
+8.  Now we'll configure the **name** input which will store the name of
+    the resume file. This will be hard coded as well so select
+    the **Custom value** option in the **Fill using** column.
 
-3.  Enter the below details and select **Save**.
+9.  Select the **three dots (...)** in the **Value** column and paste in
+    the following formula which extracts the file name from the chat and
+    click the **Insert** button.
 
-    - Name - +++Leave Manager Agent+++
++++First(System.Activity.Attachments).Name+++
 
-    - Description - +++This agent is to track the leaves of all the
-      employees, their leave balance and leave history to approve or
-      reject any new leave requests.+++
+> ![](./media/image45.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im9.png)
+10. Now we'll configure the **Message** input. We want to fill this one
+    dynamically with AI so we'll leave the fill using as-is. Select
+    the **Customize** button in the **Value** column so we can fill out
+    additional details for how this should be filled.
 
-4.  Once it is saved, scroll down in the Overview page and
-    select **Add knowledge** under the **Knowledge** section.
+![](./media/image46.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image69.png)
+11. Enter the following in the **Description** field for the input. Then
+    select **Advanced**.
 
-5.  Click on **select to browse**.
+**Extract a cover letter style message from the context. Be sure to
+never prompt the user and create at least a minimal cover letter from
+the available context. STRICT RULE - the message must be less than 2000
+characters.**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image70.png)
+**NOTE**
 
-6.  Select the file **Leave balance Tracker** from **C:\Labfiles\Lab Files** and click
-    **Open**.
+Filling in the description for your dynamically filled inputs is a
+crucial step to ensure that your agent knows how to fill in the input
+correctly.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image71.png)
+> ![](./media/image47.png)
 
-7.  Select **Add to agent** to add the tracker to the agent.
+12. Expand out the **Advanced** section to configure some additional
+    properties for this input. In the **How many reprompts** section,
+    select **Don't repeat**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/Image95.png)
+> ![](./media/image48.png)
 
-8.  The file gets added. Wait until the status is **Ready**.
+**NOTE**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image73.png)
+This setting helps you customize your user experience so the agent
+doesn't ask the same question multiple times if it can't identify the
+data it needs.
 
-    >[!Alert] **Important:** The **Knowledge source** at times takes more **time** to come to the **Ready** state. If it takes more than **5 minutes**, please **continue** with the **next step** to check if you are able to get the **result** from the **added source**. Because, it gets added at the back end and takes time to reflect the same in the UI. If you are able to get **proper results**, please **proceed** with the next steps. **Else**, **wait** for some time.
-    
-9.  Select **Settings** from the top right.
+13. Scroll down to the **No valid entity found** section. Select
+    the **Set variable to value** option in the **Action if no entity
+    found** dropdown. Type +++Resume upload+++ in the **Default entity
+    value** input.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im10.png)
+> ![](./media/image49.png)
+>
+> **NOTE**
+>
+> This setting lets us hard code a backup value if the agent is unable
+> to dynamically fill this message input.
 
-10. Ensure that **Yes** is selected under **Use generative AI orchestration** and toggle **Use general knowledge** option under Knowledge section to **Off** and then select **Save**.
+14. We'll fill the **UserEmail** input by selecting the **Custom
+    value** option in the **Fill using** column and select the **three
+    dots (...)** in the **Value** column.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im11.png)
+> ![](./media/image50.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im12.png)
+15. Select the **System** tab and search for **User**. Select
+    the **User.Email** variable to get the email of the person using the
+    agent
 
-11. **Send** a message +++Check Leave balance for Employee ID 1234+++ from the **Test** pane.
+> ![](./media/image51.png)
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im13.png)
+16. Select **Save**
 
-12. Check the **response** from the agent. This is retrieved from the
-    knowledge asset added to the agent.
+> ![](./media/image52.png)
 
-    ![A screenshot of a chat AI-generated content may be incorrect.](./media/im14.png)
-    
-13. Select **Publish** and wait till the agent is published.
+### Task 6 - Define agent instructions
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im22.png)
+In this task, you will define the agent instructions for the Application
+Intake agent.
 
-## Exercise 8 - Implement Multi agent orchestration in Copilot Studio
+1.  Move back in to the **Application Intake Agent** by selecting
+    the **Agents** tab and selecting the **Application Intake Agent**.
 
-Rather than relying on a single agent to do everything—or managing
-disconnected agents in silos—organizations can now build multi-agent
-systems in Copilot Studio (preview), where agents delegate tasks to one
-another. This includes those built with the Microsoft 365 agent builder,
-Microsoft Azure AI Agents Service, and Microsoft Fabric. These agents
-can now all work together to achieve a shared goal: completing complex,
-business-critical tasks that span systems, teams, and workflows.
+> ![](./media/image53.png)
 
-In this exercise, we will add the Leave management agent to the Safe
-Travels agent which can be used to learn about the leaves when planning
-to travel.
+2.  In the **Instructions** field, paste the following clear guidance
+    for your child agent.
 
-1.  Select the **Safe Travels** agent from Copilot Studio.
+> You are tasked with managing incoming Resumes, Candidate information,
+> and creating Job Applications.
+>
+> Only use tools if the step exactly matches the defined process.
+> Otherwise, indicate you cannot help.
+>
+> Process for Resume Upload via Chat
+>
+> 1. Upload Resume
+>
+> - Trigger only if /System.Activity.Attachments contains exactly one
+> new resume.
+>
+> - If more than one file, instruct the user to upload one at a time and
+> stop.
+>
+> - Call /Upload Resume once. Never upload more than once for the same
+> message.
+>
+> 2. Post-Upload
+>
+> - Always output the \[ResumeNumber\] (R#####).
+>
+> ![](./media/image54.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image81.png)
+3.  Where the instructions include a forward slash (/), select the text
+    following the / and select the resolved name. Do this for,
 
-2.  We will first test this agent to see what information it can give on
-    leaves. From the Test pane, enter +++Check Leave balance+++ and hit
-    enter.
+    - System.Activity.Attachments (Variable)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image82.png)
+    - Upload Resume (Tool)
 
-3.  You can see that the agent responds with a generalized information
-    on how to check the leave balance. It also refers to the Travel
-    Policy document while doing this.
+> Note: If you click on the System.Acticvity.Attachements in the
+> instructions, you will get the resolved name listed. You can select
+> it. After selecting, if there is any part of the previously existing
+> text available, please delete it.
+>
+> ![](./media/image55.png)
+>
+> ![](./media/image56.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image83.png)
+4.  The instructions should now look like this.
 
-4.  Select the **Agents** tab from the top menu and select **+ Add**.
+> ![](./media/image57.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image84.png)
+5.  Select **Save.**
 
-5.  From the list, select **Leave Manager Agent**. It can be added only
-    if it is published. Please wait if it is in the process of
-    publishing.
+> ![](./media/image58.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im15.png)
+### Task 7 - Test your Application Intake Agent
 
-7.  Select **Add and configure** to add this agent to **Safe Travels**.
+Now let's verify that our agent is working correctly by calling our
+child agent and following our instructions.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im16.png)
+1.  **Toggle** the test panel open by selecting **Test**.
 
-8.  Wait for few minutes after the agent is added and then click on
-    **Publish**.
+> ![](./media/image59.png)
 
-    ![](./media/im17.png)
+2.  Select the Attachement icon, select the resume – AVERY EXAMPLE pdf
+    and click **Open**.
 
+> ![](./media/image60.png)
 
-9. Select **Settings** and ensure that the **Generative AI** is turned **On**. Also, toggle the **Use General knowledge** under Knowledge section to **Off** and then select **Save**.
+3.  Give the message +++Process these resumes+++ and hit **send**.
 
-    ![](./media/im18.png)
+> ![](./media/image61.png)
 
-    ![](./media/im19.png)
-   
-9.  From the **Test** pane of the **Safe Travels agent**, enter +++Check Leave balance of Employee ID 1234+++ and hit **Send**.
+4.  The agent should then give a message similar to **The resume for
+    Avery Example has been successfully uploaded. The resume number is
+    R1001.**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im20.png)
+> ![](./media/image62.png)
 
-10. You can see that the **Leave Manager** agent is accessed
-    automatically and the agent replies with the leave details from the Leave balance tracker.
+5.  In the **Activity map**, you should see the **Application Intake
+    Agent** handling the resume upload.
 
-    ![](./media/im21.png)
+> ![](./media/image63.png)
+
+6.  If the app is not open already, navigate to
+    +++make.powerapps.com+++. Ensure the Dev One environment is selected
+    in the top right Environment Picker. Select **Apps** → Hiring Hub →
+    ellipsis(...) menu → **Play**  
+    ![](./media/image64.png)
+
+**NOTE:** If the play button is greyed out it means you have not
+published your solution. Select **Solutions** → **Publish all
+customizations**.
+
+7.  In the Power Apps – Hiring Hub app, navigate to **Resumes**, and
+    check that the resume file is uploaded and the cover letter is set
+    accordingly.
+
+> ![](./media/image65.png)
+
+## Exercise 2: Adding the Interview Prep connected agent
+
+Now let's create our connected agent for interview preparation and add
+it to your existing Hiring Agent.
+
+### Task 1: Create the connected Interview Agent
+
+1.  From the Copilot Studio, select the **Agents** tab in the left
+    navigation and select the **drop down** next to **+ Create blank
+    agent**, and select **Advanced create**.
+
+> ![](./media/image66.png)
+
+2.  Select the **Solution** as **Operative** and select **Confirm and
+    create**.
+
+> ![](./media/image67.png)
+
+3.  Select **Edit** against the Details.
+
+> ![](./media/image68.png)
+
+4.  Provide the below details and select **Save**.
+
+    - **Name**: +++Interview Agent+++
+
+    - **Description**: +++Assists with the interview process.+++
+
+> ![](./media/image69.png)
+
+5.  Select **Edit** against **Instructions**, enter the below
+    instruction and select **Save**.
+
+> You are the Interview Agent. You help interviewers and hiring managers
+> prepare for interviews. You never contact candidates.
+>
+> Use Knowledge to help with interview preparation.
+>
+> The only valid identifiers are:
+>
+> - ResumeNumber (ppa_resumenumber)→ format R#####
+>
+> - CandidateNumber (ppa_candidatenumber)→ format C#####
+>
+> - ApplicationNumber (ppa_applicationnumber)→ format A#####
+>
+> - JobRoleNumber (ppa_jobrolenumber)→ format J#####
+>
+> Examples you handle
+>
+> - Give me a summary of ...
+>
+> - Help me prepare to interview candidates for the Power Platform
+> Developer role
+>
+> - Create interview assistance for the candidates for Power Platform
+> Developer
+>
+> - Give targeted questions for Candidate Alex Johnson focusing on the
+> criteria for the Job Application
+>
+> How to work:
+>
+> You are expected to ask clarification questions if required
+> information for queries is not provided
+>
+> - If asked for interview help without providing a job role, ask for it
+>
+> - If asking for interview questions, ask for the candidate and job
+> role if not provided.
+>
+> General behavior
+>
+> - Do not invent or guess facts
+>
+> - Be concise, professional, and evidence-based
+>
+> - Map strengths and risks to the highest-weight criteria
+>
+> - If data is missing (e.g., no resume), state what is missing and ask
+> for clarification
+>
+> - Never address or message a candidate
+>
+> ![](./media/image70.png)
+
+6.  Ensure that **Web Search** is **Disabled.**
+
+> ![](./media/image71.png)
+
+### Task 2: Configure data access and publish
+
+In this task, you will configure the access to data and then publish the
+agent.
+
+1.  In the **Knowledge** section, select **+ Add knowledge.**
+
+> ![](./media/image72.png)
+
+2.  Select **Dataverse**  
+    ![](./media/image73.png)
+
+3.  In the **Search box**, type +++ppa\_+++. This is the prefix for the
+    tables you imported previously in earlier lab.
+
+4.  **Select** all 5 tables (Candidate, Evaluation Criteria, Job
+    Application, Job Role, Resume). Select **Add to agent**
+
+> ![](./media/image74.png)
+
+5.  Select the **Settings** button in the upper right hand corner
+
+> ![](./media/image75.png)
+
+6.  Ensure that the following settings are configured.
+
+    - **Let other agents connect to and use this one:** On
+
+    - **Use general knowledge**: Off
+
+    - **File uploads**: Off
+
+    - **Content moderation level:** Medium
+
+> ![](./media/image76.png)
+>
+> ![](./media/image77.png)
+>
+> ![](./media/image78.png)
+
+7.  Select **Save** and select the **X** in the upper right hand corner
+    to close out of the settings menu.
+
+> ![](./media/image79.png)
+
+8.  Select **Publish**.
+
+> ![](./media/image80.png)
+
+9.  Select **Publish** in the confirmation dialog and wait for the
+    publishing to complete.
+
+![](./media/image81.png)
+
+### Task 3: Connect the Interview Prep Agent to your Hiring Agent
+
+In this task, you will connect the Interview Prep agent to your Hiring
+agent to achieve multi agent orchestration.
+
+1.  Navigate back to your **Hiring Agent**. Select the **Agents** Tab
+    and select **+Add an agent.**
+
+> ![](./media/image82.png)
+
+2.  Select the **Interview Agent**.
+
+> ![](./media/image83.png)
+>
+> **NOTE**
+>
+> If the Interview Agent is greyed out and not selectable then tht means
+> it did not Publish. Go back to the Interview Agent and publish it
+> first.
+
+3.  Set the **Description** to be,
+
+> Assists with the interview process and provides information about
+> Resumes, Candidates, Job Roles, and Evaluation Criteria.
+>
+> Notice that the Pass conversation history to this agent is checked.
+> This allows the parent agent to provide full context to the connected
+> agent.
+>
+> Select **Add and configure.**
+
+![](./media/image84.png)
+
+4.  Ensure that you see both the **Application Intake Agent**, and
+    the **Interview Agent**. Notice how one is a child and the other is
+    a connected agent.
+
+> ![](./media/image85.png)
+>
+> ![](./media/image86.png)
+
+### Task 4: Test multi-agent collaboration
+
+1.  **Toggle** the test panel open by selecting **Test**.
+
+2.  **Upload** one of the test resumes, and enter the following
+    description which tell the parent agent what it can delegate to the
+    connected agent:
+
+> Upload this resume, then show me open job roles, each with a
+> description of the evaluation criteria, then use this to match the
+> resume to at least one suitable job role even if not a perfect match.
+>
+> ![](./media/image87.png)
+
+3.  Notice how the Hiring Agent delegated the upload to the child agent,
+    and then asked the Interview Agent to provide a summary and job role
+    match using its knowledge.
+
+> ![](./media/image88.png)
+
+4.  Play with different ways of asking questions about Resumes, Job
+    Roles and Evaluation Criteria. **Examples:**
+
+> +++Give me a summary of active resumes+++
+>
+> +++Summarize resume R1006+++
+>
+> +++Which active resumes are suitable for the Power Platform Developer
+> role?+++
 
 ## Summary
 
-In this lab, you learned how to:
+You've successfully transformed your single Hiring Agent into a
+sophisticated multi-agent orchestrated one with specialized
+capabilities.
 
--    Extend agents with custom knowledge assets.
+Here's what you've accomplished in this lab.
 
--    Design and connect Agent Flows to automate tasks via Teams.
+**Multi-agent architecture mastery**  
+You now understand when to use child agents vs connected agents and how
+to design systems that scale.
 
--    Create topics using natural language prompts and integrate flows as tools.
+**Application Intake child agent**  
+You've added a specialized child agent to your Hiring Agent that
+processes resumes, extracts candidate data, and stores information in
+Dataverse.
 
--    Publish agents to Teams and Microsoft 365 Copilot for enterprise use.
+**Interview Prep connected agent**  
+You've built a reusable connected agent for interview preparation and
+successfully connected it to your Hiring Agent.
 
--    Implement Multi-Agent Orchestration so multiple agents collaborate to fulfill complex user requests.
+**Agent communication**  
+You've seen how your main agent can coordinate with specialist agents,
+share context, and orchestrate complex workflows.
 
-By completing this lab, you gained practical experience in designing modular, intelligent agents that can interact, automate workflows, and deliver cohesive business experiences across Microsoft’s Copilot ecosystem.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Foundation for autonomy**  
+Your enhanced hiring system is now ready for the advanced features we'll
+add in upcoming missions: autonomous triggers, content moderation, and
+deep reasoning.
