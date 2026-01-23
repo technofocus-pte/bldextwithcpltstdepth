@@ -1,108 +1,116 @@
-# Lab 01 - Create a gardening assistant agent using Copilot Studio lite experience
+# Lab 1 - Designing an AI assistant with Copilot Studio Agent Builder
 
-## Objective
+**Objective**
 
-In this lab you will start out building a gardening agent using Copilot
-Studio agent builder by providing a sample set of instructions.
+In this lab, you will learn how to create a custom conversational agent
+using the **Copilot Studio Agent Builder** by describing the agent’s
+purpose, behavior, and tone in natural language. You will design a
+**Gardening Assistant** that provides expert guidance on home gardening,
+focusing on plant care, best practices, and the importance of nature in
+everyday living. By the end of the lab, you will understand how to
+iteratively refine agent instructions and bring a functional,
+domain-specific assistant to life.
 
 ## Exercise 1: Creating the agent
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a browser and login
-    with your credentials.
-    
-    - Username - +++@lab.CloudPortalCredential(User1).Username+++
-    
-    - Password - +++@lab.CloudPortalCredential(User1).Password+++
+1.  Open the link +++<https://m365.cloud.microsoft/chat+++> from a
+    browser and login with your credentials.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
+    - Username - <+++@lab.CloudPortalCredential>(User1).Username+++
 
-    >[!Alert] **Alert:** If you get a screen stating that the site is unsafe, click on More information and select Continue to the site.
-    >
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im1.png)
+    - Password - <+++@lab.CloudPortalCredential>(User1).Password+++
 
-4.  Select **New agent** from the **left** pane. If you are **not** able to see the **New agent** option, **refresh** the **browser** and try again in few minutes. At times, it takes few minutes to get loaded completely.
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image1.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im14.png)
+2.  Select **New agent** from the **left** pane. If you are **not** able
+    to see the **New agent** option, **refresh** the **browser** and try
+    again in few minutes. At times, it takes few minutes to get loaded
+    completely.
 
-5.  The Copilot Studio lite experience pops up and you can start defining
-    the custom agent. You can choose a template to start from, or you
-    can simply *describe* the agent by providing a description in
-    natural language. Let's provide the following initial description
+    ![](./media/image2.png)
+
+3.  Select the **Describe** tab.
+
+    ![](./media/image3.png)
+
+4.  You can start defining the custom agent. You can choose a template
+    to start from, or you can simply *describe* the agent by providing a
+    description in natural language. Let's provide the following initial
+    description
 
     +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im15.png)
+    ![](./media/image4.png)
 
-6.  Once you have provided the instructions, you will be asked about the name for the new agent.
+5.  Once you have provided the instructions, the initial details are
+    populated.
 
-7.  Provide the name: +++Gardening assistant+++.
+6.  You can rename the agent if needed. Provide the following prompt to
+    do so +++Name it as “Gardening assistant”+++.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im16.png)
+    ![](./media/image5.png)
 
-8.  If you are asked about refining instructions further, provide the following sentence.
+7.  If you are asked about refining instructions further, provide the
+    following sentence.
 
-    +++Suggest ways to keep plants and flowers shining and gorgeous+++
+    +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im17.png)
+    ![](./media/image6.png)
 
-9.  Keep on interacting with the agent builder until it does have all
+8.  Keep on interacting with the agent builder until it does have all
     the information needed to create the agent. Provide the following
     sentence.
 
-    +++Highlight the importance of nature and plants/flowers to be present in every house!+++
+    +++Focus on highlighting the importance of nature and plants/flowers to be present in every house!+++
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im18.png)
+    ![](./media/image7.png)
 
-10.  Then give an instruction of the agent tone as below.
+    ![](./media/image8.png)
+
+9.  Then give an instruction of the agent tone as below.
 
     +++Use a professional, yet friendly, tone.+++
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im19.png)
+    ![](./media/image9.png)
 
-11.  Click on **Create** on the top right to create the agent.
+11. Click on **Create** on the top right to create the agent.
 
-     ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im20.png)
+    ![](./media/image10.png)
 
-     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im21.png)
+    ![](./media/image11.png)
 
-12. Select **Go to agent** once the agent is created.
+12. Select **Go to agent** once the agent is created.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im22.png)
+    ![](./media/image12.png)
 
 13. This opens the created agent.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image11.png)
+    ![](./media/image13.png)
 
-    >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
-    >
-    >![A screenshot of a chat AI-generated content may be
-incorrect.](./media/im2.png)
-    
-14. Select any prompt in the agent and click on **Send** and observe the
-    response.
+    >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image12.png)
+    ![](./media/image14.png)
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image13.png)
+14. Provide prompt like below to converse with the agent.
 
-## Summary:
+    +++Give me tips to keep Rose plants fresh+++
 
-In this lab, you have learnt to create an agent from the Copilot Studio
-Agent Builder.
+    ![](./media/image15.png)
 
+    ## Summary:
 
+    In this lab, you created a **Gardening Assistant agent** using the
+    Copilot Studio Agent Builder experience. Starting with a simple
+    natural-language description, you defined the agent’s role as an expert
+    gardener and progressively refined its focus, tone, and personality
+    through interactive prompts. You customized the agent to provide
+    professional yet friendly gardening advice, with an emphasis on keeping
+    plants healthy, vibrant, and visually appealing while highlighting the
+    value of plants and flowers in every home.
 
-
+    After creating and launching the agent, you validated its behavior by
+    interacting with it using real user prompts, such as requesting tips to
+    keep rose plants fresh. This lab demonstrated how quickly and
+    intuitively you can build a purpose-driven agent using Copilot
+    Studio—without writing code—by leveraging conversational design and
+    iterative instruction refinement.
