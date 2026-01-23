@@ -1,4 +1,4 @@
-# Lab - Architecting intelligent agents with knowledge grounding and live connectors
+# Lab 3 - Architecting intelligent agents with knowledge grounding and live connectors
 
 **Introduction**
 
@@ -325,3 +325,4 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
