@@ -1,1618 +1,342 @@
-# Lab 07 – Develop a Personalized Shopping Assistant autonomous agent
+# Lab 7 - Build an autonomous financial data retrieval agent with Computer-Using Agents (CUA)
 
-## Objective
+**Introduction**
 
-The objective of this lab is to create a personalized shopping agent for
-Contoso Electronics. This will use Dataverse tables as the knowledge
-source for the agent. It will suggest product categories to the customer
-based on their latest shopping and assist them throughout the shopping
-experience.
+Legacy systems without APIs create major roadblocks for automation.
+Traditional RPA often relies on fragile screen-scraping or manual
+workarounds, which slow down decision-making, increase errors, and
+reduce productivity. This lab introduces Microsoft Copilot Studio and
+Computer Using Agents (CUA) as a smarter solution. By simulating human
+interaction with internal systems, CUAs can securely access and process
+data - without needing API integration. You’ll learn to build an
+autonomous agent that delivers faster responses, reduces manual
+workload, and enables real-time, informed decisions.
 
-## Exercise 1 – Create Dataverse tables
+Objective
 
-In this exercise, you will create tables in the Dataverse to store the
-**Customer**, **Product** and **Order** details.
+In this lab, you’ll learn how to build an autonomous agent using
+Microsoft Copilot Studio. This agent will simulate human interaction
+with a legacy internal system to retrieve financial portfolio data
+without requiring direct API access.
 
-1.  Open +++https://make.powerapps.com+++ in a browser and select Get Started.
+## Task 1: Create and Configure an Autonomous Agent
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im1.png)
+In this task, you will create a new autonomous agent in Microsoft
+Copilot Studio, configure its identity, and set up an email trigger
+using the Microsoft 365 Outlook connector.
 
-2.  Login using your admin tenant credentials below if prompted.
-
-    - Username - +++lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    - Password - +++@lab.CloudCredential(M365).AdministrativePassword+++
-      
-3.  Select **Dev One** as your environment. Select **Tables** form the left navigation pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
-
-4.  Select the drop down next to **+ New table** and select **Create new
-    tables** under it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image2.png)
-
-5.  Select **Import an Excel file or .csv** to create a new table.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image3.png)
-
-6.  Under Import an Excel or .CSV file, select the **Select from
-    device** option.
-
-    ![A screenshot of a file AI-generated content may be
-incorrect.](./media/image4.png)
-
-7.  From **C:\Labfiles\Lab Files**, select the excel – **Customers.xlsx**. Select
-    **Import** to import the data from the tracker and create the table.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image5.png)
-
-8.  The table gets created with the data from the tracker.
-
-9.  Here, that table name is **Customer Record**. The name might be
-    slightly different in your case since it is automatically generated.
-    Keep a note of it and use the appropriate **Table name** throughout the
-    lab execution.
-
-10. Click on the table, and then select **View data** to view the data
-    added to the table.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image6.png)
-
-11. Select **Save and exit**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image7.png)
-
-11. Click on **Save and exit** in the confirmation dialog.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
-
-12. Repeat the steps from 4 to 12 twice, to create tables once using the
-    tracker **Product Catalog.xlsx** and the next time using
-    **Orders.xls**
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image10.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
-
-13. Now, we will have 3 tables,
-
-    - **Customer Record**
-
-    - **Product Record**
-
-    - **Orders**
-
-## Exercise 2 – Create a Shopping agent
-
-In this exercise, you will create a Shopping agent which will assist
-customers while shopping in Contoso Electronics.
-
-### Task 1 – Create the agent
-
-Create the agent in Copilot Studio by using Copilot. Chat with the
-Copilot and give it instructions on how the agent should be designed and
-how it should behave so that the Copilot will create the agent for you.
+To automate portfolio lookups, the agent must be able to detect incoming
+email requests and initiate the appropriate automation flow based on
+subject line filtering.
 
 1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com/+++ and select the **Dev
-    One** environment.
+    +++https://copilotstudio.microsoft.com+++ using your login
+    credentials.
 
-    ![](./media/image12.png)
+2.  Select the Dev One environment from the top right.
 
-    >[!Alert] **Important** If the Copilot Studio and does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im30.png)
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
-    >![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im3.png)
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+![](./media/image1.png)
 
+3.  Select **Create an agent**.
 
-3.  From the Home page, enter the below text in the **Describe the agent text area** and select **Send**. This creates the agent with the given description. The instructions to the agent can be added in the next steps if needed.
+![](./media/image2.png)
 
-    +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
-    
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im47.png)
+4.  Once the agent is created, select **Edit** against the **Details**.
 
-4. Wait till your **agent is provisioned** and then proceed to the next step.
+![](./media/image3.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im8.png)
+5.  Enter the Name as +++Portfolio Lookup Agent+++ and select Save to
+    rename the default name of the agent.
 
-### Task 2 – Add Knowledge
+![](./media/image4.png)
 
-Adding knowledge to the agent makes it grounded to those knowledge
-resources enabling it to answer the user queries more effectively. In
-this task, you will add the Dataverse table created in the earlier
-exercise as a knowledge source to this agent.
+6.  Scroll down to the triggers section and click **+Add trigger**.
 
-1.  Enter +++What is the status of the order o1001?+++ in the Test pane.
+![](./media/image5.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image19.png)
+7.  Search and select **When a new email arrives (V3) (Office 365
+    Outlook** and click on **Next**.
 
-2.  The response will be similar the one below since the agent does not
-    have any information on this.
+![](./media/image6.png)
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image20.png)
+8.  Rename the trigger to +++When a portfolio lookup email arrives+++,
+    ensure that the connection is established for Copilot Studio and
+    Outlook and then click on **Next**.
 
-3.  Now, we will add knowledge source to the agent. From the **Overview**
-    page of the agent, select **Add Knowledge** under the **Knowledge**
-    section.
+![](./media/image7.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
+9.  In the **Subject Filter (Optional)** field, enter +++Portfolio+++ in
+    the subject line.
 
-4.  Select **Dataverse** from the list of available options.
+![](./media/image8.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image22.png)
+10. Once the trigger is created, you can **Close** the Time to test your
+    trigger dialog.
 
-5.  Search for +++order+++, select the **Order** (the table name might slightly differ in each case. Select your appropriate table) table and select **Add to agent**.
+![](./media/image9.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im9.png)
+## Task 2: Add Computer Use tool 
 
-7.  Wait for a few minutes after the knowledge source is added before
-    testing the agent again.
+In this task, you will configure a Computer use tool that logs into a
+computer, navigates through a website, searches and retrieves financial
+portfolio data. Then use the Office 365 Outlook connector to reply with
+the requested data.
 
-    >[!Alert] **Important:** The **Knowledge source** at times takes more **time** to come to the **Ready** state. If it takes more than **5 minutes**, please **continue** with the **next step** to check if you are able to get the **result** from the **added source**. Because, it gets added at the back end and takes time to reflect the same in the UI. If you are able to get **proper results**, please **proceed** with the next steps. **Else**, **wait** for some time.
-    
-8.  Once the **Order Record** becomes **Ready** under the Knowledge
-    section, ask the same question (+++What is the status of the order o1001?+++) in the Test pane.
+1.  Navigate to **Tools** in the top-level menu.
 
-    You can now see that the agent retrieves the information from the
-database and provides it to the user.
+![](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image25.png)
+2.  Select **+ Add a tool.**
 
-### Task 3 – Create Entities
+![](./media/image11.png)
 
-1.  Select **Settings** from the Home screen of the agent.
+3.  Select **+ New tool**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image26.png)
+![](./media/image12.png)
 
-2.  Select **Entities** from the left pane. Select **Add an entity -\> +
-    New entity**
+4.  Select **Computer use (preview)**.
 
-    ![](./media/image27.png)
+![](./media/image13.png)
 
-3.  Select **Closed list**.
+5.  Add the following Instructions, and then select **Add and
+    configure**.
 
-    ![A screenshot of a web page AI-generated content may be
-incorrect.](./media/image28.png)
+&nbsp;
 
-4.  Enter the below details.
+1.  Go to
+    <https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html>.
 
-    - Name - +++Laptop+++
-    
-    - Description - +++Contains products under Laptop category+++
-    
-    Under **List items**, enter +++Apple MacBook Air M3+++ and click on
-    **Add**.
+2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
+    click on the "Search" button.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image29.png)
+3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
+    exactly as shown.
 
-5.  Similarly, add the below items and then select **Save** and then **Close**.
+4.  Return those three values as the final output. If no portfolio data
+    is found, reply that you couldn't find a portfolio with the
+    specified ID.
 
-    +++Dell XPS 13 Plus+++
-    
-    +++HP Spectre x360 14+++
-    
-    +++Lenovo ThinkPad X1 Carbon Gen 12+++
-    
-    +++Asus ROG Zephyrus G14+++
+![](./media/image14.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
+6.  Update the **Name** of the Computer use tool as +++Look up portfolio
+    data+++
 
-6.  Select **Add an entity -\> + New entity**
+7.  Update the **Description** as +++Search and retrieve financial
+    portfolio data+++
 
-    ![](./media/image27.png)
+![](./media/image15.png)
 
-7.  Select **Closed list**.
+8.  In the Inputs section select **+ Add input**.
 
-    ![A screenshot of a web page AI-generated content may be
-incorrect.](./media/image28.png)
+![](./media/image16.png)
 
-8.  Enter the below data.
+9.  Enter name as +++Portfolio ID+++ and description +++The ID of the
+    portfolio+++ and select **Done**.
 
-    - Name - +++Desktop+++
-    
-    - Description - +++Contains products under Desktop category+++
-    
-    Under **List items**, enter +++Apple iMac+++ and click on **Add**.
+![](./media/image17.png)
 
-9.  Other items to be added in the list are as below. Once done select **Save** and **Close**.
+10. Select **Save**.
 
-    +++Microsoft Surface Studio 2+++
-    
-    +++HP Envy Desktop+++
-    
-    +++Dell Inspiron Desktop+++
-    
-    +++Lenovo IdeaCentre AIO 5i+++
+![](./media/image18.png)
 
-10. Select **Add an entity -\> + New entity**
+## Task 3: Test the Computer use tool
 
-    ![](./media/image27.png)
+1.  In the **Instructions** section, select the **Test** button on the
+    right.
 
-11. Select **Closed list**.
+![](./media/image19.png)
 
-    ![A screenshot of a web page AI-generated content may be
-incorrect.](./media/image28.png)
+2.  Add the sample value +++44123BCD+++ and select **Test now**.
 
-12.  Enter the below data.
+![](./media/image20.png)
 
-    - Name - +++Tablet+++
+3.  Observe the Computer use tool logging into the computer and
+    performing the requested actions:
 
-    - Description - +++Contains products under Tablet category+++
+    - The left panel shows your instructions and a step-by-step log of
+      the tool’s reasoning and actions.
 
-    Under **List items**, enter +++Apple iPad Pro+++ and click on **Add**.
+    - The right panel shows a preview of the actions on the machine you
+      set up for computer use.
 
-13.  Other items to be added in the list. Select **Save** and **Close** once done.
+![](./media/image21.png)
 
-    +++Samsung Galaxy Tab S9 Ultra+++
-    
-    +++Microsoft Surface Pro 10+++
-    
-    +++Lenovo Tab P12 Pro+++
-    
-    +++Apple iPad Air+++
+> ![](./media/image22.png)
 
-14. **Close** the **Settings** pane.
+![](./media/image23.png)
 
-In this tasak, all the entites required are created and updated.
+![](./media/image24.png)
 
-## Exercise 3 – Create Topics and agent flows and design the agent
+![](./media/image25.png)
 
-Designing Topics is a very important part in creating an agent since it
-deals with the logic behind how the user’s questions are answered and
-how the flow of the details will be.
+![](./media/image26.png)
 
-### Task 1 – Edit the Conversation Start topic
+4.  Select **Finish testing**.
 
-The Conversation Start topic is the first topic to be invoked when
-testing the agent. It is a System Topic available by default in any
-agent that you create in the Copilot Studio. Now, you will edit this
-topic to continue the conversation from the greeting message from the
-agent.
+![](./media/image27.png)
 
-1.  From the **Overview** page of the agent, select the **Topics** tab
-    from the top menu bar. Select **System** to view the list of System
-    topics. Select the **Conversation Start** topic from the list.
+## Task 4: Setting up email response capabilities
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
+In this task, you will set up the email capability.
 
-2.  After the existing Message node, add a **Question node**.
+1.  Return to the **Tools** tab and select **+ Add a tool** .
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image32.png)
+![](./media/image28.png)
 
-3.  Enter the below message,
+2.  Search for +++**Send an email (V2) (Office 365 Outlook)**+++ and
+    select it.
 
-    +++Welcome to Contoso Electronics. Please enter your **Phone number** to proceed.+++ in the message     area and select **User’s entire response** under **Identity**. Click on the **Var1** under **Save user response as** field.
+![](./media/image29.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image33.png)
+3.  Select **Add and configure**.
 
-4.  Rename **Var 1** to +++MobileNumber+++ and select **Global** to use
-    it across topics and then select **Save**.
+![](./media/image30.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image34.png)
+4.  Update its **Name** to +++Reply to email+++ and **Description** to,
+    +++Use this operation to reply to the email received+++ and then
+    select **Additional details**.
 
-### Task 2 – Create a topic to handle the Customer details
+![](./media/image31.png)
 
-1.  From the Overview page of the agent, select the Topics tab from the
-    top menu bar. Select the drop down next to **Add a topic -\> From
-    blank**.
+5.  Under **Additional details**, set **Credentials to use** to
+    **Maker-provided credentials.**
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image35.png)
+![](./media/image32.png)
 
-2.  Name the topic as +++Customer Details+++.
+6.  Under the **Inputs** section, click on **customize** against the
+    **To** input and set its **Description** to +++Use the "from" email
+    of the triggering received email+++.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image36.png)
+![](./media/image33.png)
 
-3.  Select **Change trigger** and select **It’s redirected to** as the
-    trigger.
+![](./media/image34.png)
 
-    ![Screens screenshot of a computer AI-generated content may be
-incorrect.](./media/image37.png)
+7.  **Customize** the **Subject** input and set its **Description** to
+    +++Write the email subject+++.
 
-4.  Select **Save** to save the topic.
+![](./media/image35.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image38.png)
+8.  Customize the **Body** input and set its **Description** to +++Write
+    the email body using HTML and highlight the requested data+++.
 
-### Task 3 – Create an Agent flow to get the details of the customer
+![](./media/image36.png)
 
-In this task, you will create an Agent flow, to which you will pass the
-Phone number entered by the customer as input and design the flow to
-check if the user exists or not and retrieve the information and return
-the details to the agent.
+9.  Click **Save** to finalize the tool configuration.
 
-1.  Below the Trigger node, add a node, select **Add a tool** -\> **New
-    Agent flow**.
+![](./media/image37.png)
 
-    ![](./media/image39.png)
+10. Navigate to **Overview** tab and then **Edit** the Instructions.
 
-2.  The Agent flow designer opens up. Select **Save draft** to save the
-    flow.
+![](./media/image38.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image40.png)
+11. Paste the following instruction.
 
-3.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++GetCustomer+++. Then select **Save**.
+When a financial portfolio related request is received, identify the
+Portfolio ID and search for the requested data using \< Look up
+portfolio data \>. Once you have gathered the financial portfolio
+information, use the \< Reply to email \> tool to reply to the original
+email you received. Do not respond with data beyond what was requested.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
+![](./media/image39.png)
 
-5.  Navigate to the **Designer** tab again to design the flow. Select
-    the node **When an agent calls the flow** and then select **+ Add an
-    input**.
+12. Select \< Look up portfolio data \>, enter / and select the tool
+    Look up portfolio data.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image42.png)
+![](./media/image40.png)
 
-5.  Select **Text**.
+![](./media/image41.png)
 
-    ![](./media/image43.png)
+13. Similarly, replace \< Reply to email \> with the tool, **Reply to
+    email**.
 
-6.  Enter the input as +++Phone number+++.
+14. Once the replacements are done, as in the screenshot below, select
+    **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image44.png)
+![](./media/image42.png)
 
-7.  Click on **Add an action** between the 2 nodes in the flow. Search
-    for +++List rows+++ and select the **List rows** action under
-    **Microsoft Dataverse**.
+15. Select **Settings** from the top right.
 
-    ![A screenshot of a computer program AI-generated content may be
-incorrect.](./media/image45.png)
+![](./media/image43.png)
 
-8.  Enter the connection name as +++**Dataverse**+++ and click **Sign
-    in**.
+16. **Disable** **Use general knowledge option** under the **Knowledge**
+    section, and select **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
+![](./media/image44.png)
 
-9.  **Sign in** using your admin tenant credentials and click on **Allow
-    access** if prompted.
+17. Close the **Settings** pane.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image47.png)
+![](./media/image45.png)
 
-10. Navigate to PowerApps at +++https://make.powerapps.com/+++ and open
-    the **Customer Record** table. Click on the drop down next to the
-    **Mobile number** field and select **Edit column**.
+## Task 5: Testing your complete agent
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image48.png)
+In this agent, you will test the complete working of the agent that you
+have created.
 
-11. Scroll down and under **Advanced options**, there is a field named
-    **Logical name**. Make a note of its value in a note pad.
+1.  Send a test email from an email address of your preference to your
+    training user’s email account with
 
-    >[!Alert] **Important:** Each field will have an associated Logical name to it in
-    Dataverse. And while using it in the Agent flow, you will have to
-    specify only the logical names for all the fields.
-    >
-    > ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image49.png)
+Subject: +++Portfolio data request+++
 
-12. In this case, for Phone number, it is **cr6dd_mobilecontact**. Make
-    a note of it
+Body:
 
-13. Navigate back to the Copilot Studio – Agent flow tab. Open the
-    Getcustomer flow and select the **List rows** action.
+Hi!
 
-14. Select the Table name as **Customer Record**(or your crresponding table name).
+I hope you're doing well!
 
-15. Under Filter rows, enter **+++< Logical name of Mobile number > eq ''+++**. Replace **< Logical name of Mobile number >** with the value you retrieved in the earlier step. Keep the cursor inside the quotes and add the **Phone number – dynamic variable**.
+I'm looking for the portfolio manager and value of portfolio \#44123BCD.
+Much appreciated.
 
-    In this case, it will be **cr6dd_mobilecontact eq 'Phone number'**
+Thanks!
 
-    ![](./media/image50.png)
+![](./media/image46.png)
 
-    ![](./media/image51.png)
+2.  Make sure you receive the email in your training user’s inbox.
 
-15. Below the List rows node, add a **Condition** node.
+3.  In the **Overview** tab, go to the **Triggers** section and select
+    **Test trigger**.
 
-    ![](./media/image52.png)
+![](./media/image47.png)
 
-16. Enter **/** and select **Insert expression**.
+4.  Select the **trigger instance** and then **Start testing.**
 
-    ![](./media/image53.png)
+![](./media/image48.png)
 
-17. Enter +++length(outputs('List_rows')?\['body'\]?\['value'\])+++ in
-    the function and select **Add**. Select the condition as **is greater than** and enter the value as +++0+++. This will check if the List rows returns a value or not.
+5.  The execution happens and you can see the updates and the flow in
+    the Test pane.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image54.png)
+![](./media/image49.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image55.png)
+![](./media/image50.png)
 
-18. Click on **Add an action** under the **True** branch of the
-    condition added and add a new **Condition** node.
+6.  Once the execution is completed, check your email for the agent’s
+    reply.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image56.png)
+![](./media/image51.png)
 
-19. Select / -> Insert expression and then enter +++not(empty(first(outputs('List_rows')?\['body/value'\])?\['cr6dd_lastpurchasedproduct'\]))+++ in the function area of the condition.
+## Summary
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image57.png)
+In this lab, you built an autonomous financial data retrieval agent
+using Microsoft Copilot Studio and Computer-Using Agents (CUA). You
+configured an event-driven agent that automatically responds to email
+requests, simulates human interaction with a legacy system to retrieve
+portfolio data, and returns accurate results without relying on APIs.
 
-    >[!Note] **Note:** Please ensure that the expression gets pasted exactly like in the screenshot above. Please remove extra characters if any
+You learned how to:
 
-    >[!Alert] **Important** – Make sure to replace the **cr6dd_lastpurchasedproduct** with the **logical name** of the field **Recent Products Purchased** from the **Customer Record** table
-    >
-    > ![](./media/image58.png)
+- Design an autonomous agent that operates without direct user
+  interaction
 
-21. Set the condition as **is equal to true**
+- Use email-based triggers to initiate automated workflows
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image59.png)
+- Configure Computer-Using Agents to securely navigate and extract data
+  from legacy web applications
 
-22. Add a new action below the **True** path of **Condition1** and
-    select the **Respond to the agent** node.
+- Integrate action tools to return results via email
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image60.png)
+- Reduce reliance on fragile RPA patterns by using AI-driven computer
+  interaction
 
-23. Select the added **Respond to the agent node** and rename it to
-    +++If the customer has made a previous purchase+++ and select **+ Add an output**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image61.png)
-
-24. Select **Text**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
-
-25. Enter +++Customer ID+++ as the name and click on **Insert
-    expression**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image63.png)
-
-26. Enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++ The **cr6dd_customeridentifier** is the logical name of the
-    Customer ID of the Customer Record table. **Replace** it with your
-    value.
-
-27. Select **Add**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image64.png)
-
-28. Similarly, add the below output variables and expressions to each
-    one of it. For each variable, make sure to replace the logical name
-    with yours.
-
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_lastpurchasedproduct'\]+++ (This is the last/recent purchased product column)
-
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image65.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image66.png)
-
-29. The **Respond to the agent** node will have 3 output variables as in
-    the screenshot below.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image67.png)
-
-30. Add a Respond to the agent node under the **False** path of the
-    **Condition1** node. Rename it to +++If the customer has not made a
-    previous purchase+++. Click on **+ Add an output**.
-
-    ![](./media/image68.png)
-
-31. Enter the below output variables replacing the column logical names
-    with your logical names for the corresponding columns.
-
-    - +++Customer ID+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_customeridentifier'\]+++
-    
-    - +++Customer Name+++ -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_fullname'\]+++
-    
-    - +++Product Category+++ - +++’1’+++
-
-32. The **Respond to the agent** node under the **False** path will look
-    like the one in the screenshot below.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image69.png)
-
-33. Now, add a **Respond to the agent** node under the **False** path of
-    the Condition node, rename it to +++If the customer does not
-    exist+++ and add outputs to it as below.
-
-    - +++Customer ID+++ - +++’1’+++
-    
-    - +++Customer Name+++ - +++’1’+++
-    
-    - +++Product Category+++ - +++’1’+++
-
-    ![](./media/image70.png)
-
-34. The **GetCustomer** flow will look like the one in the screenshot
-    below.
-
-    ![](./media/image71.png)
-
-35. Right click on the **Respond to the agent** that is there as a
-    common one at the end of the flow and select **Delete** to delete
-    it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image72.png)
-
-36. Select **Save Draft** to save the lab. Once saved, click on
-    **Publish** to publish the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image73.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image74.png)
-
-### Task 4 – Create Agent flow to add customer
-
-In this task, you will create an Agent flow to add a new customer into
-the Dataverse when the customer is a new customer.
-
-1.  From **Agent flows** tab, select **+ New agent flow.**
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
-
-2.  Select **Add a trigger** node and replace it with **When an agent calls the flow** (This will be available either under +++Skills+++ or +++AI capabilities+++) node.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image76.png)
-
-3.  Select **+ Add an input** and add a **Text** input.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image77.png)
-
-4.  Enter +++Name+++ as the input name.
-
-    ![A screenshot of a computer program AI-generated content may be
-incorrect.](./media/image78.png)
-
-5.  Similarly, add the following input values.
-
-    +++Phone Number+++
-    
-    +++Email ID+++
-    
-    +++Address+++
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image79.png)
-
-6.  Add an action below the node and select +++**Add a new row**+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image80.png)
-
-7.  Select the Table Name as **Customer Record** and then select **Show
-    all** in Advanced parameters.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image81.png)
-
-8.  Click in the **Address** field, select the **Dynamic value** and
-    then select the **Address** dynamic value.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image82.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image83.png)
-
-9.  Similarly, add the dynamic values for
-
-    - Customer Name – Name
-    
-    - Email ID – Email ID
-    
-    - Mobile Number - Phone Number
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image84.png)
-
-10. Open the insert expression for **Customer ID**, enter
-    +++guid()+++ and select **Add**. This is to add a unique value as
-    the ID for the customer.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image85.png)
-
-11. Add a new action and select **Respond to the agent**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image86.png)
-
-12. Add a output value named +++Customer ID+++ and insert an expression
-    and enter
-    +++string(outputs('Add_a_new_row')?\['body/cr6dd_customeridentifier'\])+++
-    as the value.
-
-    Replace **cr6dd_customeridentifier** with your logical name for the
-column **Customer ID**.
-
-    Select **Add**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image87.png)
-
-13. Select **Save draft** to save the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image88.png)
-
-14. Once the flow is saved, select **Publish** to publish the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image89.png)
-
-15. Select **Overview** tab. **Click on Edit.** Enter the name of the
-    flow as +++Add Customer+++ and then select **Save**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image90.png)
-
-### Task 5 – Add the flow and design the Customer Details topic
-
-In this task, you will design the Customer Details topic which will get
-the phone number of the customer, check if the detail is already present
-in the Dataverse and add it if not already present.
-
-1.  Navigate back to the **Customer Details** topic.
-
-2.  Add a node under the Trigger node, select **Add a tool -\>
-    GetCustomer**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image91.png)
-
-3.  In the Inputs, select the variable **MobileNumber**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image92.png)
-
-4.  Select the **output** variables and mark the Customer ID and
-    ProductCategory as **Global** as in the screenshot below.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image93.png)
-
-5.  Below the **Action** node, add a **condition** node.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image94.png)
-
-6.  Select **CustomerID** in **Select a variable**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image95.png)
-
-7.  Select the condition as **is not equal to** and enter +++'1'+++ in
-    the **Value** field. This checks if the customer detail is already
-    existing in the database.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image96.png)
-
-8.  Under the condition node, add a **Set a variable** node.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image97.png)
-
-9.  Click on **Select a variable** and select **Create a new variable**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image98.png)
-
-10. Name the variable as +++IsNewCustomer+++ and mark it as **Global**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image99.png)
-
-11. Set the value as +++‘No’+++. This means that the customer is an old
-    customer whose data is already present in the Dataverse.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image100.png)
-
-12. You will add a new node next to the variable node and give a Welcome
-    message to the customer.
-
-13. Select Add a node and select **Send a message** node. In the message
-    area, type +++Welcome+++ and then click on the {x} icon to select
-    the variable. Select the **Customer Name** variable.
-
-    ![](./media/image101.png)
-
-    Now, we have invoked the Agent flow **GetCustomer**, checked if the
-customer record already exist and if yes, Added a Welcome message to the
-customer.
-
-    Now, we will design the part of the topic if the customer record does
-not already exist.
-
-13. Under the **All other conditions** node, add a Set a variable node
-    and set the value for **isNewCustomer** variable as +++’Yes’+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image102.png)
-
-14. Next to the variable node, add a **Message** node and enter +++We do not have your details in our system. Please fill in your details below to help us serve you better.+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image103.png)
-
-15. Next to the Message node, add an **Ask with adaptive card** node.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image104.png)
-
-16. Click on the 3 dots on the top right of the screen and select
-    **Properties**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image105.png)
-
-17. Select **Edit adaptive card**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image106.png)
-
-18. Enter the below **JSON** (Select the **Copy** option and **Paste** it in the UI) in the **Card payload editor** area. Select **Save**.
-    
-    ```
-    {
-        "type": "AdaptiveCard",
-        "body": [
-            {
-                "type": "TextBlock",
-                "size": "Medium",
-                "weight": "Bolder",
-                "text": "Please enter your details"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Name",
-                "label": "Name"
-            },
-            {
-                "type": "Input.Text",
-                "id": "MobileNumber",
-                "label": "Mobile Number"
-            },
-            {
-                "type": "Input.Text",
-                "id": "EmailID",
-                "label": "Email ID"
-            },
-            {
-                "type": "Input.Text",
-                "id": "Address",
-                "label": "Address"
-            }
-        ],
-        "actions": [
-            {
-                "type": "Action.Submit",
-                "title": "Submit"
-            }
-        ],
-        "version": "1.5",
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json"
-    }
-    ```
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image107.png)
-
-20. Select **Close** to close the editor.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image108.png)
-
-20. Expand the **Outputs** section of the created Adaptive card node, select
-    the **Mobile Number** value and select the **Global.MobileNumber** variable
-    to save the user entered Phone number value in it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image109.png)
-
-21. Leave the other values to the default ones.
-
-22. The Adaptive card is ready with the form to get the customer
-    details.
-
-23. Next to the Adaptive card node, invoke the flow **Add Customer.**
-
-    ![](./media/image110.png)
-
-24. Click on the **three dots** in the **Enter or select a value** and
-    select **CustomerName** variable.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image111.png)
-
-25. Similarly, add the input variables for the other fields to be passed
-    to the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image112.png)
-
-26. Select **Global.CustomerID** as the output variable to which the
-    output from the flow will be saved.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image113.png)
-
-27. After the action node, add a **Message node** and enter the value,
-    +++Thank You! Customer detail has been added to the database. Please select a product type to shop.+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image114.png)
-
-28. **Save** the topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image115.png)
-
-29. Open the Conversation Start topic and invoke the Customer Details
-    topic from there.
-
-30. Add a node after the Question node in the topic. Select **Topic
-    management -> Go to another topic**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image116.png)
-
-31. Select the **Customer Details** topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image117.png)
-
-32. Select **Save** to save the topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image118.png)
-
-### Task 6 – Create an agent flow to get the product details
-
-In this task, you will create an agent flow which will fetch the Product
-details from the Dataverse based on the selected product.
-
-1.  Select the **Flows** tab from the Copilot Studio and select **+ New
-    agent flow**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image119.png)
-
-2.  Select the trigger node and select **When an agent calls the flow**
-    action.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image120.png)
-
-3.  Add a Text input and name it as +++Product Name+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image121.png)
-
-4.  Select **Save draft** to save the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image122.png)
-
-5.  Select the **Overview** tab and click on **Edit**. Enter the name as
-    +++GetProductDetails+++ and select **Save**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image123.png)
-
-6.  Navigate back to the **Designer** tab and select **Add an action**
-    below the **When an agent calls the flow** node. Search for +++list rows+++ and select the **List rows** action under **Microsoft Dataverse**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image124.png)
-
-7.  Enter the below values
-
-    - **Table name –** Select **Product Record**
-    
-    - Filter rows – +++cr6dd_producttitle eq '**< Product Name >**'+++
-      Replacing < Product Name > with the dynamic value **ProductName**. (Replace **cr6dd_producttitle** with the **logical name** of your **product name** field)
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image125.png)
-
-8.  Add a **Respond to the agent** node under the **List rows** node.
-    Select **+ Add an output** and add a text output variable. Enter the
-    below values and click Add in **insert expression.**
-
-    - Enter a name – Enter +++Product Name+++
-
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_producttitle'\]+++
-      (Replace **cr6dd_producttitle** with the logical name of tha
-      column Product Name in your table.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image126.png)
-
-9.  Similarly, add another output node with the below details
-
-    - Enter a name – Enter +++Price+++
-    
-    - Expression -
-      +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_productprice'\]+++
-      Replace **cr6dd_productprice** with the logical name of the column
-      **Price** in your table
-
-    The node should now look like this.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image127.png)
-
-10. Select **Save draft** to save the topic and then **Publish** to
-    Publish the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image128.png)
-
-### Task 7 – Create a topic to retrieve the Product category from the customer
-
-1.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
-    blank**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image129.png)
-
-2.  Rename the topic to +++Place Order+++. Change the trigger of the
-    trigger node to **It’s redirected to**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image130.png)
-
-3.  **Save** the topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image131.png)
-
-4.  From the Copilot Studio Topics tab, select **+ Add a topic -\> From
-    blank**.
-
-    ![](./media/image129.png)
-
-5.  Rename the topic as +++Get Product Categories+++. Select the
-    **Change trigger** option in the **Trigger** node and select **It’s
-    redirect to** option.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image132.png)
-
-6.  Below the **Trigger** node, add a **Condition** node.
-
-    Select the Global variable **IsNewCustomer** and add the condition, **IsNewCustomer** **is equal to** +++**'Yes'**+++.
-
-    Select **+ New condition.**
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image133.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image134.png)
-
-7.  Select **Or**.
-
-    Under the Or condition, select the Global variable **ProductCategory**
-add the condition, is equal to +++'1'+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image135.png)
-
-    ![](./media/image136.png)
-
-8.  Under the Condition node, add a question node and enter +++Select a category+++ and select **+ New option**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image137.png)
-
-9.  Enter the option +++Laptop+++ and select + New option again.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image138.png)
-
-10. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++. Select the variable under **Save user response
-    as**, and name the variable as +++**ProdCatchoice**+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image139.png)
-
-11. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String. (The 3 different paths formed based on the options will not be used in this case. They can either be deleted or left as such. In this case, we will leave thema as such and add the **Set variable value** node before the branches, immediately after the question node).
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image140.png)
-
-12. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression
-    +++Text(Topic.ProdCatchoice)+++ and select **Insert**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image141.png)
-
-13. Below the Set variable value node, add a new node, **Topic
-    management** -> **Go to another topic** -\> **Place Order**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image142.png)
-
-14. Now, one path is fully complete. It will get the category from the
-    user and invoke the Place Order topic.
-
-15. Navigate back to the start of this topic. Under all other
-    conditions, add a **Question** node. Add the message +++Based on your recent purchase we suggest you products in <Product Category > category. Would you like to continue?+++
-
-    In the message replace **< Product Category >** with the **Global.ProductCategory** variable.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image143.png)
-
-16. Add 2 options, +++Yes+++ and +++No+++. Click on the variable under
-    Save user response as and rename it to +++Userschoiceofcategory+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image144.png)
-
-17. Under the **Userschoiceofcategory is equal to Yes** condition node path, add a **Topic management node** and invoke the
-    **Place Order** topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image146.png)
-
-18. Under the Condition **Userschoiceofcategory is equal to No**, add a question node and enter +++Select a category+++ and select **+ New option**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image137.png)
-
-19. Enter the option +++Laptop+++ and select + New option again.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image138.png)
-
-22. Similarly add two other options +++**Desktop**+++ and
-    +++**Tablet**+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image149.png)
-
-23. Under the question node, add a **Set a variable value** node to
-    convert the choice received from the question node to String.  (The 3 different paths formed based on the options will not be used in this case. They can either be deleted or left as such. In this case, we will leave thema as such and add the **Set variable value** node before the branches, immediately after the question node).
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image140.png)
-
-24. Select the Global variable **ProductCategory** under Set variable.
-    In the **To value** field, click on the 3 dots, select the
-    **Formula** tab. Enter the expression +++Text(Topic.Var1)+++ and
-    select **Insert**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image150.png)
-
-25. Below the Set variable value node, add a new node, **Topic
-    management** -\> **Go to another topic** -\> **Place Order**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image142.png)
-
-26. Select **Save** to save the topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image151.png)
-
-27. Open the Topic **Customer Details** and move to the last node.
-
-28. **Add a new node** to invoke the topic **Get Product Categories**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image152.png)
-
-29. Select **Save** to save the topic.
-
-    ![](./media/image153.png)
-
-### Task 8 – Create Agent flow to place the order
-
-In this task, you will create an Agent flow to place the order based on
-the product chosen by the customer.
-
-1.  From **Agent flows** tab, select **+ New agent flow.**
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image154.png)
-
-2.  Click on the **Add a trigger node** and select **When an agent calls
-    the flow** node.
-
-    ![](./media/image155.png)
-
-3.  Add 2 **Text** variables +++Product Name+++ and +++Customer ID+++ as
-    **Input**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image156.png)
-
-4.  Click on **Save Draft** to save the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image157.png)
-
-5.  Select **Overview** from the top menu, click on **Edit** and enter
-    the name of the flow as +++PlaceOrder+++. Then select **Save**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image158.png)
-
-6.  Navigate back to the **Designer** tab. Select Add a new action and
-    select **Add a new row** under Dataverse.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image159.png)
-
-7.  Select the Table name as **Order Record** and then click on **Show
-    all** under Advanced parameters.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image160.png)
-
-8.  Enter the below values.
-
-    - Customer Identifier - **Customer ID** (Dynamic value)
-    
-    - Order identifier – Enter +++guid()+++ in Insert expression
-    
-    - Order Status - +++**Order Placed**+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image161.png)
-
-9.  Add a node, **Respond to the agent**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image162.png)
-
-10. Add a output Text variable and name it as +++Order ID+++.
-
-    Enter its value as +++string(outputs('Add_a_new_row')?\['body/cr6dd_orderidentifier'\])+++
-(Replace **cr6dd_orderidentifier** with the logical name value of the
-column Order ID from the Order Record table.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image163.png)
-
-11. Click on **Save draft** to save the flow and then click on
-    **Publish** to publish the flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image164.png)
-
-### Task 9 – Design the Place Order topic 
-
-In this task, you will design the topic to place the order and update
-the Dataverse table.
-
-1.  Open the topic **Place Order** from the Agent’s **Topic** tab.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image165.png)
-
-2.  Add a message node with the message +++Options based on the category will be listed below.+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image166.png)
-
-3.  Add a condition node. Enter the condition as ProductCategory(Global
-    variable) is equal to +++Laptop+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image167.png)
-
-4.  Under the node, add a question node and enter the message +++Select a Laptop product+++. Select **Laptop** under **Identity**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image168.png)
-
-5.  Click on **Select** options for user and select all the 5 available
-    options.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image169.png)
-
-6.  Enter the variable name as +++ProdNameLapChoice+++
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image170.png)
-
-7. Select the **3 dots** in the top right corner of the **Laptop condition** node and select **Insert new condition**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im48.png)
-
-8.  Now, follow the same procedure and add condition nodes for
-    ProductCategory is equal to +++Desktop+++ and +++Tablet+++.
-
-8.  Save the values in variable names +++ProdNameDeskChoice+++ and +++ProdNameTabChoice+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image171.png)
-
-9.  Select a **Set variable value** node under the **Select a Laptop
-    product** question node.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image172.png)
-
-10. Rename the created variable to +++ProdNameSelected+++ and set it as
-    **Global**.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image173.png)
-
-12. Set the value in the Formula field as
-    +++Text(Topic.ProdNameLapChoice)+++ (Replace the variable name, if you have used a different one)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image174.png)
-
-12. Similarly, add a **Set variable value** node under **Desktop** and
-    **Tablet** branches. Select the **Set variable** value as
-    **ProdNameSelected** and insert the expression for the To value
-    field with the variable name as per the one you used.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image175.png)
-
-13. Add an Action node under all these nodes in common and invoke the
-    GetProductDetails flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image176.png)
-
-14. Select **ProdNameSelected** input variable to be passed to the flow.
-    Leave the other values as default.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image177.png)
-
-15. Add a Message node below the Action and enter the below message.
-    Replace < ProductName > and < Price > with the corresponding variable
-    names
-
-    Product Details
-    
-    - Product Name - < ProductName >
-    
-    - Price - < Price >
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image178.png)
-
-16. Below the message node, adda **Question node** with a message,
-    +++Would you like to place order for this item?+++ in it. Add
-    options **Yes** and **No** to it and name the variable as
-    +++PlaceOrder+++.
-
-    ![](./media/image179.png)
-
-17. Remove the node, **PlaceOrder is equal to No**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im49.png)
-
-18. Invoke the flow **PlaceOrder** as the next step, under the **Yes** branch.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image181.png)
-
-19. Select the **ProductName** and **CustomerID** as the input to the
-    flow.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image182.png)
-
-20. Now, add a message node below this with the message, +++Your order is placed. This is your Order ID for reference - < OrderID >+++ (Replace **< OrderID >** with the variable, **+++OrderID+++** (the output
-    variable from the flow).
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image183.png)
-
-21. With this the **PlaceOrder is equal to Yes** branch is **complete**.
-    Now, navigate to **all other conditions branch**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image184.png)
-
-22. Below that, add a Question node with the message, +++Do you want to go to the main menu?+++ with options **Yes** and **No**. Name the variable as +++**GoToMainMenu**+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image185.png)
-
-23. Remove the **GoToMainMenu is equal to No**. So now there will be one branch - **GoToMainMenu is equal to Yes** and the other branch will be **All other conditions**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image186.png)
-
-24. Under this condition node, add a question node with message
-    +++**Select Product Category**+++ and add 3 options,
-    +++**Laptop**+++, +++**Desktop**+++ and +++**Tablet**+++.
-
-    Make a note of the variable name to which the result is saved. We will
-convert it to text in the next step.
-
-    Delete the nodes that created as a result of the condition(The 4 nodes - one for each category and the All other conditions node).
-    
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image187.png)
-
-26. Add a **Set variable value** node and select **ProductCategory**
-    variable under **set variable** and enter the value as
-    +++**Text(Topic.Var1)**+++ under the **Formula** tab.
-
-    Replace **Var1** with your variable name if it is different.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image188.png)
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image189.png)
-
-27. Under the Set variable value node, add a **Go to step** node.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image190.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image191.png)
-
-28. After adding the node, you will have to select the **step**, to
-    which the **control should pass** on at this point. **Scroll up**
-    and select the **Message node at the starting of this topic** since,
-    you have got the **ProductCategory** from the customer now and need
-    to execute from the beginning.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image192.png)
-
-29. Add a common message node at the end with the message +++Thank you for shopping with us! Please visit again!+++ Then select **Save** to
-    save the topic.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image193.png)
-
-## Exercise 4 – Add a trigger 
-
-In this exercise, you will add a trigger to get initiated when the Order
-table is added with a new row or an existing row is modified and send an
-email to the customer automatically. This defines the autonomous
-capability of the agent in this scenario,
-
-1.  Select the Overview tab of the agent.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image194.png)
-
-2.  Scroll down the page and select **Add trigger.**
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image195.png)
-
-3.  Select **When a row is added, modified or deleted** option and then
-    select **Next**.
-
-    ![](./media/image196.png)
-
-4.  Once the **Microsoft Copilot Studio** and **Dataverse** are
-    connected, click on **Next**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image196.png)
-
-5.  Select the below options, leave the rest as default and select
-    **Create trigger**.
-
-    - Change Type – Added or Modified or Deleted
-    
-    - Table name – Order Record
-    
-    - Scope - Organization
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image197.png)
-
-6.  This might take a few minutes to get completed. Once done, select
-    **Close** in the Add trigger dialog.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image198.png)
-
-7.  From the Trigger section in the **Overview** page of the agent,
-    click on the **3 dots** next to the added trigger and select **Edit
-    in Power Automate**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image199.png)
-
-8.  Select the first node in the flow and add the column names,
-    +++cr6dd_orderidentifier, cr6dd_customeridentifier+++ under **Select
-    columns**. (**Replace** them with **your logical names** of the
-    **Order ID** and **Customer ID** columns from the **Order Record
-    table**).
-
-    ![](./media/image200.png)
-
-9.  Add a new node and select **List rows** action in it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image201.png)
-
-10. In the List rows action, select **Table name** as **Customer
-    Record**.
-
-    Under **Filter rows**, enter +++**cr6dd_customeridentifier eq ''**+++,
-    replacing the column name with your **Customer ID’s logical name**. Keep
-    the **cursor** **inside** the **single quotes**.
-
-    ![A screenshot of a list AI-generated content may be
-incorrect.](./media/image202.png)
-
-11. Select Insert expression, enter
-    +++String(triggerOutputs()?\['body/cr6dd_customeridentifier'\])+++,
-    replacing **cr6dd_customeridentifier** with your CustomerID’s
-    logical name and select **Add**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image203.png)
-
-12. Next to the **List rows**, add an action **Send an email (V2).**
-
-    ![A screenshot of a mail box AI-generated content may be
-incorrect.](./media/image204.png)
-
-13. Click on **Sign in** and sign in with your credentials.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image205.png)
-
-14. In the **To** field, insert expression and enter
-    +++first(outputs('List_rows')?\['body/value'\])\['cr6dd_emailaddress'\]+++,
-    replacing **cr6dd_emailaddress** with the logical name of your email
-    id field from Customer Record table and then select **Add**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image206.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image207.png)
-
-15. Enter the below details,
-
-    Subject - +++Order Placement+++
-
-    Body –
-    ```
-    Hi,
-    
-    This is to update you that your order has been placed. Thank you for
-    shopping with us.
-    
-    Thank You.
-    ```
-16. **Save** the flow and then **Publish** it.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image208.png)
-
-## Exercise 5 – Test the agent
-
-In this exercise, you will test how the agent works.
-
-1.  From the agent page, select **Test** to open the Test pane.
-
-2.  Enter +++3148987666+++. This is the Phone number of an existing
-    customer.
-
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image211.png)
-
-3.  Select **Yes** from the given options.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image212.png)
-
-4.  Select a **product** from the given options.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image213.png)
-
-5.  Select Yes from the given options.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image214.png)
-
-6.  The order gets placed and the reference id is provided to the
-    customer.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image215.png)
-
-7.  You can also ask other questions like track the order delivery for
-    the id you received. Though we have not configured the topics for
-    that, it will give you reply based on the knowledge source.
-
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image216.png)
-
-    Test the other scenarios by selecting different options. Add a new
-customer and check that you have received a mail in your email id that
-gets added to the Customer Record table.
-
-8.  After testing for some time, click on the **Analytics** tab to know
-    the details of usage of topics and knowledge sources. This might
-    take some time to reflect.
-
-## Summary:
-
-In this lab, you have learnt to design an autonomous shopping agent. Topics covered include,
-
-- Variables
-    
-- Entities
-    
-- Topics
-    
-- Agent flows
-    
-- Trigger
-    
-- Analytics
-    
-- Knowledge sources
-
+This lab demonstrates how autonomous agents with CUA can modernize
+legacy system access, streamline operational workflows, and enable
+faster, more reliable decision-making in environments where APIs are
+unavailable.
