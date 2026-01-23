@@ -1,155 +1,327 @@
-# Lab 03 – Create Safe Travels agent from Template
+# Lab - Architecting intelligent agents with knowledge grounding and live connectors
+
+**Introduction**
+
+Modern users expect intelligent, contextual responses that go beyond
+simple keyword matching. This lab will guide you through creating an
+intelligent agent that can reason across multiple knowledge sources and
+perform real-time actions to deliver comprehensive, accurate answers.
 
 **Objective**
 
-**Agent templates** are designed to help you get started with a **custom agent**. You are responsible for assessing all safety and legal implications of using an agent template and customizing it as appropriate for your business.
+In this lab, you’ll build an intelligent assistant that goes beyond
+simple Q&A to deliver contextual, multi-part responses. By the end of
+the lab, you will
 
-An agent built from the **Safe Travels agent template** is a Business-to-Employee (B2E) agent designed to provide employees of a company with **travel assistance**. This agent helps ensure employees are well-prepared and informed for their next work trip. This agent uses natural language processing to offer a conversational interface, making it easy and intuitive for employees to access the information they need. However, the default website used by the agent currently only covers US travel destinations. You can replace the default website with your own knowledge source.
+Create an intelligent agent using the conversational creation
+experience. Configure agent tone, behavior, and instructions to reflect
+your brand. Add public websites like Wikipedia as knowledge sources for
+factual grounding. Disable general knowledge to reduce hallucinations
+and ensure accuracy.
 
-In this lab, you will create an agent from the **Safe Travels template** and enhance it in Lab 05.
+## Task 1: Create a new agent and add knowledge
 
+Create Nova AI with custom instructions and Wikipedia knowledge
+integration using Copilot Studio’s conversational setup experience.
 
-## Exercise 1: Create Safe Travels agent from template
-
-In this exercise, you will create the agent in Copilot Studio using the Safe Travels agent template.
-
-1.  From a browser, login to +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and click
-    **Start free trial**.
-
-    ![](./media/image1.png)
+1.  Open a browser and navigate to +++copilotstudio.microsoft.com+++ and
+    login using your credentials.
 
 2.  Select the **Dev One** environment.
 
-    ![image](https://github.com/user-attachments/assets/7a2b18ab-7d57-44f6-a6a4-2993d60bbcd8)
+3.  From the Home page, select **Create agent**.
 
-    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/im30.png)
-    >
-    > Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -> **Environments -> Dev One** and select the value of the **Environment ID**.
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/im6.png)
-    >
-    > Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++   (Replacing **< EnvironmentID >** with the value fetched above)
+![](./media/image1.png)
 
-3.  Select Skip in the Welcome screen.
+4.  Once the agent is created, select **Edit** against **Details**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im31.png)
-    
-3.  Select **Agents** from the left pane and then select the **Safe Travels** template under **Start with an agent template**. 
+![](./media/image2.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im32.png)
+5.  Enter the below details and select **Save**.
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+    - Name - +++Researcher agent+++.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image5.png)
+    - Description - +++Answers multi-part questions by combining
+      historical facts, biographical data, and real-time information
+      like weather. Ideal for deep research, exploration, and knowledge
+      synthesis+++
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+> ![](./media/image3.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image6.png)
+6.  Enter the below content under **Instructions** and select **Save**.
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+You should answer complex questions using verified public information
+and real-time lookups like weather or conversions. You should give
+clear, concise answers and handle multiple questions one at a time. You
+must not speculate, share unverified or sensitive information, or
+compare products or companies. You should communicate clearly and
+professionally, using a friendly tone and light emojis when appropriate.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image7.png)
+![](./media/image4.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+7.  Scroll down and select **+ Add knowledge** to add a knowledge
+    source.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+![](./media/image5.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and hit
-    **Send**.
+8.  Select the **Public Website** option form the list.
 
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
+![](./media/image6.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+9.  Select **Add** in the next screen and then **Add to agent**.
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+![](./media/image7.png)
 
-    ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image10.png)
+![](./media/image8.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+10. Next, you will disable general knowledge to reduce hallucinations.
+    Select **Settings** from the top right.
 
-In this exercise, you will **publish** the agent created in Copilot Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+![](./media/image9.png)
 
-1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a browser and **login** using your tenant credentials from the **Resources** tab.
+11. Toggle the **Use general knowledge** option under the Knowledge
+    section to **off**.
 
-1.  Back in the Copilot Studio, select **Publish** from the top right of the agent page.
+![](./media/image10.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im33.png)
+12. Enter the below message in the Test pane and click **Send** and
+    observe the output.
 
-2.  Check the **Force newest version** checkbox and then select **Publish** in the confirmation dialog.
+> Write a draft email to request refund from a toaster that is not
+> working properly (bread keeps burning)
 
-    ![](./media/im34.png)
+![](./media/image11.png)
 
-    ![](./media/im35.png)
-    
-4.  Select **Channels** from the top navigation bar.
+![](./media/image12.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im37.png)
+## Task 2: Add weather connector
 
-5.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+In this task, you will add a weather connector to enable real-time data
+retrieval and test generative orchestration. Ensure that the agent
+provides only fact-based, controlled responses while enabling it to
+perform real-time actions like weather lookups for comprehensive,
+multi-step answers.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image14.png)
+1.  Select **Tools** tab from the top menu.
 
-6.  Select **Add channel**.
+![](./media/image13.png)
 
-    ![](./media/image15.png)
+2.  Enter +++MSN Weather+++ in the search box and select **Get current
+    weather**.
 
-7.  Click on the **See agent in Teams** option add the agent to the
-    Teams.
+![](./media/image14.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
+3.  Select the drop down next to the **Not connected** message and
+    select **Create new connection**. Then, select **Create** in the
+    next screen.
 
-8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in the **This site is trying to open Microsoft Teams** pop up and then select **Use the Web App instead** option.
+![](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im38.png)
+![](./media/image16.png)
 
-9.  Select **Add** to add the agent.
+4.  Select **Add and configure** to add the tool to the agent and
+    configure it as required.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image17.png)
+![](./media/image17.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
+5.  Once added, select **Additional details**.
 
-10. Once added, you will get an option to open the agent. Select
-    **Open**.
+![](./media/image18.png)
 
-    ![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image19.png)
+6.  Under Credentials to use, select **Maker-provided credentials**.
 
-11. Test the agent from Teams.
+**Note:** When using Maker-provided credentials, the end-user of the
+agent isn’t prompted to use its own context and connection to connect to
+the service. Instead, it’s using the context and connection of the
+person who has configured the agent. - Only use author authentication
+for actions that don’t need user-specific data, as using the credentials
+from someone else can expose to data exfiltration risks. - Use user
+authentication for role based access scenarios - Always review security
+implications of authentication choices
 
-    ![](./media/image20.png)
+![](./media/image19.png)
 
-11. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+7.  Under **Inputs**, **Units**, -\> **Fill using** -\> select **Custom
+    value**, and choose **Metric**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
+![](./media/image20.png)
 
-**Summary**
+8.  Under **Inputs**, for **Location**, leave **Fill using to
+    Dynamically fill with AI**, and select **Customize** to set
+    description.
 
-In this lab, you created a **Business-to-Employee (B2E) travel assistance** agent by using the **Safe Travels agent template** in Microsoft Copilot Studio. You explored how agent templates provide a quick starting point by preconfiguring conversational capabilities and knowledge sources, while still allowing for future customization to meet organizational and legal requirements. Using the built-in **US travel website** as a **knowledge source**, you tested the agent’s ability to answer employee travel-related questions through natural language interactions. Finally, you **published** the agent to **Microsoft Teams and Microsoft 365 Copilot**, validated its availability in Teams, and confirmed that employees can access and interact with the Safe Travels agent directly within their everyday collaboration tools.
+![](./media/image21.png)
+
+9.  Set the description as below and then select **Save**.
+
+The location for the weather query. Valid inputs are City, State,
+Country. Always include city and country, and state only for locations
+where appropriate (e.g., in the US)
+
+![](./media/image22.png)
+
+![](./media/image23.png)
+
+10. Test your enhanced agent with this complex question:
+
+> Who is the current CEO of the company that owns GitHub? Where did they
+> earn their MBA? What's the average rent for a one-bedroom apartment
+> near that campus? What's the air quality index in that area today?
+
+![](./media/image24.png)
+
+11. Notice how generative orchestration performs multiple searches and
+    triggers the weather connector to provide a comprehensive answer
+
+![](./media/image25.png)
+
+## Task 3: Fine-tune your AI assistant for smoother conversations
+
+Customize system topics to enhance interactions and deliver a smoother
+user experience.
+
+In this section, you’ll customize built-in system topics to improve user
+interactions and create a more seamless experience beyond just knowledge
+sources.
+
+Customize your assistant’s welcome message to make it more engaging, add
+suggested start prompts to guide users effectively, and refine system
+topics like Escalate to ensure they align with your organization’s
+needs.
+
+1.  From the top menu, select **Topics**.
+
+![](./media/image26.png)
+
+2.  Select the **Conversation Start** topic under **System**.
+
+![](./media/image27.png)
+
+3.  In the topic’s **Message** node, enter the below message.
+
+> Hi there! I'm Researcher agent, your intelligent assistant for deep
+> research and discovery. I can break down complex questions and combine
+> insights from historical facts, biographies, and real-time data like
+> the weather. What are you curious about today?
+>
+> ![](./media/image28.png)
+
+4.  Still in the same node, select **+ Add** -\> **Quick reply**.
+
+![](./media/image29.png)
+
+5.  Add the below question.
+
++++What caused the fall of the Roman Empire?+++
+
+![](./media/image30.png)
+
+6.  Similarly add 2 more.
+
+> +++Who is the current CEO of the company that owns GitHub? Where did
+> they earn their MBA? What's the average rent for a one-bedroom
+> apartment near that campus? What's the air quality index in that area
+> today?+++
+>
+> +++What's the temperature in the city that hosted the last Olympic
+> Games?+++
+
+![](./media/image31.png)
+
+7.  Once added, select **Save** to save the topic.
+
+![](./media/image32.png)
+
+8.  Customize the escalation experience. Select **Topics** -\>
+    **System** -\> **Escalate**.
+
+![](./media/image33.png)
+
+9.  Update the text to the below, that will more meaningfully unblock
+    the end user and select **Save**.
+
+> I'm sorry, but I can't seem to be able to help you. I recommend
+> reaching out to our \[Microsoft Copilot Studio community\]
+> (https://aka.ms/CopilotStudioCommunity) or submitting a \[support
+> request\]
+> (<https://learn.microsoft.com/en-us/power-platform/admin/get-help-support>).
+
+![](./media/image34.png)
+
+## Task 4: Make your agent public and publish it to the demo website
+
+In this section, you’ll remove authentication to make your agent
+publicly accessible, then publish it to the demo website for testing and
+sharing.Since the Researcher agent provides general information and
+doesn’t handle private data, you’ll disable authentication for a
+seamless user experience and publish it to the demo website to gather
+feedback before deploying to your real site.
+
+1.  Go to **Settings** .
+
+![](./media/image35.png)
+
+2.  Select **Security** -\> **Authentication**. Select **No
+    authentication** and then select **Save**.
+
+![](./media/image36.png)
+
+3.  Select **Save** in the confirmation prompt.
+
+![](./media/image37.png)
+
+4.  You can now close the Settings pane.
+
+![](./media/image38.png)
+
+5.  Select **Publish** to make your changes live.
+
+![](./media/image39.png)
+
+6.  Select **Publish** in the confirmation dialog.
+
+![](./media/image40.png)
+
+7.  You will get a success message once the publish is done.
+
+![](./media/image41.png)
+
+8.  Now, select **Channels** from the top menu.
+
+![](./media/image42.png)
+
+9.  Select **Demo website** from the list of channels available.
+
+![](./media/image43.png)
+
+10. Enter the Welcome message as +++Welcome to your demo website+++ and
+    select **Save**.
+
+![](./media/image44.png)
+
+11. Click on **Open demo website** to open your site.
+
+![](./media/image45.png)
+
+12. You can now interact with your agent.
+
+![](./media/image46.png)
+
+## Summary
+
+In this lab, you successfully delivered a public-facing intelligent
+agent that:
+
+- Answers complex, multi-part research questions
+
+- Uses verified public knowledge and real-time connectors
+
+- Minimizes hallucinations through controlled knowledge sources
+
+- Provides a polished, user-friendly conversational experience
+
+- Is deployed and accessible via a live demo website
+
+This lab demonstrates how to design, enhance, and publish a
+**production-ready intelligent agent** that goes beyond simple Q&A to
+deliver trustworthy, real-time, and context-aware insights.
