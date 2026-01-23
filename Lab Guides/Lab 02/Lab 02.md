@@ -1,487 +1,467 @@
-# Lab 06 - Create a Knowledge Assistant agent for HR in Copilot Studio that leverages Azure AI Search
+# Lab 2- Build and enhance a template based enterprise assistant
 
-## Objective:
+**Objective**
 
-A large enterprise wants to reduce the time employees spend searching
-for HR-related information (policies, benefits, leave guidelines, etc.)
-spread across SharePoint, PDFs, internal wikis, and documents.
+**Agent templates** are designed to help you get started with a **custom
+agent**. You are responsible for assessing all safety and legal
+implications of using an agent template and customizing it as
+appropriate for your business.
 
-To overcome this issue, in this lab, you will build a **Knowledge
-assistant** **agent** in **Copilot Studio** that uses **Azure AI
-Search**, to index and semantically search across enterprise HR
-documents.
+An agent built from the **Safe Travels agent template** is a
+Business-to-Employee (B2E) agent designed to provide employees of a
+company with **travel assistance**. This agent helps ensure employees
+are well-prepared and informed for their next work trip. This agent uses
+natural language processing to offer a conversational interface, making
+it easy and intuitive for employees to access the information they need.
+However, the default website used by the agent currently only covers US
+travel destinations. You can replace the default website with your own
+knowledge source.
 
-## Exercise 1: Create an Azure AI Search resource
+In this lab, you will create an agent from the **Safe Travels
+template** and enhance it in Lab 05.
 
-In this exercise, you will create an Azure AI Search resource from the Azure portal. This will be used to search the documents using AI capability.
+## Exercise 0 - Create Security Group in Entra ID and Configure Copilot Studio Authors
 
-**Azure AI Search** is a cloud-based service for searching within your privately curated data. It uses a combination of Microsoft’s AI and JSON-based indexes to provide fast, relevant search results.
+This is a prerequisite task in order to help us to publish and work
+seamlessly with the agents in Copilot Studio throughout this course.
 
-1.  Open a browser and login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
+1.  Navigate to the Azure portal at
+    +++<https://portal.azure.com/+++> and login with your tenant
+    credentials present in the **Resources** tab.
 
-    -    Username - +++@lab.CloudPortalCredential(User1).Username+++
-    
-    -    Password - +++@lab.CloudPortalCredential(User1).Password+++
+![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image1.jpeg)
 
-    From the Home page of the Azure portal, select **Microsoft Foundry** and select **Microsoft Foundry** under Services.
+![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image2.jpeg)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im2.png)
-
-3.  In the **AI Foundry page**, select **AI Search** under **Use with AI Foundry** from the left pane
-    and then select **+ Create**.
-
-    ![A screenshot of a search engine AI-generated content may be
-incorrect.](./media/image2.png)
-
-4.  Enter the below details and select **Review + create**.
-
-    - Subscription – Select your **assigned subscription**
-
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
-
-    - Storage account name – +++**searchleaves@lab.LabInstance.Id**+++
-
-    - Location – Select @lab.CloudResourceGroup(ResourceGroup1).Location
-
-    ![A screenshot of a search service AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
 
-5.  Once the validation passes, select **Create**.
+2.  Select **Next** in the Keep your account secure window and follow
+    the **prompts**.
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-6.  The deployment takes around 10 minutes to complete. Select **Go to resource** once
-    the search service is created.
+3.  Download the Authenticator app in your phone if you do not have it
+    already.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image5.png)
 
-7.  From the **Overview** page, copy the **Url** value and save it in a
-    notepad to be used in a future exercise.
+4.  Follow the prompts and complete the setup.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-8.  Select **Keys** under **Settings** from the left pane. Copy the
-    **Primary admin key** and save it in a notepad for using it in the
-    upcoming exercises.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image7.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image7.png)
-
-9.  Select **Identity** under **Settings** from the left pane.
-
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-10.  Toggle the Status to **On** under **System assigned** and then click
-    on **Save**.
-
-     ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-11. Select **Yes** in the **Enable system assigned managed identity**
-    confirmation dialog.
+5.  In the Azure welcome screen, select **Get Started**.
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercise 2: Create a Storage account
+6.  Search for and select +++Microsoft EntraID+++.
 
-1.  From the Azure portal Home page (+++https://portal.azure.com/+++), select **Storage accounts**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Select **+ Create** to create a new Storage account.
+7.  From the left pane, select **Manage** -\> **Groups**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-3.  Enter the below details, accept the default values in the other
-    fields and click on **Review + create**.
+8.  Select **New group** to create a new security group.
 
-    - Subscription – Select your **assigned subscription**
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image13.png)
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+9.  Enter the below details
 
-    - Storage account name – +++**leavepolicystg@lab.LabInstance.Id**+++
+    - Group type – Select **Security**
 
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+    - Group name – Enter +++**copilotagentsecurity**+++
 
-    - Primary service – Select **Azure Blob Storage or Azure Data Lake
-    Storage Gen 2**
+    - Microsoft Entra roles can be assigned to the group –
+      Select **Yes** (If this option is not visible, ignore this step)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image13.png)
-
-4.  Once the validation passes, click on **Create**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Once the resource creation succeeds, click on **Go to resource**.
+10. Select **No owners selected**, select the **MOD Administrator** from
+    the **Add owners** page and click on **Select**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a group AI-generated content may be
 incorrect.](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Select **Containers** under **Data storage**. Select **+
-    Container**, enter the name as +++**document**+++ and click on
-    **Create** to create the container.
+11. Similarly, select **No members selected**, and add the **MOD
+    Administrator** from the list and click on **Select**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-7.  Select the created container **document** to upload the leave policy
-    document into it.
+12. Select **No roles selected**. If you **do not** see this **option**,
+    ignore this and the next step.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Click on **Upload** and then select **Browse for files**.
+13. Search for and select +++**Global admin**+++ and select **Select**.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Select the **LeavePolicy.docx** from **C:\Labfiles\LabFiles** and then click
-    on **Upload**.
+14. Select **Create** once all the details are added and
+    select **Yes** in the confirmation dialog.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a group AI-generated content may be
 incorrect.](./media/image20.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-10. Navigate to the +++**leavepolicystg@lab.LabInstance.Id**+++ Storage account (Select
-    **Storageaccounts** from the **Home page** of the Azure portal and
-    select **leavepolicystg@lab.LabInstance.Id**) and select **Access Control (IAM)**
-    from the left pane. Select **Add -> Add role assignment**.
+15. Ensure that you get a **success** message.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-11. Search for +++**Storage Blob Data Reader**+++, select it and click
-    on **Next**.
+16. Select Contoso|Groups from the top left.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-12. Click on **+Select members**, search for and select your **user
-    name**, +++@lab.CloudPortalCredential(User1).Username+++ and then click on
-    **Select**. This adds the Storage Blob Data Reader role to your user
-    id.
+17. Select **Properties** under **Manage** from the left pane.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-13. Select **Managed identity** and then select **+ Select members**.
-    Select **Search service** under **Managed identity** and select the
-    **searchleaves** search service that gets listed.
+18. Toggle Yes in **can manage access to all Azure subscriptions and
+    management groups in this tenant** option and then click **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-14. Click on **Select** to select the search service.
+19. Now, select **Roles and administrators** under **Manage** from the
+    left pane.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-15. Back in the Add role assignment screen, click on **Review +
-    assign**.
+20. Search for +++privileged role admin+++ and click on the **Privileged
+    Role Administrator** role (**Do not select the checkbox**, click on
+    its name).
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-16. Select **Review + assign** again in the next screen.
+21. Select **+ Add assignments**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-17. Proceed to the next step once the roles are added.
+22. Select **No members selected**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-In this exercise, we have created a Storage account and added the
-document and required Role permissions to it.
+23. Select the **MOD Admin id** and select **Next**.
 
-## Exercise 3: Create an Azure OpenAI Service and deploy a model 
-
-1.  From the Azure portal Home page, search for and select +++Azure OpenAI+++.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-2.  Select **+ Create**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-3.  Enter the below details and select **Next**.
+24. Select **Assign**.
 
-    - Subscription – Select your **assigned subscription**
-
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
-
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
-
-    - Name – +++**openaiservice@lab.LabInstance.Id**+++
-
-    - Pricing tier – Select **Standard S0**
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-    ![A screenshot of a computer AI-generated content may be
+25. Ensure that the role assignment is successful.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  Select **Next** in the next 2 screens select **Create** in the
-    **Review + submit** screen.
+26. From a new tab, navigate to
+    +++<https://admin.powerplatform.microsoft.com/+++>.
+    Select **Manage** from the left pane and then select the **Tenant
+    Settings** option.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-5.  Click on **Go to resource** once the service is created.
+27. Select **Copilot Studio Authors** from the list available.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-6.  Select **Access control (IAM)** from the left pane, select **Add -\>
-    Add role assignment**.
+28. Click on the **Edit** icon to edit the settings.
 
-    ![](./media/image36.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image36.png)
 
-7.  Search for +++**Cognitive Services OpenAI User**+++, select the role
-    and click on **Next**.
+29. Search for and select the **+++copilotagentsecurity+++** group that
+    you created earlier.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-8.  Select **+ Select members**, search for your **user name**, +++@lab.CloudPortalCredential(User1).Username+++, select it and click on **Select**.
+30. Select **Save** to save the settings.
 
-    ![](./media/image38.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image38.png)
 
-9.  Back in the **Add role assignment** screen, select **Managed
-    identity**. Then select **+ Select members**. In the **Select
-    managed identities** screen, select **Search service** under
-    **Managed identity** and select the **seachleaves** service.
+## Exercise 1: Create Safe Travels agent from template
 
-    ![A screenshot of a computer screen AI-generated content may be
-incorrect.](./media/image39.png)
+In this exercise, you will create the agent in Copilot Studio using the
+Safe Travels agent template.
 
-10. Once selected, click on **Select**.
+1.  From a browser, login to
+    +++[https://copilotstudio.microsoft.com+++](https://copilotstudio.microsoft.com+++/).
+    The Start free trial page opens up. Select your country and
+    click **Start free trial**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image40.png)
+![](./media/image39.png)
 
-11. Select **Review + assign** in the next 2 screens.
+2.  Select the **Dev One** environment.
 
-    ![](./media/image41.png)
+> ![](./media/image40.png)
+>
+> \[!Alert\] **Important** If the Copilot Studio does not show up the
+> option to select **Environment** as in the below screenshot, then
+> follow the below steps.
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image41.png)
+>
+> Open +++<https://admin.powerplatform.microsoft.com/+++>.
+> Select **Manage** -\> **Environments -\> Dev One** and select the
+> value of the **Environment ID**. ![A screenshot of a computer
+> AI-generated content may be incorrect.](./media/image42.png)
+>
+> Navigate back to the Copilot Studio tab and open
+> +++<https://copilotstudio.microsoft.com/environments/>**\<
+> EnvironmentID \>**+++ (Replacing **\< EnvironmentID \>** with the
+> value fetched above)
 
-12. Wait for a **success** message on the role additions before
-    proceeding with the next tasks.
+3.  Select Skip in the Welcome screen.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image42.png)
-
-13. From the **Overview** page of the Azure OpenAI Service resource,
-    select **Go to Azure AI Foundry portal** to open the Azure OpenAI
-    Service there and deploy a model.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-14. Select **Deployments** from the left pane.
+4.  Select **Agents** from the left pane and then select the **Safe
+    Travels** template under **Start with an agent template**.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-15. Select **+ Deploy model** -> **Deploy base model**.
+5.  The Safe Travels template creates a new agent that is designed to
+    provide employees of a company with travel assistance. 
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-16. Select **Embeddings** under **Inference tasks**.
+6.  Browse through the set-up page. Under **Knowledge**, you can find
+    that **US Travel Website** is already added as a Knowledge source.
+    It can be edited if needed. Here, we are using the same website.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im5.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image46.png)
 
-17. Search for +++**text-embedding**+++, select
-    **text-embedding-3-large** and then select **Confirm**.
+7.  Select **Create** to create the Safe Travels agent. We are not
+    changing anything here and using the template as such. At any point,
+    the agent can be upgraded as per the user requirements.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im7.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image47.png)
 
-18. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
+8.  The **agent** gets **created** and opens up automatically showing up
+    the **Overview** page.
 
-    <img width="375" alt="image" src="https://github.com/user-attachments/assets/3c36852b-1ec3-4a95-a326-63cbfe2ae404" />
-
-19. The model gets deployed and the screen is loaded with the deployment
-    details.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-## Exercise 4: Create a vector index
+9.  In the Test pane, enter +++How to apply for passport?+++ and
+    hit **Send**.
 
-1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
+The Test pane is open by default. If not, click on the Test icon on top
+right.
 
-2.  Select **Import and vectorize data**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-3.  Select the **Azure Blob Storage** option.
+10. You can see that the agent provides information on how to apply for
+    the passport from its knowledge source.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image50.png)
 
-4.  Select the **RAG** option in the **What scenarios are you
-    targeting?** screen.
+## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
 
-    ![A screenshot of a computer AI-generated content may be
+In this exercise, you will **publish** the agent created in Copilot
+Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+
+1.  Open **MS Teams** +++<https://teams.microsoft.com/v2/+++> from a
+    browser and **login** using your tenant credentials from
+    the **Resources** tab.
+
+2.  Back in the Copilot Studio, select **Publish** from the top right of
+    the agent page.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-5.  Enter the below details, accept the other values as default and
-    click **Next**.
+3.  Check the **Force newest version** checkbox and then
+    select **Publish** in the confirmation dialog.
 
-    - Subscription – Select your **assigned subscription**
+![](./media/image52.png)
 
-    - Storage account- Select **leavepolicystg@lab.LabInstance.Id**
+![](./media/image53.png)
 
-    - Blob-container – Select **document**
+4.  Select **Channels** from the top navigation bar.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image52.png)
-
-6.  In the Vectorize your text screen, the subscription is pre-populated. Enter the below details
-    and click **Next**.
-
-    - Azure OpenAI Service – Select **openaiservice@lab.LabInstance.Id**
-
-    - Model deployment – Select **text-embedding-3-large**
-
-    - Authentication type – Select **System assigned identity**
-
-    - Select the checkbox to acknowledge the cost alert of Azure OpenAI.
-
-7.  Select Next in the **Vectorize and enrich your images** screen since
-    we are not dealing with images here and select **Next** in the
-    **Advanced settings** screen as well.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image53.png)
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-8.  Select **Create** in the **Review + create** screen.
+5.  Select **Teams and Microsoft 365 Copilot** from the list of
+    available channels.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-9.  Click on **Close** in the success dialog box.
+6.  Select **Add channel**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image56.png)
+![](./media/image56.png)
 
-## Exercise 5: Create a knowledge assistant agent
+7.  Click on the **See agent in Teams** option add the agent to the
+    Teams.
 
-1.  Open a new broser and login to +++https://copilotstudio.microsoft.com+++ using your login
-    credentials.
-
-2.  Select **Get Started** in the Welcome to Microsoft Copilot Studio.
-
-    <img width="549" alt="image" src="https://github.com/user-attachments/assets/63c8fa05-b9ff-44f0-a32b-648db74dc32c" />
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-3.  The agent creation page gets opened. Describe the agent in the **Describe** tab. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
+8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in
+    the **This site is trying to open Microsoft Teams** pop up and then
+    select **Use the Web App instead** option.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image74.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-4.  The copilot suggests a name to the agent. Click on **Create** to
-    create the agent.
+9.  Select **Add** to add the agent.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-6.  Once the agent is created, in the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+10. Once added, you will get an option to open the agent.
+    Select **Open**.
 
-    <img width="290" height="347" alt="image" src="https://github.com/user-attachments/assets/62a90308-c3f9-4c44-8946-0d83e7fd532a" />
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image61.png)
 
-7.  It gives a generalized reply as in the screenshot below.
+11. Test the agent from Teams.
 
-    <img width="191" height="340" alt="image" src="https://github.com/user-attachments/assets/c55f45dc-2205-4336-aee6-81e83f89a21a" />
+![](./media/image62.png)
 
-## Exercise 6: Add the Azure AI Search as a knowledge source
+12. Back in the Copilot Studio, close the Teams and Microsoft 365
+    Copilot channel window.
 
-1.  From the **Overview** page of the agent, select **Add knowledge**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image63.png)
 
-    ![A screenshot of a computer AI-generated content may be
+## Exercise 3 – Test the existing Safe Travels agent
+
+In this exercise, we will test the **Safe Travels** agent to see how it
+responds when asked about travel approval.
+
+1.  Back in the Copilot Studio -\> Safe Travels agent, select
+    the **Test** icon to test the agent.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image64.png)
+
+2.  Enter +++Need travel approval+++ in the Test window and click
+    on **Enter**.
+
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image65.png)
 
-2.  Select Azure AI Search from the list of knowledge sources available.
+3.  You can see that the agent responds with a generalized instruction
+    set to be followed to get the travel approval.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image66.png)
 
-3.  Click on the **drop down** next to **Not connected** in the next
-    screen and select **Create new connection**.
+## Exercise 4 – Enhance the agent with company specific Knowledge assets
 
-    ![A screenshot of a search engine AI-generated content may be
+In this exercise, we will add knowledge asset - **Travel
+Policy** specific to Contoso.
+
+1.  From the Overview page of the agent, scroll down and select **+ Add
+    knowledge**
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-4.  Enter the **Endpoint url** and the **Admin key** values which we
-    saved to a notepad in a previous exercise and then click on
-    **Create** to create the connection.
+2.  Click on **select to browse** option.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-5.  Once the connection is established, the available index is listed
-    and already selected. Click on **Add to agent**.
+3.  From **C:\Labfiles\Lab Files** folder, select **Travel
+    Policy.docx** and click **Open**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image76.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-6.  The AI Search service is added as a knowledge source to the agent
-    and is in **Ready** state now.
-    Ensure that the **Web search** option is **disabled** in the Knowledge section.
+4.  Click **Add to agent** to the add the file.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image70.png)
 
-8.  Now, let us test the agent with the same question we tried before.
+![A screenshot of a computer error AI-generated content may be
+incorrect.](./media/image71.png)
 
-9.  In the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+5.  Ensure that the file is added. Wait till the status changes
+    from **In progress** to **Ready**. You can continue with the next
+    step while it is changing to the Ready state if it takes more than
+    few minutes.
 
-    <img width="285" height="315" alt="image" src="https://github.com/user-attachments/assets/b48e410f-6950-4d89-abdd-dc1e5d5ff81c" />
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image72.png)
 
-10. You can see that the response from the agent now is from the
-    document uploaded in the AI Search service.
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image73.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im6.png)
+6.  Now, test the agent with the same question to see that the agent
+    responds with the company specific policies from the knowledge asset
+    added.
 
+## Summary
 
-## Summary:
+In this lab, you created a **Business-to-Employee (B2E) travel
+assistance** agent by using the **Safe Travels agent template** in
+Microsoft Copilot Studio. You explored how agent templates provide a
+quick starting point by preconfiguring conversational capabilities and
+knowledge sources, while still allowing for future customization to meet
+organizational and legal requirements. Using the built-in **US travel
+website** as a **knowledge source**, you tested the agent’s ability to
+answer employee travel-related questions through natural language
+interactions. Finally, you **published** the agent to **Microsoft Teams
+and Microsoft 365 Copilot**, validated its availability in Teams, and
+confirmed that employees can access and interact with the Safe Travels
+agent directly within their everyday collaboration tools.
 
-In this lab, we have learnt to connect the agent to a Azure AI Search
-service as a knowledge source and test the agent based on the source.
-
-
-
-
-
-
-
-
-
+ 
