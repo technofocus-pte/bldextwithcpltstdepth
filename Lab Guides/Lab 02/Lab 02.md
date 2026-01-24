@@ -231,7 +231,7 @@ Safe Travels agent template.
     The Start free trial page opens up. Select your country and
     click **Start free trial**.
 
-![](./media/image39.png)
+    ![](./media/image39.png)
 
 2.  Select the **Dev One** environment.
 
@@ -454,6 +454,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
