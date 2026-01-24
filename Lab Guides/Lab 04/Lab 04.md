@@ -18,17 +18,17 @@ In this exercise, you will import a pre existing Solution.
 
 2.  Select the **...** in the left navigation and select **Solutions.**
 
-   ![](./media/image1.png)
+    ![](./media/image1.png)
 
 3.  Select **Import solution**. Click on **Browse** and select the
     **zip** file starting with **Operative** form **C:\LabFiles** and
     select **Open**.
 
-   ![](./media/image2.png)
+    ![](./media/image2.png)
    
-   ![](./media/image3.png)
+    ![](./media/image3.png)
 
-   ![](./media/image4.png)
+    ![](./media/image4.png)
 
 4.  Once selected, select **Next** and then select **Import**.
 
@@ -176,4 +176,5 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
