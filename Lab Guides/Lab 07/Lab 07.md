@@ -35,45 +35,45 @@ subject line filtering.
 
 2.  Select the Dev One environment from the top right.
 
-![](./media/image1.png)
+    ![](./media/image1.png)
 
 3.  Select **Create an agent**.
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
 4.  Once the agent is created, select **Edit** against the **Details**.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 5.  Enter the Name as +++Portfolio Lookup Agent+++ and select Save to
     rename the default name of the agent.
 
-![](./media/image4.png)
+    ![](./media/image4.png)
 
 6.  Scroll down to the triggers section and click **+Add trigger**.
 
-![](./media/image5.png)
+    ![](./media/image5.png)
 
 7.  Search and select **When a new email arrives (V3) (Office 365
     Outlook** and click on **Next**.
 
-![](./media/image6.png)
+    ![](./media/image6.png)
 
 8.  Rename the trigger to +++When a portfolio lookup email arrives+++,
     ensure that the connection is established for Copilot Studio and
     Outlook and then click on **Next**.
 
-![](./media/image7.png)
+    ![](./media/image7.png)
 
 9.  In the **Subject Filter (Optional)** field, enter +++Portfolio+++ in
     the subject line.
 
-![](./media/image8.png)
+    ![](./media/image8.png)
 
 10. Once the trigger is created, you can **Close** the Time to test your
     trigger dialog.
 
-![](./media/image9.png)
+    ![](./media/image9.png)
 
 ## Task 2: Add Computer Use tool 
 
@@ -84,39 +84,38 @@ the requested data.
 
 1.  Navigate to **Tools** in the top-level menu.
 
-![](./media/image10.png)
+    ![](./media/image10.png)
 
 2.  Select **+ Add a tool.**
 
-![](./media/image11.png)
+    ![](./media/image11.png)
 
 3.  Select **+ New tool**.
 
-![](./media/image12.png)
+    ![](./media/image12.png)
 
 4.  Select **Computer use (preview)**.
 
-![](./media/image13.png)
+    ![](./media/image13.png)
 
 5.  Add the following Instructions, and then select **Add and
     configure**.
 
-&nbsp;
 
-1.  Go to
-    https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
+    -  Go to
+        https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
+    
+    -  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
+        click on the "Search" button.
+    
+    -  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
+        exactly as shown.
+    
+    -  Return those three values as the final output. If no portfolio data
+        is found, reply that you couldn't find a portfolio with the
+        specified ID.
 
-2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
-    click on the "Search" button.
-
-3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
-    exactly as shown.
-
-4.  Return those three values as the final output. If no portfolio data
-    is found, reply that you couldn't find a portfolio with the
-    specified ID.
-
-![](./media/image14.png)
+    ![](./media/image14.png)
 
 6.  Update the **Name** of the Computer use tool as +++Look up portfolio
     data+++
