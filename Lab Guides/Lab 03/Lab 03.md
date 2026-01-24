@@ -24,70 +24,68 @@ and ensure accuracy.
 Create Nova AI with custom instructions and Wikipedia knowledge
 integration using Copilot Studio’s conversational setup experience.
 
-1.  Open a browser and navigate to +++copilotstudio.microsoft.com+++ and
+1.  Open a browser and navigate to +++https://copilotstudio.microsoft.com+++ and
     login using your credentials.
 
-2.  Select the **Dev One** environment.
+    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
+      
+    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
-3.  From the Home page, select **Create agent**.
+3.  Select the **Dev One** environment.
+
+4.  From the Home page, select **Create agent**.
 
     ![](./media/image1.png)
 
-4.  Once the agent is created, select **Edit** against **Details**.
+5.  Once the agent is created, select **Edit** against **Details**.
 
     ![](./media/image2.png)
 
-5.  Enter the below details and select **Save**.
+6.  Enter the below details and select **Save**.
 
     - Name - +++Researcher agent+++.
 
-    - Description - +++Answers multi-part questions by combining
-      historical facts, biographical data, and real-time information
-      like weather. Ideal for deep research, exploration, and knowledge
-      synthesis+++
+    - Description - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
 
       ![](./media/image3.png)
 
-6.  Enter the below content under **Instructions** and select **Save**.
+7.  Enter the below content under **Instructions** and select **Save**.
 
-    You should answer complex questions using verified public information
-and real-time lookups like weather or conversions. You should give
-clear, concise answers and handle multiple questions one at a time. You
-must not speculate, share unverified or sensitive information, or
-compare products or companies. You should communicate clearly and
-professionally, using a friendly tone and light emojis when appropriate.
-
+    ```
+    You should answer complex questions using verified public information and real-time lookups like weather or conversions. You should give clear, concise answers and handle multiple questions one at a time. You must not speculate, share unverified or sensitive information, or compare products or companies. You should communicate clearly and professionally, using a friendly tone and light emojis when appropriate.
+    ```
+    
     ![](./media/image4.png)
 
-7.  Scroll down and select **+ Add knowledge** to add a knowledge
+8.  Scroll down and select **+ Add knowledge** to add a knowledge
     source.
 
     ![](./media/image5.png)
 
-8.  Select the **Public Website** option form the list.
+9.  Select the **Public Website** option form the list.
 
     ![](./media/image6.png)
 
-9.  Select **Add** in the next screen and then **Add to agent**.
+10. Select **Add** in the next screen and then **Add to agent**.
 
     ![](./media/image7.png)
     
     ![](./media/image8.png)
 
-10. Next, you will disable general knowledge to reduce hallucinations.
+11. Next, you will disable general knowledge to reduce hallucinations.
     Select **Settings** from the top right.
 
     ![](./media/image9.png)
 
-11. Toggle the **Use general knowledge** option under the Knowledge
+12. Toggle the **Use general knowledge** option under the Knowledge
     section to **off**.
 
     ![](./media/image10.png)
 
-12. Enter the below message in the Test pane and click **Send** and
+13. Enter the below message in the Test pane and click **Send** and
     observe the output.
 
-    Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)
+    +++Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)+++
 
     ![](./media/image11.png)
     
@@ -140,7 +138,7 @@ implications of authentication choices
 
     ![](./media/image19.png)
 
-7.  Under **Inputs**, **Units**, -\> **Fill using** -\> select **Custom
+7.  Under **Inputs**, **Units**, -> **Fill using** -> select **Custom
     value**, and choose **Metric**.
 
     ![](./media/image20.png)
@@ -163,7 +161,7 @@ where appropriate (e.g., in the US)
 
 10. Test your enhanced agent with this complex question:
 
-    Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?
+    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
 
     ![](./media/image24.png)
 
@@ -196,11 +194,11 @@ needs.
 
 3.  In the topic’s **Message** node, enter the below message.
 
-     Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?
+     +++Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?+++
 
     ![](./media/image28.png)
 
-4.  Still in the same node, select **+ Add** -\> **Quick reply**.
+4.  Still in the same node, select **+ Add** -> **Quick reply**.
 
     ![](./media/image29.png)
 
@@ -222,15 +220,14 @@ needs.
 
     ![](./media/image32.png)
 
-8.  Customize the escalation experience. Select **Topics** -\>
-    **System** -\> **Escalate**.
+8.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
 
     ![](./media/image33.png)
 
 9.  Update the text to the below, that will more meaningfully unblock
     the end user and select **Save**.
 
-    I'm sorry, but I can't seem to be able to help you. I recommend   reaching out to our \[Microsoft Copilot Studio community\] (https://aka.ms/CopilotStudioCommunity) or submitting a \[support request\] (https://learn.microsoft.com/en-us/power-platform/admin/get-help-support).
+    +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
 
     ![](./media/image34.png)
 
@@ -247,8 +244,8 @@ feedback before deploying to your real site.
 
     ![](./media/image35.png)
 
-2.  Select **Security** -\> **Authentication**. Select **No
-    authentication** and then select **Save**.
+2.  Select **Security** -> **Authentication**. Select **No
+  authentication** and then select **Save**.
 
     ![](./media/image36.png)
 
@@ -311,5 +308,6 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
