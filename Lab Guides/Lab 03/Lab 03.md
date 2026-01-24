@@ -31,11 +31,11 @@ integration using Copilot Studio’s conversational setup experience.
 
 3.  From the Home page, select **Create agent**.
 
-![](./media/image1.png)
+    ![](./media/image1.png)
 
 4.  Once the agent is created, select **Edit** against **Details**.
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
 5.  Enter the below details and select **Save**.
 
@@ -46,53 +46,52 @@ integration using Copilot Studio’s conversational setup experience.
       like weather. Ideal for deep research, exploration, and knowledge
       synthesis+++
 
-> ![](./media/image3.png)
+      ![](./media/image3.png)
 
 6.  Enter the below content under **Instructions** and select **Save**.
 
-You should answer complex questions using verified public information
+    You should answer complex questions using verified public information
 and real-time lookups like weather or conversions. You should give
 clear, concise answers and handle multiple questions one at a time. You
 must not speculate, share unverified or sensitive information, or
 compare products or companies. You should communicate clearly and
 professionally, using a friendly tone and light emojis when appropriate.
 
-![](./media/image4.png)
+    ![](./media/image4.png)
 
 7.  Scroll down and select **+ Add knowledge** to add a knowledge
     source.
 
-![](./media/image5.png)
+    ![](./media/image5.png)
 
 8.  Select the **Public Website** option form the list.
 
-![](./media/image6.png)
+    ![](./media/image6.png)
 
 9.  Select **Add** in the next screen and then **Add to agent**.
 
-![](./media/image7.png)
-
-![](./media/image8.png)
+    ![](./media/image7.png)
+    
+    ![](./media/image8.png)
 
 10. Next, you will disable general knowledge to reduce hallucinations.
     Select **Settings** from the top right.
 
-![](./media/image9.png)
+    ![](./media/image9.png)
 
 11. Toggle the **Use general knowledge** option under the Knowledge
     section to **off**.
 
-![](./media/image10.png)
+    ![](./media/image10.png)
 
 12. Enter the below message in the Test pane and click **Send** and
     observe the output.
 
-> Write a draft email to request refund from a toaster that is not
-> working properly (bread keeps burning)
+    Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)
 
-![](./media/image11.png)
-
-![](./media/image12.png)
+    ![](./media/image11.png)
+    
+    ![](./media/image12.png)
 
 ## Task 2: Add weather connector
 
@@ -104,33 +103,33 @@ multi-step answers.
 
 1.  Select **Tools** tab from the top menu.
 
-![](./media/image13.png)
+    ![](./media/image13.png)
 
 2.  Enter +++MSN Weather+++ in the search box and select **Get current
     weather**.
 
-![](./media/image14.png)
+    ![](./media/image14.png)
 
 3.  Select the drop down next to the **Not connected** message and
     select **Create new connection**. Then, select **Create** in the
     next screen.
 
-![](./media/image15.png)
-
-![](./media/image16.png)
+    ![](./media/image15.png)
+    
+    ![](./media/image16.png)
 
 4.  Select **Add and configure** to add the tool to the agent and
     configure it as required.
 
-![](./media/image17.png)
+    ![](./media/image17.png)
 
 5.  Once added, select **Additional details**.
 
-![](./media/image18.png)
+    ![](./media/image18.png)
 
 6.  Under Credentials to use, select **Maker-provided credentials**.
 
-**Note:** When using Maker-provided credentials, the end-user of the
+    **Note:** When using Maker-provided credentials, the end-user of the
 agent isn’t prompted to use its own context and connection to connect to
 the service. Instead, it’s using the context and connection of the
 person who has configured the agent. - Only use author authentication
@@ -139,41 +138,39 @@ from someone else can expose to data exfiltration risks. - Use user
 authentication for role based access scenarios - Always review security
 implications of authentication choices
 
-![](./media/image19.png)
+    ![](./media/image19.png)
 
 7.  Under **Inputs**, **Units**, -\> **Fill using** -\> select **Custom
     value**, and choose **Metric**.
 
-![](./media/image20.png)
+    ![](./media/image20.png)
 
 8.  Under **Inputs**, for **Location**, leave **Fill using to
     Dynamically fill with AI**, and select **Customize** to set
     description.
 
-![](./media/image21.png)
+    ![](./media/image21.png)
 
 9.  Set the description as below and then select **Save**.
 
-The location for the weather query. Valid inputs are City, State,
+    The location for the weather query. Valid inputs are City, State,
 Country. Always include city and country, and state only for locations
 where appropriate (e.g., in the US)
-
-![](./media/image22.png)
-
-![](./media/image23.png)
+    
+    ![](./media/image22.png)
+    
+    ![](./media/image23.png)
 
 10. Test your enhanced agent with this complex question:
 
-> Who is the current CEO of the company that owns GitHub? Where did they
-> earn their MBA? What's the average rent for a one-bedroom apartment
-> near that campus? What's the air quality index in that area today?
+    Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?
 
-![](./media/image24.png)
+    ![](./media/image24.png)
 
 11. Notice how generative orchestration performs multiple searches and
     triggers the weather connector to provide a comprehensive answer
 
-![](./media/image25.png)
+    ![](./media/image25.png)
 
 ## Task 3: Fine-tune your AI assistant for smoother conversations
 
@@ -191,62 +188,51 @@ needs.
 
 1.  From the top menu, select **Topics**.
 
-![](./media/image26.png)
+    ![](./media/image26.png)
 
 2.  Select the **Conversation Start** topic under **System**.
 
-![](./media/image27.png)
+    ![](./media/image27.png)
 
 3.  In the topic’s **Message** node, enter the below message.
 
-> Hi there! I'm Researcher agent, your intelligent assistant for deep
-> research and discovery. I can break down complex questions and combine
-> insights from historical facts, biographies, and real-time data like
-> the weather. What are you curious about today?
->
-> ![](./media/image28.png)
+     Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?
+
+    ![](./media/image28.png)
 
 4.  Still in the same node, select **+ Add** -\> **Quick reply**.
 
-![](./media/image29.png)
+    ![](./media/image29.png)
 
 5.  Add the below question.
 
-+++What caused the fall of the Roman Empire?+++
+    +++What caused the fall of the Roman Empire?+++
 
-![](./media/image30.png)
+    ![](./media/image30.png)
 
 6.  Similarly add 2 more.
 
-> +++Who is the current CEO of the company that owns GitHub? Where did
-> they earn their MBA? What's the average rent for a one-bedroom
-> apartment near that campus? What's the air quality index in that area
-> today?+++
->
-> +++What's the temperature in the city that hosted the last Olympic
-> Games?+++
+    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
 
-![](./media/image31.png)
+    +++What's the temperature in the city that hosted the last Olympic Games?+++
+
+    ![](./media/image31.png)
 
 7.  Once added, select **Save** to save the topic.
 
-![](./media/image32.png)
+    ![](./media/image32.png)
 
 8.  Customize the escalation experience. Select **Topics** -\>
     **System** -\> **Escalate**.
 
-![](./media/image33.png)
+    ![](./media/image33.png)
 
 9.  Update the text to the below, that will more meaningfully unblock
     the end user and select **Save**.
 
-> I'm sorry, but I can't seem to be able to help you. I recommend
-> reaching out to our \[Microsoft Copilot Studio community\]
-> (https://aka.ms/CopilotStudioCommunity) or submitting a \[support
-> request\]
-> (<https://learn.microsoft.com/en-us/power-platform/admin/get-help-support>).
+    I'm sorry, but I can't seem to be able to help you. I recommend   reaching out to our \[Microsoft Copilot Studio community\] (https://aka.ms/CopilotStudioCommunity) or submitting a \[support request\] (https://learn.microsoft.com/en-us/power-platform/admin/get-help-support).
 
-![](./media/image34.png)
+    ![](./media/image34.png)
 
 ## Task 4: Make your agent public and publish it to the demo website
 
@@ -259,53 +245,53 @@ feedback before deploying to your real site.
 
 1.  Go to **Settings** .
 
-![](./media/image35.png)
+    ![](./media/image35.png)
 
 2.  Select **Security** -\> **Authentication**. Select **No
     authentication** and then select **Save**.
 
-![](./media/image36.png)
+    ![](./media/image36.png)
 
 3.  Select **Save** in the confirmation prompt.
 
-![](./media/image37.png)
+    ![](./media/image37.png)
 
 4.  You can now close the Settings pane.
 
-![](./media/image38.png)
+    ![](./media/image38.png)
 
 5.  Select **Publish** to make your changes live.
 
-![](./media/image39.png)
+    ![](./media/image39.png)
 
 6.  Select **Publish** in the confirmation dialog.
 
-![](./media/image40.png)
+    ![](./media/image40.png)
 
 7.  You will get a success message once the publish is done.
 
-![](./media/image41.png)
+    ![](./media/image41.png)
 
 8.  Now, select **Channels** from the top menu.
 
-![](./media/image42.png)
+    ![](./media/image42.png)
 
 9.  Select **Demo website** from the list of channels available.
 
-![](./media/image43.png)
+    ![](./media/image43.png)
 
 10. Enter the Welcome message as +++Welcome to your demo website+++ and
     select **Save**.
 
-![](./media/image44.png)
+    ![](./media/image44.png)
 
 11. Click on **Open demo website** to open your site.
 
-![](./media/image45.png)
+    ![](./media/image45.png)
 
 12. You can now interact with your agent.
 
-![](./media/image46.png)
+    ![](./media/image46.png)
 
 ## Summary
 
@@ -325,4 +311,5 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
