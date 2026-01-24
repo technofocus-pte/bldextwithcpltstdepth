@@ -104,7 +104,7 @@ the requested data.
 &nbsp;
 
 1.  Go to
-    <https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html>.
+    https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
 
 2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
     click on the "Search" button.
