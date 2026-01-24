@@ -120,8 +120,6 @@ We'll be achieving this using two techniques
 5.  The final step is to set the input properties of the trigger. Update
     the following properties to the following,
 
-[TABLE]
-
 6.  Select **Create trigger**.
 
 > ![](./media/image5.png)
@@ -575,7 +573,6 @@ Select the **+ icon** below the trigger.
 
 13. Configure according to the following input parameters:
 
-[TABLE]
 
 > ![](./media/image70.png)
 
@@ -1392,7 +1389,7 @@ Intake Agent**.
 
 We can now test the agent!
 
-## Exercise 3: Test event trigger
+## Exercise 2: Test event trigger
 
 In this exercise, you will test the event trigger that is created in
 this lab.
