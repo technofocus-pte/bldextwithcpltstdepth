@@ -13,12 +13,8 @@ domain-specific assistant to life.
 
 ## Exercise 1: Creating the agent
 
-1.  Open the link +++<https://m365.cloud.microsoft/chat+++> from a
+1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
     browser and login with your credentials.
-
-    - Username - <+++@lab.CloudPortalCredential>(User1).Username+++
-
-    - Password - <+++@lab.CloudPortalCredential>(User1).Password+++
 
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image1.png)
 
@@ -114,3 +110,4 @@ domain-specific assistant to life.
     intuitively you can build a purpose-driven agent using Copilot
     Studio—without writing code—by leveraging conversational design and
     iterative instruction refinement.
+
