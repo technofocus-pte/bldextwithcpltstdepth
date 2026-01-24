@@ -285,7 +285,7 @@ incorrect.](./media/image48.png)
 9.  In the Test pane, enter +++How to apply for passport?+++ and
     hit **Send**.
 
-The Test pane is open by default. If not, click on the Test icon on top
+    The Test pane is open by default. If not, click on the Test icon on top
 right.
 
     ![A screenshot of a computer AI-generated content may be
@@ -454,6 +454,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
