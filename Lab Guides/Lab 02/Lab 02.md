@@ -26,7 +26,7 @@ This is a prerequisite task in order to help us to publish and work
 seamlessly with the agents in Copilot Studio throughout this course.
 
 1.  Navigate to the Azure portal at
-    +++<https://portal.azure.com/+++> and login with your tenant
+    +++https://portal.azure.com/+++ and login with your tenant
     credentials present in the **Resources** tab.
 
     ![A screenshot of a computer login AI-generated content may be
@@ -193,7 +193,7 @@ incorrect.](./media/image32.png)
 incorrect.](./media/image33.png)
 
 26. From a new tab, navigate to
-    +++<https://admin.powerplatform.microsoft.com/+++>.
+    +++https://admin.powerplatform.microsoft.com/+++.
     Select **Manage** from the left pane and then select the **Tenant
     Settings** option.
 
@@ -227,7 +227,7 @@ In this exercise, you will create the agent in Copilot Studio using the
 Safe Travels agent template.
 
 1.  From a browser, login to
-    +++[https://copilotstudio.microsoft.com+++](https://copilotstudio.microsoft.com+++/).
+    +++https://copilotstudio.microsoft.com+++.
     The Start free trial page opens up. Select your country and
     click **Start free trial**.
 
@@ -241,7 +241,7 @@ Safe Travels agent template.
     >
     >![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
     >
-    >Open +++<https://admin.powerplatform.microsoft.com/+++>. Select **Manage** -\> **Environments -\> Dev One** and >select the value of the **Environment ID**. ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
+    >Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -\> **Environments -\> Dev One** and >select the value of the **Environment ID**. ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
 
     >Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**\< EnvironmentID \>**+++ (Replacing **\< EnvironmentID \>** with the value fetched above)
 
@@ -302,7 +302,7 @@ incorrect.](./media/image50.png)
 In this exercise, you will **publish** the agent created in Copilot
 Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
 
-1.  Open **MS Teams** +++<https://teams.microsoft.com/v2/+++> from a
+1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a
     browser and **login** using your tenant credentials from
     the **Resources** tab.
 
@@ -454,4 +454,5 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
