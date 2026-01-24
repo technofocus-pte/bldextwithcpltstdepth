@@ -179,7 +179,7 @@ specialized agents.**
 7.  Review the page and ensure the following settings are applied and
     then select **Save**.
 
-    [TABLE]
+    Disable General Knowledge
 
     ![](./media/image8.png)
 
@@ -265,13 +265,10 @@ existing) without depending on user interaction.
 
      ![](./media/image21.png)
 
-6.  Add **inputs** for each of the following Parameters listed in the
-    table below. Select the appropriate input type as shown in the table
+6.  Add **inputs**. Select the appropriate input type as shown in the table
     and be sure to add both the name and the description. It's important
     to include the description because it will help the agent know what
     to fill in the input.
-
-    [TABLE]
 
     ![](./media/image22.png)
 
@@ -301,7 +298,8 @@ create that connection.
 
 10. Set the following **properties**:
 
-    [TABLE]
+    disable General Knowledge
+    
 
     ![](./media/image27.png)
 
@@ -309,37 +307,37 @@ create that connection.
 
     ![](./media/image29.png)
 
-11. Select the **+ icon** below the Create Resume node, search
+12. Select the **+ icon** below the Create Resume node, search
     for +++Dataverse upload+++ and select the **Upload a file or an
     image** action.
 
     ![](./media/image30.png)
 
-12. Name the node to +++**Upload Resume File**+++.
+13. Name the node to +++**Upload Resume File**+++.
 
     ![](./media/image31.png)
 
-13. Set the following **properties**:
+14. Set the following **properties**:
 
-    [TABLE]
+    Disable General Knowledge
 
     ![](./media/image32.png)
 
-14. Select the **Respond to the agent node**, and then select **+ Add an
+15. Select the **Respond to the agent node**, and then select **+ Add an
     output**. Create an output with the properties defined in the table
     below.
 
     ![](./media/image33.png)
 
-    [TABLE]
+     Disable General Knowledge
 
     ![](./media/image34.png)
 
-15. Select **Save draft** on the top right
+16. Select **Save draft** on the top right
 
     ![](./media/image35.png)
 
-16. Select the **Overview** tab, Select **Edit** on
+17. Select the **Overview** tab, Select **Edit** on
     the **Details** panel. Fill in the name and description as shown
     below and select **Save**
 
@@ -349,7 +347,7 @@ create that connection.
 
     ![](./media/image36.png)
 
-17. Select the **Designer** tab again and select **Publish**.
+18. Select the **Designer** tab again and select **Publish**.
 
     ![](./media/image37.png)
 
@@ -373,7 +371,7 @@ Now you'll connect the published flow to your Application Intake Agent.
 4.  Set the following parameters for the **description** and **when the
     tool should be used**.
 
-    [TABLE]
+     Disable General Knowledge
 
     ![](./media/image41.png)
 
@@ -382,7 +380,7 @@ Now you'll connect the published flow to your Application Intake Agent.
 5.  Scroll down to the inputs section and select **Add Input** to add
     the following inputs:
 
-    [TABLE]
+     Disable General Knowledge
 
     ![](./media/image42.png)
 
@@ -784,4 +782,5 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
