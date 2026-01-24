@@ -1,4 +1,3 @@
-
 # Lab 6 - Upgrading the hiring agent into an autonomous system
 
 In this lab, you will dive deeper into **event triggers** - elevating
@@ -18,19 +17,19 @@ data in **Dataverse**, and **notify** your **HR recruitment team** via
 
 In this lab, you'll learn:
 
-1.  How event triggers enable autonomous agent behavior without user
+-    How event triggers enable autonomous agent behavior without user
     interaction
 
-2.  The differences between interactive and autonomous agents in Copilot
+-    The differences between interactive and autonomous agents in Copilot
     Studio
 
-3.  How to create event triggers that automatically process email
+-    How to create event triggers that automatically process email
     attachments and upload files to Dataverse
 
-4.  How to build agent flows that post adaptive cards to Teams channels
+-    How to build agent flows that post adaptive cards to Teams channels
     for notifications
 
-5.  How to pass data between event triggers and agent flows for
+-    How to pass data between event triggers and agent flows for
     end-to-end automation
 
 **What is an Event trigger?**
