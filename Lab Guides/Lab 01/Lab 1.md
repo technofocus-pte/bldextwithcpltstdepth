@@ -16,20 +16,24 @@ domain-specific assistant to life.
 1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
     browser and login with your credentials.
 
+    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
+      
+    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image1.png)
 
-2.  Select **New agent** from the **left** pane. If you are **not** able
+1.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
     again in few minutes. At times, it takes few minutes to get loaded
     completely.
 
     ![](./media/image2.png)
 
-3.  Select the **Describe** tab.
+2.  Select the **Describe** tab.
 
     ![](./media/image3.png)
 
-4.  You can start defining the custom agent. You can choose a template
+3.  You can start defining the custom agent. You can choose a template
     to start from, or you can simply *describe* the agent by providing a
     description in natural language. Let's provide the following initial
     description
@@ -38,22 +42,22 @@ domain-specific assistant to life.
 
     ![](./media/image4.png)
 
-5.  Once you have provided the instructions, the initial details are
+4.  Once you have provided the instructions, the initial details are
     populated.
 
-6.  You can rename the agent if needed. Provide the following prompt to
+5.  You can rename the agent if needed. Provide the following prompt to
     do so +++Name it as “Gardening assistant”+++.
 
     ![](./media/image5.png)
 
-7.  If you are asked about refining instructions further, provide the
+6.  If you are asked about refining instructions further, provide the
     following sentence.
 
     +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
 
     ![](./media/image6.png)
 
-8.  Keep on interacting with the agent builder until it does have all
+7.  Keep on interacting with the agent builder until it does have all
     the information needed to create the agent. Provide the following
     sentence.
 
@@ -63,7 +67,7 @@ domain-specific assistant to life.
 
     ![](./media/image8.png)
 
-9.  Then give an instruction of the agent tone as below.
+8.  Then give an instruction of the agent tone as below.
 
     +++Use a professional, yet friendly, tone.+++
 
@@ -110,4 +114,5 @@ domain-specific assistant to life.
     intuitively you can build a purpose-driven agent using Copilot
     Studio—without writing code—by leveraging conversational design and
     iterative instruction refinement.
+
 
