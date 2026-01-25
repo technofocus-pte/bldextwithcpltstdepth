@@ -147,22 +147,22 @@ actual work! Let's add our Hiring Agent first!
     the drop down next to the + Create blank agent and select Advanced
     create.
 
-   ![](./media/image27.png)
+    ![](./media/image27.png)
 
 2.  In the Agent settings, select the Solution as **Operative** and then
     select **Confirm and create**.
 
-   ![](./media/image28.png)
+    ![](./media/image28.png)
 
 3.  Select **Edit** against the Details of the created agent.
 
-   ![](./media/image29.png)
+    ![](./media/image29.png)
 
 4.  Enter the name as +++**Hiring Agent**+++ and Description as
     +++**Central orchestrator for all hiring activities**+++ and select
     **Save**.
 
-   ![](./media/image30.png)
+    ![](./media/image30.png)
 
 ## Summary
 
@@ -176,5 +176,6 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
 
