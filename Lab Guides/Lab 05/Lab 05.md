@@ -276,8 +276,8 @@ existing) without depending on user interaction.
     to include the description because it will help the agent know what
     to fill in the input.
 
-    | **Type**   |  **Name**  |  **Description**  |
-    |:----|:-------|:-----|
+| **Type**   |  **Name**  |  **Description**  |
+|:----|:-------|:-----|
     |  File  | Resume   |  The Resume PDF file  |
     | Text   |  Message  |  Extract a cover letter style message from the context. The message must be less than 2000 characters.  |
     | Text   | UserEmail   |  The email address that the Resume originated from. This will be the user uploading the resume in chat, or the from email address if received by email.  |
@@ -808,6 +808,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
