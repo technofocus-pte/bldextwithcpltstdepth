@@ -34,7 +34,7 @@ In this mission, you'll learn:
 
 -    When to use **child agents** vs **connected agents**
 
--     How to design **multi-agent architectures** that scale
+-    How to design **multi-agent architectures** that scale
 
 -    Creating **child agents** for focused tasks
 
@@ -42,7 +42,7 @@ In this mission, you'll learn:
 
 -    Building the Application Intake Agent and Interview Prep Agent
 
--     How event triggers enable autonomous agent behavior without user
+-    How event triggers enable autonomous agent behavior without user
     interaction
 
 -    The differences between interactive and autonomous agents in Copilot
@@ -808,6 +808,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
