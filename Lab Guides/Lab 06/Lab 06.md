@@ -117,11 +117,11 @@ We'll be achieving this using two techniques
 5.  The final step is to set the input properties of the trigger. Update
     the following properties to the following,
 
-| **Property**   | **How to Set**   |  **Details**  |
-|:--------|:----:-|:-------|
-|  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
-|  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
-|  Only with Attachments (Optional)  |  Dropdown  | Yes   |
+    | **Property**   | **How to Set**   |  **Details**  |
+    |:--------|:----:-|:-------|
+    |  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
+    |  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
+    |  Only with Attachments (Optional)  |  Dropdown  | Yes   |
 
 6.  Select **Create trigger**.
 
