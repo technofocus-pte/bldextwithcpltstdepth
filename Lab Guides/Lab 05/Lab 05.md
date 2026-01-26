@@ -399,7 +399,7 @@ Now you'll connect the published flow to your Application Intake Agent.
 
     **Description** - +++Uploads a Resume when instructed. STRICT RULE: Only call this tool when referenced in the form "Resume Upload" and there are Attachments+++
     
-    **Additional details** →** When this tool may be used** - only when referenced by topics or agents
+    **Additional details** → **When this tool may be used** - only when referenced by topics or agents
     
     ![](./media/image41.png)
 
@@ -511,6 +511,7 @@ Intake agent.
 2.  In the **Instructions** field, paste the following clear guidance
     for your child agent.
 
+    ```
     You are tasked with managing incoming Resumes, Candidate information, and creating Job Applications.  
     Only use tools if the step exactly matches the defined process. Otherwise, indicate you cannot help.  
     
@@ -522,18 +523,17 @@ Intake agent.
     
      Post-Upload  
       - Always output the [ResumeNumber] (R#####).
-
+    ```
 
     ![](./media/image54.png)
 
-3.  Where the instructions include a forward slash (/), select the text
-    following the / and select the resolved name. Do this for,
+3.  Where the instructions include a forward slash (/), select the text following the / and select the resolved name. Do this for,
 
     - System.Activity.Attachments (Variable)
 
     - Upload Resume (Tool)
 
-    Note: If you click on the System.Acticvity.Attachements in the
+    >[!Note] **Note:** If you click on the System.Acticvity.Attachements in the
     instructions, you will get the resolved name listed. You can select
     it. After selecting, if there is any part of the previously existing
     text available, please delete it.
@@ -737,10 +737,11 @@ agent to achieve multi agent orchestration.
 
 3.  Set the **Description** to be,
 
+    ```
     Assists with the interview process and provides information about Resumes, Candidates, Job Roles, and Evaluation Criteria.
-Notice that the Pass conversation history to this agent is checked. This allows the parent agent to provide full context to the connected agent.
-Select Add and configure.
-
+    Notice that the Pass conversation history to this agent is checked. This allows the parent agent to provide full context to the connected agent.
+    Select Add and configure.
+    ```
 
     ![](./media/image84.png)
 
@@ -808,6 +809,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
