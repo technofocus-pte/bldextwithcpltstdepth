@@ -123,31 +123,31 @@ the requested data.
 7.  Update the **Description** as +++Search and retrieve financial
     portfolio data+++
 
-![](./media/image15.png)
+    ![](./media/image15.png)
 
 8.  In the Inputs section select **+ Add input**.
 
-![](./media/image16.png)
+    ![](./media/image16.png)
 
 9.  Enter name as +++Portfolio ID+++ and description +++The ID of the
     portfolio+++ and select **Done**.
 
-![](./media/image17.png)
+    ![](./media/image17.png)
 
 10. Select **Save**.
 
-![](./media/image18.png)
+    ![](./media/image18.png)
 
 ## Task 3: Test the Computer use tool
 
 1.  In the **Instructions** section, select the **Test** button on the
     right.
 
-![](./media/image19.png)
+    ![](./media/image19.png)
 
 2.  Add the sample value +++44123BCD+++ and select **Test now**.
 
-![](./media/image20.png)
+    ![](./media/image20.png)
 
 3.  Observe the Computer use tool logging into the computer and
     performing the requested actions:
@@ -158,21 +158,21 @@ the requested data.
     - The right panel shows a preview of the actions on the machine you
       set up for computer use.
 
-![](./media/image21.png)
+    ![](./media/image21.png)
 
-> ![](./media/image22.png)
+    ![](./media/image22.png)
 
-![](./media/image23.png)
-
-![](./media/image24.png)
-
-![](./media/image25.png)
-
-![](./media/image26.png)
+    ![](./media/image23.png)
+    
+    ![](./media/image24.png)
+    
+    ![](./media/image25.png)
+    
+    ![](./media/image26.png)
 
 4.  Select **Finish testing**.
 
-![](./media/image27.png)
+    ![](./media/image27.png)
 
 ## Task 4: Setting up email response capabilities
 
@@ -180,70 +180,70 @@ In this task, you will set up the email capability.
 
 1.  Return to the **Tools** tab and select **+ Add a tool** .
 
-![](./media/image28.png)
+    ![](./media/image28.png)
 
 2.  Search for +++**Send an email (V2) (Office 365 Outlook)**+++ and
     select it.
 
-![](./media/image29.png)
+    ![](./media/image29.png)
 
 3.  Select **Add and configure**.
 
-![](./media/image30.png)
+    ![](./media/image30.png)
 
 4.  Update its **Name** to +++Reply to email+++ and **Description** to,
     +++Use this operation to reply to the email received+++ and then
     select **Additional details**.
 
-![](./media/image31.png)
+    ![](./media/image31.png)
 
 5.  Under **Additional details**, set **Credentials to use** to
     **Maker-provided credentials.**
 
-![](./media/image32.png)
+    ![](./media/image32.png)
 
 6.  Under the **Inputs** section, click on **customize** against the
     **To** input and set its **Description** to +++Use the "from" email
     of the triggering received email+++.
 
-![](./media/image33.png)
-
-![](./media/image34.png)
+    ![](./media/image33.png)
+    
+    ![](./media/image34.png)
 
 7.  **Customize** the **Subject** input and set its **Description** to
     +++Write the email subject+++.
 
-![](./media/image35.png)
+    ![](./media/image35.png)
 
 8.  Customize the **Body** input and set its **Description** to +++Write
     the email body using HTML and highlight the requested data+++.
 
-![](./media/image36.png)
+    ![](./media/image36.png)
 
 9.  Click **Save** to finalize the tool configuration.
 
-![](./media/image37.png)
+    ![](./media/image37.png)
 
 10. Navigate to **Overview** tab and then **Edit** the Instructions.
 
-![](./media/image38.png)
+    ![](./media/image38.png)
 
 11. Paste the following instruction.
 
-When a financial portfolio related request is received, identify the
+    When a financial portfolio related request is received, identify the
 Portfolio ID and search for the requested data using \< Look up
 portfolio data \>. Once you have gathered the financial portfolio
 information, use the \< Reply to email \> tool to reply to the original
 email you received. Do not respond with data beyond what was requested.
 
-![](./media/image39.png)
+    ![](./media/image39.png)
 
 12. Select \< Look up portfolio data \>, enter / and select the tool
     Look up portfolio data.
 
-![](./media/image40.png)
+    ![](./media/image40.png)
 
-![](./media/image41.png)
+    ![](./media/image41.png)
 
 13. Similarly, replace \< Reply to email \> with the tool, **Reply to
     email**.
@@ -251,20 +251,20 @@ email you received. Do not respond with data beyond what was requested.
 14. Once the replacements are done, as in the screenshot below, select
     **Save**.
 
-![](./media/image42.png)
+    ![](./media/image42.png)
 
 15. Select **Settings** from the top right.
 
-![](./media/image43.png)
+    ![](./media/image43.png)
 
 16. **Disable** **Use general knowledge option** under the **Knowledge**
     section, and select **Save**.
 
-![](./media/image44.png)
+    ![](./media/image44.png)
 
 17. Close the **Settings** pane.
 
-![](./media/image45.png)
+    ![](./media/image45.png)
 
 ## Task 5: Testing your complete agent
 
@@ -274,43 +274,42 @@ have created.
 1.  Send a test email from an email address of your preference to your
     training user’s email account with
 
-Subject: +++Portfolio data request+++
+    Subject: +++Portfolio data request+++
+    
+    Body:
 
-Body:
+    ```
+    Hi! 
+    I hope you're doing well! 
+    I'm looking for the portfolio manager and value of portfolio #44123BCD. Much appreciated. 
+    
+    Thanks!
+    ```
 
-Hi!
-
-I hope you're doing well!
-
-I'm looking for the portfolio manager and value of portfolio \#44123BCD.
-Much appreciated.
-
-Thanks!
-
-![](./media/image46.png)
+    ![](./media/image46.png)
 
 2.  Make sure you receive the email in your training user’s inbox.
 
 3.  In the **Overview** tab, go to the **Triggers** section and select
     **Test trigger**.
 
-![](./media/image47.png)
+    ![](./media/image47.png)
 
 4.  Select the **trigger instance** and then **Start testing.**
 
-![](./media/image48.png)
+    ![](./media/image48.png)
 
 5.  The execution happens and you can see the updates and the flow in
     the Test pane.
 
-![](./media/image49.png)
+    ![](./media/image49.png)
 
-![](./media/image50.png)
+    ![](./media/image50.png)
 
 6.  Once the execution is completed, check your email for the agent’s
     reply.
 
-![](./media/image51.png)
+    ![](./media/image51.png)
 
 ## Summary
 
