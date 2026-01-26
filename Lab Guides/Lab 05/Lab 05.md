@@ -334,7 +334,7 @@ existing) without depending on user interaction.
 14. Set the following **properties**:
 
     |  **Property** |  **How to Set**  |  **Details**  |
-    |:--------|:---------|:---------|:------|
+    |:--------|:---------|:---------|
     | **Content name**   | Dynamic data (thunderbolt icon)   | When an agent calls the flow → Resume name   |
     | **Table name**   |  Select  |  Resumes  |
     |  **Row ID**  |  Dynamic data (thunderbolt icon)  | Create Resume → See more → Resume   |
@@ -355,7 +355,7 @@ existing) without depending on user interaction.
      |  **Type**  |  Select  |  Text  |
      |  **Name**  |  Enter  | +=+ResumeNumber+++   |
      |  **Value**  |  Dynamic data (thunderbolt icon)  |  Create Resume → See More → Resume Number  |
-     |  **Description**  |  Enter  | The [ResumeNumber] of the Resume created   |
+     |  **Description**  |  Enter  | +++The [ResumeNumber] of the Resume created+++   |
     
     ![](./media/image34.png)
 
@@ -808,6 +808,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
