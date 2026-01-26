@@ -278,9 +278,9 @@ existing) without depending on user interaction.
 
     | **Type**   |  **Name**  |  **Description**  |
     |:----|:-------|:-----|
-    |  File  | Resume   |  The Resume PDF file  |
-    | Text   |  Message  |  Extract a cover letter style message from the context. The message must be less than 2000 characters.  |
-    | Text   | UserEmail   |  The email address that the Resume originated from. This will be the user uploading the resume in chat, or the from email address if received by email.  |
+    |  File  | Resume   |  +++The Resume PDF file+++  |
+    | Text   |  Message  |  +++Extract a cover letter style message from the context. The message must be less than 2000 characters.+++  |
+    | Text   | UserEmail   |  +++The email address that the Resume originated from. This will be the user uploading the resume in chat, or the from email address if received by email.+++  |
     
     ![](./media/image22.png)
 
@@ -309,7 +309,7 @@ existing) without depending on user interaction.
 10. Set the following **properties**:
 
     |  **Property**  | **How to Set**   | **Details / Expression**   |
-    |:----|:------|:-----|:------|
+    |:----|:------|:-----|
     |   **Resume Title** | Dynamic data (thunderbolt icon)   | **When an agent calls the flow → Resume name** If you don't see the Resume name, make sure you have configured the Resume parameter above as a data type.  |
     |  Cover letter  | Expression (fx icon)   | +++if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])+++   |
     |  **Source Email Address**  |Dynamic data (thunderbolt icon)   | **When an agent calls the flow → UserEmail**   |
@@ -351,9 +351,9 @@ existing) without depending on user interaction.
     ![](./media/image33.png)
 
      | **Property**   |  **How to Set**  |  **Details**  |
-     |:-----|:--------|:--------|:=========|
+     |:-----|:--------|:--------|
      |  **Type**  |  Select  |  Text  |
-     |  **Name**  |  Enter  | ResumeNumber   |
+     |  **Name**  |  Enter  | +=+ResumeNumber+++   |
      |  **Value**  |  Dynamic data (thunderbolt icon)  |  Create Resume → See More → Resume Number  |
      |  **Description**  |  Enter  | The [ResumeNumber] of the Resume created   |
     
@@ -808,6 +808,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
