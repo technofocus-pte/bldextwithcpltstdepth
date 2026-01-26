@@ -288,9 +288,9 @@ existing) without depending on user interaction.
     and search for +++Dataverse add+++, then select the **Add a new
     row** action in the **Microsoft Dataverse** section.
 
-   ![](./media/image23.png)
+    ![](./media/image23.png)
 
-   ![](./media/image24.png)
+    ![](./media/image24.png)
 
     >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
     add the action. Enter any name for the connection and click add to
@@ -808,6 +808,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
