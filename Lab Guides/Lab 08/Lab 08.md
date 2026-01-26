@@ -23,73 +23,73 @@ connectivity
     using your login credentials if not done already and make sure that
     you are in the Dev One environment.
 
-![](./media/image1.png)
+    ![](./media/image1.png)
 
 2.  Select **Create an agent** tile to create a new agent.
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
 3.  Once the agent is provisioned, select Edit against the **Details**
     pane.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 4.  Enter the below details and select **Save**.
 
-- Name - +++Contoso Agent+++
+    - Name - +++Contoso Agent+++
+    
+    - Description - +++This agent will help Contoso sales reps update their
+      accounts and contacts using the Dataverse MCP Server+++
 
-- Description - +++This agent will help Contoso sales reps update their
-  accounts and contacts using the Dataverse MCP Server+++
-
-> ![](./media/image4.png)
+    ![](./media/image4.png)
 
 5.  **Edit** Instructions and enter the below set of instructions and
     select **Save**.
 
-This agent will: Read accounts and contact information from the Account
-and Contact Tables in Dataverse using the Dataverse MCP Server. Update
-accounts and contact information from the Account and Contact Tables in
-Dataverse using the Dataverse MCP Server. Create new accounts and
-contact information in the Account and Opportunity Tables in Dataverse
-using the Dataverse MCP Server. Do not use outside knowledge. Only use
-the Dataverse MCP Tool to create, read, update and delete.
+    This agent will: Read accounts and contact information from the Account
+    and Contact Tables in Dataverse using the Dataverse MCP Server. Update
+    accounts and contact information from the Account and Contact Tables in
+    Dataverse using the Dataverse MCP Server. Create new accounts and
+    contact information in the Account and Opportunity Tables in Dataverse
+    using the Dataverse MCP Server. Do not use outside knowledge. Only use
+    the Dataverse MCP Tool to create, read, update and delete.
 
-![](./media/image5.png)
-
-![](./media/image6.png)
+    ![](./media/image5.png)
+    
+    ![](./media/image6.png)
 
 6.  Scroll down and select **+ Add suggested prompts** in the Suggested
     prompts section.
 
-![](./media/image7.png)
+    ![](./media/image7.png)
 
 7.  Add the following prompts and then click **Save**.
 
-- **Title**: +++Account Search+++ **Prompt**: +++List all accounts in
-  Redmond+++
+    - **Title**: +++Account Search+++ **Prompt**: +++List all accounts in
+      Redmond+++
+    
+    - **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from
+      Coho Winery+++
 
-- **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from
-  Coho Winery+++
-
-![](./media/image8.png)
+    ![](./media/image8.png)
 
 8.  Select **+ Add tool** from the Tools section.
 
-![](./media/image9.png)
+    ![](./media/image9.png)
 
 9.  Select the **Model Context Protocol** tab, search for +++Dataverse
     MCP Server+++ and select **Microsoft** **Dataverse MCP Server**.
 
-Note: Select the one that is not in Preview. Do not select the
+    Note: Select the one that is not in Preview. Do not select the
 **Microsoft** **Dataverse MCP Server (Preview)**
 
-![](./media/image10.png)
+    ![](./media/image10.png)
 
 10. Select **Add and configure**.
 
-![](./media/image11.png)
+    ![](./media/image11.png)
 
-**Note:** The Dataverse MCP Server will allow you natural language
+    **Note:** The Dataverse MCP Server will allow you natural language
 access to your tables in Dataverse. We have sample data in the Accounts
 and Contacts tables that we will use. The tools available are: list
 tables, describe table, read data, create record, update record, list
@@ -100,32 +100,32 @@ prompts, execute prompt, list knowledge sources, and retrieve knowledge
     tool is executed, the list is dynamically updated from the MCP
     Server. You cannot call an MCP Server from a Topic for this reason.
 
-![](./media/image12.png)
+    ![](./media/image12.png)
 
 12. Enter +++List the accounts in the state of WA+++ in the **Test**
     pane and click **Send**.
 
-![](./media/image13.png)
+    ![](./media/image13.png)
 
 13. For the first run, you would get a Consent dialog as by default the
     tool is
 
-configured to use “End user credentials”. Please click **Allow** to
+    configured to use “End user credentials”. Please click **Allow** to
 continue.
 
-![](./media/image14.png)
+    ![](./media/image14.png)
 
 14. See the series of actions that take place and the output from the
     MCP server,
 
-![](./media/image15.png)
-
-![](./media/image16.png)
+    ![](./media/image15.png)
+    
+    ![](./media/image16.png)
 
 15. If you click on the tool that was used, you will see the Inputs and
     Outputs of the tool.
 
-![](./media/image17.png)
+    ![](./media/image17.png)
 
 ## Task 2: Structure Agent Responses with Custom Prompts
 
@@ -138,25 +138,25 @@ your agent that provide business-relevant information.
     in the **Tools**. In the **Tools** tab, click **+ Add a tool** then
     **+ New tool**.
 
-![](./media/image18.png)
-
-![](./media/image19.png)
+    ![](./media/image18.png)
+    
+    ![](./media/image19.png)
 
 2.  Select Prompt.
 
-![](./media/image20.png)
+    ![](./media/image20.png)
 
 3.  Rename the **prompt** **name** at the top to +++Show Account
     Details+++ .
 
-Then in the **instructions** enter, +++Find account which contains+++
-and then click **+ Add content** to pass in the name of the account we
-are searching for. Select **Text** for the Input and call it
-+++**Account Name**+++ . Click **close**.
+    Then in the **instructions** enter, +++Find account which contains+++
+    and then click **+ Add content** to pass in the name of the account we
+    are searching for. Select **Text** for the Input and call it
+    +++**Account Name**+++ . Click **close**.
 
-> ![](./media/image21.png)
+    ![](./media/image21.png)
 
-![](./media/image22.png)
+    ![](./media/image22.png)
 
 4.  We can now grab specific fields from Dataverse to show to our end
     users in the chat. Click back in the instructions and enter +++and
