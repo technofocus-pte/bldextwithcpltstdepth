@@ -93,48 +93,51 @@ We'll be achieving this using two techniques
 1.  In the Hiring Agent, scroll down in the **Overview tab** to
     the **Triggers** section and select **+ Add trigger**.
 
-> ![](./media/image1.png)
+    ![](./media/image1.png)
 
-2.  A list of triggers will appear. Select **When a new email arrives
+3.  A list of triggers will appear. Select **When a new email arrives
     (V3)** and select **Next**.
 
-> ![](./media/image2.png)
+    ![](./media/image2.png)
 
 3.  Select **Continue** in the next screen.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 4.  We'll now see the **Trigger name** and the **Sign in** connection
     references for the apps listed. Rename the trigger name to the
     following:
 
-+++When a new email arrives from an applicant+++
+    +++When a new email arrives from an applicant+++
 
-> **NOTE:** Make sure you see a green check by each of the connection
-> references for the apps listed. If you don't see a green check, sign
-> in through the ellipsis (...) and select **+ New connection
-> reference** to create a new connection reference.
->
-> ![](./media/image4.png)
+    **NOTE:** Make sure you see a green check by each of the connection references for the apps listed. If you don't see a green check, sign in through the ellipsis (...) and select **+ New connection reference** to create a new connection reference.
+
+    ![](./media/image4.png)
 
 5.  The final step is to set the input properties of the trigger. Update
     the following properties to the following,
 
+| **Property**   | **How to Set**   |  **Details**  |
+|:--------|:----:-|:-------|
+|  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
+|  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
+|  Only with Attachments (Optional)  |  Dropdown  | Yes   |
+
 6.  Select **Create trigger**.
 
-> ![](./media/image5.png)
+    ![](./media/image5.png)
 
 7.  Once created, a confirmation message will appear that the trigger
     has been added to the agent. Select **Close** and the trigger will
     be listed in the **Triggers** section.
 
-> ![](./media/image6.png)
+    ![](./media/image6.png)
 
-8.  We're now going to update the event trigger to add some more
+9.  We're now going to update the event trigger to add some more
     automation capabilities. Select the **ellipsis (...)** by the
     trigger and select **Edit in Power Automate**.
 
-> ![](./media/image7.png)
+    ![](./media/image7.png)
 
 9.  The trigger will then load as a flow in the Power Automate maker
     portal. It will open to the flow designer where we can add further
@@ -142,274 +145,250 @@ We'll be achieving this using two techniques
     the top, followed by **Sends a prompt to the specified copilot for
     processing** as the last action in the flow.
 
-> ![](./media/image8.png)
+    ![](./media/image8.png)
 
 10. By default, the **When a new email arrives** trigger in Power
     Automate may process multiple emails together if several arrive at
     once, running the flow only once for the batch.
 
-> To ensure the flow runs separately for each email, select the When a
-> new email arrives node, select **Settings**.
->
-> Enable the **Split On** setting in the **trigger’s settings** and
-> select **@triggerOutputs()?\['body/value'\]** in the **dropdown
-> array** field.
->
-> With **Split On** turned on and the array field set
-> to @triggerOutputs()?\['body/value'\], the flow will run individually
-> for each message, even if many arrive simultaneously.
->
-> ![](./media/image9.png)
+    To ensure the flow runs separately for each email, select the When a new email arrives node, select **Settings**.
+    
+    Enable the **Split On** setting in the **trigger’s settings** and select **@triggerOutputs()?['body/value']** in the **dropdown array** field.
+    
+    With **Split On** turned on and the array field set to **@triggerOutputs()?['body/value']**, the flow will run individually for each message, even if many arrive simultaneously.
+
+    ![](./media/image9.png)
 
 11. Let's next add some logic to check the file type of the attachment,
     we only want to upload .PDF file attachments and not images (these
     could come from email signatures). Select the **+** icon below the
     trigger and select **Control** under the **Built in tools** section.
 
-> ![](./media/image10.png)
+    ![](./media/image10.png)
 
 12. Select the **Condition** action.
 
-> ![](./media/image11.png)
+    ![](./media/image11.png)
 
 13. Now we will configure the condition to check if the file
     attachment’s type is .PDF. In the **Choose a value** field on the
     left, select the **lightning bolt icon**.
 
-> ![](./media/image12.png)
+    ![](./media/image12.png)
 
 14. In the **Search** field type +++content type+++ and select
     the **Attachments Content-Type** parameter from the trigger
 
-> ![](./media/image13.png)
+    ![](./media/image13.png)
 
 15. Let's pause here for a moment, you probably noticed that the **For
     each** action automatically appeared.
 
-> ![](./media/image14.png)
->
-> This action represents looping through each attachment in the email,
-> since the **Attachments Content-Type** parameter is tied to each
-> attachment.
->
-> Underneath the hood, it's an array and that's why the **For
-> each** action was automatically added when we selected
-> the **Attachments Content-Type** parameter in
-> the **Condition** action.
+    ![](./media/image14.png)
 
-16. Next, in the other **Choose a value** field to the right in
+    This action represents looping through each attachment in the email, since the **Attachments Content-Type** parameter is tied to each attachment.
+    
+    Underneath the hood, it's an array and that's why the For each action was automatically added when we selected the **Attachments Content-Type** parameter in the **Condition** action.
+
+
+17. Next, in the other **Choose a value** field to the right in
     the **Condition** block, type +++application/pdf+++
 
-This will ensure that for each file attachment, it will check the file
+    This will ensure that for each file attachment, it will check the file
 extension format is .PDF.
 
-> ![](./media/image15.png)
+    ![](./media/image15.png)
 
 17. Now we'll configure the **True** path to extract the file from the
     email and upload it into the **Resume** Dataverse table.
 
-> Add a new action below in the **True** path and search for html to
-> text. Search for and select the +++**Html to text**+++ action.
->
-> **Note:** The **HTML to text** action in Power Automate is used to
-> convert HTML-formatted content into plain text. This is especially
-> useful when you receive data (like emails, web content, or API
-> responses) that contains HTML tags, and you want to extract just the
-> readable text without any formatting or code.
->
-> ![](./media/image16.png)
+    Add a new action below in the **True** path and search for html to text. Search for and select the ++**+Html to text**+++ action.
+    
+    >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
+
+
+    ![](./media/image16.png)
 
 18. Next, we need to create a new connection reference for the **Html to
     text** action by selecting **Create new**.
 
-> ![](./media/image17.png)
+    ![](./media/image17.png)
 
 19. The action can now be configured. Let's add the **Body** parameter
     from the trigger. In the **Content** field, select the **lightning
     bolt icon** or **fx icon** to the right.
 
-> ![](./media/image18.png)
+    ![](./media/image18.png)
 
 20. In the **Dynamic content** tab, search for +++body+++ and select
     the **Body** parameter, followed by selecting **Add**.
 
-> ![](./media/image19.png)
+    ![](./media/image19.png)
 
 21. We've completed configuring this action so let's exit from the
     action by selecting the two angle brackets («) pointing to the left
     to collapse the panel.
 
-> ![](./media/image20.png)
+    ![](./media/image20.png)
 
 22. We'll add a new action by selecting the **+ icon** underneath
     the **Html to text** action which will load the panel to add
     actions. Search for **Dataverse add**.Select the **Add a new
     row** action.
 
-> ![](./media/image21.png)
+    ![](./media/image21.png)
 
 23. Rename the action by pasting +++Add a new Resume row+++ as the name
     in the upper left-hand corner of the properties panel,
 
-For the **Table name** parameter, search for res and select
+    For the **Table name** parameter, search for +++res+++ and select
 the **Resumes** table.
 
-> ![](./media/image22.png)
+    ![](./media/image22.png)
 
 24. Select the **Resume Title** field next and select the **fx icon** to
     the right.
 
-> ![](./media/image23.png)
+    ![](./media/image23.png)
 
 25. In the **Function tab**, enter the following expression that uses
     the item() function.
 
-+++item()?\['name'\]+++
+    +++item()?['name']+++
 
-> Select **Add** to add the expression to the **Resume
-> Title** parameter.
->
-> ![](./media/image24.png)
+    Select **Add** to add the expression to the **Resume Title** parameter.
 
-**Note on item() function:**
+    ![](./media/image24.png)
 
-- When you use an **Apply to each** action, Power Automate goes through
-  each element in a collection (array).
+    >[!Note] **Note on item() function:**
 
-- It’s most often used inside actions like **Apply to each** (or **For
-  each**), **Select**, or **Filter array**.
+    - When you use an **Apply to each** action, Power Automate goes through
+      each element in a collection (array).
+    
+    - It’s most often used inside actions like **Apply to each** (or **For
+      each**), **Select**, or **Filter array**.
 
 26. We still need to configure several more parameters, select **Show
     all**.
 
-> ![](./media/image25.png)
+    ![](./media/image25.png)
 
-27.  In the **Cover Letter** field, select the **fx icon** to the right.
+28.  In the **Cover Letter** field, select the **fx icon** to the right.
 
-> In the **Function tab**, enter the following expression.
->
-> +++if(greater(length(body('Html_to_text')), 2000),
-> substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
->
-> This expression checks if the *text* from the **Html to text** action
-> is longer than 2000 characters, and if so, returns only the first 2000
-> characters; otherwise, it returns the full text.
->
-> ![](./media/image26.png)
+    In the **Function tab**, enter the following expression.
+
+    +++if(greater(length(body('Html_to_text')), 2000), substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+
+    This expression checks if the text from the **Html to text** action is longer than 2000 characters, and if so, returns only the first 2000 characters; otherwise, it returns the full text.
+
+    ![](./media/image26.png)
 
 28. The expression will now be added to the **Cover Letter** field.
 
-> ![](./media/image27.png)
+    ![](./media/image27.png)
 
 29. For the **Source Email Address** field, select the **lightning bolt
     icon** and select the **From** parameter from the trigger as this
     contains the email address value.
 
-> ![](./media/image28.png)
+    ![](./media/image28.png)
 
 30. For the **Upload Date** field, select the **fx icon** to the right.
     In the **Function tab**, enter, +++utcNow()+++ and select **Add**.
 
-**Note:**  **What is the utcNow() function?**
+    **Note:**  **What is the utcNow() function?**
 
-- The utcnow() function in Power Automate returns the current date and
+    - The utcnow() function in Power Automate returns the current date and
   time in Coordinated Universal Time (UTC) in an ISO 8601 format,
   like: 2025-09-23T04:32:14Z
 
-> ![](./media/image29.png)
+    ![](./media/image29.png)
 
 31. We've now completed configuring the **Add a new Resume row** action
     so let's exit from the panel by collapsing it.
 
-> ![](./media/image30.png)
+    ![](./media/image30.png)
 
-32. We'll add a new action by selecting the **+ icon** underneath
+33. We'll add a new action by selecting the **+ icon** underneath
     the **Add a new Resume row** action which will load the panel to add
     actions. Search for +++**Dataverse Upload**+++. Select the **Upload
     a file or an image** action.
 
-> ![](./media/image31.png)
+    ![](./media/image31.png)
 
-33. Rename the action by pasting +++Upload Resume File+++as the name.
+33. Rename the action by pasting +++Upload Resume File+++ as the name.
 
-> ![](./media/image32.png)
+    ![](./media/image32.png)
 
 34. Select the **Content name** field (remove the Untitled message if
     that is already available) next and select the **fx icon** to the
     right.
 
-> In the **Function tab**, enter the following expression that uses
-> the item () function. This gets the name property of the current item
-> (the attachment file).
->
-> +++item()?\['name'\]+++
->
-> ![](./media/image33.png)
+    In the Function tab, enter the following expression that uses the item () function. This gets the name property of the current item (the attachment file).
+    
+    +++item()?['name']+++
+
+
+    ![](./media/image33.png)
 
 35. For the **Table name** parameter, search for +++resumes+++ and
     select the **Resumes** table.
 
-> ![](./media/image34.png)
+    ![](./media/image34.png)
 
 36. Select the **Row ID** field next and select the **lightning bolt
     icon** to the right.
 
-> Search for +++ID+++ and select the **Resume** parameter from the **Add
-> a new row** Dataverse action as this contains the ID value of the row
-> to upload the PDF file to.
->
-> ![](./media/image35.png)
+    Search for +++ID+++ and select the **Resume** parameter from the **Add a new row** Dataverse action as this contains the ID value of the row to upload the PDF file to.
+
+    ![](./media/image35.png)
 
 37. Select the **Column name** field and select the **Resume
     PDF** option.
 
-> ![](./media/image36.png)
+    ![](./media/image36.png)
 
 38. Select the **Content** field and select the **fx icon** to the
     right.
 
-> In the **Function tab**, enter the following expression that uses
-> the item () function. This gets the contentBytes property of the
-> current item (the attachment file). contentBytes refers to the raw
-> binary data of a file or attachment, encoded as a Base64 string.
->
-> +++item()?\['contentBytes'\]+++
->
-> ![](./media/image37.png)
+    In the Function tab, enter the following expression that uses the item () function. This gets the contentBytes property of the current item (the attachment file). contentBytes refers to the raw binary data of a file or attachment, encoded as a Base64 string.
+    
+    +++item()?['contentBytes']+++
+
+    ![](./media/image37.png)
 
 39. We've completed configuring this action so let's exit from the
     action by selecting the two angle brackets («) pointing to the left
     to collapse the panel.
 
-> ![](./media/image38.png)
+    ![](./media/image38.png)
 
 40. Next, select the **Sends a prompt to the specified copilot for
     processing**, then drag and drop this action to be below
     the **Upload Resume File** action in the **True** path of the
     condition.
 
-> ![](./media/image39.png)
+    ![](./media/image39.png)
 
 41. Select the **Sends a prompt to the specified copilot for
     processing** to configure it.
 
-![](./media/image40.png)
+    ![](./media/image40.png)
 
 42. In the **Body/message** field, select all of the field content and
     clear/delete it.
 
-> ![](./media/image41.png)
+    ![](./media/image41.png)
 
 43. Copy and paste the following text into the **Body/message** field
     and highlight the **RESUME ID PLACEHOLDER** and select the
     **lightning** icon.
 
-> Send \[ResumeId (text)\] = "RESUME ID PLACEHOLDER" and \[ResumeTitle
-> (text_1)\] = "RESUME TITLE PLACEHOLDER" and \[ResumeNumber (text_2)\]=
-> "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant
-> channel" in the child agent "Application Intake Agent"
->
-> ![](./media/image42.png)
+    ```
+    Send [ResumeId (text)] = "RESUME ID PLACEHOLDER" and [ResumeTitle (text_1)] = "RESUME TITLE PLACEHOLDER" and [ResumeNumber (text_2)]= "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant channel" in the child agent "Application Intake Agent"
+    ```
+    
+    ![](./media/image42.png)
 
 44. Search for +++resume+++ and select the **Resume** parameter from
     the **Add a new row** *Dataverse* action as this contains
@@ -417,58 +396,54 @@ the **Resumes** table.
 
 > ![](./media/image43.png)
 
-45. Highlight the RESUME TITLE PLACEHOLDER. Select the **lightning bolt
+45. Highlight the **RESUME TITLE PLACEHOLDER**. Select the **lightning bolt
     icon** to the right.
 
-> Search for +++title+++ and select the **Resume Title** parameter from
-> the** Add a new row Dataverse** action as this contains the resume
-> title value of the Resume row created.
->
-> ![](./media/image44.png)
+    Search for +++title+++ and select the **Resume Title** parameter from the **Add a new row Dataverse** action as this contains the resume title value of the Resume row created.
 
-46. Highlight the RESUME NUMBER PLACEHOLDER. Select the **lightning bolt
+    ![](./media/image44.png)
+
+46. Highlight the **RESUME NUMBER PLACEHOLDER**. Select the **lightning bolt
     icon** to the right.
 
-> Search for +++resume number+++ and select the **Resume
-> Number** parameter from the **Add a new row Dataverse** action as this
-> contains the Resume Number value of the Resume row created.
->
-> ![](./media/image45.png)
+    Search for +++resume number+++ and select the **Resume Number** parameter from the **Add a new row Dataverse** action as this contains the Resume Number value of the Resume row created.
+
+    ![](./media/image45.png)
 
 47. We've completed configuring this action and our agent flow. Now
     let's save our event trigger flow by selecting **Save**.
 
-> ![](./media/image46.png)
+    ![](./media/image46.png)
 
 48. We now need to edit the details of the agent flow, select **Back**
     once saved.
 
-> ![](./media/image47.png)
+    ![](./media/image47.png)
 
 49. Select **Edit** in the **Details** section and update
     the **Plan** to the **Copilot Studio** option. Select **Save**.
 
-> ![](./media/image48.png)
+    ![](./media/image48.png)
 
 50. A modal will appear to ask you to confirm to switch to Copilot
     Studio plan. Select **Confirm**.
 
-> ![](./media/image49.png)
+    ![](./media/image49.png)
 
 51. The plan is now updated to **Copilot Studio**. Select **Edit** as we
     need to publish the event trigger flow for our agent.
 
-> ![](./media/image50.png)
+    ![](./media/image50.png)
 
 52. Select **Publish**.
 
-> ![](./media/image51.png)
->
-> The event trigger flow is now Published.
+    ![](./media/image51.png)
 
-![](./media/image52.png)
+    The event trigger flow is now Published.
 
-Let's proceed in creating a new agent flow that will be invoked by the
+    ![](./media/image52.png)
+
+    Let's proceed in creating a new agent flow that will be invoked by the
 child **Intake Application Agent**.
 
 ### Task 2 - Notify a Teams channel using an adaptive card
@@ -488,7 +463,7 @@ be used later in this lab.
 
 2.  Select the **New items drop down** and select **New team**.
 
-![](./media/image53.png)
+    ![](./media/image53.png)
 
 3.  Provide the below details and select Create.
 
@@ -496,85 +471,92 @@ be used later in this lab.
 
     - First channel name - +++Applicants +++
 
-> ![](./media/image54.png)
+    ![](./media/image54.png)
 
 4.  Select Skip in the next screen.
 
-![](./media/image55.png)
+    ![](./media/image55.png)
 
 5.  You have now created the new Team and Channel.
 
-![](./media/image56.png)
+    ![](./media/image56.png)
 
 #### Task 2.2: Create the agent flow
 
 1.  Back in the Copilot Studio, in the **Hiring Agent** select
     the **Agents** tab and select the **Application Intake Agent**
 
-![](./media/image57.png)
+    ![](./media/image57.png)
 
 2.  Scroll down to **Tools** and select **+ Add**.
 
-> ![](./media/image58.png)
+    ![](./media/image58.png)
 
 3.  The **Add tool** modal will appear. Select **+ New tool**.
 
-> ![](./media/image59.png)
+    ![](./media/image59.png)
 
 4.  Select **Agent flow**.
 
-> ![](./media/image60.png)
+    ![](./media/image60.png)
 
 5.  The **agent flow designer** will next load. In the **When an agent
     calls the flow** trigger, select **+ Add an input**.
 
-> ![](./media/image61.png)
+    ![](./media/image61.png)
 
 6.  Select **Text** as the type of user input.
 
-> ![](./media/image62.png)
+    ![](./media/image62.png)
 
 7.  In the input text field, enter +++ResumeId+++ as the input parameter
     name.
 
-> ![](./media/image63.png)
+    ![](./media/image63.png)
 
 8.  Repeat the same steps for the below parameters.
 
-Text - +++ResumeTitle+++
-
-Text - +++ResumeNumber+++
-
-![](./media/image64.png)
-
-![](./media/image65.png)
+    Text - +++ResumeTitle+++
+    
+    Text - +++ResumeNumber+++
+    
+    ![](./media/image64.png)
+    
+    ![](./media/image65.png)
 
 9.  Now, you are going to add an adaptive card in the agent flow. We're
     now going to add another action to our agent flow that will post an
     adaptive card to a Teams channel.
 
-Select the **+ icon** below the trigger.
+    Select the **+ icon** below the trigger.
 
-> ![](./media/image66.png)
+    ![](./media/image66.png)
 
 10. Search for +++**Microsoft Teams post+++** and select the **Post card
     in a chat or channel** action.
 
-> ![](./media/image67.png)
+    ![](./media/image67.png)
 
 11. A connection reference to Microsoft Teams needs to be created with
     your signed in user account. Select **Sign in**.
 
-> ![](./media/image68.png)
+    ![](./media/image68.png)
 
 12. Select your user account and then select **Allow access**.
 
-> ![](./media/image69.png)
+    ![](./media/image69.png)
 
 13. Configure according to the following input parameters:
 
+    | Parameter   |  How to Set  | Details   |
+    |:------|:----|:------|
+    |  **Post as**  |  Dropdown  |  Select the **Flow bot** option  |
+    |  **Post in**  |  Dropdown  |   Select the **Channel** option |
+    |  **Team**  |  Dropdown  |  Select **HR Team** option  |
+    |   **Team** |  Dropdown  |  Select  **Applicants** channel   |
 
-> ![](./media/image70.png)
+
+    ![](./media/image70.png)
 
 14. Next, we'll configure the **Adaptive Card** field. Select
     the **Adaptive Card** field.
@@ -583,516 +565,268 @@ Select the **+ icon** below the trigger.
 
 15. Copy the below code and paste it into the Adaptive Card field.
 
-> {
->
-> "type": "AdaptiveCard",
->
-> "speak": "New Resume Uploaded",
->
-> "body": \[
->
-> {
->
-> "inlines": \[
->
-> {
->
-> "type": "TextRun",
->
-> "size": "Small",
->
-> "text": "Resume table updated",
->
-> "selectAction": {
->
-> "url": "https://adaptivecards.io",
->
-> "type": "Action.OpenUrl"
->
-> }
->
-> }
->
-> \],
->
-> "type": "RichTextBlock"
->
-> },
->
-> {
->
-> "columns": \[
->
-> {
->
-> "width": "auto",
->
-> "items": \[
->
-> {
->
-> "type": "Icon",
->
-> "name": "DocumentArrowUp",
->
-> "color": "Accent"
->
-> }
->
-> \],
->
-> "type": "Column"
->
-> },
->
-> {
->
-> "width": "stretch",
->
-> "items": \[
->
-> {
->
-> "size": "Large",
->
-> "text": "New Resume Uploaded",
->
-> "weight": "Bolder",
->
-> "wrap": true,
->
-> "type": "TextBlock"
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center",
->
-> "spacing": "Small",
->
-> "type": "Column"
->
-> }
->
-> \],
->
-> "spacing": "Small",
->
-> "type": "ColumnSet"
->
-> },
->
-> {
->
-> "type": "Table",
->
-> "targetWidth": "AtLeast:Narrow",
->
-> "columns": \[
->
-> {
->
-> "width": 1
->
-> },
->
-> {
->
-> "width": 2
->
-> }
->
-> \],
->
-> "rows": \[
->
-> {
->
-> "type": "TableRow",
->
-> "cells": \[
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "Resume Number",
->
-> "wrap": true,
->
-> "weight": "Bolder"
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> },
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "RESUME NUMBER PLACEHOLDER",
->
-> "wrap": true
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "type": "TableRow",
->
-> "cells": \[
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "Name",
->
-> "wrap": true,
->
-> "weight": "Bolder"
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> },
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "RESUME NAME PLACEHOLDER",
->
-> "wrap": true
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "type": "TableRow",
->
-> "cells": \[
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "Status",
->
-> "wrap": true,
->
-> "weight": "Bolder"
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> },
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "Waiting for Review",
->
-> "wrap": true
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "type": "TableRow",
->
-> "cells": \[
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "Due Date",
->
-> "wrap": true,
->
-> "weight": "Bolder"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "May 21, 2023",
->
-> "wrap": true
->
-> }
->
-> \]
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "type": "TableRow",
->
-> "cells": \[
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "TextBlock",
->
-> "text": "Priority",
->
-> "wrap": true,
->
-> "weight": "Bolder"
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> },
->
-> {
->
-> "type": "TableCell",
->
-> "items": \[
->
-> {
->
-> "type": "ColumnSet",
->
-> "columns": \[
->
-> {
->
-> "type": "Column",
->
-> "width": "auto",
->
-> "items": \[
->
-> {
->
-> "type": "Icon",
->
-> "name": "Flag",
->
-> "color": "Attention",
->
-> "size": "xSmall",
->
-> "horizontalAlignment": "Center"
->
-> }
->
-> \]
->
-> },
->
-> {
->
-> "type": "Column",
->
-> "width": "stretch",
->
-> "items": \[
->
-> {
->
-> "color": "Attention",
->
-> "text": "Important",
->
-> "wrap": true,
->
-> "spacing": "Small",
->
-> "type": "TextBlock"
->
-> }
->
-> \],
->
-> "spacing": "Small"
->
-> }
->
-> \],
->
-> "spacing": "Small"
->
-> }
->
-> \],
->
-> "verticalContentAlignment": "Center"
->
-> }
->
-> \]
->
-> }
->
-> \],
->
-> "firstRowAsHeaders": false,
->
-> "showGridLines": false
->
-> },
->
-> {
->
-> "actions": \[
->
-> {
->
-> "title": "View Resume",
->
-> "type": "Action.OpenUrl",
->
-> "url": "https://adaptivecards.io/"
->
-> }
->
-> \],
->
-> "type": "ActionSet",
->
-> "targetWidth": "AtLeast:Narrow",
->
-> "spacing": "ExtraLarge"
->
-> }
->
-> \],
->
-> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
->
-> "version": "1.5"
->
-> }
+    ```
+    {
+        "type": "AdaptiveCard",
+        "speak": "New Resume Uploaded",
+        "body": [
+            {
+                "inlines": [
+                    {
+                        "type": "TextRun",
+                        "size": "Small",
+                        "text": "Resume table updated",
+                        "selectAction": {
+                            "url": "https://adaptivecards.io",
+                            "type": "Action.OpenUrl"
+                        }
+                    }
+                ],
+                "type": "RichTextBlock"
+            },
+            {
+                "columns": [
+                    {
+                        "width": "auto",
+                        "items": [
+                            {
+                                "type": "Icon",
+                                "name": "DocumentArrowUp",
+                                "color": "Accent"
+                            }
+                        ],
+                        "type": "Column"
+                    },
+                    {
+                        "width": "stretch",
+                        "items": [
+                            {
+                                "size": "Large",
+                                "text": "New Resume Uploaded",
+                                "weight": "Bolder",
+                                "wrap": true,
+                                "type": "TextBlock"
+                            }
+                        ],
+                        "verticalContentAlignment": "Center",
+                        "spacing": "Small",
+                        "type": "Column"
+                    }
+                ],
+                "spacing": "Small",
+                "type": "ColumnSet"
+            },
+            {
+                "type": "Table",
+                "targetWidth": "AtLeast:Narrow",
+                "columns": [
+                    {
+                        "width": 1
+                    },
+                    {
+                        "width": 2
+                    }
+                ],
+                "rows": [
+                    {
+                        "type": "TableRow",
+                        "cells": [
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Resume Number",
+                                        "wrap": true,
+                                        "weight": "Bolder"
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            },
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "RESUME NUMBER PLACEHOLDER",
+                                        "wrap": true
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TableRow",
+                        "cells": [
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Name",
+                                        "wrap": true,
+                                        "weight": "Bolder"
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            },
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "RESUME NAME PLACEHOLDER",
+                                        "wrap": true
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TableRow",
+                        "cells": [
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Status",
+                                        "wrap": true,
+                                        "weight": "Bolder"
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            },
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Waiting for Review",
+                                        "wrap": true
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TableRow",
+                        "cells": [
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Due Date",
+                                        "wrap": true,
+                                        "weight": "Bolder"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "May 21, 2023",
+                                        "wrap": true
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TableRow",
+                        "cells": [
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "TextBlock",
+                                        "text": "Priority",
+                                        "wrap": true,
+                                        "weight": "Bolder"
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            },
+                            {
+                                "type": "TableCell",
+                                "items": [
+                                    {
+                                        "type": "ColumnSet",
+                                        "columns": [
+                                            {
+                                                "type": "Column",
+                                                "width": "auto",
+                                                "items": [
+                                                    {
+                                                        "type": "Icon",
+                                                        "name": "Flag",
+                                                        "color": "Attention",
+                                                        "size": "xSmall",
+                                                        "horizontalAlignment": "Center"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "Column",
+                                                "width": "stretch",
+                                                "items": [
+                                                    {
+                                                        "color": "Attention",
+                                                        "text": "Important",
+                                                        "wrap": true,
+                                                        "spacing": "Small",
+                                                        "type": "TextBlock"
+                                                    }
+                                                ],
+                                                "spacing": "Small"
+                                            }
+                                        ],
+                                        "spacing": "Small"
+                                    }
+                                ],
+                                "verticalContentAlignment": "Center"
+                            }
+                        ]
+                    }
+                ],
+                "firstRowAsHeaders": false,
+                "showGridLines": false
+            },
+            {
+                "actions": [
+                    {
+                        "title": "View Resume",
+                        "type": "Action.OpenUrl",
+                        "url": "https://adaptivecards.io/"
+                    }
+                ],
+                "type": "ActionSet",
+                "targetWidth": "AtLeast:Narrow",
+                "spacing": "ExtraLarge"
+            }
+        ],
+        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+        "version": "1.5"
+    }
+    
+    ```
 
-![](./media/image72.png)
+    ![](./media/image72.png)
 
 16. We will now replace existing values in the JSON payload with actual
     values or dynamic content.
 
-> First, let's update the **URL** for the **url property** within
-> the **selectAction** property. This URL will be replaced with the URL
-> of the **Resumes** system view in the **Hiring Hub** model-driven app.
-> This will allow the Recruiter to select the action and be directed to
-> the Resumes system view in the model-driven app.
->
-> Highlight the **current URL** value and delete it.
+    First, let's update the **URL** for the **url property** within the **selectAction** property. This URL will be replaced with the URL of the **Resumes** system view in the **Hiring** Hub model-driven app. This will allow the Recruiter to select the action and be directed to the Resumes system view in the model-driven app.
+    Highlight the **current URL** value and delete it.
 
-![](./media/image73.png)
+
+    ![](./media/image73.png)
 
 17. In the **Hiring Hub** model-driven app, navigate to
     the **Resumes** system view using the left hand side menu and copy
@@ -1100,42 +834,48 @@ Select the **+ icon** below the trigger.
     the **copied URL** into the **url** property of the within
     the selectAction property.
 
-> ![](./media/image74.png)
+    ![](./media/image74.png)
 
 18. You should see the following where highlighted in Yellow is your
     environment details of the **Hiring Hub** model-driven app.
 
-[TABLE]
+    |  Parameter  |  Value  |   Explanation |
+    |:--------|:--------|:---------|:--------|
+    |  Organization URI  |   GUID |  The Dataverse/Dynamics 365 environment organization URL  |
+    |  appid  | GUID   |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
+    | viewid    | GUID   |  The query parameter which is the id of the view  |
 
-> ![](./media/image75.png)
+
+
+    ![](./media/image75.png)
 
 19. Next, we'll add dynamic content values for several properties. Let's
     start with the text that will display the Resume Number reference of
     the row that was created by the event trigger autonomously.
 
-Select the **panel** icon to load the action panel.
+    Select the **panel** icon to load the action panel.
 
-![](./media/image76.png)
+    ![](./media/image76.png)
 
 20. Scroll down to the line where you see the text property for RESUME
     NUMBER PLACEHOLDER. Highlight the placeholder value and delete it.
 
-![Delete placeholder](./media/image77.png)
+    ![Delete placeholder](./media/image77.png)
 
 21. Click in-between the double quotation marks and select
     the **lightning bolt icon** from the right.
 
-![](./media/image78.png)
+    ![](./media/image78.png)
 
 22. In the **Dynamic Content** tab select
     the **ResumeNumber** parameter.
 
-> ![](./media/image79.png)
+    ![](./media/image79.png)
 
 23. The **ResumeNumber** parameter will now be added as dynamic content
     to the text property.
 
-> ![](./media/image80.png)
+    ![](./media/image80.png)
 
 24. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
     down to the line where you see the text property for RESUME NAME
@@ -1143,47 +883,49 @@ Select the **panel** icon to load the action panel.
     in-between the double quotation marks and select the select
     the **lightning bolt icon** from the right.
 
-> ![](./media/image81.png)
+    ![](./media/image81.png)
 
 25. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
 
-> ![](./media/image82.png)
+    ![](./media/image82.png)
 
 26. The **ResumeTitle** parameter will now be added as dynamic content
     to the text property.
 
-> ![](./media/image83.png)
+    ![](./media/image83.png)
 
 27. We'll repeat the same steps for the **Due Date** value that
     represents when a recruiter should review the resume by. Scroll down
     to the line where you see the text property for May 21, 2023.
 
-![Select Allow access](./media/image84.png)
+    ![Select Allow access](./media/image84.png)
 
 28. Delete this date placeholder value and click in-between the double
     quotation marks and select the **fx icon** from the right.
 
-> ![](./media/image85.png)
+    ![](./media/image85.png)
 
 29. In the **Function** tab, enter the following expression and
     select **Add**.
 
-> +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
+    +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
 
-This expression utilizes two functions.
+    This expression utilizes two functions.
 
-[TABLE]
+    addDays - Adds a specified number of days to a given date and returns the resulting date in string format
+    
+    utcNow - Returns the current date and time in Coordinated Universal Time (UTC) format as a string.
 
-For the utcNow value, we are formatting the date to be month and date,
-followed by the year.
+    For the utcNow value, we are formatting the date to be month and date,
+    followed by the year.
 
-> ![](./media/image86.png)
+    ![](./media/image86.png)
 
-30. The expression will now be added to the text property.
+31. The expression will now be added to the text property.
 
-![](./media/image87.png)
+    ![](./media/image87.png)
 
-31. Lastly, we'll update the **URL** for the **url property** within
+32. Lastly, we'll update the **URL** for the **url property** within
     the **actions** array property at the bottom of the JSON payload.
     This current placeholder URL will be replaced with the URL of the
     **Resume row** in the **Hiring Hub** model-driven app. This will
@@ -1191,131 +933,135 @@ followed by the year.
     adaptive card and be **directed** to the **Resume** in the
     model-driven app.
 
-> ![](./media/image88.png)
+    ![](./media/image88.png)
 
 32. In the **Hiring Hub** model-driven app, open a row in
     the **Resumes** system view using the left hand side menu. The
     resume row will load as a form in the model-driven app.
 
-Copy the URL for the Resume row.
-
-![](./media/image89.png)
-
-> ![](./media/image90.png)
+    Copy the URL for the Resume row.
+    
+    ![](./media/image89.png)
+    
+    ![](./media/image90.png)
 
 33. Then navigate back to the agent flow, highlight the current
     placeholder URL value and **delete** it.
 
-> ![](./media/image91.png)
+    ![](./media/image91.png)
 
 34. Then **paste** the **copied URL** into the **url** property of the
     within the url property.
 
-> ![](./media/image92.png)
+    ![](./media/image92.png)
 
 35. You should see the following. Delete the GUID id value at the end.
     We'll replace this dynamic content - the **ResumeId** parameter.
 
-![](./media/image93.png)
+    ![](./media/image93.png)
 
 36. Select the **lightning bolt icon** from the right.
 
-In the **Dynamic Content** tab select the **ResumeId** parameter.
+    In the **Dynamic Content** tab select the **ResumeId** parameter.
 
-> ![](./media/image94.png)
+    ![](./media/image94.png)
 
 37. The **ResumeId** will be added as dynamic content. The following
     highlighted in Yellow is your environment details of the **Hiring
     Hub** model-driven app.
 
-[TABLE]
+    |  Parameter  | Value   |  Explanation  |
+    |:-----|:-------|:--------|
+    | Organization URI   | GUID   |  The Dataverse/Dynamics 365 environment organization URL  |
+    |   appid |  GUID  |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
+    | id   |  GUID  |    The query parameter which is the id of the Resume row    |
 
-> ![](./media/image95.png)
+    ![](./media/image95.png)
 
 38. We've completed configuring the **Post card in a chat or
     channel** action 👏🏻 Exit from the action configuration panel by
     selecting the **x** icon.
 
-> ![](./media/image96.png)
+    ![](./media/image96.png)
 
 39. Finally, we'll configure the last action, **Respond to the
     agent** by sending a text back to the agent to end the processing.
 
-In the **Respond to the agent** action, select **+Add an output**.
+    In the **Respond to the agent** action, select **+Add an output**.
 
-> ![](./media/image97.png)
+    ![](./media/image97.png)
 
 40. Select **Text** as the type of output.
 
-> ![](./media/image98.png)
+    ![](./media/image98.png)
 
 41. Enter the following details
 
     - Name - +++EndConversation+++
 
-    - Value - +++ Finished+++
+    - Value - +++Finished+++
 
-> ![](./media/image99.png)
+    ![](./media/image99.png)
 
 42. We've now completed configuring the agent flow. Select **Save
     draft** to save the agent flow. A confirmation message will appear
     once saved.
 
-> ![](./media/image100.png)
+    ![](./media/image100.png)
 
 43. Before publishing the agent flow, we need to update the details for
     the agent flow. Select the **Overview** tab and select **Edit**.
 
-> ![](./media/image101.png)
+    ![](./media/image101.png)
 
 44. Enter the Name as +++Notify Teams Applicant channel+++ and select
     the Refresh icon under Description to update it using AI.
 
-![](./media/image102.png)
+    ![](./media/image102.png)
 
 45. Once the Description is populated, select **Save** to save the
     updated details for the agent flow.
 
-> ![](./media/image103.png)
+    ![](./media/image103.png)
 
 46. Navigate back to the **Designer** tab and select **Publish** to
     publish the agent flow.
 
-> ![](./media/image104.png)
+    ![](./media/image104.png)
 
 47. A confirmation message will appear once published.
 
-> ![](./media/image105.png)
+    ![](./media/image105.png)
 
 48. The agent flow now needs to be added as a tool in the **Application
     Intake Agent**. Navigate back to the **Hiring Agent** and select
     the **Agents** tab, then select the **Application Intake Agent**.
 
-![](./media/image106.png)
+    ![](./media/image106.png)
 
 49. In the **Details** section of the agent, we'll update
     the **Description** field. Copy the following and paste and the end
     of the description text.
 
-+++and also notifies the Teams Applicant channel+++
+    +++and also notifies the Teams Applicant channel+++
 
-Select **Save**.
+    Select **Save**.
 
-> ![](./media/image107.png)
+    ![](./media/image107.png)
 
 50. Next, we'll add the agent flow as a tool. Scroll down to
     the **tools** section and select **+ Add**.
 
-> ![](./media/image108.png)
+    ![](./media/image108.png)
 
 51. Select the **Flow** tab and choose the agent flow created
     earlier, **Notify Teams Applicant Channel**.
 
-> ![](./media/image109.png)
+    ![](./media/image109.png)
 
 52. Select **Add and configure** next.
 
-> ![](./media/image110.png)
+    ![](./media/image110.png)
 
 53. In the **Inputs** section, the three inputs we configured earlier in
     the agent flow are visible. By default, the **Fill
@@ -1323,41 +1069,37 @@ Select **Save**.
     keep this setting as-is as the prompt from the event trigger will
     contain the parameter values that AI will extract.
 
-> ![](./media/image111.png)
+    ![](./media/image111.png)
 
 54. Now that the tool has been added to the **Application Intake
     Agent**, the instructions of the agent needs to be updated. Select
     the **back arrow**.
 
-![](./media/image112.png)
+    ![](./media/image112.png)
 
 55. Select the **Application Intake Agent** in the **Agents** tab of
     the **Hiring Agent**.
 
-![](./media/image113.png)
+    ![](./media/image113.png)
 
 56. In the **Instructions** field, enter a new line
     after **2.Post-Upload** instructions. Copy and paste the following
     instructions.
 
-> Process for Resume Upload via Email
->
-> 1. When you receive a message, \*\*Send \[ResumeId (text)\] =
-> "1680265f-5793-f011-b41b-7c1e525be9f7" and \[ResumeTitle (text_1)\] =
-> "TAYLOR TESTPERSON (FICTITIOUS).pdf" and \[ResumeNumber (text_2)\]=
-> "R01026" to the Tool "Notify Teams Applicant channel"\*\* in the child
-> agent "Application Intake Agent", call \[AGENT FLOW PLACEHOLDER\]
->
-> ![](./media/image114.png)
+    ```
+    Process for Resume Upload via Email
+    1. When you receive a message, **Send [ResumeId (text)] = "1680265f-5793-f011-b41b-7c1e525be9f7" and [ResumeTitle (text_1)] = "TAYLOR TESTPERSON (FICTITIOUS).pdf" and [ResumeNumber (text_2)]= "R01026" to the Tool "Notify Teams Applicant channel"** in the child agent "Application Intake Agent", call [AGENT FLOW PLACEHOLDER]
+    ```
+    ![](./media/image114.png)
 
 57. Highlight the \[AGENT FLOW PLACEHOLDER\] text.
 
-> ![](./media/image115.png)
+    ![](./media/image115.png)
 
 58. Enter the forward slash character, /, and select the **Notify Teams
     Applicant Channel** tool.
 
-> ![](./media/image116.png)
+    ![](./media/image116.png)
 
 59. The agent flow will now be invoked by the **Application Intake
     Agent** as per the instructions, after the last action (**Sends a
@@ -1365,29 +1107,29 @@ Select **Save**.
     trigger sends the prompt that contains the parameter values back to
     the agent.
 
-Select **Save** to save the updated instructions for the **Application
+    Select **Save** to save the updated instructions for the **Application
 Intake Agent**.
 
-> ![](./media/image117.png)
+    ![](./media/image117.png)
 
 60. The instructions will now be updated once the agent has been saved.
 
-> ![](./media/image118.png)
+    ![](./media/image118.png)
 
 61. We now need to **Publish** the **Hiring Agent**.
     Select **Publish** on the upper right, and in the **Publish this
     agent modal **that appears select **Publish**.
 
-> ![](./media/image119.png)
->
-> ![](./media/image120.png)
+    ![](./media/image119.png)
+
+    ![](./media/image120.png)
 
 62. Once published, a confirmation message will appear that the agent
     has been published.
 
-> ![](./media/image121.png)
+    ![](./media/image121.png)
 
-We can now test the agent!
+    We can now test the agent!
 
 ## Exercise 2: Test event trigger
 
@@ -1397,55 +1139,43 @@ this lab.
 1.  To execute the event trigger, an email needs to be sent with a
     Resume pdf file. In Outlook, compose a new email message.
 
-[TABLE]
 
-> Dear Hiring Manager,
->
-> I am writing to express my interest in the Senior Power Platform
-> Engineer position at your organization. With over nine years of
-> experience delivering secure and scalable solutions on Microsoft cloud
-> platforms, I am confident in my ability to contribute effectively to
-> your team.
->
-> In my most recent role as Lead Power Platform Engineer, I developed an
-> automated resume-intake pipeline, reducing manual triage and improving
-> searchability. I have delivered HR case management applications,
-> introduced solution-aware flows, and implemented PR checks to enhance
-> deployment lead times. My expertise includes Power Apps, Power
-> Automate, Power Pages, Dataverse, and a range of Microsoft 365
-> services, as well as integration with Graph/REST APIs and Azure
-> Functions.
->
-> Previously, I developed Teams approvals with adaptive cards, cutting
-> approval times to the same day, and created robust error-handling
-> frameworks. My background also includes migrating legacy workflows to
-> Power Automate and building self-service portals adopted by hundreds
-> of employees.
->
-> I hold a B.Sc. in Computer Science and am certified as a Power
-> Platform Developer (PL-400) and Solution Architect (PL-600). I am also
-> passionate about mentoring and have volunteered with local maker
-> groups.
->
-> Please find my CV attached for your consideration. I would welcome the
-> opportunity to discuss how my skills and experience align with your
-> needs.
->
-> Thank you for your time and consideration.
->
-> Kind regards,
->
-> Taylor Testperson
+    |  Email Component  |  Details  |
+    |:--------|:---------|
+    |  To recipient  |  Use your signed in user account as the value  |
+    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file   |
+    |  Subject  | +++Job Application+++   |
+    |  Body  |  Copy and paste the following below as the body of the email  |
+    
+    ```
+    Dear Hiring Manager,
+    
+    I am writing to express my interest in the Senior Power Platform Engineer position at your organization. With over nine years of experience delivering secure and scalable solutions on Microsoft cloud platforms, I am confident in my ability to contribute effectively to your team.
+    
+    In my most recent role as Lead Power Platform Engineer, I developed an automated resume-intake pipeline, reducing manual triage and improving searchability. I have delivered HR case management applications, introduced solution-aware flows, and implemented PR checks to enhance deployment lead times. My expertise includes Power Apps, Power Automate, Power Pages, Dataverse, and a range of Microsoft 365 services, as well as integration with Graph/REST APIs and Azure Functions.
+    
+    Previously, I developed Teams approvals with adaptive cards, cutting approval times to the same day, and created robust error-handling frameworks. My background also includes migrating legacy workflows to Power Automate and building self-service portals adopted by hundreds of employees.
+    
+    I hold a B.Sc. in Computer Science and am certified as a Power Platform Developer (PL-400) and Solution Architect (PL-600). I am also passionate about mentoring and have volunteered with local maker groups.
+    
+    Please find my CV attached for your consideration. I would welcome the opportunity to discuss how my skills and experience align with your needs.
+    
+    Thank you for your time and consideration.
+    
+    Kind regards,
+    Taylor Testperson
+    
+    ```
 
 2.  **Send** the email once composed from your mail box.
 
-> ![](./media/image122.png)
+    ![](./media/image122.png)
 
 3.  In the +++https://make.powerautomate.com/+++ for the event trigger
     flow, select the Refresh icon to view the flow run that succeeded
     for the sent email. You can see that the flow has succeeded.
 
-> ![](./media/image123.png)
+    ![](./media/image123.png)
 
 4.  Back in Copilot Studio in the Hiring Agent select the **Activity**
     tab. The **Activity** tab will load which will display all the
@@ -1454,7 +1184,7 @@ this lab.
     This activity represents the event trigger and the agent flow that
     was invoked.
 
-> ![](./media/image124.png)
+    ![](./media/image124.png)
 
 5.  Select the activity, and select the event trigger in the activity
     map. On the right hand side panel, notice how the input parameters
@@ -1463,14 +1193,14 @@ this lab.
     This was from the dynamic content values configured earlier in
     **Automate uploading resumes to Dataverse received by email**.
 
-> ![](./media/image125.png)
+    ![](./media/image125.png)
 
 6.  Navigate back to the **Hiring Hub** model-driven app and in
     the **Resumes system view**, select **Refresh** to refresh the view.
     The newly created row for the resume that was sent by email will now
     be listed as it was created through the event trigger.
 
-> ![](./media/image126.png)
+    ![](./media/image126.png)
 
 7.  Navigate back to Copilot Studio and select the **Notify Teams
     Applicant Channel** agent flow within the **Application Intake
@@ -1481,7 +1211,7 @@ this lab.
     parameter values from the newly created Dataverse row. This is how
     we can pass parameter values from event triggers to agent flows.
 
-> ![](./media/image127.png)
+    ![](./media/image127.png)
 
 8.  Finally, let's take a look at the adaptive card posted to the
     channel in **Microsoft Teams**. In the channel, we'll see the
@@ -1490,12 +1220,12 @@ this lab.
     the adaptive card, notice how the URL is the Resumes system view URL
     that we configured earlier in the JSON payload of the adaptive card.
 
-> ![](./media/image128.png)
+    ![](./media/image128.png)
 
 9.  Select the hyperlink, and you'll be directed to the Resumes system
     view in the **Hiring Hub** model-driven app on your browser.
 
-> ![](./media/image129.png)
+    ![](./media/image129.png)
 
 10. Navigate back to the adaptive card posted to the channel in
     Microsoft Teams. This time, hover over **View Resume** which is
@@ -1503,27 +1233,27 @@ this lab.
     is the Resumes row that we configured earlier in the JSON payload of
     the adaptive card.
 
-> ![](./media/image130.png)
+    ![](./media/image130.png)
 
 11. Select the action, and you'll be directed to the Resume row form in
     the Hiring Hub model-driven app on your browser.
 
-> ![](./media/image131.png)
+    ![](./media/image131.png)
 
 ## Summary
 
 In this lab,
 
-1.  You've created an event trigger that passes Dataverse parameter
+-    You've created an event trigger that passes Dataverse parameter
     values to an agent flow.
 
-2.  Built an agent flow: consumes the Dataverse parameter values to post
+-    Built an agent flow: consumes the Dataverse parameter values to post
     an adaptive card to a channel in Microsoft Teams to alert the HR
     recruitment team.
 
-3.  Updated child agent instructions: to invoke the flow once the event
+-  Updated child agent instructions: to invoke the flow once the event
     trigger has completed.
 
-4.  This enables the **Hiring Agent** to work autonomously whenever
+-    This enables the **Hiring Agent** to work autonomously whenever
     resumes are received as email attachments and notify the HR
     recruitment team for manual review.
