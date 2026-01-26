@@ -165,21 +165,21 @@ your agent that provide business-relevant information.
     **Account** table which we feel our end users would like to see
     about the account.
 
-![](./media/image23.png)
+    ![](./media/image23.png)
 
 5.  Let’s select the following by clicking on the dropdown: **Account
     Name**, **Account Number**, **Address 1**, **Annual Revenue**,
     **Email** and **Main Phone**. Click **Add** and then **Save**.
 
-![](./media/image24.png)
-
-![](./media/image25.png)
-
-![](./media/image26.png)
+    ![](./media/image24.png)
+    
+    ![](./media/image25.png)
+    
+    ![](./media/image26.png)
 
 6.  Select **Add and configure**.
 
-![](./media/image27.png)
+    ![](./media/image27.png)
 
 7.  Now we can test out our prompt. Let’s go back over to our agent and
     test again. Go to the test pane.
@@ -188,7 +188,7 @@ your agent that provide business-relevant information.
     **Send**. You can see that the response is in the structured
     response with the custom prompt created.
 
-![](./media/image28.png)
+    ![](./media/image28.png)
 
 ## Summary
 
