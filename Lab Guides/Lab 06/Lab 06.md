@@ -118,7 +118,7 @@ We'll be achieving this using two techniques
     the following properties to the following,
 
     | **Property**   | **How to Set**   |  **Details**  |
-    |:--------|:----:-|:-------|
+    |:--------|:----|:-------|
     |  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
     |  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
     |  Only with Attachments (Optional)  |  Dropdown  | Yes   |
