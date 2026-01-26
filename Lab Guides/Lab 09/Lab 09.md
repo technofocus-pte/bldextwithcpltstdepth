@@ -34,42 +34,42 @@ need improvement.
 
 1.  From the Copilot Studio, select the **Hiring agent**.
 
-![](./media/image1.png)
+    ![](./media/image1.png)
 
 2.  From the top menu bar, select **Evaluation**. Select **Create a test
     set**.
 
-![](./media/image2.png)
+    ![](./media/image2.png)
 
 3.  There are few options to create the test set. Select **Generate 10
     questions** in this case.
 
-![](./media/image3.png)
+    ![](./media/image3.png)
 
 4.  **Review** the test set and then **Save** the test set.
 
-![](./media/image4.png)
+    ![](./media/image4.png)
 
 5.  Now, click on **Evaluate** to evaluate the agent.
 
-![](./media/image5.png)
+    ![](./media/image5.png)
 
 6.  Select your tenant id and click on **Run**.
 
-![](./media/image6.png)
+    ![](./media/image6.png)
 
 7.  Wait till the execution completes.
 
-![](./media/image7.png)
+    ![](./media/image7.png)
 
 8.  Once the evaluation is complete, click on it to view the details.
 
-![](./media/image8.png)
+    ![](./media/image8.png)
 
 9.  Go through each question and see why it has failed and which ones
     have passed. This will help you enhance your agent as required.
 
-![](./media/image9.png)
+    ![](./media/image9.png)
 
 ## Task 2: Gain insights with agent analytics
 
@@ -83,27 +83,27 @@ continuous optimization of your agent over time.
 
 1.  From the top menu bar, select **Analytics.**
 
-> ![](./media/image10.png)
+    ![](./media/image10.png)
 
 2.  When there are a greater number of executions and as the agent gets
     used more and more, the traffic increases, and you can find the AI
     Summary in the Analytics tab.
 
-> ![](./media/image11.png)
+    ![](./media/image11.png)
 
 3.  The **Overview** section gives an overall picture about the runs,
     and credits.
 
-> ![](./media/image12.png)
+    ![](./media/image12.png)
 
 4.  The Run outcomes gives the average duration trends.
 
-> ![](./media/image13.png)
+    ![](./media/image13.png)
 
 5.  Scroll down and under the Use section, you can find the usage of
     triggers, tools and knowledge sources.
 
-> ![](./media/image14.png)
+    ![](./media/image14.png)
 
 6.  Each of these helps you to gauge the usage of each component of the
     agent and upgrade, enhance or correct the agent functionalities
