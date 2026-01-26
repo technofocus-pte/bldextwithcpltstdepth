@@ -840,7 +840,7 @@ be used later in this lab.
     environment details of the **Hiring Hub** model-driven app.
 
     |  Parameter  |  Value  |   Explanation |
-    |:--------|:--------|:---------|:--------|
+    |:--------|:--------|:---------|
     |  Organization URI  |   GUID |  The Dataverse/Dynamics 365 environment organization URL  |
     |  appid  | GUID   |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
     | viewid    | GUID   |  The query parameter which is the id of the view  |
