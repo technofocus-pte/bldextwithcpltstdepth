@@ -1143,7 +1143,7 @@ this lab.
     |  Email Component  |  Details  |
     |:--------|:---------|
     |  To recipient  |  Use your signed in user account as the value  |
-    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file   |
+    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file (from **C:\LabFiles\LabFiles**   |
     |  Subject  | +++Job Application+++   |
     |  Body  |  Copy and paste the following below as the body of the email  |
     
