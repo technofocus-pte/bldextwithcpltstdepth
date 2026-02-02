@@ -107,16 +107,15 @@ you imported in the previous exercise.
 
 10. Select **Import from CSV** like you did earlier. Select the **Choose
     File** button, select the **evaluation-criteria.csv** from
-    **C:\LabFiles**.
+    **C:\LabFiles\LabFiles**.
 
    ![](./media/image20.png)
 
-11. Select **Next**. Leave the next step as is and select **Review
-    Mapping**.
+11. Select **Next**. In the next step, select the Data Delimiter to be None and select **Review Mapping**.
 
    ![](./media/image21.png)
    
-   ![](./media/image22.png)
+   ![](./media/image31.png)
 
 12. Now we have to do a bit more work for the mapping. Select the
     **magnifying glass icon** next to the **Job Role** field.
@@ -175,6 +174,7 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
 
 
