@@ -14,13 +14,11 @@ domain-specific assistant to life.
 ## Exercise 1: Creating the agent
 
 1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
-    browser and login with your credentials.
+    browser and login with your credentials. Select **Yes** in the **Stay Signed in** dialog.
 
     -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
       
     -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image1.png)
 
 1.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
@@ -88,8 +86,8 @@ domain-specific assistant to life.
     ![](./media/image13.png)
 
     >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
-
-    ![](./media/image14.png)
+    >
+    >![](./media/image14.png)
 
 14. Provide prompt like below to converse with the agent.
 
@@ -114,5 +112,6 @@ domain-specific assistant to life.
     intuitively you can build a purpose-driven agent using Copilot
     Studio—without writing code—by leveraging conversational design and
     iterative instruction refinement.
+
 
 
