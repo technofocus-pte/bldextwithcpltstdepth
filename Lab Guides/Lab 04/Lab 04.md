@@ -143,9 +143,8 @@ you imported in the previous exercise.
 Now you are done with the setup of the prerequisites, it's time for the
 actual work! Let's add our Hiring Agent first!
 
-1.  From the Copilot Studio, select Agents from the left pane. Select
-    the drop down next to the + Create blank agent and select Advanced
-    create.
+1.  From the Copilot Studio, select **Agents** from the left pane. Select
+    the drop down next to the **+ Create blank agent** and select **Advanced create**.
 
     ![](./media/image27.png)
 
@@ -176,6 +175,7 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
 
 
