@@ -210,23 +210,25 @@ needs.
 
     ![](./media/image30.png)
 
-6.  Similarly add 2 more.
+6.  Similarly add 2 more (Select **+ Add** in the quick reply **Properties** pane that gets opened).
 
+    ![](./media/image47.png)
+    
     +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
 
     +++What's the temperature in the city that hosted the last Olympic Games?+++
 
     ![](./media/image31.png)
 
-7.  Once added, select **Save** to save the topic.
+8.  Once added, select **Save** to save the topic.
 
     ![](./media/image32.png)
 
-8.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
+9.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
 
     ![](./media/image33.png)
 
-9.  Update the text to the below, that will more meaningfully unblock
+10.  Update the text to the below, that will more meaningfully unblock
     the end user and select **Save**.
 
     +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
@@ -310,6 +312,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
