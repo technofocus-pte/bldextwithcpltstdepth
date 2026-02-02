@@ -52,6 +52,8 @@ incorrect.](./media/image5.png)
 
 5.  Follow the prompts and complete the setup.
 
+    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
+
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
@@ -63,27 +65,27 @@ incorrect.](./media/image8.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-6.  In the Azure welcome screen, select **Get Started**.
+7.  In the Azure welcome screen, select **Get Started**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-7.  Search for and select +++Microsoft EntraID+++.
+8.  Search for and select +++Microsoft EntraID+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-8.  From the left pane, select **Manage** -\> **Groups**.
+9.  From the left pane, select **Manage** -\> **Groups**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-9.  Select **New group** to create a new security group.
+10.  Select **New group** to create a new security group.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-10.  Enter the below details
+11.  Enter the below details
 
     - Group type – Select **Security**
 
@@ -454,6 +456,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
