@@ -80,7 +80,7 @@ integration using Copilot Studio’s conversational setup experience.
     ![](./media/image9.png)
 
 13. Toggle the **Use general knowledge** option under the Knowledge
-    section to **off**.
+    section to **off** and then select **Save**. **Close** the **Settings** pane once this is done.
 
     ![](./media/image10.png)
 
@@ -153,9 +153,9 @@ implications of authentication choices
 
 9.  Set the description as below and then select **Save**.
 
-    The location for the weather query. Valid inputs are City, State,
-Country. Always include city and country, and state only for locations
-where appropriate (e.g., in the US)
+    ```
+    The location for the weather query. Valid inputs are City, State, Country. Always include city and country, and state only for locations where appropriate (e.g., in the US)
+    ```
     
     ![](./media/image22.png)
     
@@ -310,6 +310,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
