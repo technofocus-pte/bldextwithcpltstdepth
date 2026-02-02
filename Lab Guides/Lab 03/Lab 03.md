@@ -68,7 +68,7 @@ integration using Copilot Studio’s conversational setup experience.
 
     ![](./media/image6.png)
 
-11. Enter +++https://en.wikipedia.org+++, select **Add** in the next screen and then **Add to agent**.
+11. Enter +++https://en.wikipedia.org+++, select **Add**, and then select **Add to agent**.
 
     ![](./media/image7.png)
     
@@ -310,6 +310,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
