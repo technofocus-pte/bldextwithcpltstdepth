@@ -27,7 +27,7 @@ seamlessly with the agents in Copilot Studio throughout this course.
 
 1.  Navigate to the Azure portal at
     +++https://portal.azure.com/+++ and login with your tenant
-    credentials present in the **Resources** tab.
+    credentials present in the **Resources** tab if prompted.
 
     ![A screenshot of a computer login AI-generated content may be
     incorrect.](./media/image1.jpeg)
@@ -38,19 +38,21 @@ seamlessly with the agents in Copilot Studio throughout this course.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image3.png)
 
-2.  Select **Next** in the Keep your account secure window and follow
+    >[1Note] **Note:** Download the **Authenticator** app in your mobile.
+    
+3.  Select **Next** in the Keep your account secure window and follow
     the **prompts**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-3.  Download the Authenticator app in your phone if you do not have it
+4.  Download the Authenticator app in your phone if you do not have it
     already.
 
     ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image5.png)
 
-4.  Follow the prompts and complete the setup.
+5.  Follow the prompts and complete the setup.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
@@ -63,27 +65,27 @@ incorrect.](./media/image8.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-5.  In the Azure welcome screen, select **Get Started**.
+6.  In the Azure welcome screen, select **Get Started**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-6.  Search for and select +++Microsoft EntraID+++.
+7.  Search for and select +++Microsoft EntraID+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-7.  From the left pane, select **Manage** -\> **Groups**.
+8.  From the left pane, select **Manage** -\> **Groups**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-8.  Select **New group** to create a new security group.
+9.  Select **New group** to create a new security group.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-9.  Enter the below details
+10.  Enter the below details
 
     - Group type – Select **Security**
 
@@ -95,7 +97,7 @@ incorrect.](./media/image13.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-10. Select **No owners selected**, select the **MOD Administrator** from
+11. Select **No owners selected**, select the **MOD Administrator** from
     the **Add owners** page and click on **Select**.
 
     ![A screenshot of a group AI-generated content may be
@@ -104,24 +106,24 @@ incorrect.](./media/image15.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-11. Similarly, select **No members selected**, and add the **MOD
+12. Similarly, select **No members selected**, and add the **MOD
     Administrator** from the list and click on **Select**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-12. Select **No roles selected**. If you **do not** see this **option**,
+13. Select **No roles selected**. If you **do not** see this **option**,
     ignore this and the next step.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-13. Search for and select +++**Global admin**+++ and select **Select**.
+14. Search for and select +++**Global admin**+++ and select **Select**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image19.png)
 
-14. Select **Create** once all the details are added and
+15. Select **Create** once all the details are added and
     select **Yes** in the confirmation dialog.
 
     ![A screenshot of a group AI-generated content may be
@@ -130,51 +132,51 @@ incorrect.](./media/image20.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-15. Ensure that you get a **success** message.
+16. Ensure that you get a **success** message.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-16. Select Contoso|Groups from the top left.
+17. Select Contoso|Groups from the top left.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-17. Select **Properties** under **Manage** from the left pane.
+18. Select **Properties** under **Manage** from the left pane.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-18. Toggle Yes in **can manage access to all Azure subscriptions and
+19. Toggle Yes in **can manage access to all Azure subscriptions and
     management groups in this tenant** option and then click **Save**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-19. Now, select **Roles and administrators** under **Manage** from the
+20. Now, select **Roles and administrators** under **Manage** from the
     left pane.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-20. Search for +++privileged role admin+++ and click on the **Privileged
+21. Search for +++privileged role admin+++ and click on the **Privileged
     Role Administrator** role (**Do not select the checkbox**, click on
     its name).
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-21. Select **+ Add assignments**.
+22. Select **+ Add assignments**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-22. Select **No members selected**.
+23. Select **No members selected**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-23. Select the **MOD Admin id** and select **Next**.
+24. Select the **MOD Admin id** and select **Next**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
@@ -182,17 +184,17 @@ incorrect.](./media/image30.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-24. Select **Assign**.
+25. Select **Assign**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-25. Ensure that the role assignment is successful.
+26. Ensure that the role assignment is successful.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-26. From a new tab, navigate to
+27. From a new tab, navigate to
     +++https://admin.powerplatform.microsoft.com/+++.
     Select **Manage** from the left pane and then select the **Tenant
     Settings** option.
@@ -200,23 +202,23 @@ incorrect.](./media/image33.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-27. Select **Copilot Studio Authors** from the list available.
+28. Select **Copilot Studio Authors** from the list available.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-28. Click on the **Edit** icon to edit the settings.
+29. Click on the **Edit** icon to edit the settings.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-29. Search for and select the **+++copilotagentsecurity+++** group that
+30. Search for and select the **+++copilotagentsecurity+++** group that
     you created earlier.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-30. Select **Save** to save the settings.
+31. Select **Save** to save the settings.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
@@ -454,6 +456,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
