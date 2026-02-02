@@ -239,7 +239,7 @@ Safe Travels agent template.
 
     ![](./media/image40.png)
 
-    >[!Alert\] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below >screenshot, then follow the below steps.
+    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below >screenshot, then follow the below steps.
     >
     >![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
     >
@@ -456,6 +456,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
