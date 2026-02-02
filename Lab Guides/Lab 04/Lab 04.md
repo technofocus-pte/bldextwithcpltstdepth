@@ -53,7 +53,7 @@ In this exercise, you will import a pre existing Solution.
 
    ![](./media/image9.png)
 
-8.  Select the Publish all customizations button at the top of the page.
+8.  Select the **Publish all customizations** button at the top of the page.
 
    ![](./media/image10.png)
 
@@ -79,7 +79,7 @@ you imported in the previous exercise.
    ![](./media/image13.png)
 
 4.  Select the **Choose File** button, select the **job-roles.csv** file
-    from **C:\LabFiles** and then select **Open**.
+    from **C:\LabFiles\LabFiles** and then select **Open**.
 
    ![](./media/image14.png)
 
@@ -176,6 +176,7 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
 
 
