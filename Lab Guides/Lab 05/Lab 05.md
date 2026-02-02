@@ -559,7 +559,7 @@ child agent and following our instructions.
 
     ![](./media/image59.png)
 
-2.  Select the Attachement icon, select the resume – AVERY EXAMPLE pdf
+2.  Select the Attachement icon, select the resume – AVERY EXAMPLE pdf from **C:\LabFiles\LabFiles**
     and click **Open**.
 
     ![](./media/image60.png)
@@ -757,7 +757,7 @@ agent to achieve multi agent orchestration.
 
 1.  **Toggle** the test panel open by selecting **Test**.
 
-2.  **Upload** one of the test resumes, and enter the following
+2.  **Upload** one of the test resumes (AVERY EXAMPLE or TAYLOR TESTPERSON pdf), and enter the following
     description which tell the parent agent what it can delegate to the
     connected agent:
 
@@ -809,6 +809,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
