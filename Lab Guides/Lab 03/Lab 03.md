@@ -228,7 +228,7 @@ needs.
 
     ![](./media/image33.png)
 
-10.  Update the text to the below, that will more meaningfully unblock
+10. Update the text to the below, that will more meaningfully unblock
     the end user and select **Save**.
 
     +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
@@ -312,6 +312,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
