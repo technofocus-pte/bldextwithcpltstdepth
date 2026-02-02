@@ -49,7 +49,9 @@ integration using Copilot Studio’s conversational setup experience.
 
       ![](./media/image3.png)
 
-7.  Enter the below content under **Instructions** and select **Save**.
+7.  Select **Edit** against **Instructions**, enter the below content and select **Save**.
+
+    >[!Note] **Note:** Use the **Copy** option and then **Paste** it in the required place in the VM (Instructions Text area in this case)
 
     ```
     You should answer complex questions using verified public information and real-time lookups like weather or conversions. You should give clear, concise answers and handle multiple questions one at a time. You must not speculate, share unverified or sensitive information, or compare products or companies. You should communicate clearly and professionally, using a friendly tone and light emojis when appropriate.
@@ -57,32 +59,32 @@ integration using Copilot Studio’s conversational setup experience.
     
     ![](./media/image4.png)
 
-8.  Scroll down and select **+ Add knowledge** to add a knowledge
+9.  Scroll down and select **+ Add knowledge** to add a knowledge
     source.
 
     ![](./media/image5.png)
 
-9.  Select the **Public Website** option form the list.
+10.  Select the **Public Website** option form the list.
 
     ![](./media/image6.png)
 
-10. Select **Add** in the next screen and then **Add to agent**.
+11. Select **Add** in the next screen and then **Add to agent**.
 
     ![](./media/image7.png)
     
     ![](./media/image8.png)
 
-11. Next, you will disable general knowledge to reduce hallucinations.
+12. Next, you will disable general knowledge to reduce hallucinations.
     Select **Settings** from the top right.
 
     ![](./media/image9.png)
 
-12. Toggle the **Use general knowledge** option under the Knowledge
+13. Toggle the **Use general knowledge** option under the Knowledge
     section to **off**.
 
     ![](./media/image10.png)
 
-13. Enter the below message in the Test pane and click **Send** and
+14. Enter the below message in the Test pane and click **Send** and
     observe the output.
 
     +++Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)+++
@@ -308,6 +310,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
