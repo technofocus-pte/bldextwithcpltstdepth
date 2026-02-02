@@ -37,8 +37,6 @@ seamlessly with the agents in Copilot Studio throughout this course.
     
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image3.png)
-
-    >[!Note] **Note:** Download the **Authenticator** app in your mobile.
     
 3.  Select **Next** in the Keep your account secure window and follow
     the **prompts**.
@@ -456,6 +454,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
