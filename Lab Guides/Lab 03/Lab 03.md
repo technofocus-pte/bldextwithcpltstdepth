@@ -25,7 +25,7 @@ Create Nova AI with custom instructions and Wikipedia knowledge
 integration using Copilot Studio’s conversational setup experience.
 
 1.  Open a browser and navigate to +++https://copilotstudio.microsoft.com+++ and
-    login using your credentials.
+    login using your credentials if not done already.
 
     -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
       
@@ -308,6 +308,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
