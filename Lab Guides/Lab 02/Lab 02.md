@@ -306,7 +306,7 @@ Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
 
 1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a
     browser and **login** using your tenant credentials from
-    the **Resources** tab.
+    the **Resources** tab if prompted.
 
 2.  Back in the Copilot Studio, select **Publish** from the top right of
     the agent page.
@@ -456,6 +456,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
