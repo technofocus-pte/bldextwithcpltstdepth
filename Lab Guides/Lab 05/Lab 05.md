@@ -1,4 +1,4 @@
-<img width="300" height="342" alt="image" src="https://github.com/user-attachments/assets/d8559201-7c93-4e81-b529-2e77ff56a461" /># Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
+# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
 
 In the earlier lab, you built your main Hiring Agent giving you a solid
 foundation for managing recruitment workflows. But one agent can only do
@@ -815,6 +815,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
