@@ -152,7 +152,7 @@ Let's add our first child agent to your existing Hiring Agent.
 
 ### Task 2 - Configure your Hiring Agent instructions
 
-1.  **Navigate** to Copilot Studio. Ensure your environment is selected
+1.  **Navigate** to Copilot Studio. Ensure that the environment **Dev One** is selected
     in the top right **Environment Picker**.
 
 2.  Open the **Hiring Agent**.
@@ -162,9 +162,9 @@ Let's add our first child agent to your existing Hiring Agent.
 
     ![](./media/image5.png)
 
-4.  Copy and paste the following instructions in the instructions input.
+4.  Copy and paste the following instructions in the instructions input area.
 
-    +++**You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.**+++
+    +++You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.+++
 
 5.  Select **Save**.
 
@@ -177,16 +177,16 @@ Let's add our first child agent to your existing Hiring Agent.
 7.  Review the page and ensure the following settings are applied and
     then select **Save**.
 
-    - Use generative AI orchestration for your agent's responses - Yes
-    - Deep Reasoning - Off
-    - Let other agents connect to and use this one - On
-    - Continue using retired models - Off
-    - Content Moderation - Moderate
-    - Collect user reactions to agent messages - On
-    - Use general knowledge - Off
-    - Use information from the Web - Off
-    - File uploads - On
-    - Code Interpreter - Off
+    - Use generative AI orchestration for your agent's responses - **Yes**
+    - Deep Reasoning - **Off**
+    - Let other agents connect to and use this one - **On**
+    - Continue using retired models - **Off**
+    - Content Moderation - **Moderate**
+    - Collect user reactions to agent messages - **On**
+    - Use general knowledge - **Off**
+    - Use information from the Web - **Off**
+    - File uploads - **On**
+    - Code Interpreter - **Off**
 
     ![](./media/image8.png)
 
@@ -196,7 +196,7 @@ Let's add our first child agent to your existing Hiring Agent.
 
     ![](./media/image11.png)
 
-9.  Click the **X** in the upper right hand corner to close out of the
+9.  Once the changes are saved, click the **X** in the upper right hand corner to close out of the
     settings menu
 
      ![](./media/image12.png)
@@ -216,7 +216,7 @@ In this task, you will add a child agent to the Hiring agent.
 
 3.  **Name** your agent +++Application Intake Agent+++
 
-4.  Select **The agent chooses** - Based on description in the **When
+4.  Select **The agent chooses - Based on description** in the **When
     will this be used?** dropdown. These options are similar to the
     triggers that can be configured for topics.
 
@@ -809,6 +809,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
