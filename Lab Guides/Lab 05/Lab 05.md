@@ -1,4 +1,4 @@
-# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
+<img width="300" height="342" alt="image" src="https://github.com/user-attachments/assets/d8559201-7c93-4e81-b529-2e77ff56a461" /># Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
 
 In the earlier lab, you built your main Hiring Agent giving you a solid
 foundation for managing recruitment workflows. But one agent can only do
@@ -298,8 +298,16 @@ existing) without depending on user interaction.
     ![](./media/image24.png)
 
     >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
-    add the action. Enter any name for the connection and click **Signin** and follow the prompts to
+    add the action. Enter any **name** for the connection and click **Signin** and follow the prompts to
     create that connection.
+    >
+    >![](./media/image91.png)
+    >
+    >![](./media/image92.png)
+    >
+    >If you face issues in creating connection due to popup blocker as in the screenshot below, please disable the popup blocker to proceed with the connection creation.
+    >
+    >![](./media/image93.png)
 
 8.  Name the node +++**Create Resume**+++, by selecting the 3 dot and
     select **Rename**.  
@@ -807,6 +815,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
