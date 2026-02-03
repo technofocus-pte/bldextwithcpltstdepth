@@ -569,7 +569,7 @@ child agent and following our instructions.
 
     ![](./media/image60.png)
 
-3.  Give the message +++Process these resumes+++ and hit **send**.
+3.  Give the message +++Process this resume+++ and hit **send**.
 
     ![](./media/image61.png)
 
@@ -738,7 +738,7 @@ agent to achieve multi agent orchestration.
 
     **NOTE**
 
-    If the Interview Agent is greyed out and not selectable then tht means it did not Publish. Go back to the Interview Agent and publish it first.
+    If the Interview Agent is greyed out and not selectable then that means it did not Publish. Go back to the Interview Agent and publish it first.
 
 3.  Set the **Description** to be,
 
@@ -766,7 +766,9 @@ agent to achieve multi agent orchestration.
     description which tell the parent agent what it can delegate to the
     connected agent:
 
+    ```
     Upload this resume, then show me open job roles, each with a description of the evaluation criteria, then use this to match the resume to at least one suitable job role even if not a perfect match.
+    ```
     
      ![](./media/image87.png)
 
@@ -775,15 +777,6 @@ agent to achieve multi agent orchestration.
     match using its knowledge.
 
      ![](./media/image88.png)
-
-4.  Play with different ways of asking questions about Resumes, Job
-    Roles and Evaluation Criteria. **Examples:**
-
-     +++Give me a summary of active resumes+++
-
-     +++Summarize resume R1006+++
-
-     +++Which active resumes are suitable for the Power Platform Developer role?+++
 
 ## Summary
 
@@ -814,6 +807,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
