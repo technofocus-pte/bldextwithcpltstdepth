@@ -264,14 +264,19 @@ existing) without depending on user interaction.
 
 4.  Select **Agent flow**. The Agent Flow designer will open, this is
     where we will add the upload resume logic.  
+
     ![](./media/image20.png)
 
-5.  Select the **When an agent calls the flow** node, and select **+ Add
+    >[!Alert] Important: If **+ New tool** option is not available and **Agent Flow** is directly available, then please select Agent flow.
+    >
+    >![](./media/image90.png)
+
+6.  Select the **When an agent calls the flow** node, and select **+ Add
     an input**
 
      ![](./media/image21.png)
 
-6.  Add **inputs**. Select the appropriate input type as shown in the table
+7.  Add **inputs**. Select the appropriate input type as shown in the table
     and be sure to add both the name and the description. It's important
     to include the description because it will help the agent know what
     to fill in the input.
@@ -809,6 +814,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
