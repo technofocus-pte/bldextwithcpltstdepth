@@ -202,7 +202,7 @@ extension format is .PDF.
 17. Now we'll configure the **True** path to extract the file from the
     email and upload it into the **Resume** Dataverse table.
 
-    Add a new action below in the **True** path and search for html to text. Search for and select the ++**+Html to text**+++ action.
+    Add a new action below in the **True** path and search for html to text. Search for and select the +++**Html to text**+++ action.
     
     >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
 
@@ -261,11 +261,11 @@ the **Resumes** table.
     ![](./media/image24.png)
 
     >[!Note] **Note on item() function:**
-
-    - When you use an **Apply to each** action, Power Automate goes through
+    >
+    >- When you use an **Apply to each** action, Power Automate goes through
       each element in a collection (array).
-    
-    - It’s most often used inside actions like **Apply to each** (or **For
+    >
+    >- It’s most often used inside actions like **Apply to each** (or **For
       each**), **Select**, or **Filter array**.
 
 26. We still need to configure several more parameters, select **Show
@@ -394,7 +394,7 @@ the **Resumes** table.
     the **Add a new row** *Dataverse* action as this contains
     the ID value of the Resume row created.
 
-> ![](./media/image43.png)
+    ![](./media/image43.png)
 
 45. Highlight the **RESUME TITLE PLACEHOLDER**. Select the **lightning bolt
     icon** to the right.
@@ -443,7 +443,7 @@ the **Resumes** table.
 
     ![](./media/image52.png)
 
-    Let's proceed in creating a new agent flow that will be invoked by the
+    Let's proceed with creating a new agent flow that will be invoked by the
 child **Intake Application Agent**.
 
 ### Task 2 - Notify a Teams channel using an adaptive card
@@ -469,7 +469,7 @@ be used later in this lab.
 
     - Team name - +++HR Team+++
 
-    - First channel name - +++Applicants +++
+    - First channel name - +++Applicants+++
 
     ![](./media/image54.png)
 
@@ -561,7 +561,7 @@ be used later in this lab.
 14. Next, we'll configure the **Adaptive Card** field. Select
     the **Adaptive Card** field.
 
-> ![](./media/image71.png)
+    ![](./media/image71.png)
 
 15. Copy the below code and paste it into the Adaptive Card field.
 
@@ -1118,7 +1118,7 @@ Intake Agent**.
 
 61. We now need to **Publish** the **Hiring Agent**.
     Select **Publish** on the upper right, and in the **Publish this
-    agent modal **that appears select **Publish**.
+    agent modal** that appears select **Publish**.
 
     ![](./media/image119.png)
 
@@ -1142,7 +1142,7 @@ this lab.
 
     |  Email Component  |  Details  |
     |:--------|:---------|
-    |  To recipient  |  Use your signed in user account as the value  |
+    |  To recipient  |  +++@lab.CloudCredential(M365).AdministrativeUsername+++  |
     | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file (from **C:\LabFiles\LabFiles**   |
     |  Subject  | +++Job Application+++   |
     |  Body  |  Copy and paste the following below as the body of the email  |
