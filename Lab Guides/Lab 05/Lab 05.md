@@ -544,7 +544,7 @@ Intake agent.
 
     - System.Activity.Attachments (Variable)
 
-    - Upload Resume (Tool)
+    - Resume Upload (Tool)
 
     >[!Note] **Note:** If you click on the System.Acticvity.Attachements in the
     instructions, you will get the resolved name listed. You can select
@@ -815,6 +815,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
