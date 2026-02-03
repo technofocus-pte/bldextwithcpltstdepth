@@ -298,7 +298,7 @@ existing) without depending on user interaction.
     ![](./media/image24.png)
 
     >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
-    add the action. Enter any name for the connection and click add to
+    add the action. Enter any name for the connection and click **Signin** and follow the prompts to
     create that connection.
 
 8.  Name the node +++**Create Resume**+++, by selecting the 3 dot and
@@ -316,9 +316,9 @@ existing) without depending on user interaction.
     |  **Property**  | **How to Set**   | **Details / Expression**   |
     |:----|:------|:-----|
     |   **Resume Title** | Dynamic data (thunderbolt icon)   | **When an agent calls the flow → Resume name** If you don't see the Resume name, make sure you have configured the Resume parameter above as a data type.  |
-    |  Cover letter  | Expression (fx icon)   | +++if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])+++   |
+    |  Cover letter  | Expression (fx icon)   | +++if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])+++ Click on **Add** after the expression is entered.  |
     |  **Source Email Address**  |Dynamic data (thunderbolt icon)   | **When an agent calls the flow → UserEmail**   |
-    |  **Upload Date**  | Expression (fx icon)   |  +++utcNow()+++  |
+    |  **Upload Date**  | Expression (fx icon)   |  +++utcNow()+++ Click on **Add** after the expression is entered.  |
 
     ![](./media/image27.png)
 
@@ -358,7 +358,7 @@ existing) without depending on user interaction.
      | **Property**   |  **How to Set**  |  **Details**  |
      |:-----|:--------|:--------|
      |  **Type**  |  Select  |  Text  |
-     |  **Name**  |  Enter  | +=+ResumeNumber+++   |
+     |  **Name**  |  Enter  | +++ResumeNumber+++   |
      |  **Value**  |  Dynamic data (thunderbolt icon)  |  Create Resume → See More → Resume Number  |
      |  **Description**  |  Enter  | +++The [ResumeNumber] of the Resume created+++   |
     
@@ -814,6 +814,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
