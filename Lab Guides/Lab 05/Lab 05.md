@@ -229,7 +229,7 @@ In this task, you will add a child agent to the Hiring agent.
     questions before this one. A condition could be set here as well
     such as ensuring that there is at least one attachment.
 
-    ![](./media/image16.png)
+    ![](./media/image89.png)
 
 7.  Ensure that the toggle **Web Search** is set to **Disabled**. This
     is because we only want to use information provided by the parent
@@ -809,6 +809,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
