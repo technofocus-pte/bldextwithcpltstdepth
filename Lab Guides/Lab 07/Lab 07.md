@@ -104,15 +104,11 @@ the requested data.
     ```
     1.  Go to https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
     
-    2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
-        click on the "Search" button.
+    2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and click on the "Search" button.
     
-    3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
-        exactly as shown.
+    3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values exactly as shown.
     
-    4.  Return those three values as the final output. If no portfolio data
-        is found, reply that you couldn't find a portfolio with the
-        specified ID.
+    4.  Return those three values as the final output. If no portfolio data is found, reply that you couldn't find a portfolio with the specified ID.
     ```
     
     ![](./media/image14.png)
@@ -120,8 +116,7 @@ the requested data.
 6.  Update the **Name** of the Computer use tool as +++Look up portfolio
     data+++
 
-7.  Update the **Description** as +++Search and retrieve financial
-    portfolio data+++
+7.  Update the **Description** as +++Search and retrieve financial portfolio data+++
 
     ![](./media/image15.png)
 
@@ -129,8 +124,7 @@ the requested data.
 
     ![](./media/image16.png)
 
-9.  Enter name as +++Portfolio ID+++ and description +++The ID of the
-    portfolio+++ and select **Done**.
+9.  Enter name as +++Portfolio ID+++ and description +++The ID of the portfolio+++ and select **Done**.
 
     ![](./media/image17.png)
 
