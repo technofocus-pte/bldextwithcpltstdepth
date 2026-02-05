@@ -33,7 +33,7 @@ subject line filtering.
     +++https://copilotstudio.microsoft.com+++ using your login
     credentials.
 
-2.  Select the Dev One environment from the top right.
+2.  Select the **Dev One** environment from the top right.
 
     ![](./media/image1.png)
 
@@ -55,7 +55,7 @@ subject line filtering.
     ![](./media/image5.png)
 
 7.  Search and select **When a new email arrives (V3) (Office 365
-    Outlook** and click on **Next**.
+    Outlook** and click on **Next**. 
 
     ![](./media/image6.png)
 
@@ -101,20 +101,20 @@ the requested data.
 5.  Add the following Instructions, and then select **Add and
     configure**.
 
-
-    -  Go to
-        https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
+    ```
+    1.  Go to https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
     
-    -  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
+    2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
         click on the "Search" button.
     
-    -  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
+    3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
         exactly as shown.
     
-    -  Return those three values as the final output. If no portfolio data
+    4.  Return those three values as the final output. If no portfolio data
         is found, reply that you couldn't find a portfolio with the
         specified ID.
-
+    ```
+    
     ![](./media/image14.png)
 
 6.  Update the **Name** of the Computer use tool as +++Look up portfolio
