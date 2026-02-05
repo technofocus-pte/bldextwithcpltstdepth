@@ -224,23 +224,19 @@ In this task, you will set up the email capability.
 11. Paste the following instruction.
 
     ```
-    When a financial portfolio related request is received, identify the
-Portfolio ID and search for the requested data using < Look up
-portfolio data >. Once you have gathered the financial portfolio
-information, use the < Reply to email > tool to reply to the original
-email you received. Do not respond with data beyond what was requested.
+    When a financial portfolio related request is received, identify the Portfolio ID and search for the requested data using < Look up portfolio data >. Once you have gathered the financial portfolio information, use the < Reply to email > tool to reply to the original email you received. Do not respond with data beyond what was requested.
     ```
     
     ![](./media/image39.png)
 
-12. Select \< Look up portfolio data \>, enter / and select the tool
-    Look up portfolio data.
+12. Select < Look up portfolio data >, enter / and select the **tool**
+    **Look up portfolio data**.
 
     ![](./media/image40.png)
 
     ![](./media/image41.png)
 
-13. Similarly, replace \< Reply to email \> with the tool, **Reply to
+13. Similarly, replace < Reply to email > with the **tool**, **Reply to
     email**.
 
 14. Once the replacements are done, as in the screenshot below, select
