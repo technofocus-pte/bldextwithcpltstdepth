@@ -197,8 +197,7 @@ In this task, you will set up the email capability.
     ![](./media/image32.png)
 
 6.  Under the **Inputs** section, click on **customize** against the
-    **To** input and set its **Description** to +++Use the "from" email
-    of the triggering received email+++.
+    **To** input and set its **Description** to +++Use the "from" email of the triggering received email+++.
 
     ![](./media/image33.png)
     
@@ -224,12 +223,14 @@ In this task, you will set up the email capability.
 
 11. Paste the following instruction.
 
+    ```
     When a financial portfolio related request is received, identify the
-Portfolio ID and search for the requested data using \< Look up
-portfolio data \>. Once you have gathered the financial portfolio
-information, use the \< Reply to email \> tool to reply to the original
+Portfolio ID and search for the requested data using < Look up
+portfolio data >. Once you have gathered the financial portfolio
+information, use the < Reply to email > tool to reply to the original
 email you received. Do not respond with data beyond what was requested.
-
+    ```
+    
     ![](./media/image39.png)
 
 12. Select \< Look up portfolio data \>, enter / and select the tool
