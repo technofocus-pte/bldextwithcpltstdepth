@@ -21,7 +21,7 @@ connectivity
 
 1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++
     using your login credentials if not done already and make sure that
-    you are in the Dev One environment.
+    you are in the **Dev One** environment.
 
     ![](./media/image1.png)
 
@@ -38,14 +38,14 @@ connectivity
 
     - Name - +++Contoso Agent+++
     
-    - Description - +++This agent will help Contoso sales reps update their
-      accounts and contacts using the Dataverse MCP Server+++
+    - Description - +++This agent will help Contoso sales reps update their accounts and contacts using the Dataverse MCP Server+++
 
     ![](./media/image4.png)
 
 5.  **Edit** Instructions and enter the below set of instructions and
     select **Save**.
 
+    ```
     This agent will: Read accounts and contact information from the Account
     and Contact Tables in Dataverse using the Dataverse MCP Server. Update
     accounts and contact information from the Account and Contact Tables in
@@ -53,7 +53,8 @@ connectivity
     contact information in the Account and Opportunity Tables in Dataverse
     using the Dataverse MCP Server. Do not use outside knowledge. Only use
     the Dataverse MCP Tool to create, read, update and delete.
-
+    ```
+    
     ![](./media/image5.png)
     
     ![](./media/image6.png)
@@ -65,11 +66,9 @@ connectivity
 
 7.  Add the following prompts and then click **Save**.
 
-    - **Title**: +++Account Search+++ **Prompt**: +++List all accounts in
-      Redmond+++
+    - **Title**: +++Account Search+++ **Prompt**: +++List all accounts in Redmond+++
     
-    - **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from
-      Coho Winery+++
+    - **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from Coho Winery+++
 
     ![](./media/image8.png)
 
@@ -159,11 +158,7 @@ your agent that provide business-relevant information.
     ![](./media/image22.png)
 
 4.  We can now grab specific fields from Dataverse to show to our end
-    users in the chat. Click back in the instructions and enter +++and
-    find relevant details like: +++ click **+ Add content**. This time
-    we will select **Dataverse** and some of the fields in the
-    **Account** table which we feel our end users would like to see
-    about the account.
+    users in the chat. Click back in the instructions and enter +++and find relevant details like:+++ click **+ Add content**. This time we will select **Dataverse** and some of the fields in the **Account** table which we feel our end users would like to see about the account.
 
     ![](./media/image23.png)
 
