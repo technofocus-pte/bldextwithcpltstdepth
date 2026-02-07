@@ -59,7 +59,7 @@ incorrect.](./media/im17.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im18.png)
 
-10.  Then give an instruction of the agent tone as below.
+10. Then give an instruction of the agent tone as below.
 
     +++Use a professional, yet friendly, tone.+++
 
@@ -102,6 +102,7 @@ incorrect.](./media/image13.png)
 
 In this lab, you have learnt to create an agent from the Copilot Studio
 Agent Builder.
+
 
 
 
