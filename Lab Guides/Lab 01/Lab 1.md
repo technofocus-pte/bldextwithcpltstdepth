@@ -14,9 +14,9 @@ instrucciones de ejemplo.
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image1.png)
 
-2.  Seleccione **Create agent** en el panel izquierdo.
+2.  Seleccione **New agent** en el panel izquierdo.
 
-> ![](./media/image2.png)
+> ![](./media/im1.png)
 
 3.  Aparecerá el generador de agentes de Copilot Studio y podrá empezar
     a definir el agente personalizado. Puede elegir una plantilla desde
@@ -103,3 +103,4 @@ incorrect.](./media/image13.png)
 
 En este laboratorio, ha aprendido a crear un agente desde Copilot Studio
 Agent Builder.
+
