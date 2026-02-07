@@ -120,6 +120,59 @@ incorrect.](./media/image21.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
+16. Seleccione Contoso|Grupos en la parte superior izquierda.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im2.png)
+
+18. Seleccione Propiedades en Administrar desde el panel izquierdo.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im3.png)
+
+19. Activa Sí en la opción **can manage access to all Azure subscriptions and management groups in this tenant** y luego haz clic en **Save**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im4.png)
+
+20. Ahora, selecciona "Roles and administrators" en "Manage" desde el panel izquierdo.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im5.png)
+
+21. Busca +++privileged role admin+++ y haz clic en el rol **Privileged Role Administrator** (no selecciones la casilla; haz clic en su nombre).
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im6.png)
+
+22. Selecciona **+ Add assignments**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im7.png)
+
+23. Selecciona **No members selected**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im8.png)
+
+24. Selecciona **MOD Admin id** y luego selecciona **Next**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im9.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im10.png)
+
+25. Selecciona **Assign**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im11.png)
+
+26. Asegúrate de que la asignación del rol se haya realizado correctamente.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im12.png)
+
 16. Desde una nueva pestaña, navegue a
     **+++https://powerplatform.microsoft.com+++.** Seleccione **Manage**
     en el panel izquierdo y luego seleccione la opción **Tenant
@@ -188,3 +241,4 @@ En este laboratorio, se ha activado **Dynamics 365 Customer Service**,
 el cual se utilizará en el **Laboratorio 04 - Integrar un agente con la
 aplicación Dynamics 365 Customer Service e implementar la escalación
 automática de casos al agente en vivo**.
+
