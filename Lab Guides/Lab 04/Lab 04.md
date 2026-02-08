@@ -11,33 +11,7 @@ Configuración de Dynamics 365 Customer Service.**
 
 ## Ejercicio 1: Configurar el workspace de Dynamics 365 Customer Service
 
-### Tarea1: Configurar la extensión Omnichannel Power Virtual Agent 
-
-1.  Abra el enlace,
-    +++<https://appsource.microsoft.com/en-cy/product/dynamics-365/mscrm.omnichannelpvaextension?tab=Overview&ref=dynamicsforcrm.com+++> y
-    haga clic en **Get it now** en la página Omnichannel Power Virtual
-    Agent Extension.
-
-![](./media/image1.png)
-
-2.  Inicie sesión con las credenciales del tenant desde la
-    pestaña **Resources**.
-
-![](./media/image2.png)
-
-3.  Haga clic en **Get it now**.
-
-![](./media/image3.png)
-
-4.  Seleccione **CustomerService Trial** en **Select an environment**,
-    marque las casillas correspondientes y haga clic en **Install**.
-
-![](./media/image4.png)
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image5.png)
-
-## Tarea 2: Configurar los ajustes de búsqueda en el centro de administración de Power Platform
+## Tarea 1: Configurar los ajustes de búsqueda en el centro de administración de Power Platform
 
 1.  Inicie sesión en
     +++<https://admin.powerplatform.microsoft.com/+++> con los datos de
@@ -482,6 +456,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
