@@ -186,9 +186,7 @@ incorrect.](./media/image23.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-13. Seleccione **Managed identity **y, a continuación, seleccione **+
-    Select members**. Seleccione **Service search** en **Managed
-    identity **y seleccione el servicio de búsqueda **searchleaves** que
+13. Seleccione **Managed identity** y, a continuación, seleccione **+ Select members**. Seleccione **Service search** en **Managed identity** y seleccione el servicio de búsqueda **searchleaves** que
     aparece en la lista.
 
 ![A screenshot of a computer AI-generated content may be
