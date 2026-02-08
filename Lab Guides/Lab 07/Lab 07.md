@@ -109,43 +109,17 @@ automáticamente.
 
 ![](./media/image12.png)
 
-2.  Seleccione **Agents** y luego haga clic en **+ New agent**.
+2.  Desde la **Home page**, ingresa el siguiente texto en el área **Describe the agent text area** y selecciona **Send**. Esto crea el agente con la descripción proporcionada. Las instrucciones para el agente se pueden agregar en los siguientes pasos si es necesario.
+
+    +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
+    
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im43.png)
+
+4.  Espera hasta que el agente se aprovisione y luego continúa con el siguiente paso.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image13.png)
-
-3.  Ingrese lo siguiente en el chat y envíelo.
-
-+++Create an agent that will assist the customers in shopping with
-Contoso Electronics. Name it as "Shopping agent".+++
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image14.png)
-
-4.  Ingrese +++Help the users in finding products and their prices, give
-    personalized suggestions and track order delivery.+++ y presione
-    **Enter**.
-
-![](./media/image15.png)
-
-5.  Ingrese instrucciones adicionales como se muestra a continuación.
-
-+++Maintain a polite tone+++
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
-
-6.  Haga clic en **Create** para crear el **Shopping agent**.
-
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image17.png)
-
-7.  El agente se configura. Este proceso puede tardar algunos minutos.
-    Una vez completado, el agente se muestra en Copilot Studio, como se
-    observa en la captura de pantalla a continuación.
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
+incorrect.](./media/im45.png)
 
 ### Tarea 2 – Incorpore conocimiento
 
