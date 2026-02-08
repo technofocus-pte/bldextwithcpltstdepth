@@ -58,11 +58,13 @@ incorrect.](./media/image7.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-4.  Active las opciones **Dataverse Search** y **Single table search** a
-    **ON** y seleccione **Save**.
+4.  Activa **Dataverse Search** a **On** y haz clic en **Save**. Luego, activa la opción **Single table search** a **On** y selecciona **Save**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+incorrect.](./media/im14.png)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im15.png)
 
 ## Ejercicio 2: Crear un agente
 
@@ -499,3 +501,4 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
