@@ -23,8 +23,7 @@ En este ejercicio, se creará un agente en Copilot Studio utilizando la plantill
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
-3.  Seleccione **+ Create** en el panel izquierdo para crear un nuevo
-    agente.
+3.  Selecciona **Agents** en el panel izquierdo y luego selecciona la plantilla **Safe Travels** en **Start with an agent template**.
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image3.png)
@@ -136,4 +135,5 @@ incorrect.](./media/image19.png)
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
