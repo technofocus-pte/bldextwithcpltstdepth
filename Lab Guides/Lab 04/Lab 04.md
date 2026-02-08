@@ -419,10 +419,10 @@ incorrect.](./media/im24.png)
 19. Ingrese +++Talk to agent+++.
 
 ![A screenshot of a phone AI-generated content may be
-incorrect.](./media/image71.png)
+incorrect.](./media/im25.png)
 
 20. Desde la página de administración de Customer Service, haga clic
-    en **Customer Service admin center** y seleccione la
+    en **Copilot Service admin center** y seleccione la
     aplicación **Customer Service workspace**.
 
 ![A screenshot of a computer AI-generated content may be
@@ -462,6 +462,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
