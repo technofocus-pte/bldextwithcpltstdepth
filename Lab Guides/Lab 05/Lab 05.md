@@ -415,19 +415,17 @@ En este ejercicio, crearemos un agente de gestión de permisos que se
 puede utilizar para obtener información sobre los permisos, el balance
 de permisos de los empleados, etc.
 
-1.  En la página de inicio de Copilot Studio, seleccione **Agents** -\>
-    **+ New agent**.
+1.  En la página de inicio de Copilot Studio, seleccione **Agents** -> **+ Create blank agent**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image66.png)
+incorrect.](./media/im28.png)
 
-2.  Seleccione **Skip to configure**.
+2.  Una vez que el agente esté creado, selecciona **Edit**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image67.png)
+incorrect.](./media/im29.png)
 
-3.  En la página de configuración, ingrese los siguientes detalles y
-    seleccione **Create**.
+3.  Ingresa los siguientes detalles y selecciona **Save**.
 
     - Name - +++Leave Manager Agent+++
 
@@ -435,11 +433,8 @@ incorrect.](./media/image67.png)
       employees, their leave balance and leave history to approve or
       reject any new leave requests.+++
 
-    - Instructions - +++Track the leaves of employees. Track their leave
-      balance. Apply/Reject leaves based on their balance.+++
-
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image68.png)
+incorrect.](./media/im30.png)
 
 4.  Una vez creado el agente, desplácese hacia abajo en la página
     Overview y seleccione **Add knowledge** en la sección **Knowledge**.
@@ -607,3 +602,4 @@ En este laboratorio, hemos aprendido a mejorar un agente creado a partir
 de una plantilla para adaptarlo a las necesidades individuales. También
 hemos aprendido a implementar la coordinación de múltiples agentes en
 Copilot Studio
+
