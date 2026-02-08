@@ -403,11 +403,6 @@ incorrect.](./media/image56.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-2.  Seleccione **Create** en el panel izquierdo.
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
-
 3.  Seleccione **Agents** para crear un nuevo agente.
 
 ![A screenshot of a computer AI-generated content may be
@@ -418,16 +413,7 @@ incorrect.](./media/image59.png)
     employees.+++ y seleccione **Send**.
 
 > ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/image60.png)
-
-5.  Copilot sugiere un nombre al agente. Haga clic en **Create** para
-    crear el agente.
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image61.png)
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
+> incorrect.](./media/im42.png)
 
 6.  Una vez creado el agente, en el panel Test, ingrese +++How many days
     can I avail Maternity leaves?+++ y haga clic en **Send.**
