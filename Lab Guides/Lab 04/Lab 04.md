@@ -54,7 +54,7 @@ incorrect.](./media/im15.png)
 >![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im26.png)
 >
->Abre +++https://admin.powerplatform.microsoft.com/+++. Selecciona **Manage -> Environments -> Dev One** y selecciona el valor de **Environment ID**.
+>Abre +++https://admin.powerplatform.microsoft.com/+++. Selecciona **Manage -> Environments -> Customer Service Trial** y selecciona el valor de **Environment ID**.
 >
 >![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im27.png)
@@ -474,6 +474,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
