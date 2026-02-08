@@ -80,28 +80,10 @@ incorrect.](./media/im15.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im16.png)
 
-3.  En el área de texto Type your message, escriba +++**You are a
-    customer service agent who helps in identifying stores nearby.**+++
-    y presione **send**.
-
-![](./media/image12.png)
-
-4.  El agente puede sugerir un nombre para el agente que se está
-    creando. Aceptarlo o sugerir uno nuevo..
-
-5.  Escriba el mensaje +++**Maintain a polite tone**+++ a continuación y
-    presione **send**.
-
-![](./media/image13.png)
-
-6.  Haga clic en **Create**.
-
-![](./media/image14.png)
-
-7.  El agente creado se abre con un mensaje, **Your agent is ready**.
+3.   La creación del agente se completa correctamente y se abre la página "Overview" del agente. Cualquier actualización del nombre, la descripción o las instrucciones se puede realizar desde esta página si es necesario.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image15.png)
+incorrect.](./media/im17.png)
 
 ## Ejercicio 3: Conectar Copilot a Dynamics 365 Customer Service y configurar el tema Escalate
 
@@ -500,5 +482,6 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
