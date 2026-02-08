@@ -170,21 +170,20 @@ incorrect.](./media/image31.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-3.  Seleccione **Customer Service workspace** en la barra de encabezado.
+3.  Seleccione **Copilot Service workspace** en la barra de encabezado.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image33.png)
+incorrect.](./media/im18.png)
 
-4.  Se abrirá la página **Apps**. Seleccione **Customer Service admin
-    center**.
+4.  Se abrirá la página **Apps**. Seleccione **Copilot Service admin center**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image34.png)
+incorrect.](./media/im19.png)
 
 5.  Esto abre la página **Dynamics 365 Customer Service admin center**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image35.png)
+incorrect.](./media/im20.png)
 
 ### Tarea 2: Configurar flujo de trabajo
 
@@ -456,6 +455,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
