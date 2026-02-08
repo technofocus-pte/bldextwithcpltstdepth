@@ -486,6 +486,11 @@ incorrect.](./media/im34.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/im35.png)
 
+13.  Selecciona **Publish** y espera hasta que el agente se publique.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im36.png)
+
 ## Ejercicio 8 - Implementar la orquestación multiagente en Copilot Studio
 
 En lugar de depender de un único agente para hacerlo todo, o de
@@ -575,5 +580,6 @@ En este laboratorio, hemos aprendido a mejorar un agente creado a partir
 de una plantilla para adaptarlo a las necesidades individuales. También
 hemos aprendido a implementar la coordinación de múltiples agentes en
 Copilot Studio
+
 
 
