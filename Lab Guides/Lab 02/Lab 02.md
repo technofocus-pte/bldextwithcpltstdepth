@@ -401,18 +401,9 @@ incorrect.](./media/image56.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-3.  The agent creation page gets opened. Describe the agent in the **Describe** tab. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
+3.  Select Agents from the left pane. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image74.png)
-
-4.  The copilot suggests a name to the agent. Click on **Create** to
-    create the agent.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image62.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im42.png)
 
 6.  Once the agent is created, in the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
 
@@ -476,6 +467,7 @@ incorrect.](./media/image70.png)
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
