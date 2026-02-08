@@ -396,8 +396,12 @@ incorrect.](./media/image67.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
+17. Por favor, espera unos minutos antes de continuar con el siguiente paso.
+
+18. Vuelve a **Publish** el agente desde **Copilot Studio** una vez.
+
 17. Una vez completada la sincronización,
-    seleccione **Preview** -\> **Desktop.**
+    seleccione **Preview** -> **Desktop.**
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
@@ -407,7 +411,10 @@ incorrect.](./media/image69.png)
     derecha. **Haga clic** en él.
 
 ![A screenshot of a website AI-generated content may be
-incorrect.](./media/image70.png)
+incorrect.](./media/im23.png)
+
+![A screenshot of a website AI-generated content may be
+incorrect.](./media/im24.png)
 
 19. Ingrese +++Talk to agent+++.
 
@@ -455,6 +462,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
