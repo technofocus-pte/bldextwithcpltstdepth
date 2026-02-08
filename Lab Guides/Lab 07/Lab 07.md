@@ -114,7 +114,7 @@ automáticamente.
     +++Create an agent that will assist the customers in shopping with Contoso Electronics. Name it as "Shopping agent".+++
     
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im43.png)
+incorrect.](./media/im44.png)
 
 4.  Espera hasta que el agente se aprovisione y luego continúa con el siguiente paso.
 
