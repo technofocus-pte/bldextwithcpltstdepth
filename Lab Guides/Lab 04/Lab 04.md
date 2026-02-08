@@ -118,7 +118,7 @@ incorrect.](./media/image23.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-4.  Seleccione **Save **en el cuadro de diálogo de confirmación.
+4.  Seleccione **Save ** en el cuadro de diálogo de confirmación.
 
 ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image25.png)
@@ -455,6 +455,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
