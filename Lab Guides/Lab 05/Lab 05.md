@@ -463,55 +463,28 @@ incorrect.](./media/image71.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image73.png)
 
-9.  Seleccione **+ Add a topic** -\> **Add from description with
-    Copilot** desde la pestaña Topics.
+9.  Selecciona **Settings** en la parte superior derecha.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image74.png)
+incorrect.](./media/im31.png)
 
-10. Ingrese los siguientes datos y haga clic en **Create**.
-
-- Name - +++Leave Balance Checker+++
-
-- Create a topic to - +++Get the Employee ID from the user and check and
-  reply with the leave balance based on the tracker added as knowledge
-  source+++
+10. Asegúrate de que **Yes** esté seleccionado en **Use generative AI orchestration** y desactiva la opción **Use general knowledge** en la sección Knowledge; luego selecciona **Save**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
-
-11. Compruebe si el tema tiene el nodo para obtener el ID de empleado y,
-    a continuación, haga clic en Save. Aquí tenemos un nodo para obtener
-    el ID de empleado y un nodo de mensaje que indica que se está
-    recuperando el balance.
-
-> Compruebe el tema una vez y elimine los demás nodos que se hayan
-> creado aparte de los anteriores.
-
-A continuación, **guarde** el tema haciendo clic en Save.
-
-![](./media/image76.png)
-
-12. Envíe un mensaje +++Check Leave balance+++ desde el panel de prueba.
-
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image77.png)
-
-13. Ingrese +++1234+++ como ID de empleado.
-
-![A screenshot of a chat AI-generated content may be
-incorrect.](./media/image78.png)
-
-14. Compruebe la respuesta del agente. Se recupera del activo de
-    conocimiento añadido al agente.
-
-> ![A screenshot of a chat AI-generated content may be
-> incorrect.](./media/image79.png)
-
-15. Seleccione Publish y espere hasta que el agente se publique.
+incorrect.](./media/im32.png)
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image80.png)
+incorrect.](./media/im33.png)
+
+11.  Envía un mensaje +++Check Leave balance for Employee ID 1234+++ desde el panel de prueba.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im34.png)
+
+12.  Verifica la respuesta del agente. Esta se obtiene del recurso de conocimiento agregado al agente.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im35.png)
 
 ## Ejercicio 8 - Implementar la orquestación multiagente en Copilot Studio
 
@@ -602,4 +575,5 @@ En este laboratorio, hemos aprendido a mejorar un agente creado a partir
 de una plantilla para adaptarlo a las necesidades individuales. También
 hemos aprendido a implementar la coordinación de múltiples agentes en
 Copilot Studio
+
 
