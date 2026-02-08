@@ -15,11 +15,17 @@ documentos de RR. HH. de la empresa.
 
 ## Ejercicio 1: Crear un recurso de Azure AI Search
 
-1.  En la página de inicio del portal de Azure, seleccione **Azure AI
-    Foundry.**
+1. Abre un navegador e inicia sesión en el portal de Azure en +++https://portal.azure.com/+++
+ con tus credenciales.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image1.png)
+    -    Username - +++@lab.CloudPortalCredential(User1).Username+++
+
+    -    Password - +++@lab.CloudPortalCredential(User1).Password+++
+
+   Desde la **Home page** del portal de Azure, busca +++Microsoft Foundry+++ y selecciona **Microsoft Foundry** en **Services**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im41.png)
 
 2.  En la **página AI Foundry**, seleccione **AI Search** en el panel
     izquierdo y, a continuación, seleccione **+ Create**.
