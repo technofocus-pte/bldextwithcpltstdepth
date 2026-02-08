@@ -281,10 +281,10 @@ incorrect.](./media/image48.png)
 ### Tarea 3: Agregue el agente al flujo de trabajo
 
 1.  De vuelta en la página **New Workstream**, desplácese hacia abajo y
-    haga clic en **+ Add bot** en la sección Bot.
+    haga clic en **+ Add AI agent** en la sección Bot.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image49.png)
+incorrect.](./media/im22.png)
 
 2.  En la lista de copilotos de la pantalla Add bot, seleccione el
     agente **Store Locator Assistant** y haga clic en **Connect**.
@@ -455,6 +455,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
