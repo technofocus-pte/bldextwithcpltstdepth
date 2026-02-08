@@ -26,12 +26,7 @@ incorrect.](./media/image2.png)
 3.  Selecciona **Agents** en el panel izquierdo y luego selecciona la plantilla **Safe Travels** en **Start with an agent template**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image3.png)
-
-4.  En **Start with an agent template**, seleccione **Safe Travels**.
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image4.png)
+incorrect.](./media/im13.png)
 
 5.  La plantilla Safe Travels crea un nuevo agente diseñado para
     proporcionar asistencia en viaje a los empleados de una empresa. 
@@ -135,5 +130,6 @@ incorrect.](./media/image19.png)
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
