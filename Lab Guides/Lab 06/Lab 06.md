@@ -405,15 +405,11 @@ incorrect.](./media/im43.png)
 
 3.  Seleccione **Agents** para crear un nuevo agente.
 
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image59.png)
-
 4.  Ingrese +++You are a Knowledge assistant agent for HR who will
     answer questions related to leaves and leave policies to the
     employees.+++ y seleccione **Send**.
 
-> ![A screenshot of a computer AI-generated content may be
-> incorrect.](./media/im42.png)
+![A screenshot of a computer AI-generated content may be incorrect.](./media/im42.png)
 
 6.  Una vez creado el agente, en el panel Test, ingrese +++How many days
     can I avail Maternity leaves?+++ y haga clic en **Send.**
