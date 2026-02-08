@@ -49,6 +49,18 @@ incorrect.](./media/im15.png)
 
 ![](./media/image10.png)
 
+>[!note] **Nota:** Si Copilot Studio no muestra la opción para seleccionar "Environment" como en la siguiente captura de pantalla, sigue los pasos a continuación.
+>
+>![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im26.png)
+>
+>Abre +++https://admin.powerplatform.microsoft.com/+++. Selecciona **Manage -> Environments -> Dev One** y selecciona el valor de **Environment ID**.
+>
+>![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im27.png)
+>
+>Vuelve a la pestaña de Copilot Studio y abre **https://copilotstudio.microsoft.com/environments/< EnvironmentID >** (reemplazando **< EnvironmentID >** con el valor obtenido anteriormente).
+
 2.  Selecciona **Agents** en el panel izquierdo. En el área de texto **Start building by describing what your agent needs to do**, escribe +++You are a customer service agent who helps in identifying stores nearby+++ y presiona **Send**.
 
 ![A screenshot of a computer AI-generated content may be
@@ -462,6 +474,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
