@@ -401,11 +401,7 @@ incorrect.](./media/image56.png)
     credenciales de inicio de sesión. Seleccione **Get Started**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image58.png)
-
-![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image57.png)
-
+incorrect.](./media/im43.png)
 
 3.  Seleccione **Agents** para crear un nuevo agente.
 
