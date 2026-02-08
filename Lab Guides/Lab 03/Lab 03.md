@@ -23,6 +23,18 @@ En este ejercicio, se creará un agente en Copilot Studio utilizando la plantill
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image2.png)
 
+>[!note] **Nota:** Si Copilot Studio no muestra la opción para seleccionar "Environment" como en la siguiente captura de pantalla, sigue los pasos a continuación.
+>
+>![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im26.png)
+>
+>Abre +++https://admin.powerplatform.microsoft.com/+++. Selecciona **Manage -> Environments -> Dev One** y selecciona el valor de **Environment ID**.
+>
+>![A screenshot of a computer AI-generated content may be
+incorrect.](./media/im27.png)
+>
+>Vuelve a la pestaña de Copilot Studio y abre **https://copilotstudio.microsoft.com/environments/< EnvironmentID >** (reemplazando **< EnvironmentID >** con el valor obtenido anteriormente).
+
 3.  Selecciona **Agents** en el panel izquierdo y luego selecciona la plantilla **Safe Travels** en **Start with an agent template**.
 
 ![A screenshot of a computer AI-generated content may be
@@ -130,6 +142,7 @@ incorrect.](./media/image19.png)
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
+
 
 
 
