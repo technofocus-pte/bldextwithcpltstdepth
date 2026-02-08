@@ -284,7 +284,7 @@ incorrect.](./media/image48.png)
     haga clic en **+ Add AI agent** en la sección Bot.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/im22.png)
+incorrect.](./media/im21.png)
 
 2.  En la lista de copilotos de la pantalla Add bot, seleccione el
     agente **Store Locator Assistant** y haga clic en **Connect**.
@@ -455,6 +455,7 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
 
 
