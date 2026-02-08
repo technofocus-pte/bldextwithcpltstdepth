@@ -558,21 +558,22 @@ incorrect.](./media/image88.png)
 
 ![](./media/image89.png)
 
-9.  Espere unos minutos más después de que se publique el agente y, a
-    continuación, ingrese +++Check Leave balance+++ en el panel de
-    prueba del **agente** **Safe Travels**.
+9.  Selecciona **Settings** y asegúrate de que **Generative AI** esté en **On**. Además, desactiva **Use General knowledge** en la sección Knowledge y luego selecciona **Save**.
+
+![](./media/im37.png)
+
+![](./media/imag38.png)
+
+9.  Desde el panel **Test** del **Safe Travels agent**, ingresa +++Check Leave balance of Employee ID 1234+++ y presiona **Send**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image90.png)
+incorrect.](./media/im39.png)
 
 10. Puede ver que se accede automáticamente al agente **Leave
     Manager** y que este responde con la pregunta **Enter Employee
     ID** del **tema del agente Leave Manager**.
 
-11. Ingrese el Employee ID como +++1234+++ y podrá ver que el agente
-    responde basándose en los conocimientos del agente de Leave Manager.
-
-![](./media/image91.png)
+![](./media/im40.png)
 
 ## Resumen
 
@@ -580,6 +581,7 @@ En este laboratorio, hemos aprendido a mejorar un agente creado a partir
 de una plantilla para adaptarlo a las necesidades individuales. También
 hemos aprendido a implementar la coordinación de múltiples agentes en
 Copilot Studio
+
 
 
 
