@@ -562,7 +562,7 @@ incorrect.](./media/image88.png)
 
 ![](./media/im37.png)
 
-![](./media/imag38.png)
+![](./media/im38.png)
 
 9.  Desde el panel **Test** del **Safe Travels agent**, ingresa +++Check Leave balance of Employee ID 1234+++ y presiona **Send**.
 
@@ -581,6 +581,7 @@ En este laboratorio, hemos aprendido a mejorar un agente creado a partir
 de una plantilla para adaptarlo a las necesidades individuales. También
 hemos aprendido a implementar la coordinación de múltiples agentes en
 Copilot Studio
+
 
 
 
