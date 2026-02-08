@@ -142,7 +142,7 @@ incorrect.](./media/image16.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-7.  Seleccione el **documento** de** **contenedor creado para cargar el
+7.  Seleccione el **documento** de contenedor creado para cargar el
     documento de política de permisos en él.
 
 ![A screenshot of a computer AI-generated content may be
