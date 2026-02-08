@@ -408,7 +408,7 @@ incorrect.](./media/image57.png)
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-3.  Seleccione **+ New agent** para crear un nuevo agente.
+3.  Seleccione **Agents** para crear un nuevo agente.
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image59.png)
