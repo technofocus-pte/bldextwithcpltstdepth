@@ -75,11 +75,10 @@ incorrect.](./media/im15.png)
 
 ![](./media/image10.png)
 
-2.  Seleccione **Agents** en el panel izquierdo. Haga clic en **+ New
-    Agent** para crear un nuevo agente.
+2.  Selecciona **Agents** en el panel izquierdo. En el área de texto **Start building by describing what your agent needs to do**, escribe +++You are a customer service agent who helps in identifying stores nearby+++ y presiona **Send**.
 
 ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
+incorrect.](./media/im16.png)
 
 3.  En el área de texto Type your message, escriba +++**You are a
     customer service agent who helps in identifying stores nearby.**+++
@@ -501,4 +500,5 @@ En este laboratorio, hemos aprendido a
 
 - Publicar el agente en el workspace de Dynamics 365 e integrarlo en una
   página web. 
+
 
