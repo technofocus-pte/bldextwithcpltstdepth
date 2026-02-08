@@ -398,10 +398,14 @@ incorrect.](./media/image56.png)
 ## Ejercicio 5: Crear un agente asistente de conocimiento
 
 1.  Inicie sesión en +++https://copilotstudio.microsoft.com+++ con sus
-    credenciales de inicio de sesión.
+    credenciales de inicio de sesión. Seleccione **Get Started**.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
 ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
+
 
 3.  Seleccione **Agents** para crear un nuevo agente.
 
