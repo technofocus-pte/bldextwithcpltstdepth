@@ -214,7 +214,7 @@ document and required Role permissions to it.
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstdepth/refs/heads/simagtdevcpltstd-prv/Lab%20Guides/Lab%2010/media/image30.png)
 
-2.  Select **+ Create**.
+2.  Select **+ Create** and select **Azure OpenAI**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstdepth/refs/heads/simagtdevcpltstd-prv/Lab%20Guides/Lab%2010/media/image31.png)
@@ -463,6 +463,7 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstde
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
