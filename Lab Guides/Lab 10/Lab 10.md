@@ -326,7 +326,7 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstde
 
 1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
 
-2.  Select **Import and vectorize data**.
+2.  Select **Import data (new)**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstdepth/refs/heads/simagtdevcpltstd-prv/Lab%20Guides/Lab%2010/media/image49.png)
@@ -345,9 +345,9 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstde
 5.  Enter the below details, accept the other values as default and
     click **Next**.
 
-    - Subscription – Select your **assigned subscription**
+    - Subscription – **@lab.CloudSubscription.Name**
 
-    - Storage account- Select **leavepolicystg@lab.LabInstance.Id**
+    - Storage account- **leavepolicystg@lab.LabInstance.Id**
 
     - Blob-container – Select **document**
 
@@ -357,11 +357,11 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstde
 6.  In the Vectorize your text screen, the subscription is pre-populated. Enter the below details
     and click **Next**.
 
-    - Azure OpenAI Service – Select **openaiservice@lab.LabInstance.Id**
+    - Azure OpenAI Service – **openaiservice@lab.LabInstance.Id**
 
-    - Model deployment – Select **text-embedding-3-large**
+    - Model deployment – **text-embedding-3-large**
 
-    - Authentication type – Select **System assigned identity**
+    - Authentication type – **System assigned identity**
 
     - Select the checkbox to acknowledge the cost alert of Azure OpenAI.
 
@@ -463,6 +463,7 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstde
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
