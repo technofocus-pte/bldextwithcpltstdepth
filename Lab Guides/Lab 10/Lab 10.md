@@ -1,17 +1,3 @@
-!INSTRUCTIONS [ ](https://raw.githubusercontent.com/LODSContent/All-MOC/master/MOC/@lab.LanguageCode/tap_alert.md)
-
-!instructions [ ](https://raw.githubusercontent.com/LODSContent/All-MOC/refs/heads/master/MOC/en/MSDepth-CS-Login.md)
-
-===
-
-!INSTRUCTIONS[](https://raw.githubusercontent.com/LODSContent/All-MOC/refs/heads/master/MOC/en/MultiLineCodeHint.md)
-<!--
-    !instructions [ ](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstdepth/refs/heads/simagtdevcpltstd/Lab%20Guides/Lab%2002/Lab%2002.md)
-
-
-!instructions [ ](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstdepth/refs/heads/simagtdevcpltstd-prv/Lab%20Guides/Lab%2010/media/Lab%2010.md)
--->
-
 # Lab 10 - Create a Knowledge Assistant agent for HR in Copilot Studio that leverages Azure AI Search
 
 ## Objective:
@@ -477,6 +463,7 @@ incorrect.](https://raw.githubusercontent.com/technofocus-pte/bldextwithcpltstde
 
 In this lab, we have learnt to connect the agent to a Azure AI Search
 service as a knowledge source and test the agent based on the source.
+
 
 
 
