@@ -117,6 +117,8 @@ you imported in the previous exercise.
 
    ![](./media/image22.png)
 
+   >[!Alert]
+
    > [!Alert] **Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
    >
    >![](./media/image31.png)
@@ -178,6 +180,7 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
 
 
