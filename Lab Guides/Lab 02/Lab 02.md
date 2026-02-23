@@ -175,7 +175,7 @@ incorrect.](./media/image28.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-23. Select the **MOD Admin id** and select **Next**.
+23. Select the **MOD Administrator** id and select **Next**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
@@ -455,6 +455,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
