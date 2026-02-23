@@ -14,7 +14,7 @@ for all the other features you'll add in future missions.
 
 In this exercise, you will import a pre existing Solution.
 
-1.  Go to Copilot Studio at +++https://copilotstudio.microsoft.com+++
+1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++ if you are already logged in and ensure that you are there in the **Dev One** environment.
 
 2.  Select the **...** in the left navigation and select **Solutions.**
 
@@ -117,7 +117,7 @@ you imported in the previous exercise.
 
    ![](./media/image22.png)
 
-   >[!Alert] **Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
+   > [!Alert] **Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
    >
    >![](./media/image31.png)
 
@@ -178,6 +178,7 @@ In this lab, you now have complete the following.
 
 - **Agent Creation**: Built an hiring agent that is the start of the
   scenario you're going to build as an Agent Academy Operative
+
 
 
 
