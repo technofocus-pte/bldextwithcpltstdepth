@@ -132,49 +132,47 @@ Let's add our first child agent to your existing Hiring Agent.
 
 ### Task 1 - Solution setup
 
-1.  Inside Copilot Studio, select the ellipsis (...) below Tools in the
-    left hand navigation.
+1.  Login to the Copilot Studio at +++https://copilotstudio.microsoft.com+++ if not done already. Ensure that the environment **Dev One** is selected in the top right **Environment Picker**.
+    
+2.  Inside Copilot Studio, select the ellipsis (...) below Tools in the left hand navigation.
 
-2.  Select **Solutions**.
+3.  Select **Solutions**.
 
     ![](./media/image2.png)
 
-3.  Locate your **Operative** solution, select the **ellipsis
+4.  Locate your **Operative** solution, select the **ellipsis
     (...)** next to it, and choose **Set preferred solution**.
     Select **Apply** in the dialogue box that pops up. This will ensure
     that all your work will be added to this solution.
 
     ![](./media/image3.png)
 
-4.  Select Apply in the Set your preferred solution dialog box.
+5.  Select Apply in the Set your preferred solution dialog box.
 
     ![](./media/image4.png)
 
 ### Task 2 - Configure your Hiring Agent instructions
 
-1.  **Navigate** to Copilot Studio. Ensure that the environment **Dev One** is selected
-    in the top right **Environment Picker**.
+1.  From the Copilot Studio Agents list, open the **Hiring Agent**.
 
-2.  Open the **Hiring Agent**.
-
-3.  Select **Edit** in the **Instructions** section of
+2.  Select **Edit** in the **Instructions** section of
     the **Overview** tab of the agent.
 
     ![](./media/image5.png)
 
-4.  Copy and paste the following instructions in the instructions input area.
+3.  Copy and paste the following instructions in the instructions input area.
 
     +++You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.+++
 
-5.  Select **Save**.
+4.  Select **Save**.
 
     ![](./media/image6.png)
 
-6.  Select the **Settings** button in the top right of the screen.
+5.  Select the **Settings** button in the top right of the screen.
 
     ![](./media/image7.png)
 
-7.  Review the page and ensure the following settings are applied and
+6.  Review the page and ensure the following settings are applied and
     then select **Save**.
 
     - Use generative AI orchestration for your agent's responses - **Yes**
@@ -196,7 +194,7 @@ Let's add our first child agent to your existing Hiring Agent.
 
     ![](./media/image11.png)
 
-9.  Once the changes are saved, click the **X** in the upper right hand corner to close out of the
+7.  Once the changes are saved, click the **X** in the upper right hand corner to close out of the
     settings menu
 
      ![](./media/image12.png)
@@ -815,6 +813,7 @@ share context, and orchestrate complex workflows.
 Your enhanced hiring system is now ready for the advanced features we'll
 add in upcoming missions: autonomous triggers, content moderation, and
 deep reasoning.
+
 
 
 
