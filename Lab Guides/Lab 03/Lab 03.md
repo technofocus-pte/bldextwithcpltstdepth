@@ -244,6 +244,8 @@ doesn’t handle private data, you’ll disable authentication for a
 seamless user experience and publish it to the demo website to gather
 feedback before deploying to your real site.
 
+>[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+
 1.  Go to **Settings** .
 
     ![](./media/image35.png)
@@ -312,6 +314,7 @@ agent that:
 This lab demonstrates how to design, enhance, and publish a
 **production-ready intelligent agent** that goes beyond simple Q&A to
 deliver trustworthy, real-time, and context-aware insights.
+
 
 
 
