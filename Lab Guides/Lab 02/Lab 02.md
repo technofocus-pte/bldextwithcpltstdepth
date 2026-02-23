@@ -303,6 +303,8 @@ incorrect.](./media/image50.png)
 In this exercise, you will **publish** the agent created in Copilot
 Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
 
+>[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+
 1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a
     browser and **login** using your tenant credentials from
     the **Resources** tab if prompted.
@@ -455,6 +457,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
