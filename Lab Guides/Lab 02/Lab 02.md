@@ -157,7 +157,7 @@ incorrect.](./media/image75.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
 
-20. Select Save in the Contoso|Properties page.
+20. Select **Save** in the Contoso|Properties page.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image78.png)
@@ -166,7 +166,7 @@ incorrect.](./media/image78.png)
     left pane.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image26.png)
+incorrect.](./media/image79.png)
 
 20. Search for +++privileged role admin+++ and click on the **Privileged
     Role Administrator** role (**Do not select the checkbox**, click on
@@ -467,6 +467,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
