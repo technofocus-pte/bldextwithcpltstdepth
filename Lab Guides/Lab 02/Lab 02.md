@@ -147,10 +147,20 @@ incorrect.](./media/image23.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-18. Toggle **Yes** under **Access management for Azure resources** option and then click **Save**.
+18. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image25.png)
+incorrect.](./media/image75.png)
+
+19. Select **Enabled** under Security defaults option and click on **Save**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image77.png)
+
+20. Select Save in the Contoso|Properties page.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image78.png)
 
 19. Now, select **Roles and administrators** under **Manage** from the
     left pane.
@@ -457,6 +467,7 @@ confirmed that employees can access and interact with the Safe Travels
 agent directly within their everyday collaboration tools.
 
  
+
 
 
 
