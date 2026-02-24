@@ -145,9 +145,11 @@ We'll be achieving this using two techniques
     the top, followed by **Sends a prompt to the specified copilot for
     processing** as the last action in the flow.
 
+    **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
+    
     ![](./media/image8.png)
 
-10. By default, the **When a new email arrives** trigger in Power
+11. By default, the **When a new email arrives** trigger in Power
     Automate may process multiple emails together if several arrive at
     once, running the flow only once for the batch.
 
@@ -159,29 +161,29 @@ We'll be achieving this using two techniques
 
     ![](./media/image9.png)
 
-11. Let's next add some logic to check the file type of the attachment,
+12. Let's next add some logic to check the file type of the attachment,
     we only want to upload .PDF file attachments and not images (these
     could come from email signatures). Select the **+** icon below the
     trigger and select **Control** under the **Built in tools** section.
 
     ![](./media/image10.png)
 
-12. Select the **Condition** action.
+13. Select the **Condition** action.
 
     ![](./media/image11.png)
 
-13. Now we will configure the condition to check if the file
+14. Now we will configure the condition to check if the file
     attachment’s type is .PDF. In the **Choose a value** field on the
     left, select the **lightning bolt icon**.
 
     ![](./media/image12.png)
 
-14. In the **Search** field type +++content type+++ and select
+15. In the **Search** field type +++content type+++ and select
     the **Attachments Content-Type** parameter from the trigger
 
     ![](./media/image13.png)
 
-15. Let's pause here for a moment, you probably noticed that the **For
+16. Let's pause here for a moment, you probably noticed that the **For
     each** action automatically appeared.
 
     ![](./media/image14.png)
