@@ -868,20 +868,21 @@ be used later in this lab.
 
 21. Click in-between the double quotation marks and select
     the **lightning bolt icon** from the right.
+    **Note:** If you are not able to view the icon, try reducing the zoom size of the browser.
 
     ![](./media/image78.png)
 
-22. In the **Dynamic Content** tab select
+23. In the **Dynamic Content** tab select
     the **ResumeNumber** parameter.
 
     ![](./media/image79.png)
 
-23. The **ResumeNumber** parameter will now be added as dynamic content
+24. The **ResumeNumber** parameter will now be added as dynamic content
     to the text property.
 
     ![](./media/image80.png)
 
-24. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
+25. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
     down to the line where you see the text property for RESUME NAME
     PLACEHOLDER. Highlight the placeholder value and delete it. Click
     in-between the double quotation marks and select the select
@@ -889,27 +890,27 @@ be used later in this lab.
 
     ![](./media/image81.png)
 
-25. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
+26. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
 
     ![](./media/image82.png)
 
-26. The **ResumeTitle** parameter will now be added as dynamic content
+27. The **ResumeTitle** parameter will now be added as dynamic content
     to the text property.
 
     ![](./media/image83.png)
 
-27. We'll repeat the same steps for the **Due Date** value that
+28. We'll repeat the same steps for the **Due Date** value that
     represents when a recruiter should review the resume by. Scroll down
     to the line where you see the text property for May 21, 2023.
 
     ![Select Allow access](./media/image84.png)
 
-28. Delete this date placeholder value and click in-between the double
+29. Delete this date placeholder value and click in-between the double
     quotation marks and select the **fx icon** from the right.
 
     ![](./media/image85.png)
 
-29. In the **Function** tab, enter the following expression and
+30. In the **Function** tab, enter the following expression and
     select **Add**.
 
     +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
