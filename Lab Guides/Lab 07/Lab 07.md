@@ -22,7 +22,7 @@ without requiring direct API access.
 
 ## Task 0: Create an environment in the United States Region
 
-In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default and use the newly created environment for this lab alone.
+In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default. You will use the newly created environment for this lab alone.
 
 1. Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the **Dev One** environment.
 
