@@ -145,9 +145,11 @@ We'll be achieving this using two techniques
     the top, followed by **Sends a prompt to the specified copilot for
     processing** as the last action in the flow.
 
-    **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
-    
     ![](./media/image8.png)
+
+    >[!Note] **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
+    >
+    >![](./media/image132.png)
 
 11. By default, the **When a new email arrives** trigger in Power
     Automate may process multiple emails together if several arrive at
