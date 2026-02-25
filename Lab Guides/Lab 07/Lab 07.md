@@ -19,6 +19,38 @@ Microsoft Copilot Studio. This agent will simulate human interaction
 with a legacy internal system to retrieve financial portfolio data
 without requiring direct API access.
 
+
+## Task 0: Create an environment in the United States Region
+
+In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default and use the newly created environment for this lab alone.
+
+1. Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the **Dev One** environment.
+
+    ![](./media/image58.png)
+
+2. Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
+
+    ![](./media/image56.png)
+   
+3. From the **Environments** page, select **+ New**.
+
+    ![](./media/image53.png)
+
+4.  Enter the below details and select **Next**.
+
+    -    Name - +++CUA+++
+
+    -    Region - United States - Default
+
+    -    Type - Developer
+
+    ![](./media/image54.png)
+
+5.  Select **Save** in the next screen.
+
+    ![](./media/image55.png)
+
+
 ## Task 1: Create and Configure an Autonomous Agent
 
 In this task, you will create a new autonomous agent in Microsoft
@@ -33,7 +65,7 @@ subject line filtering.
     +++https://copilotstudio.microsoft.com+++ using your login
     credentials.
 
-2.  Select the **Dev One** environment from the top right.
+2.  Select the **Dev One** or **CUA** (if you have created it in the last Task) environment from the top right.
 
     ![](./media/image1.png)
 
