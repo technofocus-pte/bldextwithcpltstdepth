@@ -868,7 +868,8 @@ be used later in this lab.
 
 21. Click in-between the double quotation marks and select
     the **lightning bolt icon** from the right.
-    **Note:** If you are not able to view the icon, try reducing the zoom size of the browser.
+
+    **Note:** Make sure that the Adaptive card code block is docked to the left pane of your screen.
 
     ![](./media/image78.png)
 
