@@ -1142,7 +1142,7 @@ In this exercise, you will test the event trigger that is created in
 this lab.
 
 1.  To execute the event trigger, an email needs to be sent with a
-    Resume pdf file. In Outlook, compose a new email message.
+    Resume pdf file. From your mailbox (not the tenant credential provided here), compose a new email message.
 
 
     |  Email Component  |  Details  |
