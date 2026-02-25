@@ -1142,7 +1142,7 @@ In this exercise, you will test the event trigger that is created in
 this lab.
 
 1.  To execute the event trigger, an email needs to be sent with a
-    Resume pdf file. From your mailbox (not the tenant credential provided here), compose a new email message.
+    Resume pdf file. **From your mailbox** (not of the tenant credential provided here. Use mail id of your choice. You will send an email from your mailbox to the tenant mail id.), **compose a new email** message.
 
 
     |  Email Component  |  Details  |
@@ -1176,9 +1176,7 @@ this lab.
 
     ![](./media/image122.png)
 
-3.  In the +++https://make.powerautomate.com/+++ for the event trigger
-    flow, select the Refresh icon to view the flow run that succeeded
-    for the sent email. You can see that the flow has succeeded.
+3.  In +++https://make.powerautomate.com/+++, for the event trigger flow, (select **Flows** -> **When a new email arrives from an applicant**) select the **Refresh** icon to view the flow run that **succeeded** for the sent email.
 
     ![](./media/image123.png)
 
