@@ -1088,7 +1088,7 @@ be used later in this lab.
     ![](./media/image113.png)
 
 56. In the **Instructions** field, enter a new line
-    after **2.Post-Upload** instructions. Copy and paste the following
+    after **Post-Upload** instructions. Copy and paste the following
     instructions.
 
     ```
