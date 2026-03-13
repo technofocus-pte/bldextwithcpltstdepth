@@ -1,327 +1,339 @@
-# Lab 3 - Architecting intelligent agents with knowledge grounding and live connectors
+# Laboratório 3 - Arquitetando agentes inteligentes com base no conhecimento e conectores ativos
 
-**Introduction**
+**Introdução**
 
-Modern users expect intelligent, contextual responses that go beyond
-simple keyword matching. This lab will guide you through creating an
-intelligent agent that can reason across multiple knowledge sources and
-perform real-time actions to deliver comprehensive, accurate answers.
+Os usuários modernos esperam respostas inteligentes e contextuais que
+vão além da simples correspondência de palavras-chave. Este laboratório
+irá guiá-lo na criação de um agente inteligente capaz de raciocinar com
+base em várias fontes de conhecimento e realizar ações em tempo real
+para fornecer respostas abrangentes e precisas.
 
-**Objective**
+**Objetivo**
 
-In this lab, you’ll build an intelligent assistant that goes beyond
-simple Q&A to deliver contextual, multi-part responses. By the end of
-the lab, you will
+Neste laboratório, você criará um assistente inteligente que vai além de
+simples perguntas e respostas para fornecer respostas contextuais e com
+várias partes. Ao final do laboratório, você irá:
 
-Create an intelligent agent using the conversational creation
-experience. Configure agent tone, behavior, and instructions to reflect
-your brand. Add public websites like Wikipedia as knowledge sources for
-factual grounding. Disable general knowledge to reduce hallucinations
-and ensure accuracy.
+Criar um agente inteligente usando a experiência de criação de
+conversas. Configurar o tom, o comportamento e as instruções do agente
+para refletir sua marca. Adicionar sites públicos como a Wikipedia como
+fontes de conhecimento para fundamentação factual. Desativar o
+conhecimento geral para reduzir alucinações e garantir a precisão.
 
-## Task 1: Create a new agent and add knowledge
+## Tarefa 1: Criar um novo agente e adicionar conhecimento
 
-Create Nova AI with custom instructions and Wikipedia knowledge
-integration using Copilot Studio’s conversational setup experience.
+Crie a Nova AI com instruções personalizadas e integração de
+conhecimento da Wikipedia usando a experiência de configuração
+conversacional do Copilot Studio.
 
-1.  Open a browser and navigate to +++https://copilotstudio.microsoft.com+++ and
-    login using your credentials if not done already.
+1.  Abra um navegador, acesse +++copilotstudio.microsoft.com+++ e faça
+    login com suas credenciais.
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+2.  Selecione o ambiente **Dev One**.
 
-3.  Select the **Dev One** environment.
+3.  Na página inicial, selecione **Create agent**.
 
-4.  From the Home page, select **Create agent**.
+![](./media/image1.png)
 
-    ![](./media/image1.png)
+4.  Depois que o agente for criado, selecione **Edit** na seção
+    **Details**.
 
-5.  Once the agent is created, select **Edit** against **Details**.
+![](./media/image2.png)
 
-    ![](./media/image2.png)
-
-6.  Enter the below details and select **Save**.
+5.  Insira os detalhes abaixo e selecione **Save**.
 
     - Name - +++Researcher agent+++.
 
-    - Description - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
+    - Description - +++Answers multi-part questions by combining
+      historical facts, biographical data, and real-time information
+      like weather. Ideal for deep research, exploration, and knowledge
+      synthesis+++
 
-      ![](./media/image3.png)
+> ![](./media/image3.png)
 
-7.  Select **Edit** against **Instructions**, enter the below content and select **Save**.
+6.  Insira o conteúdo abaixo em **Instructions** e selecione **Save**.
 
-    >[!Note] **Note:** Use the **Copy** option and then **Paste** it in the required place in the VM (Instructions Text area in this case)
+You should answer complex questions using verified public information
+and real-time lookups like weather or conversions. You should give
+clear, concise answers and handle multiple questions one at a time. You
+must not speculate, share unverified or sensitive information, or
+compare products or companies. You should communicate clearly and
+professionally, using a friendly tone and light emojis when appropriate.
 
-    ```
-    You should answer complex questions using verified public information and real-time lookups like weather or conversions. You should give clear, concise answers and handle multiple questions one at a time. You must not speculate, share unverified or sensitive information, or compare products or companies. You should communicate clearly and professionally, using a friendly tone and light emojis when appropriate.
-    ```
-    
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-9.  Scroll down and select **+ Add knowledge** to add a knowledge
-    source.
+7.  Role para baixo e selecione **+ Add knowledge** para adicionar uma
+    fonte de conhecimento.
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-10. Select the **Public Website** option form the list.
+8.  Selecione a opção **Public Website** na lista.
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-11. Enter +++https://en.wikipedia.org+++, select **Add**, and then select **Add to agent**.
+9.  Na tela seguinte, selecione **Add** e, em seguida, **Add to agent**.
 
-    ![](./media/image7.png)
-    
-    ![](./media/image8.png)
+![](./media/image7.png)
 
-12. Next, you will disable general knowledge to reduce hallucinations.
-    Select **Settings** from the top right.
+![](./media/image8.png)
 
-    ![](./media/image9.png)
+10. Em seguida, você irá desativar o conhecimento geral para reduzir
+    alucinações. Selecione **Settings** no canto superior direito.
 
-13. Toggle the **Use general knowledge** option under the Knowledge
-    section to **off** and then select **Save**. **Close** the **Settings** pane once this is done.
+![](./media/image9.png)
 
-    ![](./media/image10.png)
+11. Na seção Knowledge, alterne a opção **Use general knowledge** para
+    **off**.
 
-14. Enter the below message in the Test pane and click **Send** and
-    observe the output.
+![](./media/image10.png)
 
-    +++Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)+++
+12. Insira a mensagem abaixo no painel Test, clique em **Send** e
+    observe a saída.
 
-    ![](./media/image11.png)
-    
-    ![](./media/image12.png)
+> Write a draft email to request refund from a toaster that is not
+> working properly (bread keeps burning)
 
-## Task 2: Add weather connector
+![](./media/image11.png)
 
-In this task, you will add a weather connector to enable real-time data
-retrieval and test generative orchestration. Ensure that the agent
-provides only fact-based, controlled responses while enabling it to
-perform real-time actions like weather lookups for comprehensive,
-multi-step answers.
+![](./media/image12.png)
 
-1.  Select **Tools** tab from the top menu.
+## Tarefa 2 – Adicionar o conector de clima
 
-    ![](./media/image13.png)
+Nesta tarefa, você adicionará um conector de clima para habilitar a
+recuperação de dados em tempo real e testar a orquestração generativa.
+Certifique-se de que o agente forneça apenas respostas baseadas em fatos
+e controladas, ao mesmo tempo em que esteja habilitado a executar ações
+em tempo real, como consultas de clima, para respostas abrangentes e em
+várias etapas.
 
-2.  Enter +++MSN Weather+++ in the search box and select **Get current
-    weather**.
+1.  Selecione a guia **Tools** no menu superior.
 
-    ![](./media/image14.png)
+![](./media/image13.png)
 
-3.  Select the drop down next to the **Not connected** message and
-    select **Create new connection**. Then, select **Create** in the
-    next screen.
+2.  Insira +++MSN Weather+++ na caixa de pesquisa e selecione **Get
+    current weather**.
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+![](./media/image14.png)
 
-4.  Select **Add and configure** to add the tool to the agent and
-    configure it as required.
+3.  Selecione o menu suspenso ao lado da mensagem **Not connected** e
+    escolha **Create new connection**. Em seguida, na tela seguinte,
+    selecione **Create**.
 
-    ![](./media/image17.png)
+![](./media/image15.png)
 
-5.  Once added, select **Additional details**.
+![](./media/image16.png)
 
-    ![](./media/image18.png)
+4.  Selecione **Add and configure** para adicionar a ferramenta ao
+    agente e configurá-la conforme necessário.
 
-6.  Under Credentials to use, select **Maker-provided credentials**.
+![](./media/image17.png)
 
-    **Note:** When using Maker-provided credentials, the end-user of the
-agent isn’t prompted to use its own context and connection to connect to
-the service. Instead, it’s using the context and connection of the
-person who has configured the agent. - Only use author authentication
-for actions that don’t need user-specific data, as using the credentials
-from someone else can expose to data exfiltration risks. - Use user
-authentication for role based access scenarios - Always review security
-implications of authentication choices
+5.  Após a adição, selecione **Additional details**.
 
-    ![](./media/image19.png)
+![](./media/image18.png)
 
-7.  Under **Inputs**, **Units**, -> **Fill using** -> select **Custom
-    value**, and choose **Metric**.
+6.  Em Credentials to use, selecione **Maker-provided credentials**.
 
-    ![](./media/image20.png)
+**Observação:** ao utilizar Maker-provided credentials, o usuário final
+do agente não é solicitado a usar seu próprio contexto e conexão para se
+conectar ao serviço. Em vez disso, são utilizados o contexto e a conexão
+da pessoa que configurou o agente. Utilize a autenticação do autor
+apenas para ações que não exigem dados específicos do usuário, pois o
+uso das credenciais de outra pessoa pode expor riscos de exfiltração de
+dados. Utilize a autenticação do usuário em cenários de acesso baseado
+em funções. Sempre revise as implicações de segurança das escolhas de
+autenticação.
 
-8.  Under **Inputs**, for **Location**, leave **Fill using to
-    Dynamically fill with AI**, and select **Customize** to set
-    description.
+![](./media/image19.png)
 
-    ![](./media/image21.png)
+7.  Em **Inputs**, **Units** → **Fill using** → selecione **Custom
+    value** e escolha **Metric**.
 
-9.  Set the description as below and then select **Save**.
+![](./media/image20.png)
 
-    ```
-    The location for the weather query. Valid inputs are City, State, Country. Always include city and country, and state only for locations where appropriate (e.g., in the US)
-    ```
-    
-    ![](./media/image22.png)
-    
-    ![](./media/image23.png)
+8.  Em **Inputs**, para **Location**, mantenha **Fill using** **para**
+    **Dynamically fill with AI** e selecione **Customize** para definir
+    a descrição.
 
-10. Test your enhanced agent with this complex question:
+![](./media/image21.png)
 
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+9.  Defina a descrição conforme abaixo e, em seguida, selecione
+    **Save**.
 
-    ![](./media/image24.png)
+The location for the weather query. Valid inputs are City, State,
+Country. Always include city and country, and state only for locations
+where appropriate (e.g., in the US)
 
-11. Notice how generative orchestration performs multiple searches and
-    triggers the weather connector to provide a comprehensive answer
+![](./media/image22.png)
 
-    ![](./media/image25.png)
+![](./media/image23.png)
 
-## Task 3: Fine-tune your AI assistant for smoother conversations
+10. Teste seu agente aprimorado com a seguinte pergunta complexa:
 
-Customize system topics to enhance interactions and deliver a smoother
-user experience.
+> Who is the current CEO of the company that owns GitHub? Where did they
+> earn their MBA? What's the average rent for a one-bedroom apartment
+> near that campus? What's the air quality index in that area today?
 
-In this section, you’ll customize built-in system topics to improve user
-interactions and create a more seamless experience beyond just knowledge
-sources.
+![](./media/image24.png)
 
-Customize your assistant’s welcome message to make it more engaging, add
-suggested start prompts to guide users effectively, and refine system
-topics like Escalate to ensure they align with your organization’s
-needs.
+11. Observe como a orquestração generativa realiza múltiplas pesquisas e
+    aciona o conector de clima para fornecer uma resposta abrangente.
 
-1.  From the top menu, select **Topics**.
+![](./media/image25.png)
 
-    ![](./media/image26.png)
+## Tarefa 3 – Ajustar seu assistente de AI para conversas mais fluidas
 
-2.  Select the **Conversation Start** topic under **System**.
+Personalize os tópicos do sistema para aprimorar as interações e
+oferecer uma experiência de usuário mais fluida.
 
-    ![](./media/image27.png)
+Nesta seção, você irá personalizar os tópicos de sistema integrados para
+melhorar as interações com o usuário e criar uma experiência mais
+contínua, indo além do uso apenas de fontes de conhecimento.
 
-3.  In the topic’s **Message** node, enter the below message.
+Personalize a mensagem de boas-vindas do seu assistente para torná-la
+mais envolvente, adicione sugestões de prompts iniciais para orientar os
+usuários de forma eficaz e refine tópicos do sistema, como Escalate,
+para garantir que eles estejam alinhados com as necessidades da sua
+organização.
 
-     +++Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?+++
+1.  No menu superior, selecione **Topics**.
 
-    ![](./media/image28.png)
+![](./media/image26.png)
 
-4.  Still in the same node, select **+ Add** -> **Quick reply**.
+2.  Em **System**, selecione o tópico **Conversation Start**.
 
-    ![](./media/image29.png)
+![](./media/image27.png)
 
-5.  Add the below question.
+3.  No nó **Message** do tópico, insira a mensagem abaixo.
 
-    +++What caused the fall of the Roman Empire?+++
+> Hi there! I'm Researcher agent, your intelligent assistant for deep
+> research and discovery. I can break down complex questions and combine
+> insights from historical facts, biographies, and real-time data like
+> the weather. What are you curious about today?
+>
+> ![](./media/image28.png)
 
-    ![](./media/image30.png)
+4.  Ainda no mesmo nó, selecione **+ Add → Quick reply**.
 
-6.  Similarly add 2 more (Select **+ Add** in the quick reply **Properties** pane that gets opened).
+![](./media/image29.png)
 
-    ![](./media/image47.png)
-    
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+5.  Adicione a pergunta abaixo.
 
-    +++What's the temperature in the city that hosted the last Olympic Games?+++
++++What caused the fall of the Roman Empire?+++
 
-    ![](./media/image31.png)
+![](./media/image30.png)
 
-8.  Once added, select **Save** to save the topic.
+6.  Da mesma forma, adicione mais 2.
 
-    ![](./media/image32.png)
+> +++Who is the current CEO of the company that owns GitHub? Where did
+> they earn their MBA? What's the average rent for a one-bedroom
+> apartment near that campus? What's the air quality index in that area
+> today?+++
+>
+> +++What's the temperature in the city that hosted the last Olympic
+> Games?+++
 
-9.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
+![](./media/image31.png)
 
-    ![](./media/image33.png)
+7.  Após adicionar, selecione **Save** para salvar o tópico.
 
-10. Update the text to the below, that will more meaningfully unblock
-    the end user and select **Save**.
+![](./media/image32.png)
 
-    +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
+8.  Personalize a experiência de escalonamento. Selecione **Topics →
+    System → Escalate**.
 
-    ![](./media/image34.png)
+![](./media/image33.png)
 
-## Task 4: Make your agent public and publish it to the demo website
+9.  Atualize o texto conforme abaixo, de modo que ele ajude de forma
+    mais significativa a desbloquear o usuário final, e selecione
+    **Save**.
 
-In this section, you’ll remove authentication to make your agent
-publicly accessible, then publish it to the demo website for testing and
-sharing.Since the Researcher agent provides general information and
-doesn’t handle private data, you’ll disable authentication for a
-seamless user experience and publish it to the demo website to gather
-feedback before deploying to your real site.
+> I'm sorry, but I can't seem to be able to help you. I recommend
+> reaching out to our \[Microsoft Copilot Studio community\]
+> (https://aka.ms/CopilotStudioCommunity) or submitting a \[support
+> request\]
+> (<https://learn.microsoft.com/en-us/power-platform/admin/get-help-support>).
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+![](./media/image34.png)
 
-1.  Go to **Settings** .
+## Tarefa 4 – Tornar seu agente público e publicá-lo no site de demonstração
 
-    ![](./media/image35.png)
+Nesta seção, você irá remover a autenticação para tornar o agente
+publicamente acessível e, em seguida, publicá-lo no site de demonstração
+para testes e compartilhamento. Como o agente Researcher fornece
+informações gerais e não lida com dados privados, você desativará a
+autenticação para oferecer uma experiência de usuário fluida e publicará
+o agente no site de demonstração para coletar feedback antes de
+implementá-lo em seu site real.
 
-2.  Select **Security** -> **Authentication**. Select **No
-  authentication** and then select **Save**.
+1.  Vá para **Settings**.
 
-    ![](./media/image36.png)
+![](./media/image35.png)
 
-3.  Select **Save** in the confirmation prompt.
+2.  Selecione **Security → Authentication**. Selecione **No
+    authentication** e, em seguida, **Save**.
 
-    ![](./media/image37.png)
+![](./media/image36.png)
 
-4.  You can now close the Settings pane.
+3.  Selecione **Save** no prompt de confirmação.
 
-    ![](./media/image38.png)
+![](./media/image37.png)
 
-5.  Select **Publish** to make your changes live.
+4.  Agora você pode fechar o painel Settings.
 
-    ![](./media/image39.png)
+![](./media/image38.png)
 
-6.  Select **Publish** in the confirmation dialog.
+5.  Selecione **Publish** para tornar suas alterações ativas.
 
-    ![](./media/image40.png)
+![](./media/image39.png)
 
-7.  You will get a success message once the publish is done.
+6.  Selecione **Publish** na caixa de diálogo de confirmação.
 
-    ![](./media/image41.png)
+![](./media/image40.png)
 
-8.  Now, select **Channels** from the top menu.
+7.  Você receberá uma mensagem de sucesso assim que a publicação for
+    concluída.
 
-    ![](./media/image42.png)
+![](./media/image41.png)
 
-9.  Select **Demo website** from the list of channels available.
+8.  Agora, selecione **Channels** no menu superior.
 
-    ![](./media/image43.png)
+![](./media/image42.png)
 
-10. Enter the Welcome message as +++Welcome to your demo website+++ and
-    select **Save**.
+9.  Selecione **Demo website** na lista de canais disponíveis.
 
-    ![](./media/image44.png)
+![](./media/image43.png)
 
-11. Click on **Open demo website** to open your site.
+10. Insira a mensagem de boas-vindas como +++Welcome to your demo
+    website+++ e selecione **Save**.
 
-    ![](./media/image45.png)
+![](./media/image44.png)
 
-12. You can now interact with your agent.
+11. Clique em **Open demo website** para abrir o seu site.
 
-    ![](./media/image46.png)
+![](./media/image45.png)
+
+12. Agora você pode interagir com seu agente.
+
+![](./media/image46.png)
 
 ## Summary
 
-In this lab, you successfully delivered a public-facing intelligent
-agent that:
+Neste laboratório, você entregou com sucesso um agente inteligente de
+acesso público que:
 
-- Answers complex, multi-part research questions
+- Responde a perguntas de pesquisa complexas e com múltiplas partes
 
-- Uses verified public knowledge and real-time connectors
+- Utiliza conhecimento público verificado e conectores em tempo real
 
-- Minimizes hallucinations through controlled knowledge sources
+- Minimiza alucinações por meio de fontes de conhecimento controladas
 
-- Provides a polished, user-friendly conversational experience
+- Fornece uma experiência conversacional refinada e amigável ao usuário
 
-- Is deployed and accessible via a live demo website
+- Está implementado e acessível por meio de um site de demonstração
+  ativo
 
-This lab demonstrates how to design, enhance, and publish a
-**production-ready intelligent agent** that goes beyond simple Q&A to
-deliver trustworthy, real-time, and context-aware insights.
-
-
-
-
-
-
-
-
-
-
-
+Este laboratório demonstra como projetar, aprimorar e publicar um
+**agente inteligente pronto para produção**, que vai além de simples
+perguntas e respostas para fornecer insights confiáveis, em tempo real e
+sensíveis ao contexto.

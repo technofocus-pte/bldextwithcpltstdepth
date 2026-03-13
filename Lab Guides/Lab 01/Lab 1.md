@@ -1,118 +1,134 @@
-# Lab 1 - Designing an AI assistant with Copilot Studio Agent Builder
+# Laboratório 1 – Projetando um assistente de AI com o Copilot Studio Agent Builder
 
-**Objective**
+**Objetivo**
 
-In this lab, you will learn how to create a custom conversational agent
-using the **Copilot Studio Agent Builder** by describing the agent’s
-purpose, behavior, and tone in natural language. You will design a
-**Gardening Assistant** that provides expert guidance on home gardening,
-focusing on plant care, best practices, and the importance of nature in
-everyday living. By the end of the lab, you will understand how to
-iteratively refine agent instructions and bring a functional,
-domain-specific assistant to life.
+Neste laboratório, você aprenderá a criar um agente conversacional
+personalizado usando o **Copilot Studio Agent Builder**, descrevendo o
+propósito, o comportamento e o tom do agente em linguagem natural. Você
+irá projetar um **Gardening Assistant agent** (**Assistente de
+Jardinagem)** que fornece orientações especializadas sobre jardinagem
+doméstica, com foco no cuidado com as plantas, nas melhores práticas e
+na importância da natureza no dia a dia. Ao final do laboratório, você
+compreenderá como refinar iterativamente as instruções do agente e dar
+vida a um assistente funcional e específico de domínio.
 
-## Exercise 1: Creating the agent
+## Exercício 1: Criando o agente
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
-    browser and login with your credentials. Select **Yes** in the **Stay Signed in** dialog.
+1.  Abra o link +++<https://m365.cloud.microsoft/chat+++> em um
+    navegador e faça login com suas credenciais.
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+    - Nome do usuário
+      - <+++@lab.CloudPortalCredential>(User1).Username+++
 
-1.  Select **New agent** from the **left** pane. If you are **not** able
-    to see the **New agent** option, **refresh** the **browser** and try
-    again in few minutes. At times, it takes few minutes to get loaded
-    completely.
+    - Senha - <+++@lab.CloudPortalCredential>(User1).Password+++
 
-    ![](./media/image2.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image1.png)
 
-2.  Select the **Describe** tab.
+2.  Selecione **New agent** no painel **esquerdo**. Se você **não**
+    conseguir visualizar a opção **New agent**, **atualize** o
+    **navegador** e tente novamente após alguns minutos. Em alguns
+    casos, pode levar alguns minutos para que a página seja carregada
+    completamente.
 
-    ![](./media/image3.png)
+![](./media/image2.png)
 
-3.  You can start defining the custom agent. You can choose a template
-    to start from, or you can simply *describe* the agent by providing a
-    description in natural language. Let's provide the following initial
-    description
+3.  Selecione a guia **Describe**.
 
-    +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
+![](./media/image3.png)
 
-    ![](./media/image4.png)
+4.  Você pode começar a definir o agente personalizado. É possível
+    escolher um modelo para iniciar ou simplesmente *descrever* o agente
+    fornecendo uma descrição em linguagem natural. Vamos inserir a
+    seguinte descrição inicial:
 
-4.  Once you have provided the instructions, the initial details are
-    populated.
+> +++You are an expert gardener, and you help users to maintain and
+> improve their home garden providing detailed instructions and advice
+> about the best practices for home gardening.+++
 
-5.  You can rename the agent if needed. Provide the following prompt to
-    do so +++Name it as “Gardening assistant”+++.
+![](./media/image4.png)
 
-    ![](./media/image5.png)
+5.  Após fornecer as instruções, os detalhes iniciais são preenchidos
+    automaticamente.
 
-6.  If you are asked about refining instructions further, provide the
-    following sentence.
+6.  Você pode renomear o agente, se necessário. Para isso, forneça o
+    seguinte prompt:
 
-    +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
+> +++Name it as “Gardening assistant”+++.
 
-    ![](./media/image6.png)
+![](./media/image5.png)
 
-7.  Keep on interacting with the agent builder until it does have all
-    the information needed to create the agent. Provide the following
-    sentence.
+7.  Se for solicitado que você refine ainda mais as instruções, forneça
+    a seguinte frase:
 
-    +++Focus on highlighting the importance of nature and plants/flowers to be present in every house!+++
++++Focus on suggesting ways to keep plants and flowers shining and
+gorgeous+++
 
-    ![](./media/image7.png)
+![](./media/image6.png)
 
-    ![](./media/image8.png)
+8.  Continue interagindo com o Agent Builder até que ele tenha todas as
+    informações necessárias para criar o agente. Forneça a seguinte
+    frase:
 
-8.  Then give an instruction of the agent tone as below.
+> +++Focus on highlighting the importance of nature and plants/flowers
+> to be present in every house!+++
+>
+> ![](./media/image7.png)
+>
+> ![](./media/image8.png)
 
-    +++Use a professional, yet friendly, tone.+++
+9.  Em seguida, forneça uma instrução sobre o tom do agente, conforme
+    abaixo:
 
-    ![](./media/image9.png)
++++Use a professional, yet friendly, tone.+++
 
-11. Click on **Create** on the top right to create the agent.
+> ![](./media/image9.png)
 
-    ![](./media/image10.png)
+11. Clique em **Create**, no canto superior direito, para criar o
+    agente.
 
-    ![](./media/image11.png)
+![](./media/image10.png)
 
-12. Select **Go to agent** once the agent is created.
+![](./media/image11.png)
 
-    ![](./media/image12.png)
+12. Selecione **Go to agent** assim que o agente for criado.
 
-13. This opens the created agent.
+![](./media/image12.png)
 
-    ![](./media/image13.png)
+13. Isso abre o agente criado.
 
-    >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
-    >
-    >![](./media/image14.png)
+![](./media/image13.png)
 
-14. Provide prompt like below to converse with the agent.
+> \[!Alerta\] **Alerta:** Se o agente não abrir automaticamente,
+> **atualize** a página e selecione o **gardening agent criado** no
+> painel esquerdo.
+>
+> ![](./media/image14.png)
 
-    +++Give me tips to keep Rose plants fresh+++
+14. Exemplo de prompt para conversar com o agente.
 
-    ![](./media/image15.png)
+> +++Give me tips to keep Rose plants fresh+++
 
-    ## Summary:
+![](./media/image15.png)
 
-    In this lab, you created a **Gardening Assistant agent** using the
-    Copilot Studio Agent Builder experience. Starting with a simple
-    natural-language description, you defined the agent’s role as an expert
-    gardener and progressively refined its focus, tone, and personality
-    through interactive prompts. You customized the agent to provide
-    professional yet friendly gardening advice, with an emphasis on keeping
-    plants healthy, vibrant, and visually appealing while highlighting the
-    value of plants and flowers in every home.
+## Resumo:
 
-    After creating and launching the agent, you validated its behavior by
-    interacting with it using real user prompts, such as requesting tips to
-    keep rose plants fresh. This lab demonstrated how quickly and
-    intuitively you can build a purpose-driven agent using Copilot
-    Studio—without writing code—by leveraging conversational design and
-    iterative instruction refinement.
+Neste laboratório, você criou um agente **Gardening Assistant agent**
+(**Assistente de Jardinagem)** usando a experiência Agent Builder do
+Copilot Studio. A partir de uma descrição simples em linguagem natural,
+você definiu a função do agente como um especialista em jardinagem e, de
+forma progressiva, refinou seu foco, tom e personalidade por meio de
+prompts interativos. Você personalizou o agente para fornecer
+orientações profissionais e amigáveis sobre jardinagem, com ênfase em
+manter as plantas saudáveis, vibrantes e visualmente atraentes, além de
+destacar o valor das plantas e flores em todos os lares. Após criar e
+publicar o agente, você validou seu comportamento interagindo com ele
+por meio de prompts reais de usuários, como a solicitação de dicas para
+manter roseiras sempre viçosas.
 
+Este laboratório demonstrou como é possível criar de forma rápida e
+intuitiva um agente com propósito específico usando o Copilot Studio —
+sem escrever código — aproveitando o design conversacional e o
+refinamento iterativo das instruções.
 
-
-
+.

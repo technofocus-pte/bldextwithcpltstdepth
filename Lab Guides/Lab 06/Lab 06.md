@@ -1,1263 +1,1562 @@
-# Lab 6 - Upgrading the hiring agent into an autonomous system
+# Laboratório 6 – Evoluindo o Hiring Agent para um sistema autônomo
 
-In this lab, you will dive deeper into **event triggers** - elevating
-your agent system from reactive to **autonomous operation**. You'll
-transform your agents from waiting for human input to proactively
-responding to external events and taking intelligent action without
-supervision.
+Neste laboratório, você se aprofundará nos **acionadores de evento**,
+elevando seu sistema de agentes de um modelo reativo para uma **operação
+autônoma**. Você transformará seus agentes de um estado em que aguardam
+a entrada humana para um modelo que responde proativamente a eventos
+externos e executa ações inteligentes sem supervisão.
 
-Think of it as upgrading from agents that answer questions to agents
-that anticipate needs and act independently. Through event triggers and
-automated workflows, your **Hiring Agent** will **detect** incoming
-resume **emails**, **process** attachments **automatically**, **store**
-data in **Dataverse**, and **notify** your **HR recruitment team** via
-**Microsoft Teams** - all while you focus on higher-value tasks.
+Pense nisso como uma evolução de agentes que apenas respondem a
+perguntas para agentes que antecipam necessidades e atuam de forma
+independente. Por meio de acionadores de evento e fluxos de trabalho
+automatizados, seu **Hiring Agent** **detectará** **e-mails** recebidos
+com currículos, **processará** anexos **automaticamente, armazenará**
+dados no **Dataverse** e **notificará** sua **equipe de recrutamento de
+RH** por meio do Microsoft Teams — tudo isso enquanto você se concentra
+em tarefas de maior valor.
 
-**Objectives**
+**Objetivos**
 
-In this lab, you'll learn:
+Neste laboratório, você aprenderá:
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+1.  Como os acionadores de evento permitem o comportamento de agentes
+    autônomos sem a interação do usuário
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+2.  As diferenças entre agentes interativos e agentes autônomos no
+    Copilot Studio
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+3.  Como criar acionadores de evento que processam automaticamente
+    anexos de e-mail e carregam arquivos no Dataverse
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+4.  Como criar fluxos de agente que publicam cartões adaptativos em
+    canais do Teams para notificações
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+5.  Como passar dados entre acionadores de evento e fluxos de agente
+    para automação de ponta a ponta
 
-**What is an Event trigger?**
+**O que é um acionador de evento?**
 
-**Event triggers** let an agent *act* on *its* own when something
-happens in another system - no user message required. When the
-configured event fires - such as “new SharePoint item,” “new email,”
-“Planner task assigned,” or even a time‑based recurrence, a connector
-sends a trigger payload to your agent. The agent then follows your
-instructions to decide which actions or topics to call.
+Os **acionadores de evento** permitem que um agente atue de forma
+autônoma quando algo acontece em outro sistema — sem a necessidade de
+uma mensagem do usuário. Quando o evento configurado é disparado — como
+“novo item no SharePoint”, “novo e-mail”, “tarefa atribuída no Planner”
+ou até mesmo uma recorrência baseada em tempo — um conector envia uma
+carga de acionador para o agente. Em seguida, o agente segue suas
+instruções para decidir quais ações ou tópicos devem ser acionados.
 
-**Interactive agent vs Autonomous agent - comparison**
+**Agente interativo x agente autônomo – comparação**
 
-Now that you know the difference between event triggers and topics
-triggers, let's next learn about the difference between an interactive
-agent vs an autonomous agent.
+Agora que você já conhece a diferença entre acionadores de evento e
+acionadores de tópico, vamos entender a diferença entre um agente
+interativo e um agente autônomo.
 
-In Copilot Studio terms, "interactive" maps to agents that primarily
-engage via **topics** in a chat or channel. "Autonomous" maps to agents
-that also leverage **event triggers** to run without user input.
+Nos termos do Copilot Studio, “interativo” refere-se a agentes que atuam
+principalmente por meio de **tópicos** em um chat ou canal. Já
+“autônomo” refere-se a agentes que também utilizam **acionadores de
+evento** para executar ações sem a necessidade de entrada do usuário.
 
-## Exercise 1: Automating candidate application emails
+## Exercício 1 – Automatizando e-mails de candidatura de candidatos
 
-We're next going to add an event trigger to the **Hiring Agent** and
-build an agent flow in the child **Application Intake Agent** to handle
-further processing for autonomy.
+Em seguida, vamos adicionar um acionador de evento ao **Hiring Agent** e
+criar um fluxo de agente no **Agente de Intake de Candidaturas**
+subordinado para realizar o processamento adicional necessário para a
+autonomia.
 
-**Use case scenario**
+**Cenário de caso de uso**
 
-**As an** HR Recruiter
+**Como** recrutador(a) de RH
 
-**I want to** be notified when an email with a resume arrives in my
-Inbox and is automatically uploaded to Dataverse
+**Quero ser** notificado(a) quando um e-mail com um currículo chegar à
+minha Inbox e for automaticamente carregado no Dataverse,
 
-**So that I can** stay notified of resumes sent by email for
-applications automatically uploaded to Dataverse
+**Para que eu possa** acompanhar os currículos enviados por e-mail que
+são automaticamente armazenados no Dataverse.
 
-We'll be achieving this using two techniques
+Alcançaremos isso utilizando duas técnicas.
 
-1.  An event trigger for when the email arrives,
+1.  Acionador de evento para quando o e-mail chegar,
 
-    - Check the contentType of the file equals PDF as the format type.
+    - Verificar se o contentType do arquivo é igual a PDF como tipo de
+      formato.
 
-    - Extract the file and upload to Dataverse using actions through the
-      Dataverse connector.
+    - Extrair o arquivo e carregá-lo no Dataverse utilizando ações por
+      meio do conector do Dataverse.
 
-    - Then send a prompt to the agent for further processing by passing
-      input parameters from the Dataverse actions.
+    - Em seguida, enviar um prompt ao agente para processamento
+      adicional, passando parâmetros de entrada provenientes das ações
+      do Dataverse.
 
-2.  An agent flow will be added to the child **Application Intake
-    Agent** which is invoked by the prompt in the event trigger.
+2.  Um fluxo de agente será adicionado ao **Agente de Intake de
+    Candidaturas** subordinado, que será invocado pelo prompt definido
+    no acionador.
 
-    - Use the input parameters passed from the prompt of the event
-      trigger in an adaptive card posted to a channel in Microsoft Teams
-      to notify the HR Recruitment team. The adaptive card will have a
-      link to the Dataverse row which can be viewed in the **Hiring
-      Agent**.
+    - Use os parâmetros de entrada transmitidos a partir do prompt do
+      acionador de evento em um cartão adaptável publicado em um canal
+      no Microsoft Teams para notificar a equipe de recrutamento de RH.
+      O cartão adaptativo terá um link para a linha do Dataverse, que
+      pode ser visualizada no **Hiring Agent**.
 
-### Task 1: Automate uploading resumes to Dataverse received by email
+### Tarefa 1 – Automatizar o carregamento de currículos recebidos por e-mail para o Dataverse
 
-1.  In the Hiring Agent, scroll down in the **Overview tab** to
-    the **Triggers** section and select **+ Add trigger**.
+1.  No Hiring Agent, role a página para baixo na **guia** **Overview**
+    até a seção **Triggers** e selecione **+ Add trigger**.
 
-    ![](./media/image1.png)
+> ![](./media/image1.png)
 
-3.  A list of triggers will appear. Select **When a new email arrives
-    (V3)** and select **Next**.
+2.  Uma lista de acionadores será exibida. Selecione **When a new email
+    arrives (V3)** e, em seguida, selecione **Next**.
 
-    ![](./media/image2.png)
+> ![](./media/image2.png)
 
-3.  Select **Continue** in the next screen.
+3.  Selecione **Continue** na próxima tela.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  We'll now see the **Trigger name** and the **Sign in** connection
-    references for the apps listed. Rename the trigger name to the
-    following:
+4.  Agora veremos o **Trigger name** e as **Sign in connection
+    references** para os aplicativos listados. Renomeie o trigger name
+    conforme indicado a seguir:
 
-    +++When a new email arrives from an applicant+++
++++When a new email arrives from an applicant+++
 
-    **NOTE:** Make sure you see a green check by each of the connection references for the apps listed. If you don't see a green check, sign in through the ellipsis (...) and select **+ New connection reference** to create a new connection reference.
+> **OBSERVAÇÃO:** Certifique-se de que há uma marca verde ao lado de
+> cada uma das referências de conexão dos aplicativos listados. Se não
+> houver uma marca verde, faça login por meio do menu de reticências (…)
+> e selecione **+ New connection reference** para criar uma nova
+> referência de conexão.
+>
+> ![](./media/image4.png)
 
-    ![](./media/image4.png)
+5.  A etapa final é definir as propriedades de entrada do acionador.
+    Atualize as seguintes propriedades conforme indicado a seguir,
 
-5.  The final step is to set the input properties of the trigger. Update
-    the following properties to the following,
+[TABLE]
 
-    | **Property**   | **How to Set**   |  **Details**  |
-    |:--------|:----|:-------|
-    |  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
-    |  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
-    |  Only with Attachments (Optional)  |  Dropdown  | Yes   |
+6.  Selecione **Create trigger**.
 
-6.  Select **Create trigger**.
+> ![](./media/image5.png)
 
-    ![](./media/image5.png)
+7.  Após a criação, será exibida uma mensagem de confirmação informando
+    que o acionador foi adicionado ao agente. Selecione **Close**, e o
+    acionador passará a ser listado na seção **Triggers**.
 
-7.  Once created, a confirmation message will appear that the trigger
-    has been added to the agent. Select **Close** and the trigger will
-    be listed in the **Triggers** section.
+> ![](./media/image6.png)
 
-    ![](./media/image6.png)
+8.  Agora vamos atualizar o acionador de evento para adicionar mais
+    recursos de automação. Selecione o menu de **reticências** (**…**)
+    ao lado do acionador e escolha **Edit in Power Automate**.
 
-9.  We're now going to update the event trigger to add some more
-    automation capabilities. Select the **ellipsis (...)** by the
-    trigger and select **Edit in Power Automate**.
+> ![](./media/image7.png)
 
-    ![](./media/image7.png)
+9.  O acionador será então carregado como um fluxo no portal do criador
+    do Power Automate. Ele será aberto no designer de fluxos, onde
+    podemos adicionar mais lógica e ações para maior automação. O
+    acionador aparecerá na parte superior, seguido por **Sends a prompt
+    to the specified copilot for processing** como a última ação no
+    fluxo.
 
-9.  The trigger will then load as a flow in the Power Automate maker
-    portal. It will open to the flow designer where we can add further
-    logic and actions for more automation. The trigger will appear at
-    the top, followed by **Sends a prompt to the specified copilot for
-    processing** as the last action in the flow.
+> ![](./media/image8.png)
 
-    ![](./media/image8.png)
+10. Por padrão, o acionador **When a new email arrives** no Power
+    Automate pode processar vários e-mails juntos caso vários cheguem ao
+    mesmo tempo, executando o fluxo apenas uma vez para todo o lote.
 
-    >[!Note] **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
-    >
-    >![](./media/image132.png)
+> Para garantir que o fluxo seja executado separadamente para cada
+> e-mail, selecione o nó When a new email arrives e, em seguida,
+> selecione **Settings**.
+>
+> Ative a configuração **Split On** nas **Settings** do **acionador** e
+> selecione **@triggerOutputs()?\['body/value'\]** no campo do **menu
+> suspenso** **array**.
+>
+> Com a opção **Split On** ativada e o campo de array definido como
+> @triggerOutputs()?\['body/value'\], o fluxo será executado
+> individualmente para cada mensagem, mesmo que várias cheguem
+> simultaneamente.
+>
+> ![](./media/image9.png)
 
-11. By default, the **When a new email arrives** trigger in Power
-    Automate may process multiple emails together if several arrive at
-    once, running the flow only once for the batch.
+11. Em seguida, vamos adicionar uma lógica para verificar o tipo de
+    arquivo do anexo. Queremos fazer o upload apenas de anexos .PDF e
+    não de imagens (que podem vir de assinaturas de e-mail). Selecione o
+    ícone **+** abaixo do acionador e escolha **Control** na seção
+    **Built-in tools**.
 
-    To ensure the flow runs separately for each email, select the When a new email arrives node, select **Settings**.
-    
-    Enable the **Split On** setting in the **trigger’s settings** and select **@triggerOutputs()?['body/value']** in the **dropdown array** field.
-    
-    With **Split On** turned on and the array field set to **@triggerOutputs()?['body/value']**, the flow will run individually for each message, even if many arrive simultaneously.
+> ![](./media/image10.png)
 
-    ![](./media/image9.png)
+12. Selecione a ação **Condition**.
 
-12. Let's next add some logic to check the file type of the attachment,
-    we only want to upload .PDF file attachments and not images (these
-    could come from email signatures). Select the **+** icon below the
-    trigger and select **Control** under the **Built in tools** section.
+> ![](./media/image11.png)
 
-    ![](./media/image10.png)
+13. Agora vamos configurar a condição para verificar se o tipo do anexo
+    é .PDF. No campo **Choose a value** à esquerda, selecione o **ícone
+    de** **raio**.
 
-13. Select the **Condition** action.
+> ![](./media/image12.png)
 
-    ![](./media/image11.png)
+14. No campo **Search**, digite +++content type+++ e selecione o
+    parâmetro **Attachments Content-Type** do acionador.
 
-14. Now we will configure the condition to check if the file
-    attachment’s type is .PDF. In the **Choose a value** field on the
-    left, select the **lightning bolt icon**.
+> ![](./media/image13.png)
 
-    ![](./media/image12.png)
+15. Vamos pausar aqui por um momento — você provavelmente percebeu que a
+    ação **For each** foi adicionada automaticamente.
 
-15. In the **Search** field type +++content type+++ and select
-    the **Attachments Content-Type** parameter from the trigger
+> ![](./media/image14.png)
+>
+> Essa ação representa a iteração por cada anexo do e-mail, já que o
+> parâmetro **Attachments Content-Type** está associado a cada anexo
+> individualmente.
+>
+> Do ponto de vista técnico, isso é um array, e é por isso que a ação
+> **For each** foi adicionada automaticamente quando selecionamos o
+> parâmetro **Attachments Content-Type** na ação **Condition**.
 
-    ![](./media/image13.png)
+16. Em seguida, no outro campo **Choose a value** à direita no bloco
+    **Condition**, digite +++application/pdf+++.
 
-16. Let's pause here for a moment, you probably noticed that the **For
-    each** action automatically appeared.
+Isso garantirá que, para cada anexo de arquivo, seja verificado se o
+formato da extensão do arquivo é .PDF.
 
-    ![](./media/image14.png)
+> ![](./media/image15.png)
 
-    This action represents looping through each attachment in the email, since the **Attachments Content-Type** parameter is tied to each attachment.
-    
-    Underneath the hood, it's an array and that's why the For each action was automatically added when we selected the **Attachments Content-Type** parameter in the **Condition** action.
+17. Agora vamos configurar o caminho **True** para extrair o arquivo do
+    e-mail e carregá-lo na tabela **Resume** do Dataverse.
 
+> Adicione uma nova ação abaixo no caminho **True** e pesquise por html
+> to text. Em seguida, procure e selecione a ação **+++Html to
+> text+++**.
+>
+> **Observação:** a ação **HTML to text** no Power Automate é usada para
+> converter conteúdo formatado em HTML em texto simples. Isso é
+> especialmente útil quando você recebe dados (como e-mails, conteúdo da
+> web ou respostas de API) que contêm tags HTML e deseja extrair apenas
+> o texto legível, sem qualquer formatação ou código.
+>
+> ![](./media/image16.png)
 
-17. Next, in the other **Choose a value** field to the right in
-    the **Condition** block, type +++application/pdf+++
+18. Em seguida, precisamos criar uma nova referência de conexão para a
+    ação **Html to text** selecionando **Create new**.
 
-    This will ensure that for each file attachment, it will check the file
-extension format is .PDF.
+> ![](./media/image17.png)
 
-    ![](./media/image15.png)
+19. A ação agora pode ser configurada. Vamos adicionar o parâmetro
+    **Body** do acionador. No campo **Content**, selecione o **ícone
+    de** **raio** ou o **ícone fx** à direita.
 
-17. Now we'll configure the **True** path to extract the file from the
-    email and upload it into the **Resume** Dataverse table.
+> ![](./media/image18.png)
 
-    Add a new action below in the **True** path and search for html to text. Search for and select the +++**Html to text**+++ action.
-    
-    >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
+20. Na guia **Dynamic content**, pesquise por +++body+++ e selecione o
+    parâmetro **Body**. Em seguida, selecione **Add**.
 
+> ![](./media/image19.png)
 
-    ![](./media/image16.png)
+21. Concluímos a configuração dessa ação; portanto, saia da ação
+    selecionando os dois colchetes angulares («) apontando para a
+    esquerda para recolher o painel.
 
-18. Next, we need to create a new connection reference for the **Html to
-    text** action by selecting **Create new**.
+> ![](./media/image20.png)
 
-    ![](./media/image17.png)
+22. Adicione uma nova ação selecionando o **ícone +** abaixo da ação
+    **Html to text**, o que abrirá o painel para adicionar ações.
+    Pesquise por **Dataverse add** e selecione a ação **Add a new row**.
 
-19. The action can now be configured. Let's add the **Body** parameter
-    from the trigger. In the **Content** field, select the **lightning
-    bolt icon** or **fx icon** to the right.
+> ![](./media/image21.png)
 
-    ![](./media/image18.png)
+23. Renomeie a ação colando +++Add a new Resume row+++ como nome no
+    canto superior esquerdo do painel de propriedades.
 
-20. In the **Dynamic content** tab, search for +++body+++ and select
-    the **Body** parameter, followed by selecting **Add**.
+Para o parâmetro **Table name**, pesquise por res e selecione a tabela
+**Resumes**.
 
-    ![](./media/image19.png)
+> ![](./media/image22.png)
 
-21. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+24. Selecione o campo **Resume Title** e, em seguida, selecione o
+    **ícone** **fx** à direita.
 
-    ![](./media/image20.png)
+> ![](./media/image23.png)
 
-22. We'll add a new action by selecting the **+ icon** underneath
-    the **Html to text** action which will load the panel to add
-    actions. Search for **Dataverse add**.Select the **Add a new
-    row** action.
+25. Na **guia** **Function**, insira a seguinte expressão que utiliza a
+    função item():
 
-    ![](./media/image21.png)
++++item()?\['name'\]+++
 
-23. Rename the action by pasting +++Add a new Resume row+++ as the name
-    in the upper left-hand corner of the properties panel,
+> Selecione **Add** para adicionar a expressão ao parâmetro **Resume
+> Title**.
+>
+> ![](./media/image24.png)
 
-    For the **Table name** parameter, search for +++res+++ and select
-the **Resumes** table.
+**Observação sobre a função item():**
 
-    ![](./media/image22.png)
+- Quando você usa uma ação **Apply to each**, o Power Automate percorre
+  cada elemento de uma coleção (array).
 
-24. Select the **Resume Title** field next and select the **fx icon** to
-    the right.
+- Ela é mais frequentemente utilizada dentro de ações como **Apply to
+  each** (ou **For each**), **Select** ou **Filter array**.
 
-    ![](./media/image23.png)
+26. Ainda precisamos configurar vários outros parâmetros; selecione
+    **Show all**.
 
-25. In the **Function tab**, enter the following expression that uses
-    the item() function.
+> ![](./media/image25.png)
 
-    +++item()?['name']+++
+27.  No campo **Cover Letter**, selecione o **ícone fx** à direita.
 
-    Select **Add** to add the expression to the **Resume Title** parameter.
+> Na **guia Function**, insira a seguinte expressão:
+>
+> +++if(greater(length(body('Html_to_text')), 2000),
+> substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+>
+> Essa expressão verifica se o texto retornado pela ação **Html to
+> text** possui mais de 2000 caracteres e, se for o caso, retorna apenas
+> os primeiros 2000 caracteres; caso contrário, retorna o texto
+> completo.
+>
+> ![](./media/image26.png)
 
-    ![](./media/image24.png)
+28. A expressão será então adicionada ao campo **Cover Letter**.
 
-    >[!Note] **Note on item() function:**
-    >
-    >- When you use an **Apply to each** action, Power Automate goes through
-      each element in a collection (array).
-    >
-    >- It’s most often used inside actions like **Apply to each** (or **For
-      each**), **Select**, or **Filter array**.
+> ![](./media/image27.png)
 
-26. We still need to configure several more parameters, select **Show
-    all**.
+29. Para o campo **Source Email Address**, selecione o **ícone de**
+    **raio** e escolha o parâmetro **From** do acionador, pois ele
+    contém o valor do endereço de e-mail.
 
-    ![](./media/image25.png)
+> ![](./media/image28.png)
 
-28.  In the **Cover Letter** field, select the **fx icon** to the right.
+30. Para o campo **Upload Date**, selecione o **ícone fx** à direita. Na
+    **guia** **Function**, insira +++utcNow()+++ e selecione **Add.**
 
-    In the **Function tab**, enter the following expression.
+**Observação: O que é a função utcNow()?**
 
-    +++if(greater(length(body('Html_to_text')), 2000), substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+- A função utcNow() no Power Automate retorna a data e hora atuais em
+  Tempo Universal Coordenado (UTC) no formato ISO 8601, por exemplo:
+  2025-09-23T04:32:14Z.
 
-    This expression checks if the text from the **Html to text** action is longer than 2000 characters, and if so, returns only the first 2000 characters; otherwise, it returns the full text.
+> ![](./media/image29.png)
 
-    ![](./media/image26.png)
+31. Agora concluímos a configuração da ação **Add a new Resume row**;
+    portanto, saia do painel recolhendo-o.
 
-28. The expression will now be added to the **Cover Letter** field.
+> ![](./media/image30.png)
 
-    ![](./media/image27.png)
+32. Adicione uma nova ação selecionando o **ícone +** abaixo da ação
+    **Add a new Resume row**, o que abrirá o painel para adicionar
+    ações. Pesquise por **+++Dataverse Upload+++** e selecione a ação
+    **Upload a file or an image**.
 
-29. For the **Source Email Address** field, select the **lightning bolt
-    icon** and select the **From** parameter from the trigger as this
-    contains the email address value.
+> ![](./media/image31.png)
 
-    ![](./media/image28.png)
+33. Renomeie a ação colando +++Upload Resume File+++ como nome.
 
-30. For the **Upload Date** field, select the **fx icon** to the right.
-    In the **Function tab**, enter, +++utcNow()+++ and select **Add**.
+> ![](./media/image32.png)
 
-    **Note:**  **What is the utcNow() function?**
+34. Selecione o campo **Content name** (remova a mensagem Untitled, caso
+    já esteja presente) e, em seguida, selecione o **ícone** **fx** à
+    direita.
 
-    - The utcnow() function in Power Automate returns the current date and
-  time in Coordinated Universal Time (UTC) in an ISO 8601 format,
-  like: 2025-09-23T04:32:14Z
+> Na **guia Function**, insira a seguinte expressão que utiliza a função
+> item(). Essa expressão obtém a propriedade name do item atual (o
+> arquivo de anexo).
+>
+> +++item()?\['name'\]+++
+>
+> ![](./media/image33.png)
 
-    ![](./media/image29.png)
+35. Para o parâmetro **Table name**, pesquise por +++resumes+++ e
+    selecione a tabela **Resumes**.
 
-31. We've now completed configuring the **Add a new Resume row** action
-    so let's exit from the panel by collapsing it.
+> ![](./media/image34.png)
 
-    ![](./media/image30.png)
+36. Em seguida, selecione o campo **Row ID** e escolha o **ícone de**
+    **raio** à direita.
 
-33. We'll add a new action by selecting the **+ icon** underneath
-    the **Add a new Resume row** action which will load the panel to add
-    actions. Search for +++**Dataverse Upload**+++. Select the **Upload
-    a file or an image** action.
+> Pesquise por +++ID+++ e selecione o parâmetro **Resume** da ação **Add
+> a new row** do Dataverse, pois ele contém o valor de ID da linha para
+> a qual o arquivo PDF será carregado.
+>
+> ![](./media/image35.png)
 
-    ![](./media/image31.png)
+37. Selecione o campo **Column name** e escolha a opção **Resume PDF**.
 
-33. Rename the action by pasting +++Upload Resume File+++ as the name.
+> ![](./media/image36.png)
 
-    ![](./media/image32.png)
+38. Selecione o campo **Content** e, em seguida, selecione o **ícone
+    fx** à direita.
 
-34. Select the **Content name** field (remove the Untitled message if
-    that is already available) next and select the **fx icon** to the
-    right.
+> Na guia **Function**, insira a seguinte expressão que utiliza a função
+> item(). Essa expressão obtém a propriedade contentBytes do item atual
+> (o arquivo de anexo). contentBytes refere-se aos dados binários brutos
+> de um arquivo ou anexo, codificados como uma string Base64.
+>
+> +++item()?\['contentBytes'\]+++
+>
+> ![](./media/image37.png)
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the name property of the current item (the attachment file).
-    
-    +++item()?['name']+++
+39. Concluímos a configuração dessa ação; portanto, saia da ação
+    selecionando os dois colchetes angulares («) apontando para a
+    esquerda para recolher o painel.
 
+> ![](./media/image38.png)
 
-    ![](./media/image33.png)
+40. Em seguida, selecione a ação **Sends a prompt to the specified
+    copilot for processing** e arraste-a para posicioná-la abaixo da
+    ação **Upload Resume File**, no caminho **True** da condição.
 
-35. For the **Table name** parameter, search for +++resumes+++ and
-    select the **Resumes** table.
+> ![](./media/image39.png)
 
-    ![](./media/image34.png)
+41. Selecione a ação **Sends a prompt to the specified copilot for
+    processing** para configurá-la.
 
-36. Select the **Row ID** field next and select the **lightning bolt
-    icon** to the right.
+![](./media/image40.png)
 
-    Search for +++ID+++ and select the **Resume** parameter from the **Add a new row** Dataverse action as this contains the ID value of the row to upload the PDF file to.
+42. No campo **Body/message**, selecione todo o conteúdo do campo e
+    limpe/exclua esse conteúdo.
 
-    ![](./media/image35.png)
+> ![](./media/image41.png)
 
-37. Select the **Column name** field and select the **Resume
-    PDF** option.
+43. Copie e cole o texto a seguir no campo **Body/message** e, em
+    seguida, selecione e destaque o texto **RESUME ID PLACEHOLDER** e
+    clique no ícone de **raio**.
 
-    ![](./media/image36.png)
+> Send \[ResumeId (text)\] = "RESUME ID PLACEHOLDER" and \[ResumeTitle
+> (text_1)\] = "RESUME TITLE PLACEHOLDER" and \[ResumeNumber (text_2)\]=
+> "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant
+> channel" in the child agent "Application Intake Agent"
+>
+> ![](./media/image42.png)
 
-38. Select the **Content** field and select the **fx icon** to the
-    right.
+44. Pesquise por +++resume+++ e selecione o parâmetro **Resume** da ação
+    **Add a new row** do *Dataverse*, pois ele contém o valor de ID do
+    registro de currículo que foi criado.
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the contentBytes property of the current item (the attachment file). contentBytes refers to the raw binary data of a file or attachment, encoded as a Base64 string.
-    
-    +++item()?['contentBytes']+++
+> ![](./media/image43.png)
 
-    ![](./media/image37.png)
+45. Destaque o RESUME TITLE PLACEHOLDER e selecione o **ícone de raio**
+    à direita.
 
-39. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+> Pesquise por +++title+++ e selecione o parâmetro **Resume Title** da
+> ação **Add a new row** do **Dataverse**, pois ele contém o valor do
+> título do currículo do registro de Resume que foi criado.
+>
+> ![](./media/image44.png)
 
-    ![](./media/image38.png)
+46. Destaque o RESUME TITLE PLACEHOLDER e selecione o **ícone de raio**
+    à direita.
 
-40. Next, select the **Sends a prompt to the specified copilot for
-    processing**, then drag and drop this action to be below
-    the **Upload Resume File** action in the **True** path of the
-    condition.
+> Pesquise por +++resume number+++ e selecione o parâmetro **Resume
+> Number** da ação **Add a new row** do **Dataverse**, pois ele contém o
+> valor do número do currículo do registro de Resume que foi criado.
+>
+> ![](./media/image45.png)
 
-    ![](./media/image39.png)
+47. Concluímos a configuração desta ação e do fluxo do nosso agente.
+    Agora, vamos salvar nosso fluxo do acionador de evento selecionando
+    **Save**.
 
-41. Select the **Sends a prompt to the specified copilot for
-    processing** to configure it.
+> ![](./media/image46.png)
 
-    ![](./media/image40.png)
+48. Agora precisamos editar os detalhes do fluxo do agente, selecionar
+    **Back** após salvar.
 
-42. In the **Body/message** field, select all of the field content and
-    clear/delete it.
+> ![](./media/image47.png)
 
-    ![](./media/image41.png)
+49. Selecione **Edit** na seção **Details** e atualize o **Plan** para a
+    opção **Copilot Studio**. Em seguida, selecione **Save**.
 
-43. Copy and paste the following text into the **Body/message** field
-    and highlight the **RESUME ID PLACEHOLDER** and select the
-    **lightning** icon.
+> ![](./media/image48.png)
 
-    ```
-    Send [ResumeId (text)] = "RESUME ID PLACEHOLDER" and [ResumeTitle (text_1)] = "RESUME TITLE PLACEHOLDER" and [ResumeNumber (text_2)]= "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant channel" in the child agent "Application Intake Agent"
-    ```
-    
-    ![](./media/image42.png)
+50. Uma janela modal será exibida solicitando a confirmação para
+    alternar para o plano Copilot Studio. Selecione **Confirm**.
 
-44. Search for +++resume+++ and select the **Resume** parameter from
-    the **Add a new row** *Dataverse* action as this contains
-    the ID value of the Resume row created.
+> ![](./media/image49.png)
 
-    ![](./media/image43.png)
+51. O plano agora foi atualizado para **Copilot Studio**. Selecione
+    **Edit**, pois precisamos publicar o fluxo do acionador de evento
+    para o nosso agente.
 
-45. Highlight the **RESUME TITLE PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+> ![](./media/image50.png)
 
-    Search for +++title+++ and select the **Resume Title** parameter from the **Add a new row Dataverse** action as this contains the resume title value of the Resume row created.
+52. Selecione **Publish**.
 
-    ![](./media/image44.png)
+> ![](./media/image51.png)
+>
+> O fluxo de acionamento do evento agora está publicado.
 
-46. Highlight the **RESUME NUMBER PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+![](./media/image52.png)
 
-    Search for +++resume number+++ and select the **Resume Number** parameter from the **Add a new row Dataverse** action as this contains the Resume Number value of the Resume row created.
+Vamos prosseguir com a criação de um novo fluxo de agente que será
+invocado pelo **Agente de Intake de Candidaturas** subordinado.
 
-    ![](./media/image45.png)
+### Tarefa 2 – Notificar um canal do Teams usando um cartão adaptativo
 
-47. We've completed configuring this action and our agent flow. Now
-    let's save our event trigger flow by selecting **Save**.
+Agora vamos criar um novo fluxo de agente para o **Agente de Intake de
+Candidaturas** subordinado, que utilizará os valores passados pelo
+acionador de evento para publicar um cartão adaptativo em um canal do
+Microsoft Teams. Esse cartão adaptativo notificará a equipe de
+recrutamento de RH sobre o PDF que foi carregado automaticamente, para
+que possa ser revisado.
 
-    ![](./media/image46.png)
+#### Tarefa 2.1 – Criar um canal no Teams
 
-48. We now need to edit the details of the agent flow, select **Back**
-    once saved.
+Nesta tarefa, você criará uma equipe e um canal no Microsoft Teams, que
+serão utilizados posteriormente neste laboratório.
 
-    ![](./media/image47.png)
+1.  Faça login em +++https://teams.microsoft.com+++
 
-49. Select **Edit** in the **Details** section and update
-    the **Plan** to the **Copilot Studio** option. Select **Save**.
+2.  Selecione o **menu suspenso** **New items** e escolha **New team**.
 
-    ![](./media/image48.png)
+![](./media/image53.png)
 
-50. A modal will appear to ask you to confirm to switch to Copilot
-    Studio plan. Select **Confirm**.
-
-    ![](./media/image49.png)
-
-51. The plan is now updated to **Copilot Studio**. Select **Edit** as we
-    need to publish the event trigger flow for our agent.
-
-    ![](./media/image50.png)
-
-52. Select **Publish**.
-
-    ![](./media/image51.png)
-
-    The event trigger flow is now Published.
-
-    ![](./media/image52.png)
-
-    Let's proceed with creating a new agent flow that will be invoked by the
-child **Intake Application Agent**.
-
-### Task 2 - Notify a Teams channel using an adaptive card
-
-We're now going to create a new agent flow for the child **Intake
-Application Agent** that uses the values passed by the event trigger, to
-post an adaptive card to a Teams channel. This adaptive card will alert
-the HR recruitment team about the PDF that was automatically uploaded so
-that they can review it.
-
-#### Task 2.1: Create channel in Teams
-
-In this task, you will create a Team and Channel in MS Teams which will
-be used later in this lab.
-
-1.  Login to +++https://teams.microsoft.com+++
-
-2.  Select the **New items drop down** and select **New team**.
-
-    ![](./media/image53.png)
-
-3.  Provide the below details and select Create.
+3.  Forneça os detalhes abaixo e selecione Create.
 
     - Team name - +++HR Team+++
 
-    - First channel name - +++Applicants+++
+    - First channel name - +++Applicants +++
 
-    ![](./media/image54.png)
+> ![](./media/image54.png)
 
-4.  Select Skip in the next screen.
+4.  Selecione Skip na próxima tela.
 
-    ![](./media/image55.png)
+![](./media/image55.png)
 
-5.  You have now created the new Team and Channel.
+5.  Agora você criou a nova equipe e o novo canal.
 
-    ![](./media/image56.png)
+![](./media/image56.png)
 
-#### Task 2.2: Create the agent flow
+#### Tarefa 2.2: Criar o fluxo do agente
 
-1.  Back in the Copilot Studio, in the **Hiring Agent** select
-    the **Agents** tab and select the **Application Intake Agent**
+1.  De volta ao Copilot Studio, no **Hiring Agent**, selecione a guia
+    **Agents** e escolha o **Application Intake Agent.**
 
-    ![](./media/image57.png)
+![](./media/image57.png)
 
-2.  Scroll down to **Tools** and select **+ Add**.
+2.  Role a página até a seção **Tools** e selecione **+ Add**.
 
-    ![](./media/image58.png)
+> ![](./media/image58.png)
 
-3.  The **Add tool** modal will appear. Select **+ New tool**.
+3.  A janela modal **Add tool** será exibida. Selecione **+ New tool**.
 
-    ![](./media/image59.png)
+> ![](./media/image59.png)
 
-4.  Select **Agent flow**.
+4.  Selecione **Agent flow**.
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-5.  The **agent flow designer** will next load. In the **When an agent
-    calls the flow** trigger, select **+ Add an input**.
+5.  Em seguida, o **agent flow designer** será carregado. No acionador
+    **When an agent calls the flow**, selecione **+ Add an input**.
 
-    ![](./media/image61.png)
+> ![](./media/image61.png)
 
-6.  Select **Text** as the type of user input.
+6.  Selecione **Text** como o tipo de entrada do usuário.
 
-    ![](./media/image62.png)
+> ![](./media/image62.png)
 
-7.  In the input text field, enter +++ResumeId+++ as the input parameter
-    name.
+7.  No campo de texto da entrada, insira +++ResumeId+++ como o nome do
+    parâmetro de entrada.
 
-    ![](./media/image63.png)
+> ![](./media/image63.png)
 
-8.  Repeat the same steps for the below parameters.
+8.  Repita os mesmos passos para os parâmetros abaixo.
 
-    Text - +++ResumeTitle+++
-    
-    Text - +++ResumeNumber+++
-    
-    ![](./media/image64.png)
-    
-    ![](./media/image65.png)
+Text - +++ResumeTitle+++
 
-9.  Now, you are going to add an adaptive card in the agent flow. We're
-    now going to add another action to our agent flow that will post an
-    adaptive card to a Teams channel.
-
-    Select the **+ icon** below the trigger.
-
-    ![](./media/image66.png)
-
-10. Search for +++**Microsoft Teams post+++** and select the **Post card
-    in a chat or channel** action.
-
-    ![](./media/image67.png)
-
-11. A connection reference to Microsoft Teams needs to be created with
-    your signed in user account. Select **Sign in**.
-
-    ![](./media/image68.png)
-
-12. Select your user account and then select **Allow access**.
-
-    ![](./media/image69.png)
-
-13. Configure according to the following input parameters:
-
-    | Parameter   |  How to Set  | Details   |
-    |:------|:----|:------|
-    |  **Post as**  |  Dropdown  |  Select the **Flow bot** option  |
-    |  **Post in**  |  Dropdown  |   Select the **Channel** option |
-    |  **Team**  |  Dropdown  |  Select **HR Team** option  |
-    |   **Team** |  Dropdown  |  Select  **Applicants** channel   |
-
-
-    ![](./media/image70.png)
-
-14. Next, we'll configure the **Adaptive Card** field. Select
-    the **Adaptive Card** field.
-
-    ![](./media/image71.png)
-
-15. Copy the below code and paste it into the Adaptive Card field.
-
-    ```
-    {
-        "type": "AdaptiveCard",
-        "speak": "New Resume Uploaded",
-        "body": [
-            {
-                "inlines": [
-                    {
-                        "type": "TextRun",
-                        "size": "Small",
-                        "text": "Resume table updated",
-                        "selectAction": {
-                            "url": "https://adaptivecards.io",
-                            "type": "Action.OpenUrl"
-                        }
-                    }
-                ],
-                "type": "RichTextBlock"
-            },
-            {
-                "columns": [
-                    {
-                        "width": "auto",
-                        "items": [
-                            {
-                                "type": "Icon",
-                                "name": "DocumentArrowUp",
-                                "color": "Accent"
-                            }
-                        ],
-                        "type": "Column"
-                    },
-                    {
-                        "width": "stretch",
-                        "items": [
-                            {
-                                "size": "Large",
-                                "text": "New Resume Uploaded",
-                                "weight": "Bolder",
-                                "wrap": true,
-                                "type": "TextBlock"
-                            }
-                        ],
-                        "verticalContentAlignment": "Center",
-                        "spacing": "Small",
-                        "type": "Column"
-                    }
-                ],
-                "spacing": "Small",
-                "type": "ColumnSet"
-            },
-            {
-                "type": "Table",
-                "targetWidth": "AtLeast:Narrow",
-                "columns": [
-                    {
-                        "width": 1
-                    },
-                    {
-                        "width": 2
-                    }
-                ],
-                "rows": [
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Resume Number",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "RESUME NUMBER PLACEHOLDER",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Name",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "RESUME NAME PLACEHOLDER",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Status",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Waiting for Review",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Due Date",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "May 21, 2023",
-                                        "wrap": true
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Priority",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "ColumnSet",
-                                        "columns": [
-                                            {
-                                                "type": "Column",
-                                                "width": "auto",
-                                                "items": [
-                                                    {
-                                                        "type": "Icon",
-                                                        "name": "Flag",
-                                                        "color": "Attention",
-                                                        "size": "xSmall",
-                                                        "horizontalAlignment": "Center"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Column",
-                                                "width": "stretch",
-                                                "items": [
-                                                    {
-                                                        "color": "Attention",
-                                                        "text": "Important",
-                                                        "wrap": true,
-                                                        "spacing": "Small",
-                                                        "type": "TextBlock"
-                                                    }
-                                                ],
-                                                "spacing": "Small"
-                                            }
-                                        ],
-                                        "spacing": "Small"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    }
-                ],
-                "firstRowAsHeaders": false,
-                "showGridLines": false
-            },
-            {
-                "actions": [
-                    {
-                        "title": "View Resume",
-                        "type": "Action.OpenUrl",
-                        "url": "https://adaptivecards.io/"
-                    }
-                ],
-                "type": "ActionSet",
-                "targetWidth": "AtLeast:Narrow",
-                "spacing": "ExtraLarge"
-            }
-        ],
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
-        "version": "1.5"
-    }
-    
-    ```
-
-    ![](./media/image72.png)
-
-16. We will now replace existing values in the JSON payload with actual
-    values or dynamic content.
-
-    First, let's update the **URL** for the **url property** within the **selectAction** property. This URL will be replaced with the URL of the **Resumes** system view in the **Hiring** Hub model-driven app. This will allow the Recruiter to select the action and be directed to the Resumes system view in the model-driven app.
-    Highlight the **current URL** value and delete it.
-
-
-    ![](./media/image73.png)
-
-17. In the **Hiring Hub** model-driven app, navigate to
-    the **Resumes** system view using the left hand side menu and copy
-    the URL. Then **navigate back** to the **agent flow**, and **paste**
-    the **copied URL** into the **url** property of the within
-    the selectAction property.
-
-    ![](./media/image74.png)
-
-18. You should see the following where highlighted in Yellow is your
-    environment details of the **Hiring Hub** model-driven app.
-
-    |  Parameter  |  Value  |   Explanation |
-    |:--------|:--------|:---------|
-    |  Organization URI  |   GUID |  The Dataverse/Dynamics 365 environment organization URL  |
-    |  appid  | GUID   |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | viewid    | GUID   |  The query parameter which is the id of the view  |
-
-
-
-    ![](./media/image75.png)
-
-19. Next, we'll add dynamic content values for several properties. Let's
-    start with the text that will display the Resume Number reference of
-    the row that was created by the event trigger autonomously.
-
-    Select the **panel** icon to load the action panel.
-
-    ![](./media/image76.png)
-
-20. Scroll down to the line where you see the text property for RESUME
-    NUMBER PLACEHOLDER. Highlight the placeholder value and delete it.
-
-    ![Delete placeholder](./media/image77.png)
-
-21. Click in-between the double quotation marks and select
-    the **lightning bolt icon** from the right.
-
-    **Note:** Make sure that the Adaptive card code block is docked to the left pane of your screen.
-
-    ![](./media/image78.png)
-
-23. In the **Dynamic Content** tab select
-    the **ResumeNumber** parameter.
-
-    ![](./media/image79.png)
-
-24. The **ResumeNumber** parameter will now be added as dynamic content
-    to the text property.
-
-    ![](./media/image80.png)
-
-25. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
-    down to the line where you see the text property for RESUME NAME
-    PLACEHOLDER. Highlight the placeholder value and delete it. Click
-    in-between the double quotation marks and select the select
-    the **lightning bolt icon** from the right.
-
-    ![](./media/image81.png)
-
-26. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
-
-    ![](./media/image82.png)
-
-27. The **ResumeTitle** parameter will now be added as dynamic content
-    to the text property.
-
-    ![](./media/image83.png)
-
-28. We'll repeat the same steps for the **Due Date** value that
-    represents when a recruiter should review the resume by. Scroll down
-    to the line where you see the text property for May 21, 2023.
-
-    ![Select Allow access](./media/image84.png)
-
-29. Delete this date placeholder value and click in-between the double
-    quotation marks and select the **fx icon** from the right.
-
-    ![](./media/image85.png)
-
-30. In the **Function** tab, enter the following expression and
-    select **Add**.
-
-    +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
-
-    This expression utilizes two functions.
-
-    addDays - Adds a specified number of days to a given date and returns the resulting date in string format
-    
-    utcNow - Returns the current date and time in Coordinated Universal Time (UTC) format as a string.
-
-    For the utcNow value, we are formatting the date to be month and date,
-    followed by the year.
-
-    ![](./media/image86.png)
-
-31. The expression will now be added to the text property.
-
-    ![](./media/image87.png)
-
-32. Lastly, we'll update the **URL** for the **url property** within
-    the **actions** array property at the bottom of the JSON payload.
-    This current placeholder URL will be replaced with the URL of the
-    **Resume row** in the **Hiring Hub** model-driven app. This will
-    allow the Recruiter to select the **Action.OpenURL** action of the
-    adaptive card and be **directed** to the **Resume** in the
-    model-driven app.
-
-    ![](./media/image88.png)
-
-32. In the **Hiring Hub** model-driven app, open a row in
-    the **Resumes** system view using the left hand side menu. The
-    resume row will load as a form in the model-driven app.
-
-    Copy the URL for the Resume row.
-    
-    ![](./media/image89.png)
-    
-    ![](./media/image90.png)
-
-33. Then navigate back to the agent flow, highlight the current
-    placeholder URL value and **delete** it.
-
-    ![](./media/image91.png)
-
-34. Then **paste** the **copied URL** into the **url** property of the
-    within the url property.
-
-    ![](./media/image92.png)
-
-35. You should see the following. Delete the GUID id value at the end.
-    We'll replace this dynamic content - the **ResumeId** parameter.
-
-    ![](./media/image93.png)
-
-36. Select the **lightning bolt icon** from the right.
-
-    In the **Dynamic Content** tab select the **ResumeId** parameter.
-
-    ![](./media/image94.png)
-
-37. The **ResumeId** will be added as dynamic content. The following
-    highlighted in Yellow is your environment details of the **Hiring
-    Hub** model-driven app.
-
-    |  Parameter  | Value   |  Explanation  |
-    |:-----|:-------|:--------|
-    | Organization URI   | GUID   |  The Dataverse/Dynamics 365 environment organization URL  |
-    |   appid |  GUID  |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | id   |  GUID  |    The query parameter which is the id of the Resume row    |
-
-    ![](./media/image95.png)
-
-38. We've completed configuring the **Post card in a chat or
-    channel** action 👏🏻 Exit from the action configuration panel by
-    selecting the **x** icon.
-
-    ![](./media/image96.png)
-
-39. Finally, we'll configure the last action, **Respond to the
-    agent** by sending a text back to the agent to end the processing.
-
-    In the **Respond to the agent** action, select **+Add an output**.
-
-    ![](./media/image97.png)
-
-40. Select **Text** as the type of output.
-
-    ![](./media/image98.png)
-
-41. Enter the following details
+Text - +++ResumeNumber+++
+
+![](./media/image64.png)
+
+![](./media/image65.png)
+
+9.  Agora você irá adicionar um cartão adaptativo ao fluxo de agente.
+    Vamos adicionar uma nova ação ao fluxo para publicar um cartão
+    adaptativo em um canal do Teams.
+
+Selecione o **ícone +** abaixo do acionador.
+
+> ![](./media/image66.png)
+
+10. Pesquise por **+++Microsoft Teams post+++** e selecione a ação
+    **Post card in a chat or channel**.
+
+> ![](./media/image67.png)
+
+11. É necessário criar uma referência de conexão com o Microsoft Teams
+    usando sua conta de usuário conectada. Selecione **Sign in**.
+
+> ![](./media/image68.png)
+
+12. Selecione sua conta de usuário e, em seguida, selecione **Allow
+    access**.
+
+> ![](./media/image69.png)
+
+13. Configure de acordo com os seguintes parâmetros de entrada:
+
+[TABLE]
+
+> ![](./media/image70.png)
+
+14. Em seguida, vamos configurar o campo **Adaptive Card**. Selecione o
+    campo **Adaptive Card**.
+
+> ![](./media/image71.png)
+
+15. Copie o código abaixo e cole-o no campo Adaptive Card.
+
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "speak": "New Resume Uploaded",
+>
+> "body": \[
+>
+> {
+>
+> "inlines": \[
+>
+> {
+>
+> "type": "TextRun",
+>
+> "size": "Small",
+>
+> "text": "Resume table updated",
+>
+> "selectAction": {
+>
+> "url": "https://adaptivecards.io",
+>
+> "type": "Action.OpenUrl"
+>
+> }
+>
+> }
+>
+> \],
+>
+> "type": "RichTextBlock"
+>
+> },
+>
+> {
+>
+> "columns": \[
+>
+> {
+>
+> "width": "auto",
+>
+> "items": \[
+>
+> {
+>
+> "type": "Icon",
+>
+> "name": "DocumentArrowUp",
+>
+> "color": "Accent"
+>
+> }
+>
+> \],
+>
+> "type": "Column"
+>
+> },
+>
+> {
+>
+> "width": "stretch",
+>
+> "items": \[
+>
+> {
+>
+> "size": "Large",
+>
+> "text": "New Resume Uploaded",
+>
+> "weight": "Bolder",
+>
+> "wrap": true,
+>
+> "type": "TextBlock"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center",
+>
+> "spacing": "Small",
+>
+> "type": "Column"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small",
+>
+> "type": "ColumnSet"
+>
+> },
+>
+> {
+>
+> "type": "Table",
+>
+> "targetWidth": "AtLeast:Narrow",
+>
+> "columns": \[
+>
+> {
+>
+> "width": 1
+>
+> },
+>
+> {
+>
+> "width": 2
+>
+> }
+>
+> \],
+>
+> "rows": \[
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Resume Number",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "RESUME NUMBER PLACEHOLDER",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Name",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "RESUME NAME PLACEHOLDER",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Status",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Waiting for Review",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Due Date",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "May 21, 2023",
+>
+> "wrap": true
+>
+> }
+>
+> \]
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Priority",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "ColumnSet",
+>
+> "columns": \[
+>
+> {
+>
+> "type": "Column",
+>
+> "width": "auto",
+>
+> "items": \[
+>
+> {
+>
+> "type": "Icon",
+>
+> "name": "Flag",
+>
+> "color": "Attention",
+>
+> "size": "xSmall",
+>
+> "horizontalAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "Column",
+>
+> "width": "stretch",
+>
+> "items": \[
+>
+> {
+>
+> "color": "Attention",
+>
+> "text": "Important",
+>
+> "wrap": true,
+>
+> "spacing": "Small",
+>
+> "type": "TextBlock"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> }
+>
+> \],
+>
+> "firstRowAsHeaders": false,
+>
+> "showGridLines": false
+>
+> },
+>
+> {
+>
+> "actions": \[
+>
+> {
+>
+> "title": "View Resume",
+>
+> "type": "Action.OpenUrl",
+>
+> "url": "https://adaptivecards.io/"
+>
+> }
+>
+> \],
+>
+> "type": "ActionSet",
+>
+> "targetWidth": "AtLeast:Narrow",
+>
+> "spacing": "ExtraLarge"
+>
+> }
+>
+> \],
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+>
+> "version": "1.5"
+>
+> }
+
+![](./media/image72.png)
+
+16. Agora, substituiremos os valores existentes na carga JSON por
+    valores reais ou conteúdo dinâmico.
+
+> Primeiro, vamos atualizar a **URL** da **propriedade url** dentro da
+> propriedade **selectAction**. Essa URL será substituída pela URL da
+> exibição do sistema **Resumes** no aplicativo orientado pelo modelo
+> **Hiring Hub**. Isso permitirá que o recrutador selecione a ação e
+> seja direcionado para a exibição do sistema Currículos no aplicativo
+> orientado por modelo.
+>
+> Destaque o **valor atual da URL** e exclua-o.
+
+![](./media/image73.png)
+
+17. No aplicativo orientado por modelo do **Hiring Hub**, navegue até a
+    exibição do sistema **Resumes** usando o menu do lado esquerdo e
+    copie a URL. Em seguida, **navegue de volta** para o **fluxo do
+    agente** e **cole** a **URL copiada** na propriedade **url** dentro
+    da propriedade selectAction.
+
+> ![](./media/image74.png)
+
+18. Você deverá ver o seguinte, onde o destaque em amarelo são os
+    detalhes do seu ambiente do aplicativo orientado por modelo do
+    **Hiring Hub**.
+
+[TABLE]
+
+> ![](./media/image75.png)
+
+19. Em seguida, adicionaremos valores de conteúdo dinâmico para várias
+    propriedades. Vamos começar com o texto que exibirá a referência do
+    número do currículo da linha que foi criada pelo acionador de evento
+    de forma autônoma.
+
+Selecione o ícone **do painel** para carregar o painel de ação.
+
+![](./media/image76.png)
+
+20. Role a página para baixo até a linha onde você vê a propriedade de
+    texto para RESUME NUMBER PLACEHOLDER. Selecione o valor do
+    placeholder, destaque-o e exclua-o.
+
+![Delete placeholder](./media/image77.png)
+
+21. Clique entre as aspas duplas e selecione o **ícone de raio** no lado
+    direito.
+
+![](./media/image78.png)
+
+22. Na guia **Dynamic Content,** selecione o parâmetro
+    **ResumeNumbe***r*.
+
+> ![](./media/image79.png)
+
+23. O parâmetro **ResumeNumber** será agora adicionado como conteúdo
+    dinâmico à propriedade de texto.
+
+> ![](./media/image80.png)
+
+24. Repetiremos as mesmas etapas para o RESUME NAME PLACEHOLDER. Role a
+    página para baixo até a linha onde você vê a propriedade de texto
+    para RESUME NAME PLACEHOLDER. Selecione o valor do placeholder,
+    destaque-o e exclua-o. Clique entre as aspas duplas e selecione o
+    **ícone de raio** no lado direito.
+
+> ![](./media/image81.png)
+
+25. Na guia **Dynamic Content**, selecione o parâmetro **ResumeTitle**.
+
+> ![](./media/image82.png)
+
+26. O parâmetro **ResumeTitle** será agora adicionado como conteúdo
+    dinâmico à propriedade de texto.
+
+> ![](./media/image83.png)
+
+27. Repetiremos as mesmas etapas para o valor **Due Date**, que
+    representa a data até a qual um recrutador deve revisar o currículo.
+    Role a página para baixo até a linha onde você vê a propriedade de
+    texto para May 21, 2023.
+
+![Select Allow access](./media/image84.png)
+
+28. Exclua esse valor de data do placeholder, clique entre as aspas
+    duplas e selecione o **ícone fx** no lado direito.
+
+> ![](./media/image85.png)
+
+29. Na guia **Function**, insira a seguinte expressão e selecione
+    **Add**.
+
+> +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
+
+Essa expressão utiliza duas funções.
+
+[TABLE]
+
+Para o valor utcNow, estamos formatando a data para ser mês e dia,
+seguido pelo ano.
+
+![](./media/image86.png)
+
+30. A expressão será agora adicionada à propriedade de texto.
+
+![](./media/image87.png)
+
+31. Por último, atualizaremos a **URL** da **propriedade url** na
+    propriedade **actions** array na parte inferior da carga JSON. A URL
+    atual será substituída pela URL do **Resume now** no aplicativo
+    orientado por modelo **Hiring Hub**. Isso permitirá que o Recrutador
+    selecione a ação **Action.OpenURL** do cartão adaptativo e seja
+    **direcionado** para o **Resume** no aplicativo orientado por
+    modelo.
+
+> ![](./media/image88.png)
+
+32. No aplicativo orientado por modelo **Hiring Hub**, abra uma linha na
+    exibição do sistema **Resumes** usando o menu do lado esquerdo. A
+    linha resume será carregada como um formulário no aplicativo
+    orientado por modelo.
+
+Copie a URL da linha Resume.
+
+![](./media/image89.png)
+
+> ![](./media/image90.png)
+
+33. Em seguida, volte ao fluxo do agente, destaque o valor atual do URL
+    do espaço reservado e **exclua-o**.
+
+> ![](./media/image91.png)
+
+34. Em seguida, **cole** a URL **copiada** na propriedade **url**
+    correspondente.
+
+> ![](./media/image92.png)
+
+35. Você deverá ver o seguinte. Exclua o valor de Id GUID no final.
+    Substituiremos esse conteúdo dinâmico pelo parâmetro **ResumeId**.
+
+![](./media/image93.png)
+
+36. **Selecione o ícone de raio** no lado direito.
+
+Na guia **Dynamic Content**, selecione o parâmetro **ResumeId.**
+
+> ![](./media/image94.png)
+
+37. O **ResumeId** será adicionado como conteúdo dinâmico. O trecho
+    destacado em amarelo corresponde aos detalhes do ambiente do
+    aplicativo orientado por modelo do **Hiring Hub**.
+
+[TABLE]
+
+> ![](./media/image95.png)
+
+38. Concluímos a configuração da ação **Post card in a chat or channel**
+    👏🏻  
+    Saia do painel de configuração da ação selecionando o ícone **x**.
+
+> ![](./media/image96.png)
+
+39. Por fim, vamos configurar a última ação, **Respond to the agent**,
+    enviando um texto de volta ao agente para encerrar o processamento.
+
+Na ação **Respond to the agent**, selecione **+ Add an output**.
+
+> ![](./media/image97.png)
+
+40. Selecione **Text** como o tipo de saída.
+
+> ![](./media/image98.png)
+
+41. Insira os seguintes detalhes.
 
     - Name - +++EndConversation+++
 
-    - Value - +++Finished+++
+    - Value - +++ Finished+++
 
-    ![](./media/image99.png)
+> ![](./media/image99.png)
 
-42. We've now completed configuring the agent flow. Select **Save
-    draft** to save the agent flow. A confirmation message will appear
-    once saved.
+42. Agora concluímos a configuração do fluxo do agente. Selecione **Save
+    draft** para salvar o fluxo do agente. Uma mensagem de confirmação
+    será exibida após o salvamento.
 
-    ![](./media/image100.png)
+> ![](./media/image100.png)
 
-43. Before publishing the agent flow, we need to update the details for
-    the agent flow. Select the **Overview** tab and select **Edit**.
+43. Antes de publicar o fluxo do agente, precisamos atualizar os
+    detalhes do fluxo. Selecione a guia **Overview** e, em seguida,
+    selecione **Edit**.
 
-    ![](./media/image101.png)
+> ![](./media/image101.png)
 
-44. Enter the Name as +++Notify Teams Applicant channel+++ and select
-    the Refresh icon under Description to update it using AI.
+44. Insira o Name como +++Notify Teams Applicant channel+++ e selecione
+    o ícone Refresh em Description para atualizá-la usando AI.
 
-    ![](./media/image102.png)
+![](./media/image102.png)
 
-45. Once the Description is populated, select **Save** to save the
-    updated details for the agent flow.
+45. Após a descrição ser preenchida, selecione **Save** para salvar os
+    detalhes atualizados do fluxo de agente.
 
-    ![](./media/image103.png)
+> ![](./media/image103.png)
 
-46. Navigate back to the **Designer** tab and select **Publish** to
-    publish the agent flow.
+46. Volte para a guia **Designer** e selecione **Publish** para publicar
+    o fluxo de agente.
 
-    ![](./media/image104.png)
+> ![](./media/image104.png)
 
-47. A confirmation message will appear once published.
+47. Uma mensagem de confirmação será exibida após a publicação.
 
-    ![](./media/image105.png)
+> ![](./media/image105.png)
 
-48. The agent flow now needs to be added as a tool in the **Application
-    Intake Agent**. Navigate back to the **Hiring Agent** and select
-    the **Agents** tab, then select the **Application Intake Agent**.
+48. O fluxo de agente agora precisa ser adicionado como uma ferramenta
+    no **Application Intake Agent**. Volte para o **Hiring Agent** e
+    selecione a guia **Agents**; em seguida, selecione **Application
+    Intake Agent**.
 
-    ![](./media/image106.png)
+![](./media/image106.png)
 
-49. In the **Details** section of the agent, we'll update
-    the **Description** field. Copy the following and paste and the end
-    of the description text.
+49. Na seção **Details** do agente, atualizaremos o campo
+    **Description**. Copie o texto a seguir e cole-o ao final do texto
+    de descrição..
 
-    +++and also notifies the Teams Applicant channel+++
++++and also notifies the Teams Applicant channel+++
 
-    Select **Save**.
+Selecione **Save**.
 
-    ![](./media/image107.png)
+> ![](./media/image107.png)
 
-50. Next, we'll add the agent flow as a tool. Scroll down to
-    the **tools** section and select **+ Add**.
+50. Em seguida, adicionaremos o fluxo de agente como uma **ferramenta**.
+    Role a página para baixo até a seção tools e selecione **+ Add**.
 
-    ![](./media/image108.png)
+> ![](./media/image108.png)
 
-51. Select the **Flow** tab and choose the agent flow created
-    earlier, **Notify Teams Applicant Channel**.
+51. Selecione a guia **Flow** e escolha o fluxo de agente criado
+    anteriormente, **Notify Teams Applicant Channel**.
 
-    ![](./media/image109.png)
+> ![](./media/image109.png)
 
-52. Select **Add and configure** next.
+52. Selecione **Add and configure** a seguir.
 
-    ![](./media/image110.png)
+> ![](./media/image110.png)
 
-53. In the **Inputs** section, the three inputs we configured earlier in
-    the agent flow are visible. By default, the **Fill
-    using** configuration is set to **Dynamically fill with AI**. We'll
-    keep this setting as-is as the prompt from the event trigger will
-    contain the parameter values that AI will extract.
+53. Na seção **Inputs**, os três inputs que configuramos anteriormente
+    no fluxo de agente estão visíveis. Por padrão, a configuração **Fill
+    using** configuration está definida como **Dynamically fill with
+    AI**. Manteremos essa configuração como está, pois o prompt do
+    acionador de evento conterá os valores de parâmetros que a AI irá
+    extrair.
 
-    ![](./media/image111.png)
+> ![](./media/image111.png)
 
-54. Now that the tool has been added to the **Application Intake
-    Agent**, the instructions of the agent needs to be updated. Select
-    the **back arrow**.
+54. Agora que a ferramenta foi adicionada ao **Application Intake
+    Agent**, as instruções do agente precisam ser atualizadas. Selecione
+    a **seta de** **voltar**.
 
-    ![](./media/image112.png)
+![](./media/image112.png)
 
-55. Select the **Application Intake Agent** in the **Agents** tab of
-    the **Hiring Agent**.
+55. Selecione o **Application Intake Agent** na guia **Agents** do
+    **Hiring Agent**.
 
-    ![](./media/image113.png)
+![](./media/image113.png)
 
-56. In the **Instructions** field, enter a new line
-    after **Post-Upload** instructions. Copy and paste the following
-    instructions.
+56. No campo **Instructions**, insira uma nova linha após
+    **2.Post-Upload** instructions. Copie e cole as instruções a seguir.
 
-    ```
-    Process for Resume Upload via Email
-    1. When you receive a message, **Send [ResumeId (text)] = "1680265f-5793-f011-b41b-7c1e525be9f7" and [ResumeTitle (text_1)] = "TAYLOR TESTPERSON (FICTITIOUS).pdf" and [ResumeNumber (text_2)]= "R01026" to the Tool "Notify Teams Applicant channel"** in the child agent "Application Intake Agent", call [AGENT FLOW PLACEHOLDER]
-    ```
-    ![](./media/image114.png)
+> Process for Resume Upload via Email
+>
+> 1. When you receive a message, \*\*Send \[ResumeId (text)\] =
+> "1680265f-5793-f011-b41b-7c1e525be9f7" and \[ResumeTitle (text_1)\] =
+> "TAYLOR TESTPERSON (FICTITIOUS).pdf" and \[ResumeNumber (text_2)\]=
+> "R01026" to the Tool "Notify Teams Applicant channel"\*\* in the child
+> agent "Application Intake Agent", call \[AGENT FLOW PLACEHOLDER\]
+>
+> ![](./media/image114.png)
 
-57. Highlight the \[AGENT FLOW PLACEHOLDER\] text.
+57. Selecione e destaque o texto \[AGENT FLOW PLACEHOLDER\].
 
-    ![](./media/image115.png)
-
-58. Enter the forward slash character, /, and select the **Notify Teams
-    Applicant Channel** tool.
-
-    ![](./media/image116.png)
-
-59. The agent flow will now be invoked by the **Application Intake
-    Agent** as per the instructions, after the last action (**Sends a
-    prompt to the specified copilot for processing**) in the event
-    trigger sends the prompt that contains the parameter values back to
-    the agent.
-
-    Select **Save** to save the updated instructions for the **Application
-Intake Agent**.
-
-    ![](./media/image117.png)
-
-60. The instructions will now be updated once the agent has been saved.
-
-    ![](./media/image118.png)
-
-61. We now need to **Publish** the **Hiring Agent**.
-    Select **Publish** on the upper right, and in the **Publish this
-    agent modal** that appears select **Publish**.
-
-    ![](./media/image119.png)
-
-    ![](./media/image120.png)
-
-62. Once published, a confirmation message will appear that the agent
-    has been published.
-
-    ![](./media/image121.png)
-
-    We can now test the agent!
-
-## Exercise 2: Test event trigger
-
-In this exercise, you will test the event trigger that is created in
-this lab.
-
-1.  To execute the event trigger, an email needs to be sent with a
-    Resume pdf file. **From your mailbox** (not of the tenant credential provided here. Use mail id of your choice. You will send an email from your mailbox to the tenant mail id.), **compose a new email** message.
-
-
-    |  Email Component  |  Details  |
-    |:--------|:---------|
-    |  To recipient  |  +++@lab.CloudCredential(M365).AdministrativeUsername+++  |
-    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file (from **C:\LabFiles\LabFiles**   |
-    |  Subject  | +++Job Application+++   |
-    |  Body  |  Copy and paste the following below as the body of the email  |
-    
-    ```
-    Dear Hiring Manager,
-    
-    I am writing to express my interest in the Senior Power Platform Engineer position at your organization. With over nine years of experience delivering secure and scalable solutions on Microsoft cloud platforms, I am confident in my ability to contribute effectively to your team.
-    
-    In my most recent role as Lead Power Platform Engineer, I developed an automated resume-intake pipeline, reducing manual triage and improving searchability. I have delivered HR case management applications, introduced solution-aware flows, and implemented PR checks to enhance deployment lead times. My expertise includes Power Apps, Power Automate, Power Pages, Dataverse, and a range of Microsoft 365 services, as well as integration with Graph/REST APIs and Azure Functions.
-    
-    Previously, I developed Teams approvals with adaptive cards, cutting approval times to the same day, and created robust error-handling frameworks. My background also includes migrating legacy workflows to Power Automate and building self-service portals adopted by hundreds of employees.
-    
-    I hold a B.Sc. in Computer Science and am certified as a Power Platform Developer (PL-400) and Solution Architect (PL-600). I am also passionate about mentoring and have volunteered with local maker groups.
-    
-    Please find my CV attached for your consideration. I would welcome the opportunity to discuss how my skills and experience align with your needs.
-    
-    Thank you for your time and consideration.
-    
-    Kind regards,
-    Taylor Testperson
-    
-    ```
-
-2.  **Send** the email once composed from your mail box.
-
-    ![](./media/image122.png)
-
-3.  In +++https://make.powerautomate.com/+++, for the event trigger flow, (select **Flows** -> **When a new email arrives from an applicant**) select the **Refresh** icon to view the flow run that **succeeded** for the sent email.
-
-    ![](./media/image123.png)
-
-4.  Back in Copilot Studio in the Hiring Agent select the **Activity**
-    tab. The **Activity** tab will load which will display all the
-    activities of the **Hiring Agent**. There will be an activity with
-    the name value of **Automated** that has a status of **Complete**.
-    This activity represents the event trigger and the agent flow that
-    was invoked.
-
-    ![](./media/image124.png)
-
-5.  Select the activity, and select the event trigger in the activity
-    map. On the right hand side panel, notice how the input parameters
-    in the prompt contain the Resume Id, Resume Title and Resume
-    Number parameter values from the **Dataverse** row that was created.
-    This was from the dynamic content values configured earlier in
-    **Automate uploading resumes to Dataverse received by email**.
-
-    ![](./media/image125.png)
-
-6.  Navigate back to the **Hiring Hub** model-driven app and in
-    the **Resumes system view**, select **Refresh** to refresh the view.
-    The newly created row for the resume that was sent by email will now
-    be listed as it was created through the event trigger.
-
-    ![](./media/image126.png)
-
-7.  Navigate back to Copilot Studio and select the **Notify Teams
-    Applicant Channel** agent flow within the **Application Intake
-    Agent** in the activity map. On the right hand side panel, notice
-    how the inputs have values from the Dataverse row. This was from the
-    prompt sent by the last action (**Sends a prompt to the specified
-    copilot for processing**) in the event trigger that contains the
-    parameter values from the newly created Dataverse row. This is how
-    we can pass parameter values from event triggers to agent flows.
-
-    ![](./media/image127.png)
-
-8.  Finally, let's take a look at the adaptive card posted to the
-    channel in **Microsoft Teams**. In the channel, we'll see the
-    adaptive card that displays the information about the newly created
-    Resume row in Dataverse. Hover over the hyperlink at the start of
-    the adaptive card, notice how the URL is the Resumes system view URL
-    that we configured earlier in the JSON payload of the adaptive card.
-
-    ![](./media/image128.png)
-
-9.  Select the hyperlink, and you'll be directed to the Resumes system
-    view in the **Hiring Hub** model-driven app on your browser.
-
-    ![](./media/image129.png)
-
-10. Navigate back to the adaptive card posted to the channel in
-    Microsoft Teams. This time, hover over **View Resume** which is
-    the Action.OpenURL action of the adaptive card. Notice how the URL
-    is the Resumes row that we configured earlier in the JSON payload of
-    the adaptive card.
-
-    ![](./media/image130.png)
-
-11. Select the action, and you'll be directed to the Resume row form in
-    the Hiring Hub model-driven app on your browser.
-
-    ![](./media/image131.png)
-
-## Summary
-
-In this lab,
-
--    You've created an event trigger that passes Dataverse parameter
-    values to an agent flow.
-
--    Built an agent flow: consumes the Dataverse parameter values to post
-    an adaptive card to a channel in Microsoft Teams to alert the HR
-    recruitment team.
-
--  Updated child agent instructions: to invoke the flow once the event
-    trigger has completed.
-
--    This enables the **Hiring Agent** to work autonomously whenever
-    resumes are received as email attachments and notify the HR
-    recruitment team for manual review.
+> ![](./media/image115.png)
+
+58. Insira o caractere de barra (/ ) e selecione a ferramenta **Notify
+    Teams Applicant Channel**.
+
+> ![](./media/image116.png)
+
+59. O fluxo de agente será agora invocado pelo **Application Intake
+    Agent** conforme as instruções, após a última ação (**Sends a prompt
+    to the specified copilot for processing**) no acionador de evento
+    enviar ao agente o prompt que contém os valores dos parâmetros.
+
+> Selecione **Save** para salvar as instruções atualizadas do
+> **Application Intake Agent**.
+>
+> ![](./media/image117.png)
+
+60. As instruções serão atualizadas após o agente ser salvo.
+
+> ![](./media/image118.png)
+
+61. Agora precisamos **publicar** o **Hiring Agent**. Selecione
+    **Publish** no canto superior direito e, na **janela** **modal
+    Publish this agent** que será exibida, selecione **Publish**.
+
+> ![](./media/image119.png)
+>
+> ![](./media/image120.png)
+
+62. Após a publicação, será exibida uma mensagem de confirmação
+    informando que o agente foi publicado.
+
+> ![](./media/image121.png)
+
+Agora podemos testar o agente!
+
+## Exercício 3: Testar o acionador de evento
+
+Neste exercício, você irá testar o acionador de evento criado neste
+laboratório.
+
+1.  Para executar o acionador de evento, é necessário enviar um e-mail
+    com um arquivo de currículo em PDF. No Outlook, redija uma nova
+    mensagem de e-mail.
+
+[TABLE]
+
+> Dear Hiring Manager,
+>
+> I am writing to express my interest in the Senior Power Platform
+> Engineer position at your organization. With over nine years of
+> experience delivering secure and scalable solutions on Microsoft cloud
+> platforms, I am confident in my ability to contribute effectively to
+> your team.
+>
+> In my most recent role as Lead Power Platform Engineer, I developed an
+> automated resume-intake pipeline, reducing manual triage and improving
+> searchability. I have delivered HR case management applications,
+> introduced solution-aware flows, and implemented PR checks to enhance
+> deployment lead times. My expertise includes Power Apps, Power
+> Automate, Power Pages, Dataverse, and a range of Microsoft 365
+> services, as well as integration with Graph/REST APIs and Azure
+> Functions.
+>
+> Previously, I developed Teams approvals with adaptive cards, cutting
+> approval times to the same day, and created robust error-handling
+> frameworks. My background also includes migrating legacy workflows to
+> Power Automate and building self-service portals adopted by hundreds
+> of employees.
+>
+> I hold a B.Sc. in Computer Science and am certified as a Power
+> Platform Developer (PL-400) and Solution Architect (PL-600). I am also
+> passionate about mentoring and have volunteered with local maker
+> groups.
+>
+> Please find my CV attached for your consideration. I would welcome the
+> opportunity to discuss how my skills and experience align with your
+> needs.
+>
+> Thank you for your time and consideration.
+>
+> Kind regards,
+>
+> Taylor Testperson
+
+2.  **Envie** o e-mail após a composição a partir da sua caixa de
+    correio.
+
+> ![](./media/image122.png)
+
+3.  No +++https://make.powerautomate.com/+++ para o fluxo do acionador
+    de evento, selecione o ícone Refresh para visualizar a execução do
+    fluxo que foi concluída com êxito para o e-mail enviado. Você pode
+    ver que o fluxo foi executado com sucesso.
+
+> ![](./media/image123.png)
+
+4.  De volta ao Copilot Studio, no Hiring Agent, selecione a guia
+    **Activity**. A guia **Activity** será carregada e exibirá todas as
+    atividades do **Hiring Agent**. Haverá uma atividade com o valor de
+    nome **Automated** e status **Complete**. Essa atividade representa
+    o acionador de evento e o fluxo de agente que foram invocados.
+
+> ![](./media/image124.png)
+
+5.  Selecione a atividade e selecione o acionador de evento no mapa de
+    atividades. No painel do lado direito, observe como os parâmetros de
+    entrada no prompt contêm os valores dos parâmetros: Resume Id,
+    Resume Title e Resume Number da linha do **Dataverse** que foi
+    criada. Isso foi obtido a partir dos valores de conteúdo dinâmico
+    configurados anteriormente em **Automate uploading resumes to
+    Dataverse received by email**.
+
+> ![](./media/image125.png)
+
+6.  Navegue de volta para o aplicativo orientado por modelo **Hiring
+    Hub** e, na exibição do sistema **Resumes**, selecione **Refresh**
+    para atualizar a exibição. A linha recém-criada para o currículo
+    enviado por e-mail agora será listada, pois foi criada por meio do
+    acionador de evento.
+
+> ![](./media/image126.png)
+
+7.  Navegue de volta para o Copilot Studio e selecione o fluxo do agente
+    **Notify Teams Applicant Channel** dentro do **Application Intake
+    Agent** no mapa de atividades. No painel do lado direito, observe
+    como as entradas têm valores da linha do Dataverse. Isso veio do
+    prompt enviado pela última ação (**Envia um prompt ao Copilot
+    especificado para processamento**) no acionador de evento que contém
+    os valores dos parâmetros da linha recém-criada no Dataverse. É
+    assim que podemos passar valores de parâmetros de acionadores de
+    eventos para fluxos de agentes.
+
+> ![](./media/image127.png)
+
+8.  Por fim, vamos dar uma olhada no cartão adaptativo publicado no
+    canal no **Microsoft Teams**. No canal, veremos o cartão adaptativo
+    que exibe as informações sobre a linha Resume recém-criada no
+    Dataverse. Passe o mouse sobre o hiperlink no início do cartão
+    adaptativo e observe como a URL é a URL da exibição do sistema
+    Resumes que configuramos anteriormente na carga JSON do cartão
+    adaptativo.
+
+> ![](./media/image128.png)
+
+9.  Selecione o hiperlink e você será direcionado para a visualização do
+    sistema Resumes no aplicativo orientado por modelo **Hiring Hub** no
+    seu navegador.
+
+> ![](./media/image129.png)
+
+10. Navegue de volta para o cartão adaptativo publicado no canal no
+    Microsoft Teams. Desta vez, passe o mouse sobre **View Resume**, que
+    é a ação Action.OpenURL do cartão adaptativo. Observe como a URL é a
+    linha Resumes que configuramos anteriormente na carga JSON do cartão
+    adaptativo.
+
+> ![](./media/image130.png)
+
+11. Selecione a ação e você será direcionado para o formulário da linha
+    Resume no aplicativo orientado por modelo Hiring Hub no seu
+    navegador.
+
+> ![](./media/image131.png)
+
+## Resumo
+
+Neste laboratório,
+
+1.  Você criou um acionador de evento que transmite valores de
+    parâmetros do Dataverse para um fluxo de agente.
+
+2.  Você criou um fluxo de agente que consome os valores de parâmetros
+    do Dataverse para publicar um cartão adaptativo em um canal do
+    Microsoft Teams e alertar a equipe de recrutamento de RH.
+
+3.  Você atualizou as instruções do agente subordinado para invocar o
+    fluxo após a conclusão do acionador de evento.
+
+4.  Isso permite que o **Hiring Agent** opere de forma autônoma sempre
+    que currículos forem recebidos como anexos de e-mail e notifique a
+    equipe de recrutamento de RH para revisão manual.

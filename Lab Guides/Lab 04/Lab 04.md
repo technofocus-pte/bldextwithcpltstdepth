@@ -1,194 +1,190 @@
-# Lab 4: Creating an intelligent hiring agent for talent acquisition
+# Laboratório 4 – Criar um agente inteligente de recrutamento para aquisição de talentos
 
-In this lab, you'll establish the foundation for your hiring automation
-system. You'll begin by importing a pre-configured solution that
-contains all the necessary Dataverse tables and data structure for
-managing candidates, job positions, and hiring workflows. Next, you'll
-populate these tables with sample data that will support your learning
-throughout this module and provide realistic scenarios for testing.
-Finally, you'll create the Hiring Agent in Copilot Studio, setting up
-the basic conversational interface that will serve as the cornerstone
-for all the other features you'll add in future missions.
+Neste laboratório, você estabelecerá a base do seu sistema de automação
+de recrutamento. Você começará importando uma solução pré-configurada
+que contém todas as tabelas do Dataverse e a estrutura de dados
+necessária para gerenciar candidatos, vagas e fluxos de trabalho de
+recrutamento. Em seguida, você preencherá essas tabelas com dados de
+exemplo, que darão suporte ao seu aprendizado ao longo deste módulo e
+fornecerão cenários realistas para testes. Por fim, você criará o Hiring
+Agent no Copilot Studio, configurando a interface conversacional básica
+que servirá como base para todos os outros recursos que você adicionará
+em missões futuras.
 
-## Exercise 1: Import solution
+## Exercício 1 – Importar solução
 
-In this exercise, you will import a pre existing Solution.
+Neste exercício, você irá importar uma solução existente.
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++ if you are already logged in and ensure that you are there in the **Dev One** environment.
+1.  Acesse o Copilot Studio em +++https://copilotstudio.microsoft.com+++
 
-2.  Select the **...** in the left navigation and select **Solutions.**
+2.  Selecione o ícone ... na navegação à esquerda e selecione
+    **Solutions.**
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-3.  Select **Import solution**. Click on **Browse** and select the
-    **zip** file starting with **Operative** form **C:\LabFiles\LabFiles** and
-    select **Open**.
+3.  Selecione **Import solution**. Clique em **Browse**, selecione o
+    arquivo **.zip** que começa com **Operative** na pasta
+    **C:\LabFiles** e, em seguida, selecione **Open**.
 
-    ![](./media/image2.png)
-   
-    ![](./media/image3.png)
+![](./media/image2.png)
 
-    ![](./media/image4.png)
+![](./media/image3.png)
 
-4.  Once selected, select **Next** and then select **Import**.
+![](./media/image4.png)
 
-   ![](./media/image5.png)
-   
-   ![](./media/image6.png)
+4.  Após selecionar o arquivo, selecione **Next** e, em seguida,
+    selecione **Import**.
 
-5.  This will take some time of around 3 to 5 minutes. On success, you
-    will see a green notification bar with the following message when
-    it's done: "Solution "Operative" imported successfully."
+![](./media/image5.png)
 
-   ![](./media/image7.png)
+![](./media/image6.png)
 
-6.  Once you see the "imported successfully" message, take a look at
-    what you imported by selecting the display name of the solution
-    (**Operative**) in the solutions list.
+5.  Esse processo levará algum tempo, cerca de 3 a 5 minutos. Quando for
+    concluído com sucesso, você verá uma barra de notificação verde com
+    a seguinte mensagem: "Solution "Operative" imported successfully".
 
-   ![](./media/image8.png)
+![](./media/image7.png)
 
-7.  Review the solution and ensure that the following components are
-    imported.
+6.  Quando você vir a mensagem "imported successfully", examine o que
+    foi importado selecionando o nome de exibição da solução
+    **(Operative)** na lista de soluções.
 
-   ![](./media/image9.png)
+![](./media/image8.png)
 
-8.  Select the **Publish all customizations** button at the top of the page.
+7.  Revise a solução e verifique se os seguintes componentes foram
+    importados.
 
-   ![](./media/image10.png)
+![](./media/image9.png)
 
-## Exercise 2 - Import sample data
+8.  Selecione o botão Publish all customizations na parte superior da
+    página.
 
-In this exercise, you will add sample data to some of the tables that
-you imported in the previous exercise.
+![](./media/image10.png)
 
-1.  From the solution that you imported in the last exercise, select
-    the **Hiring Hub** Model-Driven App by selecting the checkmark in
-    front of the row and select the **Play** button at the top.
+## Exercício 2 - Importar dados de amostra
 
-   ![](./media/image11.png)
+Neste exercício, você adicionará dados de amostra a algumas das tabelas
+importadas no exercício anterior.
 
-2.  Select **Job Roles** in the left navigation. Select
-    the **More** icon (three dots below each other) in the command bar
-    and then select the **right arrow** next to **Import from Excel.**
+1.  A partir da solução que você importou no exercício anterior,
+    selecione o aplicativo baseado no modelo **Hiring Hub** marcando a
+    caixa de seleção à frente da linha e, em seguida, selecione o botão
+    **Play** na parte superior.
 
-   ![](./media/image12.png)
+> ![](./media/image11.png)
 
-3.  Select **Import from CSV**.
+2.  Selecione **Job Roles** na navegação à esquerda. Na barra de
+    comandos, selecione o ícone **More** (três pontos verticais) e, em
+    seguida, selecione a **seta para a direita** ao lado de **Import
+    from Excel.**
 
-   ![](./media/image13.png)
+![](./media/image12.png)
 
-4.  Select the **Choose File** button, select the **job-roles.csv** file
-    from **C:\LabFiles\LabFiles** and then select **Open**.
+3.  Selecione **Import from CSV**.
 
-   ![](./media/image14.png)
+![](./media/image13.png)
 
-5.  Select **Next.** Leave the next step as is and select **Review
-    Mapping**
+4.  Selecione o botão **Choose File**, escolha o arquivo
+    **job-roles.csv** na pasta **C:\LabFiles** e, em seguida, selecione
+    **Open**.
 
-   ![](./media/image15.png)
-   
-   ![](./media/image16.png)
+![](./media/image14.png)
 
-6.  Make sure the mapping is correct and select **Finish Import**.
+5.  Selecione **Next**. Mantenha a próxima etapa como está e selecione
+    **Review Mapping.**
 
-   ![](./media/image17.png)
+![](./media/image15.png)
 
-7.  Select **Done**. This can take a little while, but you can hit
-    the **Refresh** button to see if the import has succeeded.
+![](./media/image16.png)
 
-   ![](./media/image18.png)
-   
-   ![](./media/image19.png)
+6.  Certifique-se de que o mapeamento esteja correto e selecione
+    **Finish Import**.
 
-8.  Now, you will import the **Evaluation Criteria sample data**
+![](./media/image17.png)
 
-9.  Select **Evaluation Criteria** in the left navigation.
+7.  Selecione **Done**. Esse processo pode levar um pouco de tempo, mas
+    você pode clicar no botão **Refresh** para verificar se a importação
+    foi concluída com sucesso.
 
-10. Select **Import from CSV** like you did earlier. Select the **Choose
-    File** button, select the **evaluation-criteria.csv** from
-    **C:\LabFiles\LabFiles**.
+![](./media/image18.png)
 
-   ![](./media/image20.png)
+![](./media/image19.png)
 
-11. Select **Next**. Leave the next step as is and select **Review Mapping**
+8.  Agora, você irá importar os **dados de exemplo de Evaluation
+    Criteria.**
 
-   ![](./media/image21.png)
+9.  Selecione **Evaluation Criteria** na navegação à esquerda.
 
-   ![](./media/image22.png)
+10. Selecione **Import from CSV**, como feito anteriormente. Selecione o
+    botão **Choose File** e escolha o arquivo
+    **evaluation-criteria.csv** na pasta **C:\LabFiles**.
 
-   >**Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
-   >
-   >![](./media/image31.png)
+![](./media/image20.png)
 
-12. Now we have to do a bit more work for the mapping. Select the
-    **magnifying glass icon** next to the **Job Role** field.
+11. Selecione **Next**. Mantenha a próxima etapa como está e selecione
+    **Review Mapping**.
 
-   ![](./media/image23.png)
+![](./media/image21.png)
 
-13. Make sure **Job Title** is selected here, and if not - add it and
-    select **OK**.
+![](./media/image22.png)
 
-   ![](./media/image24.png)
+12. Agora precisamos realizar um pouco mais de trabalho no mapeamento.
+    Selecione o **ícone de** **lupa** ao lado do campo **Job Role**.
 
-14. Make sure the rest of the mapping is correct too and select **Finish
-    Import** and then select **Done**.
+![](./media/image23.png)
 
-   ![](./media/image25.png)
+13. Certifique-se de que **Job Title** esteja selecionado e, caso não
+    esteja, adicione-o e selecione **OK.**
 
-15. This can take a little while, but you can hit the **Refresh** button
-    to see if the import has succeeded.
+![](./media/image24.png)
 
-   ![](./media/image26.png)
+14. Certifique-se de que o restante do mapeamento também esteja correto,
+    selecione **Finish Import** e, em seguida, selecione **Done**.
 
-## Exercise 3 - Create the hiring agent
+![](./media/image25.png)
 
-Now you are done with the setup of the prerequisites, it's time for the
-actual work! Let's add our Hiring Agent first!
+15. Esse processo pode levar um pouco de tempo, mas você pode clicar no
+    botão **Refresh** para verificar se a importação foi concluída com
+    sucesso.
 
-1.  From the Copilot Studio, select **Agents** from the left pane. Select
-    the drop down next to the **+ Create blank agent** and select **Advanced create**.
+![](./media/image26.png)
 
-    ![](./media/image27.png)
+## Exercício 3 – Criar o hiring agent
 
-2.  In the Agent settings, select the Solution as **Operative** and then
-    select **Confirm and create**.
+Agora que você concluiu a configuração dos pré-requisitos, é hora do
+trabalho principal! Vamos adicionar primeiro o Hiring Agent!
 
-    ![](./media/image28.png)
+1.  No Copilot Studio, selecione Agents no painel esquerdo. Selecione o
+    menu suspenso ao lado de + Create blank agent e, em seguida,
+    selecione Advanced create.
 
-3.  Select **Edit** against the Details of the created agent.
+![](./media/image27.png)
 
-    ![](./media/image29.png)
+2.  Em Agent settings, selecione Solution como **Operative** e, em
+    seguida, selecione **Confirm and create**.
 
-4.  Enter the name as +++**Hiring Agent**+++ and Description as
-    +++**Central orchestrator for all hiring activities**+++ and select
+![](./media/image28.png)
+
+3.  Selecione **Edit** na seção Details do agente criado.
+
+![](./media/image29.png)
+
+4.  Insira o Name como +++**Hiring Agent**+++ e a Description como +++
+    **Central orchestrator for all hiring activities** +++ e selecione
     **Save**.
 
-    ![](./media/image30.png)
+> ![](./media/image30.png)
 
-## Summary
+## Resumo
 
-In this lab, you now have complete the following.
+> Neste laboratório, você concluiu com sucesso as seguintes etapas:
 
-- **Scenario Understanding**: Comprehensive knowledge of hiring
-  automation challenges and the solution you will be building.
+- **Compreensão do cenário**: conhecimento abrangente dos desafios da
+  automação de recrutamento e da solução que será construída.
 
-- **Solution Deployment**: Successfully imported and configured the
-  building blocks of the hiring management system.
+- **Implementação da solução**: importação e configuração bem-sucedidas
+  dos blocos fundamentais do sistema de gerenciamento de recrutamento.
 
-- **Agent Creation**: Built an hiring agent that is the start of the
-  scenario you're going to build as an Agent Academy Operative
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- **Criação do agente**: construção de um Hiring Agent que representa o
+  início do cenário que você irá desenvolver como um Agent Academy
+  Operative.

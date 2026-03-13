@@ -1,203 +1,216 @@
-# Lab 8 - Create an agent in Copilot Studio with Dataverse MCP Server
+# Laboratório 8 – Criar um agente no Copilot Studio com o Dataverse MCP Server
 
-Create and configure a Copilot Agent in Copilot Studio with Dataverse
-MCP Server integration to streamline business workflows.
+Crie e configure um agente do Copilot no Copilot Studio com integração
+ao Dataverse MCP Server para otimizar fluxos de trabalho de negócio.
 
-After completing this lab, participants will be able to create and
-configure a Copilot Agent in Copilot Studio, integrate the Dataverse MCP
-Server to read and update account information from the Account and
-Contact table, structure agent responses for clarity and business value,
-and apply these skills to solve common business challenges.
+Após concluir este laboratório, os participantes serão capazes de criar
+e configurar um agente do Copilot no Copilot Studio, integrar o
+Dataverse MCP Server para ler e atualizar informações de conta da tabela
+Account e Contact, estruturar respostas do agente para maior clareza e
+valor comercial e aplicar essas habilidades para resolver desafios
+comerciais comuns.
 
-## Task 1: Create and Configure Copilot Agent 
+## Tarefa 1: Criar e configurar o agente do Copilot 
 
-Build a Copilot Agent that connects to Dataverse through the MCP Server
-for seamless data access.
+Crie um agente do Copilot que se conecte ao Dataverse por meio de um MCP
+Server para acesso contínuo aos dados.
 
-In this section, you’ll learn how to create a new Copilot Agent in
-Copilot Studio, configure it with proper instructions and suggested
-prompts, and integrate the Dataverse MCP Server for live data
-connectivity
+Nesta seção, você aprenderá a criar um novo agente do Copilot no Copilot
+Studio, configurá-lo com instruções adequadas e sugestões de prompts e
+integrar o Dataverse MCP Server para conectividade de dados em tempo
+real.
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++
-    using your login credentials if not done already and make sure that
-    you are in the **Dev One** environment.
+1.  Faça login no Copilot Studio em
+    +++https://copilotstudio.microsoft.com+++ usando suas credenciais de
+    login, se ainda não tiver feito isso, e certifique-se de que está no
+    ambiente Dev One.
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  Select **Create an agent** tile to create a new agent.
+2.  Selecione o bloco **Create an agent** para criar um novo agente.
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  Once the agent is provisioned, select Edit against the **Details**
-    pane.
+3.  Após o agente ser provisionado, selecione Edit no painel
+    **Details**.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  Enter the below details and select **Save**.
+4.  Insira os detalhes abaixo e selecione **Save**.
 
-    - Name - +++Contoso Agent+++
-    
-    - Description - +++This agent will help Contoso sales reps update their accounts and contacts using the Dataverse MCP Server+++
+- Name - +++Contoso Agent+++
 
-    ![](./media/image4.png)
+- Description - +++This agent will help Contoso sales reps update their
+  accounts and contacts using the Dataverse MCP Server+++
 
-5.  **Edit** Instructions and enter the below set of instructions and
-    select **Save**.
+> ![](./media/image4.png)
 
-    ```
-    This agent will: Read accounts and contact information from the Account
-    and Contact Tables in Dataverse using the Dataverse MCP Server. Update
-    accounts and contact information from the Account and Contact Tables in
-    Dataverse using the Dataverse MCP Server. Create new accounts and
-    contact information in the Account and Opportunity Tables in Dataverse
-    using the Dataverse MCP Server. Do not use outside knowledge. Only use
-    the Dataverse MCP Tool to create, read, update and delete.
-    ```
-    
-    ![](./media/image5.png)
-    
-    ![](./media/image6.png)
+5.  **Edite** Instructions, insira o conjunto de instruções abaixo e
+    selecione **Save**.
 
-6.  Scroll down and select **+ Add suggested prompts** in the Suggested
-    prompts section.
+This agent will: Read accounts and contact information from the Account
+and Contact Tables in Dataverse using the Dataverse MCP Server. Update
+accounts and contact information from the Account and Contact Tables in
+Dataverse using the Dataverse MCP Server. Create new accounts and
+contact information in the Account and Opportunity Tables in Dataverse
+using the Dataverse MCP Server. Do not use outside knowledge. Only use
+the Dataverse MCP Tool to create, read, update and delete.
 
-    ![](./media/image7.png)
+![](./media/image5.png)
 
-7.  Add the following prompts and then click **Save**.
+![](./media/image6.png)
 
-    - **Title**: +++Account Search+++ **Prompt**: +++List all accounts in Redmond+++
-    
-    - **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from Coho Winery+++
+6.  Role para baixo e selecione **+ Add suggested prompts** na seção
+    Suggested prompts.
 
-    ![](./media/image8.png)
+![](./media/image7.png)
 
-8.  Select **+ Add tool** from the Tools section.
+7.  Adicione os seguintes prompts e, em seguida, clique em **Save**.
 
-    ![](./media/image9.png)
+- **Title**: +++Account Search+++
 
-9.  Select the **Model Context Protocol** tab, search for +++Dataverse
-    MCP Server+++ and select **Microsoft** **Dataverse MCP Server**.
+> **Prompt**: +++List all accounts in Redmond+++
 
-    Note: Select the one that is not in Preview. Do not select the
-**Microsoft** **Dataverse MCP Server (Preview)**
+- **Title**: +++Contact Search+++
 
-    ![](./media/image10.png)
+> **Prompt**: +++List all contacts from Coho Winery+++
 
-10. Select **Add and configure**.
+![](./media/image8.png)
 
-    ![](./media/image11.png)
+8.  Na seção Tools, selecione **+ Add tool**.
 
-    **Note:** The Dataverse MCP Server will allow you natural language
-access to your tables in Dataverse. We have sample data in the Accounts
-and Contacts tables that we will use. The tools available are: list
-tables, describe table, read data, create record, update record, list
-prompts, execute prompt, list knowledge sources, and retrieve knowledge
+![](./media/image9.png)
 
-11. Review the tools available for the Dataverse MCP Server. You can
-    select and deselect which tools are available to the agent. When the
-    tool is executed, the list is dynamically updated from the MCP
-    Server. You cannot call an MCP Server from a Topic for this reason.
+9.  Selecione a guia **Model Context Protocol**, pesquise por
+    +++**Dataverse MCP Server**+++ e selecione **Microsoft Dataverse MCP
+    Server**.  
+    Observação: Selecione a opção que não está em Preview. Não selecione
+    **Microsoft Dataverse MCP Server (Preview)**.
 
-    ![](./media/image12.png)
+![](./media/image10.png)
 
-12. Enter +++List the accounts in the state of WA+++ in the **Test**
-    pane and click **Send**.
+10. Selecione **Add and configure**.
 
-    ![](./media/image13.png)
+![](./media/image11.png)
 
-13. For the first run, you would get a Consent dialog as by default the
-    tool is
+**Observação:** o Dataverse MCP Server permite acesso às tabelas do
+Dataverse usando linguagem natural. Há dados de exemplo nas tabelas
+Accounts e Contacts que serão utilizados. As ferramentas disponíveis
+são: list tables, describe table, read data, create record, update
+record, list prompts, execute prompt, list knowledge sources e retrieve
+knowledge.
 
-    configured to use “End user credentials”. Please click **Allow** to
-continue.
+11. Revise as ferramentas disponíveis do Dataverse MCP Server. Você pode
+    selecionar e desmarcar quais ferramentas estarão disponíveis para o
+    Agente do Copilot. Quando uma ferramenta é executada, a lista é
+    atualizada dinamicamente a partir do MCP Server. Por esse motivo,
+    não é possível chamar um MCP Server a partir de um tópico.
 
-    ![](./media/image14.png)
+![](./media/image12.png)
 
-14. See the series of actions that take place and the output from the
-    MCP server,
+12. Insira +++List the accounts in the state of WA+++ no painel **Test**
+    e clique em **Send**.
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+![](./media/image13.png)
 
-15. If you click on the tool that was used, you will see the Inputs and
-    Outputs of the tool.
+13. Na primeira execução, você verá uma caixa de diálogo de
+    consentimento, pois, por padrão, a ferramenta está configurada para
+    usar “End user credentials”. Clique em **Allow** para continuar.
 
-    ![](./media/image17.png)
+![](./media/image14.png)
 
-## Task 2: Structure Agent Responses with Custom Prompts
+14. Observe a sequência de ações executadas e a saída retornada pelo MCP
+    Server.
 
-Create custom prompts to ensure consistent, structured responses from
-your agent that provide business-relevant information.
+![](./media/image15.png)
 
-1.  If you tried some different testing in the Copilot, you may have
-    noticed you will get different attributes for accounts and contacts.
-    If you want a more structured response, you can create a **prompt**
-    in the **Tools**. In the **Tools** tab, click **+ Add a tool** then
-    **+ New tool**.
+![](./media/image16.png)
 
-    ![](./media/image18.png)
-    
-    ![](./media/image19.png)
+15. Se você clicar na ferramenta que foi usada, poderá ver as entradas e
+    saídas da ferramenta.
 
-2.  Select Prompt.
+![](./media/image17.png)
 
-    ![](./media/image20.png)
+## Tarefa 2 – Estruturar respostas do agente com prompts personalizados
 
-3.  Rename the **prompt** **name** at the top to +++Show Account
+Crie prompts personalizados para garantir respostas consistentes e
+estruturadas do agente, fornecendo informações relevantes para o
+negócio.
+
+1.  Se você realizou alguns testes diferentes no Copilot, pode ter
+    percebido que são retornados atributos diferentes para accounts e
+    contacts. Caso deseje uma resposta mais estruturada, você pode criar
+    um **prompt** em **Tools**. Na guia **Tools**, clique em **+ Add a
+    tool** e depois em **+ New tool**.
+
+![](./media/image18.png)
+
+![](./media/image19.png)
+
+2.  Selecione Prompt.
+
+![](./media/image20.png)
+
+3.  Renomeie o **nome do prompt** na parte superior para +++Show Account
     Details+++ .
 
-    Then in the **instructions** enter, +++Find account which contains+++
-    and then click **+ Add content** to pass in the name of the account we
-    are searching for. Select **Text** for the Input and call it
-    +++**Account Name**+++ . Click **close**.
+Em seguida, nas **Instructions**, insira +++Find account which
+contains+++ e clique em **+ Add content** para passar o nome da conta
+que está sendo pesquisada. Selecione **Text** como entrada e nomeie como
++++**Account Name**+++. Clique em **Close**.
 
-    ![](./media/image21.png)
+> ![](./media/image21.png)
 
-    ![](./media/image22.png)
+![](./media/image22.png)
 
-4.  We can now grab specific fields from Dataverse to show to our end
-    users in the chat. Click back in the instructions and enter +++and find relevant details like:+++ click **+ Add content**. This time we will select **Dataverse** and some of the fields in the **Account** table which we feel our end users would like to see about the account.
+4.  Agora podemos capturar campos específicos do Dataverse para exibir
+    aos usuários finais no chat. Clique novamente em Instructions,
+    insira +++and find relevant details like:+++ e clique em **+ Add
+    content**. Desta vez, selecione **Dataverse** e alguns dos campos da
+    tabela **Account** que consideramos relevantes para os usuários
+    finais visualizarem sobre a conta.
 
-    ![](./media/image23.png)
+![](./media/image23.png)
 
-5.  Let’s select the following by clicking on the dropdown: **Account
+5.  Selecione os seguintes itens clicando no menu suspenso: **Account
     Name**, **Account Number**, **Address 1**, **Annual Revenue**,
-    **Email** and **Main Phone**. Click **Add** and then **Save**.
+    **Email** e **Main Phone**. Clique em **Add** e, em seguida, em
+    **Save**.
 
-    ![](./media/image24.png)
-    
-    ![](./media/image25.png)
-    
-    ![](./media/image26.png)
+![](./media/image24.png)
 
-6.  Select **Add and configure**.
+![](./media/image25.png)
 
-    ![](./media/image27.png)
+![](./media/image26.png)
 
-7.  Now we can test out our prompt. Let’s go back over to our agent and
-    test again. Go to the test pane.
+6.  Selecione **Add and configure**.
 
-8.  Enter +++Show account Details for Fourth Coffee+++ and click
-    **Send**. You can see that the response is in the structured
-    response with the custom prompt created.
+![](./media/image27.png)
 
-    ![](./media/image28.png)
+7.  Agora podemos testar o prompt. Vamos voltar ao agente e testar
+    novamente. Acesse o painel Test.
 
-## Summary
+8.  Insira +++Show account Details for Fourth Coffee+++ e clique em
+    **Send**. Você poderá observar que a resposta é apresentada de forma
+    estruturada, utilizando o prompt personalizado criado.
 
-In this lab, you build a Copilot Agent in Microsoft Copilot Studio that
-integrates with the **Dataverse MCP Server** to securely access and
-manage business data using natural language. You configure the agent to
-read, create, and update records across Dataverse tables such as
-**Accounts, Contacts, and Opportunities**, without relying on external
-knowledge or custom APIs.
+![](./media/image28.png)
 
-You also learn how to **structure agent responses** using custom
-prompts, ensuring consistent, business-friendly outputs that surface the
-most relevant data fields for end users. By the end of the lab, you can
-design an agent that streamlines sales and account management workflows,
-delivers clear and structured insights, and demonstrates how MCP-powered
-agents can solve real-world business challenges with live enterprise
-data.
+## Resumo
+
+Neste laboratório, você construiu um Agente do Copilot no Microsoft
+Copilot Studio integrado ao **Dataverse MCP Server**, permitindo acesso
+seguro e gerenciamento de dados corporativos por meio de linguagem
+natural. Você configurou o agente para ler, criar e atualizar registros
+em tabelas do Dataverse, como **Accounts, Contacts** e
+**Opportunities**, sem depender de conhecimento externo ou APIs
+personalizadas.
+
+Você também aprendeu a **estruturar respostas do agente** usando prompts
+personalizados, garantindo saídas consistentes e orientadas ao negócio,
+que destacam os campos de dados mais relevantes para os usuários finais.
+Ao final do laboratório, você é capaz de projetar um agente que
+simplifica fluxos de trabalho de vendas e gerenciamento de contas,
+entrega insights claros e estruturados e demonstra como agentes
+habilitados por MCP podem resolver desafios reais de negócio com dados
+corporativos em tempo real.
