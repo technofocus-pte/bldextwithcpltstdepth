@@ -1,1263 +1,1484 @@
-# Lab 6 - Upgrading the hiring agent into an autonomous system
+# 실습 – 자율적 시스템으로 hiring agent를 업그레이드하기
 
-In this lab, you will dive deeper into **event triggers** - elevating
-your agent system from reactive to **autonomous operation**. You'll
-transform your agents from waiting for human input to proactively
-responding to external events and taking intelligent action without
-supervision.
+이 실습에서는 **event triggers**에 대해 더 깊이 탐구하여 에이전트
+시스템을 반응적에서 **autonomous operation** 전환하는 방법을 배웁니다.
+에이전트들이 인간의 입력을 기다리는 것에서 외부 사건에 능동적으로
+대응하고 감독 없이 지능적인 행동을 취하는 것으로 전환시킬 수 있습니다.
 
-Think of it as upgrading from agents that answer questions to agents
-that anticipate needs and act independently. Through event triggers and
-automated workflows, your **Hiring Agent** will **detect** incoming
-resume **emails**, **process** attachments **automatically**, **store**
-data in **Dataverse**, and **notify** your **HR recruitment team** via
-**Microsoft Teams** - all while you focus on higher-value tasks.
+질문에 답하는 에이전트에서 필요를 예측하고 독립적으로 행동하는
+에이전트로 업그레이드하는 것과 같다고 생각하세요. 이벤트 트리거와
+자동화된 워크플로우를 통해 **Hiring Agent**는 들어오는 이력서 이메일을
+**감지**하고, 첨부파일을 **자동으로** 처리하며, **Dataverse**에 데이터를
+**저장**하고, **Microsoft Teams**를 통해 **HR 채용팀**에 알림을
+제공합니다 - 이 모든 동안 당신은 더 가치 있는 업무에 집중할 수 있습니다
 
-**Objectives**
+**목표**
 
-In this lab, you'll learn:
+이 실습에서 다음을 배울 것입니다:
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+1.  이벤트 트리거가 사용자 상호작용 없이도 자율 에이전트 행동을 가능하게
+    하는 방법
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+2.  Copilot Studio에서 인터랙티브 에이전트와 자율 에이전트의 차이점
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+3.  이메일 첨부파일을 자동으로 처리하고 Dataverse에 파일을 업로드하는
+    이벤트 트리거 생성하는 방법
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+4.  알림을 위해 Teams 채널에 적응형 카드를 게시하는 에이전트 플로우 구축
+    방법
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+5.  End-to-end 자동화를 위한 이벤트 트리거와 에이전트 플로우 간 데이터
+    전달 방법
 
-**What is an Event trigger?**
+**Event trigger란?**
 
-**Event triggers** let an agent *act* on *its* own when something
-happens in another system - no user message required. When the
-configured event fires - such as “new SharePoint item,” “new email,”
-“Planner task assigned,” or even a time‑based recurrence, a connector
-sends a trigger payload to your agent. The agent then follows your
-instructions to decide which actions or topics to call.
+**이벤트 트리거는** 다른 시스템에서 무언가가 발생했을 때 에이전트가
+*스스로 행동*할 수 있게 해 줍니다 - 사용자 메시지 없이. "new SharePoint
+item", "new email", "Planner task assigned", 또는 시간 기반 반복과 같은
+설정된 이벤트가 발생하면, 커넥터가 트리거 페이로드를 에이전트에게
+보냅니다. 에이전트는 당신의 지시에 따라 어떤 행동이나 주제를 호출할지
+결정합니다.
 
-**Interactive agent vs Autonomous agent - comparison**
+**인터랙티브 에이전트와 자율 에이전트 - 비교**
 
-Now that you know the difference between event triggers and topics
-triggers, let's next learn about the difference between an interactive
-agent vs an autonomous agent.
+이벤트 트리거와 주제 트리거의 차이를 알았으니, 다음으로 인터랙티브
+에이전트와 자율 에이전트의 차이에 대해 알아보겠습니다.
 
-In Copilot Studio terms, "interactive" maps to agents that primarily
-engage via **topics** in a chat or channel. "Autonomous" maps to agents
-that also leverage **event triggers** to run without user input.
+Copilot Studio 용어로 '인터랙티브'는 주로 채팅이나 채널 내 **topics**로
+소통하는 에이전트를 의미합니다. "자율" 은 **event triggers**를 활용해
+사용자 입력 없이도 실행되는 에이전트에 매핑됩니다.
 
-## Exercise 1: Automating candidate application emails
+## 연습 1: 호부자 애플리케이션 이메일을 자동화하기
 
-We're next going to add an event trigger to the **Hiring Agent** and
-build an agent flow in the child **Application Intake Agent** to handle
-further processing for autonomy.
+다음으로는 **Hiring Agent**에 이벤트 트리거를 추가하고, 자율 성을 위한
+추가 처리를 위해 child** Application Intake Agent**에 에이전트 플로우를
+구축할 예정입니다.
 
-**Use case scenario**
+**사용 사례**
 
-**As an** HR Recruiter
+**HR 리크루터**로서
 
-**I want to** be notified when an email with a resume arrives in my
-Inbox and is automatically uploaded to Dataverse
+이 력서가 담긴 이메일이 제 받은편지함에 도착하고 자동으로 Dataverse에
+업로드될 때 알림을 **받고 싶습니다**
 
-**So that I can** stay notified of resumes sent by email for
-applications automatically uploaded to Dataverse
+**그래서** Dataverse에 자동으로 업로드된 지원서 이력서 이메일로 알림을
+받을 수 있기 때문입니다
 
-We'll be achieving this using two techniques
+우리는 두 가지 기법을 사용해 이를 달성할 것입니다
 
-1.  An event trigger for when the email arrives,
+1.  이메일이 도착할 때 발생하는 이벤트 트리거,
 
-    - Check the contentType of the file equals PDF as the format type.
+    - contentType 를 확인해 주세요. 파일의 형식이 PDF와 같을 때입니다.
 
-    - Extract the file and upload to Dataverse using actions through the
-      Dataverse connector.
+    - 파일을 추출하여 Dataverse 커넥터를 통해 동작을 통해 Dataverse로
+      업로드합니다.
 
-    - Then send a prompt to the agent for further processing by passing
-      input parameters from the Dataverse actions.
+    - 그 후 Dataverse 액션에서 입력 매개변수를 전달하여 에이전트에게
+      추가 처리를 위해 프롬프트를 보냅니다.
 
-2.  An agent flow will be added to the child **Application Intake
-    Agent** which is invoked by the prompt in the event trigger.
+2.  이벤트 트리거에서 프롬프트가 호출되는 child **Application Intake
+    Agent**에 에이전트 플로우가 추가됩니다.
 
-    - Use the input parameters passed from the prompt of the event
-      trigger in an adaptive card posted to a channel in Microsoft Teams
-      to notify the HR Recruitment team. The adaptive card will have a
-      link to the Dataverse row which can be viewed in the **Hiring
-      Agent**.
+    - 이벤트 트리거 프롬프트에서 전달된 입력 매개변수를 Microsoft Teams
+      채널에 게시한 적응형 카드에 사용해 HR 채용 팀에 알림을 보냅니다.
+      적응형 카드에는 Dataverse 행으로 연결되는 링크 가 있으며, 이를
+      **Hiring Agent**에서 확인할 수 있습니다.
 
-### Task 1: Automate uploading resumes to Dataverse received by email
+### 작업 1: 이메일로 받은 이력서를 Dataverse에 자동으로 업로드하기
 
-1.  In the Hiring Agent, scroll down in the **Overview tab** to
-    the **Triggers** section and select **+ Add trigger**.
+1.  Hiring Agent의 **Overview tab**에서 아래 **Triggers** 섹션으로
+    스코롤하여 **+ Add trigger**를 선택하세요.
 
-    ![](./media/image1.png)
+> ![](./media/image1.png)
 
-3.  A list of triggers will appear. Select **When a new email arrives
-    (V3)** and select **Next**.
+2.  트리거 목록이 표시됩니다. **When a new email arrives (V3)**를
+    선택하고 **Next**를 선택하세요.
 
-    ![](./media/image2.png)
+> ![](./media/image2.png)
 
-3.  Select **Continue** in the next screen.
+3.  다음 화면에서 **Continue**를 선택하세요.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  We'll now see the **Trigger name** and the **Sign in** connection
-    references for the apps listed. Rename the trigger name to the
-    following:
+4.  이제 나열된 앱들의 **Trigger name** 및 **Sign in** 연결 참조를 볼 수
+    있습니다. 트리거 이름을 다음과 같이 변경하세요:
 
-    +++When a new email arrives from an applicant+++
++++When a new email arrives from an applicant+++
 
-    **NOTE:** Make sure you see a green check by each of the connection references for the apps listed. If you don't see a green check, sign in through the ellipsis (...) and select **+ New connection reference** to create a new connection reference.
+> **참고:** 목록에 나와 있는 앱들의 연결 참조 옆에 녹색 체크 표시가
+> 있는지 확인하세요. 녹색 체크가 보이지 않으면 생략부호(...)로
+> 로그인하고 **+ New connection reference**를 선택하여 새 연결 참조를
+> 생성하세요.
+>
+> ![](./media/image4.png)
 
-    ![](./media/image4.png)
+5.  마지막 단계는 트리거의 입력 속성을 설정하는 것입니다. 다음 속성들을
+    다음과 같이 업데이트하세요.
 
-5.  The final step is to set the input properties of the trigger. Update
-    the following properties to the following,
+[TABLE]
 
-    | **Property**   | **How to Set**   |  **Details**  |
-    |:--------|:----|:-------|
-    |  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
-    |  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
-    |  Only with Attachments (Optional)  |  Dropdown  | Yes   |
+6.  **Create trigger**를 선택하세요.
 
-6.  Select **Create trigger**.
+> ![](./media/image5.png)
 
-    ![](./media/image5.png)
+7.  생성되면 트리거가 에이전트에 추가되었다는 확인 메시지가 나타납니다.
+    Select **Close**를 선택하고 **Triggers** 섹션에 트리거가 나열됩니다.
 
-7.  Once created, a confirmation message will appear that the trigger
-    has been added to the agent. Select **Close** and the trigger will
-    be listed in the **Triggers** section.
+> ![](./media/image6.png)
 
-    ![](./media/image6.png)
+8.  이제 이벤트 트리거를 업데이트하여 자동화 기능을 추가할 예정입니다.
+    트리거로 **ellipsis (...)**를 선택하고 **Edit in Power Automate**를
+    선택하세요.
 
-9.  We're now going to update the event trigger to add some more
-    automation capabilities. Select the **ellipsis (...)** by the
-    trigger and select **Edit in Power Automate**.
+> ![](./media/image7.png)
 
-    ![](./media/image7.png)
+9.  트리거는 Power Automate Maker 포털에서 플로우로 로드됩니다. 이
+    기능은 플로우 디자이너로 열려 더 많은 로직과 동작을 추가하여
+    자동화를 가능하게 할 것입니다. 트리거는 상단에 나타나고, **Sends a
+    prompt to the specified copilot for processing**의 마지막 동작으로
+    표시됩니다.
 
-9.  The trigger will then load as a flow in the Power Automate maker
-    portal. It will open to the flow designer where we can add further
-    logic and actions for more automation. The trigger will appear at
-    the top, followed by **Sends a prompt to the specified copilot for
-    processing** as the last action in the flow.
+> ![](./media/image8.png)
 
-    ![](./media/image8.png)
+10. 기본적으로 Power Automate의 **When a new email arrives** 트리거는
+    여러 이메일이 동시에 도착할 경우 여러 이메일을 함께 처리하며, 배치
+    전체에 대해 한 번만 플로우를 실행합니다.
 
-    >[!Note] **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
-    >
-    >![](./media/image132.png)
+> 각 이메일마다 플로우가 별도로 실행되도록 하려면 When a new email
+> arrives 노드를 선택하고 **Settings**을 선택하세요.
+>
+> **trigger’s settings**에서 **Split On** 설정을 확성화하고 **dropdown
+> array** 필드에서 **@triggerOutputs()?\['body/value'\]**를 선택하세요.
+>
+> **Split On**은 켜고 array 필드는 @triggerOutputs()?\['body/value'\]로
+> 설정된 상태에서 여러 메시지가 동시에 도착하더라도 각 메시지마다
+> 플로우가 개별적으로 실행됩니다.
+>
+> ![](./media/image9.png)
 
-11. By default, the **When a new email arrives** trigger in Power
-    Automate may process multiple emails together if several arrive at
-    once, running the flow only once for the batch.
+11. 다음으로 첨부파일 유형을 확인하는 로직을 추가해 보겠습니다. 첨부파일
+    파일은 업로드하지 않고 첨부파일 .PDF만 업로드하고 싶습니다 (이메일로
+    인한 이미지 포함도 있습니다). 트리거 아래의 **+** 아이콘을 선택하고
+    **Built in tools** 섹션의 **Control**을 선택하세요.
 
-    To ensure the flow runs separately for each email, select the When a new email arrives node, select **Settings**.
-    
-    Enable the **Split On** setting in the **trigger’s settings** and select **@triggerOutputs()?['body/value']** in the **dropdown array** field.
-    
-    With **Split On** turned on and the array field set to **@triggerOutputs()?['body/value']**, the flow will run individually for each message, even if many arrive simultaneously.
+> ![](./media/image10.png)
 
-    ![](./media/image9.png)
+12. **Condition** 액션을 선택하세요.
 
-12. Let's next add some logic to check the file type of the attachment,
-    we only want to upload .PDF file attachments and not images (these
-    could come from email signatures). Select the **+** icon below the
-    trigger and select **Control** under the **Built in tools** section.
+> ![](./media/image11.png)
 
-    ![](./media/image10.png)
+13. 이제 첨부파일 유형이 .PDF인지 확인하는 조건을 설정할 것입니다.
+    왼쪽의 **Choose a value** 필드에서 **lightning bolt icon**을
+    선택하세요.
 
-13. Select the **Condition** action.
+> ![](./media/image12.png)
 
-    ![](./media/image11.png)
+14. **Search** 필드에 field type +++content type+++를 입력하고
+    트리거에서 **Attachments Content-Type** 매개변수를 선택하세요
 
-14. Now we will configure the condition to check if the file
-    attachment’s type is .PDF. In the **Choose a value** field on the
-    left, select the **lightning bolt icon**.
+> ![](./media/image13.png)
 
-    ![](./media/image12.png)
+15. 여기서 잠시 멈추자면 **For each** 액션이 자동으로 나타난 것을
+    눈치채셨을 겁니다.
 
-15. In the **Search** field type +++content type+++ and select
-    the **Attachments Content-Type** parameter from the trigger
+> ![](./media/image14.png)
+>
+> 이 동작은 첨부파일 내 각 첨부파일을 반복하는 것을 의미하는데,
+> **Attachments Content-Type** 매개변수가 각 첨부파일에 연결되어 있기
+> 때문입니다.
+>
+> 내부적으로는 배열이기 때문에, **Condition** 액션에서 **Attachments
+> Content-Type** 매개변수를 선택하면 **For each** 액션이 자동으로
+> 추가되었습니다.
 
-    ![](./media/image13.png)
+16. 다음에 **Condition** 에서 오른쪽에 있는 **Choose a value** 필드를
+    선택하고 +++application/pdf+++를 입력하세요.
 
-16. Let's pause here for a moment, you probably noticed that the **For
-    each** action automatically appeared.
+이렇게 하면 각 파일 첨부파일마다 확장자 형식이 .PDF 있는지 확인합니다.
 
-    ![](./media/image14.png)
+> ![](./media/image15.png)
 
-    This action represents looping through each attachment in the email, since the **Attachments Content-Type** parameter is tied to each attachment.
-    
-    Underneath the hood, it's an array and that's why the For each action was automatically added when we selected the **Attachments Content-Type** parameter in the **Condition** action.
+17. 이제 **True** 경로를 설정하여 이메일에서 파일을 추출해 **Resume**
+    Dataverse 테이블에 업로드할 것입니다.
 
+> **True** 경로 아래에 새 액션을 추가하고 html to text를 검색하세요. +++
+> **Html to text**+++ 행동으로 변환하는 동작을 검색하여 선택하세요.
+>
+> **참고:** Power Automate의 **HTML to text** 동작은 HTML 형식의
+> 콘텐츠를 일반 텍스트로 변환하는 데 사용됩니다. 특히 이메일, 웹 콘텐츠,
+> API 응답 등 HTML 태그가 포함된 데이터를 받을 때 서식이나 코드 없이
+> 읽기 쉬운 텍스트만 추출하고 싶을 때 유용합니다.
+>
+> ![](./media/image16.png)
 
-17. Next, in the other **Choose a value** field to the right in
-    the **Condition** block, type +++application/pdf+++
+18. 다음으로, **Html to text** 동작을 위한 새로운 연결 참조를 생성하려면
+    **Create new**를 선택해야 합니다.
 
-    This will ensure that for each file attachment, it will check the file
-extension format is .PDF.
+> ![](./media/image17.png)
 
-    ![](./media/image15.png)
+19. 이제 액션을 구성할 수 있습니다. 트리거에서 **Body** 매개변수를
+    추가해 봅시다. **Content** 필드에서 오른쪽에 **lightning bolt
+    icon** 또는 **fx icon**을 선택하세요.
 
-17. Now we'll configure the **True** path to extract the file from the
-    email and upload it into the **Resume** Dataverse table.
+> ![](./media/image18.png)
 
-    Add a new action below in the **True** path and search for html to text. Search for and select the +++**Html to text**+++ action.
-    
-    >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
+20. **Dynamic content** 탭에서 +++body+++를 검색하고 **Body** 매개변수를
+    선택하고 **Add**를 선택하세요.
 
+> ![](./media/image19.png)
 
-    ![](./media/image16.png)
+21. 이 액션 설정은 완료되었으니, 패널을 접기 위해 왼쪽을 가리키는 두
+    개의 괄호(«)를 선택해 액션에서 종료하겠습니다.
 
-18. Next, we need to create a new connection reference for the **Html to
-    text** action by selecting **Create new**.
+> ![](./media/image20.png)
 
-    ![](./media/image17.png)
+22. **Html to text** 작업 아래 **+ icon** 을 선택하면 패널을 불러와
+    액션을 추가하세요. **Dataverse add**를 검색하세요. **Add a new
+    row** 액션을 선택하세요.
 
-19. The action can now be configured. Let's add the **Body** parameter
-    from the trigger. In the **Content** field, select the **lightning
-    bolt icon** or **fx icon** to the right.
+> ![](./media/image21.png)
 
-    ![](./media/image18.png)
+23. 속성 패널 왼쪽 상단에 +++Add a new Resume row+++를 붙여넣어 행동
+    이름을 변경하세요,
 
-20. In the **Dynamic content** tab, search for +++body+++ and select
-    the **Body** parameter, followed by selecting **Add**.
+**Table name** 매개변수에 res를 검색하고 **Resumes** 테이블을
+선택하세요.
 
-    ![](./media/image19.png)
+> ![](./media/image22.png)
 
-21. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+24. 다음으로 **Resume Title** 필드를 선택하고 오른쪽에서 **fx icon**을
+    선택하세요.
 
-    ![](./media/image20.png)
+> ![](./media/image23.png)
 
-22. We'll add a new action by selecting the **+ icon** underneath
-    the **Html to text** action which will load the panel to add
-    actions. Search for **Dataverse add**.Select the **Add a new
-    row** action.
+25. **Function tab**에서 item() 함수를 사용하는 다음 표현을 입력하세요.
 
-    ![](./media/image21.png)
++++item()?\['name'\]+++
 
-23. Rename the action by pasting +++Add a new Resume row+++ as the name
-    in the upper left-hand corner of the properties panel,
+> **Resume Title** 매개변수에 표현식을 추가하려면 **Add**를 선택하세요.
+>
+> ![](./media/image24.png)
 
-    For the **Table name** parameter, search for +++res+++ and select
-the **Resumes** table.
+**item() 함수에 대한 주의:**
 
-    ![](./media/image22.png)
+- **Apply to each** 액션을 사용할 때, Power Automate는 컬렉션(배열) 내
+  각 요소를 다룹니다.
 
-24. Select the **Resume Title** field next and select the **fx icon** to
-    the right.
+- 이 기능은 주로 **Apply to each** (또는 **For each), Select, filter
+  array** 같은 액션 안에서 사용됩니다.
 
-    ![](./media/image23.png)
+26. 아직 몇 가지 매개변수를 더 설정해야 해서 **Show all**을 선택하세요.
 
-25. In the **Function tab**, enter the following expression that uses
-    the item() function.
+> ![](./media/image25.png)
 
-    +++item()?['name']+++
+27. **Cover Letter** 필드에서 오른쪽에서 **fx icon**을 선택하세요.
 
-    Select **Add** to add the expression to the **Resume Title** parameter.
+> **Function tab**에서 다음 표현을 입력하세요.
+>
+> +++if(greater(length(body('Html_to_text')), 2000),
+> substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+>
+> 이 표현식은 **Html to text** 동작의 텍스트가 2000자를 초과하는지
+> 검사하며, 초과하면 처음 2000자만 반환합니다. 그렇지 않으면 전체
+> 텍스트를 반환합니다.
+>
+> ![](./media/image26.png)
 
-    ![](./media/image24.png)
+28. 이제 이 표현은 **Cover Letter**필드에 추가됩니다.
 
-    >[!Note] **Note on item() function:**
-    >
-    >- When you use an **Apply to each** action, Power Automate goes through
-      each element in a collection (array).
-    >
-    >- It’s most often used inside actions like **Apply to each** (or **For
-      each**), **Select**, or **Filter array**.
+> ![](./media/image27.png)
 
-26. We still need to configure several more parameters, select **Show
-    all**.
+29. **Source Email Address** 필드에 **lightning bolt icon**을
+    선택하고 이메일 주소 값이 포함한 트리거에서 **From** 매개변수를
+    선택하세요.
 
-    ![](./media/image25.png)
+> ![](./media/image28.png)
 
-28.  In the **Cover Letter** field, select the **fx icon** to the right.
+30. **Upload Date** 필드의 오른쪽에서 **fx icon**을 선택하세요.
+    **Function tab**에서 +++utcNow()+++를 입력하고 **Add**를 선택하세요.
 
-    In the **Function tab**, enter the following expression.
+**참고: utcNow() 함수란?**
 
-    +++if(greater(length(body('Html_to_text')), 2000), substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+- Power Automate의 utcnow() 함수는 ISO 8601 형식으로 현재 날짜와 시간을
+  Coordinated Universal Time (UTC)로 반환합니다. 예를 들어
+  2025-09-23T04:32:14Z
 
-    This expression checks if the text from the **Html to text** action is longer than 2000 characters, and if so, returns only the first 2000 characters; otherwise, it returns the full text.
+> ![](./media/image29.png)
 
-    ![](./media/image26.png)
+31. 이제**Add a new resume row** 액션 설정이 완료되었으니, 패널을 접어
+    나가겠습니다.
 
-28. The expression will now be added to the **Cover Letter** field.
+> ![](./media/image30.png)
 
-    ![](./media/image27.png)
+32. 새로운 액션을 추가하려면 **Add a new Resume row** 액션 아래 **+
+    icon**을 선택해 패널을 불러와서 액션을 추가합니다. +++**Dataverse
+    Upload**+++를 검색하세요. **Upload a file or an image** 액션을
+    선택하세요.
 
-29. For the **Source Email Address** field, select the **lightning bolt
-    icon** and select the **From** parameter from the trigger as this
-    contains the email address value.
+> ![](./media/image31.png)
 
-    ![](./media/image28.png)
+33. 작업의 이름을 +++Upload Resume File+++로 붙여넣어 이름을 변경하세요.
 
-30. For the **Upload Date** field, select the **fx icon** to the right.
-    In the **Function tab**, enter, +++utcNow()+++ and select **Add**.
+> ![](./media/image32.png)
 
-    **Note:**  **What is the utcNow() function?**
+34. 다음으로 **Content name** 필드를 선택하고 (이미 사용 가능한 제목
+    없는 메시지는 삭제하세요) 오른쪽에서 **fx icon**을 선택하세요.
 
-    - The utcnow() function in Power Automate returns the current date and
-  time in Coordinated Universal Time (UTC) in an ISO 8601 format,
-  like: 2025-09-23T04:32:14Z
+> **Function tab**에서 항목() 함수를 사용하는 다음 표현식을 입력하세요.
+> 이 과정에서 현재 항목(첨부 파일)의 이름 속성이 부여됩니다.
+>
+> +++item()?\['name'\]+++
+>
+> ![](./media/image33.png)
 
-    ![](./media/image29.png)
+35. **Table name** 매개변수에서 +++resumes+++를 검색하고
+    **Resumes** 테이블을 선택하세요.
 
-31. We've now completed configuring the **Add a new Resume row** action
-    so let's exit from the panel by collapsing it.
+> ![](./media/image34.png)
 
-    ![](./media/image30.png)
+36. 다음으로 **Row ID** 필드를 선택하고 오른쪽에서 **lightning bolt
+    icon**을 선택하세요.
 
-33. We'll add a new action by selecting the **+ icon** underneath
-    the **Add a new Resume row** action which will load the panel to add
-    actions. Search for +++**Dataverse Upload**+++. Select the **Upload
-    a file or an image** action.
+> +++ID+++를 검색하고 이 명령에는 PDF 파일을 업로드할 행의 ID 값이
+> 포함되어 있기 때문에 **Add a new row** Dataverse 액션에서
+> **Resume** 매개변수를 선택하세요.
+>
+> ![](./media/image35.png)
 
-    ![](./media/image31.png)
+37. **Column name** 필드를 선택하고 **Resume PDF** 옵션을 선택하세요.
 
-33. Rename the action by pasting +++Upload Resume File+++ as the name.
+> ![](./media/image36.png)
 
-    ![](./media/image32.png)
+38. **Content** 필드를 선택하고 오른쪽에서 **fx icon**을 선택하세요.
 
-34. Select the **Content name** field (remove the Untitled message if
-    that is already available) next and select the **fx icon** to the
-    right.
+> **Function tab**에서, 다음 표현식을 입력하는데, 이 표현식은 item ()
+> 함수를 사용합니다. 이 기능은 현재 항목(첨부 파일)의 contentBytes
+> 속성을 얻습니다. contentBytes는 Base64 문자열로 인코딩된 파일이나
+> 첨부파일의 원시 이진 데이터를 의미합니다.
+>
+> +++item()?\['contentBytes'\]+++
+>
+> ![](./media/image37.png)
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the name property of the current item (the attachment file).
-    
-    +++item()?['name']+++
+39. 이 액션 설정은 완료되었으니, 패널을 접기 위해 왼쪽을 가리키는 두
+    개의 괄호(«)를 선택해 액션에서 종료하겠습니다.
 
+> ![](./media/image38.png)
 
-    ![](./media/image33.png)
+40. 다음으로 **Sends a prompt to the specified copilot for
+    processing**을 선택하고 이 동작을 드래그 앤 드롭하여 조건의
+    **True** 경로에서 **Upload Resume File**작업 아래에 위치시킵니다.
 
-35. For the **Table name** parameter, search for +++resumes+++ and
-    select the **Resumes** table.
+> ![](./media/image39.png)
 
-    ![](./media/image34.png)
+41. 구성하려면 **Sends a prompt to the specified copilot for
+    processing**을 선택하세요.
 
-36. Select the **Row ID** field next and select the **lightning bolt
-    icon** to the right.
+![](./media/image40.png)
 
-    Search for +++ID+++ and select the **Resume** parameter from the **Add a new row** Dataverse action as this contains the ID value of the row to upload the PDF file to.
+42. **Body/message** 필드에서 모든 필드 내용을 선택하고 삭제하세요.
 
-    ![](./media/image35.png)
+> ![](./media/image41.png)
 
-37. Select the **Column name** field and select the **Resume
-    PDF** option.
+43. **Body/message** 필드에 다음 텍스트를 복사하고 붙여넣고 **RESUME ID
+    PLACEHOLDER**를 강조 표시하고 **lightning** 아이콘을 선택하세요.
 
-    ![](./media/image36.png)
+> Send \[ResumeId (text)\] = "RESUME ID PLACEHOLDER" and \[ResumeTitle
+> (text_1)\] = "RESUME TITLE PLACEHOLDER" and \[ResumeNumber (text_2)\]=
+> "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant
+> channel" in the child agent "Application Intake Agent"
+>
+> ![](./media/image42.png)
 
-38. Select the **Content** field and select the **fx icon** to the
-    right.
+44. +++resume+++를 검색하고 생성된 Resume 행의 ID 값이 포함한 **Add a
+    new row** *Dataverse* 액션에서 **Resume** 매개변수를 선택세요.
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the contentBytes property of the current item (the attachment file). contentBytes refers to the raw binary data of a file or attachment, encoded as a Base64 string.
-    
-    +++item()?['contentBytes']+++
+> ![](./media/image43.png)
 
-    ![](./media/image37.png)
+45. RESUME TITLE PLACEHOLDER를 강조 표시하세요. 오른쪽에서 **lightning
+    bolt icon**을 선택하세요.
 
-39. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+> +++title+++를 검색하고 생성된 Resume 행의 resume 주제 값이 포함한
+> **Add a new row Dataverse** 액션에서 **Resume Title** 매개변수를
+> 선택하세요.
+>
+> ![](./media/image44.png)
 
-    ![](./media/image38.png)
+46. RESUME NUMBER PLACEHOLDER를 강조 표시하세요. 오른쪽에서 **lightning
+    bolt icon**을 선택하세요.
 
-40. Next, select the **Sends a prompt to the specified copilot for
-    processing**, then drag and drop this action to be below
-    the **Upload Resume File** action in the **True** path of the
-    condition.
+> +++resume number+++를 검색하고 생성된 Resume 행의 resume 숫자 값이
+> 포함한 **Add a new row Dataverse** 액션에서 **Resume
+> Number** 매개변수를 선택하세요.
+>
+> ![](./media/image45.png)
 
-    ![](./media/image39.png)
+47. 이 액션과 에이전트 플로우 설정은 완료했습니다. 이제 **Save**을
+    선택해 이벤트 트리거 흐름을 저장해 봅시다.
 
-41. Select the **Sends a prompt to the specified copilot for
-    processing** to configure it.
+> ![](./media/image46.png)
 
-    ![](./media/image40.png)
+48. 이제 에이전트 플로우의 세부 사항을 편집하고, 저장 후 **Back**을
+    선택해야 합니다.
 
-42. In the **Body/message** field, select all of the field content and
-    clear/delete it.
+> ![](./media/image47.png)
 
-    ![](./media/image41.png)
+49. **Details** 섹션에서 **Edit**를 선택하고 **Plan**을 **Copilot
+    Studio** 옵션을 업데이트하세요. **Save**를 선택하세요.
 
-43. Copy and paste the following text into the **Body/message** field
-    and highlight the **RESUME ID PLACEHOLDER** and select the
-    **lightning** icon.
+> ![](./media/image48.png)
 
-    ```
-    Send [ResumeId (text)] = "RESUME ID PLACEHOLDER" and [ResumeTitle (text_1)] = "RESUME TITLE PLACEHOLDER" and [ResumeNumber (text_2)]= "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant channel" in the child agent "Application Intake Agent"
-    ```
-    
-    ![](./media/image42.png)
+50. 모달이 나타나 Copilot Studio 요금제로 전환 여부를 확인하라는
+    메시지가 나타납니다. **Confirm**을 선택하세요.
 
-44. Search for +++resume+++ and select the **Resume** parameter from
-    the **Add a new row** *Dataverse* action as this contains
-    the ID value of the Resume row created.
+> ![](./media/image49.png)
 
-    ![](./media/image43.png)
+51. 플랜을 **Copilot Studio**로 업데이터되었습니다. 에이전트의 이벤트
+    트리거 플로우를 게시해야 하므로 **Edit**를 선택하세요.
 
-45. Highlight the **RESUME TITLE PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+> ![](./media/image50.png)
 
-    Search for +++title+++ and select the **Resume Title** parameter from the **Add a new row Dataverse** action as this contains the resume title value of the Resume row created.
+52. **Publish**를 선택하세요.
 
-    ![](./media/image44.png)
+> ![](./media/image51.png)
+>
+> 이벤트 트리거 흐름이 이제 공개되었습니다.
 
-46. Highlight the **RESUME NUMBER PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+![](./media/image52.png)
 
-    Search for +++resume number+++ and select the **Resume Number** parameter from the **Add a new row Dataverse** action as this contains the Resume Number value of the Resume row created.
+**child Intake Application Agent**가 호출할 새로운 에이전트 플로 우를
+만들어 보겠습니다.
 
-    ![](./media/image45.png)
+### 작업 2 – 적응형 카드를 사용해 Teams 채널을 알림하기
 
-47. We've completed configuring this action and our agent flow. Now
-    let's save our event trigger flow by selecting **Save**.
+이제 이벤트 트리거에서 전달된 값을 사용하는 child **Intake Application
+Agent**용 새로운 에이전트 플로우를 생성하여 Teams 채널에 적응형 카드를
+게시할 예정입니다. 이 적응형 카드는 자동으로 업로드된 PDF를 인사
+채용팀에 알리기 위해 검토할 수 있도록 합니다.
 
-    ![](./media/image46.png)
+#### 작업 2.1: Teams에 채널을 생성하기
 
-48. We now need to edit the details of the agent flow, select **Back**
-    once saved.
+이 작업에서는 MS Teams에서 Team과 Channel을 생성하여 이후 이 실험에서
+사용할 것입니다.
 
-    ![](./media/image47.png)
+1.  +++https://teams.microsoft.com+++로 로그인하세요.
 
-49. Select **Edit** in the **Details** section and update
-    the **Plan** to the **Copilot Studio** option. Select **Save**.
+2.  **New items drop down**을 선택하고 **New team**을 선택하세요.
 
-    ![](./media/image48.png)
+![](./media/image53.png)
 
-50. A modal will appear to ask you to confirm to switch to Copilot
-    Studio plan. Select **Confirm**.
-
-    ![](./media/image49.png)
-
-51. The plan is now updated to **Copilot Studio**. Select **Edit** as we
-    need to publish the event trigger flow for our agent.
-
-    ![](./media/image50.png)
-
-52. Select **Publish**.
-
-    ![](./media/image51.png)
-
-    The event trigger flow is now Published.
-
-    ![](./media/image52.png)
-
-    Let's proceed with creating a new agent flow that will be invoked by the
-child **Intake Application Agent**.
-
-### Task 2 - Notify a Teams channel using an adaptive card
-
-We're now going to create a new agent flow for the child **Intake
-Application Agent** that uses the values passed by the event trigger, to
-post an adaptive card to a Teams channel. This adaptive card will alert
-the HR recruitment team about the PDF that was automatically uploaded so
-that they can review it.
-
-#### Task 2.1: Create channel in Teams
-
-In this task, you will create a Team and Channel in MS Teams which will
-be used later in this lab.
-
-1.  Login to +++https://teams.microsoft.com+++
-
-2.  Select the **New items drop down** and select **New team**.
-
-    ![](./media/image53.png)
-
-3.  Provide the below details and select Create.
+3.  다음 세부 정보를 제공하고 Create를 선택하세요.
 
     - Team name - +++HR Team+++
 
-    - First channel name - +++Applicants+++
+    - First channel name - +++Applicants +++
 
-    ![](./media/image54.png)
+> ![](./media/image54.png)
 
-4.  Select Skip in the next screen.
+4.  다음 화면에서 Skip를 선택하세요.
 
-    ![](./media/image55.png)
+![](./media/image55.png)
 
-5.  You have now created the new Team and Channel.
+5.  새로운 Team 및 Channel이 생성되었습니다.
 
-    ![](./media/image56.png)
+![](./media/image56.png)
 
-#### Task 2.2: Create the agent flow
+#### 작업 2.2: 애이전트 플로우를 생성하기
 
-1.  Back in the Copilot Studio, in the **Hiring Agent** select
-    the **Agents** tab and select the **Application Intake Agent**
+1.  Copilot Studio로 돌아가고 **Hiring Agent**에서 **Agents**탭을
+    선택하고 **Application Intake Agent**를 선택하세요
 
-    ![](./media/image57.png)
+![](./media/image57.png)
 
-2.  Scroll down to **Tools** and select **+ Add**.
+2.  **Tools** 아래로 스크롤하고 **+ Add**를 선택하세요.
 
-    ![](./media/image58.png)
+> ![](./media/image58.png)
 
-3.  The **Add tool** modal will appear. Select **+ New tool**.
+3.  **Add tool** 모달이 나타납니다. **+ New tool**을 선택하세요.
 
-    ![](./media/image59.png)
+> ![](./media/image59.png)
 
-4.  Select **Agent flow**.
+4.  **Agent flow**를 선택하세요.
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-5.  The **agent flow designer** will next load. In the **When an agent
-    calls the flow** trigger, select **+ Add an input**.
+5.  **Agent flow designer**가 로드됩니다. **When an agent calls the
+    flow** 트리거에서 **+ Add an input**을 선택하세요.
 
-    ![](./media/image61.png)
+> ![](./media/image61.png)
 
-6.  Select **Text** as the type of user input.
+6.  사용자 입력의 유형으로 **Text**를 선택하세요.
 
-    ![](./media/image62.png)
+> ![](./media/image62.png)
 
-7.  In the input text field, enter +++ResumeId+++ as the input parameter
-    name.
+7.  Input text 필드에 입력 매개변수 이름을 +++ResumeId+++로 입력하세요.
 
-    ![](./media/image63.png)
+> ![](./media/image63.png)
 
-8.  Repeat the same steps for the below parameters.
+8.  아래 매개변수에 대해 같은 과정을 반복하세요.
 
-    Text - +++ResumeTitle+++
-    
-    Text - +++ResumeNumber+++
-    
-    ![](./media/image64.png)
-    
-    ![](./media/image65.png)
+Text - +++ResumeTitle+++
 
-9.  Now, you are going to add an adaptive card in the agent flow. We're
-    now going to add another action to our agent flow that will post an
-    adaptive card to a Teams channel.
-
-    Select the **+ icon** below the trigger.
-
-    ![](./media/image66.png)
-
-10. Search for +++**Microsoft Teams post+++** and select the **Post card
-    in a chat or channel** action.
-
-    ![](./media/image67.png)
-
-11. A connection reference to Microsoft Teams needs to be created with
-    your signed in user account. Select **Sign in**.
-
-    ![](./media/image68.png)
-
-12. Select your user account and then select **Allow access**.
-
-    ![](./media/image69.png)
-
-13. Configure according to the following input parameters:
-
-    | Parameter   |  How to Set  | Details   |
-    |:------|:----|:------|
-    |  **Post as**  |  Dropdown  |  Select the **Flow bot** option  |
-    |  **Post in**  |  Dropdown  |   Select the **Channel** option |
-    |  **Team**  |  Dropdown  |  Select **HR Team** option  |
-    |   **Team** |  Dropdown  |  Select  **Applicants** channel   |
-
-
-    ![](./media/image70.png)
-
-14. Next, we'll configure the **Adaptive Card** field. Select
-    the **Adaptive Card** field.
-
-    ![](./media/image71.png)
-
-15. Copy the below code and paste it into the Adaptive Card field.
-
-    ```
-    {
-        "type": "AdaptiveCard",
-        "speak": "New Resume Uploaded",
-        "body": [
-            {
-                "inlines": [
-                    {
-                        "type": "TextRun",
-                        "size": "Small",
-                        "text": "Resume table updated",
-                        "selectAction": {
-                            "url": "https://adaptivecards.io",
-                            "type": "Action.OpenUrl"
-                        }
-                    }
-                ],
-                "type": "RichTextBlock"
-            },
-            {
-                "columns": [
-                    {
-                        "width": "auto",
-                        "items": [
-                            {
-                                "type": "Icon",
-                                "name": "DocumentArrowUp",
-                                "color": "Accent"
-                            }
-                        ],
-                        "type": "Column"
-                    },
-                    {
-                        "width": "stretch",
-                        "items": [
-                            {
-                                "size": "Large",
-                                "text": "New Resume Uploaded",
-                                "weight": "Bolder",
-                                "wrap": true,
-                                "type": "TextBlock"
-                            }
-                        ],
-                        "verticalContentAlignment": "Center",
-                        "spacing": "Small",
-                        "type": "Column"
-                    }
-                ],
-                "spacing": "Small",
-                "type": "ColumnSet"
-            },
-            {
-                "type": "Table",
-                "targetWidth": "AtLeast:Narrow",
-                "columns": [
-                    {
-                        "width": 1
-                    },
-                    {
-                        "width": 2
-                    }
-                ],
-                "rows": [
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Resume Number",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "RESUME NUMBER PLACEHOLDER",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Name",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "RESUME NAME PLACEHOLDER",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Status",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Waiting for Review",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Due Date",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "May 21, 2023",
-                                        "wrap": true
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Priority",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "ColumnSet",
-                                        "columns": [
-                                            {
-                                                "type": "Column",
-                                                "width": "auto",
-                                                "items": [
-                                                    {
-                                                        "type": "Icon",
-                                                        "name": "Flag",
-                                                        "color": "Attention",
-                                                        "size": "xSmall",
-                                                        "horizontalAlignment": "Center"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Column",
-                                                "width": "stretch",
-                                                "items": [
-                                                    {
-                                                        "color": "Attention",
-                                                        "text": "Important",
-                                                        "wrap": true,
-                                                        "spacing": "Small",
-                                                        "type": "TextBlock"
-                                                    }
-                                                ],
-                                                "spacing": "Small"
-                                            }
-                                        ],
-                                        "spacing": "Small"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    }
-                ],
-                "firstRowAsHeaders": false,
-                "showGridLines": false
-            },
-            {
-                "actions": [
-                    {
-                        "title": "View Resume",
-                        "type": "Action.OpenUrl",
-                        "url": "https://adaptivecards.io/"
-                    }
-                ],
-                "type": "ActionSet",
-                "targetWidth": "AtLeast:Narrow",
-                "spacing": "ExtraLarge"
-            }
-        ],
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
-        "version": "1.5"
-    }
-    
-    ```
-
-    ![](./media/image72.png)
-
-16. We will now replace existing values in the JSON payload with actual
-    values or dynamic content.
-
-    First, let's update the **URL** for the **url property** within the **selectAction** property. This URL will be replaced with the URL of the **Resumes** system view in the **Hiring** Hub model-driven app. This will allow the Recruiter to select the action and be directed to the Resumes system view in the model-driven app.
-    Highlight the **current URL** value and delete it.
-
-
-    ![](./media/image73.png)
-
-17. In the **Hiring Hub** model-driven app, navigate to
-    the **Resumes** system view using the left hand side menu and copy
-    the URL. Then **navigate back** to the **agent flow**, and **paste**
-    the **copied URL** into the **url** property of the within
-    the selectAction property.
-
-    ![](./media/image74.png)
-
-18. You should see the following where highlighted in Yellow is your
-    environment details of the **Hiring Hub** model-driven app.
-
-    |  Parameter  |  Value  |   Explanation |
-    |:--------|:--------|:---------|
-    |  Organization URI  |   GUID |  The Dataverse/Dynamics 365 environment organization URL  |
-    |  appid  | GUID   |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | viewid    | GUID   |  The query parameter which is the id of the view  |
-
-
-
-    ![](./media/image75.png)
-
-19. Next, we'll add dynamic content values for several properties. Let's
-    start with the text that will display the Resume Number reference of
-    the row that was created by the event trigger autonomously.
-
-    Select the **panel** icon to load the action panel.
-
-    ![](./media/image76.png)
-
-20. Scroll down to the line where you see the text property for RESUME
-    NUMBER PLACEHOLDER. Highlight the placeholder value and delete it.
-
-    ![Delete placeholder](./media/image77.png)
-
-21. Click in-between the double quotation marks and select
-    the **lightning bolt icon** from the right.
-
-    **Note:** Make sure that the Adaptive card code block is docked to the left pane of your screen.
-
-    ![](./media/image78.png)
-
-23. In the **Dynamic Content** tab select
-    the **ResumeNumber** parameter.
-
-    ![](./media/image79.png)
-
-24. The **ResumeNumber** parameter will now be added as dynamic content
-    to the text property.
-
-    ![](./media/image80.png)
-
-25. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
-    down to the line where you see the text property for RESUME NAME
-    PLACEHOLDER. Highlight the placeholder value and delete it. Click
-    in-between the double quotation marks and select the select
-    the **lightning bolt icon** from the right.
-
-    ![](./media/image81.png)
-
-26. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
-
-    ![](./media/image82.png)
-
-27. The **ResumeTitle** parameter will now be added as dynamic content
-    to the text property.
-
-    ![](./media/image83.png)
-
-28. We'll repeat the same steps for the **Due Date** value that
-    represents when a recruiter should review the resume by. Scroll down
-    to the line where you see the text property for May 21, 2023.
-
-    ![Select Allow access](./media/image84.png)
-
-29. Delete this date placeholder value and click in-between the double
-    quotation marks and select the **fx icon** from the right.
-
-    ![](./media/image85.png)
-
-30. In the **Function** tab, enter the following expression and
-    select **Add**.
-
-    +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
-
-    This expression utilizes two functions.
-
-    addDays - Adds a specified number of days to a given date and returns the resulting date in string format
-    
-    utcNow - Returns the current date and time in Coordinated Universal Time (UTC) format as a string.
-
-    For the utcNow value, we are formatting the date to be month and date,
-    followed by the year.
-
-    ![](./media/image86.png)
-
-31. The expression will now be added to the text property.
-
-    ![](./media/image87.png)
-
-32. Lastly, we'll update the **URL** for the **url property** within
-    the **actions** array property at the bottom of the JSON payload.
-    This current placeholder URL will be replaced with the URL of the
-    **Resume row** in the **Hiring Hub** model-driven app. This will
-    allow the Recruiter to select the **Action.OpenURL** action of the
-    adaptive card and be **directed** to the **Resume** in the
-    model-driven app.
-
-    ![](./media/image88.png)
-
-32. In the **Hiring Hub** model-driven app, open a row in
-    the **Resumes** system view using the left hand side menu. The
-    resume row will load as a form in the model-driven app.
-
-    Copy the URL for the Resume row.
-    
-    ![](./media/image89.png)
-    
-    ![](./media/image90.png)
-
-33. Then navigate back to the agent flow, highlight the current
-    placeholder URL value and **delete** it.
-
-    ![](./media/image91.png)
-
-34. Then **paste** the **copied URL** into the **url** property of the
-    within the url property.
-
-    ![](./media/image92.png)
-
-35. You should see the following. Delete the GUID id value at the end.
-    We'll replace this dynamic content - the **ResumeId** parameter.
-
-    ![](./media/image93.png)
-
-36. Select the **lightning bolt icon** from the right.
-
-    In the **Dynamic Content** tab select the **ResumeId** parameter.
-
-    ![](./media/image94.png)
-
-37. The **ResumeId** will be added as dynamic content. The following
-    highlighted in Yellow is your environment details of the **Hiring
-    Hub** model-driven app.
-
-    |  Parameter  | Value   |  Explanation  |
-    |:-----|:-------|:--------|
-    | Organization URI   | GUID   |  The Dataverse/Dynamics 365 environment organization URL  |
-    |   appid |  GUID  |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | id   |  GUID  |    The query parameter which is the id of the Resume row    |
-
-    ![](./media/image95.png)
-
-38. We've completed configuring the **Post card in a chat or
-    channel** action 👏🏻 Exit from the action configuration panel by
-    selecting the **x** icon.
-
-    ![](./media/image96.png)
-
-39. Finally, we'll configure the last action, **Respond to the
-    agent** by sending a text back to the agent to end the processing.
-
-    In the **Respond to the agent** action, select **+Add an output**.
-
-    ![](./media/image97.png)
-
-40. Select **Text** as the type of output.
-
-    ![](./media/image98.png)
-
-41. Enter the following details
+Text - +++ResumeNumber+++
+
+![](./media/image64.png)
+
+![](./media/image65.png)
+
+9.  이제 에이전트 플로우에 적응형 카드를 추가할 것입니다. 이제 에이전트
+    플로우에 또 다른 액션을 추가하여 Teams 채널에 적응형 카드를 게시할
+    예정입니다.
+
+트리거에서 **+ icon**을 선택하세요.
+
+> ![](./media/image66.png)
+
+10. +++**Microsoft Teams post+++**를 검색하고 **Post card in a chat or
+    channel** 액션을 선택하세요.
+
+> ![](./media/image67.png)
+
+11. 로그인한 사용자 계정으로 Microsoft Teams에 대한 연결 참조를 생성해야
+    합니다. **Sign in**을 선택하세요.
+
+> ![](./media/image68.png)
+
+12. 사용자 계정을 선택하고 **Allow access**를 선택하세요.
+
+> ![](./media/image69.png)
+
+13. 다음 입력 매개변수에 따라 구성하세요:
+
+[TABLE]
+
+> ![](./media/image70.png)
+
+14. 다음으로 **Adaptive Card** 필드를 구성하겠습니다. **Adaptive
+    Card** 필드를 선택하세요.
+
+> ![](./media/image71.png)
+
+15. 아래 코드를 복사해서 적응형 카드 필드에 붙여넣으세요.
+
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "speak": "New Resume Uploaded",
+>
+> "body": \[
+>
+> {
+>
+> "inlines": \[
+>
+> {
+>
+> "type": "TextRun",
+>
+> "size": "Small",
+>
+> "text": "Resume table updated",
+>
+> "selectAction": {
+>
+> "url": "https://adaptivecards.io",
+>
+> "type": "Action.OpenUrl"
+>
+> }
+>
+> }
+>
+> \],
+>
+> "type": "RichTextBlock"
+>
+> },
+>
+> {
+>
+> "columns": \[
+>
+> {
+>
+> "width": "auto",
+>
+> "items": \[
+>
+> {
+>
+> "type": "Icon",
+>
+> "name": "DocumentArrowUp",
+>
+> "color": "Accent"
+>
+> }
+>
+> \],
+>
+> "type": "Column"
+>
+> },
+>
+> {
+>
+> "width": "stretch",
+>
+> "items": \[
+>
+> {
+>
+> "size": "Large",
+>
+> "text": "New Resume Uploaded",
+>
+> "weight": "Bolder",
+>
+> "wrap": true,
+>
+> "type": "TextBlock"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center",
+>
+> "spacing": "Small",
+>
+> "type": "Column"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small",
+>
+> "type": "ColumnSet"
+>
+> },
+>
+> {
+>
+> "type": "Table",
+>
+> "targetWidth": "AtLeast:Narrow",
+>
+> "columns": \[
+>
+> {
+>
+> "width": 1
+>
+> },
+>
+> {
+>
+> "width": 2
+>
+> }
+>
+> \],
+>
+> "rows": \[
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Resume Number",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "RESUME NUMBER PLACEHOLDER",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Name",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "RESUME NAME PLACEHOLDER",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Status",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Waiting for Review",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Due Date",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "May 21, 2023",
+>
+> "wrap": true
+>
+> }
+>
+> \]
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Priority",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "ColumnSet",
+>
+> "columns": \[
+>
+> {
+>
+> "type": "Column",
+>
+> "width": "auto",
+>
+> "items": \[
+>
+> {
+>
+> "type": "Icon",
+>
+> "name": "Flag",
+>
+> "color": "Attention",
+>
+> "size": "xSmall",
+>
+> "horizontalAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "Column",
+>
+> "width": "stretch",
+>
+> "items": \[
+>
+> {
+>
+> "color": "Attention",
+>
+> "text": "Important",
+>
+> "wrap": true,
+>
+> "spacing": "Small",
+>
+> "type": "TextBlock"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> }
+>
+> \],
+>
+> "firstRowAsHeaders": false,
+>
+> "showGridLines": false
+>
+> },
+>
+> {
+>
+> "actions": \[
+>
+> {
+>
+> "title": "View Resume",
+>
+> "type": "Action.OpenUrl",
+>
+> "url": "https://adaptivecards.io/"
+>
+> }
+>
+> \],
+>
+> "type": "ActionSet",
+>
+> "targetWidth": "AtLeast:Narrow",
+>
+> "spacing": "ExtraLarge"
+>
+> }
+>
+> \],
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+>
+> "version": "1.5"
+>
+> }
+
+![](./media/image72.png)
+
+16. 이제 JSON 페이로드의 기존 값을 실제 값이나 동적 콘텐츠로 대체할
+    예정입니다.
+
+> 먼저, **selectAction** 속성 내 **URL** **속성**의 **URL**을 업데이트해
+> 보겠습니다. 이 URL은 **Hiring Hub** 모델 기반 앱의 **Resumes**시스템
+> 뷰 URL로 대체됩니다. 이렇게 하면 채용 담당자가 해당 작업을 선택하고
+> 모델 기반 앱의 이력서 시스템 뷰로 안내할 수 있습니다
+>
+> **current URL** 값을 강조 표시하고 삭제하세요.
+
+![](./media/image73.png)
+
+17. **Hiring Hub**의 모델 기반 앱에서 왼쪽 메뉴를 이용해
+    **Resumes** 시스템 뷰로 이동해 URL을 복사하세요. 그 다음 **에이전트
+    플로우**로 **돌아가**서 **복사한 URL**을 selectAction 속성 내 URL
+    속성에 붙여넣으세요.
+
+> ![](./media/image74.png)
+
+18. 노란색으로 강조된 아래는 **Hiring Hub** 모델 기반 앱의 환경 세부
+    정보를 확인할 수 있을 것입니다 .
+
+[TABLE]
+
+> ![](./media/image75.png)
+
+19. 다음으로, 여러 속성에 대해 동적 콘텐츠 값을 추가할 것입니다. 이벤트
+    트리거가 자율적으로 생성한 행의 Resume Number 참조를 표시하는
+    텍스트부터 시작해 보겠습니다.
+
+액션 패널을 불러오려면 **panel **아이콘을 선택하세요 .
+
+![](./media/image76.png)
+
+20. RESUME NUMBER PLACEHOLDER 텍스트 속성이 보이는 줄까지 스크롤하세요.
+    자리 표시자 값을 강조 표시하고 삭제하세요.
+
+![Delete placeholder](./media/image77.png)
+
+21. 이중 따옴표 사이를 클릭하고 오른쪽에서 **lightning bolt icon**을
+    선택하세요.
+
+![](./media/image78.png)
+
+22. **Dynamic Content** 탭에서 **ResumeNumber** 매개변수를 선택하세요.
+
+> ![](./media/image79.png)
+
+23. **ResumeNumber** 매개변수는 이제 텍스트 속성에 동적 콘텐츠로
+    추가됩니다.
+
+> ![](./media/image80.png)
+
+24. RESUME NAME 자리 표시자에 대해서도 같은 과정을 반복하겠습니다.
+    아래로 스크롤하여 RESUME NAME PLACEHOLDER 텍스트 속성이 보이는 줄로
+    이동하세요. 임시 값을 선택하고 삭제하세요. 이중 따옴표 사이를
+    클릭하고 오른쪽에서 **lightning bolt icon**을 선택하세요.
+
+> ![](./media/image81.png)
+
+25. **Dynamic Content** 탭에서 **ResumeTitle** 매개변수를 선택하세요
+
+> ![](./media/image82.png)
+
+26. **ResumeTitle** 매개변수가 이제 텍스트 속성에 동적 콘텐츠로
+    추가됩니다.
+
+> ![](./media/image83.png)
+
+27. 채용 담당자가 이력서를 검토해야 할 시기를 나타내는 **Due Date** 값에
+    대해서도 같은 과정을 반복하겠습니다. 2023년 5월 21일자 텍스트 속성이
+    보이는 줄까지 스크롤하세요.
+
+![Select Allow access](./media/image84.png)
+
+28. 이 날짜 자리 표시자 값을 삭제하고 이중 따옴표 사이를 클릭한 후
+    오른쪽에서 **fx icon**을 선택하세요.
+
+> ![](./media/image85.png)
+
+29. **Function** 탭에서 다음 표현식을 입력하고 **Add**를 선택하세요.
+
+> +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
+
+이 식은 두 가지 기능을 사용합니다.
+
+[TABLE]
+
+utcNow 값의 경우, 날짜를 월과 날짜로 포맷하고, 그 뒤에 연도를 붙입니다.
+
+> ![](./media/image86.png)
+
+30. 이제 이 표현식이 텍스트 속성에 추가됩니다.
+
+![](./media/image87.png)
+
+31. 마지막으로, JSON 페이로드 하단의 **actions** array 속성 내 **URL
+    속성**을 업데이트할 예정입니다. 이 현재의 자리 표시자 URL은 **Hiring
+    Hub** 모델 기반 앱의 **Resume row** URL로 대체될 예정입니다. 이렇게
+    하면 리크루터가 적응형 카드의 **Action.OpenURL** 액션을 선택하고
+    모델 기반 앱에서 **Resume**로 **안내**할 수 있습니다.
+
+> ![](./media/image88.png)
+
+32. **Hiring Hub** 모델 기반 앱에서 왼쪽 메뉴를 통해 **Resumes** 시스템
+    뷰의 한 행을 열어보세요. 이력서 행은 모델 기반 앱에서 폼으로
+    로드됩니다.
+
+Resume row에 URL을 복사하세요.
+
+![](./media/image89.png)
+
+> ![](./media/image90.png)
+
+33. 그 다음 에이전트 플로우로 돌아가 현재 자리 표시자 URL 값을
+    하이라이트한 뒤 **삭제**하세요.
+
+> ![](./media/image91.png)
+
+34. 그 다음 **복사한 URL** 을 URL 속성 내에 붙여넣으세요.
+
+> ![](./media/image92.png)
+
+35. 다음 내용을 보실 수 있습니다. 끝에 있는 GUID ID 값을 삭제하세요. 이
+    동적 콘텐츠인 **ResumeId** 매개변수를 교체할 것입니다.
+
+![](./media/image93.png)
+
+36. 오른쪽에서 **lightning bolt icon**을 선택하세요.
+
+**Dynamic Content** 탭에서 **ResumeId** 매개변수를 선택하세요.
+
+> ![](./media/image94.png)
+
+37. **ResumeId**는 동적 콘텐츠로 추가됩니다. 노란색으로 강조된 다음은
+    **Hiring Hub** 모델 기반 앱의 환경 정보입니다.
+
+[TABLE]
+
+> ![](./media/image95.png)
+
+38. **Post card in a chat or channel**에서 엽서 설정을 완료했습니다.
+    액션 설정 패널에서 **x** 아이콘을 선택하여 👏🏻 종료합니다.
+
+> ![](./media/image96.png)
+
+39. 마지막 액션을 구성하겠습니다. 에이전트에서 처리 종료 텍스트를 보내
+    **Respond to the agent**하세요.
+
+**Respond to the agent** 액션에서 **+Add an output**을 선택하세요.
+
+> ![](./media/image97.png)
+
+40. 출력 유형으로 **Text**를 선택하세요.
+
+> ![](./media/image98.png)
+
+41. 다음 세부 정보를 입력하세요
 
     - Name - +++EndConversation+++
 
-    - Value - +++Finished+++
+    - Value - +++ Finished+++
 
-    ![](./media/image99.png)
+> ![](./media/image99.png)
 
-42. We've now completed configuring the agent flow. Select **Save
-    draft** to save the agent flow. A confirmation message will appear
-    once saved.
+42. 이제 에이전트 플로우 설정을 완료했습니다. 에이전트 플로우를
+    저장하려면 **Save draft**을 선택하세요. 저장 시 확인 메시지가
+    나타납니다.
 
-    ![](./media/image100.png)
+> ![](./media/image100.png)
 
-43. Before publishing the agent flow, we need to update the details for
-    the agent flow. Select the **Overview** tab and select **Edit**.
+43. 에이전트 플로우를 게시하기 전에 에이전트 플로우의 세부 사항을
+    업데이트해야 합니다. **Overview** 탭을 선택하고 **Edit**를
+    선택하세요.
 
-    ![](./media/image101.png)
+> ![](./media/image101.png)
 
-44. Enter the Name as +++Notify Teams Applicant channel+++ and select
-    the Refresh icon under Description to update it using AI.
+44. 이름을 +++Notify Teams Applicant channel+++로 입력하고
+    Description에서 Refresh 아이콘을 선택하고 AI를 사용하여
+    업데이트하세요.
 
-    ![](./media/image102.png)
+![](./media/image102.png)
 
-45. Once the Description is populated, select **Save** to save the
-    updated details for the agent flow.
+45. 설명이 채 워지면 **Save **을 선택하여 에이전트 흐름의 최신 세부
+    정보를 저장하세요.
 
-    ![](./media/image103.png)
+> ![](./media/image103.png)
 
-46. Navigate back to the **Designer** tab and select **Publish** to
-    publish the agent flow.
+46. **Designer** 탭으로 돌아가고 에이전트 플로우를 게시하려면
+    **Publish**를 선택하세요.
 
-    ![](./media/image104.png)
+> ![](./media/image104.png)
 
-47. A confirmation message will appear once published.
+47. 게시되면 확인 메시지가 표시됩니다.
 
-    ![](./media/image105.png)
+> ![](./media/image105.png)
 
-48. The agent flow now needs to be added as a tool in the **Application
-    Intake Agent**. Navigate back to the **Hiring Agent** and select
-    the **Agents** tab, then select the **Application Intake Agent**.
+48. 에이전트 플로우는 이제 **Application Intake Agent**에 도구로
+    추가되어야 합니다. **Hiring Agent**로 돌아가고 **Agents** 탭을
+    선택하고 **Application Intake Agent**를 선택하세요.
 
-    ![](./media/image106.png)
+![](./media/image106.png)
 
-49. In the **Details** section of the agent, we'll update
-    the **Description** field. Copy the following and paste and the end
-    of the description text.
+49. 에이전트의 **Details** 섹션에서 **Description** 필드를
+    업데이트하겠습니다. 다음 내용을 복사해서 붙여넣고 설명 텍스트의 끝을
+    붙여넣으세요.
 
-    +++and also notifies the Teams Applicant channel+++
++++and also notifies the Teams Applicant channel+++
 
-    Select **Save**.
+**Save**를 선택하세요.
 
-    ![](./media/image107.png)
+> ![](./media/image107.png)
 
-50. Next, we'll add the agent flow as a tool. Scroll down to
-    the **tools** section and select **+ Add**.
+50. 다음으로, 에이전트 플로우를 도구로 추가하겠습니다. **Tools**
+    섹션으로 스크롤 해서 **+ Add**를 선택하세요.
 
-    ![](./media/image108.png)
+> ![](./media/image108.png)
 
-51. Select the **Flow** tab and choose the agent flow created
-    earlier, **Notify Teams Applicant Channel**.
+51. **Flow** 탭을 선택하고 이전에서 생성된 에이전트 플로우를
+    선택하세요, **Notify Teams Applicant Channel**.
 
-    ![](./media/image109.png)
+> ![](./media/image109.png)
 
-52. Select **Add and configure** next.
+52. 다음에 **Add and configure**를 선택하세요.
 
-    ![](./media/image110.png)
+> ![](./media/image110.png)
 
-53. In the **Inputs** section, the three inputs we configured earlier in
-    the agent flow are visible. By default, the **Fill
-    using** configuration is set to **Dynamically fill with AI**. We'll
-    keep this setting as-is as the prompt from the event trigger will
-    contain the parameter values that AI will extract.
+53. **Inputs** 색션애서 에이전트 플로우에서 이전에 설정한 세 가지 입력이
+    보입니다. 기본적으로 **Fill using** 구성은 **Dynamically fill with
+    AI**로 설정되어 있습니다. 이벤트 트리거의 프롬프트에는 AI가 추출할
+    매개변수 값이 포함되어 있으므로 이 설정을 그대로 유지하겠습니다.
 
-    ![](./media/image111.png)
+> ![](./media/image111.png)
 
-54. Now that the tool has been added to the **Application Intake
-    Agent**, the instructions of the agent needs to be updated. Select
-    the **back arrow**.
+54. 이제 도구가 **Application Intake Agent**에 추가되었으니, 에이전트의
+    지침도 업데이트해야 합니다. **Back arrow**를 선택하세요.
 
-    ![](./media/image112.png)
+![](./media/image112.png)
 
-55. Select the **Application Intake Agent** in the **Agents** tab of
-    the **Hiring Agent**.
+55. **Hiring Agent**의 **Agents** 탭에서 **Application Intake Agent**를
+    선택하세요.
 
-    ![](./media/image113.png)
+![](./media/image113.png)
 
-56. In the **Instructions** field, enter a new line
-    after **Post-Upload** instructions. Copy and paste the following
-    instructions.
+56. **Instructions** 필드에서 **2.Post-Upload** 지침 다음에 새 줄을
+    입력하세요. 다음 지침을 복사해서 붙여넣으세요.
 
-    ```
-    Process for Resume Upload via Email
-    1. When you receive a message, **Send [ResumeId (text)] = "1680265f-5793-f011-b41b-7c1e525be9f7" and [ResumeTitle (text_1)] = "TAYLOR TESTPERSON (FICTITIOUS).pdf" and [ResumeNumber (text_2)]= "R01026" to the Tool "Notify Teams Applicant channel"** in the child agent "Application Intake Agent", call [AGENT FLOW PLACEHOLDER]
-    ```
-    ![](./media/image114.png)
+> Process for Resume Upload via Email
+>
+> 1. When you receive a message, \*\*Send \[ResumeId (text)\] =
+> "1680265f-5793-f011-b41b-7c1e525be9f7" and \[ResumeTitle (text_1)\] =
+> "TAYLOR TESTPERSON (FICTITIOUS).pdf" and \[ResumeNumber (text_2)\]=
+> "R01026" to the Tool "Notify Teams Applicant channel"\*\* in the child
+> agent "Application Intake Agent", call \[AGENT FLOW PLACEHOLDER\]
+>
+> ![](./media/image114.png)
 
-57. Highlight the \[AGENT FLOW PLACEHOLDER\] text.
+57. \[AGENT FLOW PLACEHOLDER\] 텍스트를 강조 표시하세요.
 
-    ![](./media/image115.png)
+> ![](./media/image115.png)
 
-58. Enter the forward slash character, /, and select the **Notify Teams
-    Applicant Channel** tool.
+58. 앞 슬래시 문자 /를 입력하고 **Notify Teams Applicant Channel**
+    도구를 선택하세요.
+
+> ![](./media/image116.png)
+
+59. 에이전트 흐름은 이제 **Application Intake Agent** 가 명령에 따라
+    호출하게 되며, 이벤트 트리거에서 마지막 동작(**Sends a prompt to the
+    specified copilot for processing**)이 매개변수 값이 포함된
+    프롬프트를 에이전트에게 다시 전송한 후 호출됩니다.
+
+**Application Intake Agent**의 업데이트된 지침을 저장하려면 **Save**를
+선택하세요.
+
+> ![](./media/image117.png)
+
+60. 에이전트가 저장되면 지침이 업데이터됩니다.
+
+> ![](./media/image118.png)
+
+61. 이제 **Hiring Agent**를 **Publish**해야 합니다. 오른쪽 상단과
+    **Publish this agent modal**에서 **Publish**를
+    선택하고 **Publish**를 선택하세요.
+
+> ![](./media/image119.png)
+>
+> ![](./media/image120.png)
+
+62. 게시되면 에이전트가 게시되었다는 확인 메시지가 나타납니다.
+
+> ![](./media/image121.png)
+
+이제 에이전트를 테스트할 수 있어!
+
+## 연습 3: 이벤트 트리거 테스트하기
+
+이 연습에서는 이 실습에서 생성된 이벤트 트리거를 테스트할 것입니다.
+
+1.  이벤트 트리거를 실행하려면 Resume PDF 파일과 함께 이메일을 보내야
+    합니다. Outlook에서 새 이메일 메시지를 작성하세요.
+
+[TABLE]
+
+> Dear Hiring Manager,
+>
+> I am writing to express my interest in the Senior Power Platform
+> Engineer position at your organization. With over nine years of
+> experience delivering secure and scalable solutions on Microsoft cloud
+> platforms, I am confident in my ability to contribute effectively to
+> your team.
+>
+> In my most recent role as Lead Power Platform Engineer, I developed an
+> automated resume-intake pipeline, reducing manual triage and improving
+> searchability. I have delivered HR case management applications,
+> introduced solution-aware flows, and implemented PR checks to enhance
+> deployment lead times. My expertise includes Power Apps, Power
+> Automate, Power Pages, Dataverse, and a range of Microsoft 365
+> services, as well as integration with Graph/REST APIs and Azure
+> Functions.
+>
+> Previously, I developed Teams approvals with adaptive cards, cutting
+> approval times to the same day, and created robust error-handling
+> frameworks. My background also includes migrating legacy workflows to
+> Power Automate and building self-service portals adopted by hundreds
+> of employees.
+>
+> I hold a B.Sc. in Computer Science and am certified as a Power
+> Platform Developer (PL-400) and Solution Architect (PL-600). I am also
+> passionate about mentoring and have volunteered with local maker
+> groups.
+>
+> Please find my CV attached for your consideration. I would welcome the
+> opportunity to discuss how my skills and experience align with your
+> needs.
+>
+> Thank you for your time and consideration.
+>
+> Kind regards,
+>
+> Taylor Testperson
 
-    ![](./media/image116.png)
+2.  **메일함을 작성한 후** 이메일을 보내세요.
 
-59. The agent flow will now be invoked by the **Application Intake
-    Agent** as per the instructions, after the last action (**Sends a
-    prompt to the specified copilot for processing**) in the event
-    trigger sends the prompt that contains the parameter values back to
-    the agent.
+> ![](./media/image122.png)
 
-    Select **Save** to save the updated instructions for the **Application
-Intake Agent**.
+3.  이벤트 트리거 플로우의 +++https://make.powerautomate.com/+++에서
+    새로 고침 아이콘을 선택해 전송된 이메일에 성공한 플로우 실행을
+    확인하세요. 흐름이 성공한 것을 볼 수 있습니다.
 
-    ![](./media/image117.png)
+> ![](./media/image123.png)
 
-60. The instructions will now be updated once the agent has been saved.
+4.  Copilot Studio의 Hiring Agent에서 **Activity**탭을 선택하세요.
+    **Activity**탭이 로드되어 **Hiring Agent**의 모든 활동이 표시됩니다.
+    **Automated**라는 이름값의 활동이 **Complete**상태입니다. 이 활동은
+    이벤트 트리거와 호출된 에이전트 플로우를 나타냅니다.
 
-    ![](./media/image118.png)
+> ![](./media/image124.png)
 
-61. We now need to **Publish** the **Hiring Agent**.
-    Select **Publish** on the upper right, and in the **Publish this
-    agent modal** that appears select **Publish**.
+5.  활동을 선택한 후 활동 맵에서 이벤트 트리거를 선택하세요. 오른쪽
+    패널에서 프롬프트의 입력 매개변수에 **Dataverse** 행에서 생성된
+    Resume ID, Resume Title, Resume Number 매개변수 값이 포함되어 있음을
+    알 수 있습니다. **Automate uploading resumes to Dataverse received
+    by email**에서 이전에 설정한 동적 콘텐츠 값에서 나온 것입니다.
 
-    ![](./media/image119.png)
+> ![](./media/image125.png)
 
-    ![](./media/image120.png)
+6.  **Hiring Hub** 모델 기반 앱으로 돌아가 **Resumes system view**에서
+    **Refresh**를 선택하고 새로고침하세요. 이메일로 보낸 이력서용 새로
+    생성된 행은 이벤트 트리거를 통해 생성된 상태로 표시됩니다.
 
-62. Once published, a confirmation message will appear that the agent
-    has been published.
+> ![](./media/image126.png)
 
-    ![](./media/image121.png)
+7.  Copilot Studio로 돌아가 활동 지도의 **Application Intake Agent**
+    내에서 **Notify Teams Applicant Channel** 에이전트 플로우를
+    선택하세요. 오른쪽 패널에서 입력값이 Dataverse 행에서 가져온 것을
+    확인할 수 있습니다. 이는 새로 생성된 Dataverse 행의 매개변수 값이
+    포함된 이벤트 트리거에서 마지막 동작**(Sends a prompt to the
+    specified copilot for processing**)에서 보낸 프롬프트에서 나온
+    것입니다. 이것이 이벤트 트리거에서 에이전트 플로우로 매개변수 값을
+    전달하는 방법입니다.
 
-    We can now test the agent!
+> ![](./media/image127.png)
 
-## Exercise 2: Test event trigger
+8.  마지막으로, **Microsoft Teams**에서 채널에 게시된 적응형 카드를
+    살펴보겠습니다. 채널에서는 Dataverse에서 새로 생성된 이력서 행에
+    대한 정보를 보여주는 적응형 카드를 볼 수 있습니다. 적응형 카드 시작
+    부분의 하이퍼링크 위에 마우스를 올리면, URL이 적응형 카드의 JSON
+    페이로드에서 이전에 설정한 Resumes system view URL임을 확인하세요.
 
-In this exercise, you will test the event trigger that is created in
-this lab.
+> ![](./media/image128.png)
 
-1.  To execute the event trigger, an email needs to be sent with a
-    Resume pdf file. **From your mailbox** (not of the tenant credential provided here. Use mail id of your choice. You will send an email from your mailbox to the tenant mail id.), **compose a new email** message.
+9.  하이퍼링크를 선택하면 브라우저의 **Hiring Hub** 모델 기반 앱에서
+    Resumes system view로 이동하세요.
 
+> ![](./media/image129.png)
 
-    |  Email Component  |  Details  |
-    |:--------|:---------|
-    |  To recipient  |  +++@lab.CloudCredential(M365).AdministrativeUsername+++  |
-    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file (from **C:\LabFiles\LabFiles**   |
-    |  Subject  | +++Job Application+++   |
-    |  Body  |  Copy and paste the following below as the body of the email  |
-    
-    ```
-    Dear Hiring Manager,
-    
-    I am writing to express my interest in the Senior Power Platform Engineer position at your organization. With over nine years of experience delivering secure and scalable solutions on Microsoft cloud platforms, I am confident in my ability to contribute effectively to your team.
-    
-    In my most recent role as Lead Power Platform Engineer, I developed an automated resume-intake pipeline, reducing manual triage and improving searchability. I have delivered HR case management applications, introduced solution-aware flows, and implemented PR checks to enhance deployment lead times. My expertise includes Power Apps, Power Automate, Power Pages, Dataverse, and a range of Microsoft 365 services, as well as integration with Graph/REST APIs and Azure Functions.
-    
-    Previously, I developed Teams approvals with adaptive cards, cutting approval times to the same day, and created robust error-handling frameworks. My background also includes migrating legacy workflows to Power Automate and building self-service portals adopted by hundreds of employees.
-    
-    I hold a B.Sc. in Computer Science and am certified as a Power Platform Developer (PL-400) and Solution Architect (PL-600). I am also passionate about mentoring and have volunteered with local maker groups.
-    
-    Please find my CV attached for your consideration. I would welcome the opportunity to discuss how my skills and experience align with your needs.
-    
-    Thank you for your time and consideration.
-    
-    Kind regards,
-    Taylor Testperson
-    
-    ```
+10. Microsoft Teams에서 해당 채널에 게시된 적응형 카드로 다시
+    이동하세요. 이번에는 적응형 카드의 Action.OpenURL 액션인 **View
+    Resume** 위에 마우스를 올려주세요. URL이 적응형 카드의 JSON
+    페이로드에서 이전에 설정한 Resumes 행임을 주목하세요.
 
-2.  **Send** the email once composed from your mail box.
+> ![](./media/image130.png)
 
-    ![](./media/image122.png)
+11. 액션을 선택하면 브라우저의 Hiring Hub 모델 기반 앱에서 Resume row
+    양식으로 이동합니다.
 
-3.  In +++https://make.powerautomate.com/+++, for the event trigger flow, (select **Flows** -> **When a new email arrives from an applicant**) select the **Refresh** icon to view the flow run that **succeeded** for the sent email.
+> ![](./media/image131.png)
 
-    ![](./media/image123.png)
+## 요약
 
-4.  Back in Copilot Studio in the Hiring Agent select the **Activity**
-    tab. The **Activity** tab will load which will display all the
-    activities of the **Hiring Agent**. There will be an activity with
-    the name value of **Automated** that has a status of **Complete**.
-    This activity represents the event trigger and the agent flow that
-    was invoked.
+이 실습에서,
 
-    ![](./media/image124.png)
+1.  Dataverse 매개변수 값을 에이전트 플로우에 전달하는 이벤트 트리거를
+    만들었죠.
 
-5.  Select the activity, and select the event trigger in the activity
-    map. On the right hand side panel, notice how the input parameters
-    in the prompt contain the Resume Id, Resume Title and Resume
-    Number parameter values from the **Dataverse** row that was created.
-    This was from the dynamic content values configured earlier in
-    **Automate uploading resumes to Dataverse received by email**.
+2.  에이전트 플로우를 구축: Dataverse 매개변수 값을 소모해 Microsoft
+    Teams 채널에 적응형 카드를 게시하여 HR 채용팀에 알림을 보냅니다.
 
-    ![](./media/image125.png)
+3.  업데이트 자식 에이전트 명령어: 이벤트 트리거가 완료된 후 플로우를
+    호출하는 것입니다.
 
-6.  Navigate back to the **Hiring Hub** model-driven app and in
-    the **Resumes system view**, select **Refresh** to refresh the view.
-    The newly created row for the resume that was sent by email will now
-    be listed as it was created through the event trigger.
-
-    ![](./media/image126.png)
-
-7.  Navigate back to Copilot Studio and select the **Notify Teams
-    Applicant Channel** agent flow within the **Application Intake
-    Agent** in the activity map. On the right hand side panel, notice
-    how the inputs have values from the Dataverse row. This was from the
-    prompt sent by the last action (**Sends a prompt to the specified
-    copilot for processing**) in the event trigger that contains the
-    parameter values from the newly created Dataverse row. This is how
-    we can pass parameter values from event triggers to agent flows.
-
-    ![](./media/image127.png)
-
-8.  Finally, let's take a look at the adaptive card posted to the
-    channel in **Microsoft Teams**. In the channel, we'll see the
-    adaptive card that displays the information about the newly created
-    Resume row in Dataverse. Hover over the hyperlink at the start of
-    the adaptive card, notice how the URL is the Resumes system view URL
-    that we configured earlier in the JSON payload of the adaptive card.
-
-    ![](./media/image128.png)
-
-9.  Select the hyperlink, and you'll be directed to the Resumes system
-    view in the **Hiring Hub** model-driven app on your browser.
-
-    ![](./media/image129.png)
-
-10. Navigate back to the adaptive card posted to the channel in
-    Microsoft Teams. This time, hover over **View Resume** which is
-    the Action.OpenURL action of the adaptive card. Notice how the URL
-    is the Resumes row that we configured earlier in the JSON payload of
-    the adaptive card.
-
-    ![](./media/image130.png)
-
-11. Select the action, and you'll be directed to the Resume row form in
-    the Hiring Hub model-driven app on your browser.
-
-    ![](./media/image131.png)
-
-## Summary
-
-In this lab,
-
--    You've created an event trigger that passes Dataverse parameter
-    values to an agent flow.
-
--    Built an agent flow: consumes the Dataverse parameter values to post
-    an adaptive card to a channel in Microsoft Teams to alert the HR
-    recruitment team.
-
--  Updated child agent instructions: to invoke the flow once the event
-    trigger has completed.
-
--    This enables the **Hiring Agent** to work autonomously whenever
-    resumes are received as email attachments and notify the HR
-    recruitment team for manual review.
+4.  이로 인해 **Hiring Agent**는 이력서가 이메일 첨부파일로 접수될
+    때마다 자율적으로 업무를 수행하고, 인사 채용 팀에 수동으로 검토를
+    요청할 수 있습니다.

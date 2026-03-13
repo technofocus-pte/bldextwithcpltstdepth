@@ -1,327 +1,321 @@
-# Lab 3 - Architecting intelligent agents with knowledge grounding and live connectors
+# 실습 – 지식 기반과 실시간 커넥터를 갖춘 지능형 에이전트 설계하기
 
-**Introduction**
+**소개**
 
-Modern users expect intelligent, contextual responses that go beyond
-simple keyword matching. This lab will guide you through creating an
-intelligent agent that can reason across multiple knowledge sources and
-perform real-time actions to deliver comprehensive, accurate answers.
+현대 사용자들은 단순한 키워드 매칭을 넘어서는 지능적이고 맥락에 맞는
+응답을 기대합니다. 이 실습에서는 여러 지식원을 넘어 추론하고 실시간으로
+행동하여 포괄적이고 정확한 답변을 제공하는 지능형 에이전트를 생성하는
+과정을 안내해 드립니다.
 
-**Objective**
+**목표**
 
-In this lab, you’ll build an intelligent assistant that goes beyond
-simple Q&A to deliver contextual, multi-part responses. By the end of
-the lab, you will
+이 실습에서는 단순한 Q&A를 넘어 맥락에 맞는 다중 부분 응답을 제공하는
+지능형 비서를 개발하게 됩니다. 실습이 끝날 때쯤이면 다음을 할 수
+있습니다.
 
-Create an intelligent agent using the conversational creation
-experience. Configure agent tone, behavior, and instructions to reflect
-your brand. Add public websites like Wikipedia as knowledge sources for
-factual grounding. Disable general knowledge to reduce hallucinations
-and ensure accuracy.
+대화형 생성 경험을 활용해 지능형 에이전트를 생성하기. 에이전트 톤, 행동,
+지시사항을 브랜드에 맞게 설정하기. Wikipedia와 같은 공개 웹사이트를 사실
+기반의 지식 자료로 추가하기. 환각을 줄이고 정확성을 보장하기 위해 일반
+지식을 비활성화하기
 
-## Task 1: Create a new agent and add knowledge
+## 작업 1: 새 에이전트를 생성하고 지식을 추가하기
 
-Create Nova AI with custom instructions and Wikipedia knowledge
-integration using Copilot Studio’s conversational setup experience.
+Copilot Studio의 대화형 설정 경험을 활용해 맞춤형 지침과 Wikipedia 지식
+통합으로 Nova AI를 생성할 것입니다.
 
-1.  Open a browser and navigate to +++https://copilotstudio.microsoft.com+++ and
-    login using your credentials if not done already.
+1.  브라우저를 열고 +++copilotstudio.microsoft.com+++로 이동하고 자격
+    증명으로 로그인하세요.
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+2.  **Dev One** 환경을 선택하세요.
 
-3.  Select the **Dev One** environment.
+3.  Home 페이지에서 **Create agent**를 선택하세요.
 
-4.  From the Home page, select **Create agent**.
+![](./media/image1.png)
 
-    ![](./media/image1.png)
+4.  에이전트가 생성되면 **Details** 반대 **Edit**를 선택하세요.
 
-5.  Once the agent is created, select **Edit** against **Details**.
+![](./media/image2.png)
 
-    ![](./media/image2.png)
-
-6.  Enter the below details and select **Save**.
+5.  다음 정보를 입력하고 **Save**를 선택하세요.
 
     - Name - +++Researcher agent+++.
 
-    - Description - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
+    - Description - +++Answers multi-part questions by combining
+      historical facts, biographical data, and real-time information
+      like weather. Ideal for deep research, exploration, and knowledge
+      synthesis+++
 
-      ![](./media/image3.png)
+> ![](./media/image3.png)
 
-7.  Select **Edit** against **Instructions**, enter the below content and select **Save**.
+6.  **Instructions**에 다음 내용을 입력하고 **Save**를 선택하세요.
 
-    >[!Note] **Note:** Use the **Copy** option and then **Paste** it in the required place in the VM (Instructions Text area in this case)
+You should answer complex questions using verified public information
+and real-time lookups like weather or conversions. You should give
+clear, concise answers and handle multiple questions one at a time. You
+must not speculate, share unverified or sensitive information, or
+compare products or companies. You should communicate clearly and
+professionally, using a friendly tone and light emojis when appropriate.
 
-    ```
-    You should answer complex questions using verified public information and real-time lookups like weather or conversions. You should give clear, concise answers and handle multiple questions one at a time. You must not speculate, share unverified or sensitive information, or compare products or companies. You should communicate clearly and professionally, using a friendly tone and light emojis when appropriate.
-    ```
-    
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-9.  Scroll down and select **+ Add knowledge** to add a knowledge
-    source.
+7.  지식 소스를 추가하려면 아래로 스크롤하고 **+ Add knowledge**를
+    선택하세요.
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-10. Select the **Public Website** option form the list.
+8.  목록에서 **Public Website** 옵션을 선택하세요.
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-11. Enter +++https://en.wikipedia.org+++, select **Add**, and then select **Add to agent**.
+9.  다음 화면에서 **Add**를 선택하고 **Add to agent**를 선택하세요.
 
-    ![](./media/image7.png)
-    
-    ![](./media/image8.png)
+![](./media/image7.png)
 
-12. Next, you will disable general knowledge to reduce hallucinations.
-    Select **Settings** from the top right.
+![](./media/image8.png)
 
-    ![](./media/image9.png)
+10. 다음으로, 환각을 줄이기 위해 일반 상식을 비활성화해야 합니다. 오른쪽
+    상단에서 **Settings**를 선택하세요.
 
-13. Toggle the **Use general knowledge** option under the Knowledge
-    section to **off** and then select **Save**. **Close** the **Settings** pane once this is done.
+![](./media/image9.png)
 
-    ![](./media/image10.png)
+11. Knowledge 섹션에서 **Use general knowledge** 옵션을 **off**로
+    토글하세요.
 
-14. Enter the below message in the Test pane and click **Send** and
-    observe the output.
+![](./media/image10.png)
 
-    +++Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)+++
+12. Test 창에 아래 메시지를 입력하고 **Send**를 클릭하여 출력 결과를
+    관찰하세요.
 
-    ![](./media/image11.png)
-    
-    ![](./media/image12.png)
+> Write a draft email to request refund from a toaster that is not
+> working properly (bread keeps burning)
 
-## Task 2: Add weather connector
+![](./media/image11.png)
 
-In this task, you will add a weather connector to enable real-time data
-retrieval and test generative orchestration. Ensure that the agent
-provides only fact-based, controlled responses while enabling it to
-perform real-time actions like weather lookups for comprehensive,
-multi-step answers.
+![](./media/image12.png)
 
-1.  Select **Tools** tab from the top menu.
+## 작업 2: 날씨 커넥터를 추가하기
 
-    ![](./media/image13.png)
+이 작업에서는 실시간 데이터 검색과 생성 오케스트레이션 테스트를 가능하게
+하는 날씨 커넥터를 추가하게 됩니다. 에이전트가 사실 기반의 통제된 응답만
+제공하면서도 포괄적이고 다단계적인 답변을 위한 실시간 기상 조회 같은
+행동을 수행할 수 있도록 해야 합니다.
 
-2.  Enter +++MSN Weather+++ in the search box and select **Get current
-    weather**.
+1.  상단 메뉴에서 **Tools** 탭을 선택하세요.
 
-    ![](./media/image14.png)
+![](./media/image13.png)
 
-3.  Select the drop down next to the **Not connected** message and
-    select **Create new connection**. Then, select **Create** in the
-    next screen.
+2.  검색 상자에서 +++MSN Weather+++를 입력하고 **Get current weather**를
+    선택하세요.
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+![](./media/image14.png)
 
-4.  Select **Add and configure** to add the tool to the agent and
-    configure it as required.
+3.  **Not connected** 메시지 옆의 드롭다운을 선택하고 **Create new
+    connection**을 선택하세요. 다음 화면에서 **Create**를 선택하세요.
 
-    ![](./media/image17.png)
+![](./media/image15.png)
 
-5.  Once added, select **Additional details**.
+![](./media/image16.png)
 
-    ![](./media/image18.png)
+4.  에이전트를 도구에 추가하고 필요에 따라 구성하려면 **Add and
+    configure**를 선택하세요.
 
-6.  Under Credentials to use, select **Maker-provided credentials**.
+![](./media/image17.png)
 
-    **Note:** When using Maker-provided credentials, the end-user of the
-agent isn’t prompted to use its own context and connection to connect to
-the service. Instead, it’s using the context and connection of the
-person who has configured the agent. - Only use author authentication
-for actions that don’t need user-specific data, as using the credentials
-from someone else can expose to data exfiltration risks. - Use user
-authentication for role based access scenarios - Always review security
-implications of authentication choices
+5.  추가되면 **Additional details**을 선택하세요.
 
-    ![](./media/image19.png)
+![](./media/image18.png)
 
-7.  Under **Inputs**, **Units**, -> **Fill using** -> select **Custom
-    value**, and choose **Metric**.
+6.  Credentials to use에서 **Maker-provided credentials**를 선택하세요.
 
-    ![](./media/image20.png)
+**참고:** Maker가 제공하는 자격 증명을 사용할 때, 에이전트의 최종
+사용자는 자신의 컨텍스트와 연결을 사용해 서비스에 연결하라는 안내를 받지
+않습니다. 대신, 에이전트를 설정한 사람의 맥락과 연결을 이용하는
+것입니다. - 사용자 전용 데이터가 필요하지 않은 작업에만 저자 인증을
+사용하세요. 다른 사람의 자격 증명을 사용하면 데이터 유출 위험이 있을 수
+있습니다. - 역할 기반 접근 시나리오에 사용자 인증 사용 - 인증 선택의
+보안 함의를 항상 검토하세요
 
-8.  Under **Inputs**, for **Location**, leave **Fill using to
-    Dynamically fill with AI**, and select **Customize** to set
-    description.
+![](./media/image19.png)
 
-    ![](./media/image21.png)
+7.  **Inputs**, **Units**, -\> **Fill using** -\>에서 **Custom value**를
+    선택하고 **Metric**을 선택하세요.
 
-9.  Set the description as below and then select **Save**.
+![](./media/image20.png)
 
-    ```
-    The location for the weather query. Valid inputs are City, State, Country. Always include city and country, and state only for locations where appropriate (e.g., in the US)
-    ```
-    
-    ![](./media/image22.png)
-    
-    ![](./media/image23.png)
+8.  **Inputs** 항목에서 **Location**을 선택하고 **Fill using to
+    Dynamically fill with AI**를 남겨두고 설명을 설정하려면
+    **Customize**를 선택하세요.
 
-10. Test your enhanced agent with this complex question:
+![](./media/image21.png)
 
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+9.  다음 설명을 설정하고 **Save**를 선택하세요.
 
-    ![](./media/image24.png)
+The location for the weather query. Valid inputs are City, State,
+Country. Always include city and country, and state only for locations
+where appropriate (e.g., in the US)
 
-11. Notice how generative orchestration performs multiple searches and
-    triggers the weather connector to provide a comprehensive answer
+![](./media/image22.png)
 
-    ![](./media/image25.png)
+![](./media/image23.png)
 
-## Task 3: Fine-tune your AI assistant for smoother conversations
+10. 이 복잡한 질문으로 사용자의 강화 에이전트를 테스트하세요:
 
-Customize system topics to enhance interactions and deliver a smoother
-user experience.
+> Who is the current CEO of the company that owns GitHub? Where did they
+> earn their MBA? What's the average rent for a one-bedroom apartment
+> near that campus? What's the air quality index in that area today?
 
-In this section, you’ll customize built-in system topics to improve user
-interactions and create a more seamless experience beyond just knowledge
-sources.
+![](./media/image24.png)
 
-Customize your assistant’s welcome message to make it more engaging, add
-suggested start prompts to guide users effectively, and refine system
-topics like Escalate to ensure they align with your organization’s
-needs.
+11. 생성 오케스트레이션이 여러 번 검색을 수행하고 날씨 커넥터를
+    트리거하여 포괄적인 답변을 제공하는 방식을 주목하세요.
 
-1.  From the top menu, select **Topics**.
+![](./media/image25.png)
 
-    ![](./media/image26.png)
+## 작업 3: AI 비서를 더 원활하게 조정해 대화하기
 
-2.  Select the **Conversation Start** topic under **System**.
+시스템 주제를 맞춤화하여 상호작용을 향상시키고 원활한 사용자 경험을
+제공합니다.
 
-    ![](./media/image27.png)
+이 섹션에서는 내장 시스템 주제를 맞춤화하여 사용자 상호작용을 개선하고
+단순한 지식 출처를 넘어 더 원활한 경험을 생성할 것입니다.
 
-3.  In the topic’s **Message** node, enter the below message.
+비서의 환영 메시지를 더 흥미롭게 맞춤화하고, 사용자를 효과적으로 안내할
+수 있는 시작 제안을 추가하며, Escalate와 같은 시스템 주제를 조직의
+요구에 맞게 다듬으세요.
 
-     +++Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?+++
+1.  상단 메뉴에서 **Topics**을 선택하세요.
 
-    ![](./media/image28.png)
+![](./media/image26.png)
 
-4.  Still in the same node, select **+ Add** -> **Quick reply**.
+2.  **System**에서 **Conversation Start** 주제를 선택하세요.
 
-    ![](./media/image29.png)
+![](./media/image27.png)
 
-5.  Add the below question.
+3.  주제의 **Message** 노드에서 다음 메시지를 입력하세요.
 
-    +++What caused the fall of the Roman Empire?+++
+> Hi there! I'm Researcher agent, your intelligent assistant for deep
+> research and discovery. I can break down complex questions and combine
+> insights from historical facts, biographies, and real-time data like
+> the weather. What are you curious about today?
+>
+> ![](./media/image28.png)
 
-    ![](./media/image30.png)
+4.  같은 노드에 있는 상태에서 **+ Add** -\> **Quick reply**를
+    선택하세요.
 
-6.  Similarly add 2 more (Select **+ Add** in the quick reply **Properties** pane that gets opened).
+![](./media/image29.png)
 
-    ![](./media/image47.png)
-    
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+5.  다음 질문을 추가하세요.
 
-    +++What's the temperature in the city that hosted the last Olympic Games?+++
++++What caused the fall of the Roman Empire?+++
 
-    ![](./media/image31.png)
+![](./media/image30.png)
 
-8.  Once added, select **Save** to save the topic.
+6.  마찬가지로 2개 더 추가하세요.
 
-    ![](./media/image32.png)
+> +++Who is the current CEO of the company that owns GitHub? Where did
+> they earn their MBA? What's the average rent for a one-bedroom
+> apartment near that campus? What's the air quality index in that area
+> today?+++
+>
+> +++What's the temperature in the city that hosted the last Olympic
+> Games?+++
 
-9.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
+![](./media/image31.png)
 
-    ![](./media/image33.png)
+7.  추가되면 주제를 저장하려면 **Save**를 선택하세요.
 
-10. Update the text to the below, that will more meaningfully unblock
-    the end user and select **Save**.
+![](./media/image32.png)
 
-    +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
+8.  에스컬레이션 경험을 맞춤화하세요. **Topics** -\> **System** -\>
+    **Escalate**를 선택하세요.
 
-    ![](./media/image34.png)
+![](./media/image33.png)
 
-## Task 4: Make your agent public and publish it to the demo website
+9.  아래 텍스트를 업데이트하여 최종 사용자의 차단을 더 의미 있게
+    해제하고 **Save**를 선택하세요 .
 
-In this section, you’ll remove authentication to make your agent
-publicly accessible, then publish it to the demo website for testing and
-sharing.Since the Researcher agent provides general information and
-doesn’t handle private data, you’ll disable authentication for a
-seamless user experience and publish it to the demo website to gather
-feedback before deploying to your real site.
+> I'm sorry, but I can't seem to be able to help you. I recommend
+> reaching out to our \[Microsoft Copilot Studio community\]
+> (https://aka.ms/CopilotStudioCommunity) or submitting a \[support
+> request\]
+> (<https://learn.microsoft.com/en-us/power-platform/admin/get-help-support>).
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+![](./media/image34.png)
 
-1.  Go to **Settings** .
+## 작업 4: 에이전트를 공개하고 데모 웹사이트에 게시하기
 
-    ![](./media/image35.png)
+이 섹션에서는 인증 해제를 해제해 에이전트를 공개적으로 접근 가능하게 한
+후, 테스트 및 공유를 위해 데모 웹사이트에 게시합니다. Researcher
+에이전트는 일반 정보를 제공하고 개인 데이터는 처리하지 않으므로, 원활한
+사용자 경험을 위해 인증을 비활성화하고 데모 웹사이트에 게시하여 실제
+사이트에 배포하기 전에 피드백을 수집합니다.
 
-2.  Select **Security** -> **Authentication**. Select **No
-  authentication** and then select **Save**.
+1.  **Settings**으로 이동하세요.
 
-    ![](./media/image36.png)
+![](./media/image35.png)
 
-3.  Select **Save** in the confirmation prompt.
+2.  **Security** -\> **Authentication**을 선택하세요. **No
+    authentication**을 선택하고 **Save**를 선택하세요.
 
-    ![](./media/image37.png)
+![](./media/image36.png)
 
-4.  You can now close the Settings pane.
+3.  확인 프롬프트를 **Save**를 선택하세요.
 
-    ![](./media/image38.png)
+![](./media/image37.png)
 
-5.  Select **Publish** to make your changes live.
+4.  이제 Settings 창을 닫으세요.
 
-    ![](./media/image39.png)
+![](./media/image38.png)
 
-6.  Select **Publish** in the confirmation dialog.
+5.  변경 사항을 실시간으로 생성하기 위해 **Publish**를 선택하세요.
 
-    ![](./media/image40.png)
+![](./media/image39.png)
 
-7.  You will get a success message once the publish is done.
+6.  확인 상자에서 **Publish**를 선택하세요.
 
-    ![](./media/image41.png)
+![](./media/image40.png)
 
-8.  Now, select **Channels** from the top menu.
+7.  게시가 완료되면 성공 메시지를 받게 됩니다.
 
-    ![](./media/image42.png)
+![](./media/image41.png)
 
-9.  Select **Demo website** from the list of channels available.
+8.  이제 상단 메뉴에서 **Channels**를 선택하세요.
 
-    ![](./media/image43.png)
+![](./media/image42.png)
 
-10. Enter the Welcome message as +++Welcome to your demo website+++ and
-    select **Save**.
+9.  사용 가능한 체널 목록에서 **Demo website**를 선택하세요.
 
-    ![](./media/image44.png)
+![](./media/image43.png)
 
-11. Click on **Open demo website** to open your site.
+10. Welcome 메시지를 +++Welcome to your demo website+++로 입력하고
+    **Save**를 선택하세요.
 
-    ![](./media/image45.png)
+![](./media/image44.png)
 
-12. You can now interact with your agent.
+11. 사이트를 열려면 **Open demo website**를 클릭하세요.
 
-    ![](./media/image46.png)
+![](./media/image45.png)
 
-## Summary
+12. 이제 에이전트와 상호작용할 수 있습니다.
 
-In this lab, you successfully delivered a public-facing intelligent
-agent that:
+![](./media/image46.png)
 
-- Answers complex, multi-part research questions
+## 요약
 
-- Uses verified public knowledge and real-time connectors
+이 실습에서 사용자는 다음과 같은 공개 지능형 에이전트를 성공적으로
+구현했습니다:
 
-- Minimizes hallucinations through controlled knowledge sources
+- 복잡하고 다부분적인 연구 질문에 답
 
-- Provides a polished, user-friendly conversational experience
+- 검증된 공개 지식 및 실시간 커넥터를 사용
 
-- Is deployed and accessible via a live demo website
+- 통제된 지식원을 통해 환각을 최소화
 
-This lab demonstrates how to design, enhance, and publish a
-**production-ready intelligent agent** that goes beyond simple Q&A to
-deliver trustworthy, real-time, and context-aware insights.
+- 세련되고 사용자 친화적인 대화 경험을 제공
 
+- 배포 및 라이브 데모 웹사이트를 통해 접근 가능
 
-
-
-
-
-
-
-
-
-
+이 실습은 단순한 Q&A를 넘어 신뢰할 수 있고 실시간으로 맥락 인식
+인사이트를 제공하는 **production-ready intelligent agent**를 설계, 강화,
+출판하는 방법을 시연합니다.

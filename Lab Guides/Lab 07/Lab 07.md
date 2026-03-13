@@ -1,363 +1,333 @@
-# Lab 7 - Build an autonomous financial data retrieval agent with Computer-Using Agents (CUA)
+# 실습 7 – Computer-Using Agents (CUA) 를 이용한 자율 금융 데이터 검색 에이전트를 구축하기
 
-**Introduction**
+**소개**
 
-Legacy systems without APIs create major roadblocks for automation.
-Traditional RPA often relies on fragile screen-scraping or manual
-workarounds, which slow down decision-making, increase errors, and
-reduce productivity. This lab introduces Microsoft Copilot Studio and
-Computer Using Agents (CUA) as a smarter solution. By simulating human
-interaction with internal systems, CUAs can securely access and process
-data - without needing API integration. You’ll learn to build an
-autonomous agent that delivers faster responses, reduces manual
-workload, and enables real-time, informed decisions.
+API가 없는 레거시 시스템은 자동화에 큰 장애물을 생성합니다. 전통적인
+RPA는 종종 취약한 화면 스크레이핑이나 수동 우회 방법에 의존하는데, 이는
+의사결정을 느리게 하고 오류가 증가하며 생산성을 저하시킵니다. 이
+연구실에서는 Microsoft Copilot Studio 및 Computer Using Agents(CUA)를 더
+스마트한 솔루션으로 소개합니다. 내부 시스템과의 인간 상호작용을
+시뮬레이션함으로써 CUA는 API 통합 없이도 데이터를 안전하게 접근하고
+처리할 수 있습니다. 더 빠른 응답을 제공하고, 수작업 부담을 줄이며,
+실시간으로 정보에 기반한 의사결정을 가능하게 하는 자율 에이전트를
+생성하는 법을 배우게 됩니다.
 
-Objective
+목표
 
-In this lab, you’ll learn how to build an autonomous agent using
-Microsoft Copilot Studio. This agent will simulate human interaction
-with a legacy internal system to retrieve financial portfolio data
-without requiring direct API access.
+이 실습에서는 Microsoft Copilot Studio를 사용해 자율 에이전트를 생성하는
+방법을 배울 것입니다. 이 에이전트는 직접 API 접근 없이도 레거시 내부
+시스템과의 인간 상호작용을 시뮬레이션하여 금융 포트폴리오 데이터를
+조회할 것입니다.
 
+## 작업 1: 자율적인 에이전트를 생성 및 구성하기
 
-## Task 0: Create an environment in the United States Region
+이 작업에서는 Microsoft Copilot Studio에서 새로운 자율 에이전트를
+생성하고, 그 ID를 설정하며, Microsoft 365 Outlook 커넥터를 사용해 이메일
+트리거를 설정해야 합니다.
 
-In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default. You will use the newly created environment for this lab alone.
+포트폴리오 조회를 자동화하려면 에이전트가 들어오는 이메일 요청을
+감지하고 제목 필터링을 기반으로 적절한 자동화 흐름을 시작할 수 있어야
+합니다.
 
-1. Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the **Dev One** environment.
+1.  자격 증명을 사용하여 +++https://copilotstudio.microsoft.com+++로
+    Copilot Studio에 로그안하세요.
 
-    ![](./media/image58.png)
+2.  오른쪽 상단에서 Dev One 환경을 선택하세요.
 
-2. Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
+![](./media/image1.png)
 
-    ![](./media/image56.png)
-   
-3. From the **Environments** page, select **+ New**.
+3.  **Create an agent**를 선택하세요.
 
-    ![](./media/image53.png)
+![](./media/image2.png)
 
-4.  Enter the below details and select **Next**.
+4.  에이전트가 생성되면 **Details**에 **Edit** 를 선택하세요.
 
-    -    Name - +++CUA+++
+![](./media/image3.png)
 
-    -    Region - United States - Default
+5.  Name을 +++Portfolio Lookup Agent+++로 입력하고 에이전트의 기본
+    이름을 변경하려면 Save를 선택하세요.
 
-    -    Type - Developer
+![](./media/image4.png)
 
-    ![](./media/image54.png)
+6.  트리거 섹션으로 스크롤하여 **+Add trigger**를 선택하세요.
 
-5.  Select **Save** in the next screen.
+![](./media/image5.png)
 
-    ![](./media/image55.png)
+7.  **When a new email arrives (V3) (Office 365 Outlook**을 검색하고
+    선택하고 **Next**를 클릭하세요.
 
+![](./media/image6.png)
 
-## Task 1: Create and Configure an Autonomous Agent
+8.  트리거 이름을 +++When a portfolio lookup email arrives+++로
+    변경하세요. Copilot Studio 및 Outlook에 대한 연결이 확립되었늕지
+    확인한 후 **Next**를 클릭하세요.
 
-In this task, you will create a new autonomous agent in Microsoft
-Copilot Studio, configure its identity, and set up an email trigger
-using the Microsoft 365 Outlook connector.
+![](./media/image7.png)
 
-To automate portfolio lookups, the agent must be able to detect incoming
-email requests and initiate the appropriate automation flow based on
-subject line filtering.
+9.  **Subject Filter (Optional)** 필드에서 제목 줄에 +++Portfolio+++를
+    입력하세요.
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your login
-    credentials.
+![](./media/image8.png)
 
-2.  Select the **Dev One** or **CUA** (if you have created it in the last Task) environment from the top right.
+10. 트리거가 생성되면 트리거 대화 테스트를 위한 시간을 **닫으세요.**
 
-    ![](./media/image1.png)
+![](./media/image9.png)
 
-3.  Select **Create an agent**.
+## 작업 2: Computer use tool을 추가하기 
 
-    ![](./media/image2.png)
+이 작업에서는 컴퓨터에 로그인하고, 웹사이트를 탐색하며, 금융 포트폴리오
+데이터를 검색하고 가져오는 컴퓨터 사용 도구를 구성해야 합니다. 그 다음
+Office 365 Outlook 커넥터를 사용해 요청한 데이터를 답장으로 보내세요.
 
-4.  Once the agent is created, select **Edit** against the **Details**.
+1.  위 메뉴에서 **Tools**로 이동하세요.
 
-    ![](./media/image3.png)
+![](./media/image10.png)
 
-5.  Enter the Name as +++Portfolio Lookup Agent+++ and select Save to
-    rename the default name of the agent.
+2.  **+ Add a tool**을 선택하세요.
 
-    ![](./media/image4.png)
+![](./media/image11.png)
 
-6.  Scroll down to the triggers section and click **+Add trigger**.
+3.  **+ New tool**을 선택하세요.
 
-    ![](./media/image5.png)
+![](./media/image12.png)
 
-7.  Search and select **When a new email arrives (V3) (Office 365
-    Outlook** and click on **Next**. 
+4.  **Computer use (preview)**를 선택하세요.
 
-    ![](./media/image6.png)
+![](./media/image13.png)
 
-8.  Rename the trigger to +++When a portfolio lookup email arrives+++,
-    ensure that the connection is established for Copilot Studio and
-    Outlook and then click on **Next**.
+5.  다음 지침을 추가한 후 **Add and configure**를 선택하세요.
 
-    ![](./media/image7.png)
+&nbsp;
 
-9.  In the **Subject Filter (Optional)** field, enter +++Portfolio+++ in
-    the subject line.
+1.  <https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html>로
+    이동하세요.
 
-    ![](./media/image8.png)
+2.  "Enter Portfolio ID" 검색 필드에 Portfolio ID를 입력하고 "Search"
+    버튼을 클릭하세요.
 
-10. Once the trigger is created, you can **Close** the Time to test your
-    trigger dialog.
+3.  표시된 대로 "Client Name", "Portfolio Value" 및 "Manager"값을 정확히
+    확인하세요.
 
-    ![](./media/image9.png)
+4.  이 세 값을 최종 출력으로 반환합니다. 포트폴리오 데이터가 없다면,
+    지정된 ID를 가진 포트폴리오를 찾을 수 없었다고 답장하세요.
 
-## Task 2: Add Computer Use tool 
+![](./media/image14.png)
 
-In this task, you will configure a Computer use tool that logs into a
-computer, navigates through a website, searches and retrieves financial
-portfolio data. Then use the Office 365 Outlook connector to reply with
-the requested data.
+6.  Computer use tool의 **Name**을 +++Look up portfolio data+++로
+    업데이터하세요.
 
-1.  Navigate to **Tools** in the top-level menu.
+7.  **Description**을 +++Search and retrieve financial portfolio
+    data+++로 업데이터하세요
 
-    ![](./media/image10.png)
+![](./media/image15.png)
 
-2.  Select **+ Add a tool.**
+8.  Inputs 섹션에서 **+ Add input**를 선택하세요.
 
-    ![](./media/image11.png)
+![](./media/image16.png)
 
-3.  Select **+ New tool**.
+9.  Name을 +++Portfolio ID+++로 입력하고 description을 +++The ID of the
+    portfolio+++로 입력하고 **Done**을 선택하세요.
 
-    ![](./media/image12.png)
+![](./media/image17.png)
 
-4.  Select **Computer use (preview)**.
+10. **Save**를 선택하세요.
 
-    ![](./media/image13.png)
+![](./media/image18.png)
 
-5.  Add the following Instructions, and then select **Add and
-    configure**.
+## 작업 3: Computer use tool을 테스트하기
 
-    ```
-    1.  Go to https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
-    
-    2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and click on the "Search" button.
-    
-    3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values exactly as shown.
-    
-    4.  Return those three values as the final output. If no portfolio data is found, reply that you couldn't find a portfolio with the specified ID.
-    ```
-    
-    ![](./media/image14.png)
+1.  **Instructions** 섹션에서 오른쪽의 **Test** 버튼을 선택하세요.
 
-6.  Update the **Name** of the Computer use tool as +++Look up portfolio
-    data+++
+![](./media/image19.png)
 
-7.  Update the **Description** as +++Search and retrieve financial portfolio data+++
+2.  Sample value를 +++44123BCD+++로 추가하고 **Test now**를 선택하세요.
 
-    ![](./media/image15.png)
+![](./media/image20.png)
 
-8.  In the Inputs section select **+ Add input**.
+3.  Computer use tool로 로그인하고 요청된 작업을 수행하는 것을
+    관찰하세요:
 
-    ![](./media/image16.png)
+    - 왼쪽 패널에는 사용 설명서와 도구의 추론 및 행동에 대한 단계별
+      로그가 표시됩니다.
 
-9.  Enter name as +++Portfolio ID+++ and description +++The ID of the portfolio+++ and select **Done**.
+    - 오른쪽 패널에는 컴퓨터용으로 설정한 기계의 동작 미리보기가
+      표시됩니다.
 
-    ![](./media/image17.png)
+![](./media/image21.png)
 
-10. Select **Save**.
+> ![](./media/image22.png)
 
-    ![](./media/image18.png)
+![](./media/image23.png)
 
-## Task 3: Test the Computer use tool
+![](./media/image24.png)
 
-1.  In the **Instructions** section, select the **Test** button on the
-    right.
+![](./media/image25.png)
 
-    ![](./media/image19.png)
+![](./media/image26.png)
 
-2.  Add the sample value +++44123BCD+++ and select **Test now**.
+4.  **Finish testing**을 선택하세요.
 
-    ![](./media/image20.png)
+![](./media/image27.png)
 
-3.  Observe the Computer use tool logging into the computer and
-    performing the requested actions:
+## 작업 4: 이메일 응답 기능 설정하기
 
-    - The left panel shows your instructions and a step-by-step log of
-      the tool’s reasoning and actions.
+이 작업에서는 이메일 기능을 설정해야 합니다.
 
-    - The right panel shows a preview of the actions on the machine you
-      set up for computer use.
+1.  **Tools** 탭으로 돌아가고 **+ Add a tool**을 선택하세요.
 
-    ![](./media/image21.png)
+![](./media/image28.png)
 
-    ![](./media/image22.png)
+2.  +++**Send an email (V2) (Office 365 Outlook)**+++를 검색하고
+    선택하세요.
 
-    ![](./media/image23.png)
-    
-    ![](./media/image24.png)
-    
-    ![](./media/image25.png)
-    
-    ![](./media/image26.png)
+![](./media/image29.png)
 
-4.  Select **Finish testing**.
+3.  **Add and configure**를 선택하세요.
 
-    ![](./media/image27.png)
+![](./media/image30.png)
 
-## Task 4: Setting up email response capabilities
+4.  **Name**을 +++Reply to email+++로 업데이트하고 **Description**을
+    +++Use this operation to reply to the email received+++로
+    업데이터하고 **Additional details**을 선택하세요.
 
-In this task, you will set up the email capability.
+![](./media/image31.png)
 
-1.  Return to the **Tools** tab and select **+ Add a tool** .
+5.  **Additional details**에서 **Credentials to use**를 **Maker-provided
+    credentials**로 설정하세요.
 
-    ![](./media/image28.png)
+![](./media/image32.png)
 
-2.  Search for +++**Send an email (V2) (Office 365 Outlook)**+++ and
-    select it.
+6.  **Inputs** 섹션에서 **To** 입력의 **customize**를 클릭하고
+    **Description**을 +++Use the "from" email of the triggering received
+    email+++로 설정하세요.
 
-    ![](./media/image29.png)
+![](./media/image33.png)
 
-3.  Select **Add and configure**.
+![](./media/image34.png)
 
-    ![](./media/image30.png)
+7.  **Subject** 입력을 **Customize**하고 **Description**을 +++Write the
+    email subject+++로 설정하세요.
 
-4.  Update its **Name** to +++Reply to email+++ and **Description** to,
-    +++Use this operation to reply to the email received+++ and then
-    select **Additional details**.
+![](./media/image35.png)
 
-    ![](./media/image31.png)
+8.  **Body** 입력을 **Customize**하고 **Description**을 to +++Write the
+    email body using HTML and highlight the requested data+++로
+    설정하세요.
 
-5.  Under **Additional details**, set **Credentials to use** to
-    **Maker-provided credentials.**
+![](./media/image36.png)
 
-    ![](./media/image32.png)
+9.  도구 구성을 마무리하려면 **Save**를 클릭하세요.
 
-6.  Under the **Inputs** section, click on **customize** against the
-    **To** input and set its **Description** to +++Use the "from" email of the triggering received email+++.
+![](./media/image37.png)
 
-    ![](./media/image33.png)
-    
-    ![](./media/image34.png)
+10. **Overview** 탭으로 이동하고 지침을 **Edit**하세요.
 
-7.  **Customize** the **Subject** input and set its **Description** to
-    +++Write the email subject+++.
+![](./media/image38.png)
 
-    ![](./media/image35.png)
+11. 다음 지침을 붙여넣으세요.
 
-8.  Customize the **Body** input and set its **Description** to +++Write
-    the email body using HTML and highlight the requested data+++.
+When a financial portfolio related request is received, identify the
+Portfolio ID and search for the requested data using \< Look up
+portfolio data \>. Once you have gathered the financial portfolio
+information, use the \< Reply to email \> tool to reply to the original
+email you received. Do not respond with data beyond what was requested.
 
-    ![](./media/image36.png)
+![](./media/image39.png)
 
-9.  Click **Save** to finalize the tool configuration.
+12. Select \< Look up portfolio data \>를 선택하고 Look up portfolio
+    data를 /을 입력하고 선택하세요.
 
-    ![](./media/image37.png)
+![](./media/image40.png)
 
-10. Navigate to **Overview** tab and then **Edit** the Instructions.
+![](./media/image41.png)
 
-    ![](./media/image38.png)
+13. 마찬가지로, \< Reply to email \>를 **Reply to email** 도구로
+    교체하세요.
 
-11. Paste the following instruction.
+14. 아래 스크린샷처럼 교체가 완료되면, **Save**를 선택하세요.
 
-    ```
-    When a financial portfolio related request is received, identify the Portfolio ID and search for the requested data using < Look up portfolio data >. Once you have gathered the financial portfolio information, use the < Reply to email > tool to reply to the original email you received. Do not respond with data beyond what was requested.
-    ```
-    
-    ![](./media/image39.png)
+![](./media/image42.png)
 
-12. Select < Look up portfolio data >, enter / and select the **tool**
-    **Look up portfolio data**.
+15. 오른쪽 상단의 **Settings**을 선택하세요.
 
-    ![](./media/image40.png)
+![](./media/image43.png)
 
-    ![](./media/image41.png)
+16. **Knowledge** 섹션의 **Use general knowledge option**을
+    **Disable**하고 **Save**를 선택하세요.
 
-13. Similarly, replace < Reply to email > with the **tool**, **Reply to
-    email**.
+![](./media/image44.png)
 
-14. Once the replacements are done, as in the screenshot below, select
-    **Save**.
+17. **Settings** 창을 닫으세요.
 
-    ![](./media/image42.png)
+![](./media/image45.png)
 
-15. Select **Settings** from the top right.
+## 작업 5: 전체 에이전트 테스트하기
 
-    ![](./media/image43.png)
+이 에이전트에서는 당신이 만든 에이전트의 완전한 동작을 테스트하게
+됩니다.
 
-16. **Disable** **Use general knowledge option** under the **Knowledge**
-    section, and select **Save**.
+1.  원하는 이메일 주소에서 교육 사용자의 이메일 계정으로 테스트 이메일을
+    보내세요.
 
-    ![](./media/image44.png)
+Subject: +++Portfolio data request+++
 
-17. Close the **Settings** pane.
+Body:
 
-    ![](./media/image45.png)
+Hi!
 
-## Task 5: Testing your complete agent
+I hope you're doing well!
 
-In this agent, you will test the complete working of the agent that you
-have created.
+I'm looking for the portfolio manager and value of portfolio \#44123BCD.
+Much appreciated.
 
-1.  Send a test email from an email address of your preference to your
-    training user’s email account with
+Thanks!
 
-    Subject: +++Portfolio data request+++
-    
-    Body:
+![](./media/image46.png)
 
-    ```
-    Hi! 
-    I hope you're doing well! 
-    I'm looking for the portfolio manager and value of portfolio #44123BCD. Much appreciated. 
-    
-    Thanks!
-    ```
+2.  교육 사용자의 이메일이 받은편지함에 꼭 도착하도록 하세요.
 
-    ![](./media/image46.png)
+3.  **Overview** 탭에서 **Triggers** 섹션으로 이동하고 **Test
+    trigger**를 선택하세요.
 
-2.  Make sure you receive the email in your training user’s inbox.
+![](./media/image47.png)
 
-3.  In the **Overview** tab, go to the **Triggers** section and select
-    **Test trigger**.
+4.  **trigger instance**를 선택하고 **Start testing**을 선택하세요.
 
-    ![](./media/image47.png)
+![](./media/image48.png)
 
-4.  Select the **trigger instance** and then **Start testing.**
+5.  실행이 이루어지고, 테스트 창에서 업데이트와 흐름을 확인할 수
+    있습니다.
 
-    ![](./media/image48.png)
+![](./media/image49.png)
 
-5.  The execution happens and you can see the updates and the flow in
-    the Test pane.
+![](./media/image50.png)
 
-    ![](./media/image49.png)
+6.  실행 완료 후에는 에이전트의 답변을 이메일로 확인하세요.
 
-    ![](./media/image50.png)
+![](./media/image51.png)
 
-6.  Once the execution is completed, check your email for the agent’s
-    reply.
+## 요약
 
-    ![](./media/image51.png)
+이 실습ㅂ에서는 Microsoft Copilot Studio와 Computer-Using Agents(CUA)를
+사용해 자율 금융 데이터 검색 에이전트를 생성했습니다. 이메일 요청에
+자동으로 응답하고, 레거시 시스템과의 인간 상호작용을 시뮬레이션하여
+포트폴리오 데이터를 가져오며, API에 의존하지 않고 정확한 결과를 반환하는
+이벤트 기반 에이전트를 설정했습니다.
 
-## Summary
+다음을 배웠습니다:
 
-In this lab, you built an autonomous financial data retrieval agent
-using Microsoft Copilot Studio and Computer-Using Agents (CUA). You
-configured an event-driven agent that automatically responds to email
-requests, simulates human interaction with a legacy system to retrieve
-portfolio data, and returns accurate results without relying on APIs.
+- 직접적인 사용자 상호작용 없이 작동하는 자율 에이전트를 설계하기
 
-You learned how to:
+- 이메일 기반 트리거를 사용해 자동화된 워크플로우를 시작하기
 
-- Design an autonomous agent that operates without direct user
-  interaction
+- Computer-Using Agents를 구성하여 레거시 웹 애플리케이션에서 데이터를
+  안전하게 탐색하고 추출하기
 
-- Use email-based triggers to initiate automated workflows
+- 결과를 이메일로 보내기 위한 실행 도구를 통합하기
 
-- Configure Computer-Using Agents to securely navigate and extract data
-  from legacy web applications
+- AI 기반 컴퓨터 상호작용을 활용해 취약한 RPA 패턴에 대한 의존도를
+  줄이기
 
-- Integrate action tools to return results via email
-
-- Reduce reliance on fragile RPA patterns by using AI-driven computer
-  interaction
-
-This lab demonstrates how autonomous agents with CUA can modernize
-legacy system access, streamline operational workflows, and enable
-faster, more reliable decision-making in environments where APIs are
-unavailable.
+이 실습은 CUA를 활용한 자율 에이전트가 기존 시스템 접근을 현대화하고,
+운영 워크플로우를 간소화하며, API가 없는 환경에서 더 빠르고 신뢰할 수
+있는 의사결정을 가능하게 하는 방법을 보여줍니다.

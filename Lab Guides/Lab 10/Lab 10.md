@@ -1,479 +1,474 @@
-# Lab 10 - Create a Knowledge Assistant agent for HR in Copilot Studio that leverages Azure AI Search
+# 실습 06 - Copilot Studio에서 Azure AI Search를 활용하는 인사용 Knowledge Assistant 에이전트 만들기
 
-## Objective:
+## 목표
 
-A large enterprise wants to reduce the time employees spend searching
-for HR-related information (policies, benefits, leave guidelines, etc.)
-spread across SharePoint, PDFs, internal wikis, and documents.
+한 대기업에서는 SharePoint, PDF, 내부 위키 및 문서에 분산된 HR 관련
+정보(정책, 복리후생, 휴가 지침 등)를 검색하는 데 소요되는 시간을
+줄이고자 합니다.
 
-To overcome this issue, in this lab, you will build a **Knowledge
-assistant** **agent** in **Copilot Studio** that uses **Azure AI
-Search**, to index and semantically search across enterprise HR
-documents.
+이러한 문제를 해결하기 위해, 이 실습에서는 **Copilot Studio**에서
+**Azure AI Search**를 사용하여 기업 HR 문서를 인덱싱하고 의미론적으로
+검색하는 **Knowledge Assistant 에이전트**를 구축합니다.
 
-## Exercise 1: Create an Azure AI Search resource
+## 연습 1: Azure AI Search 리소스 만들기
 
-In this exercise, you will create an Azure AI Search resource from the Azure portal. This will be used to search the documents using AI capability.
+1.  Azure Portal의 홈페이지에서 **Azure AI Foundry**를 선택합니다.
 
-**Azure AI Search** is a cloud-based service for searching within your privately curated data. It uses a combination of Microsoft’s AI and JSON-based indexes to provide fast, relevant search results.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-1.  Open a browser and login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
+2.  **AI Foundry page**에서 왼쪽 창에서 **AI Search**을 선택한 다음 **+
+    Create**를 선택합니다.
 
-    -    Username - +++@lab.CloudPortalCredential(User1).Username+++
-    
-    -    Password - +++@lab.CloudPortalCredential(User1).Password+++
-
-    From the Home page of the Azure portal, select **Microsoft Foundry** and select **Microsoft Foundry** under Services.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im2.png)
-
-3.  In the **AI Foundry page**, select **AI Search** under **Use with AI Foundry** from the left pane
-    and then select **+ Create**.
-
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image2.png)
 
-4.  Enter the below details and select **Review + create**.
+3.  아래 세부 정보를 입력하고 **Review + create**을 선택합니다.
 
-    - Subscription – Select your **assigned subscription**
+- Subscription – **할당된 구독을** 선택하세요
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+- Resource group – **할당된 리소스 그룹**(ResourceGroup1)을 선택하세요
 
-    - Storage account name – +++**searchleaves@lab.LabInstance.Id**+++
+- Storage account name – +++**searchleaves**+++
 
-    - Location – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+- Location –**할당된 지역**을 선택하세요
 
-    ![A screenshot of a search service AI-generated content may be
+![A screenshot of a search service AI-generated content may be
 incorrect.](./media/image3.png)
 
-5.  Once the validation passes, select **Create**.
+4.  검증이 통과되면 **Create**를 선택합니다.
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image4.png)
 
-6.  The deployment takes around 10 minutes to complete. Select **Go to resource** once
-    the search service is created.
+5.  배포에는 몇 분 정도 소요됩니다. 검색 서비스가 생성되면 **Go to
+    resource**을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-7.  From the **Overview** page, copy the **Url** value and save it in a
-    notepad to be used in a future exercise.
+6.  **Overview** 페이지에서 URL 값을 복사하여 메모장에 저장해 두었다가
+    나중에 연습할 때 사용합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-8.  Select **Keys** under **Settings** from the left pane. Copy the
-    **Primary admin key** and save it in a notepad for using it in the
-    upcoming exercises.
+7.  왼쪽 창의 **Settings**에서 **Keys**를 선택합니다. **Primary admin
+    key**를 복사하여 메모장에 저장해 두었다가 다음 연습에서 사용합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-9.  Select **Identity** under **Settings** from the left pane.
+8.  왼쪽 창의 **Settings**에서 **Identity**를 선택합니다.
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image8.png)
 
-10.  Toggle the Status to **On** under **System assigned** and then click
-    on **Save**.
+9.  **System assigned**에서 상태를 **on**으로 전환한 다음 **Save**을
+    클릭합니다.
 
-     ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image9.png)
 
-11. Select **Yes** in the **Enable system assigned managed identity**
-    confirmation dialog.
+10. **Enable system assigned managed identity**대화 상자에서 **Yes**를
+    선택합니다.
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercise 2: Create a Storage account
+## 연습 2: 저장소 계정 만들기
 
-1.  From the Azure portal Home page (+++https://portal.azure.com/+++), select **Storage accounts**.
+1.  +++https://portal.azure.com/+++에서 Azure Portal에 로그인하고 자격
+    증명을 사용하여 로그인합니다. 홈 화면에서 Storage accounts을
+    선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Select **+ Create** to create a new Storage account.
+2.  **+ Create**를 선택하여 새 저장소 계정을 만듭니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-3.  Enter the below details, accept the default values in the other
-    fields and click on **Review + create**.
+3.  아래 세부 정보를 입력하고 다른 필드에서는 기본값을 그대로 사용한 후
+    **Review + create**을 클릭합니다.
 
-    - Subscription – Select your **assigned subscription**
+- Subscription – **할당된 구독**을 선택하세요
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+- Resource group – **할당된 리소스 그룹(ResourceGroup1)을** 선택하세요
 
-    - Storage account name – +++**leavepolicystg@lab.LabInstance.Id**+++
+- Region - **할당된 지역**을 선택하세요
 
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+- Storage account name – +++**leavepolicystorage**+++
 
-    - Primary service – Select **Azure Blob Storage or Azure Data Lake
-    Storage Gen 2**
+- Primary service – **Azure Blob Storage or Azure Data Lake Storage Gen
+  2**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image13.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image13.png)
 
-4.  Once the validation passes, click on **Create**.
+4.  검증이 통과되면 **Create**를 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Once the resource creation succeeds, click on **Go to resource**.
+5.  리소스 생성이 성공하면 **Go to resource**을 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Select **Containers** under **Data storage**. Select **+
-    Container**, enter the name as +++**document**+++ and click on
-    **Create** to create the container.
+6.  **Data storage**아래에서 **Containers**를 선택합니다. **+
+    Container**를 선택하고 이름을 +++**document**+++로 입력한 후,
+    **Create**를 클릭하여 컨테이너를 생성합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-7.  Select the created container **document** to upload the leave policy
-    document into it.
+7.  생성된 컨테이너 **document**를 선택하여 휴가 정책 문서를
+    업로드합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Click on **Upload** and then select **Browse for files**.
+8.  **Upload**를 클릭한 다음 **Browse for files**를 선택합니다.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Select the **LeavePolicy.docx** from **C:\Labfiles\LabFiles** and then click
-    on **Upload**.
+9.  **C:\Labfiles**에서 **LeavePolicy.docx**를 선택한 다음 **Upload**를
+    클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-10. Navigate to the +++**leavepolicystg@lab.LabInstance.Id**+++ Storage account (Select
-    **Storageaccounts** from the **Home page** of the Azure portal and
-    select **leavepolicystg@lab.LabInstance.Id**) and select **Access Control (IAM)**
-    from the left pane. Select **Add -> Add role assignment**.
+10. **leavepolicystorage** 저장소 계정으로 이동합니다(Azure Portal
+    **Home page**에서 **Storageaccounts**를 선택하고
+    **leavepolicystorage**를 선택합니다). 왼쪽 창에서 **Access Control
+    (IAM)**를 선택합니다. **Add -\> Add role assignment**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-11. Search for +++**Storage Blob Data Reader**+++, select it and click
-    on **Next**.
+11. +++**Storage Blob Data Reader**+++를 검색하여 선택한 후 **Next**를
+    클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-12. Click on **+Select members**, search for and select your **user
-    name**, +++@lab.CloudPortalCredential(User1).Username+++ and then click on
-    **Select**. This adds the Storage Blob Data Reader role to your user
-    id.
+12. **+Select members**을 클릭하고 **user id**를 검색하여 선택한 후,
+    목록에 표시된 **user id**를 선택하고 **Select**을 클릭합니다. 이렇게
+    하면 사용자 ID에 Storage Blob 데이터 리더 역할이 추가됩니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-13. Select **Managed identity** and then select **+ Select members**.
-    Select **Search service** under **Managed identity** and select the
-    **searchleaves** search service that gets listed.
+13. **Managed identity**를 선택한 다음 **+ Select members**을
+    선택합니다. **Managed identity**아래에서 **Search service**를
+    선택하고 나열된 검색 서비스를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-14. Click on **Select** to select the search service.
+14. **Select** 을 클릭하여 검색 서비스를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-15. Back in the Add role assignment screen, click on **Review +
-    assign**.
+15. 역할 할당 추가 화면으로 돌아가서 **Review + assign**을 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-16. Select **Review + assign** again in the next screen.
+16. 다음 화면에서 다시 **Review + assign**을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-17. Proceed to the next step once the roles are added.
+17. 역할이 추가되면 다음 단계로 진행하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-In this exercise, we have created a Storage account and added the
-document and required Role permissions to it.
+이 연습에서는 저장소 계정을 만들고 문서와 필요한 역할 권한을
+추가했습니다.
 
-## Exercise 3: Create an Azure OpenAI Service and deploy a model 
+## 연습 3: Azure OpenAI 서비스 만들기 및 모델 배포하기 
 
-1.  From the Azure portal Home page, search for and select +++Azure OpenAI+++.
+1.  Azure Portal 홈페이지에서 +++Azure OpenAI++를 검색하여 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-2.  Select **+ Create**.
+2.  **+ Create**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-3.  Enter the below details and select **Next**.
+3.  아래 세부 정보를 입력하고 Next을 선택하세요.
 
-    - Subscription – Select your **assigned subscription**
+- Subscription – **할당된 구독을** 선택하세요
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+- Resource group – **할당된 리소스 그룹**(ResourceGroup1)을 선택하세요
 
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+- Region – **할당된 지역을** 선택하세요
 
-    - Name – +++**openaiservice@lab.LabInstance.Id**+++
+- Name – +++**openaiservice52374668**+++
 
-    - Pricing tier – Select **Standard S0**
+- Pricing tier – **Standard**를 선택합니다
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  Select **Next** in the next 2 screens select **Create** in the
-    **Review + submit** screen.
+4.  다음 두 화면에서 **Next**을 선택하고 **Review + submit**화면에서
+    **Create**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-5.  Click on **Go to resource** once the service is created.
+5.  서비스가 생성되면 **Go to resource**을 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-6.  Select **Access control (IAM)** from the left pane, select **Add -\>
-    Add role assignment**.
+6.  왼쪽 창에서 **Access control (IAM)**를 선택하고 **Add -\> Add role
+    assignment**를 선택합니다.
 
-    ![](./media/image36.png)
+![](./media/image36.png)
 
-7.  Search for +++**Cognitive Services OpenAI User**+++, select the role
-    and click on **Next**.
+7.  +++**Cognitive Services OpenAI User**+++를 검색하고 역할을 선택한 후
+    **Next**을 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-8.  Select **+ Select members**, search for your **user name**, +++@lab.CloudPortalCredential(User1).Username+++, select it and click on **Select**.
+8.  **+ Select members**을 선택하고, **user id**를 검색하여 선택한 후
+    **Select**을 클릭합니다.
 
-    ![](./media/image38.png)
+![](./media/image38.png)
 
-9.  Back in the **Add role assignment** screen, select **Managed
-    identity**. Then select **+ Select members**. In the **Select
-    managed identities** screen, select **Search service** under
-    **Managed identity** and select the **seachleaves** service.
+9.  **Add role assignment**화면으로 돌아가서 **Managed identity**를
+    선택합니다. 그런 다음 **+ Select members**을 선택합니다. **Select
+    managed identities** 화면에서 **Managed identity**아래에 있는
+    **seachleaves**를 선택하고 검색 서비스를 선택합니다.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image39.png)
 
-10. Once selected, click on **Select**.
+10. 선택한 후 **Select**을 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-11. Select **Review + assign** in the next 2 screens.
+11. 다음 두 화면에서 Review + assign을 선택합니다.
 
-    ![](./media/image41.png)
+![](./media/image41.png)
 
-12. Wait for a **success** message on the role additions before
-    proceeding with the next tasks.
+12. 역할 추가에 대한 **success** 메시지가 나타날 때까지 다음 작업을
+    진행하세요.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-13. From the **Overview** page of the Azure OpenAI Service resource,
-    select **Go to Azure AI Foundry portal** to open the Azure OpenAI
-    Service there and deploy a model.
+13. Azure OpenAI 서비스 리소스의 **Overview** 페이지에서 **Go to Azure
+    AI Foundry portal**을 선택하여 해당 포털에서 Azure OpenAI 서비스를
+    열고 모델을 배포합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-14. Select **Deployments** from the left pane.
+14. 왼쪽 창에서 **Deployments**를 선택합니다.
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image44.png)
 
-15. Select **+ Deploy model** -> **Deploy base model**.
+15. **+ Deploy model** -\> **From base models**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-16. Select **Embeddings** under **Inference tasks**.
+16. +++**text-embedding**+++을 검색하고 **text-embedding-3-large**를
+    선택한 다음 **Confirm**을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im5.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image46.png)
 
-17. Search for +++**text-embedding**+++, select
-    **text-embedding-3-large** and then select **Confirm**.
+17. Deploy text-embedding-3-large에서 **Deploy**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im7.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image47.png)
 
-18. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
+18. 모델이 배포되고 배포 세부 정보가 화면에 로드됩니다.
 
-    <img width="375" alt="image" src="https://github.com/user-attachments/assets/3c36852b-1ec3-4a95-a326-63cbfe2ae404" />
-
-19. The model gets deployed and the screen is loaded with the deployment
-    details.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-## Exercise 4: Create a vector index
+## 연습 4: 벡터 인덱스 만들기
 
-1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
+1.  **Searchleaves** AI 검색 서비스 리소스로 이동합니다. **Import and
+    vectorize data**를 선택합니다.
 
-2.  Select **Import and vectorize data**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-3.  Select the **Azure Blob Storage** option.
+2.  **Azure Blob Storage** 옵션을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image50.png)
 
-4.  Select the **RAG** option in the **What scenarios are you
-    targeting?** screen.
+3.  **What scenarios are you targeting?** 화면에서 **RAG** 옵션을
+    선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-5.  Enter the below details, accept the other values as default and
-    click **Next**.
+4.  아래 세부 정보를 입력하고 나머지 값은 기본값으로 두고 **Next**을
+    클릭합니다.
 
-    - Subscription – Select your **assigned subscription**
+- Subscription – **할당된 구독**을 선택하세요
 
-    - Storage account- Select **leavepolicystg@lab.LabInstance.Id**
+- Storage account- **leavepolicystorage** 을 선택하세요
 
-    - Blob-container – Select **document**
+- Blob-container – **document**을 선택하세요
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-6.  In the Vectorize your text screen, the subscription is pre-populated. Enter the below details
-    and click **Next**.
+5.  Vectorize your text 화면에 구독 및 Azure OpenAI 리소스 세부 정보가
+    미리 입력되어 있습니다. 아래 세부 정보를 입력하고 **Next**을
+    클릭합니다.
 
-    - Azure OpenAI Service – Select **openaiservice@lab.LabInstance.Id**
+- Model deployment – **text-embedding-3-large**를 선택합니다.
 
-    - Model deployment – Select **text-embedding-3-large**
+- Authentication type – **System assigned identity**를 선택합니다.
 
-    - Authentication type – Select **System assigned identity**
+- Azure OpenAI의 비용 경고를 확인하려면 확인란을 선택합니다.
 
-    - Select the checkbox to acknowledge the cost alert of Azure OpenAI.
+6.  여기서는 이미지를 다루지 않으므로 **Vectorize and enrich your
+    images**화면에서 다음을 선택하고, **Advanced settings**화면에서도
+    **Next**을 선택합니다.
 
-7.  Select Next in the **Vectorize and enrich your images** screen since
-    we are not dealing with images here and select **Next** in the
-    **Advanced settings** screen as well.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-8.  Select **Create** in the **Review + create** screen.
+7.  **Review + create** 화면에서 **Create**을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-9.  Click on **Close** in the success dialog box.
+8.  성공 대화 상자에서 **Close**를 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-## Exercise 5: Create a knowledge assistant agent
+## 연습 5: 지식 지원 에이전트 만들기
 
-1.  Open a new broser and login to +++https://copilotstudio.microsoft.com+++ using your login
-    credentials.
+1.  로그인 자격 증명을 사용하여
+    +++https://copilotstudio.microsoft.com+++에 로그인합니다.
 
-2.  Select **Get Started** in the Welcome to Microsoft Copilot Studio.
-
-    <img width="549" alt="image" src="https://github.com/user-attachments/assets/63c8fa05-b9ff-44f0-a32b-648db74dc32c" />
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-3.  Select Agents from the left pane. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
+2.  왼쪽 창에서 **Create**를 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im42.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-6.  Once the agent is created, in the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+3.  **+ New agent**를 선택하여 새 에이전트를 만듭니다.
 
-    <img width="290" height="347" alt="image" src="https://github.com/user-attachments/assets/62a90308-c3f9-4c44-8946-0d83e7fd532a" />
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-7.  It gives a generalized reply as in the screenshot below.
+4.  +++를 입력하고 **Send**를 선택합니다. +++You are a Knowledge
+    assistant agent for HR who will answer questions related to leaves
+    and leave policies to the employees.+++
 
-    <img width="191" height="340" alt="image" src="https://github.com/user-attachments/assets/c55f45dc-2205-4336-aee6-81e83f89a21a" />
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image60.png)
 
-## Exercise 6: Add the Azure AI Search as a knowledge source
+5.  Copilot가 에이전트에게 이름을 제안합니다. **Create**를 클릭하여
+    에이전트를 만듭니다.
 
-1.  From the **Overview** page of the agent, select **Add knowledge**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
+
+6.  에이전트가 생성되면 테스트 창에 +++How many days can I avail
+    Maternity leaves?+++를 입력하고 **Send**를 클릭합니다.
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image63.png)
+
+7.  아래 스크린샷과 같이 일반적인 답변을 제공합니다.
+
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image64.png)
+
+## 연습 6: Azure AI Search를 지식 소스로 추가하기
+
+1.  에이전트의 **Overview** 페이지에서 **Add knowledge**를 선택합니다.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image65.png)
 
-2.  Select Azure AI Search from the list of knowledge sources available.
+2.  사용 가능한 지식 소스 목록에서 Azure AI 검색을 선택합니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-3.  Click on the **drop down** next to **Not connected** in the next
-    screen and select **Create new connection**.
+3.  다음 화면에서 Not connected옆에 있는 **드롭다운**을 클릭하고
+    **Create new connection**를 선택합니다.
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image67.png)
 
-4.  Enter the **Endpoint url** and the **Admin key** values which we
-    saved to a notepad in a previous exercise and then click on
-    **Create** to create the connection.
+4.  이전 연습에서 메모장에 저장해 두었던 **Endpoint URL**과 **Admin
+    key** 값을 입력한 다음, **Create**를 클릭하여 연결을 만듭니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-5.  Once the connection is established, the available index is listed
-    and already selected. Click on **Add to agent**.
+5.  연결이 설정되면 사용 가능한 인덱스가 나열되고 이미 선택되어
+    있습니다. **Add**를 클릭합니다.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image76.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-6.  The AI Search service is added as a knowledge source to the agent
-    and is in **Ready** state now.
-    Ensure that the **Web search** option is **disabled** in the Knowledge section.
+6.  AI 검색 서비스가 에이전트에 지식 소스로 추가되었으며 현재 **Ready**
+    상태입니다.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-8.  Now, let us test the agent with the same question we tried before.
+7.  이제 이전에 시도했던 것과 동일한 질문으로 에이전트를 테스트해
+    보겠습니다.
 
-9.  In the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+8.  테스트 창에 +++How many days can I avail Maternity leaves?+++를
+    입력하고 **Send**를 클릭합니다.
 
-    <img width="285" height="315" alt="image" src="https://github.com/user-attachments/assets/b48e410f-6950-4d89-abdd-dc1e5d5ff81c" />
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image71.png)
 
-10. You can see that the response from the agent now is from the
-    document uploaded in the AI Search service.
+9.  이제 에이전트의 응답은 AI 검색 서비스에 업로드된 문서에서 나온
+    것임을 확인할 수 있습니다.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im6.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image72.png)
 
+## 요약
 
-## Summary:
-
-In this lab, we have learnt to connect the agent to a Azure AI Search
-service as a knowledge source and test the agent based on the source.
-
-
-
-
-
-
-
-
-
-
+이 실습에서는 지식 소스로 에이전트를 Azure AI Search 서비스에 연결하고
+소스를 기반으로 에이전트를 테스트하는 방법을 학습했습니다.

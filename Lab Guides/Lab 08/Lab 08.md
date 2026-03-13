@@ -1,203 +1,202 @@
-# Lab 8 - Create an agent in Copilot Studio with Dataverse MCP Server
+# 실습 8 – Dataverse MCP 서버가 있는 Copilot Studio에서 에이전트를 생성하기
 
-Create and configure a Copilot Agent in Copilot Studio with Dataverse
-MCP Server integration to streamline business workflows.
+Dataverse MCP 서버 통합이 적용된 Copilot Studio에서 Copilot 에이전트를
+생성하고 구성하여 비즈니스 워크플로우를 간소화합니다.
 
-After completing this lab, participants will be able to create and
-configure a Copilot Agent in Copilot Studio, integrate the Dataverse MCP
-Server to read and update account information from the Account and
-Contact table, structure agent responses for clarity and business value,
-and apply these skills to solve common business challenges.
+이 실습을 마친 후, 참가자들은 Copilot Studio에서 Copilot Agent를
+생성하고 구성할 수 있으며, Dataverse MCP 서버를 통합하여 계정 및 연락처
+테이블에서 계정 정보를 읽고 업데이트하고, 명확성과 비즈니스 가치를 위해
+에이전트 응답을 구조화하며, 이러한 기술을 활용해 일반적인 비즈니스
+문제를 해결할 수 있습니다.
 
-## Task 1: Create and Configure Copilot Agent 
+## 작업 1: Copilot Agent를 생성 및 구성하기 
 
-Build a Copilot Agent that connects to Dataverse through the MCP Server
-for seamless data access.
+MCP 서버를 통해 Dataverse에 연결되는 Copilot Agent를 구축하여 원활한
+데이터 접근을 가능하게 합니다.
 
-In this section, you’ll learn how to create a new Copilot Agent in
-Copilot Studio, configure it with proper instructions and suggested
-prompts, and integrate the Dataverse MCP Server for live data
-connectivity
+이 섹션에서는 Copilot Studio에서 새로운 Copilot 에이전트를 생성하는
+방법, 적절한 지침과 제안된 프롬프트로 설정하는 방법, 그리고 실시간
+데이터 연결을 위한 Dataverse MCP 서버를 통합하는 방법을 배우게 됩니다
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++
-    using your login credentials if not done already and make sure that
-    you are in the **Dev One** environment.
+1.  아직 로그인하지 않았다면 로그인 자격증으로
+    +++https://copilotstudio.microsoft.com+++ 에서 Copilot Studio에
+    로그인하고, Dev One 환경에 있는지 확인하세요.
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  Select **Create an agent** tile to create a new agent.
+2.  새 에이전트를 생성하려면 **Create an agent** 타일을 선택하세요.
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  Once the agent is provisioned, select Edit against the **Details**
-    pane.
+3.  에이전트 프로비저닝되면 **Details** 창에 Edit를 선택하세요.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  Enter the below details and select **Save**.
+4.  다음 정보를 입력하고 **Save**를 선택하세요.
 
-    - Name - +++Contoso Agent+++
-    
-    - Description - +++This agent will help Contoso sales reps update their accounts and contacts using the Dataverse MCP Server+++
+- Name - +++Contoso Agent+++
 
-    ![](./media/image4.png)
+- Description - +++This agent will help Contoso sales reps update their
+  accounts and contacts using the Dataverse MCP Server+++
 
-5.  **Edit** Instructions and enter the below set of instructions and
-    select **Save**.
+> ![](./media/image4.png)
 
-    ```
-    This agent will: Read accounts and contact information from the Account
-    and Contact Tables in Dataverse using the Dataverse MCP Server. Update
-    accounts and contact information from the Account and Contact Tables in
-    Dataverse using the Dataverse MCP Server. Create new accounts and
-    contact information in the Account and Opportunity Tables in Dataverse
-    using the Dataverse MCP Server. Do not use outside knowledge. Only use
-    the Dataverse MCP Tool to create, read, update and delete.
-    ```
-    
-    ![](./media/image5.png)
-    
-    ![](./media/image6.png)
+5.  Instruction을 **Edit**하고 아래 지침 세트를 입력한 후 **Save**를
+    선택하세요.
 
-6.  Scroll down and select **+ Add suggested prompts** in the Suggested
-    prompts section.
+This agent will: Read accounts and contact information from the Account
+and Contact Tables in Dataverse using the Dataverse MCP Server. Update
+accounts and contact information from the Account and Contact Tables in
+Dataverse using the Dataverse MCP Server. Create new accounts and
+contact information in the Account and Opportunity Tables in Dataverse
+using the Dataverse MCP Server. Do not use outside knowledge. Only use
+the Dataverse MCP Tool to create, read, update and delete.
 
-    ![](./media/image7.png)
+![](./media/image5.png)
 
-7.  Add the following prompts and then click **Save**.
+![](./media/image6.png)
 
-    - **Title**: +++Account Search+++ **Prompt**: +++List all accounts in Redmond+++
-    
-    - **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from Coho Winery+++
+6.  Suggested prompts 섹션에서 아래로 스크롤하고 **+ Add suggested
+    prompts**를 선택하세요.
 
-    ![](./media/image8.png)
+![](./media/image7.png)
 
-8.  Select **+ Add tool** from the Tools section.
+7.  다음 프롬프트를 추가하고 **Save**를 클릭하세요.
 
-    ![](./media/image9.png)
+- **Title**: +++Account Search+++ **Prompt**: +++List all accounts in
+  Redmond+++
 
-9.  Select the **Model Context Protocol** tab, search for +++Dataverse
-    MCP Server+++ and select **Microsoft** **Dataverse MCP Server**.
+- **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from
+  Coho Winery+++
 
-    Note: Select the one that is not in Preview. Do not select the
-**Microsoft** **Dataverse MCP Server (Preview)**
+![](./media/image8.png)
 
-    ![](./media/image10.png)
+8.  Tools 섹션에서 **+ Add tool**을 선택하세요.
 
-10. Select **Add and configure**.
+![](./media/image9.png)
 
-    ![](./media/image11.png)
+9.  **Model Context Protocol** 탭을 선택하고 +++Dataverse MCP
+    Server+++를 검색하고 **Microsoft** **Dataverse MCP Server**를
+    선택하세요.
 
-    **Note:** The Dataverse MCP Server will allow you natural language
-access to your tables in Dataverse. We have sample data in the Accounts
-and Contacts tables that we will use. The tools available are: list
-tables, describe table, read data, create record, update record, list
-prompts, execute prompt, list knowledge sources, and retrieve knowledge
+참고: 미리보기에 없는 것을 선택하세요. **Microsoft** **Dataverse MCP
+Server (Preview)**를 선택하지 마세요.
 
-11. Review the tools available for the Dataverse MCP Server. You can
-    select and deselect which tools are available to the agent. When the
-    tool is executed, the list is dynamically updated from the MCP
-    Server. You cannot call an MCP Server from a Topic for this reason.
+![](./media/image10.png)
 
-    ![](./media/image12.png)
+10. **Add and configure**를 선택하세요.
 
-12. Enter +++List the accounts in the state of WA+++ in the **Test**
-    pane and click **Send**.
+![](./media/image11.png)
 
-    ![](./media/image13.png)
+**참고:** Dataverse MCP 서버는 Dataverse 내 테이블에 자연어로 접근할 수
+있게 해줍니다. 저희는 사용할 Accounts and Contacts 테이블에 샘플
+데이터를 가지고 있습니다. 사용 가능한 도구로는 다음과 같습니다: 리스트
+테이블, 테이블 설명, 데이터 읽기, 레코드 생성, 레코드 업데이트, 프롬프트
+목록, 프롬프트 실행, 지식 소스 목록, 지식 검색
 
-13. For the first run, you would get a Consent dialog as by default the
-    tool is
+11. Dataverse MCP 서버용 도구를 검토하세요. 에이전트가 사용할 수 있는
+    도구를 선택하거나 해제할 수 있습니다. 도구가 실행되면 목록이 MCP
+    서버에서 동적으로 업데이트됩니다. 이 때문에 주제에서 MCP 서버를
+    호출할 수 없습니다.
 
-    configured to use “End user credentials”. Please click **Allow** to
-continue.
+![](./media/image12.png)
 
-    ![](./media/image14.png)
+12. **Test** 창에서 +++List the accounts in the state of WA+++를
+    입력하고 **Send**를 클릭하세요.
 
-14. See the series of actions that take place and the output from the
-    MCP server,
+![](./media/image13.png)
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+13. 첫 번째 실행에서는 기본적으로 도구가 다음과 같기 때문에 동의
+    대화상자가 뜨게 됩니다
 
-15. If you click on the tool that was used, you will see the Inputs and
-    Outputs of the tool.
+" End user credentials"을 사용하도록 설정되었습니다. 계속하려면
+**Allow**를 클릭하세요.
 
-    ![](./media/image17.png)
+![](./media/image14.png)
 
-## Task 2: Structure Agent Responses with Custom Prompts
+13. 일련의 동작과 MCP 서버의 출력을 참고하세요,
 
-Create custom prompts to ensure consistent, structured responses from
-your agent that provide business-relevant information.
+![](./media/image15.png)
 
-1.  If you tried some different testing in the Copilot, you may have
-    noticed you will get different attributes for accounts and contacts.
-    If you want a more structured response, you can create a **prompt**
-    in the **Tools**. In the **Tools** tab, click **+ Add a tool** then
-    **+ New tool**.
+![](./media/image16.png)
 
-    ![](./media/image18.png)
-    
-    ![](./media/image19.png)
+14. 사용된 도구를 클릭하면 해당 도구의 Inputs 및 Outputs을 볼 수
+    있습니다.
 
-2.  Select Prompt.
+![](./media/image17.png)
 
-    ![](./media/image20.png)
+## 작업 2: 맞춤형 프롬프트를 통한 구조화 에이전트 응답
 
-3.  Rename the **prompt** **name** at the top to +++Show Account
-    Details+++ .
+맞춤형 프롬프트를 만들어 에이전트로부터 일관되고 구조화된 답변을 받으며
+비즈니스 관련 정보를 제공하세요.
 
-    Then in the **instructions** enter, +++Find account which contains+++
-    and then click **+ Add content** to pass in the name of the account we
-    are searching for. Select **Text** for the Input and call it
-    +++**Account Name**+++ . Click **close**.
+1.  Copilot에서 다른 테스트를 해보셨다면, 계정과 연락처에 다른 속성이
+    나오는 것을 눈치채셨을 겁니다. 좀 더 체계적인 답변을 원한다면,
+    **Tools**에서 **프롬프트**를 생성할 수 있습니다. **Tools** 탭에서
+    **+ Add a tool** 을 클릭하고 **+ New tool**을 클릭하세요.
 
-    ![](./media/image21.png)
+![](./media/image18.png)
 
-    ![](./media/image22.png)
+![](./media/image19.png)
 
-4.  We can now grab specific fields from Dataverse to show to our end
-    users in the chat. Click back in the instructions and enter +++and find relevant details like:+++ click **+ Add content**. This time we will select **Dataverse** and some of the fields in the **Account** table which we feel our end users would like to see about the account.
+2.  Prompt를 선택하세요.
 
-    ![](./media/image23.png)
+![](./media/image20.png)
 
-5.  Let’s select the following by clicking on the dropdown: **Account
-    Name**, **Account Number**, **Address 1**, **Annual Revenue**,
-    **Email** and **Main Phone**. Click **Add** and then **Save**.
+3.  위 **prompt** **name**을 +++Show Account Details+++로 변경하세요.
 
-    ![](./media/image24.png)
-    
-    ![](./media/image25.png)
-    
-    ![](./media/image26.png)
+**Instructions**에서 +++Find account which contains+++를 입력하고 **+
+Add content**를 클릭해 우리가 찾는 계정 이름을 전달합니다. 입력의
+**Text** 선택하고 **+++ Account Name+++** 라고 명명하세요. **Close**를
+클릭하세요.
 
-6.  Select **Add and configure**.
+> ![](./media/image21.png)
 
-    ![](./media/image27.png)
+![](./media/image22.png)
 
-7.  Now we can test out our prompt. Let’s go back over to our agent and
-    test again. Go to the test pane.
+4.  이제 Dataverse에서 특정 필드를 가져와 채팅에서 최종 사용자에게
+    보여줄 수 있습니다. 지시를+++ and find relevant details like:+++
+    다시 클릭해 **+ Add content**를 클릭하세요. 이번에는 **Dataverse**와
+    **Account** 테이블에서 최종 사용자들이 보고 싶어 할 만한 일부 필드를
+    선택할 예정입니다.
 
-8.  Enter +++Show account Details for Fourth Coffee+++ and click
-    **Send**. You can see that the response is in the structured
-    response with the custom prompt created.
+![](./media/image23.png)
 
-    ![](./media/image28.png)
+5.  드롭다운을 클릭하여 다음 항목을 선택해 봅시다: **Account Name**,
+    **Account Number**, **Address 1**, **Annual Revenue**, **Email** 및
+    **Main Phone**. **Add**를 클릭하고 **Save**를 선택하세요.
 
-## Summary
+![](./media/image24.png)
 
-In this lab, you build a Copilot Agent in Microsoft Copilot Studio that
-integrates with the **Dataverse MCP Server** to securely access and
-manage business data using natural language. You configure the agent to
-read, create, and update records across Dataverse tables such as
-**Accounts, Contacts, and Opportunities**, without relying on external
-knowledge or custom APIs.
+![](./media/image25.png)
 
-You also learn how to **structure agent responses** using custom
-prompts, ensuring consistent, business-friendly outputs that surface the
-most relevant data fields for end users. By the end of the lab, you can
-design an agent that streamlines sales and account management workflows,
-delivers clear and structured insights, and demonstrates how MCP-powered
-agents can solve real-world business challenges with live enterprise
-data.
+![](./media/image26.png)
+
+6.  **Add and configure**를 선택하세요.
+
+![](./media/image27.png)
+
+7.  이제 우리의 프롬프트를 시험해볼 수 있겠네요. 우리 에이전트에게 다시
+    가서 다시 테스트해 봅시다. 테스트 창으로 가세요.
+
+8.  +++Show account Details for Fourth Coffee+++를 입력하고 **Send**를
+    클릭하세요. 응답이 구조화된 응답과 맞춤 프롬프트 생성 안에 있다는
+    것을 볼 수 있습니다.
+
+![](./media/image28.png)
+
+## 요약
+
+이 실습에서는 Microsoft Copilot Studio에서 Copilot Agent를 구축하여
+**Dataverse MCP Server**와 통합 하여 자연어를 사용해 비즈니스 데이터를
+안전하게 접근하고 관리합니다. 에이전트를 설정하여 **Accounts,
+Contacts,** 및**Opportunities** 등 Dataverse 테이블 전반에 걸쳐 레코드를
+읽고, 생성하며, 업데이트할 수 있도록 외부 지식이나 맞춤형 API에 의존하지
+않습니다.
+
+또한 맞춤형 프롬프트를 활용해 **에이전트 응답을 구조화**하는 방법을
+배워, 최종 사용자에게 가장 관련성 높은 데이터 필드를 일관되고 비즈니스
+친화적인 결과물을 제공합니다. 실험실이 끝날 때쯤이면, 영업 및 계정 관리
+워크플로우를 간소화하고, 명확하고 구조화된 인사이트를 제공하며, MCP 기반
+에이전트가 실시간 기업 데이터로 실제 비즈니스 문제를 어떻게 해결할 수
+있는지 시연하는 에이전트를 설계할 수 있습니다.

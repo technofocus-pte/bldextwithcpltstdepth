@@ -1,126 +1,120 @@
-# Lab 9 - Test, measure, and improve AI agents
+# 실습 9 - AI 에이전트를 테스트, 측정 및 개선하기
 
-As AI agents take on critical roles in business processes, the need for
-reliable, repeatable testing becomes essential. Agent evaluation lets
-you generate tests that simulate real-world scenarios for your agent.
-These tests cover more questions faster than manual, case-by-case
-testing. Then, you can measure the accuracy, relevancy, and quality of
-answers to the questions the agent is asked, based on the information
-the agent can access. By using the results from the test set, you can
-optimize your agent's behavior and validate that your agent meets your
-business and quality requirements.
+AI 에이전트가 비즈니스 프로세스에서 중요한 역할을 맡게 됨에 따라, 신뢰할
+수 있고 반복 가능한 테스트의 필요성이 필수적이 되었습니다. 에이전트
+평가는 에이전트의 실제 시나리오를 시뮬레이션하는 테스트를 생성할 수 있게
+해줍니다. 이 시험들은 수동적이고 사례별 시험보다 더 많은 문제를 더
+빠르게 다룹니다. 그 다음, 에이전트가 접근할 수 있는 정보를 바탕으로
+질문에 대한 답변의 정확성, 관련성, 품질을 측정할 수 있습니다. 테스트
+세트 결과를 활용하면 에이전트의 행동을 최적화하고 에이전트가 비즈니스 및
+품질 요구사항을 충족하는지 검증할 수 있습니다.
 
-**Objective**
+**목표**
 
-In this lab, you will learn how to systematically test and evaluate an
-AI agent using Copilot Studio’s built-in evaluation and analytics
-capabilities. You will create an automated test set that simulates
-real-world user scenarios, measure the quality and accuracy of agent
-responses, and analyze performance data to identify gaps and improvement
-opportunities. By the end of the lab, you will be able to validate that
-your agent meets business, reliability, and quality standards before
-production use.
+이 실습에서는 Copilot Studio에 내장된 평가 및 분석 기능을 활용해 AI
+에이전트를 체계적으로 테스트하고 평가하는 방법을 배우게 됩니다. 실제
+사용자 시나리오를 시뮬레이션하고, 에이전트 응답의 품질과 정확성을
+측정하며, 성능 데이터를 분석하여 격차와 개선 기회를 파악하는 자동화된
+테스트 세트를 생성합니다. 실습이 끝날 때쯤이면, 에이전트가 비즈니스
+기준, 신뢰성, 품질 기준을 충족하는지 생산 사용 전에 검증할 수 있습니다.
 
-## Task 1: Create a test set to evaluate your agent
+## 작업 1: 에이전트를 평가할 테스트 세트를 생성하기
 
-Before deploying an AI agent into real business workflows, it is
-critical to validate how well it responds to realistic user questions.
-Manual testing is time-consuming and often misses edge cases. In this
-task, you will use Copilot Studio’s agent evaluation capabilities to
-automatically generate a test set that simulates real-world scenarios.
-You will run these tests against your agent, review pass and fail
-outcomes, and identify gaps in accuracy, relevance, or behavior that
-need improvement.
+AI 에이전트를 실제 비즈니스 워크플로우에 배치하기 전에, 현실적인 사용자
+질문에 얼마나 잘 반응하는지 검증하는 것이 매우 중요합니다. 수동 테스트는
+시간이 많이 걸리고 종종 예외 사례를 놓치기도 합니다. 이 작업에서는
+Copilot Studio의 에이전트 평가 기능을 사용해 실제 시나리오를
+시뮬레이션하는 테스트 세트를 자동으로 생성합니다. 이 테스트를 에이전트와
+대비하고, 합격 및 불합격 결과를 검토하며, 정확성, 관련성 또는 개선이
+필요한 행동의 격차를 찾아냅니다.
 
-1.  From the Copilot Studio, select the **Hiring agent**.
+1.  Copilot Studio에서 **Hiring agent**를 선택하세요.
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  From the top menu bar, select **Evaluation**. Select **Create a test
-    set**.
+2.  상단 메뉴 바에서 **Evaluation**을 선택하세요. **Create a test
+    set**를 선택하세요.
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  There are few options to create the test set. Select **Generate 10
-    questions** in this case.
+3.  테스트 세트를 생성할 수 있는 옵션은 몇 가지 없습니다. 이 경우
+    **Generate 10 questions**를 선택하세요.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  **Review** the test set and then **Save** the test set.
+4.  테스트 세트를 **Review**하고 테스트 세트를 **Save**하세요.
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-5.  Now, click on **Evaluate** to evaluate the agent.
+5.  에이전트를 평가하려면 **Evaluate**를 클릭하세요.
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-6.  Select your tenant id and click on **Run**.
+6.  테넌트 id를 선택하고 **Run**을 클릭하세요.
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-7.  Wait till the execution completes.
+7.  실행이 끝날 때까지 기다리세요.
 
-    ![](./media/image7.png)
+![](./media/image7.png)
 
-8.  Once the evaluation is complete, click on it to view the details.
+8.  평가가 완료되면 클릭하여 세부 정보를 확인하세요.
 
-    ![](./media/image8.png)
+![](./media/image8.png)
 
-9.  Go through each question and see why it has failed and which ones
-    have passed. This will help you enhance your agent as required.
+9.  각 문제를 살펴보고 왜 실패했는지, 어떤 문제가 통과되었는지
+    확인하세요. 이렇게 하면 필요에 따라 에이전트를 더 잘 활용할 수
+    있습니다.
 
-    ![](./media/image9.png)
+![](./media/image9.png)
 
-## Task 2: Gain insights with agent analytics
+## 작업 2: 에이전트 분석으로 인사이트를 얻기
 
-Once an agent is evaluated and actively used, ongoing monitoring is
-essential to ensure consistent performance and reliability at scale. In
-this task, you will explore the Analytics capabilities in Copilot Studio
-to gain insights into agent usage, execution trends, and component
-utilization. You will learn how analytics data helps identify
-performance bottlenecks, understand user interaction patterns, and guide
-continuous optimization of your agent over time.
+에이전트가 평가되고 적극적으로 사용되면, 대규모에서 일관된 성능과
+신뢰성을 보장하기 위해 지속적인 모니터링이 필수적입니다. 이 작업에서는
+Copilot Studio의 분석 기능을 탐색하여 에이전트 사용, 실행 추세, 구성
+요소 활용도에 대한 인사이트를 얻게 됩니다. 분석 데이터가 성능 병목을
+현상을 식별하고, 사용자 상호적용 패턴을 이해하며, 시간이 지남에 따하
+애이전트의 지속적인 최적화를 안내하는 데 어떻게 도움이 되는지 배울 수
+있습니다.
 
-1.  From the top menu bar, select **Analytics.**
+1.  상단 메뉴 바에서 **Analytics**를 선택하세요.
 
-    ![](./media/image10.png)
+> ![](./media/image10.png)
 
-2.  When there are a greater number of executions and as the agent gets
-    used more and more, the traffic increases, and you can find the AI
-    Summary in the Analytics tab.
+2.  실행 횟수가 많아지고 에이전트가 점점 더 많이 사용될수록 트래픽이
+    증가하며, AI 요약은 Analytics 탭에서 찾을 수 있습니다.
 
-    ![](./media/image11.png)
+> ![](./media/image11.png)
 
-3.  The **Overview** section gives an overall picture about the runs,
-    and credits.
+3.  **Overview** 섹션은 연속 기록과 크레딧에 대한 전반적인 그림을
+    제공합니다.
 
-    ![](./media/image12.png)
+> ![](./media/image12.png)
 
-4.  The Run outcomes gives the average duration trends.
+4.  Run 결과는 평균 지속 시간 추세를 제공합니다.
 
-    ![](./media/image13.png)
+> ![](./media/image13.png)
 
-5.  Scroll down and under the Use section, you can find the usage of
-    triggers, tools and knowledge sources.
+5.  아래로 스크롤하여 Use 섹션 아래에서 트리거, 도구, 지식 소스의
+    사용법을 확인할 수 있습니다.
 
-    ![](./media/image14.png)
+> ![](./media/image14.png)
 
-6.  Each of these helps you to gauge the usage of each component of the
-    agent and upgrade, enhance or correct the agent functionalities
-    appropriately.
+6.  각 기능은 에이전트의 각 구성 요소 사용을 평가하고 에이전트 기능을
+    적절히 업그레이드, 향상 또는 수정하는 데 도움을 줍니다.
 
-## Summary
+## 요약
 
-In this lab, you implemented automated evaluation and analytics to
-assess the quality and reliability of an AI agent. You generated a test
-set to simulate realistic user interactions, ran evaluations to measure
-response accuracy and relevance, and reviewed pass/fail results to
-identify areas for improvement.
+이 실습에서는 AI ㅇ에이전트의 품질과 신뢰성을 평가하기 위해 자동화된
+평가 및 분석을 도입했습니다. 현실적인 사용자 상호적용을 시뮬레이션하는
+테스트 세트를 생성하고, 응답 정확도와 관련성을 측정하기 위한 평가를
+수행했으며, 개선이 필여한 부분을 찾기 위해 합격/불합격 결과를
+검토했습니다.
 
-You also explored agent analytics to understand usage patterns,
-execution trends, and component utilization across triggers, tools, and
-knowledge sources. Together, these capabilities enable you to move
-beyond manual testing and adopt a scalable, data-driven approach to
-agent validation. This lab demonstrates how automated testing and
-analytics help ensure your agents are trustworthy, performant, and ready
-for real-world business scenarios.
+또한 에이전트 분석을 통해 트리거, 도구, 지식 소스 전반에 걸친 사용 패턴,
+실행 추세, 구성 요소 활용도를 이해하셨습니다. 이 기능들이 결합되면, 수동
+테스트를 넘어 확장 가능하고 데이터 기반 에이전트 검증 방식을 채택할 수
+있습니다. 이 실습은 자동화된 테스트와 분석이 어떻게 에이전트가 신뢰할 수
+있고 성능이 뛰어나며 실제 비즈니스 시나리오에 대비하도록 돕는지
+보여줍니다.
