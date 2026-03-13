@@ -1,485 +1,481 @@
-# Lab 2- Build and enhance a template based enterprise assistant
+# Laboratorio 2- Construir y mejorar un asistente empresarial basado en plantillas
 
-**Objective**
+**Objetivo**
 
-**Agent templates** are designed to help you get started with a **custom
-agent**. You are responsible for assessing all safety and legal
-implications of using an agent template and customizing it as
-appropriate for your business.
+Las **plantillas de agentes** están diseñadas para ayudarle a comenzar
+con un **agente personalizado.** Usted es responsable de evaluar todas
+las implicaciones legales y de seguridad al usar una plantilla de agente
+y personalizarla según sea apropiado para su negocio.
 
-An agent built from the **Safe Travels agent template** is a
-Business-to-Employee (B2E) agent designed to provide employees of a
-company with **travel assistance**. This agent helps ensure employees
-are well-prepared and informed for their next work trip. This agent uses
-natural language processing to offer a conversational interface, making
-it easy and intuitive for employees to access the information they need.
-However, the default website used by the agent currently only covers US
-travel destinations. You can replace the default website with your own
-knowledge source.
+Un **agente creado a partir de la plantilla Safe Travels** es un agente
+de empresa a empleado (B2E) diseñado para brindar **asistencia de
+viaje** a los colaboradores de una compañía. Este agente ayuda a
+garantizar que los empleados estén bien preparados e informados para su
+próximo viaje de trabajo. Utiliza procesamiento de lenguaje natural para
+ofrecer una interfaz conversacional, lo que facilita e intuitivo el
+acceso a la información necesaria. Sin embargo, el sitio web
+predeterminado utilizado por el agente actualmente solo cubre destinos
+de viaje en EE. UU. Usted puede reemplazar el sitio web predeterminado
+con su propia fuente de conocimientos.
 
-In this lab, you will create an agent from the **Safe Travels
-template** and enhance it in Lab 05.
+En este laboratorio, creará un agente a partir de la **plantilla Safe
+Travels** y lo mejorará en el laboratorio 05.
 
-## Exercise 0 - Create Security Group in Entra ID and Configure Copilot Studio Authors
+## Ejercicio 0 - Crear un Grupo de Seguridad en Entra ID y configurar los autores de Copilot Studio
 
-This is a prerequisite task in order to help us to publish and work
-seamlessly with the agents in Copilot Studio throughout this course.
+Esta es una tarea de prerrequisito para ayudarnos a publicar y trabajar
+de manera fluida con los agentes en Copilot Studio a lo largo de este
+curso.
 
-1.  Navigate to the Azure portal at
-    +++https://portal.azure.com/+++ and login with your tenant
-    credentials present in the **Resources** tab if prompted.
+1.  Navegue al portal de Azure en +++<https://portal.azure.com/+++> e
+    inicie sesión con las credenciales de su tenant que se encuentran en
+    la pestaña **Resources**.
 
-    ![A screenshot of a computer login AI-generated content may be
-    incorrect.](./media/image1.jpeg)
-    
-    ![A screenshot of a computer login AI-generated content may be
-    incorrect.](./media/image2.jpeg)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image3.png)
-    
-2.  Select **Next** in the Keep your account secure window and follow
-    the **prompts**.
+![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image1.jpeg)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image2.jpeg)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image3.png)
+
+2.  Seleccione **Next** en la ventana "Keep your account secure"
+    (Mantenga su cuenta segura) y siga las **instrucciones**.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-3.  Download the Authenticator app in your phone if you do not have it
-    already.
+3.  Descargue la aplicación Authenticator en su teléfono si aún no la
+    tiene instalada.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image5.png)
 
-4.  Follow the prompts and complete the setup.
+4.  Siga las instrucciones y complete la configuración.
 
-    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image7.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image7.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-5.  In the Azure welcome screen, select **Get Started**.
+5.  En la pantalla de bienvenida de Azure, seleccione **Get Started**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-6.  Search for and select +++Microsoft EntraID+++.
+6.  Busque y seleccione +++Microsoft EntraID+++.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-7.  From the left pane, select **Manage** -\> **Groups**.
+7.  En el panel izquierdo, seleccione **Manage** -\> **Groups**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-8.  Select **New group** to create a new security group.
+8.  Seleccione **New group** para crear un nuevo grupo de seguridad.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-9.  Enter the below details
+9.  Ingrese los siguientes detalles:
 
-    - Group type – Select **Security**
+    - Group type – Seleccione **Security**
 
-    - Group name – Enter +++**copilotagentsecurity**+++
+    - Group name Enter – +++**copilotagentsecurity**+++
 
     - Microsoft Entra roles can be assigned to the group –
-      Select **Yes** (If this option is not visible, ignore this step)
+      Seleccione **Yes** (Si esta opción no está visible, ignore este
+      paso)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-10. Select **No owners selected**, select the **MOD Administrator** from
-    the **Add owners** page and click on **Select**.
+10. Seleccione **No owners selected**, elija el **MOD Administrator** en
+    la página **Add owners** y haga clic en **Select**.
 
-    ![A screenshot of a group AI-generated content may be
+![A screenshot of a group AI-generated content may be
 incorrect.](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-11. Similarly, select **No members selected**, and add the **MOD
-    Administrator** from the list and click on **Select**.
+11. De manera similar, seleccione **No members selected**, y agregue
+    al **MOD Administrator** de la lista y haga clic en **Select**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-12. Select **No roles selected**. If you **do not** see this **option**,
-    ignore this and the next step.
+12. Seleccione **No roles selected**. Si **no ve** esta **opción**,
+    ignore este paso y el siguiente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-13. Search for and select +++**Global admin**+++ and select **Select**.
+13. Busque y seleccione +++**Global admin**+++ y seleccione **Select**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image19.png)
 
-14. Select **Create** once all the details are added and
-    select **Yes** in the confirmation dialog.
+14. Seleccione **Create** una vez que se hayan agregado todos los
+    detalles y elija **Yes** en el cuadro de diálogo de confirmación.
 
-    ![A screenshot of a group AI-generated content may be
+![A screenshot of a group AI-generated content may be
 incorrect.](./media/image20.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-15. Ensure that you get a **success** message.
+15. Asegúrese de recibir un mensaje de **éxito**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-16. Select Contoso|Groups from the top left.
+16. Seleccione Contoso|Groups en la parte superior izquierda.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-17. Select **Properties** under **Manage** from the left pane.
+17. Seleccione **Properties** bajo la sección **Manage** en el panel
+    izquierdo.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-18. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
+18. Cambie a **Yes** en la opción “**can manage access to all Azure
+    subscriptions and management groups in this tenant**”  y luego haga
+    clic en **Save**.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
 
-19. Select **Enabled** under Security defaults option and click on **Save**.
+19. Ahora, seleccione **Roles and administrators** bajo la
+    sección **Manage** en el panel izquierdo.
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image77.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
 
-20. Select **Save** in the Contoso|Properties page.
+20. Busque +++privileged role admin+++ y haga clic en el nombre del
+    rol **Privileged Role Administrator** (**no seleccione la casilla de
+    verificación**, haga clic directamente sobre el nombre).
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image78.png)
-
-19. Now, select **Roles and administrators** under **Manage** from the
-    left pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image79.png)
-
-20. Search for +++privileged role admin+++ and click on the **Privileged
-    Role Administrator** role (**Do not select the checkbox**, click on
-    its name).
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-21. Select **+ Add assignments**.
+21. Seleccione **+ Add assignments**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-22. Select **No members selected**.
+22. Seleccione **No members selected**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-23. Select the **MOD Administrator** id and select **Next**.
+23. Seleccione el **ID de** **MOD Admin** y haga clic en **Next**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-24. Select **Assign**.
+24. Seleccione **Assign**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-25. Ensure that the role assignment is successful.
+25. Asegúrese de que la asignación del rol se haya realizado
+    correctamente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-26. From a new tab, navigate to
-    +++https://admin.powerplatform.microsoft.com/+++.
-    Select **Manage** from the left pane and then select the **Tenant
-    Settings** option.
+26. Desde una nueva pestaña, navegue a
+    +++<https://admin.powerplatform.microsoft.com/+++>. Seleccione
+    **Manage** en el panel izquierdo y luego seleccione la opción
+    **Tenant Settings**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-27. Select **Copilot Studio Authors** from the list available.
+27. Seleccione **Copilot Studio Authors** de la lista disponible.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-28. Click on the **Edit** icon to edit the settings.
+28. Haga clic en el icono **Edit** para modificar la configuración.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-29. Search for and select the **+++copilotagentsecurity+++** group that
-    you created earlier.
+29. Busque y seleccione el grupo **+++copilotagentsecurity+++** que creó
+    anteriormente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-30. Select **Save** to save the settings.
+30. Seleccione **Save** para salvar la configuración.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-## Exercise 1: Create Safe Travels agent from template
+## Ejercicio 1: Crear el agente "Safe Travels" a partir de una plantilla
 
-In this exercise, you will create the agent in Copilot Studio using the
-Safe Travels agent template.
+En este ejercicio, creará el agente en Copilot Studio utilizando la
+plantilla de agente de "Safe Travels".
 
-1.  From a browser, login to
-    +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and
-    click **Start free trial**.
+1.  Desde un navegador, inicie sesión en
+    +++[https://copilotstudio.microsoft.com+++](https://copilotstudio.microsoft.com+++/).
+    Se abrirá la página "Start free trial". Seleccione su país y haga
+    clic en **Start free trial**.
 
-    ![](./media/image39.png)
+![](./media/image39.png)
 
-2.  Select the **Dev One** environment.
+2.  Seleccione el entorno **Dev One**.
 
-    ![](./media/image40.png)
+> ![](./media/image40.png)
+>
+> \[!Alerta\] **Importante**: Si Copilot Studio no muestra la opción
+> para seleccionar el **Environment** como se ve en la siguiente captura
+> de pantalla, siga los pasos que se indican a continuación.
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image41.png)
+>
+> Abra +++<https://admin.powerplatform.microsoft.com/+++>.
+> Seleccione **Manage** -\> **Environments -\> Dev One** y seleccione el
+> valor de **Environment ID**. ![A screenshot of a computer AI-generated
+> content may be incorrect.](./media/image42.png)
+>
+> Regrese a la pestaña de Copilot Studio y abra
+> +++<https://copilotstudio.microsoft.com/environments/>**\<
+> EnvironmentID \>**+++ (Reemplazando **\< EnvironmentID \>** con el
+> valor obtenido anteriormente)
 
-    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below >screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
-    >
-    >Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -\> **Environments -\> Dev One** and >select the value of the **Environment ID**. ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
+3.  Seleccione **Skip** en la pantalla de bienvenida.
 
-    >Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**\< EnvironmentID \>**+++ (Replacing **\< EnvironmentID \>** with the value fetched above)
-
-3.  Select Skip in the Welcome screen.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-4.  Select **Agents** from the left pane and then select the **Safe
-    Travels** template under **Start with an agent template**.
+4.  Seleccione **Agents** en el panel izquierdo y luego elija la
+    plantilla **Safe Travels** bajo la sección **Start with an agent
+    template**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+5.  La plantilla Safe Travels crea un nuevo agente diseñado para brindar
+    asistencia de viaje a los empleados de una empresa. 
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+6.  Explore la página de configuración. En la sección **Knowledge**,
+    podrá observar que el sitio web **US Travel Website** ya ha sido
+    agregado como fuente de conocimiento. Es posible editarlo si es
+    necesario; en este caso, utilizaremos el mismo sitio web.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+7.  Seleccione **Create** para generar el agente "Safe Travels". No
+    realizaremos cambios en este punto y utilizaremos la plantilla tal
+    como está. En cualquier momento, el agente puede ser actualizado
+    según los requisitos del usuario.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+8.  El **agente** se **crea** y se abre automáticamente, mostrando la
+    página de **Overview**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and
-    hit **Send**.
+9.  En el panel de prueba, escriba +++How to apply for passport?+++ y
+    presione **Send**.
 
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
+El panel de prueba se abre de forma predeterminada. Si no es así, haga
+clic en el icono Test en la parte superior derecha.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+10. Podrá observar que el agente proporciona información sobre cómo
+    solicitar el pasaporte basándose en su fuente de conocimiento.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image50.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## Ejercicio 2: Publicar el agente en Teams y Microsoft 365 Copilot
 
 In this exercise, you will **publish** the agent created in Copilot
 Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+En este ejercicio, **publicará** el agente creado en Copilot Studio en
+los canales de **Microsoft Teams** y **Microsoft 365 Copilot**.
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+1.  Abra **MS Teams** +++<https://teams.microsoft.com/v2/+++> desde un
+    navegador e **inicie sesión** utilizando las credenciales de su
+    tenant desde la pestaña **Resources**.
 
-1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a
-    browser and **login** using your tenant credentials from
-    the **Resources** tab if prompted.
+2.  De regreso en Copilot Studio, seleccione **Publish** en la parte
+    superior derecha de la página del agente.
 
-2.  Back in the Copilot Studio, select **Publish** from the top right of
-    the agent page.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-3.  Check the **Force newest version** checkbox and then
-    select **Publish** in the confirmation dialog.
+3.  Marque la casilla **Force newest version** y luego seleccione
+    **Publish** en el cuadro de diálogo de confirmación.
 
-    ![](./media/image52.png)
-    
-    ![](./media/image53.png)
+![](./media/image52.png)
 
-4.  Select **Channels** from the top navigation bar.
+![](./media/image53.png)
 
-    ![A screenshot of a computer AI-generated content may be
+4.  Seleccione **Channels** en la barra de navegación superior.
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-5.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+5.  Seleccione **Teams and Microsoft 365 Copilot** de la lista de
+    canales disponibles.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-6.  Select **Add channel**.
+6.  Seleccione **Add channel**.
 
-    ![](./media/image56.png)
+![](./media/image56.png)
 
-7.  Click on the **See agent in Teams** option add the agent to the
-    Teams.
+7.  Haga clic en la opción **See agent in Teams** para añadir el agente
+    a Teams.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in
-    the **This site is trying to open Microsoft Teams** pop up and then
-    select **Use the Web App instead** option.
+8.  Esto abrirá el agente en Microsoft Teams. Seleccione **Cancel** en
+    la ventana emergente **This site is trying to open Microsoft
+    Teams** y luego elija la opción **Use the Web App instead**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-9.  Select **Add** to add the agent.
+9.  Seleccione **Add** para añadir el agente.
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image59.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image60.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-10. Once added, you will get an option to open the agent.
-    Select **Open**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-    ![A screenshot of a chat AI-generated content may be
+10. Una vez agregado, verá una opción para abrir el agente. Seleccione
+    **Open**.
+
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Test the agent from Teams.
+11. Pruebe el agente desde Teams.
 
-    ![](./media/image62.png)
+![](./media/image62.png)
 
-12. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+12. De regreso en Copilot Studio, cierre la ventana del canal de Teams
+    and Microsoft 365 Copilot.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-## Exercise 3 – Test the existing Safe Travels agent
+## Ejercicio 3: Probar el agente "Safe Travels" existente
 
-In this exercise, we will test the **Safe Travels** agent to see how it
-responds when asked about travel approval.
+En este ejercicio, probaremos el agente "**Safe Travels**" para observar
+cómo responde cuando se le pregunta sobre la aprobación de viajes.
 
-1.  Back in the Copilot Studio -\> Safe Travels agent, select
-    the **Test** icon to test the agent.
+1.  De regreso en Copilot Studio -\> agente Safe Travels, seleccione el
+    icono **Test** para probar el agente.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-2.  Enter +++Need travel approval+++ in the Test window and click
-    on **Enter**.
+2.  Escriba +++Need travel approval+++ en la ventana de prueba (test
+    window) y presione **Enter**.
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image65.png)
 
-3.  You can see that the agent responds with a generalized instruction
-    set to be followed to get the travel approval.
+3.  Podrá observar que el agente responde con un conjunto de
+    instrucciones generales que deben seguirse para obtener la
+    aprobación del viaje.
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image66.png)
 
-## Exercise 4 – Enhance the agent with company specific Knowledge assets
+## Ejercicio 4: Mejorar el agente con activos de conocimiento específicos de la empresa
 
-In this exercise, we will add knowledge asset - **Travel
-Policy** specific to Contoso.
+En este ejercicio, agregaremos un activo de conocimiento - **Travel
+Policy** específica de Contoso.
 
-1.  From the Overview page of the agent, scroll down and select **+ Add
-    knowledge**
+1.  Desde la página de Overview del agente, desplácese hacia abajo y
+    seleccione **+ Add knowledge.**
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-2.  Click on **select to browse** option.
+2.  Haga clic en la opción **select to browse**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-3.  From **C:\Labfiles\Lab Files** folder, select **Travel
-    Policy.docx** and click **Open**.
+3.  Desde la carpeta **C:\Labfiles\Lab Files**, seleccione **Travel
+    Policy.docx** y haga clic en **Open**.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-4.  Click **Add to agent** to the add the file.
+4.  Haga clic en **Add to agent** para añadir el archivo.
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image70.png)
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image71.png)
 
-5.  Ensure that the file is added. Wait till the status changes
-    from **In progress** to **Ready**. You can continue with the next
-    step while it is changing to the Ready state if it takes more than
-    few minutes.
+5.  Asegúrese de que el archivo se haya agregado correctamente. Espere
+    hasta que el estado cambie de **In progress** to **Ready**. Puede
+    continuar con el siguiente paso si el cambio al estado "Ready"
+    demora más de unos minutos.
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image73.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image73.png)
 
-6.  Now, test the agent with the same question to see that the agent
-    responds with the company specific policies from the knowledge asset
-    added.
+6.  Ahora, pruebe el agente con la misma pregunta para observar que este
+    responde con las políticas específicas de la empresa, provenientes
+    del activo de conocimiento que acaba de agregar.
 
-## Summary
+## Resumen
 
-In this lab, you created a **Business-to-Employee (B2E) travel
-assistance** agent by using the **Safe Travels agent template** in
-Microsoft Copilot Studio. You explored how agent templates provide a
-quick starting point by preconfiguring conversational capabilities and
-knowledge sources, while still allowing for future customization to meet
-organizational and legal requirements. Using the built-in **US travel
-website** as a **knowledge source**, you tested the agent’s ability to
-answer employee travel-related questions through natural language
-interactions. Finally, you **published** the agent to **Microsoft Teams
-and Microsoft 365 Copilot**, validated its availability in Teams, and
-confirmed that employees can access and interact with the Safe Travels
-agent directly within their everyday collaboration tools.
+En este laboratorio, ha creado un agente de **asistencia de viajes de
+negocio a empleado (B2E)** utilizando la **plantilla de agente "Safe
+Travels"** en Microsoft Copilot Studio. Exploró cómo las plantillas de
+agentes proporcionan un punto de partida rápido al preconfigurar
+capacidades conversacionales y fuentes de conocimiento, permitiendo al
+mismo tiempo personalizaciones futuras para cumplir con los requisitos
+organizacionales y legales. Utilizando el **sitio web de viajes de EE.
+UU.** integrado como **fuente de conocimiento**, probó la capacidad del
+agente para responder preguntas de los empleados relacionadas con viajes
+mediante interacciones en lenguaje natural. Finalmente, publicó el
+agente en **Microsoft Teams y Microsoft 365 Copilot**, validó su
+disponibilidad en Teams y confirmó que los empleados pueden acceder e
+interactuar con el agente "Safe Travels" directamente dentro de sus
+herramientas de colaboración cotidianas.
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

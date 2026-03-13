@@ -1,704 +1,756 @@
-# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
+# Laboratorio - Transformando el agente de contratación en una arquitectura multiagente escalable
 
-In the earlier lab, you built your main Hiring Agent giving you a solid
-foundation for managing recruitment workflows. But one agent can only do
-so much.
+En el laboratorio anterior, construyó su agente de contratación
+principal, lo que le proporcionó una base sólida para gestionar los
+flujos de trabajo de reclutamiento. Pero un solo agente tiene sus
+límites.
 
-Your assignment, should you choose to accept it, is **Operation
-Symphony** - transforming your single agent into a **multi-agent
-system**: an orchestrated team of specialized agents that work together
-to handle complex hiring challenges. Think of it as upgrading from a
-solo operator to commanding a specialized task force.
+Su misión, si decide aceptarla, es la **Operación Sinfonía**:
+transformar su agente individual en un **sistema multiagente**; un
+equipo orquestado de agentes especializados que trabajan juntos para
+resolver desafíos de contratación complejos. Piense en ello como pasar
+de ser un operador solitario a comandar un equipo de fuerzas especiales.
 
-Like a symphony orchestra where each musician plays their part in
-perfect harmony, you'll add two critical specialists to your existing
-Hiring Agent: an Application Intake Agent to process resumes
-automatically, and an Interview Prep Agent to create comprehensive
-interview materials. These agents will work together seamlessly under
-your main orchestrator.
+Al igual que una orquesta sinfónica donde cada músico toca su parte en
+perfecta armonía, añadirá dos especialistas críticos a su agente de
+contratación actual: un Application Intake Agent para procesar
+currículums automáticamente y un Interview Prep Agent para crear
+materiales de entrevista detallados. Estos agentes trabajarán en
+conjunto sin interrupciones bajo la dirección de su orquestador
+principal.
 
-After creating multi agents, you'll transform your agents from waiting
-for human input to proactively responding to external events and taking
-intelligent action without supervision.
+Tras crear los multiagentes, transformará sus agentes para que dejen de
+esperar la intervención humana y comiencen a responder proactivamente a
+eventos externos, tomando acciones inteligentes sin supervisión.
 
-Think of it as upgrading from agents that *answer questions* to agents
-that *anticipate needs* and *act independently*. Through event triggers
-and automated workflows, your Hiring Agent will detect incoming resume
-emails, process attachments automatically, store data in Dataverse, and
-notify your HR recruitment team via Microsoft Teams - all while you
-focus on higher-value tasks.
+Piense en ello como una actualización: de agentes que responden
+preguntas a agentes que anticipan necesidades y actúan de forma
+independiente. Mediante disparadores de eventos y flujos de trabajo
+automatizados, su Agente de Contratación detectará correos electrónicos
+con currículums entrantes, procesará los adjuntos automáticamente,
+almacenará los datos en Dataverse y notificará a su equipo de
+reclutamiento de RR.HH. a través de Microsoft Teams; todo esto mientras
+usted se concentra en tareas de mayor valor.
 
-## Objectives
+## Objetivos
 
-In this mission, you'll learn:
+En esta misión, aprenderá:
 
--    When to use **child agents** vs **connected agents**
+1.  Cuándo usar agentes hijos (**child agents**) frente a **agentes**
+    **conectados.**
 
--    How to design **multi-agent architectures** that scale
+2.  Cómo diseñar **arquitecturas multiagente** que sean escalables.
 
--    Creating **child agents** for focused tasks
+3.  Cómo crear **agentes hijos** para tareas específicas.
 
--    Establishing **communication patterns** between agents
+4.  Cómo establecer **patrones de comunicación** entre agentes.
 
--    Building the Application Intake Agent and Interview Prep Agent
+5.  La construcción del Application Intake Agent y del Interview Prep
+    Agent.
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+6.  Cómo los disparadores de eventos permiten un comportamiento autónomo
+    del agente sin interacción del usuario.
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+7.  Las diferencias entre agentes interactivos y autónomos en Copilot
+    Studio.
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+8.  Cómo crear disparadores de eventos que procesen automáticamente
+    archivos adjuntos de correo electrónico y carguen archivos en
+    Dataverse.
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+9.  Cómo construir flujos de agentes que publiquen Adaptive Cards en
+    canales de Teams para notificaciones.
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+10. Cómo pasar datos entre disparadores de eventos y flujos de agentes
+    para una automatización de extremo a extremo.
 
-## Child agent: Application Intake Agent
+## Agente hijo: Application Intake Agent
 
-Let's start building our multi-agent hiring system. Our first specialist
-will be the **Application Intake Agent** - a child agent responsible for
-processing incoming resumes and candidate information.
+Comencemos a construir nuestro sistema de contratación multiagente.
+Nuestro primer especialista será el **Application Intake Agent**, un
+agente hijo responsable de procesar los currículums entrantes y la
+información de los candidatos.
 
 ![](./media/image1.png)
 
-**Application Intake Agent responsibilities**
+**Responsabilidades del Application Intake Agent**
 
-- **Parse resume content** from PDFs provided via interactive chat (In a
-  future mission you'll learn how to process resumes autonomously).
+- **Analizar el contenido de currículums** a partir de PDFs
+  proporcionados a través del chat interactivo (en una misión futura
+  aprenderá a procesarlos de forma autónoma).
 
-- **Extract structured data** (name, skills, experience, education)
+- **Extraer datos estructurados** (nombre, habilidades, experiencia,
+  educación)
 
-- **Match candidates to open roles** based on qualifications and cover
-  letter
+- **Vincular candidatos con roles vacantes** basándose en sus
+  cualificaciones y carta de presentación
 
-- **Store candidate information** in Dataverse for later processing
+- **Almacenar la información del candidato** en Dataverse para su
+  procesamiento posterior
 
-- **Deduplicate applications** to avoid creating the same candidate
-  twice, match to existing records using the email address extracted
-  from the resume.
+- **Deduplicar solicitudes** para evitar crear el mismo candidato dos
+  veces, comparando con registros existentes mediante la dirección de
+  correo electrónico extraída del currículum
 
-**Why this should be a child agent**
+**Por qué debería ser un agente hijo (child agent)**
 
-The Application Intake Agent fits perfectly as a child agent because:
+El Application Intake Agent encaja perfectamente como un agente hijo
+porque:
 
-- It's specialized for document processing and data extraction
+- Está diseñado específicamente para el procesamiento de documentos y la
+  extracción de datos
 
-- It doesn't need separate publishing
+- No requiere una publicación por separado, lo que facilita el control
+  de versiones
 
-- It's part of our overall hiring solution managed by the same team
+- Forma parte de nuestra solución de contratación global gestionada por
+  el mismo equipo
 
-- It focuses on a specific trigger (new resume received) and is invoked
-  from the Hiring Agent.
+- Se centra en un desencadenador específico (recepción de un nuevo
+  currículum) y es invocado desde el Hiring Agent (Agente de
+  Contratación).
 
-## Connected agent: Interview Prep Agent
+## Agente conectado: Interview Prep Agent
 
-Our second specialist will be the **Interview Prep Agent** - a connected
-agent that helps create comprehensive interview materials and evaluates
-candidate responses.
+Nuestro segundo especialista será el **Interview Prep Agent**, un agente
+conectado que ayuda a crear materiales de entrevista exhaustivos y
+evalúa las respuestas de los candidatos.
 
-**Interview Prep Agent responsibilities**
+**Responsabilidades del Interview Prep Agent**
 
-- **Create interview packs** with company information, role
-  requirements, and evaluation criteria
+- **Crear paquetes de entrevista** con información de la empresa,
+  requisitos del puesto y criterios de evaluación
 
-- **Generate interview questions** tailored to specific roles and
-  candidate backgrounds
+- **Generar preguntas de entrevista** personalizadas para roles
+  específicos y antecedentes de los candidatos
 
-- **Answer general questions** about the job roles and applications for
-  stakeholder communication
+- **Responder preguntas generales** sobre los roles de trabajo y las
+  solicitudes para la comunicación con los interesados (stakeholders).
 
-**Why this should be a connected agent**
+**¿Por qué debería ser un agente conectado (connected agent)?**
 
-The Interview Prep Agent works better as a connected agent because:
+El Interview Prep Agent funciona mejor como un agente conectado porque:
 
-- The talent acquisition team might want to use it independently across
-  multiple hiring processes
+- El equipo de adquisición de talento podría querer usarlo de forma
+  independiente en múltiples procesos de contratación
 
-- It needs its own knowledge base of interview best practices and
-  evaluation criteria
+- Necesita su propia base de conocimientos sobre mejores prácticas de
+  entrevista y criterios de evaluación
 
-- Different hiring managers might want to customize its behavior for
-  their teams
+- Diferentes gerentes de contratación podrían querer personalizar su
+  comportamiento para sus equipos específicos
 
-- It could be reused for internal positions, not just external hiring
+- Podría reutilizarse para puestos internos, no solo para contrataciones
+  externas
 
-## Exercise 1 - Adding the Application Intake Agent
+## Ejercicio 1: Añadir el Application Intake Agent
 
-Let's add our first child agent to your existing Hiring Agent.
+Vamos a añadir nuestro primer agente hijo a su Agente de Contratación
+(Hiring agent) existente.
 
-### Task 1 - Solution setup
+### Tarea 1: Configuración de la solución
 
-1.  Login to the Copilot Studio at +++https://copilotstudio.microsoft.com+++ if not done already. Ensure that the environment **Dev One** is selected in the top right **Environment Picker**.
-    
-2.  Inside Copilot Studio, select the ellipsis (...) below Tools in the left hand navigation.
+1.  Dentro de Copilot Studio, seleccione los puntos suspensivos (...)
+    debajo de Tools en la navegación de la izquierda.
 
-3.  Select **Solutions**.
+2.  Seleccione **Solutions**.
 
-    ![](./media/image2.png)
+> ![](./media/image2.png)
 
-4.  Locate your **Operative** solution, select the **ellipsis
-    (...)** next to it, and choose **Set preferred solution**.
-    Select **Apply** in the dialogue box that pops up. This will ensure
-    that all your work will be added to this solution.
+3.  Localice su solución **Operative**, seleccione los puntos
+    suspensivos (**...**) junto a ella y elija **Set preferred
+    solution**. Seleccione **Apply** en el cuadro de diálogo que
+    aparezca. Esto asegurará que todo su trabajo se agregue a esta
+    solución.
 
-    ![](./media/image3.png)
+> ![](./media/image3.png)
 
-5.  Select Apply in the Set your preferred solution dialog box.
+4.  Seleccione Apply en el cuadro de diálogo Set your preferred
+    solution.
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-### Task 2 - Configure your Hiring Agent instructions
+### Tarea 2 - Configurar las instrucciones de su Agente de Contratación
 
-1.  From the Copilot Studio Agents list, open the **Hiring Agent**.
+1.  **Navegue** a Copilot Studio. Asegúrese de que su entorno esté
+    seleccionado en el **Environment Picker** en la parte superior
+    derecha.
 
-2.  Select **Edit** in the **Instructions** section of
-    the **Overview** tab of the agent.
+2.  Abra el **Hiring Agent** (Agente de Contratación).
 
-    ![](./media/image5.png)
+3.  Seleccione **Edit** en la sección **Instructions** de la pestaña
+    **Overview** del agente.
 
-3.  Copy and paste the following instructions in the instructions input area.
+![](./media/image5.png)
 
-    +++You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.+++
+4.  Copie y pegue las siguientes instrucciones en el campo de entrada de
+    instrucciones.
 
-4.  Select **Save**.
+**You are the central orchestrator for the hiring process. You
+coordinate activities, provide summaries, and delegate work to
+specialized agents.**
 
-    ![](./media/image6.png)
+5.  Seleccione **Save**.
 
-5.  Select the **Settings** button in the top right of the screen.
+> ![](./media/image6.png)
 
-    ![](./media/image7.png)
+6.  Seleccione el botón **Settings** en la parte superior derecha de la
+    pantalla.
 
-6.  Review the page and ensure the following settings are applied and
-    then select **Save**.
+> ![](./media/image7.png)
 
-    - Use generative AI orchestration for your agent's responses - **Yes**
-    - Deep Reasoning - **Off**
-    - Let other agents connect to and use this one - **On**
-    - Continue using retired models - **Off**
-    - Content Moderation - **Moderate**
-    - Collect user reactions to agent messages - **On**
-    - Use general knowledge - **Off**
-    - Use information from the Web - **Off**
-    - File uploads - **On**
-    - Code Interpreter - **Off**
+7.  Revise la página, asegúrese de que se apliquen las siguientes
+    configuraciones y luego seleccione **Save**.
 
-    ![](./media/image8.png)
+[TABLE]
 
-    ![](./media/image9.png)
+> ![](./media/image8.png)
+>
+> ![](./media/image9.png)
+>
+> ![](./media/image10.png)
+>
+> ![](./media/image11.png)
 
-    ![](./media/image10.png)
+8.  Haga clic en la **X** en la esquina superior derecha para cerrar el
+    menú de configuración.
 
-    ![](./media/image11.png)
+> ![](./media/image12.png)
 
-7.  Once the changes are saved, click the **X** in the upper right hand corner to close out of the
-    settings menu
+### Tarea 3: Añadir el agente hijo Application Intake
 
-     ![](./media/image12.png)
+En esta tarea, añadirá un agente hijo al Agente de Contratación (Hiring
+Agent).
 
-### Task 3 - Add the Application Intake child agent
+1.  **Navegue** a la pestaña **Agents** dentro de su **Hiring Agent**
+    (aquí es donde añadirá los agentes especialistas) y seleccione
+    **Add**.
 
-In this task, you will add a child agent to the Hiring agent.
+![](./media/image13.png)
 
-1.  **Navigate** to the **Agents** tab within your Hiring Agent (this is
-    where you'll add specialist agents) and select **Add**.
+2.  Seleccione **New child agent**.
 
-    ![](./media/image13.png)
+![](./media/image14.png)
 
-2.  Select **New child agent**.
+3.  **Nombre** a su agente +++Application Intake Agent+++
 
-    ![](./media/image14.png)
+4.  Seleccione **The agent chooses** - Based on description en el menú
+    desplegable **When will this be used?**. Estas opciones son
+    similares a los desencadenadores que se pueden configurar para los
+    temas.
 
-3.  **Name** your agent +++Application Intake Agent+++
+5.  Establezca la descripción (**Description**) como - +++Processes
+    incoming resumes and stores candidates in the system+++
 
-4.  Select **The agent chooses - Based on description** in the **When
-    will this be used?** dropdown. These options are similar to the
-    triggers that can be configured for topics.
+![](./media/image15.png)
 
-5.  Set the **Description** to be - +++Processes incoming resumes and stores candidates in the system+++
+6.  Expanda **Advanced**, y establezca la prioridad (Priority) en 10000.
+    Esto asegurará que, más adelante, el Interview Agent se utilice para
+    responder preguntas generales antes que este. También se podría
+    establecer una condición aquí, como asegurarse de que haya al menos
+    un archivo adjunto.
 
-    ![](./media/image15.png)
+![](./media/image16.png)
 
-6.  Expand **Advanced**, and set the Priority to be 10000. This will
-    ensure that later the Interview Agent will be used to answer general
-    questions before this one. A condition could be set here as well
-    such as ensuring that there is at least one attachment.
+7.  Asegúrese de que el interruptor **Web Search** esté configurado
+    como **Disabled**. Esto se debe a que solo queremos utilizar la
+    información proporcionada por el agente principal. Seleccione
+    **Save.**
 
-    ![](./media/image89.png)
+![](./media/image17.png)
 
-7.  Ensure that the toggle **Web Search** is set to **Disabled**. This
-    is because we only want to use information provided by the parent
-    agent. Select **Save**
+### Tarea 4: Configurar el flujo del agente para la carga de currículums
 
-    ![](./media/image17.png)
+Los agentes no pueden realizar ninguna acción sin que se les
+proporcionen herramientas o temas (topics).
 
-### Task 4 - Configure Resume Upload agent flow
+Estamos utilizando **herramientas** de **Agent** **Flow** en lugar de
+Topics para el paso de carga de currículums porque este proceso de fondo
+(backend) de varios pasos requiere una ejecución determinista e
+integración con sistemas externos. Mientras que los Topics son ideales
+para guiar el diálogo conversacional, los Agent Flows proporcionan la
+automatización estructurada necesaria para manejar de manera confiable
+el procesamiento de archivos, la validación de datos y las
+actualizaciones de la base de datos (upserts: insertar nuevo o
+actualizar existente) sin depender de la interacción del usuario.
 
-Agents can't perform any actions without being given tools or topics.
+1.  Localice la sección **Tools** dentro de la página del Application
+    Intake Agent. 
 
-We're using **Agent Flow tools** rather than Topics for the *Upload
-Resume* step because this multi-step backend process requires
-deterministic execution and integration with external systems. While
-Topics are best for guiding the conversational dialog, Agent Flows
-provide the structured automation needed to reliably handle file
-processing, data validation, and database upserts (insert new or update
-existing) without depending on user interaction.
+> **Importante:** Esta no es la pestaña Tools del agente principal, sino
+> que se encuentra desplazándose hacia abajo, debajo de las
+> instrucciones del agente hijo.
 
-1.  Locate the **Tools** section inside the Application Intake Agent
-    page. 
+2.  Seleccione **+ Add**.
 
-    >[!Alert] **Important:** This isn't the Tools tab of the parent agent, but can be found if you scroll down underneath the child agent instructions.
+> ![](./media/image18.png)
 
-2.  Select **+ Add**.
+3.  Seleccione **+ New tool**.
 
-    ![](./media/image18.png)
+> ![](./media/image19.png)
 
-3.  Select **+ New tool**.
-
-    ![](./media/image19.png)
-
-4.  Select **Agent flow**. The Agent Flow designer will open, this is
-    where we will add the upload resume logic.  
-
+4.  Seleccione **Agent flow**. Se abrirá el diseñador de Agent Flow;
+    aquí es donde agregaremos la lógica para la carga del currículum.  
     ![](./media/image20.png)
 
-    >[!Alert] Important: If **+ New tool** option is not available and **Agent Flow** is directly available, then please select Agent flow.
-    >
-    >![](./media/image90.png)
+5.  Seleccione el nodo **When an agent calls the flow**, y
+    seleccione **+ Add an input**
 
-6.  Select the **When an agent calls the flow** node, and select **+ Add
-    an input**
+> ![](./media/image21.png)
 
-     ![](./media/image21.png)
+6.  Agregue **entradas** para cada uno de los parámetros enumerados en
+    la tabla siguiente. Seleccione el tipo de entrada (input type)
+    adecuado según se muestra en la tabla y asegúrese de agregar tanto
+    el nombre como la descripción. Es fundamental incluir la
+    descripción, ya que esto ayudará al agente a saber qué información
+    debe completar en cada entrada.
 
-7.  Add **inputs**. Select the appropriate input type as shown in the table
-    and be sure to add both the name and the description. It's important
-    to include the description because it will help the agent know what
-    to fill in the input.
+[TABLE]
 
-    | **Type**   |  **Name**  |  **Description**  |
-    |:----|:-------|:-----|
-    |  File  | +++Resume+++   |  +++The Resume PDF file+++  |
-    | Text   |  +++Message+++  |  +++Extract a cover letter style message from the context. The message must be less than 2000 characters.+++  |
-    | Text   | +++UserEmail+++   |  +++The email address that the Resume originated from. This will be the user uploading the resume in chat, or the from email address if received by email.+++  |
-    
-    ![](./media/image22.png)
+> ![](./media/image22.png)
 
-8.  Select the **+ icon** below the when an agent calls the flow node
-    and search for +++Dataverse add+++, then select the **Add a new
-    row** action in the **Microsoft Dataverse** section.
+7.  Seleccione el icono **+** debajo del nodo When an agent calls the
+    flow y busque +++Dataverse add+++, después, seleccione la acción
+    **Add a new row**  en la sección de **Microsoft Dataverse**.
 
-    ![](./media/image23.png)
+> ![](./media/image23.png)
+>
+> ![](./media/image24.png)
 
-    ![](./media/image24.png)
+**NOTA**
 
-    >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
-    add the action. Enter any **name** for the connection and click **Signin** and follow the prompts to
-    create that connection.
-    >
-    >![](./media/image91.png)
-    >
-    >![](./media/image92.png)
-    >
-    >If you face issues in creating connection due to popup blocker as in the screenshot below, please disable the popup blocker to proceed with the connection creation.
-    >
-    >![](./media/image93.png)
+Es posible que se le pida crear una nueva conexión a Dataverse después
+de añadir la acción. Introduzca cualquier nombre para la conexión y haga
+clic en Add para crear dicha conexión.
 
-8.  Name the node +++**Create Resume**+++, by selecting the 3 dot and
-    select **Rename**.  
+8.  Cambie el nombre del nodo a +++**Create Resume** ; para ello,
+    seleccione los 3 puntos (...) y seleccione **Rename**.  
 
-    ![](./media/image25.png)
+> ![](./media/image25.png)
 
-9.  Set the **Table name** to **Resumes**, then select **Show all**, to
-    show all the parameters.
+9.  Establezca el nombre de la tabla (**Table name**) como **Resumes**
+    (Currículums); después, seleccione **Show all** para ver todos los
+    parámetros.
 
-    ![](./media/image26.png)
+> ![](./media/image26.png)
 
-10. Set the following **properties**:
+10. Establezca las siguientes **propiedades**:
 
-    |  **Property**  | **How to Set**   | **Details / Expression**   |
-    |:----|:------|:-----|
-    |   **Resume Title** | Dynamic data (thunderbolt icon)   | **When an agent calls the flow → Resume name** If you don't see the Resume name, make sure you have configured the Resume parameter above as a data type.  |
-    |  Cover letter  | Expression (fx icon)   | +++if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])+++ Click on **Add** after the expression is entered.  |
-    |  **Source Email Address**  |Dynamic data (thunderbolt icon)   | **When an agent calls the flow → UserEmail**   |
-    |  **Upload Date**  | Expression (fx icon)   |  +++utcNow()+++ Click on **Add** after the expression is entered.  |
+[TABLE]
 
-    ![](./media/image27.png)
+> ![](./media/image27.png)
+>
+> ![](./media/image28.png)
+>
+> ![](./media/image29.png)
 
-    ![](./media/image28.png)
+11. Seleccione el icono **+** debajo del nodo **Create** **Resume**,
+    busque +++Dataverse upload+++ y seleccione la acción **Upload a file
+    or an image**.
 
-    ![](./media/image29.png)
+![](./media/image30.png)
 
-12. Select the **+ icon** below the Create Resume node, search
-    for +++Dataverse upload+++ and select the **Upload a file or an
-    image** action.
+12. Cambie el nombre del nodo a +++**Upload Resume File**+++.
 
-    ![](./media/image30.png)
+> ![](./media/image31.png)
 
-13. Name the node to +++**Upload Resume File**+++.
+13. Establezca las siguientes **propiedades**:
 
-    ![](./media/image31.png)
+[TABLE]
 
-14. Set the following **properties**:
+> ![](./media/image32.png)
 
-    |  **Property** |  **How to Set**  |  **Details**  |
-    |:--------|:---------|:---------|
-    | **Content name**   | Dynamic data (thunderbolt icon)   | When an agent calls the flow → Resume name   |
-    | **Table name**   |  Select  |  Resumes  |
-    |  **Row ID**  |  Dynamic data (thunderbolt icon)  | Create Resume → See more → Resume   |
-    |  **Column Name**  |   Select |  Resume PDF  |
-    | **Content**   |  Dynamic data (thunderbolt icon)  | When an agent calls the flow → Resume contentBytes   |
-    
+14. Seleccione el nodo **Respond to the agent node**, y, a continuación,
+    seleccione **+ Add an output**. Cree una salida con las propiedades
+    definidas en la tabla siguiente.
 
-    ![](./media/image32.png)
+> ![](./media/image33.png)
 
-16. Select the **Respond to the agent node**, and then select **+ Add an
-    output**. Create an output with the properties defined in the table
-    below.
+[TABLE]
 
-    ![](./media/image33.png)
+> ![](./media/image34.png)
 
-     | **Property**   |  **How to Set**  |  **Details**  |
-     |:-----|:--------|:--------|
-     |  **Type**  |  Select  |  Text  |
-     |  **Name**  |  Enter  | +++ResumeNumber+++   |
-     |  **Value**  |  Dynamic data (thunderbolt icon)  |  Create Resume → See More → Resume Number  |
-     |  **Description**  |  Enter  | +++The [ResumeNumber] of the Resume created+++   |
-    
-    ![](./media/image34.png)
+15. Seleccione **Save draft** en la parte superior derecha.
 
-18. Select **Save draft** on the top right
+> ![](./media/image35.png)
 
-    ![](./media/image35.png)
+16. Seleccione la pestaña **Overview**, seleccione **Edit** en el panel
+    de detalles (**Details**). Complete el nombre y la descripción como
+    se muestra a continuación y seleccione **Save.**
 
-19. Select the **Overview** tab, Select **Edit** on
-    the **Details** panel. Fill in the name and description as shown
-    below and select **Save**
+    1.  **Flow name**:+++Resume Upload+++
 
-    -  **Flow name**:+++Resume Upload+++
+    2.  **Description**:+++Uploads a Resume when instructed+++
 
-    -  **Description**:+++Uploads a Resume when instructed+++
+> ![](./media/image36.png)
 
-    ![](./media/image36.png)
+17. Seleccione la pestaña **Designer** nuevamente y
+    seleccione **Publish**.
 
-20. Select the **Designer** tab again and select **Publish**.
+> ![](./media/image37.png)
 
-    ![](./media/image37.png)
+### Tarea 5: Conectar el flujo a su agente
 
-### Task 5 - Connect the flow to your agent
+Ahora conectará el flujo publicado a su Application Intake Agent..
 
-Now you'll connect the published flow to your Application Intake Agent.
-
-1.  Navigate back to the **Hiring Agent** and select the **Agents** tab.
-    Open the **Application Intake Agent**, locate the **Tools** panel
-    and select **+Add**.  
+1.  Regrese al **Hiring Agent** y seleccione la pestaña **Agents**. Abra
+    el **Application Intake Agent**, localice el panel **Tools** y
+    seleccione **+Add**.  
     ![](./media/image38.png)
 
-2.  Select the **Flow** filter and select the **Resume Upload** flow.
+2.  Seleccione el filtro **Flow** y seleccione el flujo **Resume
+    Upload**.
 
-    ![](./media/image39.png)
+> ![](./media/image39.png)
 
-3.  Select **Add and configure**.
+3.  Seleccione **Add and configure**.
 
-    ![](./media/image40.png)
+> ![](./media/image40.png)
 
-4.  Set the following parameters for the **description** and **when the
-    tool should be used**.
+4.  Establezca los siguientes parámetros para la **descripción** y el
+    **momento en que debe utilizarse la herramienta**.
 
-    **Description** - +++Uploads a Resume when instructed. STRICT RULE: Only call this tool when referenced in the form "Resume Upload" and there are Attachments+++
-    
-    **Additional details** → **When this tool may be used** - only when referenced by topics or agents
-    
-    ![](./media/image41.png)
+[TABLE]
 
-    **Note:** This description tells the agent when it should call this tool. Notice the use of "strict rule" in the description. This gives a way to provide additional guardrails on when the tool should be used,  in this case, only if there are attachments and the context of the conversation is a resume upload. Choosing when this tool can be used is important as well. Since we are building a multi-agent system and we have a child agent, we want to be sure this tool is ONLY called in the child agent, not the main agent. Setting tha value to "only when referenced by topics or agents" ensure this.
+> ![](./media/image41.png)
+>
+> **Nota:** Esta descripción le indica al agente cuándo debe invocar
+> esta herramienta. Observe el uso de "strict rule" (regla estricta) en
+> la descripción; esto permite establecer salvaguardas adicionales sobre
+> el uso de la herramienta, en este caso, solo si hay archivos adjuntos
+> y el contexto de la conversación es la carga de un currículum. Elegir
+> cuándo se puede usar esta herramienta también es fundamental. Dado que
+> estamos construyendo un sistema multi-agente con un agente hijo,
+> queremos asegurarnos de que esta herramienta SOLO sea llamada por el
+> agente hijo y no por el principal. Configurar el valor en "only when
+> referenced by topics or agents" (solo cuando sea referenciado por
+> temas o agentes) garantiza este comportamiento.
 
-6.  Scroll down to the inputs section and select **Add Input** to add
-    the following inputs:
+5.  Desplácese hacia abajo hasta la sección de entradas inputs y
+    seleccione **Add Input** para agregar las siguientes:
 
-    Inputs → Add Input - **contentBytes**
+[TABLE]
 
-    Inputs → Add Input - name
+> ![](./media/image42.png)
 
-    ![](./media/image42.png)
+6.  Ahora debemos configurar las propiedades de las entradas.
+    Comenzaremos con la entrada **contentBytes**, que almacenará el
+    archivo real del currículum. Seleccione **Custom value** en el menú
+    desplegable **Fill using** junto a la entrada **contentBytes**. En
+    la propiedad **Value**, seleccione los **tres puntos** (**...**).
 
-8.  Now we need to set the properties of the inputs. We'll start with
-    the **contentBytes** input which will store the actual resume file.
-    Select **Custom value** from the **Fill using** dropdown next to
-    the **contentBytes** input. In the **Value** property, select
-    the **three dots (...)**.
+> ![](./media/image43.png)
 
-    ![](./media/image43.png)
+7.  Seleccione la pestaña **Formula**. Pegue la siguiente fórmula, la
+    cual extrae el archivo del chat, y haga clic en el botón **Insert**.
 
-9.  Select the **Formula** tab. Paste in the following formula which
-    extracts the file from the chat and click the **Insert** button.
++++First(System.Activity.Attachments).Content+++
 
-    +++First(System.Activity.Attachments).Content+++
+> ![](./media/image44.png)
 
-    ![](./media/image44.png)
+8.  Ahora configuraremos la entrada **name**, que almacenará el nombre
+    del archivo del currículum. Esto también se definirá de forma fija,
+    así que seleccione la opción **Custom value** en la columna **Fill
+    using**.
 
-10.  Now we'll configure the **name** input which will store the name of
-    the resume file. This will be hard coded as well so select
-    the **Custom value** option in the **Fill using** column.
+9.  Seleccione los **tres puntos** (**...**) en la columna **Value** y
+    pegue la siguiente fórmula, la cual extrae el nombre del archivo del
+    chat, y haga clic en el botón **Insert**.
 
-11. Select the **three dots (...)** in the **Value** column and paste in
-    the following formula which extracts the file name from the chat and
-    click the **Insert** button.
++++First(System.Activity.Attachments).Name+++
 
-    +++First(System.Activity.Attachments).Name+++
+> ![](./media/image45.png)
 
-    ![](./media/image45.png)
+10. Ahora configuraremos la entrada **Message**. Queremos que esta se
+    complete dinámicamente con IA, por lo que dejaremos la opción **fill
+    using** tal como está. Seleccione el botón **Customize** en la
+    columna **Value** para que podamos completar detalles adicionales
+    sobre cómo debe llenarse.
 
-11. Now we'll configure the **Message** input. We want to fill this one
-    dynamically with AI so we'll leave the fill using as-is. Select
-    the **Customize** button in the **Value** column so we can fill out
-    additional details for how this should be filled.
+![](./media/image46.png)
 
-    ![](./media/image46.png)
+11. Introduzca lo siguiente en el campo **Description** de la entrada.
+    Después, seleccione **Advanced**.
 
-12. Enter the following in the **Description** field for the input. Then
-    select **Advanced**.
+**Extract a cover letter style message from the context. Be sure to
+never prompt the user and create at least a minimal cover letter from
+the available context. STRICT RULE - the message must be less than 2000
+characters.**
 
-    +++Extract a cover letter style message from the context. Be sure to never prompt the user and create at least a minimal cover letter from the available context. STRICT RULE - the message must be less than 2000 characters.+++
+**NOTA**
 
-    **NOTE** Filling in the description for your dynamically filled inputs is a
-crucial step to ensure that your agent knows how to fill in the input
-correctly.
+Completar la descripción de las entradas que se llenan dinámicamente es
+un paso crucial para asegurar que el agente sepa cómo completar la
+entrada correctamente.
 
-    ![](./media/image47.png)
+> ![](./media/image47.png)
 
-13. Expand out the **Advanced** section to configure some additional
-    properties for this input. In the **How many reprompts** section,
-    select **Don't repeat**
+12. Despliegue la sección **Advanced** para configurar algunas
+    propiedades adicionales para esta entrada. En la sección **How many
+    reprompts**, seleccione **Don't repeat.**
 
-    ![](./media/image48.png)
+> ![](./media/image48.png)
 
-    **NOTE**
-    
-    This setting helps you customize your user experience so the agent
-    doesn't ask the same question multiple times if it can't identify the
-    data it needs.
+**NOTA**
 
-14. Scroll down to the **No valid entity found** section. Select
-    the **Set variable to value** option in the **Action if no entity
-    found** dropdown. Type +++Resume upload+++ in the **Default entity
-    value** input.
+Esta configuración le ayuda a personalizar la experiencia del usuario
+para que el agente no haga la misma pregunta varias veces si no puede
+identificar los datos que necesita.
 
-    ![](./media/image49.png)
+13. Desplácese hacia abajo hasta la sección **No valid entity found**.
+    Seleccione la opción **Set variable to value** en el menú
+    desplegable **Action if no entity found**. Escriba **+++Resume
+    upload+++** en el campo de entrada **Default entity value**.
 
-    **NOTE**
+> ![](./media/image49.png)
+>
+> **NOTA**
+>
+> Esta configuración nos permite definir un valor de respaldo fijo si el
+> agente no puede completar dinámicamente esta entrada de mensaje.
 
-    This setting lets us hard code a backup value if the agent is unable to dynamically fill this message input.
+14. Completaremos la entrada **UserEmail** seleccionando la opción
+    **Custom value** en la columna **Fill using** y seleccionaremos los
+    tres puntos (**...**) en la columna **Value**.
 
-15. We'll fill the **UserEmail** input by selecting the **Custom
-    value** option in the **Fill using** column and select the **three
-    dots (...)** in the **Value** column.
+> ![](./media/image50.png)
 
-    ![](./media/image50.png)
+15. Seleccione la pestaña **System** y busque **User**. Seleccione la
+    variable **User.Email** para obtener el correo electrónico de la
+    persona que está utilizando el agente.
 
-16. Select the **System** tab and search for **User**. Select
-    the **User.Email** variable to get the email of the person using the
-    agent
+> ![](./media/image51.png)
 
-    ![](./media/image51.png)
+16. Seleccione **Save**
 
-17. Select **Save**
+> ![](./media/image52.png)
 
-    ![](./media/image52.png)
+### Tarea 6: Definir instrucciones del agente
 
-### Task 6 - Define agent instructions
+En esta tarea, definirá las instrucciones del agente para el agente
+Application Intake.
 
-In this task, you will define the agent instructions for the Application
-Intake agent.
+1.  Vuelva al agente **Application Intake** seleccionando la pestaña
+    **Agents** y seleccionando **Application Intake Agent**.
 
-1.  Move back in to the **Application Intake Agent** by selecting
-    the **Agents** tab and selecting the **Application Intake Agent**.
+> ![](./media/image53.png)
 
-    ![](./media/image53.png)
+2.  En el campo **Instructions**, pegue la siguiente guía clara para su
+    agente secundario.
 
-2.  In the **Instructions** field, paste the following clear guidance
-    for your child agent.
+> You are tasked with managing incoming Resumes, Candidate information,
+> and creating Job Applications.
+>
+> Only use tools if the step exactly matches the defined process.
+> Otherwise, indicate you cannot help.
+>
+> Process for Resume Upload via Chat
+>
+> 1. Upload Resume
+>
+> - Trigger only if /System.Activity.Attachments contains exactly one
+> new resume.
+>
+> - If more than one file, instruct the user to upload one at a time and
+> stop.
+>
+> - Call /Upload Resume once. Never upload more than once for the same
+> message.
+>
+> 2. Post-Upload
+>
+> - Always output the \[ResumeNumber\] (R#####).
+>
+> ![](./media/image54.png)
 
-    ```
-    You are tasked with managing incoming Resumes, Candidate information, and creating Job Applications.  
-    Only use tools if the step exactly matches the defined process. Otherwise, indicate you cannot help.  
-    
-    Process for Resume Upload via Chat  
-     Upload Resume  
-      - Trigger only if /System.Activity.Attachments contains exactly one new resume.  
-      - If more than one file, instruct the user to upload one at a time and stop.  
-      - Call /Upload Resume once. Never upload more than once for the same message.  
-    
-     Post-Upload  
-      - Always output the [ResumeNumber] (R#####).
-    ```
-
-    ![](./media/image54.png)
-
-3.  Where the instructions include a forward slash (/), select the text following the / and select the resolved name. Do this for,
+3.  Cuando las instrucciones incluyan una barra diagonal (/), seleccione
+    el texto que sigue después de la / y seleccione el nombre resuelto.
+    Haga esto para,
 
     - System.Activity.Attachments (Variable)
 
-    - Resume Upload (Tool)
+    - Upload Resume (Tool)
 
-    >[!Note] **Note:** If you click on the System.Acticvity.Attachements in the
-    instructions, you will get the resolved name listed. You can select
-    it. After selecting, if there is any part of the previously existing
-    text available, please delete it.
-    
-    ![](./media/image55.png)
-    
-    ![](./media/image56.png)
+> Nota: Si hace clic en System.Activity.Attachments en las
+> instrucciones, obtendrá el nombre resuelto en la lista. Puede
+> seleccionarlo. Después de seleccionarlo, si queda alguna parte del
+> texto previamente existente, elimínela.
+>
+> ![](./media/image55.png)
+>
+> ![](./media/image56.png)
 
-4.  The instructions should now look like this.
+4.  Las instrucciones ahora deberían verse así.
 
-    ![](./media/image57.png)
+> ![](./media/image57.png)
 
-5.  Select **Save.**
+5.  Seleccione **Save.**
 
-    ![](./media/image58.png)
+> ![](./media/image58.png)
 
-### Task 7 - Test your Application Intake Agent
+### Tarea 7: Probar su agente Application Intake
 
-Now let's verify that our agent is working correctly by calling our
-child agent and following our instructions.
+Ahora verifique que su agente esté funcionando correctamente llamando a
+su agente secundario y siguiendo sus instrucciones.
 
-1.  **Toggle** the test panel open by selecting **Test**.
+1.  **Active** el panel de prueba seleccionando **Test**.
 
-    ![](./media/image59.png)
+> ![](./media/image59.png)
 
-2.  Select the Attachement icon, select the resume – AVERY EXAMPLE pdf from **C:\LabFiles\LabFiles**
-    and click **Open**.
+2.  Seleccione el icono Attachement, seleccione el curriculum – AVERY
+    EXAMPLE pdf y haga clic en **Open**.
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-3.  Give the message +++Process this resume+++ and hit **send**.
+3.  Escriba el mensaje +++Process these resumes+++ y presione
+    **enviar**.
 
-    ![](./media/image61.png)
+> ![](./media/image61.png)
 
-4.  The agent should then give a message similar to **The resume for
+4.  El agente debería mostrar un mensaje similar a **The resume for
     Avery Example has been successfully uploaded. The resume number is
     R1001.**
 
-    ![](./media/image62.png)
+> ![](./media/image62.png)
 
-5.  In the **Activity map**, you should see the **Application Intake
-    Agent** handling the resume upload.
+5.  En el **mapa de actividad**, debería ver que el **agente Application
+    Intake** está gestionando la carga del currículum.
 
-    ![](./media/image63.png)
+> ![](./media/image63.png)
 
-6.  If the app is not open already, navigate to
-    +++make.powerapps.com+++. Ensure the Dev One environment is selected
-    in the top right Environment Picker. Select **Apps** → Hiring Hub →
-    ellipsis(...) menu → **Play**  
+6.  Si la aplicación no está abierta, navegue a
+    +++make.powerapps.com+++. Asegúrese de que el entorno Dev One esté
+    seleccionado en el selector Environment en la esquina superior
+    derecha. Seleccione **Apps** → Hiring Hub → menú de puntos
+    suspensivos (...) → **Play**  
     ![](./media/image64.png)
 
-    **NOTE:** If the play button is greyed out it means you have not
-published your solution. Select **Solutions** → **Publish all
+**NOTA:** Si el botón Play aparece en gris, significa que no ha
+publicado su solución. Seleccione **Solutions** → **Publish all
 customizations**.
 
-7.  In the Power Apps – Hiring Hub app, navigate to **Resumes**, and
-    check that the resume file is uploaded and the cover letter is set
-    accordingly.
+7.  En la aplicación Power Apps – Hiring Hub, navegue a **Resumes** y
+    verifique que el archivo del currículum esté cargado y que la carta
+    de presentación esté configurada correctamente.
 
-    ![](./media/image65.png)
+> ![](./media/image65.png)
 
-## Exercise 2: Adding the Interview Prep connected agent
+## Ejercicio 2: Agregar el agente conectado Interview Prep
 
-Now let's create our connected agent for interview preparation and add
-it to your existing Hiring Agent.
+Ahora cree su agente conectado para la preparación de entrevistas y
+agréguelo a su Hiring Agent existente.
 
-### Task 1: Create the connected Interview Agent
+### Tarea 1: Crear el agente conectado Interview Agent
 
-1.  From the Copilot Studio, select the **Agents** tab in the left
-    navigation and select the **drop down** next to **+ Create blank
-    agent**, and select **Advanced create**.
+1.  Desde Copilot Studio, seleccione la pestaña **Agents** en la
+    navegación izquierda y seleccione el **menú desplegable** junto a
+    **+ Create blank agent**, y seleccione **Advanced create**.
 
-    ![](./media/image66.png)
+> ![](./media/image66.png)
 
-2.  Select the **Solution** as **Operative** and select **Confirm and
-    create**.
+2.  Seleccione la **Solution** **(solución)** como **Operative** y
+    seleccione **Confirm and create**.
 
-    ![](./media/image67.png)
+> ![](./media/image67.png)
 
-3.  Select **Edit** against the Details.
+3.  Seleccione **Edit** en la sección Details.
 
-    ![](./media/image68.png)
+> ![](./media/image68.png)
 
-4.  Provide the below details and select **Save**.
+4.  Proporcione los siguientes detalles y seleccione **Save**.
 
     - **Name**: +++Interview Agent+++
 
     - **Description**: +++Assists with the interview process.+++
 
-    ![](./media/image69.png)
+> ![](./media/image69.png)
 
-5.  Select **Edit** against **Instructions**, enter the below
-    instruction and select **Save**.
+5.  Seleccione **Edit** en la sección **Instructions**, ingrese la
+    siguiente instrucción y seleccione **Save**.
 
-    ```
-    You are the Interview Agent. You help interviewers and hiring managers prepare for interviews. You never contact candidates. 
-    Use Knowledge to help with interview preparation. 
-    
-    The only valid identifiers are:
-      - ResumeNumber (ppa_resumenumber)→ format R#####
-      - CandidateNumber (ppa_candidatenumber)→ format C#####
-      - ApplicationNumber (ppa_applicationnumber)→ format A#####
-      - JobRoleNumber (ppa_jobrolenumber)→ format J#####
-    
-    Examples you handle
-      - Give me a summary of ...
-      - Help me prepare to interview candidates for the Power Platform Developer role
-      - Create interview assistance for the candidates for Power Platform Developer
-      - Give targeted questions for Candidate Alex Johnson focusing on the criteria for the Job Application
-      
-    How to work:
-        You are expected to ask clarification questions if required information for queries is not provided
-        - If asked for interview help without providing a job role, ask for it
-        - If asking for interview questions, ask for the candidate and job role if not provided.
+> You are the Interview Agent. You help interviewers and hiring managers
+> prepare for interviews. You never contact candidates.
+>
+> Use Knowledge to help with interview preparation.
+>
+> The only valid identifiers are:
+>
+> - ResumeNumber (ppa_resumenumber)→ format R#####
+>
+> - CandidateNumber (ppa_candidatenumber)→ format C#####
+>
+> - ApplicationNumber (ppa_applicationnumber)→ format A#####
+>
+> - JobRoleNumber (ppa_jobrolenumber)→ format J#####
+>
+> Examples you handle
+>
+> - Give me a summary of ...
+>
+> - Help me prepare to interview candidates for the Power Platform
+> Developer role
+>
+> - Create interview assistance for the candidates for Power Platform
+> Developer
+>
+> - Give targeted questions for Candidate Alex Johnson focusing on the
+> criteria for the Job Application
+>
+> How to work:
+>
+> You are expected to ask clarification questions if required
+> information for queries is not provided
+>
+> - If asked for interview help without providing a job role, ask for it
+>
+> - If asking for interview questions, ask for the candidate and job
+> role if not provided.
+>
+> General behavior
+>
+> - Do not invent or guess facts
+>
+> - Be concise, professional, and evidence-based
+>
+> - Map strengths and risks to the highest-weight criteria
+>
+> - If data is missing (e.g., no resume), state what is missing and ask
+> for clarification
+>
+> - Never address or message a candidate
+>
+> ![](./media/image70.png)
 
-    General behavior
-    - Do not invent or guess facts
-    - Be concise, professional, and evidence-based
-    - Map strengths and risks to the highest-weight criteria
-    - If data is missing (e.g., no resume), state what is missing and ask for clarification
-    - Never address or message a candidate
-    ```
-    ![](./media/image70.png)
+6.  Asegúrese de que **Web Search** este **Disabled.**
 
-6.  Ensure that **Web Search** is **Disabled.**
+> ![](./media/image71.png)
 
-    ![](./media/image71.png)
+### Tarea 2: Configurar el acceso a datos y publicar
 
-### Task 2: Configure data access and publish
+En esta tarea, configurará el acceso a los datos y luego publicará el
+agente.
 
-In this task, you will configure the access to data and then publish the
-agent.
+1.  En la sección **Knowledge**, seleccione **+ Add knowledge.**
 
-1.  In the **Knowledge** section, select **+ Add knowledge.**
+> ![](./media/image72.png)
 
-    ![](./media/image72.png)
-
-2.  Select **Dataverse**  
-
+2.  Seleccione **Dataverse**  
     ![](./media/image73.png)
 
-4.  In the **Search box**, type +++ppa\_+++. This is the prefix for the
-    tables you imported previously in earlier lab.
+3.  En el **cuadro de búsqueda**, escriba +++ppa\_+++. Este es el
+    prefijo de las tablas que importó previamente en el laboratorio
+    anterior.
 
-5.  **Select** all 5 tables (Candidate, Evaluation Criteria, Job
-    Application, Job Role, Resume). Select **Add to agent**
+4.  **Seleccione** las 5 tablas (Candidate, Evaluation Criteria, Job
+    Application, Job Role, Resume). Seleccione **Add to agent**.
 
-    ![](./media/image74.png)
+> ![](./media/image74.png)
 
-5.  Select the **Settings** button in the upper right hand corner
+5.  Seleccione el botón **Settings** en la esquina superior derecha.
 
-    ![](./media/image75.png)
+> ![](./media/image75.png)
 
-6.  Ensure that the following settings are configured.
+6.  Asegúrese de que las siguientes configuraciones estén establecidas:
 
     - **Let other agents connect to and use this one:** On
 
@@ -708,130 +760,123 @@ agent.
 
     - **Content moderation level:** Medium
 
-    ![](./media/image76.png)
+> ![](./media/image76.png)
+>
+> ![](./media/image77.png)
+>
+> ![](./media/image78.png)
 
-    ![](./media/image77.png)
+7.  Seleccione **Save** y seleccione la **X** en la esquina superior
+    derecha para cerrar el menú de configuración.
 
-    ![](./media/image78.png)
+> ![](./media/image79.png)
 
-7.  Select **Save** and select the **X** in the upper right hand corner
-    to close out of the settings menu.
+8.  Seleccione **Publish**.
 
-    ![](./media/image79.png)
+> ![](./media/image80.png)
 
-8.  Select **Publish**.
+9.  Seleccione **Publish** en el cuadro de diálogo de confirmación y
+    espere a que se complete la publicación.
 
-    ![](./media/image80.png)
+![](./media/image81.png)
 
-9.  Select **Publish** in the confirmation dialog and wait for the
-    publishing to complete.
+### Tarea 3: Conectar el agente Interview Prep a su Hiring Agent
 
-    ![](./media/image81.png)
+En esta tarea, conectará el agente Interview Prep a su Hiring Agent para
+lograr una orquestación multiagente.
 
-### Task 3: Connect the Interview Prep Agent to your Hiring Agent
+1.  Navegue de regreso a su **Hiring Agent**. Seleccione la pestaña
+    **Agents** y seleccione **+ Add an agent.**
 
-In this task, you will connect the Interview Prep agent to your Hiring
-agent to achieve multi agent orchestration.
+> ![](./media/image82.png)
 
-1.  Navigate back to your **Hiring Agent**. Select the **Agents** Tab
-    and select **+Add an agent.**
+2.  Seleccione el **Interview Agent**.
 
-    ![](./media/image82.png)
+> ![](./media/image83.png)
+>
+> **NOTA**
+>
+> Si el Interview Agent aparece en gris y no se puede seleccionar,
+> significa que no se publicó. Regrese al Interview Agent y publíquelo
+> primero.
 
-2.  Select the **Interview Agent**.
+3.  Establezca la **Description** como,
 
-    ![](./media/image83.png)
+> Assists with the interview process and provides information about
+> Resumes, Candidates, Job Roles, and Evaluation Criteria.
+>
+> Observe que la opción Pass conversation history to this agent está
+> seleccionada. Esto permite que el agente principal proporcione el
+> contexto completo al agente conectado.
+>
+> Seleccione **Add and configure.**
 
-    **NOTE**
+![](./media/image84.png)
 
-    If the Interview Agent is greyed out and not selectable then that means it did not Publish. Go back to the Interview Agent and publish it first.
+4.  Asegúrese de ver tanto el **Application Intake Agent** como el
+    **Interview** **Agent**. Observe cómo uno es un agente secundario y
+    el otro es un agente conectado.
 
-3.  Set the **Description** to be,
+> ![](./media/image85.png)
+>
+> ![](./media/image86.png)
 
-    ```
-    Assists with the interview process and provides information about Resumes, Candidates, Job Roles, and Evaluation Criteria.
-    Notice that the Pass conversation history to this agent is checked. This allows the parent agent to provide full context to the connected agent.
-    Select Add and configure.
-    ```
+### Tarea 4: Probar la colaboración multiagente
 
-    ![](./media/image84.png)
+1.  **Active** el panel de prueba seleccionando **Test**.
 
-4.  Ensure that you see both the **Application Intake Agent**, and
-    the **Interview Agent**. Notice how one is a child and the other is
-    a connected agent.
+2.  **Cargue** uno de los currículums de prueba e ingrese la siguiente
+    descripción que indica al agente principal lo que puede delegar al
+    agente conectado:
 
-    ![](./media/image85.png)
+> Upload this resume, then show me open job roles, each with a
+> description of the evaluation criteria, then use this to match the
+> resume to at least one suitable job role even if not a perfect match.
+>
+> ![](./media/image87.png)
 
-    ![](./media/image86.png)
+3.  Observe cómo el Hiring Agent delegó la carga al agente secundario y
+    luego solicitó al Interview Agent que proporcionara un resumen y una
+    coincidencia de puesto utilizando su conocimiento.
 
-### Task 4: Test multi-agent collaboration
+> ![](./media/image88.png)
 
-1.  **Toggle** the test panel open by selecting **Test**.
+4.  Experimente con diferentes formas de hacer preguntas sobre Resumes,
+    Job Roles y Evaluation Criteria. **Ejemplos:**
 
-2.  **Upload** one of the test resumes (AVERY EXAMPLE or TAYLOR TESTPERSON pdf), and enter the following
-    description which tell the parent agent what it can delegate to the
-    connected agent:
+> +++Give me a summary of active resumes+++
+>
+> +++Summarize resume R1006+++
+>
+> +++Which active resumes are suitable for the Power Platform Developer
+> role?+++
 
-    ```
-    Upload this resume, then show me open job roles, each with a description of the evaluation criteria, then use this to match the resume to at least one suitable job role even if not a perfect match.
-    ```
-    
-     ![](./media/image87.png)
+## Resumen
 
-3.  Notice how the Hiring Agent delegated the upload to the child agent,
-    and then asked the Interview Agent to provide a summary and job role
-    match using its knowledge.
+Ha transformado con éxito su Hiring Agent único en uno sofisticado con
+orquestación multiagente y capacidades especializadas.
 
-     ![](./media/image88.png)
+Esto es lo que logró en este laboratorio.
 
-## Summary
+**Dominio de la arquitectura multiagente**  
+Ahora comprende cuándo utilizar agentes secundarios frente a agentes
+conectados y cómo diseñar sistemas que escalen.
 
-You've successfully transformed your single Hiring Agent into a
-sophisticated multi-agent orchestrated one with specialized
-capabilities.
+**Application Intake agent secundario**  
+Ha agregado un agente secundario especializado a su Hiring Agent que
+procesa currículums, extrae datos de candidatos y almacena la
+información en Dataverse.
 
-Here's what you've accomplished in this lab.
+**Interview Prep agent conectado**  
+Ha creado un agente conectado reutilizable para la preparación de
+entrevistas y lo ha conectado correctamente a su Hiring Agent.
 
-**Multi-agent architecture mastery**  
-You now understand when to use child agents vs connected agents and how
-to design systems that scale.
+**Comunicación entre agentes**  
+Ha visto cómo su agente principal puede coordinarse con agentes
+especializados, compartir contexto y orquestar flujos de trabajo
+complejos.
 
-**Application Intake child agent**  
-You've added a specialized child agent to your Hiring Agent that
-processes resumes, extracts candidate data, and stores information in
-Dataverse.
-
-**Interview Prep connected agent**  
-You've built a reusable connected agent for interview preparation and
-successfully connected it to your Hiring Agent.
-
-**Agent communication**  
-You've seen how your main agent can coordinate with specialist agents,
-share context, and orchestrate complex workflows.
-
-**Foundation for autonomy**  
-Your enhanced hiring system is now ready for the advanced features we'll
-add in upcoming missions: autonomous triggers, content moderation, and
-deep reasoning.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Base para la autonomía**  
+Su sistema de contratación mejorado ahora está listo para las funciones
+avanzadas que agregaremos en las próximas misiones: desencadenadores
+autónomos, moderación de contenido y razonamiento profundo.

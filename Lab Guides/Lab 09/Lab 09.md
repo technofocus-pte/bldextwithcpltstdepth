@@ -1,126 +1,134 @@
-# Lab 9 - Test, measure, and improve AI agents
+# Laboratorio 9: Probar, medir y mejorar agentes de IA
 
-As AI agents take on critical roles in business processes, the need for
-reliable, repeatable testing becomes essential. Agent evaluation lets
-you generate tests that simulate real-world scenarios for your agent.
-These tests cover more questions faster than manual, case-by-case
-testing. Then, you can measure the accuracy, relevancy, and quality of
-answers to the questions the agent is asked, based on the information
-the agent can access. By using the results from the test set, you can
-optimize your agent's behavior and validate that your agent meets your
-business and quality requirements.
+A medida que los agentes de IA asumen roles críticos en los procesos
+empresariales, se vuelve esencial contar con pruebas confiables y
+repetibles. La evaluación de agentes permite generar pruebas que simulan
+escenarios del mundo real para su agente. Estas pruebas abarcan más
+preguntas de manera más rápida que las pruebas manuales caso por caso.
+Luego, puede medir la precisión, relevancia y calidad de las respuestas
+a las preguntas realizadas al agente, en función de la información a la
+que el agente puede acceder. Al utilizar los resultados del conjunto de
+pruebas, puede optimizar el comportamiento del agente y validar que
+cumple con los requisitos de negocio y calidad.
 
-**Objective**
+**Objetivo**
 
-In this lab, you will learn how to systematically test and evaluate an
-AI agent using Copilot Studio’s built-in evaluation and analytics
-capabilities. You will create an automated test set that simulates
-real-world user scenarios, measure the quality and accuracy of agent
-responses, and analyze performance data to identify gaps and improvement
-opportunities. By the end of the lab, you will be able to validate that
-your agent meets business, reliability, and quality standards before
-production use.
+En este laboratorio, aprenderá a probar y evaluar sistemáticamente un
+agente de IA utilizando las capacidades integradas de evaluación y
+análisis de Copilot Studio. Creará un conjunto de pruebas automatizado
+que simule escenarios de usuario del mundo real, medirá la calidad y
+precisión de las respuestas del agente y analizará los datos de
+rendimiento para identificar brechas y oportunidades de mejora. Al final
+del laboratorio, podrá validar que su agente cumple con los estándares
+de negocio, confiabilidad y calidad antes de su uso en producción.
 
-## Task 1: Create a test set to evaluate your agent
+## Tarea 1: Crear un conjunto de pruebas para evaluar su agente
 
-Before deploying an AI agent into real business workflows, it is
-critical to validate how well it responds to realistic user questions.
-Manual testing is time-consuming and often misses edge cases. In this
-task, you will use Copilot Studio’s agent evaluation capabilities to
-automatically generate a test set that simulates real-world scenarios.
-You will run these tests against your agent, review pass and fail
-outcomes, and identify gaps in accuracy, relevance, or behavior that
-need improvement.
+Antes de implementar un agente de IA en flujos de trabajo empresariales
+reales, es fundamental validar qué tan bien responde a preguntas
+realistas de los usuarios. Las pruebas manuales consumen mucho tiempo y
+a menudo omiten casos límite. En esta tarea, utilizará las capacidades
+de evaluación de agentes de Copilot Studio para generar automáticamente
+un conjunto de pruebas que simule escenarios del mundo real. Ejecute
+estas pruebas contra su agente, revise los resultados de aprobación y
+falla e identifique las brechas en precisión, relevancia o
+comportamiento que requieran mejora.
 
-1.  From the Copilot Studio, select the **Hiring agent**.
+1.  Desde Copilot Studio, seleccione el **agente Hiring**.
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  From the top menu bar, select **Evaluation**. Select **Create a test
-    set**.
+2.  En la barra de menú superior, seleccione **Evaluation**. Seleccione
+    **Create a test set**.
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  There are few options to create the test set. Select **Generate 10
-    questions** in this case.
+3.  Existen varias opciones para crear el conjunto de pruebas.
+    Seleccione **Generate 10 questions** en este caso.
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  **Review** the test set and then **Save** the test set.
+4.  Revise el **conjunto de pruebas** y luego guarde el **conjunto de
+    pruebas**.
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-5.  Now, click on **Evaluate** to evaluate the agent.
+5.  Ahora, haga clic en **Evaluate** para evaluar el agente.
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-6.  Select your tenant id and click on **Run**.
+6.  Seleccione su tenant id y haga clic en **Run**.
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-7.  Wait till the execution completes.
+7.  Espere hasta que la ejecución finalice.
 
-    ![](./media/image7.png)
+![](./media/image7.png)
 
-8.  Once the evaluation is complete, click on it to view the details.
+8.  Una vez completada la evaluación, haga clic en ella para ver los
+    detalles.
 
-    ![](./media/image8.png)
+![](./media/image8.png)
 
-9.  Go through each question and see why it has failed and which ones
-    have passed. This will help you enhance your agent as required.
+9.  Revise cada pregunta para identificar por qué ha fallado y cuáles
+    han pasado. Esto le ayudará a mejorar su agente según sea necesario.
 
-    ![](./media/image9.png)
+![](./media/image9.png)
 
-## Task 2: Gain insights with agent analytics
+## Tarea 2: Obtener información mediante análisis de agentes
 
-Once an agent is evaluated and actively used, ongoing monitoring is
-essential to ensure consistent performance and reliability at scale. In
-this task, you will explore the Analytics capabilities in Copilot Studio
-to gain insights into agent usage, execution trends, and component
-utilization. You will learn how analytics data helps identify
-performance bottlenecks, understand user interaction patterns, and guide
-continuous optimization of your agent over time.
+Una vez que un agente ha sido evaluado y se encuentra en uso activo, es
+fundamental realizar un monitoreo continuo para garantizar un
+rendimiento y confiabilidad consistentes a gran escala. En esta tarea,
+explorará las capacidades de Analytics en Copilot Studio para obtener
+información sobre el uso del agente, tendencias de ejecución y
+utilización de componentes. Aprenderá cómo los datos de análisis ayudan
+a identificar cuellos de botella en el rendimiento, comprender patrones
+de interacción de los usuarios y orientar la optimización continua de su
+agente a lo largo del tiempo.
 
-1.  From the top menu bar, select **Analytics.**
+1.  En la barra de menú superior, seleccione **Analytics**.
 
-    ![](./media/image10.png)
+> ![](./media/image10.png)
 
-2.  When there are a greater number of executions and as the agent gets
-    used more and more, the traffic increases, and you can find the AI
-    Summary in the Analytics tab.
+2.  Cuando haya un mayor número de ejecuciones y el agente se use cada
+    vez más, el tráfico aumenta y podrá encontrar el **AI Summary** en
+    la pestaña **Analytics**.
 
-    ![](./media/image11.png)
+> ![](./media/image11.png)
 
-3.  The **Overview** section gives an overall picture about the runs,
-    and credits.
+3.  La sección **Overview** proporciona una visión general sobre las
+    ejecuciones y los créditos.
 
-    ![](./media/image12.png)
+> ![](./media/image12.png)
 
-4.  The Run outcomes gives the average duration trends.
+4.  La sección **Run outcomes** muestra las tendencias de duración
+    promedio.
 
-    ![](./media/image13.png)
+> ![](./media/image13.png)
 
-5.  Scroll down and under the Use section, you can find the usage of
-    triggers, tools and knowledge sources.
+5.  Desplácese hacia abajo y, en la sección **Use**, podrá ver el uso de
+    **triggers, tools y knowledge sources**.
 
-    ![](./media/image14.png)
+> ![](./media/image14.png)
 
-6.  Each of these helps you to gauge the usage of each component of the
-    agent and upgrade, enhance or correct the agent functionalities
-    appropriately.
+6.  Cada uno de estos elementos le permite evaluar el uso de cada
+    componente del agente y actualizar, mejorar o corregir las
+    funcionalidades del agente según corresponda.
 
-## Summary
+## Resumen
 
-In this lab, you implemented automated evaluation and analytics to
-assess the quality and reliability of an AI agent. You generated a test
-set to simulate realistic user interactions, ran evaluations to measure
-response accuracy and relevance, and reviewed pass/fail results to
-identify areas for improvement.
+En este laboratorio, implementó la evaluación y el análisis
+automatizados para evaluar la calidad y confiabilidad de un agente de
+IA. Generó un conjunto de pruebas para simular interacciones realistas
+de los usuarios, ejecutó evaluaciones para medir la precisión y
+relevancia de las respuestas, y revisó los resultados de
+aprobación/falla para identificar áreas de mejora.
 
-You also explored agent analytics to understand usage patterns,
-execution trends, and component utilization across triggers, tools, and
-knowledge sources. Together, these capabilities enable you to move
-beyond manual testing and adopt a scalable, data-driven approach to
-agent validation. This lab demonstrates how automated testing and
-analytics help ensure your agents are trustworthy, performant, and ready
-for real-world business scenarios.
+También exploró los análisis de agentes para comprender los patrones de
+uso, tendencias de ejecución y utilización de componentes en triggers,
+tools y knowledge sources. Estas capacidades permiten ir más allá de las
+pruebas manuales y adoptar un enfoque escalable y basado en datos para
+la validación de agentes. Este laboratorio demuestra cómo las pruebas y
+análisis automatizados ayudan a garantizar que sus agentes sean
+confiables, eficientes y listos para escenarios empresariales reales.
