@@ -1,573 +1,501 @@
-# Lab 6 - Upgrading the hiring agent into an autonomous system
+# 实验室——将招聘代理升级为自主系统
 
-In this lab, you will dive deeper into **event triggers** - elevating
-your agent system from reactive to **autonomous operation**. You'll
-transform your agents from waiting for human input to proactively
-responding to external events and taking intelligent action without
-supervision.
+在本实验中，你将深入研究**事件触发器**，从而将你的智能体系统从被动响应提升到**自主运行**。你将使你的智能体不再等待人类输入，而是主动响应外部事件，并在无需监督的情况下采取智能行动。
 
-Think of it as upgrading from agents that answer questions to agents
-that anticipate needs and act independently. Through event triggers and
-automated workflows, your **Hiring Agent** will **detect** incoming
-resume **emails**, **process** attachments **automatically**, **store**
-data in **Dataverse**, and **notify** your **HR recruitment team** via
-**Microsoft Teams** - all while you focus on higher-value tasks.
+您可以将其视为从回答问题的客服人员升级为能够预测需求并独立行动的客服人员。通过事件触发和自动化工作流程，您的**招聘代理**将检测收到的简历**邮件**，自动处理附件，将数据存储在
+**Dataverse** 数据库中，并通过 **Microsoft Teams**
+**通知**您的**人力资源招聘团队**——所有这些都能让您专注于更有价值的任务。
 
-**Objectives**
+**目标**
 
-In this lab, you'll learn:
+在这个实验室里，你会学到东西:
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+1.  事件触发器如何实现无需用户交互即可自主代理行为
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+2.  Copilot Studio 中交互代理与自主代理的区别
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+3.  如何创建自动处理邮件附件并将文件上传到 Dataverse 的事件触发器
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+4.  如何构建能够向Teams频道发布自适应卡片以发送通知的代理流程
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+5.  如何在事件触发器和代理流程之间传递数据，实现端到端自动化
 
-**What is an Event trigger?**
+**什么是事件触发器？**
 
-**Event triggers** let an agent *act* on *its* own when something
-happens in another system - no user message required. When the
-configured event fires - such as “new SharePoint item,” “new email,”
-“Planner task assigned,” or even a time‑based recurrence, a connector
-sends a trigger payload to your agent. The agent then follows your
-instructions to decide which actions or topics to call.
+*事件触发*器让代理在
+其他系统发生事件时自动行动——无需用户消息。当配置事件触发时——例如“新SharePoint项目”、“新邮件”、“规划工具任务分配中”，甚至基于时间的重复事件，连接器会向你的代理发送触发负载。代理人随后按照你的指示决定调用哪些动作或话题。
 
-**Interactive agent vs Autonomous agent - comparison**
+**交互代理与自主代理——比较**
 
-Now that you know the difference between event triggers and topics
-triggers, let's next learn about the difference between an interactive
-agent vs an autonomous agent.
+既然你已经了解了事件触发器和主题触发的区别，接下来让我们了解交互代理和自主代理之间的区别。
 
-In Copilot Studio terms, "interactive" maps to agents that primarily
-engage via **topics** in a chat or channel. "Autonomous" maps to agents
-that also leverage **event triggers** to run without user input.
+用Copilot
+Studio的术语来说，“互动”映射到主要通过聊天或频道中话题互动的客服。
+“**自主**”映射到那些同样利用**事件触发**器在用户输入下运行的代理。
 
-## Exercise 1: Automating candidate application emails
+## 练习一：自动化候选人申请邮件
 
-We're next going to add an event trigger to the **Hiring Agent** and
-build an agent flow in the child **Application Intake Agent** to handle
-further processing for autonomy.
+接下来我们将为**招聘代理**添加事件触发器，并在子**应用接收代理**中构建代理流程，以处理后续的自主处理。
 
-**Use case scenario**
+**用例场景**
 
-**As an** HR Recruiter
+**作为**人力资源招聘人员
 
-**I want to** be notified when an email with a resume arrives in my
-Inbox and is automatically uploaded to Dataverse
+**我希望**当简历邮件到达我的收件箱并自动上传到Dataverse时，能收到通知
 
-**So that I can** stay notified of resumes sent by email for
-applications automatically uploaded to Dataverse
+**这样我就能**随时收到通过邮件发送的简历，这些简历会自动上传到Dataverse
 
-We'll be achieving this using two techniques
+我们将通过两种技术实现这一点
 
-1.  An event trigger for when the email arrives,
+1.  邮件到达时触发事件，
 
-    - Check the contentType of the file equals PDF as the format type.
+    - 检查内容，文件的格式类型等于PDF。
 
-    - Extract the file and upload to Dataverse using actions through the
-      Dataverse connector.
+    - 通过 Dataverse 连接器的作提取文件并上传到 Dataverse。
 
-    - Then send a prompt to the agent for further processing by passing
-      input parameters from the Dataverse actions.
+    - 然后通过传递Dataverse动作中的输入参数，向代理发送提示，以便进一步处理。
 
-2.  An agent flow will be added to the child **Application Intake
-    Agent** which is invoked by the prompt in the event trigger.
+2.  一个代理流会被添加到子**应用接收代理**中，该流程由事件触发器中的提示调用。
 
-    - Use the input parameters passed from the prompt of the event
-      trigger in an adaptive card posted to a channel in Microsoft Teams
-      to notify the HR Recruitment team. The adaptive card will have a
-      link to the Dataverse row which can be viewed in the **Hiring
-      Agent**.
+    - 利用事件触发提示中传递的输入参数，通过一张自适应卡片发布到Microsoft
+      Teams的频道，通知人力资源招聘团队。自适应卡会有一个指向Dataverse行的链接，可以在**招聘代理中查看**。
 
-### Task 1: Automate uploading resumes to Dataverse received by email
+### 任务一：自动将通过电子邮件收到的简历上传到 Dataverse
 
-1.  In the Hiring Agent, scroll down in the **Overview tab** to
-    the **Triggers** section and select **+ Add trigger**.
+1.  在招聘代理中，向下滚动到“**Overview**”**选项卡**中的“**Triggers**”部分，然后选择**+
+    Add trigger**。
 
     ![](./media/image1.png)
 
-3.  A list of triggers will appear. Select **When a new email arrives
-    (V3)** and select **Next**.
+2.  此时将显示触发器列表。选择“**When a new email arrives
+    (V3)** ”，然后选择“**Next**”。
 
     ![](./media/image2.png)
 
-3.  Select **Continue** in the next screen.
+3.  在下一个屏幕中选择“**Continue**”。
 
     ![](./media/image3.png)
 
-4.  We'll now see the **Trigger name** and the **Sign in** connection
-    references for the apps listed. Rename the trigger name to the
-    following:
+4.  现在我们将看到所列应用程序的**触发器名称**和**登录**连接引用。将触发器名称重命名为以下内​​容:
 
     +++When a new email arrives from an applicant+++
 
-    **NOTE:** Make sure you see a green check by each of the connection references for the apps listed. If you don't see a green check, sign in through the ellipsis (...) and select **+ New connection reference** to create a new connection reference.
+    **注意：**
+    确保你看到每个应用连接引用旁的绿色标记。如果没有看到绿色勾选，通过省略号（...）登录，选择 ** + New connection reference** 以创建新的连接引用。
 
     ![](./media/image4.png)
 
-5.  The final step is to set the input properties of the trigger. Update
-    the following properties to the following,
+5.  最后一步是设置触发器的输入属性。将以下属性更新为以下内容，
 
-    | **Property**   | **How to Set**   |  **Details**  |
-    |:--------|:----|:-------|
-    |  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
-    |  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
-    |  Only with Attachments (Optional)  |  Dropdown  | Yes   |
+    | **财产**  | **如何设置**  | **详情**  |
+    |:--------|:--------|:-------|
+    | 附带附件（可选）  | 下拉菜单  |  是 |
+    | 主体滤镜（可选）  |  键盘输入/回车 |  +++Application+++ |
+    |  仅带附件（可选） | 下拉菜单  |  是 |
 
-6.  Select **Create trigger**.
+6.  选择 **Create trigger**。
 
     ![](./media/image5.png)
 
-7.  Once created, a confirmation message will appear that the trigger
-    has been added to the agent. Select **Close** and the trigger will
-    be listed in the **Triggers** section.
+7.  创建完成后，将显示一条确认消息，提示触发器已添加到代理。选择“**Close**”，触发器将列在“**Triggers**”部分。
 
     ![](./media/image6.png)
 
-9.  We're now going to update the event trigger to add some more
-    automation capabilities. Select the **ellipsis (...)** by the
-    trigger and select **Edit in Power Automate**.
+8.  我们现在将更新事件触发器，增加更多自动化功能。选择触发器旁的**省略号（...）**，然后选择
+    **Edit in Power Automate**。
 
     ![](./media/image7.png)
 
-9.  The trigger will then load as a flow in the Power Automate maker
-    portal. It will open to the flow designer where we can add further
-    logic and actions for more automation. The trigger will appear at
-    the top, followed by **Sends a prompt to the specified copilot for
-    processing** as the last action in the flow.
+9.  触发器随后将作为流程加载到 Power Automate
+    创建门户中。它将打开流程设计器，我们可以在其中添加更多逻辑和操作以实现更高级的自动化。触发器将显示在顶部，其后的是“**Sends
+    a prompt to the specified copilot for
+    processing** ”作为流程中的最后一个操作。
 
     ![](./media/image8.png)
 
-    >[!Note] **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
-    >
-    >![](./media/image132.png)
+10. 默认情况下，如果同时收到多封电子邮件，Power Automate 中的“**When a
+    new email
+    arrives** ”触发器可能会同时处理多封电子邮件，并且只会为该批次运行一次流程。
 
-11. By default, the **When a new email arrives** trigger in Power
-    Automate may process multiple emails together if several arrive at
-    once, running the flow only once for the batch.
+    为了确保每封邮件的流程单独运行，请选择“When a new email arrives”节点，选择 **Settings**。
 
-    To ensure the flow runs separately for each email, select the When a new email arrives node, select **Settings**.
-    
-    Enable the **Split On** setting in the **trigger’s settings** and select **@triggerOutputs()?['body/value']** in the **dropdown array** field.
-    
-    With **Split On** turned on and the array field set to **@triggerOutputs()?['body/value']**, the flow will run individually for each message, even if many arrive simultaneously.
+    在**触发器的设置**中启用“**Split On**”设置，并在下**拉数组字段**中选择 **@triggerOutputs()?\['body/value']** 。
+
+    开**Split On**模式，且数组字段设置为@triggerOutputs（）？\['body/value'\]，即使同时收到多个消息，流程也会单独运行。
 
     ![](./media/image9.png)
 
-12. Let's next add some logic to check the file type of the attachment,
-    we only want to upload .PDF file attachments and not images (these
-    could come from email signatures). Select the **+** icon below the
-    trigger and select **Control** under the **Built in tools** section.
+11. 接下来，我们添加一些逻辑来检查附件的文件类型。我们只想上传 .PDF
+    文件附件，而不是图片附件（图片可能来自电子邮件签名）。选择触发器下方的“**+**”图标，然后在“**Built
+    in tools**”部分下选择“**Control** ”。 
 
     ![](./media/image10.png)
 
-13. Select the **Condition** action.
+12. 选择 **Condition** 动作。
 
     ![](./media/image11.png)
 
-14. Now we will configure the condition to check if the file
-    attachment’s type is .PDF. In the **Choose a value** field on the
-    left, select the **lightning bolt icon**.
+13. 现在我们将配置条件，检查文件附件的类型是否为 .PDF。在左侧的“**Choose
+    a value**”字段中，选择**闪电图标**。
 
     ![](./media/image12.png)
 
-15. In the **Search** field type +++content type+++ and select
-    the **Attachments Content-Type** parameter from the trigger
+14. 在**搜索**字段中输入+++content
+    type+++，然后从触发器中选择“**Attachments Content-Type** ”参数。
 
     ![](./media/image13.png)
 
-16. Let's pause here for a moment, you probably noticed that the **For
-    each** action automatically appeared.
+15. 我们先暂停一下，你可能注意到 **For each** 动作会自动出现。
 
     ![](./media/image14.png)
 
-    This action represents looping through each attachment in the email, since the **Attachments Content-Type** parameter is tied to each attachment.
-    
-    Underneath the hood, it's an array and that's why the For each action was automatically added when we selected the **Attachments Content-Type** parameter in the **Condition** action.
+    此操作表示遍历电子邮件中的每个附件，因为 **Attachments Content-Type** 参数与每个附件相关联。 
 
+    从底层来看，它是一个数组，这就是为什么当我们在
+    **Condition** 操作中选择**Attachments Content-Type** 参数时，会自动添加“**For each**”操作的原因。
 
-17. Next, in the other **Choose a value** field to the right in
-    the **Condition** block, type +++application/pdf+++
+16. 接下来，在“**Condition** ”块右侧的另一个“**Choose a
+    value** ”字段中，输入+++application/pdf+++
 
-    This will ensure that for each file attachment, it will check the file
-extension format is .PDF.
+    这样可以确保每个文件附件都会检查扩展名格式是否.PDF。
 
     ![](./media/image15.png)
 
-17. Now we'll configure the **True** path to extract the file from the
-    email and upload it into the **Resume** Dataverse table.
+17. 现在我们将配置 **True** 路径，从电子邮件中提取文件并将其上传到
+    **Resume** Dataverse 表中。
 
-    Add a new action below in the **True** path and search for html to text. Search for and select the +++**Html to text**+++ action.
-    
-    >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
+    在**True**路径下方添加一个新操作，并搜索“html to text”。搜索并选择 +++**Html to text**+++ 操作。 
 
+    **注意：**Power Automate 中的“**HTML to text**”操作用于将 HTML 格式的内容转换为纯文本。当您收到包含 HTML 标签的数据（例如电子邮件、网页内容或 API 响应）并且只想提取可读文本而不包含任何格式或代码时，此功能尤其有用**。** 
 
     ![](./media/image16.png)
 
-18. Next, we need to create a new connection reference for the **Html to
-    text** action by selecting **Create new**.
+18. 接下来，我们需要通过选择“**Create new**”来为 **Html to
+    text** 操作创建一个新的连接引用。
 
     ![](./media/image17.png)
 
-19. The action can now be configured. Let's add the **Body** parameter
-    from the trigger. In the **Content** field, select the **lightning
-    bolt icon** or **fx icon** to the right.
+19. 现在可以配置操作了。让我们从触发器中添加“**Body**”参数。在“**Content** ”字段中，选择右侧的**闪电图标**或
+    **fx 图标**。 
 
     ![](./media/image18.png)
 
-20. In the **Dynamic content** tab, search for +++body+++ and select
-    the **Body** parameter, followed by selecting **Add**.
+20. 在“**Dynamic
+    content** ”选项卡中，搜索“+++body+++”，然后选择“**Body** ”参数，再选择“**Add**”。
 
     ![](./media/image19.png)
 
-21. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+21. 我们已经完成了这个动作的配置，现在选择两个指向左边的角括号（«）来折叠面板，从而退出动作。
 
     ![](./media/image20.png)
 
-22. We'll add a new action by selecting the **+ icon** underneath
-    the **Html to text** action which will load the panel to add
-    actions. Search for **Dataverse add**.Select the **Add a new
-    row** action.
+22. 我们将通过选择“**Html to
+    text** ”操作下方的**“+”图标**来添加新操作，这将加载添加操作面板。搜索“**Dataverse
+    add**”，然后选择“**Add a new row** ”操作。
 
     ![](./media/image21.png)
 
-23. Rename the action by pasting +++Add a new Resume row+++ as the name
-    in the upper left-hand corner of the properties panel,
+23. 在属性面板的左上角粘贴 +++Add a new Resume row+++
+    作为名称，重命名该操作,
 
-    For the **Table name** parameter, search for +++res+++ and select
-the **Resumes** table.
+    对于“**Table name**”参数，搜索 res 并选择“**Resumes**”表。
 
     ![](./media/image22.png)
 
-24. Select the **Resume Title** field next and select the **fx icon** to
-    the right.
+24. 接下来选择“**Resume Title**”字段，然后选择右侧的 **fx 图标**。 
 
     ![](./media/image23.png)
 
-25. In the **Function tab**, enter the following expression that uses
-    the item() function.
+25. 在**Function**选项卡中，输入使用 item() 函数的以下表达式。.
 
     +++item()?['name']+++
 
-    Select **Add** to add the expression to the **Resume Title** parameter.
+    选择“**Add**”将该表达式添加到“**Resume Title** ”参数中。 
 
     ![](./media/image24.png)
 
-    >[!Note] **Note on item() function:**
-    >
-    >- When you use an **Apply to each** action, Power Automate goes through
-      each element in a collection (array).
-    >
-    >- It’s most often used inside actions like **Apply to each** (or **For
-      each**), **Select**, or **Filter array**.
+    **关于 item（） 函数的说明:**
 
-26. We still need to configure several more parameters, select **Show
-    all**.
+    - 当您使用“**Apply to each** ”操作时，Power Automate
+    会遍历集合（数组）中的每个元素。
+
+    - 它最常用于“**Apply to each** （或 **For each**）、**选择** 或 **Filter
+    array**”等操作中。
+
+26. 我们还需要配置更多参数，选择**“Show all**”。
 
     ![](./media/image25.png)
 
-28.  In the **Cover Letter** field, select the **fx icon** to the right.
+27.  在 **Cover Letter** 栏中，选择右侧的 **fx 图标**。
 
-    In the **Function tab**, enter the following expression.
+    在**“Function”**标签页中，输入以下表达式。
 
     +++if(greater(length(body('Html_to_text')), 2000), substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
 
-    This expression checks if the text from the **Html to text** action is longer than 2000 characters, and if so, returns only the first 2000 characters; otherwise, it returns the full text.
+    此表达式检查从 **Html to text** 操作返回的文本是否超过 2000 个字符，如果超过，则仅返回前 2000 个字符；否则，返回全文。
 
     ![](./media/image26.png)
 
-28. The expression will now be added to the **Cover Letter** field.
+28. 该表达式现在将被添加到 **Cover Letter** 字段中。
 
     ![](./media/image27.png)
 
-29. For the **Source Email Address** field, select the **lightning bolt
-    icon** and select the **From** parameter from the trigger as this
-    contains the email address value.
+29. 对于“**Source Email
+    Address** ”字段，选择**闪电图标**，并从触发器中选择“**From**”参数，因为其中包含电子邮件地址值。
 
     ![](./media/image28.png)
 
-30. For the **Upload Date** field, select the **fx icon** to the right.
-    In the **Function tab**, enter, +++utcNow()+++ and select **Add**.
+30. 在“**Upload Date**”字段中，选择右侧的 **fx
+    图标**。在“**Function**”**选项卡**中，输入 +++utcNow()+++
+    并选择“**Add**”。 
 
-    **Note:**  **What is the utcNow() function?**
+    **注意：什么是utcNow（）函数？**
 
-    - The utcnow() function in Power Automate returns the current date and
-  time in Coordinated Universal Time (UTC) in an ISO 8601 format,
-  like: 2025-09-23T04:32:14Z
+    - Power Automate中的utcnow（）函数以ISO
+    8601格式返回当前协调世界时（UTC）的日期和时间，类似：2025-09-23T04：32：14Z
 
     ![](./media/image29.png)
 
-31. We've now completed configuring the **Add a new Resume row** action
-    so let's exit from the panel by collapsing it.
+31. 我们现在已经完成了“**Add a new Resume
+    row** ”作，所以让我们通过折叠面板退出。
 
     ![](./media/image30.png)
 
-33. We'll add a new action by selecting the **+ icon** underneath
-    the **Add a new Resume row** action which will load the panel to add
-    actions. Search for +++**Dataverse Upload**+++. Select the **Upload
-    a file or an image** action.
+32. 我们将通过点击“**Add a new Resume
+    row** ”操作下方的**“+”图标**来添加新操作，这将打开添加操作的面板。搜索+++**Dataverse
+    Upload**+++。选择“**Upload a file or an image** ”操作。
 
     ![](./media/image31.png)
 
-33. Rename the action by pasting +++Upload Resume File+++ as the name.
+33. 通过将 +++Upload Resume File+++ 作为名称来重命名动作。
 
     ![](./media/image32.png)
 
-34. Select the **Content name** field (remove the Untitled message if
-    that is already available) next and select the **fx icon** to the
-    right.
+34. 接下来选择“**Content
+    name** ”字段（如果已有“未命名”消息，请将其删除），然后选择右侧的
+    **fx 图标**。
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the name property of the current item (the attachment file).
-    
+    在**Function 标签页**中，输入以下使用项项（）函数的表达式。这会获得当前项目（附件文件）的名称属性。
+
     +++item()?['name']+++
-
 
     ![](./media/image33.png)
 
-35. For the **Table name** parameter, search for +++resumes+++ and
-    select the **Resumes** table.
+35. 对于“**Table
+    name** ”参数，搜索“+++resumes+++”，然后选择“**Resumes**”表。
 
     ![](./media/image34.png)
 
-36. Select the **Row ID** field next and select the **lightning bolt
-    icon** to the right.
+36. 接下来选择 **Row ID** 字段，然后选择右侧的**闪电图标**。
 
-    Search for +++ID+++ and select the **Resume** parameter from the **Add a new row** Dataverse action as this contains the ID value of the row to upload the PDF file to.
+    搜索 +++ID+++，然后从 Dataverse 的“**Add a new row**”操作中选择“**Resume**”参数，因为其中包含要上传 PDF 文件的行的 ID 值。
 
     ![](./media/image35.png)
 
-37. Select the **Column name** field and select the **Resume
-    PDF** option.
+37. 选择“**Column name**”字段，然后选择“**Resume PDF** ”选项。
 
     ![](./media/image36.png)
 
-38. Select the **Content** field and select the **fx icon** to the
-    right.
+38. 选择 **Content** 字段，然后选择右侧的 **fx 图标**。 f
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the contentBytes property of the current item (the attachment file). contentBytes refers to the raw binary data of a file or attachment, encoded as a Base64 string.
+    在**Function 标签页**中，输入以下使用项项（）函数的表达式。这会获得当前项目（附件文件）的contentBytes属性。contentBytes 指的是文件或附件的原始二进制数据，编码为 Base64 字符串。
     
     +++item()?['contentBytes']+++
 
     ![](./media/image37.png)
 
-39. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+39. 我们已经完成了这个动作的配置，现在选择两个指向左边的角括号（«）来折叠面板，从而退出动作。
 
     ![](./media/image38.png)
 
-40. Next, select the **Sends a prompt to the specified copilot for
-    processing**, then drag and drop this action to be below
-    the **Upload Resume File** action in the **True** path of the
-    condition.
+40. 接下来，选择“**Sends a prompt to the specified copilot for
+    processing**”，然后将此操作拖放到条件“**True**”路径中的“**Upload
+    Resume File** ”操作下方。.
 
     ![](./media/image39.png)
 
-41. Select the **Sends a prompt to the specified copilot for
-    processing** to configure it.
+41. 选择“**Sends a prompt to the specified copilot for
+    processing**”以进行配置。
 
     ![](./media/image40.png)
 
-42. In the **Body/message** field, select all of the field content and
-    clear/delete it.
+42. 在 **Body/message** 字段中，选择所有字段内容并清除/删除。
 
     ![](./media/image41.png)
 
-43. Copy and paste the following text into the **Body/message** field
-    and highlight the **RESUME ID PLACEHOLDER** and select the
-    **lightning** icon.
+43. 将以下文本复制并粘贴到 **Body/message** 字段中，选中“**RESUME ID
+    PLACEHOLDER**”，然后选择**闪电**图标。
 
     ```
     Send [ResumeId (text)] = "RESUME ID PLACEHOLDER" and [ResumeTitle (text_1)] = "RESUME TITLE PLACEHOLDER" and [ResumeNumber (text_2)]= "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant channel" in the child agent "Application Intake Agent"
     ```
-    
+
     ![](./media/image42.png)
 
-44. Search for +++resume+++ and select the **Resume** parameter from
-    the **Add a new row** *Dataverse* action as this contains
-    the ID value of the Resume row created.
+44. 搜索 +++resume+++，然后从 *Dataverse* 操作中 **Add a new
+    row**，选择“**Resume** ”参数，因为其中包含已创建的“简历”行的 ID 值。
 
     ![](./media/image43.png)
 
-45. Highlight the **RESUME TITLE PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+45. 请高亮 RESUME TITLE PLACEHOLDER。选择右侧的**闪电图标**。
 
-    Search for +++title+++ and select the **Resume Title** parameter from the **Add a new row Dataverse** action as this contains the resume title value of the Resume row created.
+    搜索 +++title+++，然后从 **Add a new row Dataverse** 操作中选择“**Resume Title** ”参数，因为其中包含已创建的简历行的简历标题值。
 
     ![](./media/image44.png)
 
-46. Highlight the **RESUME NUMBER PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+46. 选中“RESUME NUMBER PLACEHOLDER”。选择右侧的**闪电图标**。
 
-    Search for +++resume number+++ and select the **Resume Number** parameter from the **Add a new row Dataverse** action as this contains the Resume Number value of the Resume row created.
+    ```
+    搜索+++resume number+++，然后从“Add a new row Dataverse ”操作中选择“Resume Number ”参数，因为其中包含已创建的简历行的“简历编号”值。 
+    ```
 
     ![](./media/image45.png)
 
-47. We've completed configuring this action and our agent flow. Now
-    let's save our event trigger flow by selecting **Save**.
+47. 我们已经完成了此操作和代理流程的配置。现在，让我们通过选择“**Save**”来保存事件触发流程。
 
     ![](./media/image46.png)
 
-48. We now need to edit the details of the agent flow, select **Back**
-    once saved.
+48. 现在我们需要编辑代理流程的细节，保存后选择 **Back**。
 
     ![](./media/image47.png)
 
-49. Select **Edit** in the **Details** section and update
-    the **Plan** to the **Copilot Studio** option. Select **Save**.
+49. 在“**Details**”部分选择“**Edit**”，并将“**Plan**”更新为“**Copilot
+    Studio**”选项。选择“**Save**”。
 
     ![](./media/image48.png)
 
-50. A modal will appear to ask you to confirm to switch to Copilot
-    Studio plan. Select **Confirm**.
+50. 会显示一个模态，要求你确认是否切换到Copilot Studio套餐。选择
+    **Confirm**。
 
     ![](./media/image49.png)
 
-51. The plan is now updated to **Copilot Studio**. Select **Edit** as we
-    need to publish the event trigger flow for our agent.
+51. 该计划现已更新为**Copilot Studio**。选择
+    **Edit **，因为我们需要为代理发布事件触发流程。
 
     ![](./media/image50.png)
 
-52. Select **Publish**.
+52. 选择 **Publish**。
 
     ![](./media/image51.png)
 
-    The event trigger flow is now Published.
+    事件触发流程现已发布。
 
     ![](./media/image52.png)
 
-    Let's proceed with creating a new agent flow that will be invoked by the
-child **Intake Application Agent**.
+让我们继续创建一个新的代理流，该流程将由子**Intake Application Agent**。
 
-### Task 2 - Notify a Teams channel using an adaptive card
+### 任务2 - 使用自适应卡通知Teams频道
 
-We're now going to create a new agent flow for the child **Intake
-Application Agent** that uses the values passed by the event trigger, to
-post an adaptive card to a Teams channel. This adaptive card will alert
-the HR recruitment team about the PDF that was automatically uploaded so
-that they can review it.
+我们现在将为子 **Intake Application Agent** 创建一个新的代理流程
+，使用事件触发器传递的值，将自适应卡发布到Teams频道。这张自适应卡片会提醒人力资源招聘团队自动上传的PDF，以便他们进行审核。
 
-#### Task 2.1: Create channel in Teams
+#### 任务2.1：在Teams中创建频道
 
-In this task, you will create a Team and Channel in MS Teams which will
-be used later in this lab.
+在这个任务中，你将在MS
+Teams中创建一个团队和一个频道，这些将在后续的实验室中使用。
 
-1.  Login to +++https://teams.microsoft.com+++
+1.  登录 +++https://teams.microsoft.com+++
 
-2.  Select the **New items drop down** and select **New team**.
+2.  选择“**New items**”**下拉菜单**，然后选择“**New team**”。
 
     ![](./media/image53.png)
 
-3.  Provide the below details and select Create.
+3.  请提供以下信息并选择创建。
 
-    - Team name - +++HR Team+++
+    - 团队名称- +++HR Team+++
 
-    - First channel name - +++Applicants+++
+    - 第一个频道名称- +++Applicants +++
 
     ![](./media/image54.png)
 
-4.  Select Skip in the next screen.
+4.  在下一界面选择跳过。
 
     ![](./media/image55.png)
 
-5.  You have now created the new Team and Channel.
+5.  你现在创建了新的团队和频道。
 
     ![](./media/image56.png)
 
-#### Task 2.2: Create the agent flow
+#### 任务2.2：创建代理流程
 
-1.  Back in the Copilot Studio, in the **Hiring Agent** select
-    the **Agents** tab and select the **Application Intake Agent**
+1.  返回 Copilot Studio，在 **Hiring
+    Agent** 中选择“**Agents**”选项卡，然后选择“**Application Intake
+    Agent**”。
 
     ![](./media/image57.png)
 
-2.  Scroll down to **Tools** and select **+ Add**.
+2.  向下滚动到 **Tools** ，选择 **+ Add**。
 
     ![](./media/image58.png)
 
-3.  The **Add tool** modal will appear. Select **+ New tool**.
+3.  此时将出现“**Add tool**”对话框。选择 **+ New tool**。
 
     ![](./media/image59.png)
 
-4.  Select **Agent flow**.
+4.  选择 **Agent flow**。
 
     ![](./media/image60.png)
 
-5.  The **agent flow designer** will next load. In the **When an agent
-    calls the flow** trigger, select **+ Add an input**.
+5.  接下来将加载**代理流程设计器**。在“**When an agent calls the flow”**
+    触发器中，选择**+ Add an input**。
 
     ![](./media/image61.png)
 
-6.  Select **Text** as the type of user input.
+6.  选择**Text** 作为用户输入类型。
 
     ![](./media/image62.png)
 
-7.  In the input text field, enter +++ResumeId+++ as the input parameter
-    name.
+7.  在输入文本字段中，输入参数名称为 +++ResumeId+++。
 
     ![](./media/image63.png)
 
-8.  Repeat the same steps for the below parameters.
+8.  对以下参数重复同样步骤。
 
-    Text - +++ResumeTitle+++
-    
-    Text - +++ResumeNumber+++
-    
+    文本- +++ResumeTitle+++
+
+    文本- +++ResumeNumber+++
+
     ![](./media/image64.png)
-    
+
     ![](./media/image65.png)
 
-9.  Now, you are going to add an adaptive card in the agent flow. We're
-    now going to add another action to our agent flow that will post an
-    adaptive card to a Teams channel.
+9.  现在，你要在代理流程中添加一张自适应卡。我们现在会在代理流程中添加另一个动作，将自适应卡片发布到Teams频道。
 
-    Select the **+ icon** below the trigger.
+    选择触发器下方的**+图标**。
 
     ![](./media/image66.png)
 
-10. Search for +++**Microsoft Teams post+++** and select the **Post card
-    in a chat or channel** action.
+10. 搜索 +++**Microsoft Teams post+++** ，然后选择在**Post card in a
+    chat or channel** 操作。
 
     ![](./media/image67.png)
 
-11. A connection reference to Microsoft Teams needs to be created with
-    your signed in user account. Select **Sign in**.
+11. 需要用你登录的用户账户创建一个指向 Microsoft Teams 的连接引用。选择
+    **Sign in**。
 
     ![](./media/image68.png)
 
-12. Select your user account and then select **Allow access**.
+12. 选择你的用户账户，然后选择**Allow access**。
 
     ![](./media/image69.png)
 
-13. Configure according to the following input parameters:
+13. 根据以下输入参数进行配置:
 
-    | Parameter   |  How to Set  | Details   |
-    |:------|:----|:------|
-    |  **Post as**  |  Dropdown  |  Select the **Flow bot** option  |
-    |  **Post in**  |  Dropdown  |   Select the **Channel** option |
-    |  **Team**  |  Dropdown  |  Select **HR Team** option  |
-    |   **Team** |  Dropdown  |  Select  **Applicants** channel   |
-
+    |  **参数** | **如何设置**  | **详情**  |
+    |:------|:-------|:------|
+    | 发布为  | 下拉菜单  |  选择Flow机器人选项 |
+    | 发布  | 下拉菜单  | 下拉菜单	选择Channel选项  |
+    | 团队  | 下拉菜单  | 选择 HR Team 选项  |
+    |团队   | 下拉菜单  |  甄选 Applicants 者渠道  |
 
     ![](./media/image70.png)
 
-14. Next, we'll configure the **Adaptive Card** field. Select
-    the **Adaptive Card** field.
+14. 接下来，我们将配置 **Adaptive Car d**片字段。选择 **Adaptive
+    Card** 片字段。 
 
     ![](./media/image71.png)
 
-15. Copy the below code and paste it into the Adaptive Card field.
+15. 复制下面的代码并粘贴到自适应卡字段。
 
     ```
     {
@@ -818,446 +746,393 @@ be used later in this lab.
         "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
         "version": "1.5"
     }
-    
+
     ```
 
     ![](./media/image72.png)
 
-16. We will now replace existing values in the JSON payload with actual
-    values or dynamic content.
+16. 我们现在将用实际值或动态内容替换 JSON 负载中的现有值。
 
-    First, let's update the **URL** for the **url property** within the **selectAction** property. This URL will be replaced with the URL of the **Resumes** system view in the **Hiring** Hub model-driven app. This will allow the Recruiter to select the action and be directed to the Resumes system view in the model-driven app.
-    Highlight the **current URL** value and delete it.
+    首先，我们需要更新 **selectAction** 属性中 **url** 属性的 URL。该 **URL** 将被替换为**Hiring Hub** 模型驱动应用程序中“**Resumes**”系统视图的 URL。这样，招聘人员就可以选择该操作并跳转到模型驱动应用程序中的“简历”系统视图。
+    高亮当前的 **URL** 值并删除它。
 
 
     ![](./media/image73.png)
 
-17. In the **Hiring Hub** model-driven app, navigate to
-    the **Resumes** system view using the left hand side menu and copy
-    the URL. Then **navigate back** to the **agent flow**, and **paste**
-    the **copied URL** into the **url** property of the within
-    the selectAction property.
+17. 在 **Hiring Hub** 模型驱动应用程序中，使用左侧菜单导航至“**Resumes**”系统视图并复制
+    URL。然后**返回代理流程**，并将**复制的** **URL** **粘贴**到
+    selectAction 属性中的 url 属性中。
 
     ![](./media/image74.png)
 
-18. You should see the following where highlighted in Yellow is your
-    environment details of the **Hiring Hub** model-driven app.
+18. 你应该会看到以下黄色高亮显示的是**Hiring
+    Hub**模型驱动应用的环境细节。
 
-    |  Parameter  |  Value  |   Explanation |
-    |:--------|:--------|:---------|
-    |  Organization URI  |   GUID |  The Dataverse/Dynamics 365 environment organization URL  |
-    |  appid  | GUID   |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | viewid    | GUID   |  The query parameter which is the id of the view  |
-
-
-
+    | **参数**  |  **价值** |  **解释** |
+    |:--------|:-------|:---------|:-------|
+    | Organization URI  | GUID  | Dataverse/Dynamics 365 环境组织网址  |
+    | appid  | GUID  | 要打开特定的模型驱动应用，查询参数是 appid 或 appname。此时使用appid  |
+    |  viewid | GUID  | 查询参数，即视图的ID。  |
+    
     ![](./media/image75.png)
 
-19. Next, we'll add dynamic content values for several properties. Let's
-    start with the text that will display the Resume Number reference of
-    the row that was created by the event trigger autonomously.
+19. 接下来，我们将为多个属性添加动态内容值。我们先从文本开始，它将显示由事件触发自动创建的行的
+    Resume Number 引用。
 
-    Select the **panel** icon to load the action panel.
+    选择**面板**图标加载动作面板。
 
     ![](./media/image76.png)
 
-20. Scroll down to the line where you see the text property for RESUME
-    NUMBER PLACEHOLDER. Highlight the placeholder value and delete it.
+20. 向下滚动到你看到“RESUME NUMBER
+    PLACEHOLDER”文本属性的那一行。高亮占位值并删除它。
 
     ![Delete placeholder](./media/image77.png)
 
-21. Click in-between the double quotation marks and select
-    the **lightning bolt icon** from the right.
-
-    **Note:** Make sure that the Adaptive card code block is docked to the left pane of your screen.
+21. 点击双引号之间，选择右侧的**闪电图标**。
 
     ![](./media/image78.png)
 
-23. In the **Dynamic Content** tab select
-    the **ResumeNumber** parameter.
+22. 在“**Dynamic Content**”选项卡中，选择“**ResumeNumber**”参数。 
 
     ![](./media/image79.png)
 
-24. The **ResumeNumber** parameter will now be added as dynamic content
-    to the text property.
+23. **ResumeNumber** 参数现在将作为动态内容添加到文本属性中。
 
     ![](./media/image80.png)
 
-25. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
-    down to the line where you see the text property for RESUME NAME
-    PLACEHOLDER. Highlight the placeholder value and delete it. Click
-    in-between the double quotation marks and select the select
-    the **lightning bolt icon** from the right.
+24. 我们会重复同样的步骤，针对简历名称占位符。向下滚动到你看到“RESUME
+    NAME
+    PLACEHOLDER”文本属性的那一行。高亮占位值并删除它。点击双引号之间，从右侧选择**闪电图标**。
 
     ![](./media/image81.png)
 
-26. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
+25. 在“**Dynamic Content** ”选项卡中，选择“**ResumeTitle**”参数。
 
     ![](./media/image82.png)
 
-27. The **ResumeTitle** parameter will now be added as dynamic content
-    to the text property.
+26. **ResumeTitle** 参数现在将作为动态内容添加到文本属性中。
 
     ![](./media/image83.png)
 
-28. We'll repeat the same steps for the **Due Date** value that
-    represents when a recruiter should review the resume by. Scroll down
-    to the line where you see the text property for May 21, 2023.
+27. 我们将重复同样的步骤，确定截**止日期值**，代表招聘人员应在何时审阅简历。向下滚动到你看到2023年5月21日文本属性的那一行。
 
     ![Select Allow access](./media/image84.png)
 
-29. Delete this date placeholder value and click in-between the double
-    quotation marks and select the **fx icon** from the right.
+28. 删除这个日期占位符，点击双引号之间，选择右侧的 **fx图标**。
 
     ![](./media/image85.png)
 
-30. In the **Function** tab, enter the following expression and
-    select **Add**.
+29. 在 **Function** 标签页中，输入以下表达式并选择 **Add**。
 
     +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
 
-    This expression utilizes two functions.
+    该表达式利用两个函数。
 
-    addDays - Adds a specified number of days to a given date and returns the resulting date in string format
-    
-    utcNow - Returns the current date and time in Coordinated Universal Time (UTC) format as a string.
+    |  **功能** | **解释**  |
+    |:------|:-----|
+    |  addDays | 给指定日期添加指定天数，并以字符串格式返回结果日期  |
+    |  utcNow | 以字符串形式返回当前的日期和时间，格式为协调世界时（UTC）。  |
 
-    For the utcNow value, we are formatting the date to be month and date,
-    followed by the year.
+    对于UTC现在的值，我们将日期格式化为月份和日期，后面是年份。
 
     ![](./media/image86.png)
 
-31. The expression will now be added to the text property.
+30. The expression will now be added to the text property.
 
     ![](./media/image87.png)
 
-32. Lastly, we'll update the **URL** for the **url property** within
-    the **actions** array property at the bottom of the JSON payload.
-    This current placeholder URL will be replaced with the URL of the
-    **Resume row** in the **Hiring Hub** model-driven app. This will
-    allow the Recruiter to select the **Action.OpenURL** action of the
-    adaptive card and be **directed** to the **Resume** in the
-    model-driven app.
+31. 最后，我们将更新 JSON 有效负载底部 **actions** 数组属性中 **url
+    属性**的 **URL**。当前占位符 URL 将被替换为 **Hiring Hub**
+    模型驱动应用程序中“**简历”行**的
+    URL。这样，招聘人员就可以选择自适应卡片的 **Action.OpenURL**
+    操作，并跳转到模型驱动应用程序中的“**Resume**”页面。
 
     ![](./media/image88.png)
 
-32. In the **Hiring Hub** model-driven app, open a row in
-    the **Resumes** system view using the left hand side menu. The
-    resume row will load as a form in the model-driven app.
+32. 在 **Hiring
+    Hub** 模型驱动应用中，使用左侧菜单打开“**Resumes**”系统视图中的一行。该简历行将以表单的形式加载到模型驱动应用中。
 
-    Copy the URL for the Resume row.
-    
+    复制简历行的URL。
+
     ![](./media/image89.png)
-    
+
     ![](./media/image90.png)
 
-33. Then navigate back to the agent flow, highlight the current
-    placeholder URL value and **delete** it.
+33. 然后返回代理流程，选中当前占位URL值并 **删除** 它。
 
     ![](./media/image91.png)
 
-34. Then **paste** the **copied URL** into the **url** property of the
-    within the url property.
+34. 然后将**复制的 URL 粘贴**到 **url** 属性中的 url 属性中。
 
     ![](./media/image92.png)
 
-35. You should see the following. Delete the GUID id value at the end.
-    We'll replace this dynamic content - the **ResumeId** parameter.
+35. 你应该看到以下内容。删除结尾的GUID
+    ID值。我们将替换这个动态内容——**ResumeId**参数。
 
     ![](./media/image93.png)
 
-36. Select the **lightning bolt icon** from the right.
+36. 从右侧选择闪电图标。
 
-    In the **Dynamic Content** tab select the **ResumeId** parameter.
+    在 **Dynamic Content **标签中，选择 **ResumeId** 参数。
 
     ![](./media/image94.png)
 
-37. The **ResumeId** will be added as dynamic content. The following
-    highlighted in Yellow is your environment details of the **Hiring
-    Hub** model-driven app.
+37. **ResumeId**将作为动态内容添加。黄色标示的以下内容是**Hiring
+    Hub**模型驱动应用的环境详情。
 
-    |  Parameter  | Value   |  Explanation  |
-    |:-----|:-------|:--------|
-    | Organization URI   | GUID   |  The Dataverse/Dynamics 365 environment organization URL  |
-    |   appid |  GUID  |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | id   |  GUID  |    The query parameter which is the id of the Resume row    |
+    | **参数**  | **价值**  |  **解释** |
+    |:-------|:------------|:------|:-------|
+    |  组织 URI | GUID  |  Dataverse/Dynamics 365 环境组织网址 |
+    |  appid |  GUID | 要打开特定的模型驱动应用，查询参数是 appid 或 appname。此时使用appid  |
+    | id  |GUID   | 查询参数，即Resume行的ID。 |
 
     ![](./media/image95.png)
 
-38. We've completed configuring the **Post card in a chat or
-    channel** action 👏🏻 Exit from the action configuration panel by
-    selecting the **x** icon.
+38. 我们已经完成了在 **Post card in a chat or channel** 中配置帖子卡片
+    👏🏻 选择 **x** 图标退出操作配置面板。
 
     ![](./media/image96.png)
 
-39. Finally, we'll configure the last action, **Respond to the
-    agent** by sending a text back to the agent to end the processing.
+39. 最后，我们将配置最后一个动作，通过**Respond to the
+    agent** 发送文本来响应，以结束处理。
 
-    In the **Respond to the agent** action, select **+Add an output**.
+    在“**Respond to the agent** ”动作中，选择 **+Add a output**。
 
     ![](./media/image97.png)
 
-40. Select **Text** as the type of output.
+40. 选择**Text**作为输出类型。
 
     ![](./media/image98.png)
 
-41. Enter the following details
+41. 请输入以下细节
 
-    - Name - +++EndConversation+++
+    - 名称 - +++EndConversation+++
 
-    - Value - +++Finished+++
+    - 价值 - +++ Finished+++
 
     ![](./media/image99.png)
 
-42. We've now completed configuring the agent flow. Select **Save
-    draft** to save the agent flow. A confirmation message will appear
-    once saved.
+42. 我们现在已经完成了代理流程的配置。选择 **Save
+    draft** 以保存代理流程。保存后会出现确认消息。
 
     ![](./media/image100.png)
 
-43. Before publishing the agent flow, we need to update the details for
-    the agent flow. Select the **Overview** tab and select **Edit**.
+43. 发布代理流程之前，我们需要更新代理流程的详细信息。选择“**Overview**”选项卡，然后选择“**Edit**”。
 
     ![](./media/image101.png)
 
-44. Enter the Name as +++Notify Teams Applicant channel+++ and select
-    the Refresh icon under Description to update it using AI.
+44. 输入名称 +++Notify Teams Applicant
+    channel+++，然后选择描述下的刷新图标，使用 AI 更新它。
 
     ![](./media/image102.png)
 
-45. Once the Description is populated, select **Save** to save the
-    updated details for the agent flow.
+45. 描述填充后，选择 **Save** 以保存代理流程的更新细节。
 
     ![](./media/image103.png)
 
-46. Navigate back to the **Designer** tab and select **Publish** to
-    publish the agent flow.
+46. 返回 **Designer** 选项卡，选择“**Publish**”以发布代理流程。 
 
     ![](./media/image104.png)
 
-47. A confirmation message will appear once published.
+47. 发布后将显示确认信息。
 
     ![](./media/image105.png)
 
-48. The agent flow now needs to be added as a tool in the **Application
-    Intake Agent**. Navigate back to the **Hiring Agent** and select
-    the **Agents** tab, then select the **Application Intake Agent**.
+48. 现在需要将代理流程作为工具添加到 **Application Intake Agent**
+    中。返回**Hiring Agent**，选择“**Agents**”选项卡，然后选择
+    **Application Intake Agent**。
 
     ![](./media/image106.png)
 
-49. In the **Details** section of the agent, we'll update
-    the **Description** field. Copy the following and paste and the end
-    of the description text.
+49. 在代理人的“**Details**”部分，我们将更新“**Description**”字段。复制以下内容并粘贴到描述文本的末尾。 
 
     +++and also notifies the Teams Applicant channel+++
 
-    Select **Save**.
+    选择 **Save**。
 
     ![](./media/image107.png)
 
-50. Next, we'll add the agent flow as a tool. Scroll down to
-    the **tools** section and select **+ Add**.
+50. 接下来，我们将把代理流程添加为一个工具。向下滚动到
+    **tools** 部分，然后选择 **+ Add**。 
 
     ![](./media/image108.png)
 
-51. Select the **Flow** tab and choose the agent flow created
-    earlier, **Notify Teams Applicant Channel**.
+51. 选择“**Flow**”选项卡，然后选择之前创建的代理流程“**Notify Teams
+    Applicant Channel**”。
 
     ![](./media/image109.png)
 
-52. Select **Add and configure** next.
+52. 选择 **Add and configure**下一步。
 
     ![](./media/image110.png)
 
-53. In the **Inputs** section, the three inputs we configured earlier in
-    the agent flow are visible. By default, the **Fill
-    using** configuration is set to **Dynamically fill with AI**. We'll
-    keep this setting as-is as the prompt from the event trigger will
-    contain the parameter values that AI will extract.
+53. 在“**Inputs**”部分，可以看到我们之前在代理流程中配置的三个输入。默认情况下，“**Fill
+    using** ”配置设置为“**Dynamically fill with
+    AI**”。我们将保持此设置不变，因为事件触发器的提示将包含 AI
+    将提取的参数值。
 
     ![](./media/image111.png)
 
-54. Now that the tool has been added to the **Application Intake
-    Agent**, the instructions of the agent needs to be updated. Select
-    the **back arrow**.
+54. 现在该工具已添加到 **Application Intake Agent**
+    程序中，需要更新代理程序的指令。选择**后退箭头**。
 
-    ![](./media/image112.png)
+    [](./media/image112.png)
 
-55. Select the **Application Intake Agent** in the **Agents** tab of
-    the **Hiring Agent**.
+55. 在 **Hiring Agent** 的 **Agents** 选项卡中选择 **Application Intake
+    Agent**。
 
     ![](./media/image113.png)
 
-56. In the **Instructions** field, enter a new line
-    after **Post-Upload** instructions. Copy and paste the following
-    instructions.
+56. 在“**Instructions**”栏中，在“**2.上传后说明**”之后另起一行。复制并粘贴以下说明。
 
     ```
     Process for Resume Upload via Email
-    1. When you receive a message, **Send [ResumeId (text)] = "1680265f-5793-f011-b41b-7c1e525be9f7" and [ResumeTitle (text_1)] = "TAYLOR TESTPERSON (FICTITIOUS).pdf" and [ResumeNumber (text_2)]= "R01026" to the Tool "Notify Teams Applicant channel"** in the child agent "Application Intake Agent", call [AGENT FLOW PLACEHOLDER]
+1. When you receive a message, **Send [ResumeId (text)] = "1680265f-5793-f011-b41b-7c1e525be9f7" and [ResumeTitle (text_1)] = "TAYLOR TESTPERSON (FICTITIOUS).pdf" and [ResumeNumber (text_2)]= "R01026" to the Tool "Notify Teams Applicant channel"** in the child agent "Application Intake Agent", call [AGENT FLOW PLACEHOLDER]
+
     ```
+    
     ![](./media/image114.png)
 
-57. Highlight the \[AGENT FLOW PLACEHOLDER\] text.
+57. 高亮\[AGENT FLOW PLACEHOLDER\] 文本。
 
     ![](./media/image115.png)
 
-58. Enter the forward slash character, /, and select the **Notify Teams
-    Applicant Channel** tool.
+58. 输入正斜杠字符 /，然后选择“**Notify Teams Applicant
+    Channel** ”工具。
 
     ![](./media/image116.png)
 
-59. The agent flow will now be invoked by the **Application Intake
-    Agent** as per the instructions, after the last action (**Sends a
-    prompt to the specified copilot for processing**) in the event
-    trigger sends the prompt that contains the parameter values back to
-    the agent.
+59. 现在，应用 **Application Intake
+    Agent** 将按照指示调用代理流程，在事件触发器中的最后一个操作（**向指定的
+    copilot 发送提示进行处理**）之后，将包含参数值的提示发送回代理。
 
-    Select **Save** to save the updated instructions for the **Application
-Intake Agent**.
+    选择“**Save**”以保存更新后的 **Application Intake Agent** 指令。
 
     ![](./media/image117.png)
 
-60. The instructions will now be updated once the agent has been saved.
+60. 一旦代理被保存，说明将会更新。
 
     ![](./media/image118.png)
 
-61. We now need to **Publish** the **Hiring Agent**.
-    Select **Publish** on the upper right, and in the **Publish this
-    agent modal** that appears select **Publish**.
-
-    ![](./media/image119.png)
+61. 现在我们需要**发布** **Hiring Agent**
+    信息。选择右上角的“**Publish**”，然后在出现的“**Publish this agent
+    modal **”对话框中选择“**Publish**”。![](./media/image119.png)
 
     ![](./media/image120.png)
 
-62. Once published, a confirmation message will appear that the agent
-    has been published.
+62. 发布后，会出现确认提示，表示代理已被发布。
 
     ![](./media/image121.png)
 
-    We can now test the agent!
+    我们现在可以测试该药剂了！
 
-## Exercise 2: Test event trigger
+## 练习 3：测试事件触发
 
-In this exercise, you will test the event trigger that is created in
-this lab.
+在这个练习中，你将测试实验室中创建的事件触发器。
 
-1.  To execute the event trigger, an email needs to be sent with a
-    Resume pdf file. **From your mailbox** (not of the tenant credential provided here. Use mail id of your choice. You will send an email from your mailbox to the tenant mail id.), **compose a new email** message.
+1.  要执行事件触发器，需要发送一封带有简历PDF文件的电子邮件。在Outlook中，撰写一封新的电子邮件。
+
+    | **电子邮件组件**  |  **详情** |
+    |:-----|:----|
+    | 致获奖者  | 用你登录的用户账户作为数值  |
+    | 文件附件  |  上传 TAYLOR TESTPERSON (FICTITIOUS) 文件 |
+    | 主题  | +++Job Application+++  |
+    | 正体  | 请复制粘贴以下内容作为邮件正文  |
 
 
-    |  Email Component  |  Details  |
-    |:--------|:---------|
-    |  To recipient  |  +++@lab.CloudCredential(M365).AdministrativeUsername+++  |
-    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file (from **C:\LabFiles\LabFiles**   |
-    |  Subject  | +++Job Application+++   |
-    |  Body  |  Copy and paste the following below as the body of the email  |
-    
     ```
     Dear Hiring Manager,
-    
+
     I am writing to express my interest in the Senior Power Platform Engineer position at your organization. With over nine years of experience delivering secure and scalable solutions on Microsoft cloud platforms, I am confident in my ability to contribute effectively to your team.
-    
+
     In my most recent role as Lead Power Platform Engineer, I developed an automated resume-intake pipeline, reducing manual triage and improving searchability. I have delivered HR case management applications, introduced solution-aware flows, and implemented PR checks to enhance deployment lead times. My expertise includes Power Apps, Power Automate, Power Pages, Dataverse, and a range of Microsoft 365 services, as well as integration with Graph/REST APIs and Azure Functions.
-    
+
     Previously, I developed Teams approvals with adaptive cards, cutting approval times to the same day, and created robust error-handling frameworks. My background also includes migrating legacy workflows to Power Automate and building self-service portals adopted by hundreds of employees.
-    
+
     I hold a B.Sc. in Computer Science and am certified as a Power Platform Developer (PL-400) and Solution Architect (PL-600). I am also passionate about mentoring and have volunteered with local maker groups.
-    
+
     Please find my CV attached for your consideration. I would welcome the opportunity to discuss how my skills and experience align with your needs.
-    
+
     Thank you for your time and consideration.
-    
+
     Kind regards,
     Taylor Testperson
-    
+
     ```
 
-2.  **Send** the email once composed from your mail box.
+2.  邮件从邮箱**发送**。
 
     ![](./media/image122.png)
 
-3.  In +++https://make.powerautomate.com/+++, for the event trigger flow, (select **Flows** -> **When a new email arrives from an applicant**) select the **Refresh** icon to view the flow run that **succeeded** for the sent email.
+3.  在事件触发流程的 +++https://make.powerautomate.com/+++
+    中，选择刷新图标以查看发送邮件成功运行的流程。你可以看到这股流动已经成功了。
 
     ![](./media/image123.png)
 
-4.  Back in Copilot Studio in the Hiring Agent select the **Activity**
-    tab. The **Activity** tab will load which will display all the
-    activities of the **Hiring Agent**. There will be an activity with
-    the name value of **Automated** that has a status of **Complete**.
-    This activity represents the event trigger and the agent flow that
-    was invoked.
+4.  返回 Copilot
+    Studio，在招聘代理中选择“**Activity**”选项卡。“**Activity**”选项卡将加载，其中显示**Hiring
+    Agent**的所有活动。其中会有一个名为“**Automated**”且状态为“**Complete**”的活动。此活动代表触发的事件以及调用的代理流程。
 
     ![](./media/image124.png)
 
-5.  Select the activity, and select the event trigger in the activity
-    map. On the right hand side panel, notice how the input parameters
-    in the prompt contain the Resume Id, Resume Title and Resume
-    Number parameter values from the **Dataverse** row that was created.
-    This was from the dynamic content values configured earlier in
-    **Automate uploading resumes to Dataverse received by email**.
+5.  选择活动，然后在活动地图中选择事件触发器。在右侧面板中，请注意提示中的输入参数包含从已创建的
+    **Dataverse** 行中获取的“简历
+    ID”、“简历标题”和“简历编号”参数值。这些值来自之前在“**Automate
+    uploading resumes to Dataverse received by
+    email**”中配置的动态内容值。
 
     ![](./media/image125.png)
 
-6.  Navigate back to the **Hiring Hub** model-driven app and in
-    the **Resumes system view**, select **Refresh** to refresh the view.
-    The newly created row for the resume that was sent by email will now
-    be listed as it was created through the event trigger.
+6.  返回 **Hiring Hub** 模型驱动应用，在 **Resumes system view**
+    中，选择“**Refresh**”以刷新视图。现在，通过电子邮件发送的简历的新创建行将显示出来，因为它是通过事件触发器创建的。
 
     ![](./media/image126.png)
 
-7.  Navigate back to Copilot Studio and select the **Notify Teams
-    Applicant Channel** agent flow within the **Application Intake
-    Agent** in the activity map. On the right hand side panel, notice
-    how the inputs have values from the Dataverse row. This was from the
-    prompt sent by the last action (**Sends a prompt to the specified
-    copilot for processing**) in the event trigger that contains the
-    parameter values from the newly created Dataverse row. This is how
-    we can pass parameter values from event triggers to agent flows.
+7.  返回 Copilot Studio，在活动地图的“**Application Intake
+    Agent**”中选择“**Notify Teams Applicant
+    Channel** ”代理流程。在右侧面板中，请注意输入值来自 Dataverse
+    行。这是由事件触发器中最后一个操作（**Sends a prompt to the
+    specified copilot for
+    processing**）发送的提示信息，该事件触发器包含来自新创建的 Dataverse
+    行的参数值。这就是我们如何将参数值从事件触发器传递到代理流程的方法。
 
     ![](./media/image127.png)
 
-8.  Finally, let's take a look at the adaptive card posted to the
-    channel in **Microsoft Teams**. In the channel, we'll see the
-    adaptive card that displays the information about the newly created
-    Resume row in Dataverse. Hover over the hyperlink at the start of
-    the adaptive card, notice how the URL is the Resumes system view URL
-    that we configured earlier in the JSON payload of the adaptive card.
+8.  最后，我们来看一下发布到 **Microsoft Teams**
+    频道中的自适应卡片。在频道中，我们会看到一张自适应卡片，它显示了
+    Dataverse
+    中新创建的简历行的信息。将鼠标悬停在自适应卡片开头的超链接上，你会发现该
+    URL 是我们之前在自适应卡片的 JSON 有效负载中配置的简历系统视图 URL。
 
     ![](./media/image128.png)
 
-9.  Select the hyperlink, and you'll be directed to the Resumes system
-    view in the **Hiring Hub** model-driven app on your browser.
+9.  选择超链接后，您将被引导到浏览器中**Hiring
+    Hub**模型驱动应用中的简历系统视图。
 
     ![](./media/image129.png)
 
-10. Navigate back to the adaptive card posted to the channel in
-    Microsoft Teams. This time, hover over **View Resume** which is
-    the Action.OpenURL action of the adaptive card. Notice how the URL
-    is the Resumes row that we configured earlier in the JSON payload of
-    the adaptive card.
+10. 返回Microsoft
+    Teams中该频道发布的自适应卡片。这次，将鼠标悬停在**“View
+    Resume**”上，即自适应卡的
+    Action.OpenURL作。注意URL是我们之前在自适应卡JSON负载中配置的Resumes行。
 
     ![](./media/image130.png)
 
-11. Select the action, and you'll be directed to the Resume row form in
-    the Hiring Hub model-driven app on your browser.
+11. 选择作后，你会被引导到浏览器中 Hiring Hub
+    模型驱动应用中的“简历”行表单。
 
     ![](./media/image131.png)
 
-## Summary
+## 摘要
 
-In this lab,
+在这个实验室里，
 
--    You've created an event trigger that passes Dataverse parameter
-    values to an agent flow.
+1.  你创建了一个事件触发器，将Dataverse参数值传递给代理流程。
 
--    Built an agent flow: consumes the Dataverse parameter values to post
-    an adaptive card to a channel in Microsoft Teams to alert the HR
-    recruitment team.
+2.  构建了代理流程：消耗Dataverse参数值，将自适应卡片发布到Microsoft
+    Teams的某个渠道，以通知人力资源招聘团队。
 
--  Updated child agent instructions: to invoke the flow once the event
-    trigger has completed.
+3.  更新的子代理指令：事件触发完成后调用流程。
 
--    This enables the **Hiring Agent** to work autonomously whenever
-    resumes are received as email attachments and notify the HR
-    recruitment team for manual review.
+4.  这使得 **Hiring Agent**
+    能够在收到简历时自主工作，并通知人力资源招聘团队进行人工审核。
