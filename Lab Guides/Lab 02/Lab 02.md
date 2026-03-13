@@ -1,58 +1,42 @@
-# Lab 2- Build and enhance a template based enterprise assistant
+# 实验2 - 构建并增强基于模板的企业助理
 
-**Objective**
+**目标**
 
-**Agent templates** are designed to help you get started with a **custom
-agent**. You are responsible for assessing all safety and legal
-implications of using an agent template and customizing it as
-appropriate for your business.
+**经纪人模板**旨在帮助您开始使用**定制经纪**人。您有责任评估使用代理人模板的所有安全和法律影响，并根据您的业务进行定制。
 
-An agent built from the **Safe Travels agent template** is a
-Business-to-Employee (B2E) agent designed to provide employees of a
-company with **travel assistance**. This agent helps ensure employees
-are well-prepared and informed for their next work trip. This agent uses
-natural language processing to offer a conversational interface, making
-it easy and intuitive for employees to access the information they need.
-However, the default website used by the agent currently only covers US
-travel destinations. You can replace the default website with your own
-knowledge source.
+基于**安全旅行代理模板**构建的代理是一种企业对雇员（B2E）代理，旨在为公司员工提供**旅行协助**。该代理帮助员工充分准备并充分了解下一次出差。该代理利用自然语言处理提供对话式界面，使员工轻松直观地获取所需信息。不过，代理目前使用的默认网站只覆盖美国旅游目的地。你可以用自己的知识来源替换默认网站。
 
-In this lab, you will create an agent from the **Safe Travels
-template** and enhance it in Lab 05.
+在这个实验室里，你将从**Safe Travels模板**创建一个代理，并在Lab
+05中加以增强。
 
-## Exercise 0 - Create Security Group in Entra ID and Configure Copilot Studio Authors
+## 练习0 - 在Entra ID中创建安全组并配置Copilot Studio作者
 
-This is a prerequisite task in order to help us to publish and work
-seamlessly with the agents in Copilot Studio throughout this course.
+这是帮助我们在整个课程中与Copilot Studio代理无缝协作发布的前提任务。
 
-1.  Navigate to the Azure portal at
-    +++https://portal.azure.com/+++ and login with your tenant
-    credentials present in the **Resources** tab if prompted.
+1.  访问Azure门户的+++https://portal.azure.com/+++，在
+    **Resources** 标签页中使用你的租户凭证登录。
 
     ![A screenshot of a computer login AI-generated content may be
     incorrect.](./media/image1.jpeg)
-    
+
     ![A screenshot of a computer login AI-generated content may be
     incorrect.](./media/image2.jpeg)
-    
+
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image3.png)
-    
-2.  Select **Next** in the Keep your account secure window and follow
-    the **prompts**.
+
+2.  在“Keep your account secure”窗口中选择“**Next** ”，然后按照
+    **prompts**。
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image4.png)
+    incorrect.](./media/image4.png)
 
-3.  Download the Authenticator app in your phone if you do not have it
-    already.
+3.  如果你还没有，可以下载手机上的身份验证器应用。
 
     ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image5.png)
 
-4.  Follow the prompts and complete the setup.
-
-    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
+4.  按照提示作，完成设置。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
@@ -60,426 +44,370 @@ incorrect.](./media/image6.png)
     ![A screenshot of a computer AI-generated content may be incorrect.](./media/image7.png)
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
+    incorrect.](./media/image8.png)
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
+    incorrect.](./media/image9.png)
 
-5.  In the Azure welcome screen, select **Get Started**.
+5.  在 Azure 欢迎界面，选择**“Get Started**”。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-6.  Search for and select +++Microsoft EntraID+++.
+6.  搜索并选择 +++Microsoft EntraID+++。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-7.  From the left pane, select **Manage** -\> **Groups**.
+7.  在左侧面板中，选择 **Manage** -\> **Groups**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-8.  Select **New group** to create a new security group.
+8.  选择**New group** 以创建新的安全组。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-9.  Enter the below details
+9.  请输入以下详细信息
 
-    - Group type – Select **Security**
+    - 组别类型 – 选择 **Security**
 
-    - Group name – Enter +++**copilotagentsecurity**+++
+    - 集团名称 – 输入 +++**copilotagentsecurity**+++
 
-    - Microsoft Entra roles can be assigned to the group –
-      Select **Yes** (If this option is not visible, ignore this step)
+    - 可以将 Microsoft Entra
+      角色分配给该组——选择**“Yes**”（如果该选项不可见，请忽略此步骤）
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-10. Select **No owners selected**, select the **MOD Administrator** from
-    the **Add owners** page and click on **Select**.
+10. 选择“**No owners selected**”，从**Add owners** 页面选择 **MOD
+    Administrator** ，点击“**Select**”。
 
     ![A screenshot of a group AI-generated content may be
-incorrect.](./media/image15.png)
+    incorrect.](./media/image15.png)
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
+    incorrect.](./media/image16.png)
 
-11. Similarly, select **No members selected**, and add the **MOD
-    Administrator** from the list and click on **Select**.
+11. 同样地，选择“**No members selected**”，然后从列表中添加 **MOD
+    Administrator** ，并单击“**Select**”。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-12. Select **No roles selected**. If you **do not** see this **option**,
-    ignore this and the next step.
+12. 选择：**No roles
+    selected**。如果你**没有**看到这个**选项**，请忽略这个选项，进入下一步。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-13. Search for and select +++**Global admin**+++ and select **Select**.
+13. 搜索并选择 **+++Global admin+++** 并选择 **Select。**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image19.png)
 
-14. Select **Create** once all the details are added and
-    select **Yes** in the confirmation dialog.
+14. 添加所有细节后选择 **Create**，确认对话框中选择**“Yes**”。
 
     ![A screenshot of a group AI-generated content may be
-incorrect.](./media/image20.png)
+    incorrect.](./media/image20.png)
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
+    incorrect.](./media/image21.png)
 
-15. Ensure that you get a **success** message.
+15. 确保你收到**成功**信息。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-16. Select Contoso|Groups from the top left.
+16. 从左上角选择 Contoso|Groups。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-17. Select **Properties** under **Manage** from the left pane.
+17. 从左侧窗格的“**Manage**”下选择“**Properties**”。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-18. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
+18. 将“**can manage access to all Azure subscriptions and management
+    groups in this tenant** ”选项切换为“Yes”，然后单击“**Save**”。
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
+incorrect.](./media/image25.png)
 
-19. Select **Enabled** under Security defaults option and click on **Save**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image77.png)
-
-20. Select **Save** in the Contoso|Properties page.
+19. 现在，从左侧窗格的“**Manage**”下选择“**Roles and
+    administrators**”。 
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image78.png)
+incorrect.](./media/image26.png)
 
-19. Now, select **Roles and administrators** under **Manage** from the
-    left pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image79.png)
-
-20. Search for +++privileged role admin+++ and click on the **Privileged
-    Role Administrator** role (**Do not select the checkbox**, click on
-    its name).
+20. 搜索 +++privileged role admin+++，然后单击“**Privileged Role
+    Administrator** ”角色（**不要选中复选框**，单击其名称）。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-21. Select **+ Add assignments**.
+21. 选择 **+ Add assignments**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-22. Select **No members selected**.
+22. 选择**“No members selected**”。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-23. Select the **MOD Administrator** id and select **Next**.
+23. 选择 **MOD Admin id** ，然后选择 **Next**。
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
+    incorrect.](./media/image30.png)
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
+    incorrect.](./media/image31.png)
 
-24. Select **Assign**.
+24. 选择 **Assign**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-25. Ensure that the role assignment is successful.
+25. 确保角色分配成功。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-26. From a new tab, navigate to
-    +++https://admin.powerplatform.microsoft.com/+++.
-    Select **Manage** from the left pane and then select the **Tenant
-    Settings** option.
+26. 从新标签页，导航到+++<https://admin.powerplatform.microsoft.com/+++>。
+    从左侧窗格选择“**Manage**”，然后选择 **Tenant Settings** 选项。 
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-27. Select **Copilot Studio Authors** from the list available.
+27. 从可用列表中选择 **Copilot Studio Authors**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-28. Click on the **Edit** icon to edit the settings.
+28. 点击**“Edit**”图标以编辑设置。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-29. Search for and select the **+++copilotagentsecurity+++** group that
-    you created earlier.
+29. 搜索并选择 你之前创建的 **+++copilotagentsecurity+++** 组。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-30. Select **Save** to save the settings.
+30. 选择 **Save** 以保存设置。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-## Exercise 1: Create Safe Travels agent from template
+## 练习1：从模板创建安全旅行代理
 
-In this exercise, you will create the agent in Copilot Studio using the
-Safe Travels agent template.
+在这个练习中，你将使用 Safe Travels 代理模板在 Copilot Studio
+中创建代理。
 
-1.  From a browser, login to
-    +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and
-    click **Start free trial**.
+1.  从浏览器登录
+    +++https://copilotstudio.microsoft.com+++。开始免费试用页面会打开。选择您的国家，点击
+    **Start free trial**。
 
     ![](./media/image39.png)
 
-2.  Select the **Dev One** environment.
+2.  选择 **Dev One** 环境。
 
     ![](./media/image40.png)
 
-    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below >screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
-    >
-    >Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -\> **Environments -\> Dev One** and >select the value of the **Environment ID**. ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
+    [!提醒] **重要** 如果Copilot Studio没有显示如下截图中选择 **Environment**  的选项，请按照以下步骤作。
 
-    >Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**\< EnvironmentID \>**+++ (Replacing **\< EnvironmentID \>** with the value fetched above)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
 
-3.  Select Skip in the Welcome screen.
+    > 打开
+    > +++https://admin.powerplatform.microsoft.com/+++。选择“**Manage** -> **Environments
+    > -> Dev One** ”，然后选择“**Environment ID**”的值。![A screenshot of a
+    > computer AI-generated content may be incorrect.](./media/image42.png)
+    >
+    > 返回 Copilot Studio 选项卡并打开
+    > +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++（将 **< EnvironmentID >** 替换为上面获取的值）
+
+3.  在欢迎界面选择跳过。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-4.  Select **Agents** from the left pane and then select the **Safe
-    Travels** template under **Start with an agent template**.
+4.  从左侧窗格中选择“**Agents**”，然后在“**Start with an agent
+    template**”下选择“**Safe Travels** ”模板。 
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+5.  安全旅行模板创建了一个新的代理，旨在为公司员工提供旅行协助。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+6.  浏览设置页面。在“**Knowledge**”下，您可以看到 **US Travel
+    Website** 已添加为知识库来源。如有需要，可以进行编辑。这里，我们也使用该网站。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+7.  选择
+    **Create **以创建安全旅行代理。我们不会更改任何内容，也不会继续使用模板。代理可以随时根据用户需求进行升级。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+8.  **代理**程序**创建完成**后，会自动打开并显示 **Overview** 页面。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and
-    hit **Send**.
-
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
+9.  在测试窗格中，输入+++How to apply for
+    passport?+++，然后点击“**Send**”。
+    测试窗格默认打开。如果未打开，请点击右上角的测试图标。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+10. 你可以看到代理会根据其知识来源提供护照申请信息。
 
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image50.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## 练习2：将代理发布到Teams和Microsoft 365 Copilot
 
-In this exercise, you will **publish** the agent created in Copilot
-Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+在本练习中，您将把在 Copilot Studio 中创建的代理发布到 **Microsoft
+Teams** 和 **Microsoft 365 Copilot** 频道。
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+1.  从浏览器打开**MS Teams**
+    +++https://teams.microsoft.com/v2/+++，然后用**Resources** 标签中的租户凭证**登录**。 
 
-1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a
-    browser and **login** using your tenant credentials from
-    the **Resources** tab if prompted.
-
-2.  Back in the Copilot Studio, select **Publish** from the top right of
-    the agent page.
+2.  回到Copilot Studio，从 代理页面右上角选择 **Publish**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-3.  Check the **Force newest version** checkbox and then
-    select **Publish** in the confirmation dialog.
+3.  选中“**Force newest
+    version** ”复选框，然后在确认对话框中选择“**Publish** ”。
 
     ![](./media/image52.png)
-    
+
     ![](./media/image53.png)
 
-4.  Select **Channels** from the top navigation bar.
+4.  从顶部导航栏选择“**Channels** ”。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-5.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+5.  从可用频道列表中选择 **Teams**和 **Microsoft 365 Copilot**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-6.  Select **Add channel**.
+6.  选择 **Add channel**。
 
     ![](./media/image56.png)
 
-7.  Click on the **See agent in Teams** option add the agent to the
-    Teams.
+7.  点击“**See agent in Teams** ”选项，将代理添加到Teams中。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in
-    the **This site is trying to open Microsoft Teams** pop up and then
-    select **Use the Web App instead** option.
+8.  这将在 Microsoft Teams 中打开代理。在“**This site is trying to open
+    Microsoft Teams**”弹出窗口中选择“**Cancel**”，然后选择“**Use the Web
+    App instead** ”选项。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-9.  Select **Add** to add the agent.
+9.  选择 **Add** 以添加代理。
 
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image59.png)
-    
+
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image60.png)
 
-10. Once added, you will get an option to open the agent.
-    Select **Open**.
+10. 添加后，你会有机会开设代理。选择 **Open**。
 
     ![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Test the agent from Teams.
+11. 测试Teams的代理。
 
     ![](./media/image62.png)
 
-12. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+12. 回到 Copilot Studio，关闭 Teams 和 Microsoft 365 Copilot 频道窗口。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-## Exercise 3 – Test the existing Safe Travels agent
+## 练习3——测试现有的安全旅行代理
 
-In this exercise, we will test the **Safe Travels** agent to see how it
-responds when asked about travel approval.
+在本练习中，我们将测试 **Safe Travels**
+代理，看看它在被问及旅行批准时的反应。
 
-1.  Back in the Copilot Studio -\> Safe Travels agent, select
-    the **Test** icon to test the agent.
+1.  回到Copilot Studio——\>安全旅行代理，选择 **Test** 图标来测试代理。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-2.  Enter +++Need travel approval+++ in the Test window and click
-    on **Enter**.
+2.  在测试窗口输入+++Need travel approval+++，然后点击 **Enter**。
 
     ![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image65.png)
 
-3.  You can see that the agent responds with a generalized instruction
-    set to be followed to get the travel approval.
+3.  你可以看到客服会给出一套通用的指示，要求你按照它来获得旅行批准。
 
     ![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image66.png)
 
-## Exercise 4 – Enhance the agent with company specific Knowledge assets
+## 练习4 – 用公司专属的知识资产增强代理
 
-In this exercise, we will add knowledge asset - **Travel
-Policy** specific to Contoso.
+在本练习中，我们将添加知识资产——Contoso 特有的**Travel Policy** 。
 
-1.  From the Overview page of the agent, scroll down and select **+ Add
-    knowledge**
+1.  在代理的概览页面，向下滚动并选择 **+ Add knowledge**
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-2.  Click on **select to browse** option.
+2.  点击选择 **select to browse** 。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-3.  From **C:\Labfiles\Lab Files** folder, select **Travel
-    Policy.docx** and click **Open**.
+3.  从 **C：\Labfiles\Lab Files** 文件夹中，选择** Travel
+    Policy.docx**并点击 **Open**。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-4.  Click **Add to agent** to the add the file.
+4.  点击 **Add to agent** ，添加文件。
 
     ![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image70.png)
+    incorrect.](./media/image70.png)
 
     ![A screenshot of a computer error AI-generated content may be
-incorrect.](./media/image71.png)
+    incorrect.](./media/image71.png)
 
-5.  Ensure that the file is added. Wait till the status changes
-    from **In progress** to **Ready**. You can continue with the next
-    step while it is changing to the Ready state if it takes more than
-    few minutes.
+5.  确保文件已添加。等待状态从“**In
+    progress**”变为“**Ready**”。如果状态变为“就绪”需要几分钟时间，您可以继续执行下一步。
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image73.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image73.png)
 
-6.  Now, test the agent with the same question to see that the agent
-    responds with the company specific policies from the knowledge asset
-    added.
+6.  现在，用同样的问题测试代理，看看代理是否回复了公司根据知识资产添加的具体政策。
 
-## Summary
+## 摘要
 
-In this lab, you created a **Business-to-Employee (B2E) travel
-assistance** agent by using the **Safe Travels agent template** in
-Microsoft Copilot Studio. You explored how agent templates provide a
-quick starting point by preconfiguring conversational capabilities and
-knowledge sources, while still allowing for future customization to meet
-organizational and legal requirements. Using the built-in **US travel
-website** as a **knowledge source**, you tested the agent’s ability to
-answer employee travel-related questions through natural language
-interactions. Finally, you **published** the agent to **Microsoft Teams
-and Microsoft 365 Copilot**, validated its availability in Teams, and
-confirmed that employees can access and interact with the Safe Travels
-agent directly within their everyday collaboration tools.
+在本实验中，您使用 Microsoft Copilot Studio 中的 **Safe Travels
+代理模板**创建了一个**Business-to-Employee (B2E) 旅行援助代理**。
+你探讨了代理模板如何通过预配置对话功能和知识源，提供快速起点，同时仍允许未来定制以满足组织和法律要求。
+您利用内置的**美国旅游网站作**为**知识来源**，测试了代理通过自然语言交互回答员工与旅行相关问题的能力。最后，你们将代理**发布**到**Microsoft
+Teams和Microsoft 365
+Copilot**，验证了其在Teams中的可用性，并确认员工可以在日常协作工具中直接访问和交互Safe
+Travels代理。
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

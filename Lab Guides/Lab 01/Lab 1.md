@@ -1,63 +1,52 @@
-# Lab 1 - Designing an AI assistant with Copilot Studio Agent Builder
+# 实验室1 - 使用Copilot Studio Agent Builder设计AI助手
 
-**Objective**
+**目标**
 
-In this lab, you will learn how to create a custom conversational agent
-using the **Copilot Studio Agent Builder** by describing the agent’s
-purpose, behavior, and tone in natural language. You will design a
-**Gardening Assistant** that provides expert guidance on home gardening,
-focusing on plant care, best practices, and the importance of nature in
-everyday living. By the end of the lab, you will understand how to
-iteratively refine agent instructions and bring a functional,
-domain-specific assistant to life.
+在本实验中，你将学习如何使用 **Copilot Studio Agent Builder**
+创建自定义对话代理，方法是用自然语言描述代理的用途、行为和语气。你将设计一个
+**Gardening
+Assistant**，它能提供专业的家庭园艺指导，重点关注植物养护、最佳实践以及自然在日常生活中的重要性。实验结束时，你将掌握如何迭代优化代理指令，并最终打造出一个功能齐全、特定领域的助手。
 
-## Exercise 1: Creating the agent
+## 练习1：创建代理人
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
-    browser and login with your credentials. Select **Yes** in the **Stay Signed in** dialog.
+1.  在浏览器中打开链接
+    +++https://m365.cloud.microsoft/chat+++，并用你的凭证登录。
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+    - 用户名 - +++@lab.CloudPortalCredential(User1).Username+++
 
-1.  Select **New agent** from the **left** pane. If you are **not** able
-    to see the **New agent** option, **refresh** the **browser** and try
-    again in few minutes. At times, it takes few minutes to get loaded
-    completely.
+    - 密码 - +++@lab.CloudPortalCredential(User1).Password+++
+
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image1.png)
+
+2.  从**左**侧面板中选择“**New agent**”。如果您看不到“**New
+    agent** ”选项，请**刷新浏览器**，稍后再试。有时，页面需要几分钟才能完全加载。 
 
     ![](./media/image2.png)
 
-2.  Select the **Describe** tab.
+3.  选择 **“Describe** ”标签。
 
     ![](./media/image3.png)
 
-3.  You can start defining the custom agent. You can choose a template
-    to start from, or you can simply *describe* the agent by providing a
-    description in natural language. Let's provide the following initial
-    description
+4.  你可以开始定义自定义代理。你可以选择一个模板作为起点，或者直接用自然语言描述代理。让我们先做下初步描述
 
     +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
 
     ![](./media/image4.png)
 
-4.  Once you have provided the instructions, the initial details are
-    populated.
+5.  一旦你提供了说明，初始信息就会被填写。
 
-5.  You can rename the agent if needed. Provide the following prompt to
-    do so +++Name it as “Gardening assistant”+++.
+6.  如果需要，你可以重新命名代理人。提供以下提示 +++Name it as
+    “Gardening assistant”+++。
 
     ![](./media/image5.png)
 
-6.  If you are asked about refining instructions further, provide the
-    following sentence.
+7.  如果被问及进一步细化说明，请提供以下句子。
 
     +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
 
     ![](./media/image6.png)
 
-7.  Keep on interacting with the agent builder until it does have all
-    the information needed to create the agent. Provide the following
-    sentence.
+8.  持续与代理构建器互动，直到它拥有创建代理所需的全部信息。请提供以下句子。
 
     +++Focus on highlighting the importance of nature and plants/flowers to be present in every house!+++
 
@@ -65,54 +54,43 @@ domain-specific assistant to life.
 
     ![](./media/image8.png)
 
-8.  Then give an instruction of the agent tone as below.
+9.  然后给出如下的代理语调指令。
 
     +++Use a professional, yet friendly, tone.+++
 
     ![](./media/image9.png)
 
-11. Click on **Create** on the top right to create the agent.
+11. 点击右上角的**“Create**”以创建代理。
 
     ![](./media/image10.png)
 
     ![](./media/image11.png)
 
-12. Select **Go to agent** once the agent is created.
+12. 创建代理后选择“**Go to agent** ”。
 
     ![](./media/image12.png)
 
-13. This opens the created agent.
+13. 这会打开创建的代理。
 
     ![](./media/image13.png)
 
-    >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
-    >
-    >![](./media/image14.png)
+    [!提醒]
+    **提醒**：如果代理不自动打开，请**刷新**页面，并从左侧窗格选择**created gardening agent** 。
 
-14. Provide prompt like below to converse with the agent.
+    ![](./media/image14.png)
+
+14. 请提供如下提示以便与中介沟通。
 
     +++Give me tips to keep Rose plants fresh+++
 
     ![](./media/image15.png)
 
-    ## Summary:
+## 摘要:
 
-    In this lab, you created a **Gardening Assistant agent** using the
-    Copilot Studio Agent Builder experience. Starting with a simple
-    natural-language description, you defined the agent’s role as an expert
-    gardener and progressively refined its focus, tone, and personality
-    through interactive prompts. You customized the agent to provide
-    professional yet friendly gardening advice, with an emphasis on keeping
-    plants healthy, vibrant, and visually appealing while highlighting the
-    value of plants and flowers in every home.
+在这个实验室里，你用Copilot Studio Agent Builder体验创建了**Gardening
+Assistant
+agent**。从简单的自然语言描述开始，你定义了代理作为专业园丁的角色，并通过互动提示逐步完善其专注、语气和个性。您定制了这位经纪人，提供专业且友好的园艺建议，强调保持植物健康、鲜艳且视觉吸引力，同时强调每个家庭中植物和花卉的价值。
 
-    After creating and launching the agent, you validated its behavior by
-    interacting with it using real user prompts, such as requesting tips to
-    keep rose plants fresh. This lab demonstrated how quickly and
-    intuitively you can build a purpose-driven agent using Copilot
-    Studio—without writing code—by leveraging conversational design and
-    iterative instruction refinement.
-
-
-
-
+创建并启动代理后，你通过真实用户提示与其交互，比如请求保持玫瑰植物新鲜的建议，验证其行为。本实验室展示了利用
+Copilot Studio
+快速且直观地构建一个以目的为驱动的代理——无需编写代码——通过对话设计和迭代指令的优化。

@@ -1,194 +1,156 @@
-# Lab 4: Creating an intelligent hiring agent for talent acquisition
+# 实验1：打造智能招聘人才招聘代理
 
-In this lab, you'll establish the foundation for your hiring automation
-system. You'll begin by importing a pre-configured solution that
-contains all the necessary Dataverse tables and data structure for
-managing candidates, job positions, and hiring workflows. Next, you'll
-populate these tables with sample data that will support your learning
-throughout this module and provide realistic scenarios for testing.
-Finally, you'll create the Hiring Agent in Copilot Studio, setting up
-the basic conversational interface that will serve as the cornerstone
-for all the other features you'll add in future missions.
+在这个实验室中，你将为招聘自动化系统奠定基础。您将首先导入一个预配置的解决方案，其中包含管理候选人、职位和招聘工作流程所需的所有Dataverse表和数据结构。接下来，你将用样本数据填充这些表格，支持本模块的学习，并为测试提供真实情景。最后，你将在Copilot
+Studio中创建招聘代理，建立基础的对话界面，这将成为未来任务中所有其他功能的基石。
 
-## Exercise 1: Import solution
+## 练习1：导入解法
 
-In this exercise, you will import a pre existing Solution.
+在这个练习中，你将导入一个已有的解决方案。
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++ if you are already logged in and ensure that you are there in the **Dev One** environment.
+1.  访问 Copilot Studio 的 +++https://copilotstudio.microsoft.com+++
 
-2.  Select the **...** in the left navigation and select **Solutions.**
+2.  选择...... 在左侧导航中选择**Solutions。**
 
     ![](./media/image1.png)
 
-3.  Select **Import solution**. Click on **Browse** and select the
-    **zip** file starting with **Operative** form **C:\LabFiles\LabFiles** and
-    select **Open**.
+3.  选择“**Import
+    solution**”。单击“**Browse**”，选择以“**Operative**”开头的
+    **C:\LabFiles** 压缩文件，然后选择“**Open**”。
 
     ![](./media/image2.png)
-   
+
     ![](./media/image3.png)
 
     ![](./media/image4.png)
 
-4.  Once selected, select **Next** and then select **Import**.
+4.  选择后，选择“**Next**”，然后选择“**Import**”。
 
-   ![](./media/image5.png)
-   
-   ![](./media/image6.png)
+    ![](./media/image5.png)
 
-5.  This will take some time of around 3 to 5 minutes. On success, you
-    will see a green notification bar with the following message when
-    it's done: "Solution "Operative" imported successfully."
+    ![](./media/image6.png)
 
-   ![](./media/image7.png)
+5.  这大约需要 3 到 5
+    分钟。成功后，您将看到一个绿色通知栏，其中包含以下消息："Solution
+    "Operative"已成功导入。”
 
-6.  Once you see the "imported successfully" message, take a look at
-    what you imported by selecting the display name of the solution
-    (**Operative**) in the solutions list.
+    ![](./media/image7.png)
 
-   ![](./media/image8.png)
+6.  看到"imported
+    successfully"消息后，通过在解决方案列表中选择解决方案的显示名称(**Operative**)来查看您导入的内容。
 
-7.  Review the solution and ensure that the following components are
-    imported.
+    ![](./media/image8.png)
 
-   ![](./media/image9.png)
+7.  请审查解决方案，并确保以下组件已导入。
 
-8.  Select the **Publish all customizations** button at the top of the page.
+    ![](./media/image9.png)
 
-   ![](./media/image10.png)
+8.  点击页面顶部的“Publish all customizations”按钮。
 
-## Exercise 2 - Import sample data
+    ![](./media/image10.png)
 
-In this exercise, you will add sample data to some of the tables that
-you imported in the previous exercise.
+## 练习2 - 导入样本数据
 
-1.  From the solution that you imported in the last exercise, select
-    the **Hiring Hub** Model-Driven App by selecting the checkmark in
-    front of the row and select the **Play** button at the top.
+在这个练习中，你将向上一个练习中导入的一些表格添加样本数据。
 
-   ![](./media/image11.png)
+1.  从你在上一个练习中导入的解决方案中，选择“**Hiring
+    Hub** 模型驱动应用程序”，方法是选中该行前面的勾选标记，然后选择顶部的“**Play**”按钮。
 
-2.  Select **Job Roles** in the left navigation. Select
-    the **More** icon (three dots below each other) in the command bar
-    and then select the **right arrow** next to **Import from Excel.**
+    ![](./media/image11.png)
 
-   ![](./media/image12.png)
+2.  在左侧导航中选择 **Job
+    Roles** 。在命令栏中选择“**More**”图标（上下三个点），然后选择“**Import
+    from Excel**”旁边的**右箭头**。
 
-3.  Select **Import from CSV**.
+    ![](./media/image12.png)
 
-   ![](./media/image13.png)
+3.  选择 **Import from CSV**。
 
-4.  Select the **Choose File** button, select the **job-roles.csv** file
-    from **C:\LabFiles\LabFiles** and then select **Open**.
+    ![](./media/image13.png)
 
-   ![](./media/image14.png)
+4.  选择“**Choose File**”按钮，从 **C:\LabFiles**
+    中选择**job-roles.csv**文件，然后选择**Open**。
 
-5.  Select **Next.** Leave the next step as is and select **Review
-    Mapping**
+    ![](./media/image14.png)
 
-   ![](./media/image15.png)
-   
-   ![](./media/image16.png)
+5.  选择“**Next**”。下一步保持默认设置，然后选择“**Review Mapping**”。
 
-6.  Make sure the mapping is correct and select **Finish Import**.
+    ![](./media/image15.png)
 
-   ![](./media/image17.png)
+    ![](./media/image16.png)
 
-7.  Select **Done**. This can take a little while, but you can hit
-    the **Refresh** button to see if the import has succeeded.
+6.  确保映射正确，然后选择**“Finish Import**”。
 
-   ![](./media/image18.png)
-   
-   ![](./media/image19.png)
+    ![](./media/image17.png)
 
-8.  Now, you will import the **Evaluation Criteria sample data**
+7.  选择 **Done**。这可能需要一些时间，但你可以点击
+    **Refresh** 按钮查看导入是否成功。
 
-9.  Select **Evaluation Criteria** in the left navigation.
+    ![](./media/image18.png)
 
-10. Select **Import from CSV** like you did earlier. Select the **Choose
-    File** button, select the **evaluation-criteria.csv** from
-    **C:\LabFiles\LabFiles**.
+    ![](./media/image19.png)
 
-   ![](./media/image20.png)
+8.  现在，你将导入 **评估标准样本数据**
 
-11. Select **Next**. Leave the next step as is and select **Review Mapping**
+9.  在左侧导航中选择**Evaluation Criteria**。
 
-   ![](./media/image21.png)
+10. 像之前一样选择“**Import from CSV**”。选择“**Choose File** ”按钮，从
+    **C:\LabFiles** 中选择 **evaluation-criteria.csv** 文件。
 
-   ![](./media/image22.png)
+    ![](./media/image20.png)
 
-   >**Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
-   >
-   >![](./media/image31.png)
+11. 选择 **Next**。保持下一步不变，选择“**Review Mapping**”。
 
-12. Now we have to do a bit more work for the mapping. Select the
-    **magnifying glass icon** next to the **Job Role** field.
+    ![](./media/image21.png)
 
-   ![](./media/image23.png)
+    ![](./media/image22.png)
 
-13. Make sure **Job Title** is selected here, and if not - add it and
-    select **OK**.
+12. 现在我们需要对映射关系进行一些补充工作。选择“**Job
+    Role**”字段旁边的**放大镜图标。**
 
-   ![](./media/image24.png)
+    ![](./media/image23.png)
 
-14. Make sure the rest of the mapping is correct too and select **Finish
-    Import** and then select **Done**.
+13. 确保这里选中了**Job Title**，如果没有，添加并选择**OK**。
 
-   ![](./media/image25.png)
+    ![](./media/image24.png)
 
-15. This can take a little while, but you can hit the **Refresh** button
-    to see if the import has succeeded.
+14. 确保其余映射也正确，然后选择“**Finish Import**”，再选择“**Done**”。
 
-   ![](./media/image26.png)
+    ![](./media/image25.png)
 
-## Exercise 3 - Create the hiring agent
+15. 这可能需要一些时间，但你可以点击 **Refresh **按钮查看导入是否成功。
 
-Now you are done with the setup of the prerequisites, it's time for the
-actual work! Let's add our Hiring Agent first!
+    ![](./media/image26.png)
 
-1.  From the Copilot Studio, select **Agents** from the left pane. Select
-    the drop down next to the **+ Create blank agent** and select **Advanced create**.
+## 练习 3 - 创建招聘代理
+
+既然你已经完成了先修课程的设置，就该开始真正的工作了！我们先加入招聘代理吧！
+
+1.  在Copilot Studio中，从左侧面板选择特工。选择 + Create blank
+    agent旁边的下拉菜单，选择高级创建。
 
     ![](./media/image27.png)
 
-2.  In the Agent settings, select the Solution as **Operative** and then
-    select **Confirm and create**.
+2.  在代理设置中，选择 Solution 作为**Operative**，然后选择 **Confirm
+    and create**。
 
     ![](./media/image28.png)
 
-3.  Select **Edit** against the Details of the created agent.
+3.  在已创建代理的详细信息中选择“**Edit**”。
 
     ![](./media/image29.png)
 
-4.  Enter the name as +++**Hiring Agent**+++ and Description as
-    +++**Central orchestrator for all hiring activities**+++ and select
-    **Save**.
+4.  输入名称 +++**Hiring Agent**+++和描述 +++**Central orchestrator for
+    all hiring activities**+++并选择**Save**。
 
     ![](./media/image30.png)
 
-## Summary
+## 摘要
 
-In this lab, you now have complete the following.
+在这个实验室里，你现在需要完成以下任务。
 
-- **Scenario Understanding**: Comprehensive knowledge of hiring
-  automation challenges and the solution you will be building.
+- **情景理解**: 全面了解招聘自动化挑战及您将构建的解决方案。
 
-- **Solution Deployment**: Successfully imported and configured the
-  building blocks of the hiring management system.
+- **解决方案部署**: 成功导入并配置了招聘管理系统的构建模块。
 
-- **Agent Creation**: Built an hiring agent that is the start of the
-  scenario you're going to build as an Agent Academy Operative
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- **代理创建**:
+  构建了一个招聘代理，作为你作为特工学院特工将要构建的场景的起点

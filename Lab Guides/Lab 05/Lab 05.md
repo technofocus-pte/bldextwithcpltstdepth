@@ -1,190 +1,154 @@
-# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
+# 实验室——将招聘代理转变为可扩展的多代理架构
 
-In the earlier lab, you built your main Hiring Agent giving you a solid
-foundation for managing recruitment workflows. But one agent can only do
-so much.
+在之前的实验室里，你构建了主招聘代理，为管理招聘流程打下了坚实基础。但一个代理人能做的有限。
 
-Your assignment, should you choose to accept it, is **Operation
-Symphony** - transforming your single agent into a **multi-agent
-system**: an orchestrated team of specialized agents that work together
-to handle complex hiring challenges. Think of it as upgrading from a
-solo operator to commanding a specialized task force.
+如果你接受这项任务，那就是 **Operation Symphony** -
+将你手下的单个特工转型为**多特工系统**：一支由各领域专家组成的协同作战团队，共同应对复杂的招聘挑战。你可以把它理解为从单打独斗的特工升级为指挥一支特种部队。
 
-Like a symphony orchestra where each musician plays their part in
-perfect harmony, you'll add two critical specialists to your existing
-Hiring Agent: an Application Intake Agent to process resumes
-automatically, and an Interview Prep Agent to create comprehensive
-interview materials. These agents will work together seamlessly under
-your main orchestrator.
+就像交响乐团中每位音乐家完美和声地演奏自己的部分一样，你将为现有的招聘代理增加两位关键专家：一位自动处理简历的申请接待员，以及一位负责制作全面面试材料的面试准备员。这些代理将在你的主编排器下无缝协作。
 
-After creating multi agents, you'll transform your agents from waiting
-for human input to proactively responding to external events and taking
-intelligent action without supervision.
+创建多智能体后，您将将智能体从等待人类输入转变为主动响应外部事件，并在无监督下采取智能行动。
 
-Think of it as upgrading from agents that *answer questions* to agents
-that *anticipate needs* and *act independently*. Through event triggers
-and automated workflows, your Hiring Agent will detect incoming resume
-emails, process attachments automatically, store data in Dataverse, and
-notify your HR recruitment team via Microsoft Teams - all while you
-focus on higher-value tasks.
+可以把它看作是从回答*问题的代理*升级为能够*预见需求*并*独立行动*的代理。通过事件触发器和自动化工作流程，您的招聘代理将检测收到的简历邮件，自动处理附件，将数据存储在Dataverse中，并通过Microsoft
+Teams通知人力资源招聘团队——而您则专注于更高价值的任务。
 
-## Objectives
+## 目标
 
-In this mission, you'll learn:
+在这次任务中，你将学到东西:
 
--    When to use **child agents** vs **connected agents**
+1.  何时使用**子代理**与**连接代理**
 
--    How to design **multi-agent architectures** that scale
+2.  如何设计 可扩展的**多智能体架构**
 
--    Creating **child agents** for focused tasks
+3.  为聚焦任务创建**子代理**
 
--    Establishing **communication patterns** between agents
+4.  建立 代理之间的**通信模式**
 
--    Building the Application Intake Agent and Interview Prep Agent
+5.  构建申请接待代理和面试准备代理
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+6.  事件触发器如何实现无需用户交互即可自主代理行为
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+7.  Copilot Studio 中交互代理与自主代理的区别
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+8.  如何创建自动处理邮件附件并将文件上传到 Dataverse 的事件触发器
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+9.  如何构建能够向Teams频道发布自适应卡片以发送通知的代理流程
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+10. 如何在事件触发器和代理流程之间传递数据，实现端到端自动化
 
-## Child agent: Application Intake Agent
+## 子代理：申请接收代理
 
-Let's start building our multi-agent hiring system. Our first specialist
-will be the **Application Intake Agent** - a child agent responsible for
-processing incoming resumes and candidate information.
+让我们开始构建我们的多代理人招聘系统。我们的首位专家将是**申请接纳代理**——一位负责处理新简历和候选人信息的儿童代理。
 
 ![](./media/image1.png)
 
-**Application Intake Agent responsibilities**
+**应用接收代理的职责**
 
-- **Parse resume content** from PDFs provided via interactive chat (In a
-  future mission you'll learn how to process resumes autonomously).
+- **解析**通过互动聊天提供的PDF**简历内容**（在未来的任务中，你将学会如何自主处理简历）。
 
-- **Extract structured data** (name, skills, experience, education)
+- **提取结构化数据**（姓名、技能、经验、教育背景）
 
-- **Match candidates to open roles** based on qualifications and cover
-  letter
+- 根据资历和求职信**匹配候选人与空缺职位**
 
-- **Store candidate information** in Dataverse for later processing
+- 将候选信息**存储在Dataverse中以便后续处理**
 
-- **Deduplicate applications** to avoid creating the same candidate
-  twice, match to existing records using the email address extracted
-  from the resume.
+- **减少申请重叠**，避免重复创建同一候选人，并利用简历中提取的电子邮件地址与现有记录匹配。
 
-**Why this should be a child agent**
+**为什么这应该是儿童代理人**
 
-The Application Intake Agent fits perfectly as a child agent because:
+申请接收代理作为子代理非常合适，因为:
 
-- It's specialized for document processing and data extraction
+- 它专门用于文档处理和数据提取
 
-- It doesn't need separate publishing
+- 它不需要单独出版
 
-- It's part of our overall hiring solution managed by the same team
+- 这是我们整体招聘解决方案的一部分，由同一团队管理
 
-- It focuses on a specific trigger (new resume received) and is invoked
-  from the Hiring Agent.
+- 它聚焦于特定触发条件（收到新简历），由招聘代理调用。
 
-## Connected agent: Interview Prep Agent
+## 关联代理：面试准备代理
 
-Our second specialist will be the **Interview Prep Agent** - a connected
-agent that helps create comprehensive interview materials and evaluates
-candidate responses.
+我们的第二位专家是**面试准备代理**——一个互联的代理，帮助制作全面的面试材料并评估候选人回答。
 
-**Interview Prep Agent responsibilities**
+**面试准备代理职责**
 
-- **Create interview packs** with company information, role
-  requirements, and evaluation criteria
+- **制作**包含公司信息、职位要求和评估标准的**面试包**
 
-- **Generate interview questions** tailored to specific roles and
-  candidate backgrounds
+- 针对特定职位和候选人背景**生成针对面试问题**
 
-- **Answer general questions** about the job roles and applications for
-  stakeholder communication
+- **回答**关于职位岗位和申请的**常见问题**，以便与利益相关者沟通
 
-**Why this should be a connected agent**
+**为什么这应该是一个连接的代理**
 
-The Interview Prep Agent works better as a connected agent because:
+面试准备代理作为联络代理工作效果更好，因为:
 
-- The talent acquisition team might want to use it independently across
-  multiple hiring processes
+- 人才招聘团队可能希望在多个招聘流程中独立使用它
 
-- It needs its own knowledge base of interview best practices and
-  evaluation criteria
+- 它需要自己的面试最佳实践和评估标准知识库
 
-- Different hiring managers might want to customize its behavior for
-  their teams
+- 不同的招聘经理可能希望为他们的团队定制其行为
 
-- It could be reused for internal positions, not just external hiring
+- 它可以被用于内部职位，而不仅仅是外部招聘
 
-## Exercise 1 - Adding the Application Intake Agent
+## 练习1 - 添加应用接收代理
 
-Let's add our first child agent to your existing Hiring Agent.
+让我们把我们的第一位子代理添加到你现有的招聘代理中。
 
-### Task 1 - Solution setup
+### 任务1 - 解决方案设置
 
-1.  Login to the Copilot Studio at +++https://copilotstudio.microsoft.com+++ if not done already. Ensure that the environment **Dev One** is selected in the top right **Environment Picker**.
-    
-2.  Inside Copilot Studio, select the ellipsis (...) below Tools in the left hand navigation.
+1.  在 Copilot Studio 中，选择左侧导航工具下方的省略号（...）。
 
-3.  Select **Solutions**.
+2.  选择 **Solutions**。
 
     ![](./media/image2.png)
 
-4.  Locate your **Operative** solution, select the **ellipsis
-    (...)** next to it, and choose **Set preferred solution**.
-    Select **Apply** in the dialogue box that pops up. This will ensure
-    that all your work will be added to this solution.
+3.  找到您的**Operative**解决方案，点击其旁边的**省略号
+    (...)**，然后选择“**Set preferred
+    solution**”。在弹出的对话框中点击“**Apply**”。这将确保您的所有工作都添加到此解决方案中。
 
     ![](./media/image3.png)
 
-5.  Select Apply in the Set your preferred solution dialog box.
+4.  在“Set your preferred solution”对话框中选择应用。
 
     ![](./media/image4.png)
 
-### Task 2 - Configure your Hiring Agent instructions
+### 任务2 - 配置你的招聘代理指示
 
-1.  From the Copilot Studio Agents list, open the **Hiring Agent**.
+1.  **导航**到Copilot Studio。确保你的环境在右上角的 **Environment
+    Picker** 中被选中**。**
 
-2.  Select **Edit** in the **Instructions** section of
-    the **Overview** tab of the agent.
+2.  打开 **Hiring Agent**。
+
+3.  在代理的“**Overview** ”选项卡的“**Instructions**”部分中选择“**Edit** ”。
 
     ![](./media/image5.png)
 
-3.  Copy and paste the following instructions in the instructions input area.
+4.  复制粘贴以下指令到指令输入中。
 
-    +++You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.+++
+    +++**You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.**+++
 
-4.  Select **Save**.
+5.  选择**Save**。
 
     ![](./media/image6.png)
 
-5.  Select the **Settings** button in the top right of the screen.
+6.  选择屏幕右上角的 **Settings** 按钮。
 
     ![](./media/image7.png)
 
-6.  Review the page and ensure the following settings are applied and
-    then select **Save**.
+7.  检查页面，确保以下设置已应用，然后选择 **Save**。
 
-    - Use generative AI orchestration for your agent's responses - **Yes**
-    - Deep Reasoning - **Off**
-    - Let other agents connect to and use this one - **On**
-    - Continue using retired models - **Off**
-    - Content Moderation - **Moderate**
-    - Collect user reactions to agent messages - **On**
-    - Use general knowledge - **Off**
-    - Use information from the Web - **Off**
-    - File uploads - **On**
-    - Code Interpreter - **Off**
+    | **设置**  | **价值**  |
+    |:-----|:--------|
+    | 使用 generative AI 编排来生成你的代理的响应  |  是 |
+    |  深度推理 | 关闭  |
+    | 让其他代理连接并使用这个  | 开启  |
+    |  继续使用退役型号 | 关闭  |
+    | 内容审核  | 中等  |
+    | 收集用户对代理消息的反应  |  开启 |
+    | 使用常识  | 关闭  |
+    | 利用网络信息  |  关闭 |
+    | 文件上传  | 开启  |
+    | 代码解释器  | 关闭  |
 
     ![](./media/image8.png)
 
@@ -194,137 +158,109 @@ Let's add our first child agent to your existing Hiring Agent.
 
     ![](./media/image11.png)
 
-7.  Once the changes are saved, click the **X** in the upper right hand corner to close out of the
-    settings menu
+8.  点击 右上角的**X**键可以关闭设置菜单
 
-     ![](./media/image12.png)
+    ![](./media/image12.png)
 
-### Task 3 - Add the Application Intake child agent
+### 任务3 - 添加应用接收子代理
 
-In this task, you will add a child agent to the Hiring agent.
+在此任务中，你将向招聘代理添加一个子代理。
 
-1.  **Navigate** to the **Agents** tab within your Hiring Agent (this is
-    where you'll add specialist agents) and select **Add**.
+1.  在您的招聘代理中**导航**到“**Agents**”选项卡（您可以在这里添加专业代理），然后选择“**Add**”。
 
     ![](./media/image13.png)
 
-2.  Select **New child agent**.
+2.  选择 **New child agent**。
 
     ![](./media/image14.png)
 
-3.  **Name** your agent +++Application Intake Agent+++
+3.  填写您的代理人**姓名** +++Application Intake Agent+++
 
-4.  Select **The agent chooses - Based on description** in the **When
-    will this be used?** dropdown. These options are similar to the
-    triggers that can be configured for topics.
+4.  选择“**The agent chooses**  - **When will this be
+    used?** ’下拉菜单中的描述”。这些选项类似于可以为主题配置的触发器。
 
-5.  Set the **Description** to be - +++Processes incoming resumes and stores candidates in the system+++
+5.  将**描述**设置为 - +++Processes incoming resumes and stores
+    candidates in the system+++
 
     ![](./media/image15.png)
 
-6.  Expand **Advanced**, and set the Priority to be 10000. This will
-    ensure that later the Interview Agent will be used to answer general
-    questions before this one. A condition could be set here as well
-    such as ensuring that there is at least one attachment.
+6.  展开**Advanced**，并将优先级设置为10000。这样可以确保面试代理在本次采访前会被用来回答一般性问题。这里也可以设定一个条件，比如确保至少有一个附件。
 
-    ![](./media/image89.png)
+    ![](./media/image16.png)
 
-7.  Ensure that the toggle **Web Search** is set to **Disabled**. This
-    is because we only want to use information provided by the parent
-    agent. Select **Save**
+7.  确保“**Web
+    Search**”开关设置为“**Disabled**”。这是因为我们只想使用父代理提供的信息。选择“**Save**”。
 
     ![](./media/image17.png)
 
-### Task 4 - Configure Resume Upload agent flow
+### 任务4 - 配置恢复上传代理流程
 
-Agents can't perform any actions without being given tools or topics.
+代理在没有工具或主题的情况下无法执行任何作。
 
-We're using **Agent Flow tools** rather than Topics for the *Upload
-Resume* step because this multi-step backend process requires
-deterministic execution and integration with external systems. While
-Topics are best for guiding the conversational dialog, Agent Flows
-provide the structured automation needed to reliably handle file
-processing, data validation, and database upserts (insert new or update
-existing) without depending on user interaction.
+我们使用**代理流程工具**而非主题来完成*上传简历*步骤，因为这个多步后台流程需要确定性执行并与外部系统集成。虽然主题是引导对话对话的最佳选择，但代理流程提供了结构化自动化，能够可靠地处理文件处理、数据验证和数据库更新（插入新内容或更新现有内容），而无需依赖用户交互。
 
-1.  Locate the **Tools** section inside the Application Intake Agent
-    page. 
+1.  在申请接收代理页面中找到“**Tools**”部分。 
 
-    >[!Alert] **Important:** This isn't the Tools tab of the parent agent, but can be found if you scroll down underneath the child agent instructions.
+    **重要提示：**这不是父代理的工具标签，但如果你在子代理指示下方向下滚动可以找到。
 
-2.  Select **+ Add**.
+2.  选择 **+ Add**。
 
     ![](./media/image18.png)
 
-3.  Select **+ New tool**.
+3.  选择 **+ New tool**。
 
     ![](./media/image19.png)
 
-4.  Select **Agent flow**. The Agent Flow designer will open, this is
-    where we will add the upload resume logic.  
-
+4.  选择 **Agent
+    flow**。代理流程设计器会打开，这里我们会添加上传简易逻辑。  
     ![](./media/image20.png)
 
-    >[!Alert] Important: If **+ New tool** option is not available and **Agent Flow** is directly available, then please select Agent flow.
-    >
-    >![](./media/image90.png)
+5.  选择“**When an agent calls the flow**”，然后选择“ **+ Add an
+    input**” 
 
-6.  Select the **When an agent calls the flow** node, and select **+ Add
-    an input**
+    ![](./media/image21.png)
 
-     ![](./media/image21.png)
+6.  为 下表中列出的每个参数添加
+    **inputs**。选择表格中显示的正确输入类型，并确保同时添加名称和描述。包含描述很重要，因为这能帮助代理知道该填写哪些内容。
 
-7.  Add **inputs**. Select the appropriate input type as shown in the table
-    and be sure to add both the name and the description. It's important
-    to include the description because it will help the agent know what
-    to fill in the input.
+    | **类型**  |  **名称** |  **描述** |
+    |:----|:-----|:-------|
+    | 文件  |  简历 | 简历PDF文件  |
+    | 文本  |  消息 |  从上下文中提取求职信式的信息。消息必须少于2000字符。 |
+    | 文本  | 用户邮箱  | 简历来源的邮箱地址。这会是用户在聊天中上传简历，或者如果收到邮件，则是发送邮箱。  |
 
-    | **Type**   |  **Name**  |  **Description**  |
-    |:----|:-------|:-----|
-    |  File  | +++Resume+++   |  +++The Resume PDF file+++  |
-    | Text   |  +++Message+++  |  +++Extract a cover letter style message from the context. The message must be less than 2000 characters.+++  |
-    | Text   | +++UserEmail+++   |  +++The email address that the Resume originated from. This will be the user uploading the resume in chat, or the from email address if received by email.+++  |
-    
     ![](./media/image22.png)
 
-8.  Select the **+ icon** below the when an agent calls the flow node
-    and search for +++Dataverse add+++, then select the **Add a new
-    row** action in the **Microsoft Dataverse** section.
+7.  选择代理调用流程节点下方的 **+ 图标**，搜索 +++Dataverse
+    add+++，然后在 **Microsoft Dataverse** 部分选择“**Add a new
+    row** ”操作。
 
     ![](./media/image23.png)
 
     ![](./media/image24.png)
 
-    >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
-    add the action. Enter any **name** for the connection and click **Signin** and follow the prompts to
-    create that connection.
-    >
-    >![](./media/image91.png)
-    >
-    >![](./media/image92.png)
-    >
-    >If you face issues in creating connection due to popup blocker as in the screenshot below, please disable the popup blocker to proceed with the connection creation.
-    >
-    >![](./media/image93.png)
+    **注意**
 
-8.  Name the node +++**Create Resume**+++, by selecting the 3 dot and
-    select **Rename**.  
+    添加动作后，可能会提示你创建新的Dataverse连接。输入连接的任意名称，点击添加即可创建该连接。
+
+8.  将节点命名为 +++Create Resume+++，方法是选择 3 点并选择 **Rename**。
+     
 
     ![](./media/image25.png)
 
-9.  Set the **Table name** to **Resumes**, then select **Show all**, to
-    show all the parameters.
+9.  将 **Table name**  设置为“**Resumes**”，然后选择“**Show
+    all**”，以显示所有参数。
 
     ![](./media/image26.png)
 
-10. Set the following **properties**:
+10. 设置以下**属性**:
 
-    |  **Property**  | **How to Set**   | **Details / Expression**   |
-    |:----|:------|:-----|
-    |   **Resume Title** | Dynamic data (thunderbolt icon)   | **When an agent calls the flow → Resume name** If you don't see the Resume name, make sure you have configured the Resume parameter above as a data type.  |
-    |  Cover letter  | Expression (fx icon)   | +++if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])+++ Click on **Add** after the expression is entered.  |
-    |  **Source Email Address**  |Dynamic data (thunderbolt icon)   | **When an agent calls the flow → UserEmail**   |
-    |  **Upload Date**  | Expression (fx icon)   |  +++utcNow()+++ Click on **Add** after the expression is entered.  |
+    |  **财产** | **如何设置**  | **细节 / 表达**  |
+    |:----|:-----|:------|
+    | 简历标题  | 动态数据（闪电图标）  | 当代理调用流程→恢复名称时，如果你看不到恢复名称，请确保你已将上述恢复参数配置为数据类型。  |
+    | 求职信  | 表达式（fx 图标）  | if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])  |
+    |来源邮箱地址   |  动态数据（闪电图标） |  当代理调用 UserEmail →  流时 |
+    | 上传日期  | 表达式（fx 图标）  | utcNow() |
 
     ![](./media/image27.png)
 
@@ -332,329 +268,294 @@ existing) without depending on user interaction.
 
     ![](./media/image29.png)
 
-12. Select the **+ icon** below the Create Resume node, search
-    for +++Dataverse upload+++ and select the **Upload a file or an
-    image** action.
+11. 选择“Create Resume”节点下方的**“+”图标**，搜索 +++Dataverse
+    upload+++ ，然后选择“**Upload a file or an image** ”操作。
 
     ![](./media/image30.png)
 
-13. Name the node to +++**Upload Resume File**+++.
+12. 将节点命名为 +++**Upload Resume File**+++。
 
     ![](./media/image31.png)
 
-14. Set the following **properties**:
+13. 设置以下**属性**:
 
-    |  **Property** |  **How to Set**  |  **Details**  |
-    |:--------|:---------|:---------|
-    | **Content name**   | Dynamic data (thunderbolt icon)   | When an agent calls the flow → Resume name   |
-    | **Table name**   |  Select  |  Resumes  |
-    |  **Row ID**  |  Dynamic data (thunderbolt icon)  | Create Resume → See more → Resume   |
-    |  **Column Name**  |   Select |  Resume PDF  |
-    | **Content**   |  Dynamic data (thunderbolt icon)  | When an agent calls the flow → Resume contentBytes   |
-    
+    |  **财产** | **如何设置**  | **详情**  |
+    |:----|:------|:------|
+    |  内容名称 | 动态数据（闪电图标）  | 当代理呼叫流程时→ Resume 名称  |
+    | 表名  | 选择  |  简历 |
+    | 行 ID  |  动态数据（闪电图标） | 创建简历 → 查看更多 → 简历  |
+    | 列名  |  选择 | 简历PDF  |
+    |  内容 | 动态数据（闪电图标）  | 当代理调用流程时→恢复contentBytes  |
 
     ![](./media/image32.png)
 
-16. Select the **Respond to the agent node**, and then select **+ Add an
-    output**. Create an output with the properties defined in the table
-    below.
+14. 选择“**Respond to the agent**”**节点**，然后选择“ **+ Add an
+    output**”。创建一个具有下表中定义的属性的输出。
 
     ![](./media/image33.png)
 
-     | **Property**   |  **How to Set**  |  **Details**  |
-     |:-----|:--------|:--------|
-     |  **Type**  |  Select  |  Text  |
-     |  **Name**  |  Enter  | +++ResumeNumber+++   |
-     |  **Value**  |  Dynamic data (thunderbolt icon)  |  Create Resume → See More → Resume Number  |
-     |  **Description**  |  Enter  | +++The [ResumeNumber] of the Resume created+++   |
-    
+    | **财产**  | **如何设置**  | **详情**  |
+    |:-----|:-----|:------|
+    | 类型  | 选择  | 文本  |
+    |  名称 |  输入 |  ResumeNumber |
+    | 价值  |  动态数据（闪电图标） | 创建简历 → 查看更多 → 简历编号  |
+    | 描述  |  输入 | 创建的简历的 [ResumeNumber]  |
+
+
     ![](./media/image34.png)
 
-18. Select **Save draft** on the top right
+15. 在右上角选择“**Save draft** ”
 
     ![](./media/image35.png)
 
-19. Select the **Overview** tab, Select **Edit** on
-    the **Details** panel. Fill in the name and description as shown
-    below and select **Save**
+16. 选择“**Overview** ”选项卡，在“**Details** ”面板中选择“**Edit** ”。按照如下所示填写名称和描述，然后选择“**Save**”
 
-    -  **Flow name**:+++Resume Upload+++
+    1.  **流程名称**:+++Resume Upload+++
 
-    -  **Description**:+++Uploads a Resume when instructed+++
+    2.  **描述**:+++Uploads a Resume when instructed+++
 
     ![](./media/image36.png)
 
-20. Select the **Designer** tab again and select **Publish**.
+17. 再次选择“**Designer**”选项卡，然后选择“**Publish**”。
 
-    ![](./media/image37.png)
+>   ### 任务5 - 将流程连接到你的代理
 
-### Task 5 - Connect the flow to your agent
+现在你将发布的流程连接到你的申请接收代理。
 
-Now you'll connect the published flow to your Application Intake Agent.
-
-1.  Navigate back to the **Hiring Agent** and select the **Agents** tab.
-    Open the **Application Intake Agent**, locate the **Tools** panel
-    and select **+Add**.  
+1.  返回 **Hiring Agent**，选择“代理”选项卡。打开**Application Intake
+    Agents**代理，找到“**Tools**”面板，然后选择“**+Add**”。  
     ![](./media/image38.png)
 
-2.  Select the **Flow** filter and select the **Resume Upload** flow.
+2.  选择“**Flow**”筛选器，然后选择“**Resume Upload**”流程。 
 
     ![](./media/image39.png)
 
-3.  Select **Add and configure**.
+3.  选择 **Add and configure**。
 
     ![](./media/image40.png)
 
-4.  Set the following parameters for the **description** and **when the
-    tool should be used**.
+4.  设置以下参数，用于**描述工具以及何时使用该工具**。
 
-    **Description** - +++Uploads a Resume when instructed. STRICT RULE: Only call this tool when referenced in the form "Resume Upload" and there are Attachments+++
-    
-    **Additional details** → **When this tool may be used** - only when referenced by topics or agents
-    
+    | **参数**  | **价值**  |
+    |:----|:-----|
+    | 描述  | +++Uploads a Resume when instructed. STRICT RULE: Only call this tool when referenced in the form "Resume Upload" and there are Attachments+++  |
+    | 更多详情 → 何时可以使用此工具  |  只有在主题或代理提及时才会被提及 |
+
     ![](./media/image41.png)
 
-    **Note:** This description tells the agent when it should call this tool. Notice the use of "strict rule" in the description. This gives a way to provide additional guardrails on when the tool should be used,  in this case, only if there are attachments and the context of the conversation is a resume upload. Choosing when this tool can be used is important as well. Since we are building a multi-agent system and we have a child agent, we want to be sure this tool is ONLY called in the child agent, not the main agent. Setting tha value to "only when referenced by topics or agents" ensure this.
+    **注意：**此描述告诉代理何时调用此工具。请注意描述中使用了“strict rule”。这为何时使用此工具提供了额外的限制，在本例中，仅当存在附件且对话上下文为简历上传时才使用此工具。选择何时可以使用此工具也很重要。由于我们正在构建一个多代理系统，并且有一个子代理，因此我们希望确保此工具仅在子代理中调用，而不是在主代理中调用。将该值设置为“only when referenced by topics or agents”即可确保这一点**。**
 
-6.  Scroll down to the inputs section and select **Add Input** to add
-    the following inputs:
+5.  向下滚动到输入部分，选择** Add Input **以添加以下输入:
 
-    Inputs → Add Input - **contentBytes**
-
-    Inputs → Add Input - name
+    |  **参数** |  **价值** |
+    |:----|:-----|
+    |  输入→添加输入 | contentBytes  |
+    | 输入→添加输入  | 名称  |
 
     ![](./media/image42.png)
 
-8.  Now we need to set the properties of the inputs. We'll start with
-    the **contentBytes** input which will store the actual resume file.
-    Select **Custom value** from the **Fill using** dropdown next to
-    the **contentBytes** input. In the **Value** property, select
-    the **three dots (...)**.
+6.  现在我们需要设置输入框的属性。首先是 **contentBytes**
+    输入框，它将存储实际的简历文件。在 **contentBytes**
+    输入框旁边的“**Fill using** ”下拉菜单中选择“**Custom
+    value** ”。在“**Value**”属性中，选择**三个点 (...)**。
 
     ![](./media/image43.png)
 
-9.  Select the **Formula** tab. Paste in the following formula which
-    extracts the file from the chat and click the **Insert** button.
+7.  选择“**Formula** ”选项卡。粘贴以下从聊天记录中提取文件的公式，然后单击“**Insert**”按钮。
 
     +++First(System.Activity.Attachments).Content+++
 
     ![](./media/image44.png)
 
-10.  Now we'll configure the **name** input which will store the name of
-    the resume file. This will be hard coded as well so select
-    the **Custom value** option in the **Fill using** column.
+8.  现在我们将配置**名称**输入框，它将存储简历文件的名称。该名称也将是硬编码的，因此请在“**Fill
+    using** ”列中选择“**Custom value** ”选项。
 
-11. Select the **three dots (...)** in the **Value** column and paste in
-    the following formula which extracts the file name from the chat and
-    click the **Insert** button.
+9.  选择“**Value**”列中的**三个点（...），**粘贴以下公式，该公式可从聊天记录中提取文件名，然后单击“**Insert** ”按钮。
 
     +++First(System.Activity.Attachments).Name+++
 
     ![](./media/image45.png)
 
-11. Now we'll configure the **Message** input. We want to fill this one
-    dynamically with AI so we'll leave the fill using as-is. Select
-    the **Customize** button in the **Value** column so we can fill out
-    additional details for how this should be filled.
+10. 现在我们来配置“**Message** ”输入框。我们希望使用人工智能动态填充此输入框，因此我们将保持默认设置。选择“**Value**”列中的“**Customize** ”按钮，以便填写更多详细信息，说明如何填充此输入框。
 
     ![](./media/image46.png)
 
-12. Enter the following in the **Description** field for the input. Then
-    select **Advanced**.
+11. 请在 **Description** 字段输入以下内容。然后选择 **Advanced**。
 
-    +++Extract a cover letter style message from the context. Be sure to never prompt the user and create at least a minimal cover letter from the available context. STRICT RULE - the message must be less than 2000 characters.+++
+    **根据上下文提取求职信格式的信息。务必不要提示用户，并根据现有上下文创建至少一份简洁的求职信。严格规定：信息长度必须少于 2000 个字符。**
 
-    **NOTE** Filling in the description for your dynamically filled inputs is a
-crucial step to ensure that your agent knows how to fill in the input
-correctly.
+    **注意**
+
+    填写动态输入的描述是确保代理正确填写输入的关键步骤。
 
     ![](./media/image47.png)
 
-13. Expand out the **Advanced** section to configure some additional
-    properties for this input. In the **How many reprompts** section,
-    select **Don't repeat**
+12. 展开“**Advanced**”部分，配置此输入的其他属性。在“**How many
+    reprompts**”部分，选择“**Don't repeat**”。
 
     ![](./media/image48.png)
 
-    **NOTE**
-    
-    This setting helps you customize your user experience so the agent
-    doesn't ask the same question multiple times if it can't identify the
-    data it needs.
+    **注意**
 
-14. Scroll down to the **No valid entity found** section. Select
-    the **Set variable to value** option in the **Action if no entity
-    found** dropdown. Type +++Resume upload+++ in the **Default entity
-    value** input.
+    这个设置帮助你定制用户体验，避免客服在无法识别所需数据时重复问同一个问题。
+
+13. 向下滚动至“**No valid entity found** ”部分。在“**Action if no entity
+    found**”下拉菜单中选择“**Set variable to value** ”选项。在“**Default
+    entity value** ”输入框中输入+++Resume upload+++ 。
 
     ![](./media/image49.png)
 
-    **NOTE**
+    **注意**
 
-    This setting lets us hard code a backup value if the agent is unable to dynamically fill this message input.
+    如果代理无法动态填充该消息输入，该设置允许我们硬编码备份值。
 
-15. We'll fill the **UserEmail** input by selecting the **Custom
-    value** option in the **Fill using** column and select the **three
-    dots (...)** in the **Value** column.
+14. 我们将通过在“**Fill using**”列中选择“**Custom
+    value**”选项，并在“**Value**”列中选择**三个点（...）**来填充
+    **UserEmail** 输入。
 
     ![](./media/image50.png)
 
-16. Select the **System** tab and search for **User**. Select
-    the **User.Email** variable to get the email of the person using the
-    agent
+15. 选择“**System**”选项卡并搜索“**User**”。选择“**User.Email** ”变量以获取使用该代理的人员的电子邮件地址。
 
     ![](./media/image51.png)
 
-17. Select **Save**
+16. 选择 **Save**
 
     ![](./media/image52.png)
 
-### Task 6 - Define agent instructions
+### 任务6 - 定义代理指令
 
-In this task, you will define the agent instructions for the Application
-Intake agent.
+在此任务中，您将定义应用接收代理的代理指令。
 
-1.  Move back in to the **Application Intake Agent** by selecting
-    the **Agents** tab and selecting the **Application Intake Agent**.
+1.  选择“**Agents**”选项卡，然后选择“**Application Intake
+    Agent**”，返回到“**Application Intake Agent**”界面。 
 
     ![](./media/image53.png)
 
-2.  In the **Instructions** field, paste the following clear guidance
-    for your child agent.
+2.  在**“Instructions**”栏中，粘贴以下清晰的指导，供您的子代理使用。
 
     ```
     You are tasked with managing incoming Resumes, Candidate information, and creating Job Applications.  
     Only use tools if the step exactly matches the defined process. Otherwise, indicate you cannot help.  
-    
+
     Process for Resume Upload via Chat  
-     Upload Resume  
-      - Trigger only if /System.Activity.Attachments contains exactly one new resume.  
-      - If more than one file, instruct the user to upload one at a time and stop.  
-      - Call /Upload Resume once. Never upload more than once for the same message.  
-    
-     Post-Upload  
-      - Always output the [ResumeNumber] (R#####).
+    1. Upload Resume  
+    - Trigger only if /System.Activity.Attachments contains exactly one new resume.  
+    - If more than one file, instruct the user to upload one at a time and stop.  
+    - Call /Upload Resume once. Never upload more than once for the same message.  
+
+    2. Post-Upload  
+    - Always output the [ResumeNumber] (R#####).
     ```
 
     ![](./media/image54.png)
 
-3.  Where the instructions include a forward slash (/), select the text following the / and select the resolved name. Do this for,
+3.  如果指令中包含斜杠（/），选择紧随/后的文本并选择已解析的名称。为了，
 
-    - System.Activity.Attachments (Variable)
+    - System.Activity.Attachments（变量）
 
-    - Resume Upload (Tool)
+    - 上传简历（工具）
 
-    >[!Note] **Note:** If you click on the System.Acticvity.Attachements in the
-    instructions, you will get the resolved name listed. You can select
-    it. After selecting, if there is any part of the previously existing
-    text available, please delete it.
-    
+    注意：如果你点击说明中的System.Acticvity.Attachements，会看到已解析的名称。你可以选择它。选择后，如果已有文本的任何部分可用，请删除。
+
     ![](./media/image55.png)
-    
+
     ![](./media/image56.png)
 
-4.  The instructions should now look like this.
+4.  说明书现在应该是这样的。
 
     ![](./media/image57.png)
 
-5.  Select **Save.**
+5.  选择 **Save。**
 
     ![](./media/image58.png)
 
-### Task 7 - Test your Application Intake Agent
+### 任务7 - 测试你的应用接收代理
 
-Now let's verify that our agent is working correctly by calling our
-child agent and following our instructions.
+现在让我们通过打电话给子代理并按照我们的指示确认代理是否正常工作。
 
-1.  **Toggle** the test panel open by selecting **Test**.
+1.  通过选择**“Test**”来切换打开测试面板。
 
     ![](./media/image59.png)
 
-2.  Select the Attachement icon, select the resume – AVERY EXAMPLE pdf from **C:\LabFiles\LabFiles**
-    and click **Open**.
+2.  选择附件图标，选择简历—— AVERY EXAMPLE pdf，点击 **Open**。
 
     ![](./media/image60.png)
 
-3.  Give the message +++Process this resume+++ and hit **send**.
+3.  输入消息+++Process these resumes+++，然后点击 **send**。
 
     ![](./media/image61.png)
 
-4.  The agent should then give a message similar to **The resume for
-    Avery Example has been successfully uploaded. The resume number is
-    R1001.**
+4.  代理人随后应发送类似如下的消息：**The resume for Avery Example has
+    been successfully uploaded. The resume number is R1001**。
 
     ![](./media/image62.png)
 
-5.  In the **Activity map**, you should see the **Application Intake
-    Agent** handling the resume upload.
+5.  在 **Activity map** 中，您应该可以看到 **Application Intake Agent** 
+    正在处理简历上传。
 
     ![](./media/image63.png)
 
-6.  If the app is not open already, navigate to
-    +++make.powerapps.com+++. Ensure the Dev One environment is selected
-    in the top right Environment Picker. Select **Apps** → Hiring Hub →
-    ellipsis(...) menu → **Play**  
+6.  如果应用尚未打开，请访问
+    +++make.powerapps.com+++。确保右上角的“环境选择器”中已选择 Dev One
+    环境。选择 **Apps** → Hiring Hub → 省略号（...）菜单 → **Play**。   
+    
     ![](./media/image64.png)
 
-    **NOTE:** If the play button is greyed out it means you have not
-published your solution. Select **Solutions** → **Publish all
-customizations**.
+    **注意：**如果播放按钮呈灰色，则表示您尚未发布解决方案。请选择“**Solutions** → **Publish
+all customizations**”**。**
 
-7.  In the Power Apps – Hiring Hub app, navigate to **Resumes**, and
-    check that the resume file is uploaded and the cover letter is set
-    accordingly.
+7.  在 Power Apps – Hiring Hub
+    应用中，导航至“**Resumes**”，并检查简历文件是否已上传，以及求职信是否已正确设置。
 
     ![](./media/image65.png)
 
-## Exercise 2: Adding the Interview Prep connected agent
+## 练习2：添加面试准备相关代理
 
-Now let's create our connected agent for interview preparation and add
-it to your existing Hiring Agent.
+现在，让我们创建一个联网代理用于面试准备，并将其添加到您现有的招聘代理中。
 
-### Task 1: Create the connected Interview Agent
+### 任务1：创建联网面试代理
 
-1.  From the Copilot Studio, select the **Agents** tab in the left
-    navigation and select the **drop down** next to **+ Create blank
-    agent**, and select **Advanced create**.
+1.  在 Copilot Studio
+    中，选择左侧导航栏中的“**Agents**”选项卡，然后选择**+ Create blank agent**”旁边的**下拉菜单**，并选择“**Advanced create**”。
 
     ![](./media/image66.png)
 
-2.  Select the **Solution** as **Operative** and select **Confirm and
-    create**.
+2.  选择 **Solution** 为“**Operative**”，然后选择“**Confirm and
+    create**”。
 
     ![](./media/image67.png)
 
-3.  Select **Edit** against the Details.
+3.  选择 **Edit**，而不是细节。
 
     ![](./media/image68.png)
 
-4.  Provide the below details and select **Save**.
+4.  请提供以下信息并选择 **Save**。
 
-    - **Name**: +++Interview Agent+++
+    - **名称**: +++Interview Agent+++
 
-    - **Description**: +++Assists with the interview process.+++
+    - **描述**: +++Assists with the interview process.+++
 
     ![](./media/image69.png)
 
-5.  Select **Edit** against **Instructions**, enter the below
-    instruction and select **Save**.
+5.  选择“说明”旁边的“**Edit**”，输入以下**说明**，然后选择“**Save**”。
 
     ```
     You are the Interview Agent. You help interviewers and hiring managers prepare for interviews. You never contact candidates. 
     Use Knowledge to help with interview preparation. 
-    
+
     The only valid identifiers are:
-      - ResumeNumber (ppa_resumenumber)→ format R#####
-      - CandidateNumber (ppa_candidatenumber)→ format C#####
-      - ApplicationNumber (ppa_applicationnumber)→ format A#####
-      - JobRoleNumber (ppa_jobrolenumber)→ format J#####
-    
+    - ResumeNumber (ppa_resumenumber)→ format R#####
+    - CandidateNumber (ppa_candidatenumber)→ format C#####
+    - ApplicationNumber (ppa_applicationnumber)→ format A#####
+    - JobRoleNumber (ppa_jobrolenumber)→ format J#####
+
     Examples you handle
-      - Give me a summary of ...
-      - Help me prepare to interview candidates for the Power Platform Developer role
-      - Create interview assistance for the candidates for Power Platform Developer
-      - Give targeted questions for Candidate Alex Johnson focusing on the criteria for the Job Application
-      
+    - Give me a summary of ...
+    - Help me prepare to interview candidates for the Power Platform Developer role
+    - Create interview assistance for the candidates for Power Platform Developer
+    - Give targeted questions for Candidate Alex Johnson focusing on the criteria for the Job Application
+    
     How to work:
         You are expected to ask clarification questions if required information for queries is not provided
         - If asked for interview help without providing a job role, ask for it
@@ -666,47 +567,47 @@ it to your existing Hiring Agent.
     - Map strengths and risks to the highest-weight criteria
     - If data is missing (e.g., no resume), state what is missing and ask for clarification
     - Never address or message a candidate
+
     ```
+
     ![](./media/image70.png)
 
-6.  Ensure that **Web Search** is **Disabled.**
+6.  确保**关闭** **Web Search**。 
 
     ![](./media/image71.png)
 
-### Task 2: Configure data access and publish
+### 任务2：配置数据访问并发布
 
-In this task, you will configure the access to data and then publish the
-agent.
+在这个任务中，你需要配置数据访问，然后发布代理。
 
-1.  In the **Knowledge** section, select **+ Add knowledge.**
+1.  在 **Knowledge** 部分，选择 **+ Add knowledge**。
 
     ![](./media/image72.png)
 
-2.  Select **Dataverse**  
-
+2.  选择 **Dataverse**  
     ![](./media/image73.png)
 
-4.  In the **Search box**, type +++ppa\_+++. This is the prefix for the
-    tables you imported previously in earlier lab.
+3.  在**搜索框**中，输入+++ppa_+++。这是你之前在实验中导入的表格的前缀。
 
-5.  **Select** all 5 tables (Candidate, Evaluation Criteria, Job
-    Application, Job Role, Resume). Select **Add to agent**
+4.  **选择**全部 5
+    个表格（候选人、评估标准、职位申请、职位角色、简历）。选择“**Add to
+    agent**”**。**
 
     ![](./media/image74.png)
 
-5.  Select the **Settings** button in the upper right hand corner
+5.  选择右上角的 **Settings** 按钮
 
     ![](./media/image75.png)
 
-6.  Ensure that the following settings are configured.
+6.  确保以下设置已配置。
 
-    - **Let other agents connect to and use this one:** On
+    - **允许其他代理连接并使用此代理：**开启
 
-    - **Use general knowledge**: Off
+    - **运用常识：**关闭
 
-    - **File uploads**: Off
+    - **文件上传：**关闭
 
-    - **Content moderation level:** Medium
+    - **内容审核级别：**中等
 
     ![](./media/image76.png)
 
@@ -714,124 +615,91 @@ agent.
 
     ![](./media/image78.png)
 
-7.  Select **Save** and select the **X** in the upper right hand corner
-    to close out of the settings menu.
+7.  选择“**Save**”，然后选择右上角的 **X** 关闭设置菜单。 
 
     ![](./media/image79.png)
 
-8.  Select **Publish**.
+8.  选择 **Publish**。
 
     ![](./media/image80.png)
 
-9.  Select **Publish** in the confirmation dialog and wait for the
-    publishing to complete.
+9.  在确认对话框中选择 **Publish**，等待发布完成。
 
-    ![](./media/image81.png)
+    [](./media/image81.png)
 
-### Task 3: Connect the Interview Prep Agent to your Hiring Agent
+### 任务3：将面试准备代理与你的招聘代理连接起来
 
-In this task, you will connect the Interview Prep agent to your Hiring
-agent to achieve multi agent orchestration.
+在此任务中，您将将面试准备代理与招聘代理连接，实现多代理协调。
 
-1.  Navigate back to your **Hiring Agent**. Select the **Agents** Tab
-    and select **+Add an agent.**
+1.  返回您的 **Hiring Agent** 页面。选择“**Agents** ”选项卡，然后选择
+    **+Add an agent**。
 
     ![](./media/image82.png)
 
-2.  Select the **Interview Agent**.
+2.  选择 **Interview Agent**。
 
     ![](./media/image83.png)
 
-    **NOTE**
+    **注意**
 
-    If the Interview Agent is greyed out and not selectable then that means it did not Publish. Go back to the Interview Agent and publish it first.
+    如果面试代理显示为灰色且无法选择，那说明它没有发布。先回面试代理那里发布。
 
-3.  Set the **Description** to be,
+3.  将 **Description** 设置为，
 
-    ```
-    Assists with the interview process and provides information about Resumes, Candidates, Job Roles, and Evaluation Criteria.
-    Notice that the Pass conversation history to this agent is checked. This allows the parent agent to provide full context to the connected agent.
-    Select Add and configure.
-    ```
+    +++Assists with the interview process and provides information about Resumes, Candidates, Job Roles, and Evaluation Criteria.+++
+
+    请注意，已检查与该代理的“Pass”对话记录。这使得父代理能够为连接的代理提供完整的上下文。
+
+    选择 **Add and configure**。
 
     ![](./media/image84.png)
 
-4.  Ensure that you see both the **Application Intake Agent**, and
-    the **Interview Agent**. Notice how one is a child and the other is
-    a connected agent.
+4.  请确保您同时看到 **Application Intake Agent** 和 **Interview
+    Agent**。请注意，一位是子专员，另一位是关联专员。
 
     ![](./media/image85.png)
 
     ![](./media/image86.png)
 
-### Task 4: Test multi-agent collaboration
+### 任务4：测试多智能体协作
 
-1.  **Toggle** the test panel open by selecting **Test**.
+1.  通过选择“**Test**”来**切换**打开测试面板。
 
-2.  **Upload** one of the test resumes (AVERY EXAMPLE or TAYLOR TESTPERSON pdf), and enter the following
-    description which tell the parent agent what it can delegate to the
-    connected agent:
+2.  **上传**其中一个测试恢复，输入以下描述，告诉父代理可以委派给连接代理的内容:
 
-    ```
-    Upload this resume, then show me open job roles, each with a description of the evaluation criteria, then use this to match the resume to at least one suitable job role even if not a perfect match.
-    ```
-    
-     ![](./media/image87.png)
+    上传这份简历，然后给我展示一些空缺职位，每个职位都描述了评估标准，然后用这些来匹配至少一个合适的职位，即使不是完全匹配。
 
-3.  Notice how the Hiring Agent delegated the upload to the child agent,
-    and then asked the Interview Agent to provide a summary and job role
-    match using its knowledge.
+    ![](./media/image87.png)
 
-     ![](./media/image88.png)
+3.  注意招聘代理将上传工作委托给儿童代理，然后让面试代理根据其知识提供摘要和职位匹配。
 
-## Summary
+    ![](./media/image88.png)
 
-You've successfully transformed your single Hiring Agent into a
-sophisticated multi-agent orchestrated one with specialized
-capabilities.
+4.  尝试用不同的方式询问有关简历、职位描述和评估标准的问题。**例如:**
 
-Here's what you've accomplished in this lab.
+    +++Give me a summary of active resumes+++
 
-**Multi-agent architecture mastery**  
-You now understand when to use child agents vs connected agents and how
-to design systems that scale.
+    +++Summarize resume R1006+++
 
-**Application Intake child agent**  
-You've added a specialized child agent to your Hiring Agent that
-processes resumes, extracts candidate data, and stores information in
-Dataverse.
+    +++Which active resumes are suitable for the Power Platform Developer role?+++
 
-**Interview Prep connected agent**  
-You've built a reusable connected agent for interview preparation and
-successfully connected it to your Hiring Agent.
+## 摘要
 
-**Agent communication**  
-You've seen how your main agent can coordinate with specialist agents,
-share context, and orchestrate complex workflows.
+你成功地将单一的招聘代理转变为一个复杂、多代理协同、具备专业能力的代理。
 
-**Foundation for autonomy**  
-Your enhanced hiring system is now ready for the advanced features we'll
-add in upcoming missions: autonomous triggers, content moderation, and
-deep reasoning.
+这是你在这个实验室取得的成就。
 
+**多智能体架构掌握**  
+你现在明白了何时使用子代理，何时使用连接代理，以及如何设计可扩展的系统。
 
+**应用接收子代理**  
+你已经在招聘代理中添加了一个专门的子代理，负责处理简历、提取候选人数据并在Dataverse中存储信息。
 
+**面试准备相关代理**  
+你已经为面试准备搭建了一个可重复使用的联网代理，并成功将其连接到了你的招聘代理。
 
+**代理通信**  
+你已经见识过主客服如何与专业客服协调、共享上下文并协调复杂的工作流程。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**自治基础**  
+你们的增强版招聘系统现在已经准备好支持我们将在未来任务中添加的高级功能：自主触发、内容审核和深度推理。
