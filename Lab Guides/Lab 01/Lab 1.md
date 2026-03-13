@@ -1,118 +1,102 @@
-# Lab 1 - Designing an AI assistant with Copilot Studio Agent Builder
+# 實驗室1 - 使用Copilot Studio Agent Builder設計AI助手
 
-**Objective**
+**目標**
 
-In this lab, you will learn how to create a custom conversational agent
-using the **Copilot Studio Agent Builder** by describing the agent’s
-purpose, behavior, and tone in natural language. You will design a
-**Gardening Assistant** that provides expert guidance on home gardening,
-focusing on plant care, best practices, and the importance of nature in
-everyday living. By the end of the lab, you will understand how to
-iteratively refine agent instructions and bring a functional,
-domain-specific assistant to life.
+在本實驗中，你將學習如何使用 **Copilot Studio Agent Builder**
+創建自定義對話代理，方法是用自然語言描述代理的用途、行為和語氣。你將設計一個
+**Gardening
+Assistant**，它能提供專業的家庭園藝指導，重點關注植物養護、最佳實踐以及自然在日常生活中的重要性。實驗結束時，你將掌握如何迭代優化代理指令，並最終打造出一個功能齊全、特定領域的助手。
 
-## Exercise 1: Creating the agent
+## 練習1：創建代理人
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
-    browser and login with your credentials. Select **Yes** in the **Stay Signed in** dialog.
+1.  在瀏覽器中打開鏈接
+    +++<https://m365.cloud.microsoft/chat+++>，並用你的憑證登錄。
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+    - 用戶名 - <+++@lab.CloudPortalCredential>(User1).Username+++
 
-1.  Select **New agent** from the **left** pane. If you are **not** able
-    to see the **New agent** option, **refresh** the **browser** and try
-    again in few minutes. At times, it takes few minutes to get loaded
-    completely.
+    - 密碼 - <+++@lab.CloudPortalCredential>(User1).Password+++
 
-    ![](./media/image2.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image1.png)
 
-2.  Select the **Describe** tab.
+2.  從**左**側面板中選擇“**New agent**”。如果您看不到“**New
+    agent** ”選項，請**刷新瀏覽器**，稍後再試。有時，頁面需要幾分鐘才能完全加載。 
 
-    ![](./media/image3.png)
+![](./media/image2.png)
 
-3.  You can start defining the custom agent. You can choose a template
-    to start from, or you can simply *describe* the agent by providing a
-    description in natural language. Let's provide the following initial
-    description
+3.  選擇 **“Describe** ”標簽。
 
-    +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
+![](./media/image3.png)
 
-    ![](./media/image4.png)
+4.  你可以開始定義自定義代理。你可以選擇一個模板作為起點，或者直接用自然語言描述代理。讓我們先做下初步描述
 
-4.  Once you have provided the instructions, the initial details are
-    populated.
+> +++You are an expert gardener, and you help users to maintain and
+> improve their home garden providing detailed instructions and advice
+> about the best practices for home gardening.+++
 
-5.  You can rename the agent if needed. Provide the following prompt to
-    do so +++Name it as “Gardening assistant”+++.
+![](./media/image4.png)
 
-    ![](./media/image5.png)
+5.  一旦你提供了說明，初始信息就會被填寫。
 
-6.  If you are asked about refining instructions further, provide the
-    following sentence.
+6.  如果需要，你可以重新命名代理人。提供以下提示 +++Name it as
+    “Gardening assistant”+++。
 
-    +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
+![](./media/image5.png)
 
-    ![](./media/image6.png)
+7.  如果被問及進一步細化說明，請提供以下句子。
 
-7.  Keep on interacting with the agent builder until it does have all
-    the information needed to create the agent. Provide the following
-    sentence.
++++Focus on suggesting ways to keep plants and flowers shining and
+gorgeous+++
 
-    +++Focus on highlighting the importance of nature and plants/flowers to be present in every house!+++
+![](./media/image6.png)
 
-    ![](./media/image7.png)
+8.  持續與代理構建器互動，直到它擁有創建代理所需的全部信息。請提供以下句子。
 
-    ![](./media/image8.png)
+> +++Focus on highlighting the importance of nature and plants/flowers
+> to be present in every house!+++
+>
+> ![](./media/image7.png)
+>
+> ![](./media/image8.png)
 
-8.  Then give an instruction of the agent tone as below.
+9.  然後給出如下的代理語調指令。
 
-    +++Use a professional, yet friendly, tone.+++
++++Use a professional, yet friendly, tone.+++
 
-    ![](./media/image9.png)
+> ![](./media/image9.png)
 
-11. Click on **Create** on the top right to create the agent.
+11. 點擊右上角的**“Create**”以創建代理。
 
-    ![](./media/image10.png)
+![](./media/image10.png)
 
-    ![](./media/image11.png)
+![](./media/image11.png)
 
-12. Select **Go to agent** once the agent is created.
+12. 創建代理後選擇“**Go to agent** ”。
 
-    ![](./media/image12.png)
+![](./media/image12.png)
 
-13. This opens the created agent.
+13. 這會打開創建的代理。
 
-    ![](./media/image13.png)
+![](./media/image13.png)
 
-    >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
-    >
-    >![](./media/image14.png)
+> \[!提醒\]
+> **提醒**：如果代理不自動打開，請**刷新**頁面，並從左側窗格選擇**created
+> gardening agent** 。
+>
+> ![](./media/image14.png)
 
-14. Provide prompt like below to converse with the agent.
+14. 請提供如下提示以便與中介溝通。
 
-    +++Give me tips to keep Rose plants fresh+++
+> +++Give me tips to keep Rose plants fresh+++
 
-    ![](./media/image15.png)
+![](./media/image15.png)
 
-    ## Summary:
+## 摘要:
 
-    In this lab, you created a **Gardening Assistant agent** using the
-    Copilot Studio Agent Builder experience. Starting with a simple
-    natural-language description, you defined the agent’s role as an expert
-    gardener and progressively refined its focus, tone, and personality
-    through interactive prompts. You customized the agent to provide
-    professional yet friendly gardening advice, with an emphasis on keeping
-    plants healthy, vibrant, and visually appealing while highlighting the
-    value of plants and flowers in every home.
+在這個實驗室裡，你用Copilot Studio Agent Builder體驗創建了**Gardening
+Assistant
+agent**。從簡單的自然語言描述開始，你定義了代理作為專業園丁的角色，並通過互動提示逐步完善其專注、語氣和個性。您定制了這位經紀人，提供專業且友好的園藝建議，強調保持植物健康、鮮豔且視覺吸引力，同時強調每個家庭中植物和花卉的價值。
 
-    After creating and launching the agent, you validated its behavior by
-    interacting with it using real user prompts, such as requesting tips to
-    keep rose plants fresh. This lab demonstrated how quickly and
-    intuitively you can build a purpose-driven agent using Copilot
-    Studio—without writing code—by leveraging conversational design and
-    iterative instruction refinement.
-
-
-
-
+創建並啟動代理後，你通過真實用戶提示與其交互，比如請求保持玫瑰植物新鮮的建議，驗證其行為。本實驗室展示了利用
+Copilot Studio
+快速且直觀地構建一個以目的為驅動的代理——無需編寫代碼——通過對話設計和迭代指令的優化。

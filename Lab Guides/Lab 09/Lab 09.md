@@ -1,126 +1,86 @@
-# Lab 9 - Test, measure, and improve AI agents
+# 實驗室9 - 測試、測量並改進 AI 代理
 
-As AI agents take on critical roles in business processes, the need for
-reliable, repeatable testing becomes essential. Agent evaluation lets
-you generate tests that simulate real-world scenarios for your agent.
-These tests cover more questions faster than manual, case-by-case
-testing. Then, you can measure the accuracy, relevancy, and quality of
-answers to the questions the agent is asked, based on the information
-the agent can access. By using the results from the test set, you can
-optimize your agent's behavior and validate that your agent meets your
-business and quality requirements.
+隨著AI代理在業務流程中扮演關鍵角色，可靠且可重複的測試需求變得至關重要。代理評估可以讓你生成模擬真實世界場景的測試。這些測試比手動逐案測試更快涵蓋更多問題。然後，你可以根據代理人能訪問的信息，衡量對問題的準確性、相關性和質量。通過使用測試集的結果，你可以優化座席的行為，驗證其符合業務和質量要求。
 
-**Objective**
+**目標**
 
-In this lab, you will learn how to systematically test and evaluate an
-AI agent using Copilot Studio’s built-in evaluation and analytics
-capabilities. You will create an automated test set that simulates
-real-world user scenarios, measure the quality and accuracy of agent
-responses, and analyze performance data to identify gaps and improvement
-opportunities. By the end of the lab, you will be able to validate that
-your agent meets business, reliability, and quality standards before
-production use.
+在本實驗室中，您將學習如何利用 Copilot Studio
+內置的評估和分析功能系統地測試和評估 AI
+代理。您將創建一個自動化測試集，模擬真實用戶場景，衡量座席響應的質量和準確性，並分析性能數據以識別差距和改進機會。實驗室結束時，您將能夠驗證代理是否符合業務、可靠性和質量標準，然後再投入生產使用。
 
-## Task 1: Create a test set to evaluate your agent
+## 任務 1：創建一個測試集來評估你的代理人
 
-Before deploying an AI agent into real business workflows, it is
-critical to validate how well it responds to realistic user questions.
-Manual testing is time-consuming and often misses edge cases. In this
-task, you will use Copilot Studio’s agent evaluation capabilities to
-automatically generate a test set that simulates real-world scenarios.
-You will run these tests against your agent, review pass and fail
-outcomes, and identify gaps in accuracy, relevance, or behavior that
-need improvement.
+在將AI代理部署到真實業務流程中之前，驗證其對真實用戶問題的響應能力至關重要。手動測試耗時且常常遺漏邊緣情況。在此任務中，您將使用
+Copilot Studio
+的代理評估功能，自動生成模擬真實場景的測試集。你將對你的代理人進行這些測試，審查通過和不通過的結果，並識別需要改進的準確性、相關性或行為上的漏洞。
 
-1.  From the Copilot Studio, select the **Hiring agent**.
+1.  在Copilot Studio中，選擇 **Hiring agent**。
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  From the top menu bar, select **Evaluation**. Select **Create a test
-    set**.
+2.  從頂部菜單欄中選擇“**Evaluation**”。選擇“**Create a test set**”。
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  There are few options to create the test set. Select **Generate 10
-    questions** in this case.
+3.  創建測試集的選項很少。在這種情況下，選擇 **Generate 10 questions**。
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  **Review** the test set and then **Save** the test set.
+4.  **查看**測試集，然後 **Save** 測試集**。**
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-5.  Now, click on **Evaluate** to evaluate the agent.
+5.  現在，點擊 **“Evaluate**”來評估該代理。
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-6.  Select your tenant id and click on **Run**.
+6.  選擇您的租戶ID，點擊 **“Run**”。
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-7.  Wait till the execution completes.
+7.  等執行完成。
 
-    ![](./media/image7.png)
+![](./media/image7.png)
 
-8.  Once the evaluation is complete, click on it to view the details.
+8.  評估完成後，點擊查看詳情。
 
-    ![](./media/image8.png)
+![](./media/image8.png)
 
-9.  Go through each question and see why it has failed and which ones
-    have passed. This will help you enhance your agent as required.
+9.  逐題逐一查看，看看為什麼會失敗，哪些通過了。這將幫助你根據需要提升你的代理人能力。
 
-    ![](./media/image9.png)
+![](./media/image9.png)
 
-## Task 2: Gain insights with agent analytics
+## 任務 2：通過座席分析獲得洞察
 
-Once an agent is evaluated and actively used, ongoing monitoring is
-essential to ensure consistent performance and reliability at scale. In
-this task, you will explore the Analytics capabilities in Copilot Studio
-to gain insights into agent usage, execution trends, and component
-utilization. You will learn how analytics data helps identify
-performance bottlenecks, understand user interaction patterns, and guide
-continuous optimization of your agent over time.
+一旦代理被評估並積極使用，持續監控對於確保大規模性能和可靠性的一致性至關重要。在本任務中，您將探索
+Copilot Studio
+中的分析功能，以深入瞭解代理使用情況、執行趨勢和組件利用情況。你將學習分析數據如何幫助識別性能瓶頸，理解用戶交互模式，並指導座席的持續優化。
 
-1.  From the top menu bar, select **Analytics.**
+1.  從頂部菜單欄中選擇 **“Analytics”。**
 
-    ![](./media/image10.png)
+> ![](./media/image10.png)
 
-2.  When there are a greater number of executions and as the agent gets
-    used more and more, the traffic increases, and you can find the AI
-    Summary in the Analytics tab.
+2.  當執行次數增加且代理使用次數增加時，流量也會增加，你可以在分析標簽頁中找到AI摘要。
 
-    ![](./media/image11.png)
+> ![](./media/image11.png)
 
-3.  The **Overview** section gives an overall picture about the runs,
-    and credits.
+3.  **Overview** 部分概述了連載和製作人員的整體情況。
 
-    ![](./media/image12.png)
+> ![](./media/image12.png)
 
-4.  The Run outcomes gives the average duration trends.
+4.  運行結果給出了平均持續時間的趨勢。
 
-    ![](./media/image13.png)
+> ![](./media/image13.png)
 
-5.  Scroll down and under the Use section, you can find the usage of
-    triggers, tools and knowledge sources.
+5.  往下滾動，在“Use”部分下方，你可以找到觸發器、工具和知識來源的使用。
 
-    ![](./media/image14.png)
+> ![](./media/image14.png)
 
-6.  Each of these helps you to gauge the usage of each component of the
-    agent and upgrade, enhance or correct the agent functionalities
-    appropriately.
+6.  這些都幫助你評估代理各部分的使用情況，並適當升級、增強或修正代理功能。
 
-## Summary
+## 摘要
 
-In this lab, you implemented automated evaluation and analytics to
-assess the quality and reliability of an AI agent. You generated a test
-set to simulate realistic user interactions, ran evaluations to measure
-response accuracy and relevance, and reviewed pass/fail results to
-identify areas for improvement.
+在本實驗室中，你實施了自動化評估和分析，以評估 AI
+代理的質量和可靠性。你生成了一個測試集來模擬真實的用戶互動，運行評估以衡量響應的準確性和相關性，並審查通過/不通過結果以識別改進空間。
 
-You also explored agent analytics to understand usage patterns,
-execution trends, and component utilization across triggers, tools, and
-knowledge sources. Together, these capabilities enable you to move
-beyond manual testing and adopt a scalable, data-driven approach to
-agent validation. This lab demonstrates how automated testing and
-analytics help ensure your agents are trustworthy, performant, and ready
-for real-world business scenarios.
+你還探索了代理分析，以理解觸發器、工具和知識源的使用模式、執行趨勢以及組件利用情況。這些能力共同使你能夠超越手動測試，採用可擴展、數據驅動的代理驗證方法。本實驗室展示了自動化測試和分析如何幫助確保您的座席值得信賴、高效，並準備好應對真實的商業場景。

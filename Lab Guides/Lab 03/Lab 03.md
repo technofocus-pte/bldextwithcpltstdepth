@@ -1,327 +1,273 @@
-# Lab 3 - Architecting intelligent agents with knowledge grounding and live connectors
+# 實驗室 - 構建具備知識接地和實時連接器的智能代理架構
 
-**Introduction**
+**介紹**
 
-Modern users expect intelligent, contextual responses that go beyond
-simple keyword matching. This lab will guide you through creating an
-intelligent agent that can reason across multiple knowledge sources and
-perform real-time actions to deliver comprehensive, accurate answers.
+現代用戶期望的回答是智能的、符合上下文的，超越簡單的關鍵詞匹配。本實驗室將引導您創建一個智能代理，能夠跨多個知識源推理並執行實時作，以提供全面、準確的答案。
 
-**Objective**
+**目標**
 
-In this lab, you’ll build an intelligent assistant that goes beyond
-simple Q&A to deliver contextual, multi-part responses. By the end of
-the lab, you will
+在這個實驗室裡，你將打造一個智能助手，超越簡單的問答，提供基於上下文的多部分回答。實驗結束時，你會明白的
 
-Create an intelligent agent using the conversational creation
-experience. Configure agent tone, behavior, and instructions to reflect
-your brand. Add public websites like Wikipedia as knowledge sources for
-factual grounding. Disable general knowledge to reduce hallucinations
-and ensure accuracy.
+利用對話創建體驗創建一個智能代理。配置座席語氣、行為和指令以體現你的品牌形象。加入像維基百科這樣的公共網站作為事實基礎的知識來源。關閉常識以減少幻覺並確保準確性。
 
-## Task 1: Create a new agent and add knowledge
+## 任務1：創建一個新的代理並添加知識
 
-Create Nova AI with custom instructions and Wikipedia knowledge
-integration using Copilot Studio’s conversational setup experience.
+利用 Copilot Studio
+的對話式設置體驗，創建帶有自定義說明和維基百科知識集成的 Nova AI。
 
-1.  Open a browser and navigate to +++https://copilotstudio.microsoft.com+++ and
-    login using your credentials if not done already.
+1.  打開瀏覽器，進入 +++copilotstudio.microsoft.com+++
+    並用你的憑證登錄。
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+2.  選擇 **Dev One** 環境。
 
-3.  Select the **Dev One** environment.
+3.  在主頁中，選擇 **Create agent**。
 
-4.  From the Home page, select **Create agent**.
+![](./media/image1.png)
 
-    ![](./media/image1.png)
+4.  創建代理後，選擇“**Detail**”旁邊的“**Edit**”。
 
-5.  Once the agent is created, select **Edit** against **Details**.
+![](./media/image2.png)
 
-    ![](./media/image2.png)
+5.  輸入以下信息並選擇 **Save**。
 
-6.  Enter the below details and select **Save**.
+    - 名稱 - +++Researcher agent+++.
 
-    - Name - +++Researcher agent+++.
+    - 描述 - +++Answers multi-part questions by combining historical
+      facts, biographical data, and real-time information like weather.
+      Ideal for deep research, exploration, and knowledge synthesis+++
 
-    - Description - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
+> ![](./media/image3.png)
 
-      ![](./media/image3.png)
+6.  在“**Instructions**”下輸入以下內容，然後選擇“**Save**”。
 
-7.  Select **Edit** against **Instructions**, enter the below content and select **Save**.
+你應該利用經過驗證的公開信息和實時查詢（如天氣或換算）來回答複雜的問題。你應該給出清晰簡潔的回答，並一次處理多個問題。您不得進行猜測、分享未經核實或敏感信息，或比較產品或公司。你應清晰且專業地溝通，適當時使用友好的語氣和輕微的表情符號。
 
-    >[!Note] **Note:** Use the **Copy** option and then **Paste** it in the required place in the VM (Instructions Text area in this case)
+![](./media/image4.png)
 
-    ```
-    You should answer complex questions using verified public information and real-time lookups like weather or conversions. You should give clear, concise answers and handle multiple questions one at a time. You must not speculate, share unverified or sensitive information, or compare products or companies. You should communicate clearly and professionally, using a friendly tone and light emojis when appropriate.
-    ```
-    
-    ![](./media/image4.png)
+7.  向下滾動，選擇 **+ Add knowledge**以添加知識來源。
 
-9.  Scroll down and select **+ Add knowledge** to add a knowledge
-    source.
+![](./media/image5.png)
 
-    ![](./media/image5.png)
+8.  從列表中選擇**“Public Website**”選項。
 
-10. Select the **Public Website** option form the list.
+![](./media/image6.png)
 
-    ![](./media/image6.png)
+9.  在下一個屏幕中選擇“**Add**”，然後選擇“**Add to agent**”。
 
-11. Enter +++https://en.wikipedia.org+++, select **Add**, and then select **Add to agent**.
+![](./media/image7.png)
 
-    ![](./media/image7.png)
-    
-    ![](./media/image8.png)
+![](./media/image8.png)
 
-12. Next, you will disable general knowledge to reduce hallucinations.
-    Select **Settings** from the top right.
+10. 接下來，你需要關閉常識以減少幻覺。從右上角選擇 **Settings** 。
 
-    ![](./media/image9.png)
+![](./media/image9.png)
 
-13. Toggle the **Use general knowledge** option under the Knowledge
-    section to **off** and then select **Save**. **Close** the **Settings** pane once this is done.
+11. 將“Knowledge”部分下的“**Use general knowledge**”選項切換為 **off**
+    狀態。
 
-    ![](./media/image10.png)
+![](./media/image10.png)
 
-14. Enter the below message in the Test pane and click **Send** and
-    observe the output.
+12. 在測試面板輸入以下消息，點擊 **Send** ，觀察輸出。
 
-    +++Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)+++
+> 寫一封草稿郵件，向一台壞掉的烤麵包機申請退款（麵包總是燒焦）
 
-    ![](./media/image11.png)
-    
-    ![](./media/image12.png)
+![](./media/image11.png)
 
-## Task 2: Add weather connector
+![](./media/image12.png)
 
-In this task, you will add a weather connector to enable real-time data
-retrieval and test generative orchestration. Ensure that the agent
-provides only fact-based, controlled responses while enabling it to
-perform real-time actions like weather lookups for comprehensive,
-multi-step answers.
+## 任務2：添加天氣連接器
 
-1.  Select **Tools** tab from the top menu.
+在此任務中，您將添加一個天氣連接器，以實現實時數據檢索和生成式編排測試。確保代理只提供基於事實、受控的響應，同時能夠執行實時作，如天氣查詢，以獲得全面、多步驟的答案。
 
-    ![](./media/image13.png)
+1.  從頂部菜單選擇**“Tools**”標簽。
 
-2.  Enter +++MSN Weather+++ in the search box and select **Get current
-    weather**.
+![](./media/image13.png)
 
-    ![](./media/image14.png)
+2.  在搜索框中輸入 +++MSN Weather+++，並選擇 **Get current weather**。
 
-3.  Select the drop down next to the **Not connected** message and
-    select **Create new connection**. Then, select **Create** in the
-    next screen.
+![](./media/image14.png)
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+3.  選擇“**Not connected**”消息旁邊的下拉菜單，然後選擇“**Create new
+    connection**”。接著，在下一個屏幕中選擇“**Create**”。
 
-4.  Select **Add and configure** to add the tool to the agent and
-    configure it as required.
+![](./media/image15.png)
 
-    ![](./media/image17.png)
+![](./media/image16.png)
 
-5.  Once added, select **Additional details**.
+4.  選擇 **Add and configure** ，將工具添加到代理中，並按需配置。
 
-    ![](./media/image18.png)
+![](./media/image17.png)
 
-6.  Under Credentials to use, select **Maker-provided credentials**.
+5.  添加後，選擇 **“Additional details**”。
 
-    **Note:** When using Maker-provided credentials, the end-user of the
-agent isn’t prompted to use its own context and connection to connect to
-the service. Instead, it’s using the context and connection of the
-person who has configured the agent. - Only use author authentication
-for actions that don’t need user-specific data, as using the credentials
-from someone else can expose to data exfiltration risks. - Use user
-authentication for role based access scenarios - Always review security
-implications of authentication choices
+![](./media/image18.png)
 
-    ![](./media/image19.png)
+6.  在“Credentials to use”中，選擇 **Maker-provided credentials**。
 
-7.  Under **Inputs**, **Units**, -> **Fill using** -> select **Custom
-    value**, and choose **Metric**.
+**注意：**
+使用Maker提供的憑據時，代理的終端用戶不會被提示使用自身上下文和連接來連接服務。而是利用配置代理者的上下文和連接。-
+僅在不需要用戶特定數據的作中使用作者認證，因為使用他人憑證可能會暴露數據外泄風險。-
+在基於角色的訪問場景中使用用戶認證- 始終審查認證選擇的安全影響
 
-    ![](./media/image20.png)
+![](./media/image19.png)
 
-8.  Under **Inputs**, for **Location**, leave **Fill using to
-    Dynamically fill with AI**, and select **Customize** to set
-    description.
+7.  在輸入、**Inputs**, **Units**, -\> **Fill using** -\>，選擇 **Custom
+    value**，然後選擇**Metric**。
 
-    ![](./media/image21.png)
+![](./media/image20.png)
 
-9.  Set the description as below and then select **Save**.
+8.  在“**Inputs**”下，對於“**Location**”，將“**Fill using to Dynamically
+    fill with AI**”，然後選擇“**Customize**”來設置描述。
 
-    ```
-    The location for the weather query. Valid inputs are City, State, Country. Always include city and country, and state only for locations where appropriate (e.g., in the US)
-    ```
-    
-    ![](./media/image22.png)
-    
-    ![](./media/image23.png)
+![](./media/image21.png)
 
-10. Test your enhanced agent with this complex question:
+9.  設置描述如下，然後選擇 **Save**。
 
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+天氣查詢地點。有效的輸入是城市、州、國家。在適當地點（例如美國）時，請始終包含城市和國家，州名應保留。
 
-    ![](./media/image24.png)
+![](./media/image22.png)
 
-11. Notice how generative orchestration performs multiple searches and
-    triggers the weather connector to provide a comprehensive answer
+![](./media/image23.png)
 
-    ![](./media/image25.png)
+10. 用這個複雜的問題來測試你的增強型特工:
 
-## Task 3: Fine-tune your AI assistant for smoother conversations
+> GitHub
+> 的母公司現任首席執行官是誰？他們是在哪裡獲得MBA學位的？那個校園附近一居室公寓的平均租金是多少？該地區今天的空氣質量指數是多少？
 
-Customize system topics to enhance interactions and deliver a smoother
-user experience.
+![](./media/image24.png)
 
-In this section, you’ll customize built-in system topics to improve user
-interactions and create a more seamless experience beyond just knowledge
-sources.
+11. 注意生成式編排如何執行多次搜索並觸發天氣連接器，從而提供全面的答案
 
-Customize your assistant’s welcome message to make it more engaging, add
-suggested start prompts to guide users effectively, and refine system
-topics like Escalate to ensure they align with your organization’s
-needs.
+![](./media/image25.png)
 
-1.  From the top menu, select **Topics**.
+## 任務3：微調你的AI助手，使對話更順暢
 
-    ![](./media/image26.png)
+定制系統主題以提升交互性，提供更流暢的用戶體驗。
 
-2.  Select the **Conversation Start** topic under **System**.
+在本部分，您將自定義內置系統主題，以改善用戶互動，打造超越知識源的更無縫體驗。
 
-    ![](./media/image27.png)
+定制助理的歡迎信息使其更具吸引力，添加建議啟動提示以有效引導用戶，並完善如Escalate等系統主題，確保其符合組織需求。
 
-3.  In the topic’s **Message** node, enter the below message.
+1.  從頂部菜單中選擇 **“Topics**”。
 
-     +++Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?+++
+![](./media/image26.png)
 
-    ![](./media/image28.png)
+2.  在“**System**”下選擇“**Conversation Start**”主題。
 
-4.  Still in the same node, select **+ Add** -> **Quick reply**.
+![](./media/image27.png)
 
-    ![](./media/image29.png)
+3.  在主題的 **消息** 節點中，輸入以下消息。
 
-5.  Add the below question.
+> 嘿，你好！我是研究員特工，你們的深度研究與發現智能助手。我能拆解複雜的問題，結合歷史事實、傳記和實時數據（如天氣）的見解。你今天好奇什麼？
+>
+> ![](./media/image28.png)
 
-    +++What caused the fall of the Roman Empire?+++
+4.  仍在同一節點中，選擇 **+ Add** -\> **Quick reply**。
 
-    ![](./media/image30.png)
+![](./media/image29.png)
 
-6.  Similarly add 2 more (Select **+ Add** in the quick reply **Properties** pane that gets opened).
+5.  請補充以下問題。
 
-    ![](./media/image47.png)
-    
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
++++What caused the fall of the Roman Empire?+++
 
-    +++What's the temperature in the city that hosted the last Olympic Games?+++
+![](./media/image30.png)
 
-    ![](./media/image31.png)
+6.  同樣地，再加兩個。
 
-8.  Once added, select **Save** to save the topic.
+> +++Who is the current CEO of the company that owns GitHub? Where did
+> they earn their MBA? What's the average rent for a one-bedroom
+> apartment near that campus? What's the air quality index in that area
+> today?+++
+>
+> +++What's the temperature in the city that hosted the last Olympic
+> Games?+++
 
-    ![](./media/image32.png)
+![](./media/image31.png)
 
-9.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
+7.  添加後，選擇 **Save** 以保存主題。
 
-    ![](./media/image33.png)
+![](./media/image32.png)
 
-10. Update the text to the below, that will more meaningfully unblock
-    the end user and select **Save**.
+8.  定制升級體驗。選擇 **Topics** -\> **System** -\> **Escalate**。
 
-    +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
+![](./media/image33.png)
 
-    ![](./media/image34.png)
+9.  將文字更新為以下內容，這樣更有意義地解除最終用戶的屏蔽，並選擇
+    **Save**。
 
-## Task 4: Make your agent public and publish it to the demo website
+> 很抱歉，我似乎幫不上忙。我建議聯繫我們的\[Microsoft Copilot
+> Studio社區\]（https://aka.ms/CopilotStudioCommunity
+> 年）或提交\[支持請求\]
+> (<https://learn.microsoft.com/en-us/power-platform/admin/get-help-support>).
 
-In this section, you’ll remove authentication to make your agent
-publicly accessible, then publish it to the demo website for testing and
-sharing.Since the Researcher agent provides general information and
-doesn’t handle private data, you’ll disable authentication for a
-seamless user experience and publish it to the demo website to gather
-feedback before deploying to your real site.
+![](./media/image34.png)
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+## 任務4：讓你的經紀人公開並發佈到演示網站
 
-1.  Go to **Settings** .
+在本部分，你將移除認證，使代理對公眾開放，然後發佈到演示網站進行測試和共享。由於Researcher代理只提供一般信息，不處理私人數據，你需要關閉身份驗證以實現無縫的用戶體驗，並將認證發佈到演示網站收集反饋，然後再部署到真實網站。
 
-    ![](./media/image35.png)
+1.  進入 **Settings** 。
 
-2.  Select **Security** -> **Authentication**. Select **No
-  authentication** and then select **Save**.
+![](./media/image35.png)
 
-    ![](./media/image36.png)
+2.  選擇“**Security** -\> **Authentication**”。選擇“**No
+    authentication**”，然後選擇“**Save**”。
 
-3.  Select **Save** in the confirmation prompt.
+![](./media/image36.png)
 
-    ![](./media/image37.png)
+3.  在確認提示中**Save**保存。
 
-4.  You can now close the Settings pane.
+![](./media/image37.png)
 
-    ![](./media/image38.png)
+4.  你現在可以關閉設置面板了。
 
-5.  Select **Publish** to make your changes live.
+![](./media/image38.png)
 
-    ![](./media/image39.png)
+5.  選擇 **Publish** 以使你的更改上線。
 
-6.  Select **Publish** in the confirmation dialog.
+![](./media/image39.png)
 
-    ![](./media/image40.png)
+6.  在確認對話框中選擇**Publish**。
 
-7.  You will get a success message once the publish is done.
+![](./media/image40.png)
 
-    ![](./media/image41.png)
+7.  發佈完成後，你會收到成功通知。
 
-8.  Now, select **Channels** from the top menu.
+![](./media/image41.png)
 
-    ![](./media/image42.png)
+8.  現在，從 頂部菜單選擇“**Channels**”。
 
-9.  Select **Demo website** from the list of channels available.
+![](./media/image42.png)
 
-    ![](./media/image43.png)
+9.  從可用頻道列表中選擇**Demo website**。
 
-10. Enter the Welcome message as +++Welcome to your demo website+++ and
-    select **Save**.
+![](./media/image43.png)
 
-    ![](./media/image44.png)
+10. 輸入歡迎信息為 +++Welcome to your demo website+++，然後選擇
+    **Save**。
 
-11. Click on **Open demo website** to open your site.
+![](./media/image44.png)
 
-    ![](./media/image45.png)
+11. 點擊 **“Open demo website** ”即可打開您的網站。
 
-12. You can now interact with your agent.
+![](./media/image45.png)
 
-    ![](./media/image46.png)
+12. 你現在可以與你的代理人互動了。
 
-## Summary
+![](./media/image46.png)
 
-In this lab, you successfully delivered a public-facing intelligent
-agent that:
+## 摘要
 
-- Answers complex, multi-part research questions
+在這個實驗室裡，你們成功交付了一個面向公眾的智能代理，:
 
-- Uses verified public knowledge and real-time connectors
+- 解答複雜且多部分的研究問題
 
-- Minimizes hallucinations through controlled knowledge sources
+- 使用經過驗證的公開知識和實時連接器
 
-- Provides a polished, user-friendly conversational experience
+- 通過受控知識源減少幻覺
 
-- Is deployed and accessible via a live demo website
+- 提供精緻且用戶友好的對話體驗
 
-This lab demonstrates how to design, enhance, and publish a
-**production-ready intelligent agent** that goes beyond simple Q&A to
-deliver trustworthy, real-time, and context-aware insights.
+- 已部署並通過在線演示網站訪問
 
-
-
-
-
-
-
-
-
-
-
+本實驗室演示如何設計、增強並發佈一款生產**準備的智能代理**，超越簡單的問答，提供可信、實時且具上下文感知的洞察。

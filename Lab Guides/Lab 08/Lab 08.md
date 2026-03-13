@@ -1,203 +1,171 @@
-# Lab 8 - Create an agent in Copilot Studio with Dataverse MCP Server
+# Lab 8 - 在 Copilot Studio 中使用 Dataverse 創建代理 MCP服務器
 
-Create and configure a Copilot Agent in Copilot Studio with Dataverse
-MCP Server integration to streamline business workflows.
+在 Copilot Studio 中創建並配置 Copilot 代理，並集成 Dataverse MCP
+服務器，以簡化業務工作流程。
 
-After completing this lab, participants will be able to create and
-configure a Copilot Agent in Copilot Studio, integrate the Dataverse MCP
-Server to read and update account information from the Account and
-Contact table, structure agent responses for clarity and business value,
-and apply these skills to solve common business challenges.
+完成本實驗室後，參與者將能夠在 Copilot Studio 中創建和配置 Copilot
+代理，集成 Dataverse MCP
+服務器以讀取和更新賬戶與聯繫表中的賬戶信息，構建代理響應以提升清晰度和業務價值，並將這些技能應用於解決常見的業務挑戰。
 
-## Task 1: Create and Configure Copilot Agent 
+## 任務1：創建並配置Copilot代理 
 
-Build a Copilot Agent that connects to Dataverse through the MCP Server
-for seamless data access.
+構建一個 Copilot 代理，通過 MCP 服務器連接 Dataverse，實現無縫數據訪問。
 
-In this section, you’ll learn how to create a new Copilot Agent in
-Copilot Studio, configure it with proper instructions and suggested
-prompts, and integrate the Dataverse MCP Server for live data
-connectivity
+在本節中，你將學習如何在 Copilot Studio 中創建新的 Copilot
+代理，按照正確的說明和建議提示配置它，並集成 Dataverse MCP
+服務器實現實時數據連接
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++
-    using your login credentials if not done already and make sure that
-    you are in the **Dev One** environment.
+1.  如果尚未登錄，請使用您的登錄憑據登錄 Copilot Studio（網址為
+    +++https://copilotstudio.microsoft.com+++），並確保您位於 Dev One
+    環境中。
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  Select **Create an agent** tile to create a new agent.
+2.  選擇 **Create an agent** 圖塊以創建新的代理。
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  Once the agent is provisioned, select Edit against the **Details**
-    pane.
+3.  代理配置完成後，選擇“Edit”選項，選擇“**Details**”面板。
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  Enter the below details and select **Save**.
+4.  輸入以下信息並選擇 **Save**。
 
-    - Name - +++Contoso Agent+++
-    
-    - Description - +++This agent will help Contoso sales reps update their accounts and contacts using the Dataverse MCP Server+++
+- 名稱 - +++Contoso Agent+++
 
-    ![](./media/image4.png)
+- 描述 - +++This agent will help Contoso sales reps update their
+  accounts and contacts using the Dataverse MCP Server+++
 
-5.  **Edit** Instructions and enter the below set of instructions and
-    select **Save**.
+> ![](./media/image4.png)
 
-    ```
-    This agent will: Read accounts and contact information from the Account
-    and Contact Tables in Dataverse using the Dataverse MCP Server. Update
-    accounts and contact information from the Account and Contact Tables in
-    Dataverse using the Dataverse MCP Server. Create new accounts and
-    contact information in the Account and Opportunity Tables in Dataverse
-    using the Dataverse MCP Server. Do not use outside knowledge. Only use
-    the Dataverse MCP Tool to create, read, update and delete.
-    ```
-    
-    ![](./media/image5.png)
-    
-    ![](./media/image6.png)
+5.  編輯說明，輸入以下說明，然後選擇 **Save。**
 
-6.  Scroll down and select **+ Add suggested prompts** in the Suggested
-    prompts section.
+該代理將：通過Dataverse
+MCP服務器讀取Dataverse中的賬戶和連絡人表中的賬戶和聯繫信息。通過Dataverse
+MCP服務器更新Dataverse中的賬戶和聯繫表中的賬戶和聯繫信息。使用 Dataverse
+MCP 服務器在 Dataverse
+的賬戶表和機會表中創建新賬戶和聯繫方式。不要使用外部知識。只使用Dataverse
+MCP工具來創建、讀取、更新和刪除。
 
-    ![](./media/image7.png)
+![](./media/image5.png)
 
-7.  Add the following prompts and then click **Save**.
+![](./media/image6.png)
 
-    - **Title**: +++Account Search+++ **Prompt**: +++List all accounts in Redmond+++
-    
-    - **Title**: +++Contact Search+++ **Prompt**: +++List all contacts from Coho Winery+++
+6.  向下滾動，在“Suggested prompts”部分選擇“ **+ Add suggested
+    prompts**”。
 
-    ![](./media/image8.png)
+![](./media/image7.png)
 
-8.  Select **+ Add tool** from the Tools section.
+7.  添加以下提示，然後點擊 **Save**。
 
-    ![](./media/image9.png)
+- **標題**: +++Account Search+++ **Prompt**: +++List all accounts in
+  Redmond+++
 
-9.  Select the **Model Context Protocol** tab, search for +++Dataverse
-    MCP Server+++ and select **Microsoft** **Dataverse MCP Server**.
+- **標題**: +++Contact Search+++ **Prompt**: +++List all contacts from
+  Coho Winery+++
 
-    Note: Select the one that is not in Preview. Do not select the
-**Microsoft** **Dataverse MCP Server (Preview)**
+![](./media/image8.png)
 
-    ![](./media/image10.png)
+8.  從工具部分選擇 **+ Add tool**。
 
-10. Select **Add and configure**.
+![](./media/image9.png)
 
-    ![](./media/image11.png)
+9.  選擇“**Model Context Protocol**”選項卡，搜索“+++Dataverse MCP
+    Server+++”，然後選擇“**Microsoft** **Dataverse MCP Server**”。
+    注意：選擇非預覽版。請勿選擇“**Microsoft** **Dataverse MCP Server
+    (Preview)**”。![](./media/image10.png)
 
-    **Note:** The Dataverse MCP Server will allow you natural language
-access to your tables in Dataverse. We have sample data in the Accounts
-and Contacts tables that we will use. The tools available are: list
-tables, describe table, read data, create record, update record, list
-prompts, execute prompt, list knowledge sources, and retrieve knowledge
+10. 選擇 **Add and configure**。
 
-11. Review the tools available for the Dataverse MCP Server. You can
-    select and deselect which tools are available to the agent. When the
-    tool is executed, the list is dynamically updated from the MCP
-    Server. You cannot call an MCP Server from a Topic for this reason.
+![](./media/image11.png)
 
-    ![](./media/image12.png)
+**注意：** Dataverse MCP 服務器將允許你自然語言訪問 Dataverse
+中的表格。我們將在賬戶和連絡人表中使用示例數據。可用的工具包括：列表表、描述表、讀取數據、創建記錄、更新記錄、列表提示、執行提示、列出知識源和檢索知識
 
-12. Enter +++List the accounts in the state of WA+++ in the **Test**
-    pane and click **Send**.
+11. 請查看Dataverse
+    MCP服務器可用的工具。你可以選擇和取消代理可用的工具。當工具執行時，列表會從MCP服務器動態更新。因此，你不能從主題調用MCP服務器。
 
-    ![](./media/image13.png)
+![](./media/image12.png)
 
-13. For the first run, you would get a Consent dialog as by default the
-    tool is
+12. 在**Test**窗格中輸入+++List the accounts in the state of
+    WA+++，然後單擊“**Send**”。
 
-    configured to use “End user credentials”. Please click **Allow** to
-continue.
+![](./media/image13.png)
 
-    ![](./media/image14.png)
+13\. 首次運行時，您會看到一個“同意”對話框，因為該工具默認配置為使用“End
+user credentials”。 請點擊“**Allow**”繼續。
 
-14. See the series of actions that take place and the output from the
-    MCP server,
+![](./media/image14.png)
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+13. 請查看發生的一系列動作以及MCP服務器的輸出，
 
-15. If you click on the tool that was used, you will see the Inputs and
-    Outputs of the tool.
+![](./media/image15.png)
 
-    ![](./media/image17.png)
+![](./media/image16.png)
 
-## Task 2: Structure Agent Responses with Custom Prompts
+14. 如果你點擊所用的工具，你會看到該工具的輸入和輸出。
 
-Create custom prompts to ensure consistent, structured responses from
-your agent that provide business-relevant information.
+![](./media/image17.png)
 
-1.  If you tried some different testing in the Copilot, you may have
-    noticed you will get different attributes for accounts and contacts.
-    If you want a more structured response, you can create a **prompt**
-    in the **Tools**. In the **Tools** tab, click **+ Add a tool** then
-    **+ New tool**.
+## 任務2：用自定義提示構建代理響應
 
-    ![](./media/image18.png)
-    
-    ![](./media/image19.png)
+創建定制提示，確保你的代理給出一致且結構化的回復，提供與業務相關的信息。
 
-2.  Select Prompt.
+1.  如果您在 Copilot
+    中嘗試過不同的測試，您可能會注意到帳戶和連絡人的屬性會有所不同。如果您想要更結構化的響應，可以在“**Tools**”中創建**prompt**。在“**Tools**”選項卡中，單擊“
+    **+ Add a tool**”，然後單擊“**+ New tool**”。
 
-    ![](./media/image20.png)
+![](./media/image18.png)
 
-3.  Rename the **prompt** **name** at the top to +++Show Account
-    Details+++ .
+![](./media/image19.png)
 
-    Then in the **instructions** enter, +++Find account which contains+++
-    and then click **+ Add content** to pass in the name of the account we
-    are searching for. Select **Text** for the Input and call it
-    +++**Account Name**+++ . Click **close**.
+2.  選擇Prompt。
 
-    ![](./media/image21.png)
+![](./media/image20.png)
 
-    ![](./media/image22.png)
+3.  將頂部的**提示名稱**重命名為 +++Show Account Details+++。
+    然後在**instructions**中輸入 +++Find account which
+    contains+++，然後點擊 **+ Add
+    content**以輸入要查找的賬戶名稱。選擇“**Text**”作為輸入框，並將其命名為“+++**Account
+    Name**+++。點擊“**close**”。 ![](./media/image21.png)
 
-4.  We can now grab specific fields from Dataverse to show to our end
-    users in the chat. Click back in the instructions and enter +++and find relevant details like:+++ click **+ Add content**. This time we will select **Dataverse** and some of the fields in the **Account** table which we feel our end users would like to see about the account.
+![](./media/image22.png)
 
-    ![](./media/image23.png)
+4.  現在我們可以從 Dataverse
+    中提取特定字段，並在聊天中向最終用戶顯示。點擊返回說明，輸入 +++and
+    find relevant details like: +++點擊 **+ Add
+    content**。這次我們將選擇 **Dataverse** 以及 **Account**
+    表中我們認為最終用戶可能希望看到的一些字段。
 
-5.  Let’s select the following by clicking on the dropdown: **Account
-    Name**, **Account Number**, **Address 1**, **Annual Revenue**,
-    **Email** and **Main Phone**. Click **Add** and then **Save**.
+![](./media/image23.png)
 
-    ![](./media/image24.png)
-    
-    ![](./media/image25.png)
-    
-    ![](./media/image26.png)
+5.  請點擊下拉菜單選擇以下內容：**賬戶名稱、賬號、地址
+    1、年收入、電子郵件**和**主要電話。**點擊“**Add**”，然後點擊“**Save**”。
 
-6.  Select **Add and configure**.
+![](./media/image24.png)
 
-    ![](./media/image27.png)
+![](./media/image25.png)
 
-7.  Now we can test out our prompt. Let’s go back over to our agent and
-    test again. Go to the test pane.
+![](./media/image26.png)
 
-8.  Enter +++Show account Details for Fourth Coffee+++ and click
-    **Send**. You can see that the response is in the structured
-    response with the custom prompt created.
+6.  選擇 **Add and configure**。
 
-    ![](./media/image28.png)
+![](./media/image27.png)
 
-## Summary
+7.  現在我們可以測試我們的提示了。我們回去找經紀人再測試一次。進入測試面板。
 
-In this lab, you build a Copilot Agent in Microsoft Copilot Studio that
-integrates with the **Dataverse MCP Server** to securely access and
-manage business data using natural language. You configure the agent to
-read, create, and update records across Dataverse tables such as
-**Accounts, Contacts, and Opportunities**, without relying on external
-knowledge or custom APIs.
+8.  輸入 +++Show account Details for Fourth
+    Coffee+++，然後點擊“**Send**”。您可以看到，回復內容是帶有自定義提示的結構化回復。
 
-You also learn how to **structure agent responses** using custom
-prompts, ensuring consistent, business-friendly outputs that surface the
-most relevant data fields for end users. By the end of the lab, you can
-design an agent that streamlines sales and account management workflows,
-delivers clear and structured insights, and demonstrates how MCP-powered
-agents can solve real-world business challenges with live enterprise
-data.
+![](./media/image28.png)
+
+## 摘要
+
+在本實驗中，您將在 Microsoft Copilot Studio 中構建一個 Copilot
+代理，該代理與 **Dataverse MCP
+Serve**集成，以使用自然語言安全地訪問和管理業務數據。您將配置該代理，使其能夠讀取、創建和更新
+Dataverse
+表中的記錄，例如**“客戶”、“連絡人”和“商機”**，而無需依賴外部知識或自定義
+API。
+
+你還將學習如何利用定制提示**構建客服響應**，確保輸出一致且業務友好，從而呈現對終端用戶最相關的數據字段。實驗室結束時，你可以設計出一個能夠簡化銷售和客戶管理工作流程、提供清晰結構化洞察，並展示MCP驅動的代理如何利用實時企業數據解決現實世界的業務挑戰。
