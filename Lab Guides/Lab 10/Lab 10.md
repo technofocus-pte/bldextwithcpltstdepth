@@ -1,4 +1,4 @@
-# 實驗 06 - 在利用 Azure AI 搜索的 Copilot Studio 中創建 HR 知識助手代理
+# 實驗 10 - 在利用 Azure AI 搜索的 Copilot Studio 中創建 HR 知識助手代理
 
 ## 目的
 
@@ -460,3 +460,4 @@ incorrect.](./media/image72.png)
 
 在本實驗中，我們學習了如何將代理連接到作為知識源的 Azure AI
 搜索服務，並根據源測試代理。
+
