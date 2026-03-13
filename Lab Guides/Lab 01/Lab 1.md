@@ -1,118 +1,100 @@
-# Lab 1 - Designing an AI assistant with Copilot Studio Agent Builder
+# ラボ 1 - Copilot Studio Agent Builderを使用した AIアシスタントの設計
 
-**Objective**
+**目的**
 
-In this lab, you will learn how to create a custom conversational agent
-using the **Copilot Studio Agent Builder** by describing the agent’s
-purpose, behavior, and tone in natural language. You will design a
-**Gardening Assistant** that provides expert guidance on home gardening,
-focusing on plant care, best practices, and the importance of nature in
-everyday living. By the end of the lab, you will understand how to
-iteratively refine agent instructions and bring a functional,
-domain-specific assistant to life.
+このラボでは、**Copilot Studio Agent Builder**
+を使用して、エージェントの目的、動作、トーンをnatural
+languageで記述することで、カスタム会話エージェントを作成する方法を学習します。植物の手入れ、ベストプラクティス、そして日常生活における自然の重要性に焦点を当て、家庭菜園に関する専門的なアドバイスを提供する**ガーデニングアシスタント**を設計します。ラボの最後には、エージェントへの指示を反復的に改良し、機能的でドメイン固有のアシスタントを実現する方法を理解できるようになります。　
 
-## Exercise 1: Creating the agent
+## 演習1: エージェントの作成
 
-1.  Open the link +++https://m365.cloud.microsoft/chat+++ from a
-    browser and login with your credentials. Select **Yes** in the **Stay Signed in** dialog.
+1.  ブラウザから+++<https://m365.cloud.microsoft/chat+++>をアクセスし、リンクを開き、資格情報を使用してログインします。
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+    - ユーザー名 -<+++@lab.CloudPortalCredential>(User1).Username+++
 
-1.  Select **New agent** from the **left** pane. If you are **not** able
-    to see the **New agent** option, **refresh** the **browser** and try
-    again in few minutes. At times, it takes few minutes to get loaded
-    completely.
+    - パスワード -<+++@lab.CloudPortalCredential>(User1).Password+++
 
-    ![](./media/image2.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image1.png)
 
-2.  Select the **Describe** tab.
+2.  **左**ペインから「**New agent** 」を選択してください。「**New
+    agent**」オプションが**表示されない**場合は、**ブラウザ**を**更新し**、数分後にもう一度お試しください。完全に読み込まれるまで数分かかる場合があります。
 
-    ![](./media/image3.png)
+![](./media/image2.png)
 
-3.  You can start defining the custom agent. You can choose a template
-    to start from, or you can simply *describe* the agent by providing a
-    description in natural language. Let's provide the following initial
-    description
+3.  「**Describe**」タブを選択します。
 
-    +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
+![](./media/image3.png)
 
-    ![](./media/image4.png)
+4.  カスタムエージェントの定義を開始できます。テンプレートを選択するか、natural
+    languageでエージェントの*説明*を入力することで、簡単にエージェントを定義することができます。まずは、次のような初期説明を入力してみましょう。
 
-4.  Once you have provided the instructions, the initial details are
-    populated.
++++You are an expert gardener, and you help users to maintain and
+improve their home garden providing detailed instructions and advice
+about the best practices for home gardening.+++
 
-5.  You can rename the agent if needed. Provide the following prompt to
-    do so +++Name it as “Gardening assistant”+++.
+![](./media/image4.png)
 
-    ![](./media/image5.png)
+5.  指示を入力すると、初期の詳細が入力されます。
 
-6.  If you are asked about refining instructions further, provide the
-    following sentence.
+6.  必要に応じてエージェントの名前を変更できます。以下のプロンプトに従って名前を変更してください。
 
-    +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
+> +++Name it as “Gardening assistant”+++.
 
-    ![](./media/image6.png)
+![](./media/image5.png)
 
-7.  Keep on interacting with the agent builder until it does have all
-    the information needed to create the agent. Provide the following
-    sentence.
+7.  指示をさらに絞り込むよう求められた場合は、次の文を入力します。
 
-    +++Focus on highlighting the importance of nature and plants/flowers to be present in every house!+++
++++Focus on suggesting ways to keep plants and flowers shining and
+gorgeous+++
 
-    ![](./media/image7.png)
+![](./media/image6.png)
 
-    ![](./media/image8.png)
+8.  エージェントの作成に必要なすべての情報が揃うまで、エージェントビルダーとのやり取りを続けてください。次の文を入力してください。
 
-8.  Then give an instruction of the agent tone as below.
+9.  +++Focus on highlighting the importance of nature and plants/flowers
+    to be present in every house!+++
 
-    +++Use a professional, yet friendly, tone.+++
+> ![](./media/image7.png)
+>
+> ![](./media/image8.png)
 
-    ![](./media/image9.png)
+10. 次に、エージェントトーンの指示を以下のように伝えます。
 
-11. Click on **Create** on the top right to create the agent.
+11. +++Use a professional, yet friendly, tone.+++
 
-    ![](./media/image10.png)
+> ![](./media/image9.png)
 
-    ![](./media/image11.png)
+11. エージェントを作成するには、右上の \[Create\] をクリックします。
 
-12. Select **Go to agent** once the agent is created.
+![](./media/image10.png)
 
-    ![](./media/image12.png)
+![](./media/image11.png)
 
-13. This opens the created agent.
+12. エージェントが作成されたら、「**Go to agent** 」を選択します。
 
-    ![](./media/image13.png)
+![](./media/image12.png)
 
-    >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
-    >
-    >![](./media/image14.png)
+13. 作成されたエージェントが開きます。
 
-14. Provide prompt like below to converse with the agent.
+![](./media/image13.png)
 
-    +++Give me tips to keep Rose plants fresh+++
+> **警告**:
+> エージェントが自動的に開かない場合は、ページを**更新**し、左側のペインから**作成したガーデニング
+> エージェント**を選択してください。
+>
+> ![](./media/image14.png)
 
-    ![](./media/image15.png)
+14. エージェントと会話するには、以下のようなプロンプトを提供します。
 
-    ## Summary:
++++Give me tips to keep Rose plants fresh+++
 
-    In this lab, you created a **Gardening Assistant agent** using the
-    Copilot Studio Agent Builder experience. Starting with a simple
-    natural-language description, you defined the agent’s role as an expert
-    gardener and progressively refined its focus, tone, and personality
-    through interactive prompts. You customized the agent to provide
-    professional yet friendly gardening advice, with an emphasis on keeping
-    plants healthy, vibrant, and visually appealing while highlighting the
-    value of plants and flowers in every home.
+![](./media/image15.png)
 
-    After creating and launching the agent, you validated its behavior by
-    interacting with it using real user prompts, such as requesting tips to
-    keep rose plants fresh. This lab demonstrated how quickly and
-    intuitively you can build a purpose-driven agent using Copilot
-    Studio—without writing code—by leveraging conversational design and
-    iterative instruction refinement.
+## まとめ：
 
+このラボでは、Copilot Studio Agent Builder
+エクスペリエンスを使用して、**ガーデニングアシスタントエージェント**を作成しました。シンプルなnatural-languageによる説明から始め、熟練した庭師としてのエージェントの役割を定義し、インタラクティブなプロンプトを通じて、エージェントの焦点、トーン、そして個性を段階的に洗練させてきました。植物を健康で生き生きと、そして美しく保つことに重点を置き、あらゆる家庭における植物や花の価値を強調しながら、専門的でありながら親しみやすいガーデニングアドバイスを提供するようにエージェントをカスタマイズしました。
 
-
-
+エージェントを作成して起動した後、バラの苗を新鮮に保つためのヒントを求めるなど、実際のユーザープロンプトを使ってエージェントと対話することで、その動作を検証しました。このラボでは、会話型設計と反復的な指示の改良を活用することで、コードを記述することなく、Copilot
+Studioを使用して目的主導型エージェントを迅速かつ直感的に構築できることを実証しました。

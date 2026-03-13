@@ -1,1263 +1,1451 @@
-# Lab 6 - Upgrading the hiring agent into an autonomous system
+# ラボ6 - Hiring Agentを自律システムにアップグレードする
 
-In this lab, you will dive deeper into **event triggers** - elevating
-your agent system from reactive to **autonomous operation**. You'll
-transform your agents from waiting for human input to proactively
-responding to external events and taking intelligent action without
-supervision.
+このラボでは、**イベントトリガー**についてさらに深く掘り下げ、エージェントシステムを**リアクティブ**から**自律的な動作**へと進化させます。エージェントを、人間の入力を待つ状態から、外部イベントにプロアクティブに反応し、監視なしにインテリジェントなアクションを実行する状態へと変革します。
 
-Think of it as upgrading from agents that answer questions to agents
-that anticipate needs and act independently. Through event triggers and
-automated workflows, your **Hiring Agent** will **detect** incoming
-resume **emails**, **process** attachments **automatically**, **store**
-data in **Dataverse**, and **notify** your **HR recruitment team** via
-**Microsoft Teams** - all while you focus on higher-value tasks.
+質問に答えるだけのエージェントから、ニーズを予測し、自律的に行​​動するエージェントへとアップグレードすると考えてみてください。イベントトリガーと自動化されたワークフローを通じて、**Hiring
+Agent**は履歴書の**メール**を受信し、添付ファイルを**自動的に処理し**、データを**Dataverseに保存し**、Microsoft
+Teams経由で**人事採用チームに通知します**。そうして、より価値の高いタスクに集中できます。
 
-**Objectives**
+**目的**
 
-In this lab, you'll learn:
+このラボでは、次の内容を学習します。
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+1.  イベントトリガーがユーザーの介入なしに、自律的なエージェントの動作を可能にする仕組み
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+2.  Copilot Studio
+    における、インタラクティブエージェントと自律エージェントの違い
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+3.  メールの添付ファイルを自動的に処理し、ファイルを Dataverse
+    にアップロードするイベントトリガーを作成する方法
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+4.  通知用にアダプティブカードをTeamsチャネルに投稿するエージェントフローを構築する方法
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+5.  エンド・ツー・エンドの自動化のためにイベントトリガーとエージェントフロー間でデータを渡す方法
 
-**What is an Event trigger?**
+**イベントトリガーとは何ですか。**
 
-**Event triggers** let an agent *act* on *its* own when something
-happens in another system - no user message required. When the
-configured event fires - such as “new SharePoint item,” “new email,”
-“Planner task assigned,” or even a time‑based recurrence, a connector
-sends a trigger payload to your agent. The agent then follows your
-instructions to decide which actions or topics to call.
+**イベントトリガー**別のシステムで何かが発生した際に、エージェントが自動でアクションを実行します。ユーザーからのメッセージは必要ありません。「new
+SharePoint item」、「new email」、「Planner task
+assigned」、あるいは時間ベースの繰り返しなど、設定されたイベントが発生すると、コネクタからエージェントにトリガーペイロードが送信されます。エージェントはユーザーの指示に従い、どのアクションまたはトピックを呼び出すかを決定します。　
 
-**Interactive agent vs Autonomous agent - comparison**
+**対話型エージェントと自律型エージェントの比較**
 
-Now that you know the difference between event triggers and topics
-triggers, let's next learn about the difference between an interactive
-agent vs an autonomous agent.
+イベント トリガーとトピック
+トリガーの違いがわかったので、次に、インタラクティブ
+エージェントと自律エージェントの違いについて学習しましょう。
 
-In Copilot Studio terms, "interactive" maps to agents that primarily
-engage via **topics** in a chat or channel. "Autonomous" maps to agents
-that also leverage **event triggers** to run without user input.
+Copilot Studio
+の用語では、「インタラクティブ」とは、主にチャットやチャンネルの**トピック**を介してやり取りするエージェントを指します。「自律型」とは、**イベントトリガー**も活用してユーザー入力なしで実行するエージェントを指します。
 
-## Exercise 1: Automating candidate application emails
+## 演習1: 応募者への応募メールの自動化
 
-We're next going to add an event trigger to the **Hiring Agent** and
-build an agent flow in the child **Application Intake Agent** to handle
-further processing for autonomy.
+次に、**Hiring Agent**にイベント トリガーを追加し、子の**Application
+Intake Agent**にエージェント
+フローを構築して、自律性のためのさらなる処理を実行します。
 
-**Use case scenario**
+**ユースケースシナリオ**
 
-**As an** HR Recruiter
+人事採用担当者**として**、履歴書が添付されたメールが受信トレイに届き、それが自動的にDataverseにアップロードされた際に通知を**受け取りたいです**。そうすることで、メールで送られてきた、応募書類が自動的にDataverseにアップロードされたことを常に把握できます。この目的は、2つの手法を用いて実現します。
 
-**I want to** be notified when an email with a resume arrives in my
-Inbox and is automatically uploaded to Dataverse
+1.  メールが届いた時のイベントトリガー
 
-**So that I can** stay notified of resumes sent by email for
-applications automatically uploaded to Dataverse
+    - ファイルの contentType が形式タイプとして PDF
+      に等しいことを確認します。
 
-We'll be achieving this using two techniques
+    - ファイルを抽出し、Dataverse コネクタ経由のアクションを使用して
+      Dataverse にアップロードします。
 
-1.  An event trigger for when the email arrives,
+    - 次に、Dataverse
+      アクションから入力パラメータを渡して、エージェントにプロンプ​​トを送信し、さらに処理を進めます。
 
-    - Check the contentType of the file equals PDF as the format type.
+&nbsp;
 
-    - Extract the file and upload to Dataverse using actions through the
-      Dataverse connector.
+1.  イベントトリガーのプロンプトによって呼び出される、子の**Application
+    Intake Agent**にエージェント フローが追加されます。
 
-    - Then send a prompt to the agent for further processing by passing
-      input parameters from the Dataverse actions.
+    - Microsoft Teams
+      のチャネルに投稿されたアダプティブカード内のイベントトリガーのプロンプトから渡された入力パラメータを使用して、人事採用チームに通知します。アダプティブカードには、**Hiring
+      Agent**で確認できるデータバース行へのリンクが含まれます。
 
-2.  An agent flow will be added to the child **Application Intake
-    Agent** which is invoked by the prompt in the event trigger.
+### タスク1: 電子メールで受信した履歴書をDataverseにアップロードする自動化
 
-    - Use the input parameters passed from the prompt of the event
-      trigger in an adaptive card posted to a channel in Microsoft Teams
-      to notify the HR Recruitment team. The adaptive card will have a
-      link to the Dataverse row which can be viewed in the **Hiring
-      Agent**.
+1.  Hiring
+    Agentで、「**Overview**」**タブ**の「**Triggers** 」セクションまで下にスクロールし、「**+
+    Add trigger**」を選択します。
 
-### Task 1: Automate uploading resumes to Dataverse received by email
+> ![](./media/image1.png)
 
-1.  In the Hiring Agent, scroll down in the **Overview tab** to
-    the **Triggers** section and select **+ Add trigger**.
+2.  トリガーのリストが表示されます。「**When a new email arrives
+    (V3)** 」を選択し、「**Next**」を選択します。
 
-    ![](./media/image1.png)
+> ![](./media/image2.png)
 
-3.  A list of triggers will appear. Select **When a new email arrives
-    (V3)** and select **Next**.
+3.  次の画面で「**Continue**」を選択します。
 
-    ![](./media/image2.png)
+![](./media/image3.png)
 
-3.  Select **Continue** in the next screen.
+4.  **トリガー名**と、リストされているアプリの**Sign
+    in** 接続参照が表示されます。トリガー名を以下のように変更します。
 
-    ![](./media/image3.png)
++++When a new email arrives from an applicant+++
 
-4.  We'll now see the **Trigger name** and the **Sign in** connection
-    references for the apps listed. Rename the trigger name to the
-    following:
+> **注記：**リストされているアプリの各接続参照に緑色のチェックマークが付いていることを確認してください。緑色のチェックマークが表示されていない場合は、省略記号
+> (...) からサインインし、「**+ New connection
+> reference** 」を選択して新しい接続参照を作成してください。
+>
+> ![](./media/image4.png)
 
-    +++When a new email arrives from an applicant+++
+5.  最後のステップは、トリガーの入力プロパティを設定することです。以下のプロパティを以下のように更新します。
 
-    **NOTE:** Make sure you see a green check by each of the connection references for the apps listed. If you don't see a green check, sign in through the ellipsis (...) and select **+ New connection reference** to create a new connection reference.
+[TABLE]
 
-    ![](./media/image4.png)
+6.  トリガーの作成を選択します。
 
-5.  The final step is to set the input properties of the trigger. Update
-    the following properties to the following,
+> ![](./media/image5.png)
 
-    | **Property**   | **How to Set**   |  **Details**  |
-    |:--------|:----|:-------|
-    |  **Include Attachments (Optional)**  |  Dropdown  | Yes   |
-    |  **Subject Filter (Optional)**  | Type/Enter with keyboard   | +++Application+++   |
-    |  Only with Attachments (Optional)  |  Dropdown  | Yes   |
+7.  作成が完了すると、トリガーがエージェントに追加されたことを示す確認メッセージが表示されます。「**Close** 」を選択すると、トリガーが「**Triggers** 」セクションに表示されます。
 
-6.  Select **Create trigger**.
+> ![](./media/image6.png)
 
-    ![](./media/image5.png)
+8.  イベントトリガーを更新して、自動化機能をさらに追加します。トリガーの横にある**省略記号（...）**を選択し、「**Edit
+    in Power Automate**」を選択してください。
 
-7.  Once created, a confirmation message will appear that the trigger
-    has been added to the agent. Select **Close** and the trigger will
-    be listed in the **Triggers** section.
+> ![](./media/image7.png)
 
-    ![](./media/image6.png)
+9.  トリガーはPower
+    Automateのメーカーポータルにフローとして読み込まれます。フローデザイナーが開き、そこでロジックやアクションを追加して自動化を強化できます。トリガーはフローの一番上に表示され、フローの最後のアクションとして「**Sends
+    a prompt to the specified copilot for
+    processing** 」が表示されます。
 
-9.  We're now going to update the event trigger to add some more
-    automation capabilities. Select the **ellipsis (...)** by the
-    trigger and select **Edit in Power Automate**.
+> ![](./media/image8.png)
 
-    ![](./media/image7.png)
+10. 既定では、Power Automate の「**When a new email
+    arrives** 」トリガーは、複数の電子メールが一度に到着した場合、複数の電子メールをまとめて処理し、バッチに対してフローを
+    1 回だけ実行することがあります。
 
-9.  The trigger will then load as a flow in the Power Automate maker
-    portal. It will open to the flow designer where we can add further
-    logic and actions for more automation. The trigger will appear at
-    the top, followed by **Sends a prompt to the specified copilot for
-    processing** as the last action in the flow.
+> フローがメールごとに個別に実行されるようにするには、\[When a new email
+> arrives\] ノードを選択し、\[**Settings**\] を選択します。
+>
+> **トリガーの設定**で **Split On**
+> 設定を有効にし、**Arrayドロップダウン**フィールドで
+> **@triggerOutputs()?\['body/value'\]** を選択します。
+>
+> Split On をオンにして、配列フィールドを
+> @triggerOutputs()?\['body/value'\]
+> に設定すると、多くのメッセージが同時に到着した場合でも、フローはメッセージごとに個別に実行されます。
+>
+> ![](./media/image9.png)
 
-    ![](./media/image8.png)
+11. 次に、添付ファイルのファイルタイプを確認するロジックを追加しましょう。.PDFファイルのみをアップロードし、画像はアップロードしません（メール署名などから取得される可能性があります）。トリガーの下にある+アイコンを選択し、「**Built
+    in tools** 」セクションの「**Control** 」を選択します。
 
-    >[!Note] **Note:** If the **New designer** is not selected by default on the top right, please ensure to toggle it to **On**.
-    >
-    >![](./media/image132.png)
+> ![](./media/image10.png)
 
-11. By default, the **When a new email arrives** trigger in Power
-    Automate may process multiple emails together if several arrive at
-    once, running the flow only once for the batch.
+12. **Condition** アクションを選択します。
 
-    To ensure the flow runs separately for each email, select the When a new email arrives node, select **Settings**.
-    
-    Enable the **Split On** setting in the **trigger’s settings** and select **@triggerOutputs()?['body/value']** in the **dropdown array** field.
-    
-    With **Split On** turned on and the array field set to **@triggerOutputs()?['body/value']**, the flow will run individually for each message, even if many arrive simultaneously.
+> ![](./media/image11.png)
 
-    ![](./media/image9.png)
+13. 次に、添付ファイルの種類が.PDFであるかどうかを確認する条件を設定します。左側の「**Choose
+    a value** 」フィールドで、**稲妻アイコン**を選択します。
 
-12. Let's next add some logic to check the file type of the attachment,
-    we only want to upload .PDF file attachments and not images (these
-    could come from email signatures). Select the **+** icon below the
-    trigger and select **Control** under the **Built in tools** section.
+> ![](./media/image12.png)
 
-    ![](./media/image10.png)
+14. **Search** フィールドに「+++content
+    type+++」と入力し、トリガーから**Attachments
+    Content-Type** パラメータを選択します。
 
-13. Select the **Condition** action.
+> ![](./media/image13.png)
 
-    ![](./media/image11.png)
+15. ここで少し立ち止まって考えてみましょう。おそらく、「**For
+    each**」アクションが自動的に表示されたことに気づいたでしょう。
 
-14. Now we will configure the condition to check if the file
-    attachment’s type is .PDF. In the **Choose a value** field on the
-    left, select the **lightning bolt icon**.
+> ![](./media/image14.png)
+>
+> このアクションは、**Attachments
+> Content-Type**パラメータが各添付ファイルに関連付けられているため、電子メール内の各添付ファイルをループすることを表します。
+>
+> 内部的には配列であるため、**Condition** アクションで **Attachments
+> Content-Type** パラメータを選択すると、**For each**
+> アクションが自動的に追加されます。
 
-    ![](./media/image12.png)
+16. 次に、**Condition** ブロックの右側にあるもう1つの**Choose a
+    value** フィールドに、+++application/pdf+++と入力します。　
 
-15. In the **Search** field type +++content type+++ and select
-    the **Attachments Content-Type** parameter from the trigger
+これにより、各添付ファイルのファイル拡張子形式が .PDF
+であることが確認されます。
 
-    ![](./media/image13.png)
+> ![](./media/image15.png)
 
-16. Let's pause here for a moment, you probably noticed that the **For
-    each** action automatically appeared.
+17. ここで、電子メールからファイルを抽出し、それを **Resume** Dataverse
+    テーブルにアップロードするための True パスを構成します。
 
-    ![](./media/image14.png)
+> **True**パスの下に新しいアクションを追加し、「html to
+> text」を検索します。「**+++Html to
+> text+++**」アクションを検索して選択します。
+>
+> **注記：**Power Automate の html to textアクションは、HTML
+> 形式のコンテンツをプレーンテキストに変換するために使用されます。これは、HTML
+> タグを含むデータ（メール、Web コンテンツ、API
+> レスポンスなど）を受信し、書式設定やコードなしで読み取り可能なテキストのみを抽出したい場合に特に便利です。
+>
+> ![](./media/image16.png)
 
-    This action represents looping through each attachment in the email, since the **Attachments Content-Type** parameter is tied to each attachment.
-    
-    Underneath the hood, it's an array and that's why the For each action was automatically added when we selected the **Attachments Content-Type** parameter in the **Condition** action.
+18. 次に、「**Create new**」を選択して、**Html to
+    text** アクションの新しい接続参照を作成する必要があります。
 
+> ![](./media/image17.png)
 
-17. Next, in the other **Choose a value** field to the right in
-    the **Condition** block, type +++application/pdf+++
+19. アクションの設定が完了しました。トリガーから**Body**パラメータを追加しましょう。「**Content** 」フィールドで、右側の**稲妻アイコン**または**fxアイコン**を選択します。
 
-    This will ensure that for each file attachment, it will check the file
-extension format is .PDF.
+> ![](./media/image18.png)
 
-    ![](./media/image15.png)
+20. \[**Dynamic content** \] タブで、 +++body+++ を検索し、**Body**
+    パラメータを選択して、\[**Add**\] を選択します。
 
-17. Now we'll configure the **True** path to extract the file from the
-    email and upload it into the **Resume** Dataverse table.
+> ![](./media/image19.png)
 
-    Add a new action below in the **True** path and search for html to text. Search for and select the +++**Html to text**+++ action.
-    
-    >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
+21. このアクションの構成が完了したので、左向きの 2 つの山括弧 («)
+    を選択してパネルを折りたたみ、アクションを終了しましょう。
 
+> ![](./media/image20.png)
 
-    ![](./media/image16.png)
+22. 「**Html to
+    text** 」アクションの下にある「**+**」アイコンを選択して、アクションを追加するためのパネルを開き、新しいアクションを追加します。「**Dataverse
+    add**」を検索し、「**Add a new row** 」アクションを選択します。
 
-18. Next, we need to create a new connection reference for the **Html to
-    text** action by selecting **Create new**.
+> ![](./media/image21.png)
 
-    ![](./media/image17.png)
+23. プロパティパネルの左上隅に「+++ Add a new Resume row
+    +++」という名前を貼り付けて、  
+    アクションの名前を変更します。
 
-19. The action can now be configured. Let's add the **Body** parameter
-    from the trigger. In the **Content** field, select the **lightning
-    bolt icon** or **fx icon** to the right.
+**Table name** パラメータで、res を検索し、**Resumes**
+テーブルを選択します。
 
-    ![](./media/image18.png)
+> ![](./media/image22.png)
 
-20. In the **Dynamic content** tab, search for +++body+++ and select
-    the **Body** parameter, followed by selecting **Add**.
+24. 次に**Resume Title** フィールドを選択し、右側の **fx
+    アイコン**を選択します。
 
-    ![](./media/image19.png)
+> ![](./media/image23.png)
 
-21. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+25. \[**Function tab**\] タブで、item()
+    関数を使用する次の式を入力します。
 
-    ![](./media/image20.png)
++++item()?\['name'\]+++
 
-22. We'll add a new action by selecting the **+ icon** underneath
-    the **Html to text** action which will load the panel to add
-    actions. Search for **Dataverse add**.Select the **Add a new
-    row** action.
+> 「**Add** 」を選択して、**Resume Title** パラメータに式を追加します。
+>
+> ![](./media/image24.png)
 
-    ![](./media/image21.png)
+**item() 関数に関する注意:**
 
-23. Rename the action by pasting +++Add a new Resume row+++ as the name
-    in the upper left-hand corner of the properties panel,
+- 「**Apply to each** 」アクションを使用すると、Power Automate
+  はコレクション (配列) 内の各要素を調べます。
 
-    For the **Table name** parameter, search for +++res+++ and select
-the **Resumes** table.
+- これは、**Apply to each**  (または **For each**)、**Select**、**Filter
+  array**などのアクション内で最もよく使用されます。
 
-    ![](./media/image22.png)
+26. さらに、いくつかのパラメータを設定する必要があるので、「**Show
+    all**」を選択します。
 
-24. Select the **Resume Title** field next and select the **fx icon** to
-    the right.
+> ![](./media/image25.png)
 
-    ![](./media/image23.png)
+27. 「**Cover Letter** 」フィールドで、右側の
+    **fxアイコン**を選択します。
 
-25. In the **Function tab**, enter the following expression that uses
-    the item() function.
+> **Functionタブ**で次の式を入力します。
+>
+> +++if(greater(length(body('Html_to_text')), 2000),
+> substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+>
+> この式は、HTML からテキストへのアクションからのテキストが 2000
+> 文字より長いかどうかを確認し、長い場合は最初の 2000
+> 文字のみを返し、そうでない場合は完全なテキストを返します。
+>
+> ![](./media/image26.png)
 
-    +++item()?['name']+++
+28. 式が**Cover Letter** フィールドに追加されます。
 
-    Select **Add** to add the expression to the **Resume Title** parameter.
+> ![](./media/image27.png)
 
-    ![](./media/image24.png)
+29. \[**Source Email Address** \]
+    フィールドでは、**稲妻アイコン**を選択し、メール
+    アドレスの値が含まれるトリガーから \[**From** \]
+    パラメータを選択します。
 
-    >[!Note] **Note on item() function:**
-    >
-    >- When you use an **Apply to each** action, Power Automate goes through
-      each element in a collection (array).
-    >
-    >- It’s most often used inside actions like **Apply to each** (or **For
-      each**), **Select**, or **Filter array**.
+> ![](./media/image28.png)
 
-26. We still need to configure several more parameters, select **Show
-    all**.
+30. 「**Upload
+    Date** 」フィールドでは、右側の**fxアイコン**を選択します。「**Function**」タブで「+++utcNow()+++」と入力し、「**Add**」を選択します。
 
-    ![](./media/image25.png)
+**注記： utcNow() 関数とは何ですか。**
 
-28.  In the **Cover Letter** field, select the **fx icon** to the right.
+- Power Automate の utcnow() 関数は、現在の日付と時刻をCoordinated
+  Universal Time (UTC) で ISO 8601 形式で返します (例:
+  2025-09-23T04:32:14Z)。
 
-    In the **Function tab**, enter the following expression.
+> ![](./media/image29.png)
 
-    +++if(greater(length(body('Html_to_text')), 2000), substring(body('Html_to_text'), 0, 2000), body('Html_to_text'))+++
+31. これで、**Add a new Resume
+    row** アクションの構成が完了したので、パネルを折りたたんで終了しましょう。
 
-    This expression checks if the text from the **Html to text** action is longer than 2000 characters, and if so, returns only the first 2000 characters; otherwise, it returns the full text.
+> ![](./media/image30.png)
 
-    ![](./media/image26.png)
+32. 「**Add a new Resume
+    row** 」アクションの下にある**+**アイコンを選択して、新しいアクションを追加します。すると、アクションを追加するためのパネルが開きます。+++
+    **Dataverse Upload** +++を検索し、「**Upload a file or an
+    image** 」アクションを選択します。　
 
-28. The expression will now be added to the **Cover Letter** field.
+> ![](./media/image31.png)
 
-    ![](./media/image27.png)
+33. 名前として +++Upload Resume File+++
+    を貼り付けて、アクションの名前を変更します。
 
-29. For the **Source Email Address** field, select the **lightning bolt
-    icon** and select the **From** parameter from the trigger as this
-    contains the email address value.
+> ![](./media/image32.png)
 
-    ![](./media/image28.png)
+34. 次に、**Content name** フィールドを選択し
+    (すでに「無題」メッセージがある場合は削除します)、右側の **fx
+    アイコン**を選択します。
 
-30. For the **Upload Date** field, select the **fx icon** to the right.
-    In the **Function tab**, enter, +++utcNow()+++ and select **Add**.
+> 「**Function**」タブで、item()関数を使用する次の式を入力します。これにより、現在のアイテム（添付ファイル）のnameプロパティが取得されます。
+>
+> +++item()?\['name'\]+++
+>
+> ![](./media/image33.png)
 
-    **Note:**  **What is the utcNow() function?**
+35. **Table name** パラメータで、 +++resumes+++ を検索し、**Resumes**
+    テーブルを選択します。
 
-    - The utcnow() function in Power Automate returns the current date and
-  time in Coordinated Universal Time (UTC) in an ISO 8601 format,
-  like: 2025-09-23T04:32:14Z
+> ![](./media/image34.png)
 
-    ![](./media/image29.png)
+36. 次に**Row ID**
+    フィールドを選択し、右側の**稲妻アイコン**を選択します。
 
-31. We've now completed configuring the **Add a new Resume row** action
-    so let's exit from the panel by collapsing it.
+> +++ID+++ を検索し、**Add a new row**  Dataverse アクションから
+> **Resume** パラメータを選択します。これには、PDF
+> ファイルをアップロードする行の ID 値が含まれています。　
+>
+> ![](./media/image35.png)
 
-    ![](./media/image30.png)
+37. **Column name** フィールドを選択し、**Resume
+    PDF** オプションを選択します。
 
-33. We'll add a new action by selecting the **+ icon** underneath
-    the **Add a new Resume row** action which will load the panel to add
-    actions. Search for +++**Dataverse Upload**+++. Select the **Upload
-    a file or an image** action.
+> ![](./media/image36.png)
 
-    ![](./media/image31.png)
+38. \[**Content** \] フィールドを選択し、右側の **fx
+    アイコン**を選択します。
 
-33. Rename the action by pasting +++Upload Resume File+++ as the name.
+> 「**Function**」タブで、item()
+> 関数を使用する次の式を入力します。この式は、現在のアイテム（添付ファイル）の
+> contentBytes プロパティを取得します。contentBytes
+> は、ファイルまたは添付ファイルの生のバイナリデータ（Base64
+> 文字列としてエンコードされたもの）を参照します。
+>
+> +++item()?\['contentBytes'\]+++
+>
+> ![](./media/image37.png)
 
-    ![](./media/image32.png)
+39. このアクションの構成が完了したので、左向きの 2 つの山括弧 («)
+    を選択してパネルを折りたたみ、アクションを終了しましょう。
 
-34. Select the **Content name** field (remove the Untitled message if
-    that is already available) next and select the **fx icon** to the
-    right.
+> ![](./media/image38.png)
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the name property of the current item (the attachment file).
-    
-    +++item()?['name']+++
+40. 次に、「**Sends a prompt to the specified copilot for
+    processing**」を選択し、このアクションを条件の
+    **True** パスの「**Upload Resume File** 」アクションの下にドラッグ
+    アンド ドロップします。
 
+> ![](./media/image39.png)
 
-    ![](./media/image33.png)
+41. **Sends a prompt to the specified copilot for
+    processing** を選択して設定します。
 
-35. For the **Table name** parameter, search for +++resumes+++ and
-    select the **Resumes** table.
+![](./media/image40.png)
 
-    ![](./media/image34.png)
+42. **Body/message** フィールドで、フィールドの内容をすべて選択し、クリア/削除します。
 
-36. Select the **Row ID** field next and select the **lightning bolt
-    icon** to the right.
+> ![](./media/image41.png)
 
-    Search for +++ID+++ and select the **Resume** parameter from the **Add a new row** Dataverse action as this contains the ID value of the row to upload the PDF file to.
+43. 次のテキストをコピーして**本文/メッセージ**
+    フィールドに貼り付け、**RESUME ID PLACEHOLDER**
+    を強調表示して、**稲妻**アイコンを選択します。
 
-    ![](./media/image35.png)
+> Send \[ResumeId (text)\] = "RESUME ID PLACEHOLDER" and \[ResumeTitle
+> (text_1)\] = "RESUME TITLE PLACEHOLDER" and \[ResumeNumber (text_2)\]=
+> "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant
+> channel" in the child agent "Application Intake Agent"
+>
+> ![](./media/image42.png)
 
-37. Select the **Column name** field and select the **Resume
-    PDF** option.
+44. +++resume+++
+    を検索し、作成された**Resume** 行のID値が含まれるため、**Add a new
+    row** *Dataverse* アクションから **Resume**
+    パラメーターを選択します。
 
-    ![](./media/image36.png)
+> ![](./media/image43.png)
 
-38. Select the **Content** field and select the **fx icon** to the
-    right.
+45. 「RESUME TITLE
+    PLACEHOLDER」をハイライトします。右側の**稲妻アイコン**を選択します。
 
-    In the Function tab, enter the following expression that uses the item () function. This gets the contentBytes property of the current item (the attachment file). contentBytes refers to the raw binary data of a file or attachment, encoded as a Base64 string.
-    
-    +++item()?['contentBytes']+++
+> +++title+++ を検索し、**Add a new row
+> Dataverse**アクションから**Resume Title** 
+> パラメーターを選択します。これには、作成されたResume行の履歴書のタイトル値が含まれます。
+>
+> ![](./media/image44.png)
 
-    ![](./media/image37.png)
+46. 「RESUME NUMBER
+    PLACEHOLDER」をハイライトします。右側の**稲妻アイコン**を選択します。
 
-39. We've completed configuring this action so let's exit from the
-    action by selecting the two angle brackets («) pointing to the left
-    to collapse the panel.
+> +++resume number+++ を検索し、**Add a new row
+> Dataverse** アクションから Resume Number
+> パラメーターを選択します。これには、作成されたResume 行の Resume
+> Number 値が含まれます。
+>
+> ![](./media/image45.png)
 
-    ![](./media/image38.png)
+47. このアクションとエージェントフローの設定が完了しました。「**Save**」を選択してイベントトリガーフローを保存しましょう。
 
-40. Next, select the **Sends a prompt to the specified copilot for
-    processing**, then drag and drop this action to be below
-    the **Upload Resume File** action in the **True** path of the
-    condition.
+> ![](./media/image46.png)
 
-    ![](./media/image39.png)
+48. ここで、エージェント
+    フローの詳細を編集する必要があります。保存したら、\[**Back**る\]
+    を選択します。
 
-41. Select the **Sends a prompt to the specified copilot for
-    processing** to configure it.
+> ![](./media/image47.png)
 
-    ![](./media/image40.png)
+49. **Details** セクションで「**Edit** 」を選択し、「**Plan** 」を「**Copilot
+    Studio**」オプションに更新します。「**Save**」を選択します。
 
-42. In the **Body/message** field, select all of the field content and
-    clear/delete it.
+> ![](./media/image48.png)
 
-    ![](./media/image41.png)
+50. Copilot
+    Studioプランへの切り替えを確認するモーダルが表示されます。「**Confirm**」を選択してください。
 
-43. Copy and paste the following text into the **Body/message** field
-    and highlight the **RESUME ID PLACEHOLDER** and select the
-    **lightning** icon.
+> ![](./media/image49.png)
 
-    ```
-    Send [ResumeId (text)] = "RESUME ID PLACEHOLDER" and [ResumeTitle (text_1)] = "RESUME TITLE PLACEHOLDER" and [ResumeNumber (text_2)]= "RESUME NUMBER PLACEHOLDER" to the Tool "Notify Teams Applicant channel" in the child agent "Application Intake Agent"
-    ```
-    
-    ![](./media/image42.png)
+51. プランが**Copilot
+    Studio**に更新されました。エージェントのイベントトリガーフローを公開する必要があるため、「**Edit** 」を選択してください。
 
-44. Search for +++resume+++ and select the **Resume** parameter from
-    the **Add a new row** *Dataverse* action as this contains
-    the ID value of the Resume row created.
+> ![](./media/image50.png)
 
-    ![](./media/image43.png)
+52. \[**Publish**\]を選択します。
 
-45. Highlight the **RESUME TITLE PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+> ![](./media/image51.png)
+>
+> イベント トリガー フローが公開されました。
 
-    Search for +++title+++ and select the **Resume Title** parameter from the **Add a new row Dataverse** action as this contains the resume title value of the Resume row created.
+![](./media/image52.png)
 
-    ![](./media/image44.png)
+子の **Intake Application Agent** によって呼び出される新しいエージェント
+フローの作成を進めましょう。
 
-46. Highlight the **RESUME NUMBER PLACEHOLDER**. Select the **lightning bolt
-    icon** to the right.
+### タスク 2 - アダプティブ カードを使用して Teams チャネルに通知する
 
-    Search for +++resume number+++ and select the **Resume Number** parameter from the **Add a new row Dataverse** action as this contains the Resume Number value of the Resume row created.
+次に、子の**Intake Application
+Agent**用の新しいエージェントフローを作成します。このフローは、イベントトリガーから渡された値を使用して、Teamsチャネルにアダプティブカードを投稿します。このアダプティブカードは、自動アップロードされたPDFについて人事採用チームに通知し、確認できるようにします。
 
-    ![](./media/image45.png)
+#### タスク 2.1: Teams でチャネルを作成する
 
-47. We've completed configuring this action and our agent flow. Now
-    let's save our event trigger flow by selecting **Save**.
+このタスクでは、このラボの後半で使用するTeamとChannelを MS Teams
+に作成します。
 
-    ![](./media/image46.png)
+1.  +++https://teams.microsoft.com+++ にログインしてください。
 
-48. We now need to edit the details of the agent flow, select **Back**
-    once saved.
+2.  \[**New items** \] ドロップダウンを選択し、\[**New team**\]
+    を選択します。
 
-    ![](./media/image47.png)
+![](./media/image53.png)
 
-49. Select **Edit** in the **Details** section and update
-    the **Plan** to the **Copilot Studio** option. Select **Save**.
-
-    ![](./media/image48.png)
-
-50. A modal will appear to ask you to confirm to switch to Copilot
-    Studio plan. Select **Confirm**.
-
-    ![](./media/image49.png)
-
-51. The plan is now updated to **Copilot Studio**. Select **Edit** as we
-    need to publish the event trigger flow for our agent.
-
-    ![](./media/image50.png)
-
-52. Select **Publish**.
-
-    ![](./media/image51.png)
-
-    The event trigger flow is now Published.
-
-    ![](./media/image52.png)
-
-    Let's proceed with creating a new agent flow that will be invoked by the
-child **Intake Application Agent**.
-
-### Task 2 - Notify a Teams channel using an adaptive card
-
-We're now going to create a new agent flow for the child **Intake
-Application Agent** that uses the values passed by the event trigger, to
-post an adaptive card to a Teams channel. This adaptive card will alert
-the HR recruitment team about the PDF that was automatically uploaded so
-that they can review it.
-
-#### Task 2.1: Create channel in Teams
-
-In this task, you will create a Team and Channel in MS Teams which will
-be used later in this lab.
-
-1.  Login to +++https://teams.microsoft.com+++
-
-2.  Select the **New items drop down** and select **New team**.
-
-    ![](./media/image53.png)
-
-3.  Provide the below details and select Create.
+3.  以下の詳細を入力し、「Create」を選択します。
 
     - Team name - +++HR Team+++
 
-    - First channel name - +++Applicants+++
+    - First channel name - +++Applicants +++
 
-    ![](./media/image54.png)
+> ![](./media/image54.png)
 
-4.  Select Skip in the next screen.
+4.  次の画面で「Skip」を選択します。
 
-    ![](./media/image55.png)
+![](./media/image55.png)
 
-5.  You have now created the new Team and Channel.
+5.  これで、新しいTeamとChannelが作成されました。
 
-    ![](./media/image56.png)
+![](./media/image56.png)
 
-#### Task 2.2: Create the agent flow
+#### タスク2.2: エージェントフローを作成する
 
-1.  Back in the Copilot Studio, in the **Hiring Agent** select
-    the **Agents** tab and select the **Application Intake Agent**
+1.  Copilot Studioに戻り、**Hiring
+    Agent**で**Agents** タブを選択し、**Application Intake
+    Agent**を選択します。
 
-    ![](./media/image57.png)
+![](./media/image57.png)
 
-2.  Scroll down to **Tools** and select **+ Add**.
+2.  \[**Tools** \] まで下にスクロールし、\[**+ Add**\] を選択します。
 
-    ![](./media/image58.png)
+> ![](./media/image58.png)
 
-3.  The **Add tool** modal will appear. Select **+ New tool**.
+3.  **Add tool** モーダルが表示されます。「**+ New
+    tool**」を選択します。
 
-    ![](./media/image59.png)
+> ![](./media/image59.png)
 
-4.  Select **Agent flow**.
+4.  **Agent flow**を選択します。
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-5.  The **agent flow designer** will next load. In the **When an agent
-    calls the flow** trigger, select **+ Add an input**.
+5.  次に**agent flow designer**が読み込まれます。「**When an agent calls
+    the flow** 」トリガーで、「+ **Add an input**」を選択します。
 
-    ![](./media/image61.png)
+> ![](./media/image61.png)
 
-6.  Select **Text** as the type of user input.
+6.  ユーザー入力の種類として**Text** を選択します。
 
-    ![](./media/image62.png)
+> ![](./media/image62.png)
 
-7.  In the input text field, enter +++ResumeId+++ as the input parameter
-    name.
+7.  入力テキスト フィールドに、入力パラメータ名として +++ResumeId+++
+    と入力します。
 
-    ![](./media/image63.png)
+> ![](./media/image63.png)
 
-8.  Repeat the same steps for the below parameters.
+8.  以下のパラメータに対して同じ手順を繰り返します。
 
-    Text - +++ResumeTitle+++
-    
-    Text - +++ResumeNumber+++
-    
-    ![](./media/image64.png)
-    
-    ![](./media/image65.png)
+Text - +++ResumeTitle+++
 
-9.  Now, you are going to add an adaptive card in the agent flow. We're
-    now going to add another action to our agent flow that will post an
-    adaptive card to a Teams channel.
-
-    Select the **+ icon** below the trigger.
-
-    ![](./media/image66.png)
-
-10. Search for +++**Microsoft Teams post+++** and select the **Post card
-    in a chat or channel** action.
-
-    ![](./media/image67.png)
-
-11. A connection reference to Microsoft Teams needs to be created with
-    your signed in user account. Select **Sign in**.
-
-    ![](./media/image68.png)
-
-12. Select your user account and then select **Allow access**.
-
-    ![](./media/image69.png)
-
-13. Configure according to the following input parameters:
-
-    | Parameter   |  How to Set  | Details   |
-    |:------|:----|:------|
-    |  **Post as**  |  Dropdown  |  Select the **Flow bot** option  |
-    |  **Post in**  |  Dropdown  |   Select the **Channel** option |
-    |  **Team**  |  Dropdown  |  Select **HR Team** option  |
-    |   **Team** |  Dropdown  |  Select  **Applicants** channel   |
-
-
-    ![](./media/image70.png)
-
-14. Next, we'll configure the **Adaptive Card** field. Select
-    the **Adaptive Card** field.
-
-    ![](./media/image71.png)
-
-15. Copy the below code and paste it into the Adaptive Card field.
-
-    ```
-    {
-        "type": "AdaptiveCard",
-        "speak": "New Resume Uploaded",
-        "body": [
-            {
-                "inlines": [
-                    {
-                        "type": "TextRun",
-                        "size": "Small",
-                        "text": "Resume table updated",
-                        "selectAction": {
-                            "url": "https://adaptivecards.io",
-                            "type": "Action.OpenUrl"
-                        }
-                    }
-                ],
-                "type": "RichTextBlock"
-            },
-            {
-                "columns": [
-                    {
-                        "width": "auto",
-                        "items": [
-                            {
-                                "type": "Icon",
-                                "name": "DocumentArrowUp",
-                                "color": "Accent"
-                            }
-                        ],
-                        "type": "Column"
-                    },
-                    {
-                        "width": "stretch",
-                        "items": [
-                            {
-                                "size": "Large",
-                                "text": "New Resume Uploaded",
-                                "weight": "Bolder",
-                                "wrap": true,
-                                "type": "TextBlock"
-                            }
-                        ],
-                        "verticalContentAlignment": "Center",
-                        "spacing": "Small",
-                        "type": "Column"
-                    }
-                ],
-                "spacing": "Small",
-                "type": "ColumnSet"
-            },
-            {
-                "type": "Table",
-                "targetWidth": "AtLeast:Narrow",
-                "columns": [
-                    {
-                        "width": 1
-                    },
-                    {
-                        "width": 2
-                    }
-                ],
-                "rows": [
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Resume Number",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "RESUME NUMBER PLACEHOLDER",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Name",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "RESUME NAME PLACEHOLDER",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Status",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Waiting for Review",
-                                        "wrap": true
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Due Date",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "May 21, 2023",
-                                        "wrap": true
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "type": "TableRow",
-                        "cells": [
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "TextBlock",
-                                        "text": "Priority",
-                                        "wrap": true,
-                                        "weight": "Bolder"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            },
-                            {
-                                "type": "TableCell",
-                                "items": [
-                                    {
-                                        "type": "ColumnSet",
-                                        "columns": [
-                                            {
-                                                "type": "Column",
-                                                "width": "auto",
-                                                "items": [
-                                                    {
-                                                        "type": "Icon",
-                                                        "name": "Flag",
-                                                        "color": "Attention",
-                                                        "size": "xSmall",
-                                                        "horizontalAlignment": "Center"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Column",
-                                                "width": "stretch",
-                                                "items": [
-                                                    {
-                                                        "color": "Attention",
-                                                        "text": "Important",
-                                                        "wrap": true,
-                                                        "spacing": "Small",
-                                                        "type": "TextBlock"
-                                                    }
-                                                ],
-                                                "spacing": "Small"
-                                            }
-                                        ],
-                                        "spacing": "Small"
-                                    }
-                                ],
-                                "verticalContentAlignment": "Center"
-                            }
-                        ]
-                    }
-                ],
-                "firstRowAsHeaders": false,
-                "showGridLines": false
-            },
-            {
-                "actions": [
-                    {
-                        "title": "View Resume",
-                        "type": "Action.OpenUrl",
-                        "url": "https://adaptivecards.io/"
-                    }
-                ],
-                "type": "ActionSet",
-                "targetWidth": "AtLeast:Narrow",
-                "spacing": "ExtraLarge"
-            }
-        ],
-        "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
-        "version": "1.5"
-    }
-    
-    ```
-
-    ![](./media/image72.png)
-
-16. We will now replace existing values in the JSON payload with actual
-    values or dynamic content.
-
-    First, let's update the **URL** for the **url property** within the **selectAction** property. This URL will be replaced with the URL of the **Resumes** system view in the **Hiring** Hub model-driven app. This will allow the Recruiter to select the action and be directed to the Resumes system view in the model-driven app.
-    Highlight the **current URL** value and delete it.
-
-
-    ![](./media/image73.png)
-
-17. In the **Hiring Hub** model-driven app, navigate to
-    the **Resumes** system view using the left hand side menu and copy
-    the URL. Then **navigate back** to the **agent flow**, and **paste**
-    the **copied URL** into the **url** property of the within
-    the selectAction property.
-
-    ![](./media/image74.png)
-
-18. You should see the following where highlighted in Yellow is your
-    environment details of the **Hiring Hub** model-driven app.
-
-    |  Parameter  |  Value  |   Explanation |
-    |:--------|:--------|:---------|
-    |  Organization URI  |   GUID |  The Dataverse/Dynamics 365 environment organization URL  |
-    |  appid  | GUID   |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | viewid    | GUID   |  The query parameter which is the id of the view  |
-
-
-
-    ![](./media/image75.png)
-
-19. Next, we'll add dynamic content values for several properties. Let's
-    start with the text that will display the Resume Number reference of
-    the row that was created by the event trigger autonomously.
-
-    Select the **panel** icon to load the action panel.
-
-    ![](./media/image76.png)
-
-20. Scroll down to the line where you see the text property for RESUME
-    NUMBER PLACEHOLDER. Highlight the placeholder value and delete it.
-
-    ![Delete placeholder](./media/image77.png)
-
-21. Click in-between the double quotation marks and select
-    the **lightning bolt icon** from the right.
-
-    **Note:** Make sure that the Adaptive card code block is docked to the left pane of your screen.
-
-    ![](./media/image78.png)
-
-23. In the **Dynamic Content** tab select
-    the **ResumeNumber** parameter.
-
-    ![](./media/image79.png)
-
-24. The **ResumeNumber** parameter will now be added as dynamic content
-    to the text property.
-
-    ![](./media/image80.png)
-
-25. We'll repeat the same steps for the RESUME NAME PLACEHOLDER. Scroll
-    down to the line where you see the text property for RESUME NAME
-    PLACEHOLDER. Highlight the placeholder value and delete it. Click
-    in-between the double quotation marks and select the select
-    the **lightning bolt icon** from the right.
-
-    ![](./media/image81.png)
-
-26. In the **Dynamic Content** tab select the **ResumeTitle** parameter.
-
-    ![](./media/image82.png)
-
-27. The **ResumeTitle** parameter will now be added as dynamic content
-    to the text property.
-
-    ![](./media/image83.png)
-
-28. We'll repeat the same steps for the **Due Date** value that
-    represents when a recruiter should review the resume by. Scroll down
-    to the line where you see the text property for May 21, 2023.
-
-    ![Select Allow access](./media/image84.png)
-
-29. Delete this date placeholder value and click in-between the double
-    quotation marks and select the **fx icon** from the right.
-
-    ![](./media/image85.png)
-
-30. In the **Function** tab, enter the following expression and
-    select **Add**.
-
-    +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
-
-    This expression utilizes two functions.
-
-    addDays - Adds a specified number of days to a given date and returns the resulting date in string format
-    
-    utcNow - Returns the current date and time in Coordinated Universal Time (UTC) format as a string.
-
-    For the utcNow value, we are formatting the date to be month and date,
-    followed by the year.
-
-    ![](./media/image86.png)
-
-31. The expression will now be added to the text property.
-
-    ![](./media/image87.png)
-
-32. Lastly, we'll update the **URL** for the **url property** within
-    the **actions** array property at the bottom of the JSON payload.
-    This current placeholder URL will be replaced with the URL of the
-    **Resume row** in the **Hiring Hub** model-driven app. This will
-    allow the Recruiter to select the **Action.OpenURL** action of the
-    adaptive card and be **directed** to the **Resume** in the
-    model-driven app.
-
-    ![](./media/image88.png)
-
-32. In the **Hiring Hub** model-driven app, open a row in
-    the **Resumes** system view using the left hand side menu. The
-    resume row will load as a form in the model-driven app.
-
-    Copy the URL for the Resume row.
-    
-    ![](./media/image89.png)
-    
-    ![](./media/image90.png)
-
-33. Then navigate back to the agent flow, highlight the current
-    placeholder URL value and **delete** it.
-
-    ![](./media/image91.png)
-
-34. Then **paste** the **copied URL** into the **url** property of the
-    within the url property.
-
-    ![](./media/image92.png)
-
-35. You should see the following. Delete the GUID id value at the end.
-    We'll replace this dynamic content - the **ResumeId** parameter.
-
-    ![](./media/image93.png)
-
-36. Select the **lightning bolt icon** from the right.
-
-    In the **Dynamic Content** tab select the **ResumeId** parameter.
-
-    ![](./media/image94.png)
-
-37. The **ResumeId** will be added as dynamic content. The following
-    highlighted in Yellow is your environment details of the **Hiring
-    Hub** model-driven app.
-
-    |  Parameter  | Value   |  Explanation  |
-    |:-----|:-------|:--------|
-    | Organization URI   | GUID   |  The Dataverse/Dynamics 365 environment organization URL  |
-    |   appid |  GUID  |  To open a specific model-driven app, the query parameter of either appid or appname is used. In this case, the appid is used  |
-    | id   |  GUID  |    The query parameter which is the id of the Resume row    |
-
-    ![](./media/image95.png)
-
-38. We've completed configuring the **Post card in a chat or
-    channel** action 👏🏻 Exit from the action configuration panel by
-    selecting the **x** icon.
-
-    ![](./media/image96.png)
-
-39. Finally, we'll configure the last action, **Respond to the
-    agent** by sending a text back to the agent to end the processing.
-
-    In the **Respond to the agent** action, select **+Add an output**.
-
-    ![](./media/image97.png)
-
-40. Select **Text** as the type of output.
-
-    ![](./media/image98.png)
-
-41. Enter the following details
+Text - +++ResumeNumber+++
+
+![](./media/image64.png)
+
+![](./media/image65.png)
+
+9.  次に、エージェントフローにアダプティブカードを追加します。次に、アダプティブカードをTeamsチャネルに投稿するアクションをエージェントフローに追加します。
+
+トリガーの下の **+ アイコン**を選択します。
+
+> ![](./media/image66.png)
+
+10. +++**Microsoft Teams** **post** +++ を検索し、**Post card in a chat
+    or channel**アクション を選択します。
+
+> ![](./media/image67.png)
+
+11. サインインしたユーザーアカウントでMicrosoft
+    Teamsへの接続参照を作成する必要があります。「**Sign
+    in**」を選択してください。
+
+> ![](./media/image68.png)
+
+12. ユーザー アカウントを選択し、\[**Allow access**\] を選択します。
+
+> ![](./media/image69.png)
+
+13. 次の入力パラメータに従って構成します。
+
+[TABLE]
+
+> ![](./media/image70.png)
+
+14. 次に、**Adaptive Card**フィールドを設定します。**Adaptive
+    Card**フィールドを選択してください。
+
+> ![](./media/image71.png)
+
+15. 以下のコードをコピーして、**Adaptive
+    Card**フィールドに貼り付けます。
+
+> {
+>
+> "type": "AdaptiveCard",
+>
+> "speak": "New Resume Uploaded",
+>
+> "body": \[
+>
+> {
+>
+> "inlines": \[
+>
+> {
+>
+> "type": "TextRun",
+>
+> "size": "Small",
+>
+> "text": "Resume table updated",
+>
+> "selectAction": {
+>
+> "url": "https://adaptivecards.io",
+>
+> "type": "Action.OpenUrl"
+>
+> }
+>
+> }
+>
+> \],
+>
+> "type": "RichTextBlock"
+>
+> },
+>
+> {
+>
+> "columns": \[
+>
+> {
+>
+> "width": "auto",
+>
+> "items": \[
+>
+> {
+>
+> "type": "Icon",
+>
+> "name": "DocumentArrowUp",
+>
+> "color": "Accent"
+>
+> }
+>
+> \],
+>
+> "type": "Column"
+>
+> },
+>
+> {
+>
+> "width": "stretch",
+>
+> "items": \[
+>
+> {
+>
+> "size": "Large",
+>
+> "text": "New Resume Uploaded",
+>
+> "weight": "Bolder",
+>
+> "wrap": true,
+>
+> "type": "TextBlock"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center",
+>
+> "spacing": "Small",
+>
+> "type": "Column"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small",
+>
+> "type": "ColumnSet"
+>
+> },
+>
+> {
+>
+> "type": "Table",
+>
+> "targetWidth": "AtLeast:Narrow",
+>
+> "columns": \[
+>
+> {
+>
+> "width": 1
+>
+> },
+>
+> {
+>
+> "width": 2
+>
+> }
+>
+> \],
+>
+> "rows": \[
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Resume Number",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "RESUME NUMBER PLACEHOLDER",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Name",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "RESUME NAME PLACEHOLDER",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Status",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Waiting for Review",
+>
+> "wrap": true
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Due Date",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "May 21, 2023",
+>
+> "wrap": true
+>
+> }
+>
+> \]
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "TableRow",
+>
+> "cells": \[
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "TextBlock",
+>
+> "text": "Priority",
+>
+> "wrap": true,
+>
+> "weight": "Bolder"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> },
+>
+> {
+>
+> "type": "TableCell",
+>
+> "items": \[
+>
+> {
+>
+> "type": "ColumnSet",
+>
+> "columns": \[
+>
+> {
+>
+> "type": "Column",
+>
+> "width": "auto",
+>
+> "items": \[
+>
+> {
+>
+> "type": "Icon",
+>
+> "name": "Flag",
+>
+> "color": "Attention",
+>
+> "size": "xSmall",
+>
+> "horizontalAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> },
+>
+> {
+>
+> "type": "Column",
+>
+> "width": "stretch",
+>
+> "items": \[
+>
+> {
+>
+> "color": "Attention",
+>
+> "text": "Important",
+>
+> "wrap": true,
+>
+> "spacing": "Small",
+>
+> "type": "TextBlock"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small"
+>
+> }
+>
+> \],
+>
+> "spacing": "Small"
+>
+> }
+>
+> \],
+>
+> "verticalContentAlignment": "Center"
+>
+> }
+>
+> \]
+>
+> }
+>
+> \],
+>
+> "firstRowAsHeaders": false,
+>
+> "showGridLines": false
+>
+> },
+>
+> {
+>
+> "actions": \[
+>
+> {
+>
+> "title": "View Resume",
+>
+> "type": "Action.OpenUrl",
+>
+> "url": "https://adaptivecards.io/"
+>
+> }
+>
+> \],
+>
+> "type": "ActionSet",
+>
+> "targetWidth": "AtLeast:Narrow",
+>
+> "spacing": "ExtraLarge"
+>
+> }
+>
+> \],
+>
+> "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+>
+> "version": "1.5"
+>
+> }
+
+![](./media/image72.png)
+
+16. ここで、JSON
+    ペイロード内の既存の値を、実際の値または動的コンテンツに置き換えます。
+
+> まず、**selectAction**プロパティ内の**urlプロパティ**の**URL**を更新しましょう。このURLは、**Hiring
+> Hub**モデル駆動型アプリの**Resumes**システムビューのURLに置き換えられます。これにより、採用担当者はアクションを選択し、モデル駆動型アプリのResumesシステムビューにリダイレクトされるようになります。
+>
+> **current URL**値を強調表示して削除します。　
+
+![](./media/image73.png)
+
+17. **Hiring
+    Hub**モデル駆動型アプリで、左側のメニューから**Resumes** システムビューに移動し、URLをコピーします。その後、**エージェントフロー**に戻り、**コピーしたURL**をselectActionプロパティ内の**url**プロパティに貼り付けます。
+
+> ![](./media/image74.png)
+
+18. 次のように、黄色で強調表示されている部分が **Hiring Hub**
+    モデル駆動型アプリの環境の詳細になります。
+
+[TABLE]
+
+> ![](./media/image75.png)
+
+19. 次に、いくつかのプロパティに動的なコンテンツ値を追加します。まずは、イベントトリガーによって、自動的に作成された行のResume
+    Number参照を表示するテキストから始めましょう。
+
+**パネル** アイコンを選択してアクション パネルを読み込みます。
+
+![](./media/image76.png)
+
+20. 「RESUME NUMBER
+    PLACEHOLDER」というテキストプロパティがある行までスクロールダウンします。プレースホルダー値をハイライト表示して削除します。
+
+![Delete placeholder](./media/image77.png)
+
+21. 二重引用符の間をクリックし、右側の**稲妻アイコン**を選択します。
+
+![](./media/image78.png)
+
+22. **Dynamic Content** タブで、**ResumeNumber**
+    パラメータを選択します。
+
+> ![](./media/image79.png)
+
+23. **ResumeNumber**
+    パラメータが動的コンテンツとしてテキストプロパティに追加されます。
+
+> ![](./media/image80.png)
+
+24. 「RESUME NAME
+    PLACEHOLDER」についても同じ手順を繰り返します。「RESUME NAME
+    PLACEHOLDER」のテキストプロパティがある行までスクロールダウンします。プレースホルダーの値をハイライト表示して削除します。二重引用符の間をクリックし、右側にある**稲妻アイコン**を選択します。
+
+> ![](./media/image81.png)
+
+25. **Dynamic Content** タブで、**ResumeTitle** パラメータを選択します。
+
+> ![](./media/image82.png)
+
+26. **ResumeTitle** パラメータが動的コンテンツとしてテキスト
+    プロパティに追加されます。
+
+> ![](./media/image83.png)
+
+27. 採用担当者が履歴書を確認する期限を表す「**Due
+    Date** 」の値についても、同じ手順を繰り返します。2023年5月21日のテキストプロパティが表示されている行までスクロールします。　
+
+![Select Allow access](./media/image84.png)
+
+28. この日付プレースホルダー値を削除し、二重引用符の間をクリックして、右側から
+    **fx アイコン**を選択します。
+
+> ![](./media/image85.png)
+
+29. \[**Function** \] タブで次の式を入力し、\[**Add**\] を選択します。
+
+> +++addDays(utcNow(), 3, 'MMM dd, yyyy')+++
+
+この式は 2 つの関数を利用します。
+
+[TABLE]
+
+utcNow
+値の場合、日付を月と日、その後に年が続くようにフォーマットします。
+
+> ![](./media/image86.png)
+
+30. 式がテキストプロパティに追加されます。
+
+![](./media/image87.png)
+
+31. 最後に、JSONペイロードの下部にある**actions**配列プロパティ内の**urlプロパティ**の**URL**を更新します。この現在のプレースホルダーURLは、**Hiring
+    Hub**モデル駆動型アプリの**Resume**行のURLに置き換えられます。これにより、採用担当者はアダプティブカードの**Action.OpenURL**アクションを選択し、モデル駆動型アプリの**Resume**にアクセスできるようになります。
+
+> ![](./media/image88.png)
+
+32. **Hiring
+    Hub**モデル駆動型アプリの左側メニューを使用して、「**Resumes** 」システムビューの行を開きます。履歴書の行は、モデル駆動型アプリにフォームとして読み込まれます。　
+
+Resume行の URL をコピーします。
+
+![](./media/image89.png)
+
+> ![](./media/image90.png)
+
+33. 次に、エージェントフローに戻り、現在のプレースホルダー URL
+    値を強調表示して削除します。
+
+> ![](./media/image91.png)
+
+34. 次に、**コピーした URL** を の **url**
+    プロパティ内に**貼り付けます**。
+
+> ![](./media/image92.png)
+
+35. 以下のように表示されるはずです。末尾のGUID
+    id値を削除してください。この動的なコンテンツ、つまり**ResumeId**パラメータを置き換えます。
+
+![](./media/image93.png)
+
+36. 右側から**稲妻アイコン**を選択します。
+
+**Dynamic Content** タブで、**ResumeId** パラメータを選択します。
+
+> ![](./media/image94.png)
+
+37. **ResumeId**は動的コンテンツとして追加されます。黄色でハイライトされている部分は、**Hiring
+    Hub**モデル駆動型アプリの環境詳細です。
+
+[TABLE]
+
+> ![](./media/image95.png)
+
+38. **Post card in a chat or
+    channel** アクションでのポストの構成が完了しました 👏🏻 **x**
+    アイコンを選択して、アクション構成パネルを終了します。
+
+> ![](./media/image96.png)
+
+39. 最後に、処理を終了するためにエージェントに、テキストを返信して**エージェントに応答する**最後のアクションを設定します。
+
+**Respond to the agent** アクションで、**+Add an output**を選択します。
+
+> ![](./media/image97.png)
+
+40. 出力の種類として**Text** を選択します。
+
+> ![](./media/image98.png)
+
+41. 以下の詳細を入力してください
 
     - Name - +++EndConversation+++
 
-    - Value - +++Finished+++
+    - Value - +++ Finished+++
 
-    ![](./media/image99.png)
+> ![](./media/image99.png)
 
-42. We've now completed configuring the agent flow. Select **Save
-    draft** to save the agent flow. A confirmation message will appear
-    once saved.
+42. エージェントフローの設定が完了しました。「**Save
+    draft** 」を選択してエージェントフローを保存してください。保存すると確認メッセージが表示されます。
 
-    ![](./media/image100.png)
+> ![](./media/image100.png)
 
-43. Before publishing the agent flow, we need to update the details for
-    the agent flow. Select the **Overview** tab and select **Edit**.
+43. エージェントフローを公開する前に、エージェントフローの詳細を更新する必要があります。「**Overview** 」タブを選択し、「**Edit**」を選択してください。
 
-    ![](./media/image101.png)
+> ![](./media/image101.png)
 
-44. Enter the Name as +++Notify Teams Applicant channel+++ and select
-    the Refresh icon under Description to update it using AI.
+44. Nameに+++Notify Teams Applicant
+    channel+++と入力し、Descriptionの下の更新アイコンを選択して AI
+    を使用して更新します。
 
-    ![](./media/image102.png)
+![](./media/image102.png)
 
-45. Once the Description is populated, select **Save** to save the
-    updated details for the agent flow.
+45. Descriptionが入力されたら、\[**Save** \] を選択して、エージェント
+    フローの更新された詳細を保存します。
 
-    ![](./media/image103.png)
+> ![](./media/image103.png)
 
-46. Navigate back to the **Designer** tab and select **Publish** to
-    publish the agent flow.
+46. 「**Designer** 」タブに戻り、「**Publish** 」を選択して、エージェント
+    フローを公開します。
 
-    ![](./media/image104.png)
+> ![](./media/image104.png)
 
-47. A confirmation message will appear once published.
+47. 公開されると確認メッセージが表示されます。
 
-    ![](./media/image105.png)
+> ![](./media/image105.png)
 
-48. The agent flow now needs to be added as a tool in the **Application
-    Intake Agent**. Navigate back to the **Hiring Agent** and select
-    the **Agents** tab, then select the **Application Intake Agent**.
+48. エージェントフローを**Application Intake
+    Agent**のツールとして追加する必要があります。**Hiring**
+    **Agent**に戻り、「**Agents** 」タブを選択して、**Application Intake
+    Agent**を選択してください。　
 
-    ![](./media/image106.png)
+![](./media/image106.png)
 
-49. In the **Details** section of the agent, we'll update
-    the **Description** field. Copy the following and paste and the end
-    of the description text.
+49. エージェントの**Details** セクションで、「**Description** 」フィールドを更新します。以下のテキストをコピーして、説明テキストの末尾に貼り付けます。
 
-    +++and also notifies the Teams Applicant channel+++
++++and also notifies the Teams Applicant channel+++
 
-    Select **Save**.
+\[**Save**\]を選択します。
 
-    ![](./media/image107.png)
+> ![](./media/image107.png)
 
-50. Next, we'll add the agent flow as a tool. Scroll down to
-    the **tools** section and select **+ Add**.
+50. 次に、エージェントフローをツールとして追加します。ツールセクションまで下にスクロールし、「**+
+    Add**」を選択します。
 
-    ![](./media/image108.png)
+> ![](./media/image108.png)
 
-51. Select the **Flow** tab and choose the agent flow created
-    earlier, **Notify Teams Applicant Channel**.
+51. \[**Flow** \] タブを選択し、先ほど作成したエージェント
+    フロー「**Notify Teams Applicant Channel**」を選択します。
 
-    ![](./media/image109.png)
+> ![](./media/image109.png)
 
-52. Select **Add and configure** next.
+52. 次に「**Add and configure**」を選択します。
 
-    ![](./media/image110.png)
+> ![](./media/image110.png)
 
-53. In the **Inputs** section, the three inputs we configured earlier in
-    the agent flow are visible. By default, the **Fill
-    using** configuration is set to **Dynamically fill with AI**. We'll
-    keep this setting as-is as the prompt from the event trigger will
-    contain the parameter values that AI will extract.
+53. 「**Inputs** 」セクションには、エージェントフローで先ほど設定した3つの入力が表示されています。デフォルトでは、「**Fill
+    using** 」は「**Dynamically fill with
+    AI**.」に設定されています。イベントトリガーからのプロンプトにはAIが抽出するパラメータ値が含まれるため、この設定はそのままにしておきます。
 
-    ![](./media/image111.png)
+> ![](./media/image111.png)
 
-54. Now that the tool has been added to the **Application Intake
-    Agent**, the instructions of the agent needs to be updated. Select
-    the **back arrow**.
+54. ツールがApplication Intake
+    Agentに追加されたので、エージェントの指示を更新する必要があります。**戻る矢印**を選択してください。
 
-    ![](./media/image112.png)
+![](./media/image112.png)
 
-55. Select the **Application Intake Agent** in the **Agents** tab of
-    the **Hiring Agent**.
+55. **Hiring Agent**の**Agents** タブで、**Application Intake
+    Agent**を選択します。
 
-    ![](./media/image113.png)
+![](./media/image113.png)
 
-56. In the **Instructions** field, enter a new line
-    after **Post-Upload** instructions. Copy and paste the following
-    instructions.
+56. 「**Instructions** 」フィールドの「**2.Post-Upload** 」の後に新しい行を入力します。以下の手順をコピーして貼り付けます。　
 
-    ```
-    Process for Resume Upload via Email
-    1. When you receive a message, **Send [ResumeId (text)] = "1680265f-5793-f011-b41b-7c1e525be9f7" and [ResumeTitle (text_1)] = "TAYLOR TESTPERSON (FICTITIOUS).pdf" and [ResumeNumber (text_2)]= "R01026" to the Tool "Notify Teams Applicant channel"** in the child agent "Application Intake Agent", call [AGENT FLOW PLACEHOLDER]
-    ```
-    ![](./media/image114.png)
+> Process for Resume Upload via Email
+>
+> 1. When you receive a message, \*\*Send \[ResumeId (text)\] =
+> "1680265f-5793-f011-b41b-7c1e525be9f7" and \[ResumeTitle (text_1)\] =
+> "TAYLOR TESTPERSON (FICTITIOUS).pdf" and \[ResumeNumber (text_2)\]=
+> "R01026" to the Tool "Notify Teams Applicant channel"\*\* in the child
+> agent "Application Intake Agent", call \[AGENT FLOW PLACEHOLDER\]
+>
+> ![](./media/image114.png)
 
-57. Highlight the \[AGENT FLOW PLACEHOLDER\] text.
+57. \[AGENT FLOW PLACEHOLDER\] テキストを強調表示します。　
 
-    ![](./media/image115.png)
+> ![](./media/image115.png)
 
-58. Enter the forward slash character, /, and select the **Notify Teams
-    Applicant Channel** tool.
+58. スラッシュ文字 (/) を入力し、**Notify Teams Applicant
+    Channel** を選択します。
 
-    ![](./media/image116.png)
+> ![](./media/image116.png)
 
-59. The agent flow will now be invoked by the **Application Intake
-    Agent** as per the instructions, after the last action (**Sends a
-    prompt to the specified copilot for processing**) in the event
-    trigger sends the prompt that contains the parameter values back to
-    the agent.
+59. イベント トリガーの最後のアクション (**Sends a prompt to the
+    specified copilot for processing**)
+    によって、パラメータ値を含むプロンプトがエージェントに返された後、指示に従って**Application
+    Intake Agent** によってエージェント
+    フローが呼び出されるようになります。
 
-    Select **Save** to save the updated instructions for the **Application
-Intake Agent**.
+**Application Intake
+Agent** の更新された手順を保存するには、\[**Save** \] を選択します。
 
-    ![](./media/image117.png)
+> ![](./media/image117.png)
+
+60. エージェントが保存されると、手順が更新されます。
+
+> ![](./media/image118.png)
+
+61. 次に、Hiring
+    Agentを**公開**する必要があります。右上の「**Publish** 」を選択し、表示される「**Publish
+    this agent modal **」モーダルで「**Publish**」を選択します。
 
-60. The instructions will now be updated once the agent has been saved.
+> ![](./media/image119.png)
+>
+> ![](./media/image120.png)
 
-    ![](./media/image118.png)
+62. 公開されると、エージェントが公開されたことを示す確認メッセージが表示されます。
 
-61. We now need to **Publish** the **Hiring Agent**.
-    Select **Publish** on the upper right, and in the **Publish this
-    agent modal** that appears select **Publish**.
+> ![](./media/image121.png)
+
+これでエージェントをテストできます。
 
-    ![](./media/image119.png)
+## 演習3: イベントトリガーのテスト
 
-    ![](./media/image120.png)
+この演習では、このラボで作成されたイベント トリガーをテストします。
 
-62. Once published, a confirmation message will appear that the agent
-    has been published.
+1.  イベントトリガーを実行するには、履歴書のPDFファイルを添付したメールを送信する必要があります。Outlookで新しいメールメッセージを作成してください。
 
-    ![](./media/image121.png)
+[TABLE]
 
-    We can now test the agent!
+> Dear Hiring Manager,
+>
+> I am writing to express my interest in the Senior Power Platform
+> Engineer position at your organization. With over nine years of
+> experience delivering secure and scalable solutions on Microsoft cloud
+> platforms, I am confident in my ability to contribute effectively to
+> your team.
+>
+> In my most recent role as Lead Power Platform Engineer, I developed an
+> automated resume-intake pipeline, reducing manual triage and improving
+> searchability. I have delivered HR case management applications,
+> introduced solution-aware flows, and implemented PR checks to enhance
+> deployment lead times. My expertise includes Power Apps, Power
+> Automate, Power Pages, Dataverse, and a range of Microsoft 365
+> services, as well as integration with Graph/REST APIs and Azure
+> Functions.
+>
+> Previously, I developed Teams approvals with adaptive cards, cutting
+> approval times to the same day, and created robust error-handling
+> frameworks. My background also includes migrating legacy workflows to
+> Power Automate and building self-service portals adopted by hundreds
+> of employees.
+>
+> I hold a B.Sc. in Computer Science and am certified as a Power
+> Platform Developer (PL-400) and Solution Architect (PL-600). I am also
+> passionate about mentoring and have volunteered with local maker
+> groups.
+>
+> Please find my CV attached for your consideration. I would welcome the
+> opportunity to discuss how my skills and experience align with your
+> needs.
+>
+> Thank you for your time and consideration.
+>
+> Kind regards,
+>
+> Taylor Testperson
 
-## Exercise 2: Test event trigger
+2.  作成されたメールを、メールボックスから**送信します。**
 
-In this exercise, you will test the event trigger that is created in
-this lab.
+> ![](./media/image122.png)
 
-1.  To execute the event trigger, an email needs to be sent with a
-    Resume pdf file. **From your mailbox** (not of the tenant credential provided here. Use mail id of your choice. You will send an email from your mailbox to the tenant mail id.), **compose a new email** message.
+3.  イベントトリガーフローの +++https://make.powerautomate.com/+++
+    で「更新」アイコンを選択すると、送信されたメールのフロー実行が成功していることがわかります。フローが成功したことを確認できます。
 
+> ![](./media/image123.png)
 
-    |  Email Component  |  Details  |
-    |:--------|:---------|
-    |  To recipient  |  +++@lab.CloudCredential(M365).AdministrativeUsername+++  |
-    | File attachment   |  Upload the TAYLOR TESTPERSON (FICTITIOUS) file (from **C:\LabFiles\LabFiles**   |
-    |  Subject  | +++Job Application+++   |
-    |  Body  |  Copy and paste the following below as the body of the email  |
-    
-    ```
-    Dear Hiring Manager,
-    
-    I am writing to express my interest in the Senior Power Platform Engineer position at your organization. With over nine years of experience delivering secure and scalable solutions on Microsoft cloud platforms, I am confident in my ability to contribute effectively to your team.
-    
-    In my most recent role as Lead Power Platform Engineer, I developed an automated resume-intake pipeline, reducing manual triage and improving searchability. I have delivered HR case management applications, introduced solution-aware flows, and implemented PR checks to enhance deployment lead times. My expertise includes Power Apps, Power Automate, Power Pages, Dataverse, and a range of Microsoft 365 services, as well as integration with Graph/REST APIs and Azure Functions.
-    
-    Previously, I developed Teams approvals with adaptive cards, cutting approval times to the same day, and created robust error-handling frameworks. My background also includes migrating legacy workflows to Power Automate and building self-service portals adopted by hundreds of employees.
-    
-    I hold a B.Sc. in Computer Science and am certified as a Power Platform Developer (PL-400) and Solution Architect (PL-600). I am also passionate about mentoring and have volunteered with local maker groups.
-    
-    Please find my CV attached for your consideration. I would welcome the opportunity to discuss how my skills and experience align with your needs.
-    
-    Thank you for your time and consideration.
-    
-    Kind regards,
-    Taylor Testperson
-    
-    ```
+4.  Copilot Studioに戻り、Hiring
+    Agentの「**Activity**」タブを選択します。「**Activity**」タブが開き、**Hiring
+    Agent**のすべてのアクティビティが表示されます。「名前」が「**Automated** 」で、ステータスが「**Complete**」のアクティビティがあります。このアクティビティは、イベントトリガーと呼び出されたエージェントフローを表しています。
 
-2.  **Send** the email once composed from your mail box.
+> ![](./media/image124.png)
 
-    ![](./media/image122.png)
+5.  アクティビティを選択し、アクティビティマップでイベントトリガーを選択します。右側のパネルで、プロンプトの入力パラメータに、作成された**Dataverse** 行のResume
+    ID、Resume Title とResume
+    Number のパラメータ値が含まれていることに注目してください。これは、**メールで受信した履歴書をデータバースに自動アップロードする**手順で設定した動的コンテンツの値です。
 
-3.  In +++https://make.powerautomate.com/+++, for the event trigger flow, (select **Flows** -> **When a new email arrives from an applicant**) select the **Refresh** icon to view the flow run that **succeeded** for the sent email.
+> ![](./media/image125.png)
 
-    ![](./media/image123.png)
+6.  **Hiring Hub** モデル駆動型アプリに戻り、**Resumes system**
+    ビューで「**Refresh** 」を選択してビューを更新します。メールで送信された履歴書に対応する新しく作成された行が、イベントトリガーによって作成されたものとして表示されます。
 
-4.  Back in Copilot Studio in the Hiring Agent select the **Activity**
-    tab. The **Activity** tab will load which will display all the
-    activities of the **Hiring Agent**. There will be an activity with
-    the name value of **Automated** that has a status of **Complete**.
-    This activity represents the event trigger and the agent flow that
-    was invoked.
+> ![](./media/image126.png)
 
-    ![](./media/image124.png)
+7.  Copilot Studioに戻り、アクティビティマップの「**Application Intake
+    Agent**」から「**Notify Teams Applicant
+    Channel**」エージェントフローを選択します。右側のパネルで、入力にDataverse行の値が含まれていることに注目してください。これは、イベントトリガーの最後のアクション（**指定されたCopilotに処理のためにプロンプ​​トを送信する**）によって送信されたプロンプトからのもので、新しく作成されたDataverse行のパラメーター値が含まれています。このようにして、イベントトリガーからエージェントフローにパラメーター値を渡すことができます。
 
-5.  Select the activity, and select the event trigger in the activity
-    map. On the right hand side panel, notice how the input parameters
-    in the prompt contain the Resume Id, Resume Title and Resume
-    Number parameter values from the **Dataverse** row that was created.
-    This was from the dynamic content values configured earlier in
-    **Automate uploading resumes to Dataverse received by email**.
+> ![](./media/image127.png)
 
-    ![](./media/image125.png)
+8.  最後に、**Microsoft Teams**
+    のチャネルに投稿されたアダプティブカードを見てみましょう。チャネルには、Dataverse
+    に新しく作成されたResume行の情報を表示するアダプティブカードが表示されます。アダプティブカードの先頭にあるハイパーリンクにマウスポインターを合わせると、その
+    URL が、先ほどアダプティブカードの JSON ペイロードで設定したResumes
+    systemビューの URL であることがわかります。
 
-6.  Navigate back to the **Hiring Hub** model-driven app and in
-    the **Resumes system view**, select **Refresh** to refresh the view.
-    The newly created row for the resume that was sent by email will now
-    be listed as it was created through the event trigger.
+> ![](./media/image128.png)
 
-    ![](./media/image126.png)
+9.  ハイパーリンクを選択すると、ブラウザの **Hiring Hub**
+    モデル駆動型アプリの**Hiring Hub** ビューに移動します。
 
-7.  Navigate back to Copilot Studio and select the **Notify Teams
-    Applicant Channel** agent flow within the **Application Intake
-    Agent** in the activity map. On the right hand side panel, notice
-    how the inputs have values from the Dataverse row. This was from the
-    prompt sent by the last action (**Sends a prompt to the specified
-    copilot for processing**) in the event trigger that contains the
-    parameter values from the newly created Dataverse row. This is how
-    we can pass parameter values from event triggers to agent flows.
+> ![](./media/image129.png)
 
-    ![](./media/image127.png)
+10. Microsoft Teams
+    のチャネルに投稿されたアダプティブカードに戻ります。今度は、アダプティブカードの
+    Action.OpenURL アクションである「**View
+    Resume**」にマウスポインターを合わせます。URL
+    が、先ほどアダプティブカードの JSON ペイロードで設定した Resumes
+    行になっていることに注目してください。
 
-8.  Finally, let's take a look at the adaptive card posted to the
-    channel in **Microsoft Teams**. In the channel, we'll see the
-    adaptive card that displays the information about the newly created
-    Resume row in Dataverse. Hover over the hyperlink at the start of
-    the adaptive card, notice how the URL is the Resumes system view URL
-    that we configured earlier in the JSON payload of the adaptive card.
+> ![](./media/image130.png)
 
-    ![](./media/image128.png)
+11. アクションを選択すると、ブラウザ上の **Hiring Hub**
+    モデル駆動型アプリのResume行フォームに移動します。
 
-9.  Select the hyperlink, and you'll be directed to the Resumes system
-    view in the **Hiring Hub** model-driven app on your browser.
+> ![](./media/image131.png)
 
-    ![](./media/image129.png)
+## まとめ
 
-10. Navigate back to the adaptive card posted to the channel in
-    Microsoft Teams. This time, hover over **View Resume** which is
-    the Action.OpenURL action of the adaptive card. Notice how the URL
-    is the Resumes row that we configured earlier in the JSON payload of
-    the adaptive card.
+この研究室では、
 
-    ![](./media/image130.png)
+1.  イベントトリガーを作成し、Dataverseのパラメーター値を、エージェントフローに渡すように設定しました。
 
-11. Select the action, and you'll be directed to the Resume row form in
-    the Hiring Hub model-driven app on your browser.
+2.  エージェントフローを構築しました。このフローは、Dataverseのパラメーター値を受け取り、Microsoft
+    Teamsのチャネルにアダプティブカードを投稿して、人事採用チームに通知します。
 
-    ![](./media/image131.png)
+3.  子エージェントの指示を更新し、イベントトリガーが完了したら、フローを呼び出すようにしました。
 
-## Summary
-
-In this lab,
-
--    You've created an event trigger that passes Dataverse parameter
-    values to an agent flow.
-
--    Built an agent flow: consumes the Dataverse parameter values to post
-    an adaptive card to a channel in Microsoft Teams to alert the HR
-    recruitment team.
-
--  Updated child agent instructions: to invoke the flow once the event
-    trigger has completed.
-
--    This enables the **Hiring Agent** to work autonomously whenever
-    resumes are received as email attachments and notify the HR
-    recruitment team for manual review.
+4.  これにより、**Hiring
+    Agent** は、履歴書がメールの添付ファイルとして受信されるたびに自律的に動作し、人事採用チームに手動レビューを依頼する通知を送信できるようになります。

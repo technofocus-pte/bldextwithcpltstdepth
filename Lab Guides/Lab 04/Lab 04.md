@@ -1,194 +1,168 @@
-# Lab 4: Creating an intelligent hiring agent for talent acquisition
+# ラボ 1: 人材獲得のためのインテリジェントな採用エージェントの作成
 
-In this lab, you'll establish the foundation for your hiring automation
-system. You'll begin by importing a pre-configured solution that
-contains all the necessary Dataverse tables and data structure for
-managing candidates, job positions, and hiring workflows. Next, you'll
-populate these tables with sample data that will support your learning
-throughout this module and provide realistic scenarios for testing.
-Finally, you'll create the Hiring Agent in Copilot Studio, setting up
-the basic conversational interface that will serve as the cornerstone
-for all the other features you'll add in future missions.
+このラボでは、採用自動化システムの基盤を構築します。まず、候補者、職種、採用ワークフローの管理に必要なすべてのDataverseテーブルとデータ構造を含む、事前構成済みのソリューションをインポートします。次に、これらのテーブルにサンプルデータを入力します。サンプルデータは、このモジュール全体の学習をサポートし、テストのための現実的なシナリオを提供します。最後に、Copilot
+Studioで採用エージェントを作成し、今後のミッションで追加するすべての機能の基礎となる基本的な会話型インターフェースを設定します。
 
-## Exercise 1: Import solution
+## 演習1: ソリューションをインポートする
 
-In this exercise, you will import a pre existing Solution.
+この演習では、既存のソリューションをインポートします。
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++ if you are already logged in and ensure that you are there in the **Dev One** environment.
+1.  +++https://copilotstudio.microsoft.com+++ で Copilot Studio
+    にアクセスしてください。
 
-2.  Select the **...** in the left navigation and select **Solutions.**
+2.  左側のナビゲーションで ... を選択し、\[**Solutions**\]
+    を選択します。
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-3.  Select **Import solution**. Click on **Browse** and select the
-    **zip** file starting with **Operative** form **C:\LabFiles\LabFiles** and
-    select **Open**.
+3.  「**Import
+    solution**」を選択します。「**Browse**」をクリックし、**C:\LabFiles**
+    フォルダにある「**Operative**」で始まる**zip**ファイルを選択して「**Open**」をクリックします。。
 
-    ![](./media/image2.png)
-   
-    ![](./media/image3.png)
+![](./media/image2.png)
 
-    ![](./media/image4.png)
+![](./media/image3.png)
 
-4.  Once selected, select **Next** and then select **Import**.
+![](./media/image4.png)
 
-   ![](./media/image5.png)
-   
-   ![](./media/image6.png)
+4.  選択したら、「**Open**」を選択し、「**Import**」を選択します。
 
-5.  This will take some time of around 3 to 5 minutes. On success, you
-    will see a green notification bar with the following message when
-    it's done: "Solution "Operative" imported successfully."
+![](./media/image5.png)
 
-   ![](./media/image7.png)
+![](./media/image6.png)
 
-6.  Once you see the "imported successfully" message, take a look at
-    what you imported by selecting the display name of the solution
-    (**Operative**) in the solutions list.
+5.  これには約3～5分かかります。成功すると、緑色の通知バーに「Solution
+    "Operative" imported successfully」というメッセージが表示されます。
 
-   ![](./media/image8.png)
+![](./media/image7.png)
 
-7.  Review the solution and ensure that the following components are
-    imported.
+6.  「imported
+    successfully」というメッセージが表示されたら、ソリューション
+    リストでソリューションの表示名 (**Operative**)
+    を選択して、インポートした内容を確認します。
 
-   ![](./media/image9.png)
+![](./media/image8.png)
 
-8.  Select the **Publish all customizations** button at the top of the page.
+7.  ソリューションを確認し、次のコンポーネントがインポートされていることを確認します。
 
-   ![](./media/image10.png)
+![](./media/image9.png)
 
-## Exercise 2 - Import sample data
+8.  ページの上部にある \[Publish all customizations\]
+    ボタンを選択します。
 
-In this exercise, you will add sample data to some of the tables that
-you imported in the previous exercise.
+![](./media/image10.png)
 
-1.  From the solution that you imported in the last exercise, select
-    the **Hiring Hub** Model-Driven App by selecting the checkmark in
-    front of the row and select the **Play** button at the top.
+## 演習2 - サンプルデータをインポートする
 
-   ![](./media/image11.png)
+この演習では、前回の演習でインポートしたテーブルの一部にサンプルデータを追加します。
 
-2.  Select **Job Roles** in the left navigation. Select
-    the **More** icon (three dots below each other) in the command bar
-    and then select the **right arrow** next to **Import from Excel.**
+1.  前回の演習でインポートしたソリューションから、**Hiring
+    Hub** Model-Driven
+    Appを起動するには、行の前のチェックマークを選択し、上部の**Play** ボタンを選択します。　
 
-   ![](./media/image12.png)
+> ![](./media/image11.png)
 
-3.  Select **Import from CSV**.
+2.  左側のナビゲーションで「**Job
+    Roles** 」を選択します。コマンドバーの「**More** 」アイコン（上下に3つの点が並んでいるアイコン）を選択し、「**Import
+    from Excel**」の横にある右矢印を選択します。　
 
-   ![](./media/image13.png)
+![](./media/image12.png)
 
-4.  Select the **Choose File** button, select the **job-roles.csv** file
-    from **C:\LabFiles\LabFiles** and then select **Open**.
+3.  **Import from CSV**を選択します。　
 
-   ![](./media/image14.png)
+![](./media/image13.png)
 
-5.  Select **Next.** Leave the next step as is and select **Review
-    Mapping**
+4.  \[**Choose File** \] ボタンを選択し、**C:\LabFiles** から
+    **job-roles.csv** ファイルを選択して、\[**Open**\] を選択します。
 
-   ![](./media/image15.png)
-   
-   ![](./media/image16.png)
+![](./media/image14.png)
 
-6.  Make sure the mapping is correct and select **Finish Import**.
+5.  **Nextを**選択します**。**次のステップはそのままにして、**Review
+    Mappingを選択します。**
 
-   ![](./media/image17.png)
+![](./media/image15.png)
 
-7.  Select **Done**. This can take a little while, but you can hit
-    the **Refresh** button to see if the import has succeeded.
+![](./media/image16.png)
 
-   ![](./media/image18.png)
-   
-   ![](./media/image19.png)
+6.  マッピングが正しいことを確認し、「**Finish Import**」を選択します。
 
-8.  Now, you will import the **Evaluation Criteria sample data**
+![](./media/image17.png)
 
-9.  Select **Evaluation Criteria** in the left navigation.
+7.  「**Done**」を選択します。少し時間がかかる場合がありますが、「**Refresh** 」ボタンを押してインポートが成功したかどうかを確認できます。
 
-10. Select **Import from CSV** like you did earlier. Select the **Choose
-    File** button, select the **evaluation-criteria.csv** from
-    **C:\LabFiles\LabFiles**.
+![](./media/image18.png)
 
-   ![](./media/image20.png)
+![](./media/image19.png)
 
-11. Select **Next**. Leave the next step as is and select **Review Mapping**
+8.  ここで、**Evaluation Criteria sample data**をインポートします。
 
-   ![](./media/image21.png)
+9.  左側のナビゲーションで**Evaluation Criteria**を選択します。
 
-   ![](./media/image22.png)
+10. 先ほどと同様に「**Import from CSV**」を選択します。「**Choose
+    File** 」ボタンを選択し、**C:\LabFiles**から**evaluation-criteria.csv**を選択します。
 
-   >**Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
-   >
-   >![](./media/image31.png)
+![](./media/image20.png)
 
-12. Now we have to do a bit more work for the mapping. Select the
-    **magnifying glass icon** next to the **Job Role** field.
+11. 「**Next**」を選択します。次のステップはそのままにして、「**Review
+    Mapping**」を選択します。
 
-   ![](./media/image23.png)
+![](./media/image21.png)
 
-13. Make sure **Job Title** is selected here, and if not - add it and
-    select **OK**.
+![](./media/image22.png)
 
-   ![](./media/image24.png)
+12. マッピングのためにさらに少し作業が必要です。「**Job
+    Role**」フィールドの横にある**虫眼鏡**アイコンを選択してください。
 
-14. Make sure the rest of the mapping is correct too and select **Finish
-    Import** and then select **Done**.
+![](./media/image23.png)
 
-   ![](./media/image25.png)
+13. ここで「**Job
+    Title**」が選択されていることを確認し、選択されていない場合は追加して「**OK**」を選択します。　
 
-15. This can take a little while, but you can hit the **Refresh** button
-    to see if the import has succeeded.
+![](./media/image24.png)
 
-   ![](./media/image26.png)
+14. 残りのマッピングも正しいことを確認して、「**Finish
+    Import**」を選択し、「**Done**」を選択します。
 
-## Exercise 3 - Create the hiring agent
+![](./media/image25.png)
 
-Now you are done with the setup of the prerequisites, it's time for the
-actual work! Let's add our Hiring Agent first!
+15. これには少し時間がかかりますが、「**Refresh** 」ボタンを押してインポートが成功したかどうかを確認できます。
 
-1.  From the Copilot Studio, select **Agents** from the left pane. Select
-    the drop down next to the **+ Create blank agent** and select **Advanced create**.
+![](./media/image26.png)
 
-    ![](./media/image27.png)
+## 演習3 - 採用エージェントを作成する
 
-2.  In the Agent settings, select the Solution as **Operative** and then
-    select **Confirm and create**.
+前提条件の設定は完了です。いよいよ実際の作業に移りましょう！まずは採用エージェントを追加しましょう！
 
-    ![](./media/image28.png)
+1.  Copilot Studio の左側のペインから「Agents」を選択します。「+ Create
+    blank agent」の横にあるドロップダウンを選択し、「Advanced
+    create」を選択します。
 
-3.  Select **Edit** against the Details of the created agent.
+![](./media/image27.png)
 
-    ![](./media/image29.png)
+2.  Agent設定で、ソリューションとして「**Operative**」を選択し、「**Confirm
+    and create**」を選択します。
 
-4.  Enter the name as +++**Hiring Agent**+++ and Description as
-    +++**Central orchestrator for all hiring activities**+++ and select
-    **Save**.
+![](./media/image28.png)
 
-    ![](./media/image30.png)
+3.  作成されたエージェントのDetailsに対して**Edit** を選択します。
 
-## Summary
+![](./media/image29.png)
 
-In this lab, you now have complete the following.
+4.  名前に+++**Hiring Agent**+++、Descriptionに「+++ **Central
+    orchestrator for all hiring activities** +++」と入力し、\[**Save**\]
+    を選択します。
 
-- **Scenario Understanding**: Comprehensive knowledge of hiring
-  automation challenges and the solution you will be building.
+> ![](./media/image30.png)
 
-- **Solution Deployment**: Successfully imported and configured the
-  building blocks of the hiring management system.
+## まとめ
 
-- **Agent Creation**: Built an hiring agent that is the start of the
-  scenario you're going to build as an Agent Academy Operative
+> このラボでは、次の作業を完了しました。
 
+- **シナリオ理解**:
+  採用自動化の課題と構築するソリューションに関する包括的な知識。
 
+- **ソリューションの展開**:
+  採用管理システムの構成要素が正常にインポートされ、構成されました。
 
-
-
-
-
-
-
-
-
-
-
-
+- **エージェントの作成**:
+  エージェントアカデミーオペレーターとして構築するシナリオの始まりとなる採用エージェントを構築しました

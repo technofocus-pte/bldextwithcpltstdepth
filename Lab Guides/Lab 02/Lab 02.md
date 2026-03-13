@@ -1,485 +1,448 @@
-# Lab 2- Build and enhance a template based enterprise assistant
+# ラボ 2 - テンプレートベースのエンタープライズ アシスタントの構築と強化
 
-**Objective**
+**目的**
 
-**Agent templates** are designed to help you get started with a **custom
-agent**. You are responsible for assessing all safety and legal
-implications of using an agent template and customizing it as
-appropriate for your business.
+**エージェントテンプレート**は**、カスタムエージェント**の作成を始めるのに役立つように設計されています。エージェントテンプレートの使用およびビジネスに合わせてカスタマイズする際の、あらゆる安全性および法的側面について評価する責任は、お客様自身にあります。
 
-An agent built from the **Safe Travels agent template** is a
-Business-to-Employee (B2E) agent designed to provide employees of a
-company with **travel assistance**. This agent helps ensure employees
-are well-prepared and informed for their next work trip. This agent uses
-natural language processing to offer a conversational interface, making
-it easy and intuitive for employees to access the information they need.
-However, the default website used by the agent currently only covers US
-travel destinations. You can replace the default website with your own
-knowledge source.
+**Safe
+Travelsエージェントテンプレート**に基づいて構築されたエージェントは、企業従業員に**旅行支援**を提供するBusiness-to-Employee
+（B2E）エージェントです。このエージェントは、従業員が次の出張に向けて十分な準備を整え、必要な情報を入手できるようサポートします。natural
+language処理を活用した対話型インターフェースを備えているため、従業員は必要な情報に簡単かつ直感的にアクセスできます。ただし、このエージェントがデフォルトで使用するウェブサイトは現在、米国内の旅行先のみを対象としています。デフォルトのウェブサイトは、独自のナレッジソースに置き換えることができます。
 
-In this lab, you will create an agent from the **Safe Travels
-template** and enhance it in Lab 05.
+このラボでは、**Safe Travels**
+テンプレートからエージェントを作成し、ラボ 05 でそれを強化します。
 
-## Exercise 0 - Create Security Group in Entra ID and Configure Copilot Studio Authors
+## 演習 0 - Entra ID でセキュリティグループを作成し、Copilot Studio Authorsを構成する
 
-This is a prerequisite task in order to help us to publish and work
-seamlessly with the agents in Copilot Studio throughout this course.
+これは、このコース全体を通じて Copilot Studio
+でエージェントを公開し、シームレスに操作できるようにするための前提条件タスクです。
 
-1.  Navigate to the Azure portal at
-    +++https://portal.azure.com/+++ and login with your tenant
-    credentials present in the **Resources** tab if prompted.
+1.  Azureポータル+++https://portal.azure.com/+++にアクセスし、**Resources** タブに記載されているテナントの資格情報を使用してログインします。
 
-    ![A screenshot of a computer login AI-generated content may be
-    incorrect.](./media/image1.jpeg)
-    
-    ![A screenshot of a computer login AI-generated content may be
-    incorrect.](./media/image2.jpeg)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image3.png)
-    
-2.  Select **Next** in the Keep your account secure window and follow
-    the **prompts**.
+![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image1.jpeg)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer login AI-generated content may be
+incorrect.](./media/image2.jpeg)
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image3.png)
+
+2.  「Keep your account
+    secure」ウィンドウで「**Next** 」を選択し、**プロンプト**に従います。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
 
-3.  Download the Authenticator app in your phone if you do not have it
-    already.
+3.  Authenticator
+    アプリをまだインストールしていない場合は、携帯電話にダウンロードしてください。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image5.png)
 
-4.  Follow the prompts and complete the setup.
+4.  プロンプトに従ってセットアップを完了します。
 
-    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image7.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image7.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image8.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image9.png)
 
-5.  In the Azure welcome screen, select **Get Started**.
+5.  Azure のようこそ画面で、\[**Get Started**\] を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-6.  Search for and select +++Microsoft EntraID+++.
+6.  +++Microsoft EntraID+++ を検索して選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-7.  From the left pane, select **Manage** -\> **Groups**.
+7.  左側のペインから、**Manage** -\> **Groups**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-8.  Select **New group** to create a new security group.
+8.  新しいセキュリティ グループを作成するには、\[**New group** \]
+    を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-9.  Enter the below details
+9.  以下の詳細を入力してください
 
-    - Group type – Select **Security**
+    - Group type – **Security**を選択します。
 
-    - Group name – Enter +++**copilotagentsecurity**+++
+    - Group name – +++copilotagentsecurity+++ と入力します。
 
-    - Microsoft Entra roles can be assigned to the group –
-      Select **Yes** (If this option is not visible, ignore this step)
+    - Microsoft Entra roles can be assigned to the group – \[**Yes**\]
+      を選択します
+      (このオプションが表示されない場合は、この手順を無視してください)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-10. Select **No owners selected**, select the **MOD Administrator** from
-    the **Add owners** page and click on **Select**.
+10. 「**No owners selected**」を選択し、「**Add owners** 」ページから
+    **MOD Administrator** を選択して、「**Select**」をクリックします。
 
-    ![A screenshot of a group AI-generated content may be
+![A screenshot of a group AI-generated content may be
 incorrect.](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-11. Similarly, select **No members selected**, and add the **MOD
-    Administrator** from the list and click on **Select**.
+11. 同様に、「**No members selected**」を選択し、リストから **MOD
+    Administrator** を追加して、「**Select**」をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-12. Select **No roles selected**. If you **do not** see this **option**,
-    ignore this and the next step.
+12. 「**No roles
+    selected**」を選択します。このオプションが**表示されない**場合は、この手順と次の手順を無視してください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-13. Search for and select +++**Global admin**+++ and select **Select**.
+13. +++**Global admin**+++ を検索して選択し、\[**Select**\]
+    を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image19.png)
 
-14. Select **Create** once all the details are added and
-    select **Yes** in the confirmation dialog.
+14. すべての詳細を追加したら \[**Create** \] を選択し、確認ダイアログで
+    \[**Yes** \] を選択します。
 
-    ![A screenshot of a group AI-generated content may be
+![A screenshot of a group AI-generated content may be
 incorrect.](./media/image20.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-15. Ensure that you get a **success** message.
+15. **成功**メッセージが表示されたことを確認します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-16. Select Contoso|Groups from the top left.
+16. 左上から Contoso|Groupsを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-17. Select **Properties** under **Manage** from the left pane.
+17. 左側のペインから \[**Manage** \] の下にある \[**Properties** \]
+    を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-18. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
+18. \[**can manage access to all Azure subscriptions and management
+    groups in this tenant** \] オプションを \[Yes\]
+    に切り替えて、\[**Save**\] をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image25.png)
 
-19. Select **Enabled** under Security defaults option and click on **Save**.
+19. 次に、左側のペインの \[**Manage** \] の下にある \[**Roles and
+    administrators** \] を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image77.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image26.png)
 
-20. Select **Save** in the Contoso|Properties page.
+20. +++privileged role admin+++ を検索し、**Privileged Role
+    Administrator**ロールをクリックします
+    (**チェックボックスを選択せず**​​、名前をクリックします)。
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image78.png)
-
-19. Now, select **Roles and administrators** under **Manage** from the
-    left pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image79.png)
-
-20. Search for +++privileged role admin+++ and click on the **Privileged
-    Role Administrator** role (**Do not select the checkbox**, click on
-    its name).
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-21. Select **+ Add assignments**.
+21. **+ Add assignments**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-22. Select **No members selected**.
+22. 「**No members selected**」を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-23. Select the **MOD Administrator** id and select **Next**.
+23. **MOD Admin id** を選択し、\[**Next**\] を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-24. Select **Assign**.
+24. \[**Assign**\]を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-25. Ensure that the role assignment is successful.
+25. ロールの割り当てが成功したことを確認します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-26. From a new tab, navigate to
-    +++https://admin.powerplatform.microsoft.com/+++.
-    Select **Manage** from the left pane and then select the **Tenant
-    Settings** option.
+26. 新しいタブから、+++<https://admin.powerplatform.microsoft.com/+++>に移動します。左側のペインから
+    \[**Manage** \] を選択し、\[**Tenant Settings** \]
+    オプションを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-27. Select **Copilot Studio Authors** from the list available.
+27. 利用可能なリストから **Copilot Studio Authors** を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-28. Click on the **Edit** icon to edit the settings.
+28. 設定を編集するには、**Edit** アイコンをクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image36.png)
 
-29. Search for and select the **+++copilotagentsecurity+++** group that
-    you created earlier.
+29. 先ほど作成した +++**copilotagentsecurity**+++
+    グループを検索して選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-30. Select **Save** to save the settings.
+30. 設定を保存するには、\[**Save** \] を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
-## Exercise 1: Create Safe Travels agent from template
+## 演習 1: テンプレートから Safe Travels エージェントを作成する
 
-In this exercise, you will create the agent in Copilot Studio using the
-Safe Travels agent template.
+この演習では、Safe Travels エージェント テンプレートを使用して Copilot
+Studio でエージェントを作成します。
 
-1.  From a browser, login to
-    +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and
-    click **Start free trial**.
+1.  ブラウザから+++[https://copilotstudio.microsoft.com+++](https://copilotstudio.microsoft.com+++/)にログインします。「Start
+    free trial page」ページが開きます。国を選択して、「**Start free
+    trial**」をクリックします。　
 
-    ![](./media/image39.png)
+![](./media/image39.png)
 
-2.  Select the **Dev One** environment.
+2.  **Dev One** 環境を選択します。
 
-    ![](./media/image40.png)
+> ![](./media/image40.png)
+>
+> 重要: 以下のスクリーンショットのように、Copilot Studio
+> に**Environment** を選択するオプションが表示されない場合は、以下の手順に従ってください。
+>
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image41.png)
+>
+> +++<https://admin.powerplatform.microsoft.com/+++>を開きます。**Manage** -\> **Environments
+> -\> Dev One** を選択し、**Environment ID**の値を選択します。![A
+> screenshot of a computer AI-generated content may be
+> incorrect.](./media/image42.png)
+>
+> Copilot
+> Studioタブに戻り、+++<https://copilotstudio.microsoft.com/environments/>**\<
+> EnvironmentID \>**+++ を開きます。(\< **EnvironmentID** \>
+> を上記で取得した値に置き換えます)
 
-    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below >screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
-    >
-    >Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -\> **Environments -\> Dev One** and >select the value of the **Environment ID**. ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
+3.  ようこそ画面で「Skip」を選択します。
 
-    >Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**\< EnvironmentID \>**+++ (Replacing **\< EnvironmentID \>** with the value fetched above)
-
-3.  Select Skip in the Welcome screen.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-4.  Select **Agents** from the left pane and then select the **Safe
-    Travels** template under **Start with an agent template**.
+4.  左側のペインから \[**Agents** \] を選択し、\[**Start with an agent
+    template**\] の下にある \[**Safe Travels**\]
+    テンプレートを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image44.png)
 
-5.  The Safe Travels template creates a new agent that is designed to
-    provide employees of a company with travel assistance. 
+5.  Safe Travels
+    テンプレートは、会社の従業員に旅行支援を提供するように設計された新しいエージェントを作成します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
+6.  設定ページを参照してください。「**Knowledge**」の下に、**US Travel
+    Website**がナレッジソースとして既に追加されていることがわかります。必要に応じて編集できます。ここでは、同じウェブサイトを使用しています。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image46.png)
 
-7.  Select **Create** to create the Safe Travels agent. We are not
-    changing anything here and using the template as such. At any point,
-    the agent can be upgraded as per the user requirements.
+7.  「**Create** 」を選択してSafe
+    Travelsエージェントを作成します。ここでは何も変更せず、テンプレートをそのまま使用します。エージェントは、ユーザーの要件に応じていつでもアップグレードできます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image47.png)
 
-8.  The **agent** gets **created** and opens up automatically showing up
-    the **Overview** page.
+8.  **エージェント**が**作成され**、自動的に開き、**Overview** ページが表示されます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and
-    hit **Send**.
+9.  Testペインで、+++How to apply for passport?+++と入力し、\[**Send**\]
+    をクリックします。
 
-    The Test pane is open by default. If not, click on the Test icon on top
-right.
+Testペインは、デフォルトで開いています。開いていない場合は、右上のTestアイコンをクリックしてください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-10. You can see that the agent provides information on how to apply for
-    the passport from its knowledge source.
+10. エージェントがナレッジソースからパスポートの申請方法に関する情報を提供していることがわかります。
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image50.png)
 
-## Exercise 2: Publish the agent to Teams and Microsoft 365 Copilot
+## 演習 2: エージェントを Teams と Microsoft 365 Copilot に公開する
 
-In this exercise, you will **publish** the agent created in Copilot
-Studio to the **Microsoft Teams** and **Microsoft 365 Copilot** channel.
+この演習では、Copilot Studio で作成したエージェントを **Microsoft
+Teams** および **Microsoft 365 Copilot** チャネルに**公開します**。
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+1.  **MS
+    Teams** （+++<https://teams.microsoft.com/v2/+++>）をブラウザからアクセスし、\[**Resources** \]
+    タブからテナント資格情報を使用して**ログインします。**
 
-1.  Open **MS Teams** +++https://teams.microsoft.com/v2/+++ from a
-    browser and **login** using your tenant credentials from
-    the **Resources** tab if prompted.
+2.  Copilot Studio に戻り、エージェント ページの右上から
+    \[**Publish** \] を選択します。
 
-2.  Back in the Copilot Studio, select **Publish** from the top right of
-    the agent page.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-3.  Check the **Force newest version** checkbox and then
-    select **Publish** in the confirmation dialog.
+3.  「**Force newest
+    version** 」チェックボックスをオンにし、確認ダイアログで「**Publish** 」を選択します。
 
-    ![](./media/image52.png)
-    
-    ![](./media/image53.png)
+![](./media/image52.png)
 
-4.  Select **Channels** from the top navigation bar.
+![](./media/image53.png)
 
-    ![A screenshot of a computer AI-generated content may be
+4.  上部のナビゲーション バーから \[**Channels** \] を選択します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-5.  Select **Teams and Microsoft 365 Copilot** from the list of
-    available channels.
+5.  利用可能なチャネルの一覧から、**Teams and Microsoft 365
+    Copilot** を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-6.  Select **Add channel**.
+6.  **Add channel**を選択します。
 
-    ![](./media/image56.png)
+![](./media/image56.png)
 
-7.  Click on the **See agent in Teams** option add the agent to the
-    Teams.
+7.  「**See agent in Teams** 」オプションをクリックして、エージェントを
+    Teams に追加します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-8.  This opens up the agent in the Microsoft Teams. Select **Cancel** in
-    the **This site is trying to open Microsoft Teams** pop up and then
-    select **Use the Web App instead** option.
+8.  これにより、Microsoft Teams でエージェントが開きます。「**This site
+    is trying to open Microsoft
+    Teams**」というポップアップで「**Cancel** 」を選択し、「**Use the
+    Web App instead** 」オプションを選択してください。　
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image58.png)
 
-9.  Select **Add** to add the agent.
+9.  エージェントを追加するには、\[**Add** \] を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image59.png)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image60.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-10. Once added, you will get an option to open the agent.
-    Select **Open**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image60.png)
 
-    ![A screenshot of a chat AI-generated content may be
+10. 追加すると、エージェントを開くオプションが表示されます。「**Open**」を選択してください。
+
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image61.png)
 
-11. Test the agent from Teams.
+11. Teams からエージェントをテストします。
 
-    ![](./media/image62.png)
+![](./media/image62.png)
 
-12. Back in the Copilot Studio, close the Teams and Microsoft 365
-    Copilot channel window.
+12. Copilot Studio に戻り、Teams and Microsoft 365 Copilotチャネル
+    ウィンドウを閉じます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image63.png)
 
-## Exercise 3 – Test the existing Safe Travels agent
+## 演習3 – 既存のSafe Travelsエージェントをテストする
 
-In this exercise, we will test the **Safe Travels** agent to see how it
-responds when asked about travel approval.
+この演習では、**Safe Travels**
+エージェントをテストして、旅行の承認について尋ねられたときにどのように応答するかを確認します。
 
-1.  Back in the Copilot Studio -\> Safe Travels agent, select
-    the **Test** icon to test the agent.
+1.  Copilot Studio -\> Safe Travels
+    エージェントに戻り、**Test** アイコンを選択してエージェントをテストします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image64.png)
 
-2.  Enter +++Need travel approval+++ in the Test window and click
-    on **Enter**.
+2.  Testウィンドウに +++ Need travel approval +++
+    と入力し、\[**Enter**\] をクリックします。　
 
-    ![A screenshot of a phone AI-generated content may be
+![A screenshot of a phone AI-generated content may be
 incorrect.](./media/image65.png)
 
-3.  You can see that the agent responds with a generalized instruction
-    set to be followed to get the travel approval.
+3.  エージェントが、旅行の承認を得るために従うべき一般的な指示セットで応答していることがわかります。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image66.png)
 
-## Exercise 4 – Enhance the agent with company specific Knowledge assets
+## 演習4 – 企業固有のナーレジアセットで、エージェントを強化する
 
-In this exercise, we will add knowledge asset - **Travel
-Policy** specific to Contoso.
+この演習では、Contoso に固有のナーレジアセットである**Travel
+Policy** を追加します。
 
-1.  From the Overview page of the agent, scroll down and select **+ Add
-    knowledge**
+1.  エージェントのOverviewページで下にスクロールし、「**+ Add
+    knowledge**」を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image67.png)
 
-2.  Click on **select to browse** option.
+2.  「**select to browse** 」オプションを参照します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-3.  From **C:\Labfiles\Lab Files** folder, select **Travel
-    Policy.docx** and click **Open**.
+3.  **C:\Labfiles\Lab Files** フォルダーから、**Travel Policy.docx**
+    を選択し、\[**Open**\] をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image69.png)
 
-4.  Click **Add to agent** to the add the file.
+4.  ファイルを追加するには、「**Add to agent** 」をクリックします。
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image70.png)
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image71.png)
 
-5.  Ensure that the file is added. Wait till the status changes
-    from **In progress** to **Ready**. You can continue with the next
-    step while it is changing to the Ready state if it takes more than
-    few minutes.
+5.  ファイルが追加されていることを確認してください。ステータスが「**In
+    progress**」から「**Ready**」に変わるまでお待ちください。数分以上かかる場合は、「Ready」に変わるのを待っている間、次のステップに進むことができます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image72.png)
 
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image73.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image73.png)
 
-6.  Now, test the agent with the same question to see that the agent
-    responds with the company specific policies from the knowledge asset
-    added.
+6.  次に、同じ質問でエージェントをテストし、追加されたナレッジ
+    アセットから会社固有のポリシーで、エージェントが応答することを確認します。
 
-## Summary
+## まとめ
 
-In this lab, you created a **Business-to-Employee (B2E) travel
-assistance** agent by using the **Safe Travels agent template** in
-Microsoft Copilot Studio. You explored how agent templates provide a
-quick starting point by preconfiguring conversational capabilities and
-knowledge sources, while still allowing for future customization to meet
-organizational and legal requirements. Using the built-in **US travel
-website** as a **knowledge source**, you tested the agent’s ability to
-answer employee travel-related questions through natural language
-interactions. Finally, you **published** the agent to **Microsoft Teams
-and Microsoft 365 Copilot**, validated its availability in Teams, and
-confirmed that employees can access and interact with the Safe Travels
-agent directly within their everyday collaboration tools.
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+このラボでは、Microsoft Copilot Studio の **Safe Travels エージェント
+テンプレート**を使用して、**Business-to-Employee** **(B2E)**
+向け出張支援エージェントを作成しました。エージェント
+テンプレートでは、会話機能とナレッジ
+ソースを事前に構成することで迅速な開始点を提供しながら、組織や法的要件に合わせて将来的にカスタマイズできることを確認しました。組み込みの**米国旅行
+ウェブサイト**を**ナレッジ ソース**として使用し、natural
+languageによる対話を通じて従業員の出張関連の質問にエージェントが回答する能力をテストしました。最後に、エージェントを
+**Microsoft Teams and Microsoft 365 Copilot**に**公開し**、Teams
+での可用性を検証し、従業員が日常的に使用するコラボレーション ツールから
+Safe Travels
+エージェントに直接アクセスして対話できることを確認しました。　　

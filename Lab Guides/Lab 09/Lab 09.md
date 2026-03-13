@@ -1,126 +1,87 @@
-# Lab 9 - Test, measure, and improve AI agents
+# ラボ9 - AIエージェントのテスト、測定、改善
 
-As AI agents take on critical roles in business processes, the need for
-reliable, repeatable testing becomes essential. Agent evaluation lets
-you generate tests that simulate real-world scenarios for your agent.
-These tests cover more questions faster than manual, case-by-case
-testing. Then, you can measure the accuracy, relevancy, and quality of
-answers to the questions the agent is asked, based on the information
-the agent can access. By using the results from the test set, you can
-optimize your agent's behavior and validate that your agent meets your
-business and quality requirements.
+AIエージェントがビジネスプロセスにおいて重要な役割を担うようになると、信頼性が高く繰り返し実行可能なテストが不可欠になります。エージェント評価を使用すると、エージェントの実際のシナリオをシミュレートしたテストを生成できます。これらのテストは、手作業による個別テストよりも多くの質問をより迅速にカバーします。そして、エージェントがアクセスできる情報に基づいて、エージェントへの質問に対する回答の精度、関連性、品質を測定できます。テストセットの結果を使用することで、エージェントの動作を最適化し、エージェントがビジネス要件と品質要件を満たしていることを検証できます。
 
-**Objective**
+**目的**
 
-In this lab, you will learn how to systematically test and evaluate an
-AI agent using Copilot Studio’s built-in evaluation and analytics
-capabilities. You will create an automated test set that simulates
-real-world user scenarios, measure the quality and accuracy of agent
-responses, and analyze performance data to identify gaps and improvement
-opportunities. By the end of the lab, you will be able to validate that
-your agent meets business, reliability, and quality standards before
-production use.
+このラボでは、Copilot Studio に組み込まれた評価・分析機能を用いて、AI
+エージェントを体系的にテスト・評価する方法を学びます。実際のユーザーシナリオをシミュレートする自動テストセットを作成し、エージェントの応答の品質と精度を測定し、パフォーマンスデータを分析してギャップと改善の余地を特定します。ラボの終了時には、本番環境での使用前に、エージェントがビジネス、信頼性、品質の基準を満たしていることを検証できるようになります。
 
-## Task 1: Create a test set to evaluate your agent
+## タスク 1: エージェントを評価するためのテスト セットを作成する
 
-Before deploying an AI agent into real business workflows, it is
-critical to validate how well it responds to realistic user questions.
-Manual testing is time-consuming and often misses edge cases. In this
-task, you will use Copilot Studio’s agent evaluation capabilities to
-automatically generate a test set that simulates real-world scenarios.
-You will run these tests against your agent, review pass and fail
-outcomes, and identify gaps in accuracy, relevance, or behavior that
-need improvement.
+AIエージェントを実際のビジネスワークフローに導入する前に、現実的なユーザーの質問にどれだけ適切に応答するかを検証することが重要です。手動テストは時間がかかり、エッジケースを見逃してしまうことがよくあります。このタスクでは、Copilot
+Studioのエージェント評価機能を使用して、現実世界のシナリオをシミュレートするテストセットを自動生成します。これらのテストをエージェントに対して実行し、合否結果を確認し、精度、関連性、または改善が必要な動作のギャップを特定します。
 
-1.  From the Copilot Studio, select the **Hiring agent**.
+1.  Copilot Studio から**Hiring agent**を選択します。
 
-    ![](./media/image1.png)
+![](./media/image1.png)
 
-2.  From the top menu bar, select **Evaluation**. Select **Create a test
-    set**.
+2.  上部のメニューバーから「**Evaluation**」を選択します。「**Create a
+    test set**」を選択します。
 
-    ![](./media/image2.png)
+![](./media/image2.png)
 
-3.  There are few options to create the test set. Select **Generate 10
-    questions** in this case.
+3.  テストセットを作成するためのオプションはいくつかあります。今回は「**Generate
+    10 questions**」を選択します。
 
-    ![](./media/image3.png)
+![](./media/image3.png)
 
-4.  **Review** the test set and then **Save** the test set.
+4.  テストセットを**確認し**、その後テストセットを**保存します**。
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-5.  Now, click on **Evaluate** to evaluate the agent.
+5.  次に、「**Evaluate**」をクリックして、エージェントを評価します。
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-6.  Select your tenant id and click on **Run**.
+6.  テナント ID を選択し、「**Run**」をクリックします。
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-7.  Wait till the execution completes.
+7.  実行が完了するまでお待ちください。
 
-    ![](./media/image7.png)
+![](./media/image7.png)
 
-8.  Once the evaluation is complete, click on it to view the details.
+8.  評価が完了したら、それをクリックして詳細を表示します。
 
-    ![](./media/image8.png)
+![](./media/image8.png)
 
-9.  Go through each question and see why it has failed and which ones
-    have passed. This will help you enhance your agent as required.
+9.  各質問を確認し、不合格の理由と合格した質問を確認してください。これにより、必要に応じてエージェントを強化できます。
 
-    ![](./media/image9.png)
+![](./media/image9.png)
 
-## Task 2: Gain insights with agent analytics
+## タスク2: エージェント分析で洞察を得る
 
-Once an agent is evaluated and actively used, ongoing monitoring is
-essential to ensure consistent performance and reliability at scale. In
-this task, you will explore the Analytics capabilities in Copilot Studio
-to gain insights into agent usage, execution trends, and component
-utilization. You will learn how analytics data helps identify
-performance bottlenecks, understand user interaction patterns, and guide
-continuous optimization of your agent over time.
+エージェントが評価され、実際に使用されるようになったら、大規模な環境でも一貫したパフォーマンスと信頼性を確保するには、継続的なモニタリングが不可欠です。このタスクでは、Copilot
+Studio
+の分析機能を活用し、エージェントの使用状況、実行傾向、コンポーネントの使用状況に関する洞察を得ます。分析データがパフォーマンスのボトルネックの特定、ユーザーインタラクションパターンの理解、そしてエージェントの継続的な最適化にどのように役立つかを学習します。
 
-1.  From the top menu bar, select **Analytics.**
+1.  上部のメニューバーから、\[**Analytics**\] を選択します。　
 
-    ![](./media/image10.png)
+> ![](./media/image10.png)
 
-2.  When there are a greater number of executions and as the agent gets
-    used more and more, the traffic increases, and you can find the AI
-    Summary in the Analytics tab.
+2.  実行回数が多くなり、エージェントの使用頻度が増すにつれてトラフィックが増加し、Analyticsタブに
+    AI サマリーが表示されます。
 
-    ![](./media/image11.png)
+> ![](./media/image11.png)
 
-3.  The **Overview** section gives an overall picture about the runs,
-    and credits.
+3.  **Overview**セクションでは、実行とクレジットに関する全体像が示されます。
 
-    ![](./media/image12.png)
+> ![](./media/image12.png)
 
-4.  The Run outcomes gives the average duration trends.
+4.  Run出力には、平均期間の傾向が示されます。
 
-    ![](./media/image13.png)
+> ![](./media/image13.png)
 
-5.  Scroll down and under the Use section, you can find the usage of
-    triggers, tools and knowledge sources.
+5.  下にスクロールすると、「Use」セクションでトリガー、ツール、ナレッジ
+    ソースの使用状況が表示されます。　
 
-    ![](./media/image14.png)
+> ![](./media/image14.png)
 
-6.  Each of these helps you to gauge the usage of each component of the
-    agent and upgrade, enhance or correct the agent functionalities
-    appropriately.
+6.  これらはそれぞれ、エージェントの各コンポーネントの使用状況を評価し、エージェントの機能を適切にアップグレード、強化、または修正するのに役立ちます。
 
-## Summary
+## まとめ
 
-In this lab, you implemented automated evaluation and analytics to
-assess the quality and reliability of an AI agent. You generated a test
-set to simulate realistic user interactions, ran evaluations to measure
-response accuracy and relevance, and reviewed pass/fail results to
-identify areas for improvement.
+このラボでは、AIエージェントの品質と信頼性を評価するために、自動評価および分析機能を実装しました。現実的なユーザーインタラクションをシミュレートするテストセットを作成し、応答の精度と関連性を測定する評価を実行し、合否結果を確認して改善点を見つけました。
 
-You also explored agent analytics to understand usage patterns,
-execution trends, and component utilization across triggers, tools, and
-knowledge sources. Together, these capabilities enable you to move
-beyond manual testing and adopt a scalable, data-driven approach to
-agent validation. This lab demonstrates how automated testing and
-analytics help ensure your agents are trustworthy, performant, and ready
-for real-world business scenarios.
+また、エージェント分析機能を利用して、トリガー、ツール、ナーレジソース全体にわたる使用パターン、実行傾向、コンポーネントの利用状況を把握しました。これらの機能を組み合わせることで、手動テストから脱却し、スケーラブルでデータに基づいたエージェント検証アプローチを採用することができます。このラボは、自動テストと分析がいかにエージェントの信頼性、パフォーマンス、そして実際のビジネスシナリオへの対応性を確保するのに役立つかを示しています。

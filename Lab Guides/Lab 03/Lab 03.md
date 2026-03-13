@@ -1,327 +1,312 @@
-# Lab 3 - Architecting intelligent agents with knowledge grounding and live connectors
+# ラボ – ナーレジグラウンディングとライブコネクタを備えたインテリジェントエージェントの設計
 
-**Introduction**
+**紹介**
 
-Modern users expect intelligent, contextual responses that go beyond
-simple keyword matching. This lab will guide you through creating an
-intelligent agent that can reason across multiple knowledge sources and
-perform real-time actions to deliver comprehensive, accurate answers.
+現代のユーザーは、単純なキーワードマッチングを超えた、インテリジェントで文脈に基づいた応答を期待しています。このラボでは、複数のナーレジソースを横断的に推論し、リアル・タイムでアクションを実行して包括的かつ正確な回答を提供するインテリジェントエージェントの作成方法を学びます。
 
-**Objective**
+**目的**
 
-In this lab, you’ll build an intelligent assistant that goes beyond
-simple Q&A to deliver contextual, multi-part responses. By the end of
-the lab, you will
+このラボでは、単純なQ&Aの域を超え、文脈に基づいた複数の要素を含む回答を提供するインテリジェントアシスタントを構築します。
 
-Create an intelligent agent using the conversational creation
-experience. Configure agent tone, behavior, and instructions to reflect
-your brand. Add public websites like Wikipedia as knowledge sources for
-factual grounding. Disable general knowledge to reduce hallucinations
-and ensure accuracy.
+ラボの最後には、会話作成エクスペリエンスを活用して、インテリジェントエージェントを作成します。エージェントのトーン、動作、指示をブランドに合わせて設定します。Wikipediaなどの公開ウェブサイトをナーレジソースとして追加し、事実に基づいた情報を提供します。一般知識を無効にすることで、ハルシネーションを減らし、正確性を確保できます。　
 
-## Task 1: Create a new agent and add knowledge
+## タスク1: 新しいエージェントを作成し、ナーレジを追加する
 
-Create Nova AI with custom instructions and Wikipedia knowledge
-integration using Copilot Studio’s conversational setup experience.
+Copilot Studio の会話型セットアップ
+エクスペリエンスを使用して、カスタム指示と Wikipedia
+のナーレジ統合を備えた Nova Aを作成します。
 
-1.  Open a browser and navigate to +++https://copilotstudio.microsoft.com+++ and
-    login using your credentials if not done already.
+1.  ブラウザを開き、+++copilotstudio.microsoft.com+++
+    に移動し、資格情報を使用してログインします。
 
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+2.  **Dev One** 環境を選択します。
 
-3.  Select the **Dev One** environment.
+3.  ホーム ページで、\[**Create agent**\] を選択します。
 
-4.  From the Home page, select **Create agent**.
+![](./media/image1.png)
 
-    ![](./media/image1.png)
+4.  エージェントが作成されたら、**Details**に対して**Edit**を選択します。
 
-5.  Once the agent is created, select **Edit** against **Details**.
+![](./media/image2.png)
 
-    ![](./media/image2.png)
-
-6.  Enter the below details and select **Save**.
+5.  以下の詳細を入力し、「**Save**」を選択します。
 
     - Name - +++Researcher agent+++.
 
-    - Description - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
+    - Description - +++Answers multi-part questions by combining
+      historical facts, biographical data, and real-time information
+      like weather. Ideal for deep research, exploration, and knowledge
+      synthesis+++
 
-      ![](./media/image3.png)
+> ![](./media/image3.png)
 
-7.  Select **Edit** against **Instructions**, enter the below content and select **Save**.
+6.  「**Instructions**」の下に以下の内容を入力し、「**Save**」を選択します。
 
-    >[!Note] **Note:** Use the **Copy** option and then **Paste** it in the required place in the VM (Instructions Text area in this case)
+You should answer complex questions using verified public information
+and real-time lookups like weather or conversions. You should give
+clear, concise answers and handle multiple questions one at a time. You
+must not speculate, share unverified or sensitive information, or
+compare products or companies. You should communicate clearly and
+professionally, using a friendly tone and light emojis when appropriate.
 
-    ```
-    You should answer complex questions using verified public information and real-time lookups like weather or conversions. You should give clear, concise answers and handle multiple questions one at a time. You must not speculate, share unverified or sensitive information, or compare products or companies. You should communicate clearly and professionally, using a friendly tone and light emojis when appropriate.
-    ```
-    
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-9.  Scroll down and select **+ Add knowledge** to add a knowledge
-    source.
+7.  下にスクロールして「**+ Add knowledge**」を選択し、ナレッジ
+    ソースを追加します。
 
-    ![](./media/image5.png)
+![](./media/image5.png)
 
-10. Select the **Public Website** option form the list.
+8.  リストから「**Public Website**」オプションを選択します。
 
-    ![](./media/image6.png)
+![](./media/image6.png)
 
-11. Enter +++https://en.wikipedia.org+++, select **Add**, and then select **Add to agent**.
+9.  次の画面で「**Add**」を選択し、「**Add to agent**」を選択します。
 
-    ![](./media/image7.png)
-    
-    ![](./media/image8.png)
+![](./media/image7.png)
 
-12. Next, you will disable general knowledge to reduce hallucinations.
-    Select **Settings** from the top right.
+![](./media/image8.png)
 
-    ![](./media/image9.png)
+10. 次に、ハルシネーションを軽減するために一般知識を無効にします。右上から「**Settings**」を選択してください。
 
-13. Toggle the **Use general knowledge** option under the Knowledge
-    section to **off** and then select **Save**. **Close** the **Settings** pane once this is done.
+![](./media/image9.png)
 
-    ![](./media/image10.png)
+11. \[Knowledge\] セクションの \[**Use general knowledge**\]
+    オプションを**オフ**に切り替えます。
 
-14. Enter the below message in the Test pane and click **Send** and
-    observe the output.
+![](./media/image10.png)
 
-    +++Write a draft email to request refund from a toaster that is not working properly (bread keeps burning)+++
+12. Testペインに以下のメッセージを入力し、\[**Send**\]
+    をクリックして出力を確認します。
 
-    ![](./media/image11.png)
-    
-    ![](./media/image12.png)
+> Write a draft email to request refund from a toaster that is not
+> working properly (bread keeps burning)
 
-## Task 2: Add weather connector
+![](./media/image11.png)
 
-In this task, you will add a weather connector to enable real-time data
-retrieval and test generative orchestration. Ensure that the agent
-provides only fact-based, controlled responses while enabling it to
-perform real-time actions like weather lookups for comprehensive,
-multi-step answers.
+![](./media/image12.png)
 
-1.  Select **Tools** tab from the top menu.
+## タスク2: 天気コネクタを追加する
 
-    ![](./media/image13.png)
+このタスクでは、天気コネクタを追加してリアル・タイムのデータ取得を可能にし、生成オーケストレーションをテストします。エージェントが事実に基づいた制御された応答のみを提供すると同時に、天気予報などのリアルタイムアクションを実行して包括的かつ複数ステップの回答を得られるようにします。
 
-2.  Enter +++MSN Weather+++ in the search box and select **Get current
-    weather**.
+1.  上部のメニューから\[**Tools**\]タブを選択します。
 
-    ![](./media/image14.png)
+![](./media/image13.png)
 
-3.  Select the drop down next to the **Not connected** message and
-    select **Create new connection**. Then, select **Create** in the
-    next screen.
+2.  検索ボックスに+++MSN Weather+++と入力し、「**Get current
+    weather**」を選択します。
 
-    ![](./media/image15.png)
-    
-    ![](./media/image16.png)
+![](./media/image14.png)
 
-4.  Select **Add and configure** to add the tool to the agent and
-    configure it as required.
+3.  「**Not
+    connected**」メッセージの横にあるドロップダウンを選択し、「**Create
+    new
+    connection**」を選択します。次の画面で「**Create**」を選択します。
 
-    ![](./media/image17.png)
+![](./media/image15.png)
 
-5.  Once added, select **Additional details**.
+![](./media/image16.png)
 
-    ![](./media/image18.png)
+4.  \[**Add and configure**\]
+    を選択して、ツールをエージェントに追加し、必要に応じて構成します。
 
-6.  Under Credentials to use, select **Maker-provided credentials**.
+![](./media/image17.png)
 
-    **Note:** When using Maker-provided credentials, the end-user of the
-agent isn’t prompted to use its own context and connection to connect to
-the service. Instead, it’s using the context and connection of the
-person who has configured the agent. - Only use author authentication
-for actions that don’t need user-specific data, as using the credentials
-from someone else can expose to data exfiltration risks. - Use user
-authentication for role based access scenarios - Always review security
-implications of authentication choices
+5.  追加したら、「**Additional details**」を選択します。
 
-    ![](./media/image19.png)
+![](./media/image18.png)
 
-7.  Under **Inputs**, **Units**, -> **Fill using** -> select **Custom
-    value**, and choose **Metric**.
+6.  \[Credentials to use\] の下で、\[**Maker-provided credentials**\]
+    を選択します。
 
-    ![](./media/image20.png)
+**注記：**作成者提供の認証情報を使用する場合、エージェントのエンドユーザーは、サービスに接続する際に独自のコンテキストと接続を使用するように求められません。代わりに、エージェントを設定したユーザーのコンテキストと接続が使用されます。-
+ユーザー固有のデータを必要としないアクションには、作成者認証のみを使用してください。他のユーザーの認証情報を使用すると、データ漏洩のリスクが生じる可能性があります。-
+ロールベースのアクセスシナリオにはユーザー認証を使用してください。-
+認証方法の選択がセキュリティに与える影響を常に確認してください。
 
-8.  Under **Inputs**, for **Location**, leave **Fill using to
-    Dynamically fill with AI**, and select **Customize** to set
-    description.
+![](./media/image19.png)
 
-    ![](./media/image21.png)
+7.  **Inputs**, **Units**, -\> **Fill using** -\> **Custom
+    value**を選択して、「**Metric**」を選択します。
 
-9.  Set the description as below and then select **Save**.
+![](./media/image20.png)
 
-    ```
-    The location for the weather query. Valid inputs are City, State, Country. Always include city and country, and state only for locations where appropriate (e.g., in the US)
-    ```
-    
-    ![](./media/image22.png)
-    
-    ![](./media/image23.png)
+8.  \[**Inputs**\] の \[**Location**\] では、\[**Fill using**\] を
+    \[**Dynamically fill with AI**\] のままにして、\[**Customize**\]
+    を選択して説明を設定します。
 
-10. Test your enhanced agent with this complex question:
+![](./media/image21.png)
 
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+9.  以下のように説明を設定し、「**Save**」を選択します。
 
-    ![](./media/image24.png)
+The location for the weather query. Valid inputs are City, State,
+Country. Always include city and country, and state only for locations
+where appropriate (e.g., in the US)
 
-11. Notice how generative orchestration performs multiple searches and
-    triggers the weather connector to provide a comprehensive answer
+![](./media/image22.png)
 
-    ![](./media/image25.png)
+![](./media/image23.png)
 
-## Task 3: Fine-tune your AI assistant for smoother conversations
+10. 次の複雑な質問で拡張エージェントをテストします。
 
-Customize system topics to enhance interactions and deliver a smoother
-user experience.
+> Who is the current CEO of the company that owns GitHub? Where did they
+> earn their MBA? What's the average rent for a one-bedroom apartment
+> near that campus? What's the air quality index in that area today?
 
-In this section, you’ll customize built-in system topics to improve user
-interactions and create a more seamless experience beyond just knowledge
-sources.
+![](./media/image24.png)
 
-Customize your assistant’s welcome message to make it more engaging, add
-suggested start prompts to guide users effectively, and refine system
-topics like Escalate to ensure they align with your organization’s
-needs.
+11. 生成オーケストレーションが複数の検索を実行し、天気コネクタをトリガーして包括的な回答を提供する方法に注目してください。
 
-1.  From the top menu, select **Topics**.
+![](./media/image25.png)
 
-    ![](./media/image26.png)
+## タスク3: AIアシスタントを微調整して会話をスムーズにする
 
-2.  Select the **Conversation Start** topic under **System**.
+システムトピックをカスタマイズして、インタラクションを強化し、よりスムーズなユーザーエクスペリエンスを実現します。
 
-    ![](./media/image27.png)
+このセクションでは、組み込みのシステム
+トピックをカスタマイズして、ユーザー
+インタラクションを改善し、単なるナーレジソースを超えたよりシームレスなエクスペリエンスを実現します。
 
-3.  In the topic’s **Message** node, enter the below message.
+アシスタントのウェルカム
+メッセージをカスタマイズして、より魅力的なものにし、ユーザーを効果的に誘導するための開始プロンプトの提案を追加し、エスカレーションなどのシステム
+トピックを改良して組織のニーズに合うようにします。
 
-     +++Hi there! I'm Researcher agent, your intelligent assistant for deep  research and discovery. I can break down complex questions and combine insights from historical facts, biographies, and real-time data like the weather. What are you curious about today?+++
+1.  上部のメニューから「**Topics**」を選択します。
 
-    ![](./media/image28.png)
+![](./media/image26.png)
 
-4.  Still in the same node, select **+ Add** -> **Quick reply**.
+2.  「**System**」の下にある「**Conversation
+    Start**」トピックを選択します。
 
-    ![](./media/image29.png)
+![](./media/image27.png)
 
-5.  Add the below question.
+3.  トピックの**Message**ノードに、以下のメッセージを入力します。
 
-    +++What caused the fall of the Roman Empire?+++
+> Hi there! I'm Researcher agent, your intelligent assistant for deep
+> research and discovery. I can break down complex questions and combine
+> insights from historical facts, biographies, and real-time data like
+> the weather. What are you curious about today?
+>
+> ![](./media/image28.png)
 
-    ![](./media/image30.png)
+4.  同じノード内で、**+ Add** -\> **Quick reply**を選択します。
 
-6.  Similarly add 2 more (Select **+ Add** in the quick reply **Properties** pane that gets opened).
+![](./media/image29.png)
 
-    ![](./media/image47.png)
-    
-    +++Who is the current CEO of the company that owns GitHub? Where did they earn their MBA? What's the average rent for a one-bedroom apartment near that campus? What's the air quality index in that area today?+++
+5.  以下の質問を追加してください。
 
-    +++What's the temperature in the city that hosted the last Olympic Games?+++
++++What caused the fall of the Roman Empire?+++
 
-    ![](./media/image31.png)
+![](./media/image30.png)
 
-8.  Once added, select **Save** to save the topic.
+6.  同様にさらに2つ追加します。
 
-    ![](./media/image32.png)
+> +++Who is the current CEO of the company that owns GitHub? Where did
+> they earn their MBA? What's the average rent for a one-bedroom
+> apartment near that campus? What's the air quality index in that area
+> today?+++
+>
+> +++What's the temperature in the city that hosted the last Olympic
+> Games?+++
 
-9.  Customize the escalation experience. Select **Topics** -> **System** -> **Escalate**.
+![](./media/image31.png)
 
-    ![](./media/image33.png)
+7.  追加したら、「**Save**」を選択してトピックを保存します。
 
-10. Update the text to the below, that will more meaningfully unblock
-    the end user and select **Save**.
+![](./media/image32.png)
 
-    +++I'm sorry, but I can't seem to be able to help you. I recommend reaching out to our Microsoft Copilot Studio community at https://aka.ms/CopilotStudioCommunity or submitting a support request at https://learn.microsoft.com/en-us/power-platform/admin/get-help-support.+++
+8.  エスカレーションエクスペリエンスをカスタマイズします。**Topics** -\>
+    **System** -\> **Escalate**を選択します。
 
-    ![](./media/image34.png)
+![](./media/image33.png)
 
-## Task 4: Make your agent public and publish it to the demo website
+9.  エンドユーザーのブロックをより効果的に解除する以下のテキストを更新し、\[**Save**\]
+    を選択します。
 
-In this section, you’ll remove authentication to make your agent
-publicly accessible, then publish it to the demo website for testing and
-sharing.Since the Researcher agent provides general information and
-doesn’t handle private data, you’ll disable authentication for a
-seamless user experience and publish it to the demo website to gather
-feedback before deploying to your real site.
+> I'm sorry, but I can't seem to be able to help you. I recommend
+> reaching out to our \[Microsoft Copilot Studio community\]
+> (https://aka.ms/CopilotStudioCommunity) or submitting a \[support
+> request\]
+> (<https://learn.microsoft.com/en-us/power-platform/admin/get-help-support>).
 
->[!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the  exercises that follow. This will not be the case in the production.
+![](./media/image34.png)
 
-1.  Go to **Settings** .
+## タスク4: エージェントを公開し、デモウェブサイトに公開する
 
-    ![](./media/image35.png)
+このセクションでは、エージェントをパブリックにアクセス可能にするために、  
+認証を削除し、テストと共有のためにデモ Web
+サイトに公開します。Researcher
+エージェントは一般的な情報を提供し、プライベートデータは処理しないため、  
+シームレスなユーザー
+エクスペリエンスを実現するために認証を無効にし、実際のサイトに展開する前にデモ
+ウェブサイトに公開してフィードバックを収集します。
 
-2.  Select **Security** -> **Authentication**. Select **No
-  authentication** and then select **Save**.
+1.  \[**Settings**\]に移動します。
 
-    ![](./media/image36.png)
+![](./media/image35.png)
 
-3.  Select **Save** in the confirmation prompt.
+2.  **Security** -\> **Authentication**を選択します。「**No
+    authentication**」を選択し、「**Save**」を選択します。
 
-    ![](./media/image37.png)
+![](./media/image36.png)
 
-4.  You can now close the Settings pane.
+3.  確認プロンプトで \[**Save**\] を選択します。
 
-    ![](./media/image38.png)
+![](./media/image37.png)
 
-5.  Select **Publish** to make your changes live.
+4.  これでSettingsペインを閉じることができます。
 
-    ![](./media/image39.png)
+![](./media/image38.png)
 
-6.  Select **Publish** in the confirmation dialog.
+5.  変更を有効にするには、「**Publish**」を選択します。
 
-    ![](./media/image40.png)
+![](./media/image39.png)
 
-7.  You will get a success message once the publish is done.
+6.  確認ダイアログで「**Publish**」を選択します。
 
-    ![](./media/image41.png)
+![](./media/image40.png)
 
-8.  Now, select **Channels** from the top menu.
+7.  公開が完了すると成功メッセージが表示されます。
 
-    ![](./media/image42.png)
+![](./media/image41.png)
 
-9.  Select **Demo website** from the list of channels available.
+8.  次に、トップメニューから「**Channels**」を選択します。
 
-    ![](./media/image43.png)
+![](./media/image42.png)
 
-10. Enter the Welcome message as +++Welcome to your demo website+++ and
-    select **Save**.
+9.  利用可能なチャネルのリストから**Demo website**を選択します。
 
-    ![](./media/image44.png)
+![](./media/image43.png)
 
-11. Click on **Open demo website** to open your site.
+10. ウェルカムメッセージに+++Welcome to your demo
+    website+++と入力し、\[**Save**\] を選択します。
 
-    ![](./media/image45.png)
+![](./media/image44.png)
 
-12. You can now interact with your agent.
+11. 「**Open demo website**」をクリックしてサイトを開きます。
 
-    ![](./media/image46.png)
+![](./media/image45.png)
 
-## Summary
+12. これでエージェントと対話できるようになりました。
 
-In this lab, you successfully delivered a public-facing intelligent
-agent that:
+![](./media/image46.png)
 
-- Answers complex, multi-part research questions
+## まとめ
 
-- Uses verified public knowledge and real-time connectors
+このラボでは、以下のことをできる公共向けインテリジェント
+エージェントを正常に提供しました。
 
-- Minimizes hallucinations through controlled knowledge sources
+- 複雑で複数の要素を含む研究課題に答えます。
 
-- Provides a polished, user-friendly conversational experience
+- 検証済みの公開知識とリアル・タイムコネクタを使用します。
 
-- Is deployed and accessible via a live demo website
+- 制御されたナーレジソースを通じて、ハルシネーションを最小限に  
+  抑えます。
 
-This lab demonstrates how to design, enhance, and publish a
-**production-ready intelligent agent** that goes beyond simple Q&A to
-deliver trustworthy, real-time, and context-aware insights.
+- 洗練されたユーザーフレンドリーな会話体験を提供します。
 
+- ライブデモウェブサイトを通じて、展開およびアクセス可能。
 
-
-
-
-
-
-
-
-
-
+このラボでは、単純な Q&A
+を超えて、信頼性の高いリアル・タイムのコンテキスト認識型の分析情報を提供する、**本番環境対応のインテリジェント
+エージェント**を設計、強化、公開する方法を説明します。

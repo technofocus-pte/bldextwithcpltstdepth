@@ -1,363 +1,322 @@
-# Lab 7 - Build an autonomous financial data retrieval agent with Computer-Using Agents (CUA)
+# ラボ 7 - Computer-Using Agents (CUA) を使用して、自律的な金融データ検索エージェントを構築する 
 
-**Introduction**
+**紹介**
 
-Legacy systems without APIs create major roadblocks for automation.
-Traditional RPA often relies on fragile screen-scraping or manual
-workarounds, which slow down decision-making, increase errors, and
-reduce productivity. This lab introduces Microsoft Copilot Studio and
-Computer Using Agents (CUA) as a smarter solution. By simulating human
-interaction with internal systems, CUAs can securely access and process
-data - without needing API integration. You’ll learn to build an
-autonomous agent that delivers faster responses, reduces manual
-workload, and enables real-time, informed decisions.
+APIのないレガシーシステムは、自動化の大きな障害となります。従来のRPAは、脆弱なスクリーンスクレイピングや手作業による回避策に頼ることが多く、意思決定の遅延、エラーの増加、生産性の低下を招きます。このラボでは、よりスマートなソリューションとして、Microsoft
+Copilot StudioとComputer Using Agents
+(CUA)を紹介します。CUAは、人間と内部システムのインタラクションをシミュレートすることで、API統合を必要とせずに、安全にデータにアクセスし、処理することができます。より迅速な応答を提供し、手作業の負荷を軽減し、リアル・タイムで情報に基づいた意思決定を可能にする、自律型エージェントの構築方法を学びます。
 
-Objective
+目的
 
-In this lab, you’ll learn how to build an autonomous agent using
-Microsoft Copilot Studio. This agent will simulate human interaction
-with a legacy internal system to retrieve financial portfolio data
-without requiring direct API access.
+このラボでは、Microsoft Copilot Studio
+を使用して、自律エージェントを構築する方法を学びます。このエージェントは、レガシー内部システムとの人間のやり取りをシミュレートし、直接
+API アクセスを必要とせずに、金融ポートフォリオデータを取得します。
 
+## タスク1: 自律エージェントの作成と構成
 
-## Task 0: Create an environment in the United States Region
+このタスクでは、Microsoft Copilot Studio
+で新しい自律エージェントを作成し、その ID を構成し、Microsoft 365
+Outlook コネクタを使用して電子メール トリガーを設定します。
 
-In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default. You will use the newly created environment for this lab alone.
+ポートフォリオの検索を自動化するには、エージェントが受信メール要求を検出し、件名のフィルタリングに基づいて適切な自動化フローを開始できる必要があります。
 
-1. Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the **Dev One** environment.
+1.  ログイン資格情報を使用して、+++https://copilotstudio.microsoft.com+++
+    で Copilot Studio にログインします。
 
-    ![](./media/image58.png)
+2.  右上から Dev One 環境を選択します。
 
-2. Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
+![](./media/image1.png)
 
-    ![](./media/image56.png)
-   
-3. From the **Environments** page, select **+ New**.
+3.  **Create an agent**を選択します。
 
-    ![](./media/image53.png)
+![](./media/image2.png)
 
-4.  Enter the below details and select **Next**.
+4.  エージェントが作成されたら、**Details**に対して**Edit**を選択します。　
 
-    -    Name - +++CUA+++
+![](./media/image3.png)
 
-    -    Region - United States - Default
+5.  Nameに +++Portfolio Lookup Agent+++ と入力し、\[Save\]
+    を選択して、エージェントのデフォルト名を変更します。
 
-    -    Type - Developer
+![](./media/image4.png)
 
-    ![](./media/image54.png)
+6.  トリガーセクションまで下にスクロールし、「**+Add
+    trigger**」をクリックします。
 
-5.  Select **Save** in the next screen.
+![](./media/image5.png)
 
-    ![](./media/image55.png)
+7.  「**When a new email arrives (V3) (Office 365
+    Outlook**」を検索して選択し、「**Next**」をクリックします。
 
+![](./media/image6.png)
 
-## Task 1: Create and Configure an Autonomous Agent
+8.  トリガーの名前を +++ When a portfolio lookup email arrives +++
+    に変更し、Copilot Studio と Outlook
+    の接続が確立されていることを確認してから、\[**Next**\]
+    をクリックします。
 
-In this task, you will create a new autonomous agent in Microsoft
-Copilot Studio, configure its identity, and set up an email trigger
-using the Microsoft 365 Outlook connector.
+![](./media/image7.png)
 
-To automate portfolio lookups, the agent must be able to detect incoming
-email requests and initiate the appropriate automation flow based on
-subject line filtering.
+9.  \[**Subject Filter (Optional)**\]
+    フィールドで、件名に「+++Portfolio+++」と入力します。
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your login
-    credentials.
+![](./media/image8.png)
 
-2.  Select the **Dev One** or **CUA** (if you have created it in the last Task) environment from the top right.
+10. トリガーが作成されたら、「Time to test your
+    trigger」ダイアログを**閉じる**ことができます。
 
-    ![](./media/image1.png)
+![](./media/image9.png)
 
-3.  Select **Create an agent**.
+## タスク2: Computer Useツールを追加する
 
-    ![](./media/image2.png)
+このタスクでは、コンピューターにログインし、ウェブサイトを閲覧し、金融ポートフォリオデータを検索・取得するComputer
+Useツールを構成します。その後、Office 365 Outlook
+コネクタを使用して、要求されたデータを返信します。　
 
-4.  Once the agent is created, select **Edit** against the **Details**.
+1.  最上位メニューの「**Tools**」に移動します。　
 
-    ![](./media/image3.png)
+![](./media/image10.png)
 
-5.  Enter the Name as +++Portfolio Lookup Agent+++ and select Save to
-    rename the default name of the agent.
+2.  **+ Add a tool**を選択します。
 
-    ![](./media/image4.png)
+![](./media/image11.png)
 
-6.  Scroll down to the triggers section and click **+Add trigger**.
+3.  **+ New tool**を選択します。
 
-    ![](./media/image5.png)
+![](./media/image12.png)
 
-7.  Search and select **When a new email arrives (V3) (Office 365
-    Outlook** and click on **Next**. 
+4.  「**Computer use (preview)**」を選択します。
 
-    ![](./media/image6.png)
+![](./media/image13.png)
 
-8.  Rename the trigger to +++When a portfolio lookup email arrives+++,
-    ensure that the connection is established for Copilot Studio and
-    Outlook and then click on **Next**.
+5.  以下の手順を追加し、「**Add and configure**」を選択します。
 
-    ![](./media/image7.png)
+&nbsp;
 
-9.  In the **Subject Filter (Optional)** field, enter +++Portfolio+++ in
-    the subject line.
+1.  Go to
+    <https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html>.
 
-    ![](./media/image8.png)
+2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and
+    click on the "Search" button.
 
-10. Once the trigger is created, you can **Close** the Time to test your
-    trigger dialog.
+3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values
+    exactly as shown.
 
-    ![](./media/image9.png)
+4.  Return those three values as the final output. If no portfolio data
+    is found, reply that you couldn't find a portfolio with the
+    specified ID.
 
-## Task 2: Add Computer Use tool 
+![](./media/image14.png)
 
-In this task, you will configure a Computer use tool that logs into a
-computer, navigates through a website, searches and retrieves financial
-portfolio data. Then use the Office 365 Outlook connector to reply with
-the requested data.
+6.  Computer useツールの**Name**を +++ Look up portfolio data +++
+    に更新します。
 
-1.  Navigate to **Tools** in the top-level menu.
+7.  **Description**を「+++ Search and retrieve financial portfolio data
+    +++」に更新します。
 
-    ![](./media/image10.png)
+![](./media/image15.png)
 
-2.  Select **+ Add a tool.**
+8.  Inputsセクションで **+ Add input**を選択します。
 
-    ![](./media/image11.png)
+![](./media/image16.png)
 
-3.  Select **+ New tool**.
+9.  Nameに「+++ Portfolio ID +++」、Descriptionに「+++ The ID of the
+    portfolio +++」と入力し、「**Done**」を選択します。
 
-    ![](./media/image12.png)
+![](./media/image17.png)
 
-4.  Select **Computer use (preview)**.
+10. \[**Save**\]を選択します。
 
-    ![](./media/image13.png)
+![](./media/image18.png)
 
-5.  Add the following Instructions, and then select **Add and
-    configure**.
+## タスク3: Computer useツールをテストする
 
-    ```
-    1.  Go to https://computerusedemos.blob.core.windows.net/web/Portfolio/index.html.
-    
-    2.  Enter the Portfolio ID in the "Enter Portfolio ID" search field and click on the "Search" button.
-    
-    3.  Retrieve the "Client Name", "Portfolio Value" and "Manager" values exactly as shown.
-    
-    4.  Return those three values as the final output. If no portfolio data is found, reply that you couldn't find a portfolio with the specified ID.
-    ```
-    
-    ![](./media/image14.png)
+1.  「**Instructions**」セクションで、右側の「**Test**」ボタンを選択します。
 
-6.  Update the **Name** of the Computer use tool as +++Look up portfolio
-    data+++
+![](./media/image19.png)
 
-7.  Update the **Description** as +++Search and retrieve financial portfolio data+++
+2.  Sample value +++44123BCD+++ を追加し、\[**Test now**\]
+    を選択します。
 
-    ![](./media/image15.png)
+![](./media/image20.png)
 
-8.  In the Inputs section select **+ Add input**.
+3.  Computer
+    useツールがコンピュータにログインし、要求されたアクションを実行する様子を観察します。
 
-    ![](./media/image16.png)
+    - 左側のパネルには、指示と、ツールの推論およびアクションのステップごとのログが表示されます。
 
-9.  Enter name as +++Portfolio ID+++ and description +++The ID of the portfolio+++ and select **Done**.
+    - 右側のパネルには、コンピューター使用用に設定した、マシン上のアクションのプレビューが表示されます。
 
-    ![](./media/image17.png)
+![](./media/image21.png)
 
-10. Select **Save**.
+> ![](./media/image22.png)
 
-    ![](./media/image18.png)
+![](./media/image23.png)
 
-## Task 3: Test the Computer use tool
+![](./media/image24.png)
 
-1.  In the **Instructions** section, select the **Test** button on the
-    right.
+![](./media/image25.png)
 
-    ![](./media/image19.png)
+![](./media/image26.png)
 
-2.  Add the sample value +++44123BCD+++ and select **Test now**.
+4.  \[**Finish testing**\]を選択します。
 
-    ![](./media/image20.png)
+![](./media/image27.png)
 
-3.  Observe the Computer use tool logging into the computer and
-    performing the requested actions:
+## タスク4: 電子メール応答機能の設定
 
-    - The left panel shows your instructions and a step-by-step log of
-      the tool’s reasoning and actions.
+このタスクでは、電子メール機能を設定します。
 
-    - The right panel shows a preview of the actions on the machine you
-      set up for computer use.
+1.  **Tools**タブに戻り、**+ Add a tool**を選択します。
 
-    ![](./media/image21.png)
+![](./media/image28.png)
 
-    ![](./media/image22.png)
+2.  +++ **Send an email (V2) (Office 365 Outlook)**+++
+    を検索して選択します。
 
-    ![](./media/image23.png)
-    
-    ![](./media/image24.png)
-    
-    ![](./media/image25.png)
-    
-    ![](./media/image26.png)
+![](./media/image29.png)
 
-4.  Select **Finish testing**.
+3.  \[**Add and configure**\]を選択します。
 
-    ![](./media/image27.png)
+![](./media/image30.png)
 
-## Task 4: Setting up email response capabilities
+4.  **Name**を +++ Reply to email +++ に更新し、**Description**を +++
+    Use this operation to reply to the email received +++
+    に更新して、\[**Additional details**\] を選択します。
 
-In this task, you will set up the email capability.
+![](./media/image31.png)
 
-1.  Return to the **Tools** tab and select **+ Add a tool** .
+5.  \[**Additional details**\] で、**Credentials to
+    use**を**Maker-provided credentials**に設定します。
 
-    ![](./media/image28.png)
+![](./media/image32.png)
 
-2.  Search for +++**Send an email (V2) (Office 365 Outlook)**+++ and
-    select it.
+6.  **Inputs**セクションで、**To**入力の**customize**をクリックし、**Description**を
+    +++ Use the "from" email of the triggering received email +++
+    に設定します。
 
-    ![](./media/image29.png)
+![](./media/image33.png)
 
-3.  Select **Add and configure**.
+![](./media/image34.png)
 
-    ![](./media/image30.png)
+7.  **Subject**入力欄を**カスタマイズし**、**Description**を「+++ Write
+    the email subject +++」に設定します。
 
-4.  Update its **Name** to +++Reply to email+++ and **Description** to,
-    +++Use this operation to reply to the email received+++ and then
-    select **Additional details**.
+![](./media/image35.png)
 
-    ![](./media/image31.png)
+8.  **Body**の入力をカスタマイズし、その**Description**を +++ Write the
+    email body using HTML and highlight the requested data +++
+    に設定します。
 
-5.  Under **Additional details**, set **Credentials to use** to
-    **Maker-provided credentials.**
+![](./media/image36.png)
 
-    ![](./media/image32.png)
+9.  \[**Save**\] をクリックして、ツールの設定を完了します。
 
-6.  Under the **Inputs** section, click on **customize** against the
-    **To** input and set its **Description** to +++Use the "from" email of the triggering received email+++.
+![](./media/image37.png)
 
-    ![](./media/image33.png)
-    
-    ![](./media/image34.png)
+10. 「**Overview**」タブに移動し、Instructionsを**編集**します。
 
-7.  **Customize** the **Subject** input and set its **Description** to
-    +++Write the email subject+++.
+![](./media/image38.png)
 
-    ![](./media/image35.png)
+11. 次の指示を貼り付けます。
 
-8.  Customize the **Body** input and set its **Description** to +++Write
-    the email body using HTML and highlight the requested data+++.
+When a financial portfolio related request is received, identify the
+Portfolio ID and search for the requested data using \< Look up
+portfolio data \>. Once you have gathered the financial portfolio
+information, use the \< Reply to email \> tool to reply to the original
+email you received. Do not respond with data beyond what was requested.
 
-    ![](./media/image36.png)
+![](./media/image39.png)
 
-9.  Click **Save** to finalize the tool configuration.
+12. \< Look up portfolio data \> を選択し、/ を入力して、Look up
+    portfolio dataツールを選択します。
 
-    ![](./media/image37.png)
+![](./media/image40.png)
 
-10. Navigate to **Overview** tab and then **Edit** the Instructions.
+![](./media/image41.png)
 
-    ![](./media/image38.png)
+13. 同様に、\< Reply to email \> を **Reply to
+    email**ツールに置き換えます。
 
-11. Paste the following instruction.
+14. 置換が完了したら、下のスクリーンショットのように「**Save**」を選択します。
 
-    ```
-    When a financial portfolio related request is received, identify the Portfolio ID and search for the requested data using < Look up portfolio data >. Once you have gathered the financial portfolio information, use the < Reply to email > tool to reply to the original email you received. Do not respond with data beyond what was requested.
-    ```
-    
-    ![](./media/image39.png)
+![](./media/image42.png)
 
-12. Select < Look up portfolio data >, enter / and select the **tool**
-    **Look up portfolio data**.
+15. 右上から「**Settings**」を選択します。
 
-    ![](./media/image40.png)
+![](./media/image43.png)
 
-    ![](./media/image41.png)
+16. **「Knowledge」**セクションにある**「Use general
+    knowledge」オプションを無効にし、「Save」**を選択します。　
 
-13. Similarly, replace < Reply to email > with the **tool**, **Reply to
-    email**.
+![](./media/image44.png)
 
-14. Once the replacements are done, as in the screenshot below, select
-    **Save**.
+17. **Settings**ペインを閉じます。
 
-    ![](./media/image42.png)
+![](./media/image45.png)
 
-15. Select **Settings** from the top right.
+## タスク5: 完成したエージェントのテスト
 
-    ![](./media/image43.png)
+このエージェントでは、作成したエージェントの完全な動作をテストします。
 
-16. **Disable** **Use general knowledge option** under the **Knowledge**
-    section, and select **Save**.
+1.  希望するメールアドレスからトレーニングユーザーのメールアカウントにテストメールを送信します。
 
-    ![](./media/image44.png)
+件名: +++ Portfolio data request +++
 
-17. Close the **Settings** pane.
+体：
 
-    ![](./media/image45.png)
+Hi!
 
-## Task 5: Testing your complete agent
+I hope you're doing well!
 
-In this agent, you will test the complete working of the agent that you
-have created.
+I'm looking for the portfolio manager and value of portfolio \#44123BCD.
+Much appreciated.
 
-1.  Send a test email from an email address of your preference to your
-    training user’s email account with
+Thanks!
 
-    Subject: +++Portfolio data request+++
-    
-    Body:
+![](./media/image46.png)
 
-    ```
-    Hi! 
-    I hope you're doing well! 
-    I'm looking for the portfolio manager and value of portfolio #44123BCD. Much appreciated. 
-    
-    Thanks!
-    ```
+2.  トレーニング
+    ユーザーの受信トレイにメールが届いていることを確認してください。
 
-    ![](./media/image46.png)
+3.  \[**Overview**\] タブで、\[**Triggers**\]
+    セクションに移動し、\[**Test trigger**\] を選択します。
 
-2.  Make sure you receive the email in your training user’s inbox.
+![](./media/image47.png)
 
-3.  In the **Overview** tab, go to the **Triggers** section and select
-    **Test trigger**.
+4.  **トリガー インスタンス**を選択し、**Start testing**を選択します。
 
-    ![](./media/image47.png)
+![](./media/image48.png)
 
-4.  Select the **trigger instance** and then **Start testing.**
+5.  実行が行われた上、Testペインで更新とフローを確認できます。
 
-    ![](./media/image48.png)
+![](./media/image49.png)
 
-5.  The execution happens and you can see the updates and the flow in
-    the Test pane.
+![](./media/image50.png)
 
-    ![](./media/image49.png)
+6.  実行が完了したら、エージェントの返信をメールで確認してください。
 
-    ![](./media/image50.png)
+![](./media/image51.png)
 
-6.  Once the execution is completed, check your email for the agent’s
-    reply.
+## まとめ
 
-    ![](./media/image51.png)
+この演習では、Microsoft Copilot StudioとComputer-Using
+Agents（CUA）を使用して、自律型の財務データ取得エージェントを構築しました。イベント駆動型のエージェントを構成し、メールによるリクエストに自動的に応答し、レガシーシステムとの人間による操作をシミュレートしてポートフォリオデータを取得し、APIに依存することなく正確な結果を返すようにしました。
 
-## Summary
+以下のことを学びました:
 
-In this lab, you built an autonomous financial data retrieval agent
-using Microsoft Copilot Studio and Computer-Using Agents (CUA). You
-configured an event-driven agent that automatically responds to email
-requests, simulates human interaction with a legacy system to retrieve
-portfolio data, and returns accurate results without relying on APIs.
+- 直接的なユーザー操作なしで動作する自律エージェントを設計すること。
 
-You learned how to:
+- メールベースのトリガーを使用して、自動化されたワークフローを開始すること。
 
-- Design an autonomous agent that operates without direct user
-  interaction
+- Computer-Using Agentsを構成して、レガシー
+  ウェブアプリケーションを安全に移動して、  
+  データを抽出すること。　
 
-- Use email-based triggers to initiate automated workflows
+- 結果をメールで送信するための、アクションツールを統合すること。
 
-- Configure Computer-Using Agents to securely navigate and extract data
-  from legacy web applications
+- AI駆動型コンピュータインタラクションを使用して、脆弱なRPAパターンへの依存を軽減こと。
 
-- Integrate action tools to return results via email
-
-- Reduce reliance on fragile RPA patterns by using AI-driven computer
-  interaction
-
-This lab demonstrates how autonomous agents with CUA can modernize
-legacy system access, streamline operational workflows, and enable
-faster, more reliable decision-making in environments where APIs are
-unavailable.
+このラボでは、CUA を備えた自律エージェントが、レガシー
+システムアクセスを最新化し、運用ワークフローを合理化し、API
+が利用できない環境でより迅速で信頼性の高い意思決定を可能にする方法を示します。

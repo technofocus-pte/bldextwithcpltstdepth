@@ -1,479 +1,491 @@
-# Lab 10 - Create a Knowledge Assistant agent for HR in Copilot Studio that leverages Azure AI Search
+# ラボ 10 - Copilot Studio で Azure AI Search を活用した HR 向け Knowledge Assistant エージェントを作成する
 
-## Objective:
+## 客観的
 
-A large enterprise wants to reduce the time employees spend searching
-for HR-related information (policies, benefits, leave guidelines, etc.)
-spread across SharePoint, PDFs, internal wikis, and documents.
+大企業では、SharePoint、PDF、社内 Wiki、ドキュメントなどに分散している
+HR 関連の情報 (ポリシー、福利厚生、休暇ガイドラインなど)
+を従業員が検索するのにかかる時間を短縮したいと考えています。
 
-To overcome this issue, in this lab, you will build a **Knowledge
-assistant** **agent** in **Copilot Studio** that uses **Azure AI
-Search**, to index and semantically search across enterprise HR
-documents.
+この問題を解決するために、このラボでは、Azure AI Search を使用して企業の
+HR ドキュメントのインデックス作成と意味的な検索を行う**Knowledge
+assistant** エージェントを Copilot Studio で構築します。
 
-## Exercise 1: Create an Azure AI Search resource
+## 演習 1: Azure AI Search リソースを作成する
 
-In this exercise, you will create an Azure AI Search resource from the Azure portal. This will be used to search the documents using AI capability.
+1.  Azure ポータルのホーム ページから、 **Azure AI Foundry**
+    を選択します。
 
-**Azure AI Search** is a cloud-based service for searching within your privately curated data. It uses a combination of Microsoft’s AI and JSON-based indexes to provide fast, relevant search results.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image1.png)
 
-1.  Open a browser and login to Azure portal at +++https://portal.azure.com/+++ with your credentials.
+2.  **AI Foundry ページ**で、左側のペインから**AI Search**を選択し、 **+
+    Create** を 選択します。
 
-    -    Username - +++@lab.CloudPortalCredential(User1).Username+++
-    
-    -    Password - +++@lab.CloudPortalCredential(User1).Password+++
-
-    From the Home page of the Azure portal, select **Microsoft Foundry** and select **Microsoft Foundry** under Services.
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im2.png)
-
-3.  In the **AI Foundry page**, select **AI Search** under **Use with AI Foundry** from the left pane
-    and then select **+ Create**.
-
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image2.png)
 
-4.  Enter the below details and select **Review + create**.
+3.  以下の詳細を入力し、 **「Review + create」**を選択します。
 
-    - Subscription – Select your **assigned subscription**
+- Subscription –**割り当てられたサブスクリプション**を選択します
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+- Resource group –**割り当てられたリソース グループ**(
+  **ResourceGroup1** )を選択します。
 
-    - Storage account name – +++**searchleaves@lab.LabInstance.Id**+++
+- Storage account name – +++ **searchleaves** +++
 
-    - Location – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+- Location –**割り当てられた地域**を選択してください
 
-    ![A screenshot of a search service AI-generated content may be
+![A screenshot of a search service AI-generated content may be
 incorrect.](./media/image3.png)
 
-5.  Once the validation passes, select **Create**.
+4.  検証に合格したら、 **\[Create\]**を選択します。
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image4.png)
 
-6.  The deployment takes around 10 minutes to complete. Select **Go to resource** once
-    the search service is created.
+5.  デプロイには数分かかります。Search serviceが作成されたら、 **「Go to
+    resource」を**選択してください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image5.png)
 
-7.  From the **Overview** page, copy the **Url** value and save it in a
-    notepad to be used in a future exercise.
+6.  **「Overview」ページ**から、
+    Urlバリューをコピーし、今後の演習で使用するためにメモ帳に保存します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image6.png)
 
-8.  Select **Keys** under **Settings** from the left pane. Copy the
-    **Primary admin key** and save it in a notepad for using it in the
-    upcoming exercises.
+7.  左ペインの**「Settings」**から**「Keys」**を選択します。**Primary
+    admin keyを**
+    コピーし、メモ帳に保存して、今後の演習で使用してください。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image7.png)
 
-9.  Select **Identity** under **Settings** from the left pane.
+8.  左側のペインの**\[Settings\]**の下にある**\[Identity\]**を選択します。
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image8.png)
 
-10.  Toggle the Status to **On** under **System assigned** and then click
-    on **Save**.
+9.  **「System assigned」の**ステータスを**On**に切り替えて、
+    **「Save」**をクリックします。
 
-     ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image9.png)
 
-11. Select **Yes** in the **Enable system assigned managed identity**
-    confirmation dialog.
+10. **Enable system assigned managed
+    identity**確認ダイアログで**\[Yes\]**を選択 します。
 
-    ![A screenshot of a computer error AI-generated content may be
+![A screenshot of a computer error AI-generated content may be
 incorrect.](./media/image10.png)
 
-## Exercise 2: Create a Storage account
+## 演習2: ストレージアカウントを作成する
 
-1.  From the Azure portal Home page (+++https://portal.azure.com/+++), select **Storage accounts**.
+1.  +++https://portal.azure.com/+++
+    でAzureポータルにログインし、資格情報でログインします。ホーム画面から「Storage
+    accounts」を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-2.  Select **+ Create** to create a new Storage account.
+2.  新しいストレージ アカウントを作成するには、 **\[+
+    Create\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-3.  Enter the below details, accept the default values in the other
-    fields and click on **Review + create**.
+3.  以下の詳細を入力し、他のフィールドではデフォルトバリューを受け入れて、
+    **「Review + create」**をクリックします。
 
-    - Subscription – Select your **assigned subscription**
+- Subscription –**割り当てられたサブスクリプション**を選択します
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+- Resource group –**割り当てられたリソース グループ**(
+  **ResourceGroup1** )を選択します。
 
-    - Storage account name – +++**leavepolicystg@lab.LabInstance.Id**+++
+- Region –**割り当てられた地域**を選択します。
 
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+- Storage account name – +++ **leavepolicystorage** +++
 
-    - Primary service – Select **Azure Blob Storage or Azure Data Lake
-    Storage Gen 2**
+- Primary service – **Azure Blob Storage または Azure Data Lake Storage
+  Gen 2**を選択します**。**
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image13.png)
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image13.png)
 
-4.  Once the validation passes, click on **Create**.
+4.  検証に合格したら、 **「Create」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-5.  Once the resource creation succeeds, click on **Go to resource**.
+5.  リソースの作成が成功したら、 **「Go to
+    resource」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image15.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-6.  Select **Containers** under **Data storage**. Select **+
-    Container**, enter the name as +++**document**+++ and click on
-    **Create** to create the container.
+6.  **「Data storage」**の**「Containers」**を選択します。 **「+
+    Container」**を選択し、名前を「++ + **document
+    +++」**と入力して**「Create」**をクリックし、
+    コンテナーを作成します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-7.  Select the created container **document** to upload the leave policy
-    document into it.
+7.  作成されたコンテナ**document**を選択し、そこに休暇ポリシー
+    ドキュメントをアップロードします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-8.  Click on **Upload** and then select **Browse for files**.
+8.  **\[Upload\]**をクリックし、 **\[Browse for files\]**を選択します。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image19.png)
 
-9.  Select the **LeavePolicy.docx** from **C:\Labfiles\LabFiles** and then click
-    on **Upload**.
+9.  **C:\Labfiles**から**LeavePolicy.docx**を選択し、
+    **「Upload」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image20.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-10. Navigate to the +++**leavepolicystg@lab.LabInstance.Id**+++ Storage account (Select
-    **Storageaccounts** from the **Home page** of the Azure portal and
-    select **leavepolicystg@lab.LabInstance.Id**) and select **Access Control (IAM)**
-    from the left pane. Select **Add -> Add role assignment**.
+10. **leavepolicystorage**に移動し（ Azureポータルの**ホーム画面**で
+    **「Storageaccounts」**を選択し、 **「leavepolicystorage
+    」を選択**）、左側の ペインから**「Access Control
+    (IAM)」**を選択します**。「Add -\> Add role
+    assignment」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-11. Search for +++**Storage Blob Data Reader**+++, select it and click
-    on **Next**.
+11. +++ **Storage Blob Data Reader** +++
+    を検索し、選択して**「Next」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-12. Click on **+Select members**, search for and select your **user
-    name**, +++@lab.CloudPortalCredential(User1).Username+++ and then click on
-    **Select**. This adds the Storage Blob Data Reader role to your user
-    id.
+12. **「+ Select members」**をクリックし、**user
+    id**を検索して選択し、リストに 表示された**user
+    id**を選択して**「Select」**をクリックします。これにより、
+    ストレージBLOBデータリーダーロールがユーザーIDに追加されます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-13. Select **Managed identity** and then select **+ Select members**.
-    Select **Search service** under **Managed identity** and select the
-    **searchleaves** search service that gets listed.
+13. **「Managed identity」**を選択し、 **「+ Select
+    members」**を選択します。 **「Managed identity」**の下の**「Search
+    service」**を選択し、リストに表示
+    される**searchleaves**サーチ・サービスを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image25.png)
 
-14. Click on **Select** to select the search service.
+14. **「Select」**をクリックしてサーチ・サービスを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image26.png)
 
-15. Back in the Add role assignment screen, click on **Review +
-    assign**.
+15. Add role assignment画面に戻り、**Review + assign**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image27.png)
 
-16. Select **Review + assign** again in the next screen.
+16. 次の画面でもう一度**「Review + assign」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image28.png)
 
-17. Proceed to the next step once the roles are added.
+17. ロールを追加したら次の手順に進みます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image29.png)
 
-In this exercise, we have created a Storage account and added the
-document and required Role permissions to it.
+この演習では、ストレージ
+アカウントを作成し、ドキュメントと必要な　　　　ロール権限を追加しました。
 
-## Exercise 3: Create an Azure OpenAI Service and deploy a model 
+## 演習 3: Azure OpenAI サービスを作成し、モデルをデプロイ　　する
 
-1.  From the Azure portal Home page, search for and select +++Azure OpenAI+++.
+1.  Azure ポータルのホーム ページから、+++Azure OpenAI++
+    を検索して選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image30.png)
 
-2.  Select **+ Create**.
+2.  **+ Create**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image31.png)
 
-3.  Enter the below details and select **Next**.
+3.  以下の詳細を入力し、 **「Next」**を選択します。
 
-    - Subscription – Select your **assigned subscription**
+- Subscription –**割り当てられたサブスクリプション**を選択します
 
-    - Resource group – Select your **assigned Resource group**
-    (**ResourceGroup1**)
+- Resource group –**割り当てられたリソース グループ**(
+  **ResourceGroup1** )を選択します。
 
-    - Region – Select @lab.CloudResourceGroup(ResourceGroup1).Location
+- Region –**割り当てられた地域**を選択します
 
-    - Name – +++**openaiservice@lab.LabInstance.Id**+++
+- Name – +++ **openaiservice52374668** +++
 
-    - Pricing tier – Select **Standard S0**
+- Pricing tier –**Standard**を選択します
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image32.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image33.png)
 
-4.  Select **Next** in the next 2 screens select **Create** in the
-    **Review + submit** screen.
+4.  次の 2 つの画面で**\[Next\]**を選択し、\[**Review +
+    submit\]**画面で**\[Create\]** を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-5.  Click on **Go to resource** once the service is created.
+5.  サービスが作成されたら、 **「Go to resource」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image35.png)
 
-6.  Select **Access control (IAM)** from the left pane, select **Add -\>
-    Add role assignment**.
+6.  左側のペインから**\[Access control (IAM)\]**を選択し、 **\[Add -\>
+    Add role assignment\]**を選択します。
 
-    ![](./media/image36.png)
+![](./media/image36.png)
 
-7.  Search for +++**Cognitive Services OpenAI User**+++, select the role
-    and click on **Next**.
+7.  +++ **Cognitive Services OpenAI User**
+    +++を検索し、ロールを選択して**Next**クリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image37.png)
 
-8.  Select **+ Select members**, search for your **user name**, +++@lab.CloudPortalCredential(User1).Username+++, select it and click on **Select**.
+8.  **+ Select members**を選択、**user
+    id**を検索して選択し、**Select**をクリック します。
 
-    ![](./media/image38.png)
+![](./media/image38.png)
 
-9.  Back in the **Add role assignment** screen, select **Managed
-    identity**. Then select **+ Select members**. In the **Select
-    managed identities** screen, select **Search service** under
-    **Managed identity** and select the **seachleaves** service.
+9.  **\[Add role assignment」**画面に戻り、 **「Managed
+    identity」を選択します**。 次に、 **「+ Select
+    members」を選択します**。 **「Select managed identities」**画面で、
+    **「Managed identity」**の下にある**「Search service」を選択し**、
+    **「seachleaves」**サービスを選択します。
 
-    ![A screenshot of a computer screen AI-generated content may be
+![A screenshot of a computer screen AI-generated content may be
 incorrect.](./media/image39.png)
 
-10. Once selected, click on **Select**.
+10. 選択したら、 **「Select」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image40.png)
 
-11. Select **Review + assign** in the next 2 screens.
+11. 次の 2 つの画面で \[Review + assign\] を選択します。
 
-    ![](./media/image41.png)
+![](./media/image41.png)
 
-12. Wait for a **success** message on the role additions before
-    proceeding with the next tasks.
+12. 次のタスクに進む前に、ロールの追加に関する**success**メッセージを
+    待ちます。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image42.png)
 
-13. From the **Overview** page of the Azure OpenAI Service resource,
-    select **Go to Azure AI Foundry portal** to open the Azure OpenAI
-    Service there and deploy a model.
+13. Azure OpenAI サービス リソースの**Overviewページ**で、select **Go to
+    Azure AI Foundry portal**を選択し、そこで Azure OpenAI
+    サービスを開いてモデルを デプロイします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image43.png)
 
-14. Select **Deployments** from the left pane.
+14. 左側のペインから**「Deployments」**を選択します。
 
-    ![A screenshot of a chat AI-generated content may be
+![A screenshot of a chat AI-generated content may be
 incorrect.](./media/image44.png)
 
-15. Select **+ Deploy model** -> **Deploy base model**.
+15. **+ Deploy model** -\> **From base models**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-16. Select **Embeddings** under **Inference tasks**.
+16. +++ **text-embedding** +++ を検索し、
+    **text-embedding-3-largeを選択して** から、**Confirm**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im5.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image46.png)
 
-17. Search for +++**text-embedding**+++, select
-    **text-embedding-3-large** and then select **Confirm**.
+17. 「Deploy text-embedding-3-large」で**「Deploy」**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im7.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image47.png)
 
-18. Select **Deployment type** as **Standard** and then select **Deploy** in the **Deploy text-embedding-3-large** screen..
+18. モデルがデプロイされ、デプロイの詳細が画面に読み込まれます。
 
-    <img width="375" alt="image" src="https://github.com/user-attachments/assets/3c36852b-1ec3-4a95-a326-63cbfe2ae404" />
-
-19. The model gets deployed and the screen is loaded with the deployment
-    details.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-## Exercise 4: Create a vector index
+## 演習4: ベクトル・インデックスを作成する
 
-1.  Back in the Azure portal, open the **searchleaves** AI Search service resource.
+1.  **searchleaves** AIサーチ・サービスリソースにアクセスし、 **「Import
+    and 　　　　　vectorize data」**を選択します。
 
-2.  Select **Import and vectorize data**.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image49.png)
 
-3.  Select the **Azure Blob Storage** option.
+2.  **Azure Blob Storage**オプションを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image50.png)
 
-4.  Select the **RAG** option in the **What scenarios are you
-    targeting?** screen.
+3.  **「What scenarios are you
+    targeting?」画面**で**RAG**オプションを選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image51.png)
 
-5.  Enter the below details, accept the other values as default and
-    click **Next**.
+4.  以下の詳細を入力し、他のバリューはデフォルトのままにして、
+    **「Next」**を クリックします。
 
-    - Subscription – Select your **assigned subscription**
+- Subscription –**割り当てられたサブスクリプション**を選択します
 
-    - Storage account- Select **leavepolicystg@lab.LabInstance.Id**
+- Storage account - **leavepolicystorage**を選択 します
 
-    - Blob-container – Select **document**
+- BLOB-container –**document**を選択します
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image52.png)
 
-6.  In the Vectorize your text screen, the subscription is pre-populated. Enter the below details
-    and click **Next**.
+5.  「Vectorize your text」画面では、サブスクリプションとAzure OpenAI
+    リソースの詳細が事前に入力されています。以下の詳細を入力し、
+    **「Next」**をクリックしてください。
 
-    - Azure OpenAI Service – Select **openaiservice@lab.LabInstance.Id**
+- Model deployment – **text-embedding-3-large**を選択
 
-    - Model deployment – Select **text-embedding-3-large**
+- Authentication type – **System assigned identity**を選択
 
-    - Authentication type – Select **System assigned identity**
+- Azure OpenAI
+  のコストアラートを確認するには、チェックボックスをオンにします。
 
-    - Select the checkbox to acknowledge the cost alert of Azure OpenAI.
+6.  ここでは画像を扱わないため、「**Vectorize and enrich your
+    images」**画面で「Next」を選択し、**Advanced
+    settings**画面でも**「Next」**を選択します。
 
-7.  Select Next in the **Vectorize and enrich your images** screen since
-    we are not dealing with images here and select **Next** in the
-    **Advanced settings** screen as well.
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image53.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image54.png)
 
-8.  Select **Create** in the **Review + create** screen.
+7.  **\[Review + create\]**画面で**\[Create\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image55.png)
 
-9.  Click on **Close** in the success dialog box.
+8.  成功ダイアログボックスで**「Close」**をクリックします。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image56.png)
 
-## Exercise 5: Create a knowledge assistant agent
+## 演習5:Knowledge Assistantエージェントを作成する
 
-1.  Open a new broser and login to +++https://copilotstudio.microsoft.com+++ using your login
-    credentials.
+1.  ログイン資格情報を使用して、+++https://copilotstudio.microsoft.com+++
+    にログインします。
 
-2.  Select **Get Started** in the Welcome to Microsoft Copilot Studio.
-
-    <img width="549" alt="image" src="https://github.com/user-attachments/assets/63c8fa05-b9ff-44f0-a32b-648db74dc32c" />
-
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image57.png)
 
-3.  Select Agents from the left pane. Enter +++You are a Knowledge assistant agent for HR who will answer questions related to leaves and leave policies to the employees.+++ and select **Send**.
+2.  左側のペインから**\[Create\]**を選択します。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im42.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image58.png)
 
-6.  Once the agent is created, in the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+3.  **「+New agent」**を選択します。
 
-    <img width="290" height="347" alt="image" src="https://github.com/user-attachments/assets/62a90308-c3f9-4c44-8946-0d83e7fd532a" />
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image59.png)
 
-7.  It gives a generalized reply as in the screenshot below.
+4.  +++ You are a Knowledge assistant agent for HR who will answer
+    questions related to leaves and leave policies to the employees + ++
+    と入力し、 **\[Send\]**を選択します。
 
-    <img width="191" height="340" alt="image" src="https://github.com/user-attachments/assets/c55f45dc-2205-4336-aee6-81e83f89a21a" />
+> ![A screenshot of a computer AI-generated content may be
+> incorrect.](./media/image60.png)
 
-## Exercise 6: Add the Azure AI Search as a knowledge source
+5.  Copilotがエージェントに名前を提案します。
+    **「Create」**をクリックして エージェントを作成します。
 
-1.  From the **Overview** page of the agent, select **Add knowledge**.
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image61.png)
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image62.png)
+
+6.  エージェントが作成されたら、\[Test\] ペインに「+++ How many days can
+    I avail Maternity leaves? + ++」と入力し、 **\[Send\]**
+    をクリックします。
+
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image63.png)
+
+7.  以下のスクリーンショットのように、一般的な返信が返されます。
+
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image64.png)
+
+## 演習 6: Azure AI Search をナレッジ ソースとして追加する
+
+1.  エージェントの**Overviewページ**から、**Add
+    knowledge**を選択します。
+
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image65.png)
 
-2.  Select Azure AI Search from the list of knowledge sources available.
+2.  利用可能なナレッジ ソースのリストから Azure AI Search を選択します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image66.png)
 
-3.  Click on the **drop down** next to **Not connected** in the next
-    screen and select **Create new connection**.
+3.  次の画面で**「Not
+    connected」**の横にある**ドロップダウン**をクリックし、 **「Create
+    new connection」**を選択します。
 
-    ![A screenshot of a search engine AI-generated content may be
+![A screenshot of a search engine AI-generated content may be
 incorrect.](./media/image67.png)
 
-4.  Enter the **Endpoint url** and the **Admin key** values which we
-    saved to a notepad in a previous exercise and then click on
-    **Create** to create the connection.
+4.  前の演習でメモ帳に保存した**Endpoint URL**と**Admin
+    keyのバリュー**を入力し、
+    **\[Create\]**をクリックして接続を作成します。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image68.png)
 
-5.  Once the connection is established, the available index is listed
-    and already selected. Click on **Add to agent**.
+5.  接続が確立されると、利用可能なインデックスがリストされ、選択済みになります。
+    **「Add」**をクリックしてください。
 
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image76.png)
+![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image69.png)
 
-6.  The AI Search service is added as a knowledge source to the agent
-    and is in **Ready** state now.
-    Ensure that the **Web search** option is **disabled** in the Knowledge section.
+6.  AI サーチ・サービスがエージェントにナレッジ
+    ソースとして追加され、現在は**Ready**状態になっています。
 
-    ![A screenshot of a computer AI-generated content may be
+![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image70.png)
 
-8.  Now, let us test the agent with the same question we tried before.
+7.  試したのと同じ質問でエージェントをテストしてみましょう。
 
-9.  In the Test pane, enter +++How many days of Maternity leaves can I avail?+++ and click **Send.**
+8.  テスト ペインに、「+++ How many days can I avail Maternity
+    leaves?+++」と入力し、 **\[Send\]** をクリックします。
 
-    <img width="285" height="315" alt="image" src="https://github.com/user-attachments/assets/b48e410f-6950-4d89-abdd-dc1e5d5ff81c" />
+![A screenshot of a phone AI-generated content may be
+incorrect.](./media/image71.png)
 
-10. You can see that the response from the agent now is from the
-    document uploaded in the AI Search service.
+9.  エージェントからの応答は、AI サーチ・サービスにアップロードされた
+    ドキュメントからのものであることがわかります。
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/im6.png)
+![A screenshot of a chat AI-generated content may be
+incorrect.](./media/image72.png)
 
+## まとめ
 
-## Summary:
-
-In this lab, we have learnt to connect the agent to a Azure AI Search
-service as a knowledge source and test the agent based on the source.
-
-
-
-
-
-
-
-
-
-
+このラボでは、エージェントをナレッジ ソースとして Azure AI Search
+サービスに接続し、ソースに基づいてエージェントをテストする方法を学習しました。

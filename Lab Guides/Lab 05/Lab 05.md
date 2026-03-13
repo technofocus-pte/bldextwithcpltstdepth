@@ -1,704 +1,656 @@
-# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
+# ラボ - Hiring Agentをスケーラブルなマルチエージェントアーキテクチャに変換する
 
-In the earlier lab, you built your main Hiring Agent giving you a solid
-foundation for managing recruitment workflows. But one agent can only do
-so much.
+前回のラボでは、メインのHiring
+Agentを構築し、採用ワークフローを管理するための強固な基盤を構築しました。しかし、エージェント1つでできることには限界があります。
 
-Your assignment, should you choose to accept it, is **Operation
-Symphony** - transforming your single agent into a **multi-agent
-system**: an orchestrated team of specialized agents that work together
-to handle complex hiring challenges. Think of it as upgrading from a
-solo operator to commanding a specialized task force.
+もしこの任務を引き受けるなら、その任務とは「**オペレーション・シンフォニー**」です。それは、単一のエージェントをマルチ・エージェントシステムへと変革すること。つまり、複雑な採用課題に対処するために連携して働く、専門エージェントからなる組織化されたチームを構築することです。これは、単独で活動するオペレーターから、専門部隊を指揮する立場へとステップアップするようなものだと考えてください。
 
-Like a symphony orchestra where each musician plays their part in
-perfect harmony, you'll add two critical specialists to your existing
-Hiring Agent: an Application Intake Agent to process resumes
-automatically, and an Interview Prep Agent to create comprehensive
-interview materials. These agents will work together seamlessly under
-your main orchestrator.
+まるで交響楽団のように、それぞれの演奏者が完璧なハーモニーを奏でるように、既存のHiring
+Agentに2人の重要な専門家を加えます。履歴書を自動的に処理するApplication
+Intake Agentと、包括的な面接資料を作成するInterview Prep
+Agentです。これらのエージェントは、メインの指揮者のもと、シームレスに連携して機能します。
 
-After creating multi agents, you'll transform your agents from waiting
-for human input to proactively responding to external events and taking
-intelligent action without supervision.
+マルチ・エージェントを作成した後、エージェントは人間の入力を待つ状態から、外部イベントに積極的に反応し、監視なしでインテリジェントな行動をとるように変化します。
 
-Think of it as upgrading from agents that *answer questions* to agents
-that *anticipate needs* and *act independently*. Through event triggers
-and automated workflows, your Hiring Agent will detect incoming resume
-emails, process attachments automatically, store data in Dataverse, and
-notify your HR recruitment team via Microsoft Teams - all while you
-focus on higher-value tasks.
+これは、質問に答えるだけのエージェントから、*ニーズを予測して自律的に行​​動する*エージェントへとアップグレードするようなものです。イベントトリガーと自動ワークフローを活用することで、Hiring
+Agentは受信した履歴書メールを検知し、添付ファイルを自動的に処理し、データをDataverseに保存し、Microsoft
+Teams経由で人事採用チームに通知します。それを実現できて、より付加価値の高い業務に集中できるのです。
 
-## Objectives
+## 目的
 
-In this mission, you'll learn:
+このミッションでは、次のことを学びます。
 
--    When to use **child agents** vs **connected agents**
+1.  **子エージェント**と**接続エージェント**を使用する場合
 
--    How to design **multi-agent architectures** that scale
+2.  スケーラブルな**マルチ・エージェントアーキテクチャ**の設計方法
 
--    Creating **child agents** for focused tasks
+3.  集中タスクのための**子エージェント**の作成
 
--    Establishing **communication patterns** between agents
+4.  エージェント間の**コミュニケーションパターン**の確立
 
--    Building the Application Intake Agent and Interview Prep Agent
+5.  Application Intake AgentとInterview Prep Agentの構築
 
--    How event triggers enable autonomous agent behavior without user
-    interaction
+6.  イベントトリガーがユーザーの介入なしに自律的なエージェントの動作を可能にする仕組み
 
--    The differences between interactive and autonomous agents in Copilot
-    Studio
+7.  Copilot Studio
+    におけるインタラクティブエージェントと自律エージェントの違い
 
--    How to create event triggers that automatically process email
-    attachments and upload files to Dataverse
+8.  メールの添付ファイルを自動的に処理し、ファイルを Dataverse
+    にアップロードするイベントトリガーを作成する方法
 
--    How to build agent flows that post adaptive cards to Teams channels
-    for notifications
+9.  通知用にアダプティブ カードを Teams
+    チャネルに投稿するエージェントフローを構築する方法
 
--    How to pass data between event triggers and agent flows for
-    end-to-end automation
+10. エンド・ツー・エンドの自動化のために、イベントトリガーとエージェントフロー間でデータを渡す方法
 
-## Child agent: Application Intake Agent
+## 子エージェント: Application Intake Agent
 
-Let's start building our multi-agent hiring system. Our first specialist
-will be the **Application Intake Agent** - a child agent responsible for
-processing incoming resumes and candidate information.
+マルチ・エージェント採用システムの構築を始めましょう。最初のスペシャリストは、**Application
+Intake
+Agent** です。これは、受信した履歴書と候補者情報の処理を担当する子エージェントです。
 
 ![](./media/image1.png)
 
-**Application Intake Agent responsibilities**
+**Application Intake Agentの責任**
 
-- **Parse resume content** from PDFs provided via interactive chat (In a
-  future mission you'll learn how to process resumes autonomously).
+- インタラクティブチャットを通じて提供されたPDFファイルから**履歴書の内容を解析します。**（今後の課題で、履歴書を自動的に処理する方法を学びます。）
 
-- **Extract structured data** (name, skills, experience, education)
+- **Structured data** **を抽出します。**（名前、スキル、経験、学歴）
 
-- **Match candidates to open roles** based on qualifications and cover
-  letter
+- 応募者の資格とカバーレターに基づいて、**募集中の職務に最適な候補者を  
+  選定します。**
 
-- **Store candidate information** in Dataverse for later processing
+- **候補者の情報**を後で処理するためにDataverseに保存します。
 
-- **Deduplicate applications** to avoid creating the same candidate
-  twice, match to existing records using the email address extracted
-  from the resume.
+- **応募書類の重複**を排除し、同じ候補者を二度登録しないようにします。履歴書から抽出したメールアドレスを使用して、既存の記録と照合します。
 
-**Why this should be a child agent**
+**なぜこれが子エージェントであるべきなのか**
 
-The Application Intake Agent fits perfectly as a child agent because:
+Application Intake Agentは、次の理由により子エージェントとして最適です。
 
-- It's specialized for document processing and data extraction
+- 文書処理とデータ抽出に特化しています。
 
-- It doesn't need separate publishing
+- 別途出版する必要はない。
 
-- It's part of our overall hiring solution managed by the same team
+- これは、同じチームが管理する、当社の総合的な採用ソリューションの一部です。
 
-- It focuses on a specific trigger (new resume received) and is invoked
-  from the Hiring Agent.
+- これは特定のトリガー (新しい履歴書の受信) に焦点を当てており、Hiring
+  Agentから呼び出されます。
 
-## Connected agent: Interview Prep Agent
+## 接続エージェント: Interview Prep Agent
 
-Our second specialist will be the **Interview Prep Agent** - a connected
-agent that helps create comprehensive interview materials and evaluates
-candidate responses.
+2
+番目のスペシャリストは、包括的な面接資料の作成と候補者の応答の評価を支援する、コネクテッド
+エージェントであるInterview Prep Agentです。
 
-**Interview Prep Agent responsibilities**
+Interview Prep Agent**の責任**
 
-- **Create interview packs** with company information, role
-  requirements, and evaluation criteria
+- 企業情報、職務要件、評価基準などを記載した**面接資料を作成します。**
 
-- **Generate interview questions** tailored to specific roles and
-  candidate backgrounds
+- • 特定の職務や候補者の経歴に合わせて**面接質問を作成します。**
 
-- **Answer general questions** about the job roles and applications for
-  stakeholder communication
+- •
+  関係者とのコミュニケーションのために、職務内容や応募に関する**一般的な質問に回答します。**
 
-**Why this should be a connected agent**
+**なぜこれがコネクテッドエージェントであるべきなのか。**
 
-The Interview Prep Agent works better as a connected agent because:
+Interview Prep
+Agentは、接続エージェントとしての方が効果的に機能します。その理由は次のとおりです。　
 
-- The talent acquisition team might want to use it independently across
-  multiple hiring processes
+- 人材獲得チームは、複数の採用プロセスで独立してこれを使用したい場合があります。
 
-- It needs its own knowledge base of interview best practices and
-  evaluation criteria
+- 面接のベストプラクティスと評価基準に関する独自の知識ベースが必要であります。
 
-- Different hiring managers might want to customize its behavior for
-  their teams
+- 採用マネージャーによっては、チームごとに動作をカスタマイズしたい場合もあります。
 
-- It could be reused for internal positions, not just external hiring
+- 外部採用だけでなく、社内ポジションにも再利用できます。
 
-## Exercise 1 - Adding the Application Intake Agent
+## 演習 1 - Application Intake Agentの追加
 
-Let's add our first child agent to your existing Hiring Agent.
+最初の子エージェントを既存のHiring Agentに追加しましょう。
 
-### Task 1 - Solution setup
+### タスク1 - ソリューションのセットアップ
 
-1.  Login to the Copilot Studio at +++https://copilotstudio.microsoft.com+++ if not done already. Ensure that the environment **Dev One** is selected in the top right **Environment Picker**.
-    
-2.  Inside Copilot Studio, select the ellipsis (...) below Tools in the left hand navigation.
+1.  Copilot Studio 内で、左側のナビゲーションの \[Tools\] の下の省略記号
+    (...) を選択します。
 
-3.  Select **Solutions**.
+2.  **Solutions**を選択します。
 
-    ![](./media/image2.png)
+> ![](./media/image2.png)
 
-4.  Locate your **Operative** solution, select the **ellipsis
-    (...)** next to it, and choose **Set preferred solution**.
-    Select **Apply** in the dialogue box that pops up. This will ensure
-    that all your work will be added to this solution.
+3.  **Operative**ソリューションを見つけ、その横にある省**略記号（...）**を選択し、「**Set
+    preferred
+    solution**」を選択します。ポップアップ表示されるダイアログボックスで「**Apply** 」を選択します。これにより、すべての作業がこのソリューションに追加されます。
 
-    ![](./media/image3.png)
+> ![](./media/image3.png)
 
-5.  Select Apply in the Set your preferred solution dialog box.
+4.  \[Set your preferred solution\] ダイアログ ボックスで \[Apply\]
+    を選択します。
 
-    ![](./media/image4.png)
+![](./media/image4.png)
 
-### Task 2 - Configure your Hiring Agent instructions
+### タスク2 - Hiring Agentの指示を設定する
 
-1.  From the Copilot Studio Agents list, open the **Hiring Agent**.
+1.  Copilot Studio へ**移動します**。右上の**Environment
+    Picker**で環境が選択されていることを確認してください。
 
-2.  Select **Edit** in the **Instructions** section of
-    the **Overview** tab of the agent.
+2.  **Hiring Agent**を開きます。
 
-    ![](./media/image5.png)
+3.  エージェントの \[**Overview** \] タブの \[**Instructions** \]
+    セクションで \[**Edit** \] を選択します。
 
-3.  Copy and paste the following instructions in the instructions input area.
+![](./media/image5.png)
 
-    +++You are the central orchestrator for the hiring process. You coordinate activities, provide summaries, and delegate work to specialized agents.+++
+4.  以下の手順をコピーして、手順入力欄に貼り付けます。
 
-4.  Select **Save**.
+**You are the central orchestrator for the hiring process. You
+coordinate activities, provide summaries, and delegate work to
+specialized agents.**
 
-    ![](./media/image6.png)
+5.  \[**Save**\]を選択します。
 
-5.  Select the **Settings** button in the top right of the screen.
+> ![](./media/image6.png)
 
-    ![](./media/image7.png)
+6.  画面の右上にある「**Settings** 」ボタンを選択します。
 
-6.  Review the page and ensure the following settings are applied and
-    then select **Save**.
+> ![](./media/image7.png)
 
-    - Use generative AI orchestration for your agent's responses - **Yes**
-    - Deep Reasoning - **Off**
-    - Let other agents connect to and use this one - **On**
-    - Continue using retired models - **Off**
-    - Content Moderation - **Moderate**
-    - Collect user reactions to agent messages - **On**
-    - Use general knowledge - **Off**
-    - Use information from the Web - **Off**
-    - File uploads - **On**
-    - Code Interpreter - **Off**
+7.  ページを確認し、次の設定が適用されていることを確認してから、\[**Save**\]
+    を選択します。
 
-    ![](./media/image8.png)
+[TABLE]
 
-    ![](./media/image9.png)
+> ![](./media/image8.png)
+>
+> ![](./media/image9.png)
+>
+> ![](./media/image10.png)
+>
+> ![](./media/image11.png)
 
-    ![](./media/image10.png)
+8.  設定メニューを閉じるには、右上隅の**X** をクリックします。
 
-    ![](./media/image11.png)
+> ![](./media/image12.png)
 
-7.  Once the changes are saved, click the **X** in the upper right hand corner to close out of the
-    settings menu
+### タスク3 - Application Intake子エージェントを追加する
 
-     ![](./media/image12.png)
+このタスクでは、Hiring Agentに子エージェントを追加します。
 
-### Task 3 - Add the Application Intake child agent
+1.  Hiring Agent内の**Agents** タブ (ここで専門エージェントを追加します)
+    に**移動し**、\[**Add**\] を選択します。
 
-In this task, you will add a child agent to the Hiring agent.
+![](./media/image13.png)
 
-1.  **Navigate** to the **Agents** tab within your Hiring Agent (this is
-    where you'll add specialist agents) and select **Add**.
+2.  **New child agent**を選択します。
 
-    ![](./media/image13.png)
+![](./media/image14.png)
 
-2.  Select **New child agent**.
+3.  エージェントの**名前**を+++ Application Intake Agent
+    +++ト入力します。
 
-    ![](./media/image14.png)
+4.  「**When will this be
+    used?** 」ドロップダウンの説明に基づいて「**The agent
+    chooses** 」を選択します。これらのオプションは、トピックに設定できるトリガーと似ています。　
 
-3.  **Name** your agent +++Application Intake Agent+++
+5.  **Description** を次のように設定します - +++ Processes incoming
+    resumes and stores candidates in the system +++
 
-4.  Select **The agent chooses - Based on description** in the **When
-    will this be used?** dropdown. These options are similar to the
-    triggers that can be configured for topics.
+![](./media/image15.png)
 
-5.  Set the **Description** to be - +++Processes incoming resumes and stores candidates in the system+++
+6.  「**Advanced**」を展開し、「Priority」を「10000」に設定します。これにより、この質問の前に、Interview
+    Agentが一般的な質問に回答するようになります。ここで、少なくとも1つの添付ファイルがあることを確認するなどの条件を設定することもできます。　
 
-    ![](./media/image15.png)
+![](./media/image16.png)
 
-6.  Expand **Advanced**, and set the Priority to be 10000. This will
-    ensure that later the Interview Agent will be used to answer general
-    questions before this one. A condition could be set here as well
-    such as ensuring that there is at least one attachment.
+7.  **Web
+    Search**トグルが**Disabledに** 設定されていることを確認します、親エージェントから提供された情報のみを使用するためです。**Save**を選択します。
 
-    ![](./media/image89.png)
+![](./media/image17.png)
 
-7.  Ensure that the toggle **Web Search** is set to **Disabled**. This
-    is because we only want to use information provided by the parent
-    agent. Select **Save**
+### タスク4 - 履歴書アップロードエージェントフローを構成する
 
-    ![](./media/image17.png)
+エージェントは、ツールやトピックが提供されなければ、アクションを実行できません。
 
-### Task 4 - Configure Resume Upload agent flow
+*履歴書アップロード*のステップでは、トピックではなく**Agent Flow
+tools** を使用しています。これは、この複数ステップからなるバックエンド処理には、確実な実行と外部システムとの連携が必要となるためです。トピックは会話型ダイアログを誘導するのに最適ですが、Agent
+Flowsは、ユーザーの操作に依存することなく、ファイル処理、データ検証、およびデータベースへのアップサート（新規挿入または既存データの更新）を確実に処理するために必要な構造化された自動化機能を提供します。
 
-Agents can't perform any actions without being given tools or topics.
+1.  Application Intake Agent
+    ページ内の**Tools** セクションを見つけます。
 
-We're using **Agent Flow tools** rather than Topics for the *Upload
-Resume* step because this multi-step backend process requires
-deterministic execution and integration with external systems. While
-Topics are best for guiding the conversational dialog, Agent Flows
-provide the structured automation needed to reliably handle file
-processing, data validation, and database upserts (insert new or update
-existing) without depending on user interaction.
+> **重要：**これは親エージェントの \[Tools\]
+> タブではありませんが、子エージェントの説明の下までスクロールすると見つかります。
 
-1.  Locate the **Tools** section inside the Application Intake Agent
-    page. 
+2.  **+ Add**を選択します。
 
-    >[!Alert] **Important:** This isn't the Tools tab of the parent agent, but can be found if you scroll down underneath the child agent instructions.
+> ![](./media/image18.png)
 
-2.  Select **+ Add**.
+3.  **+ New tool**を選択します。
 
-    ![](./media/image18.png)
+> ![](./media/image19.png)
 
-3.  Select **+ New tool**.
-
-    ![](./media/image19.png)
-
-4.  Select **Agent flow**. The Agent Flow designer will open, this is
-    where we will add the upload resume logic.  
-
+4.  **Agent flow**を選択します。**Agent
+    flow**デザイナーが開きます。ここに履歴書アップロードのロジックを追加します。  
     ![](./media/image20.png)
 
-    >[!Alert] Important: If **+ New tool** option is not available and **Agent Flow** is directly available, then please select Agent flow.
-    >
-    >![](./media/image90.png)
+5.  **When an agent calls the flow** ノードを選択し、**+ Add an
+    input**を選択します。
 
-6.  Select the **When an agent calls the flow** node, and select **+ Add
-    an input**
+> ![](./media/image21.png)
 
-     ![](./media/image21.png)
+6.  以下の表に記載されている各**パラメータ**に**入力情報**を追加してください。表に示されている適切な入力タイプを選択し、名前と説明の両方を必ず追加してください。エージェントが入力内容を理解できるように、説明を必ず含めることが重要です。
 
-7.  Add **inputs**. Select the appropriate input type as shown in the table
-    and be sure to add both the name and the description. It's important
-    to include the description because it will help the agent know what
-    to fill in the input.
+[TABLE]
 
-    | **Type**   |  **Name**  |  **Description**  |
-    |:----|:-------|:-----|
-    |  File  | +++Resume+++   |  +++The Resume PDF file+++  |
-    | Text   |  +++Message+++  |  +++Extract a cover letter style message from the context. The message must be less than 2000 characters.+++  |
-    | Text   | +++UserEmail+++   |  +++The email address that the Resume originated from. This will be the user uploading the resume in chat, or the from email address if received by email.+++  |
-    
-    ![](./media/image22.png)
+> ![](./media/image22.png)
 
-8.  Select the **+ icon** below the when an agent calls the flow node
-    and search for +++Dataverse add+++, then select the **Add a new
-    row** action in the **Microsoft Dataverse** section.
+7.  エージェントがフロー ノードを呼び出したときの下にある **+
+    アイコン**を選択し、+++Dataverse add+++を検索して、**Microsoft
+    Dataverse** セクションで \[**Add a new row** \]
+    アクションを選択します。
 
-    ![](./media/image23.png)
+> ![](./media/image23.png)
+>
+> ![](./media/image24.png)
 
-    ![](./media/image24.png)
+**注記**
 
-    >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
-    add the action. Enter any **name** for the connection and click **Signin** and follow the prompts to
-    create that connection.
-    >
-    >![](./media/image91.png)
-    >
-    >![](./media/image92.png)
-    >
-    >If you face issues in creating connection due to popup blocker as in the screenshot below, please disable the popup blocker to proceed with the connection creation.
-    >
-    >![](./media/image93.png)
+アクションを追加した後、Dataverseに新しい接続を作成するように求められる場合があります。接続名を入力し、addをクリックして接続を作成してください。
 
-8.  Name the node +++**Create Resume**+++, by selecting the 3 dot and
-    select **Rename**.  
+8.  3 つのドットを選択し、\[**Rename**\] を選択して、ノードに
+    +++**Create Resume**+++ という名前を付けます。
 
-    ![](./media/image25.png)
+> ![](./media/image25.png)
 
-9.  Set the **Table name** to **Resumes**, then select **Show all**, to
-    show all the parameters.
+9.  **Table name** を **Resumes** に設定し、\[**Show all**\]
+    を選択して、すべてのパラメータを表示します。
 
-    ![](./media/image26.png)
+> ![](./media/image26.png)
 
-10. Set the following **properties**:
+10. 次のプロパティを設定します。
 
-    |  **Property**  | **How to Set**   | **Details / Expression**   |
-    |:----|:------|:-----|
-    |   **Resume Title** | Dynamic data (thunderbolt icon)   | **When an agent calls the flow → Resume name** If you don't see the Resume name, make sure you have configured the Resume parameter above as a data type.  |
-    |  Cover letter  | Expression (fx icon)   | +++if(greater(length(triggerBody()?['text']), 2000), substring(triggerBody()?['text'], 0, 2000), triggerBody()?['text'])+++ Click on **Add** after the expression is entered.  |
-    |  **Source Email Address**  |Dynamic data (thunderbolt icon)   | **When an agent calls the flow → UserEmail**   |
-    |  **Upload Date**  | Expression (fx icon)   |  +++utcNow()+++ Click on **Add** after the expression is entered.  |
+[TABLE]
 
-    ![](./media/image27.png)
+> ![](./media/image27.png)
+>
+> ![](./media/image28.png)
+>
+> ![](./media/image29.png)
 
-    ![](./media/image28.png)
+11. 「Create Resume」ノードの下の **+ アイコン**を選択し、+++Dataverse
+    upload+++を検索して、「**Upload a file or an
+    image** 」アクションを選択します。
 
-    ![](./media/image29.png)
+![](./media/image30.png)
 
-12. Select the **+ icon** below the Create Resume node, search
-    for +++Dataverse upload+++ and select the **Upload a file or an
-    image** action.
+12. ノードに +++**Upload Resume File**+++ という名前を付けます。
 
-    ![](./media/image30.png)
+> ![](./media/image31.png)
 
-13. Name the node to +++**Upload Resume File**+++.
+13. 次のプロパティを設定します。
 
-    ![](./media/image31.png)
+[TABLE]
 
-14. Set the following **properties**:
+> ![](./media/image32.png)
 
-    |  **Property** |  **How to Set**  |  **Details**  |
-    |:--------|:---------|:---------|
-    | **Content name**   | Dynamic data (thunderbolt icon)   | When an agent calls the flow → Resume name   |
-    | **Table name**   |  Select  |  Resumes  |
-    |  **Row ID**  |  Dynamic data (thunderbolt icon)  | Create Resume → See more → Resume   |
-    |  **Column Name**  |   Select |  Resume PDF  |
-    | **Content**   |  Dynamic data (thunderbolt icon)  | When an agent calls the flow → Resume contentBytes   |
-    
+14. 「**Respond to the agent**」ノードを選択し、「**+ Add an
+    output**」を選択します。以下の表に定義されているプロパティを使用して出力を作成します。
 
-    ![](./media/image32.png)
+> ![](./media/image33.png)
 
-16. Select the **Respond to the agent node**, and then select **+ Add an
-    output**. Create an output with the properties defined in the table
-    below.
+[TABLE]
 
-    ![](./media/image33.png)
+> ![](./media/image34.png)
 
-     | **Property**   |  **How to Set**  |  **Details**  |
-     |:-----|:--------|:--------|
-     |  **Type**  |  Select  |  Text  |
-     |  **Name**  |  Enter  | +++ResumeNumber+++   |
-     |  **Value**  |  Dynamic data (thunderbolt icon)  |  Create Resume → See More → Resume Number  |
-     |  **Description**  |  Enter  | +++The [ResumeNumber] of the Resume created+++   |
-    
-    ![](./media/image34.png)
+15. 右上の「**Save draft** 」を選択します
 
-18. Select **Save draft** on the top right
+> ![](./media/image35.png)
 
-    ![](./media/image35.png)
+16. 「**Overview** 」タブを選択し、「**Details** 」パネルで「**Edit** 」を選択します。以下のように名前と説明を入力し、「**Save**」を選択します。
 
-19. Select the **Overview** tab, Select **Edit** on
-    the **Details** panel. Fill in the name and description as shown
-    below and select **Save**
+    1.  **Flow name**:+++Resume Upload+++
 
-    -  **Flow name**:+++Resume Upload+++
+    2.  **Description**:+++Uploads a Resume when instructed+++
 
-    -  **Description**:+++Uploads a Resume when instructed+++
+> ![](./media/image36.png)
 
-    ![](./media/image36.png)
+17. もう一度 \[**Designer** \] タブを選択し、\[**Publish**開\]
+    を選択します。
 
-20. Select the **Designer** tab again and select **Publish**.
+> ![](./media/image37.png)
 
-    ![](./media/image37.png)
+### タスク5 - フローをエージェントに接続する
 
-### Task 5 - Connect the flow to your agent
+次に、公開されたフローをApplication Intake Agentに接続します。
 
-Now you'll connect the published flow to your Application Intake Agent.
-
-1.  Navigate back to the **Hiring Agent** and select the **Agents** tab.
-    Open the **Application Intake Agent**, locate the **Tools** panel
-    and select **+Add**.  
+1.  **Hiring Agent**に戻り、「**Agents** 」タブを選択します。Application
+    Intake
+    Agentを開き、「**Tools** 」パネルで「**+Add**」を選択します。  
     ![](./media/image38.png)
 
-2.  Select the **Flow** filter and select the **Resume Upload** flow.
+2.  **Flow**  フィルターを選択し、**Resume Upload** フローを選択します。
 
-    ![](./media/image39.png)
+> ![](./media/image39.png)
 
-3.  Select **Add and configure**.
+3.  \[**Add and configure**\]を選択します。
 
-    ![](./media/image40.png)
+> ![](./media/image40.png)
 
-4.  Set the following parameters for the **description** and **when the
-    tool should be used**.
+4.  説明とツールを使用するタイミングについて、次のパラメータを設定します。
 
-    **Description** - +++Uploads a Resume when instructed. STRICT RULE: Only call this tool when referenced in the form "Resume Upload" and there are Attachments+++
-    
-    **Additional details** → **When this tool may be used** - only when referenced by topics or agents
-    
-    ![](./media/image41.png)
+[TABLE]
 
-    **Note:** This description tells the agent when it should call this tool. Notice the use of "strict rule" in the description. This gives a way to provide additional guardrails on when the tool should be used,  in this case, only if there are attachments and the context of the conversation is a resume upload. Choosing when this tool can be used is important as well. Since we are building a multi-agent system and we have a child agent, we want to be sure this tool is ONLY called in the child agent, not the main agent. Setting tha value to "only when referenced by topics or agents" ensure this.
+> ![](./media/image41.png)
+>
+> **注記：**この説明は、エージェントに、このツールをいつ呼び出すかを指示します。説明で「strict
+> rule」が使用されていることに注目してください。これは、ツールをいつ使用すべきかについての追加のガードレールを提供する手段となります。この場合は、添付ファイルがあり、会話のコンテキストが履歴書のアップロードである場合にのみ、ツールを使用します。このツールをいつ使用できるかを選択することも重要です。マルチエージェントシステムを構築しており、子エージェントが存在するため、このツールはメインエージェントではなく、子エージェントで**のみ**呼び出されるようにする必要があります。値を「only
+> when referenced by topics or
+> agents」に設定することで、これを実現できます。
 
-6.  Scroll down to the inputs section and select **Add Input** to add
-    the following inputs:
+5.  入力セクションまで下にスクロールし、「**Add
+    Input** 」を選択して次の入力を追加します。
 
-    Inputs → Add Input - **contentBytes**
+[TABLE]
 
-    Inputs → Add Input - name
+> ![](./media/image42.png)
 
-    ![](./media/image42.png)
+6.  次に、入力のプロパティを設定します。まずは、履歴書ファイルを保存する**contentBytes**入力から始めましょう。**contentBytes**入力の横にある「**Fill
+    using**」ドロップダウンから「**Custom
+    value**」を選択します。「Value」プロパティでは、**3つのドット（...）**を選択します。
 
-8.  Now we need to set the properties of the inputs. We'll start with
-    the **contentBytes** input which will store the actual resume file.
-    Select **Custom value** from the **Fill using** dropdown next to
-    the **contentBytes** input. In the **Value** property, select
-    the **three dots (...)**.
+> ![](./media/image43.png)
 
-    ![](./media/image43.png)
+7.  「**Formula** 」タブを選択します。チャットからファイルを抽出する次の数式を貼り付け、「**Insert** 」ボタンをクリックします。
 
-9.  Select the **Formula** tab. Paste in the following formula which
-    extracts the file from the chat and click the **Insert** button.
++++First(System.Activity.Attachments).Content+++
 
-    +++First(System.Activity.Attachments).Content+++
+> ![](./media/image44.png)
 
-    ![](./media/image44.png)
+8.  次に、履歴書ファイル名を保存する**名前**入力を設定します。これもハードコードされるため、「**Fill
+    using** 」列で「**Custom value** 」オプションを選択してください。
 
-10.  Now we'll configure the **name** input which will store the name of
-    the resume file. This will be hard coded as well so select
-    the **Custom value** option in the **Fill using** column.
+9.  \[**Value** \] 列の **3 つのドット (...)**
+    を選択し、チャットからファイル名を抽出する次の数式を貼り付けて、\[**Insert** \]
+    ボタンをクリックします。
 
-11. Select the **three dots (...)** in the **Value** column and paste in
-    the following formula which extracts the file name from the chat and
-    click the **Insert** button.
++++First(System.Activity.Attachments).Name+++
 
-    +++First(System.Activity.Attachments).Name+++
+> ![](./media/image45.png)
 
-    ![](./media/image45.png)
+10. 次に、**Message** 入力の設定を行います。この入力はAIを使って動的に入力したいので、fill
+    using
+    はそのままにしておきます。「**Value** 」列の「**Customize** 」ボタンを選択して、入力方法の詳細を入力します。　
 
-11. Now we'll configure the **Message** input. We want to fill this one
-    dynamically with AI so we'll leave the fill using as-is. Select
-    the **Customize** button in the **Value** column so we can fill out
-    additional details for how this should be filled.
+![](./media/image46.png)
 
-    ![](./media/image46.png)
+11. 入力欄の「**Description** 」フィールドに以下を入力します。「**Advanced**」を選択します。
 
-12. Enter the following in the **Description** field for the input. Then
-    select **Advanced**.
+**Extract a cover letter style message from the context. Be sure to
+never prompt the user and create at least a minimal cover letter from
+the available context. STRICT RULE - the message must be less than 2000
+characters.**
 
-    +++Extract a cover letter style message from the context. Be sure to never prompt the user and create at least a minimal cover letter from the available context. STRICT RULE - the message must be less than 2000 characters.+++
+**注記**
 
-    **NOTE** Filling in the description for your dynamically filled inputs is a
-crucial step to ensure that your agent knows how to fill in the input
-correctly.
+動的に入力される入力の説明を入力することは、エージェントが入力を正しく入力する方法を認識できるようにするための重要なステップです。
 
-    ![](./media/image47.png)
+> ![](./media/image47.png)
 
-13. Expand out the **Advanced** section to configure some additional
-    properties for this input. In the **How many reprompts** section,
-    select **Don't repeat**
+12. **Advanced** セクションを展開して、この入力に関する追加のプロパティを設定します。**How
+    many reprompts**セクションで、「**Don't repeat**」を選択します。
 
-    ![](./media/image48.png)
+> ![](./media/image48.png)
 
-    **NOTE**
-    
-    This setting helps you customize your user experience so the agent
-    doesn't ask the same question multiple times if it can't identify the
-    data it needs.
+**注記**
 
-14. Scroll down to the **No valid entity found** section. Select
-    the **Set variable to value** option in the **Action if no entity
-    found** dropdown. Type +++Resume upload+++ in the **Default entity
-    value** input.
+この設定により、エージェントが必要なデータを識別できない場合に同じ質問を何度も繰り返さないように、ユーザー
+エクスペリエンスをカスタマイズできます。
 
-    ![](./media/image49.png)
+13. 「**No valid entity
+    found** 」セクションまでスクロールダウンします。「**Action if no
+    entity found** 」ドロップダウンで「**Set variable to
+    value** 」オプションを選択します。「**Default entity
+    value** 」入力欄に+++ Resume upload +++と入力します。
 
-    **NOTE**
+> ![](./media/image49.png)
+>
+> **注記**
+>
+> この設定により、エージェントがこのメッセージ入力を動的に入力できない場合に、バックアップ値をハードコードできます。
 
-    This setting lets us hard code a backup value if the agent is unable to dynamically fill this message input.
+14. 「**Fill using** 」列で「**Custom
+    value** 」オプションを選択し、「**Value** 」列で **3 つのドット
+    (...)** を選択して、**UserEmail** 入力を入力します。
 
-15. We'll fill the **UserEmail** input by selecting the **Custom
-    value** option in the **Fill using** column and select the **three
-    dots (...)** in the **Value** column.
+> ![](./media/image50.png)
 
-    ![](./media/image50.png)
+15. **System** タブを選択し、**User**を検索します。**User.Email**変数を選択して、エージェントを使用しているユーザーのメールアドレスを取得します。
 
-16. Select the **System** tab and search for **User**. Select
-    the **User.Email** variable to get the email of the person using the
-    agent
+> ![](./media/image51.png)
 
-    ![](./media/image51.png)
+16. **Save**を選択します。
 
-17. Select **Save**
+> ![](./media/image52.png)
 
-    ![](./media/image52.png)
+### タスク6 - エージェントの指示を定義する
 
-### Task 6 - Define agent instructions
+このタスクでは、Application Intake agentのエージェント指示を定義します。
 
-In this task, you will define the agent instructions for the Application
-Intake agent.
+1.  \[**Agents** \] タブを選択し、\[**Application Intake Agent**\]
+    を選択して、**Application Intake Agent**に戻ります。
 
-1.  Move back in to the **Application Intake Agent** by selecting
-    the **Agents** tab and selecting the **Application Intake Agent**.
+> ![](./media/image53.png)
 
-    ![](./media/image53.png)
+2.  「**Instructions** 」フィールドに、子エージェント向けの次の明確なガイダンスを貼り付けます。
 
-2.  In the **Instructions** field, paste the following clear guidance
-    for your child agent.
+> You are tasked with managing incoming Resumes, Candidate information,
+> and creating Job Applications.
+>
+> Only use tools if the step exactly matches the defined process.
+> Otherwise, indicate you cannot help.
+>
+> Process for Resume Upload via Chat
+>
+> 1. Upload Resume
+>
+> - Trigger only if /System.Activity.Attachments contains exactly one
+> new resume.
+>
+> - If more than one file, instruct the user to upload one at a time and
+> stop.
+>
+> - Call /Upload Resume once. Never upload more than once for the same
+> message.
+>
+> 2. Post-Upload
+>
+> - Always output the \[ResumeNumber\] (R#####).
+>
+> 。
+>
+> ![](./media/image54.png)
 
-    ```
-    You are tasked with managing incoming Resumes, Candidate information, and creating Job Applications.  
-    Only use tools if the step exactly matches the defined process. Otherwise, indicate you cannot help.  
-    
-    Process for Resume Upload via Chat  
-     Upload Resume  
-      - Trigger only if /System.Activity.Attachments contains exactly one new resume.  
-      - If more than one file, instruct the user to upload one at a time and stop.  
-      - Call /Upload Resume once. Never upload more than once for the same message.  
-    
-     Post-Upload  
-      - Always output the [ResumeNumber] (R#####).
-    ```
-
-    ![](./media/image54.png)
-
-3.  Where the instructions include a forward slash (/), select the text following the / and select the resolved name. Do this for,
+3.  指示にスラッシュ（/）が含まれている場合は、/に続くテキストを選択し、解決された名前を選択します。
 
     - System.Activity.Attachments (Variable)
 
-    - Resume Upload (Tool)
+    - Upload Resume (Tool)
 
-    >[!Note] **Note:** If you click on the System.Acticvity.Attachements in the
-    instructions, you will get the resolved name listed. You can select
-    it. After selecting, if there is any part of the previously existing
-    text available, please delete it.
-    
-    ![](./media/image55.png)
-    
-    ![](./media/image56.png)
+> 注:
+> 手順内のSystem.Acticvity.Attachementsをクリックすると、解決された名前が表示されます。これを選択してください。選択後、既存のテキストの一部が残っている場合は削除してください。　
+>
+> ![](./media/image55.png)
+>
+> ![](./media/image56.png)
 
-4.  The instructions should now look like this.
+4.  手順は次のようになります。
 
-    ![](./media/image57.png)
+> ![](./media/image57.png)
 
-5.  Select **Save.**
+5.  \[**Save**\]を選択します。
 
-    ![](./media/image58.png)
+> ![](./media/image58.png)
 
-### Task 7 - Test your Application Intake Agent
+### タスク 7 - Application Intake Agentをテストする
 
-Now let's verify that our agent is working correctly by calling our
-child agent and following our instructions.
+次に、子エージェントを呼び出して指示に従い、エージェントが正しく動作していることを確認しましょう。
 
-1.  **Toggle** the test panel open by selecting **Test**.
+1.  **「Test」**を選択して、テストパネルを開閉します。
 
-    ![](./media/image59.png)
+> ![](./media/image59.png)
 
-2.  Select the Attachement icon, select the resume – AVERY EXAMPLE pdf from **C:\LabFiles\LabFiles**
-    and click **Open**.
+2.  添付ファイルアイコンを選択し、履歴書 – AVERY EXAMPLE pdf
+    を選択して、「**Open**」をクリックします。
 
-    ![](./media/image60.png)
+> ![](./media/image60.png)
 
-3.  Give the message +++Process this resume+++ and hit **send**.
+3.  「+++ Process these resumes
+    +++」というメッセージを入力し、「**送信**」をクリックします。
 
-    ![](./media/image61.png)
+> ![](./media/image61.png)
 
-4.  The agent should then give a message similar to **The resume for
-    Avery Example has been successfully uploaded. The resume number is
-    R1001.**
+4.  エージェントは「**The resume for Avery Example has been successfully
+    uploaded. The resume number is
+    R1001**」のようなメッセージを表示します。
 
-    ![](./media/image62.png)
+> ![](./media/image62.png)
 
-5.  In the **Activity map**, you should see the **Application Intake
-    Agent** handling the resume upload.
+5.  **Activity map**には、履歴書のアップロードを処理する**Application
+    Intake Agent**が表示されます。
 
-    ![](./media/image63.png)
+> ![](./media/image63.png)
 
-6.  If the app is not open already, navigate to
-    +++make.powerapps.com+++. Ensure the Dev One environment is selected
-    in the top right Environment Picker. Select **Apps** → Hiring Hub →
-    ellipsis(...) menu → **Play**  
+6.  アプリがまだ開いていない場合は、+++make.powerapps.com+++
+    にアクセスしてください。右上のEnvironment Pickerで Dev One
+    環境が選択されていることを確認してください。「**Apps** 」→「Hiring
+    Hub」→省略記号(...)メニュー→「**Play**」を選択してください。  
     ![](./media/image64.png)
 
-    **NOTE:** If the play button is greyed out it means you have not
-published your solution. Select **Solutions** → **Publish all
-customizations**.
+**注記：**再生ボタンがグレー表示になっている場合は、ソリューションがまだ公開されていないことを意味します。**Solutions** → **Publish
+all customizations**を選択してください。
 
-7.  In the Power Apps – Hiring Hub app, navigate to **Resumes**, and
-    check that the resume file is uploaded and the cover letter is set
-    accordingly.
+7.  Power Apps – Hiring Hub アプリで、\[**Resumes**\]
+    に移動し、履歴書ファイルがアップロードされ、カバー
+    レターがそれに応じて設定されていることを確認します。
 
-    ![](./media/image65.png)
+> ![](./media/image65.png)
 
-## Exercise 2: Adding the Interview Prep connected agent
+## 演習2: 面接準備接続エージェントの追加
 
-Now let's create our connected agent for interview preparation and add
-it to your existing Hiring Agent.
+次に、面接準備用の接続エージェントを作成し、既存のHiring
+Agentに追加しましょう。
 
-### Task 1: Create the connected Interview Agent
+### タスク 1: 接続されたInterview Agentを作成する
 
-1.  From the Copilot Studio, select the **Agents** tab in the left
-    navigation and select the **drop down** next to **+ Create blank
-    agent**, and select **Advanced create**.
+1.  Copilot Studio の左側のナビゲーションで \[**Agents** \]
+    タブを選択し、\[+ **Create blank agent**\]
+    の横にある**ドロップダウン**を選択して、\[**Advanced create**\]
+    を選択します。
 
-    ![](./media/image66.png)
+> ![](./media/image66.png)
 
-2.  Select the **Solution** as **Operative** and select **Confirm and
-    create**.
+2.  **Solution**として「**Operative**」を選択し、「**Confirm and
+    create**」を選択します。
 
-    ![](./media/image67.png)
+> ![](./media/image67.png)
 
-3.  Select **Edit** against the Details.
+3.  Detailsに対して**Edit**を選択します。
 
-    ![](./media/image68.png)
+> ![](./media/image68.png)
 
-4.  Provide the below details and select **Save**.
+4.  以下の詳細を入力し、「**Save**」を選択します。
 
     - **Name**: +++Interview Agent+++
 
     - **Description**: +++Assists with the interview process.+++
 
-    ![](./media/image69.png)
+> ![](./media/image69.png)
 
-5.  Select **Edit** against **Instructions**, enter the below
-    instruction and select **Save**.
+5.  \[**Instructions**\] に対して \[**Edit**\]
+    を選択し、以下の手順を入力して \[**Save**\] を選択します。
 
-    ```
-    You are the Interview Agent. You help interviewers and hiring managers prepare for interviews. You never contact candidates. 
-    Use Knowledge to help with interview preparation. 
-    
-    The only valid identifiers are:
-      - ResumeNumber (ppa_resumenumber)→ format R#####
-      - CandidateNumber (ppa_candidatenumber)→ format C#####
-      - ApplicationNumber (ppa_applicationnumber)→ format A#####
-      - JobRoleNumber (ppa_jobrolenumber)→ format J#####
-    
-    Examples you handle
-      - Give me a summary of ...
-      - Help me prepare to interview candidates for the Power Platform Developer role
-      - Create interview assistance for the candidates for Power Platform Developer
-      - Give targeted questions for Candidate Alex Johnson focusing on the criteria for the Job Application
-      
-    How to work:
-        You are expected to ask clarification questions if required information for queries is not provided
-        - If asked for interview help without providing a job role, ask for it
-        - If asking for interview questions, ask for the candidate and job role if not provided.
+> You are the Interview Agent. You help interviewers and hiring managers
+> prepare for interviews. You never contact candidates.
+>
+> Use Knowledge to help with interview preparation.
+>
+> The only valid identifiers are:
+>
+> - ResumeNumber (ppa_resumenumber)→ format R#####
+>
+> - CandidateNumber (ppa_candidatenumber)→ format C#####
+>
+> - ApplicationNumber (ppa_applicationnumber)→ format A#####
+>
+> - JobRoleNumber (ppa_jobrolenumber)→ format J#####
+>
+> Examples you handle
+>
+> - Give me a summary of ...
+>
+> - Help me prepare to interview candidates for the Power Platform
+> Developer role
+>
+> - Create interview assistance for the candidates for Power Platform
+> Developer
+>
+> - Give targeted questions for Candidate Alex Johnson focusing on the
+> criteria for the Job Application
+>
+> How to work:
+>
+> You are expected to ask clarification questions if required
+> information for queries is not provided
+>
+> - If asked for interview help without providing a job role, ask for it
+>
+> - If asking for interview questions, ask for the candidate and job
+> role if not provided.
+>
+> General behavior
+>
+> - Do not invent or guess facts
+>
+> - Be concise, professional, and evidence-based
+>
+> - Map strengths and risks to the highest-weight criteria
+>
+> - If data is missing (e.g., no resume), state what is missing and ask
+> for clarification
+>
+> - Never address or message a candidate
+>
+> ![](./media/image70.png)
 
-    General behavior
-    - Do not invent or guess facts
-    - Be concise, professional, and evidence-based
-    - Map strengths and risks to the highest-weight criteria
-    - If data is missing (e.g., no resume), state what is missing and ask for clarification
-    - Never address or message a candidate
-    ```
-    ![](./media/image70.png)
+6.  **Web
+    Search** は**Disabled**に設定されていることを確認してください。
 
-6.  Ensure that **Web Search** is **Disabled.**
+> ![](./media/image71.png)
 
-    ![](./media/image71.png)
+### タスク2: データアクセスを構成し、公開する
 
-### Task 2: Configure data access and publish
+このタスクでは、データへのアクセスを構成し、エージェントを公開します。
 
-In this task, you will configure the access to data and then publish the
-agent.
+1.  **Knowledge** セクションで、**+ Add knowledge**を選択します。
 
-1.  In the **Knowledge** section, select **+ Add knowledge.**
+> ![](./media/image72.png)
 
-    ![](./media/image72.png)
-
-2.  Select **Dataverse**  
-
+2.  **Dataverse**を選択します。  
     ![](./media/image73.png)
 
-4.  In the **Search box**, type +++ppa\_+++. This is the prefix for the
-    tables you imported previously in earlier lab.
+3.  **検索ボックス**に「+++ppa\_+++」と入力します。これは、前のラボでインポートしたテーブルのプレフィックスです。
 
-5.  **Select** all 5 tables (Candidate, Evaluation Criteria, Job
-    Application, Job Role, Resume). Select **Add to agent**
+4.  5つのテーブルすべて（Candidate, Evaluation Criteria, Job
+    Application, Job Role, Resume）**選択します**。「**Add to
+    agent**」を選択します。
 
-    ![](./media/image74.png)
+> ![](./media/image74.png)
 
-5.  Select the **Settings** button in the upper right hand corner
+5.  右上隅にある**Settings** ボタンを選択します
 
-    ![](./media/image75.png)
+> ![](./media/image75.png)
 
-6.  Ensure that the following settings are configured.
+6.  次の設定が構成されていることを確認してください。
 
     - **Let other agents connect to and use this one:** On
 
@@ -708,130 +660,113 @@ agent.
 
     - **Content moderation level:** Medium
 
-    ![](./media/image76.png)
+> ![](./media/image76.png)
+>
+> ![](./media/image77.png)
+>
+> ![](./media/image78.png)
 
-    ![](./media/image77.png)
+7.  \[**Save** \] を選択し、右上隅の
+    **Publish**を選択して設定メニューを閉じます。
 
-    ![](./media/image78.png)
+> ![](./media/image79.png)
 
-7.  Select **Save** and select the **X** in the upper right hand corner
-    to close out of the settings menu.
+8.  \[**Publish**\]を選択します。
 
-    ![](./media/image79.png)
+> ![](./media/image80.png)
 
-8.  Select **Publish**.
+9.  確認ダイアログで「**Publish**」を選択し、公開が完了するまで待ちます。
 
-    ![](./media/image80.png)
+![](./media/image81.png)
 
-9.  Select **Publish** in the confirmation dialog and wait for the
-    publishing to complete.
+### タスク3: Interview Prep AgentをHiring Agentに接続する
 
-    ![](./media/image81.png)
+このタスクでは、Interview Prep AgentをHiring
+Agentに接続して、マルチ・エージェント
+オーケストレーションを実現します。　
 
-### Task 3: Connect the Interview Prep Agent to your Hiring Agent
+1.  **Hiring Agent**の画面に戻り、「**Agents** 」タブを選択し、「+ **Add
+    an agent**」を選択します。
 
-In this task, you will connect the Interview Prep agent to your Hiring
-agent to achieve multi agent orchestration.
+> ![](./media/image82.png)
 
-1.  Navigate back to your **Hiring Agent**. Select the **Agents** Tab
-    and select **+Add an agent.**
+2.  **Interview Agent**を選択します。
 
-    ![](./media/image82.png)
+> ![](./media/image83.png)
+>
+> **注記**
+>
+> Interview
+> Agentがグレー表示になっていて、選択できない場合は、公開されていないことを意味します。Interview
+> Agentに戻って、まず公開してください。
 
-2.  Select the **Interview Agent**.
+3.  **Description**を次のように設定します。
 
-    ![](./media/image83.png)
+> Assists with the interview process and provides information about
+> Resumes, Candidates, Job Roles, and Evaluation Criteria.
+>
+> 「Pass conversation history to this
+> agent」にチェックが入っていることをご確認ください。これにより、親エージェントは接続中のエージェントに完全なコンテキストを提供できるようになります。　
+>
+> \[**Add and configure**\]を選択します。
 
-    **NOTE**
+![](./media/image84.png)
 
-    If the Interview Agent is greyed out and not selectable then that means it did not Publish. Go back to the Interview Agent and publish it first.
+4.  **Application Intake Agent**と**Interview
+    Agent**の両方が表示されていることを確認してください。一方が子エージェントで、もう一方が接続エージェントであることにご注意ください。　
 
-3.  Set the **Description** to be,
+> ![](./media/image85.png)
+>
+> ![](./media/image86.png)
 
-    ```
-    Assists with the interview process and provides information about Resumes, Candidates, Job Roles, and Evaluation Criteria.
-    Notice that the Pass conversation history to this agent is checked. This allows the parent agent to provide full context to the connected agent.
-    Select Add and configure.
-    ```
+### タスク4: マルチ・エージェントコラボレーションのテスト
 
-    ![](./media/image84.png)
+1.  **「テスト」**を選択して、テストパネルを開閉します。
 
-4.  Ensure that you see both the **Application Intake Agent**, and
-    the **Interview Agent**. Notice how one is a child and the other is
-    a connected agent.
+2.  テスト用の履歴書ファイルを**アップロードし**、親エージェントが接続されたエージェントに何を委任できるかを伝える以下の説明を入力してください。
 
-    ![](./media/image85.png)
+> Upload this resume, then show me open job roles, each with a
+> description of the evaluation criteria, then use this to match the
+> resume to at least one suitable job role even if not a perfect match.
+>
+> ![](./media/image87.png)
 
-    ![](./media/image86.png)
+3.  Hiring
+    Agentがアップロードを子エージェントに委任し、その後、Interview
+    Agentにその知識を使用して概要と職務の一致を提供するように依頼した点に注目してください。　
 
-### Task 4: Test multi-agent collaboration
+> ![](./media/image88.png)
 
-1.  **Toggle** the test panel open by selecting **Test**.
+4.  履歴書、職務内容、評価基準について、様々な質問方法を試してみましょう。例：
 
-2.  **Upload** one of the test resumes (AVERY EXAMPLE or TAYLOR TESTPERSON pdf), and enter the following
-    description which tell the parent agent what it can delegate to the
-    connected agent:
+> ++++++Give me a summary of active resumes+++
+>
+> +++Summarize resume R1006+++
+>
+> +++Which active resumes are suitable for the Power Platform Developer
+> role?+++
 
-    ```
-    Upload this resume, then show me open job roles, each with a description of the evaluation criteria, then use this to match the resume to at least one suitable job role even if not a perfect match.
-    ```
-    
-     ![](./media/image87.png)
+## まとめ
 
-3.  Notice how the Hiring Agent delegated the upload to the child agent,
-    and then asked the Interview Agent to provide a summary and job role
-    match using its knowledge.
+単一のHiring
+Agentを、特殊な機能を備えた洗練されたマルチ・エージェントのオーケストレーションに正常に変換しました。
 
-     ![](./media/image88.png)
+このラボで達成した成果は次のとおりです。
 
-## Summary
+**マルチ・エージェントアーキテクチャの習得**  
+これで、子エージェントと接続エージェントをいつ使用するか、またスケーラブルなシステムを設計する方法がわかりました。
 
-You've successfully transformed your single Hiring Agent into a
-sophisticated multi-agent orchestrated one with specialized
-capabilities.
+**Application Intake子エージェント**  
+履歴書を処理し、候補者データを抽出し、Dataverse
+に情報を保存する特殊な子エージェントをHiring Agentに追加しました。　
 
-Here's what you've accomplished in this lab.
+**Interview Prepコネクテッドエージェント**  
+面接準備用の再利用可能な接続エージェントを構築し、それをHiring
+Agentに正常に接続しました。　
 
-**Multi-agent architecture mastery**  
-You now understand when to use child agents vs connected agents and how
-to design systems that scale.
+**エージェント通信**  
+メインエージェントが専門エージェントと連携し、コンテキストを共有し、複雑なワークフローを調整する方法について学びました。
 
-**Application Intake child agent**  
-You've added a specialized child agent to your Hiring Agent that
-processes resumes, extracts candidate data, and stores information in
-Dataverse.
-
-**Interview Prep connected agent**  
-You've built a reusable connected agent for interview preparation and
-successfully connected it to your Hiring Agent.
-
-**Agent communication**  
-You've seen how your main agent can coordinate with specialist agents,
-share context, and orchestrate complex workflows.
-
-**Foundation for autonomy**  
-Your enhanced hiring system is now ready for the advanced features we'll
-add in upcoming missions: autonomous triggers, content moderation, and
-deep reasoning.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**自律のための基盤**  
+強化された採用システムは、今後のミッションで追加される高度な機能（自律トリガー、コンテンツ
+モデレーション、および深い推論）に対応できるようになりました。
