@@ -80,7 +80,7 @@ incorrect.](./media/image10.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-8.  From the left pane, select **Manage** -\> **Groups**.
+8.  From the left pane, select **Manage** -> **Groups**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
@@ -210,8 +210,7 @@ incorrect.](./media/image33.png)
 
 26. From a new tab, navigate to
     +++https://admin.powerplatform.microsoft.com/+++.
-    Select **Manage** from the left pane and then select the **Tenant
-    Settings** option.
+    Select **Manage** from the left pane and then select the **Tenant Settings** option.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
@@ -248,9 +247,9 @@ Safe Travels agent template.
 
 2.  From a newtab, login to +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++ (Replacing **< EnvironmentID >** with the Environment ID value fetched above and saved locally)
     
-3.  This open up the **Start free trial** page. Select **United States** as the country and click **Start free trial**.
+3.  This open up the **Start free trial** page. Leave the country as **United States** and click **Start free trial**.
 
-    ![](./media/image39.png)
+    ![](./media/image74.png)
 
 3.  Select Skip in the Welcome screen.
 
