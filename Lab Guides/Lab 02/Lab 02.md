@@ -246,7 +246,9 @@ Safe Travels agent template.
    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
 
 2.  From a newtab, login to +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++ (Replacing **< EnvironmentID >** with the Environment ID value fetched above and saved locally)
-    
+
+  >[!Alert] **Important:** **Save** this **url** to access the Copilot Sutdio in all the upcoming labs.
+
 3.  This open up the **Start free trial** page. Leave the country as **United States** and click **Start free trial**.
 
     ![](./media/image74.png)
