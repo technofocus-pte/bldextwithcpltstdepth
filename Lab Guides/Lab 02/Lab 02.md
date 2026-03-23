@@ -42,7 +42,7 @@ seamlessly with the agents in Copilot Studio throughout this course.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image3.png)
     
-2.  Ignore the steps from this step till step 4 and continue from Step 5, to enable the authentication on the **Authenticator app**, if they were **done** in the **lab 1**. Else complete these steps.
+2.  Ignore the steps from this step till step 4 and continue from Step 6, to enable the authentication on the **Authenticator app**, if they were **done** in the **lab 1**. Else complete these steps.
 
     Select **Next** in the Keep your account secure window and follow the **prompts**.
 
