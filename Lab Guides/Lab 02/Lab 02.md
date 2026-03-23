@@ -27,7 +27,11 @@ seamlessly with the agents in Copilot Studio throughout this course.
 
 1.  Navigate to the Azure portal at
     +++https://portal.azure.com/+++ and login with your tenant
-    credentials present in the **Resources** tab if prompted.
+    credentials if prompted.
+
+    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
+      
+    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
     ![A screenshot of a computer login AI-generated content may be
     incorrect.](./media/image1.jpeg)
@@ -40,7 +44,7 @@ seamlessly with the agents in Copilot Studio throughout this course.
     
 2.  Ignore the steps from this step till step 4 and continue from Step 5, to enable the authentication on the **Authenticator app**, if they were **done** in the **lab 1**. Else complete these steps.
 
-Select **Next** in the Keep your account secure window and follow the **prompts**.
+    Select **Next** in the Keep your account secure window and follow the **prompts**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
