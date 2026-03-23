@@ -38,8 +38,9 @@ seamlessly with the agents in Copilot Studio throughout this course.
     ![A screenshot of a computer AI-generated content may be
     incorrect.](./media/image3.png)
     
-2.  Select **Next** in the Keep your account secure window and follow
-    the **prompts**.
+2.  Ignore the steps from this step till step 4 and continue from Step 5, to enable the authentication on the **Authenticator app**, if they were **done** in the **lab 1**. Else complete these steps.
+
+Select **Next** in the Keep your account secure window and follow the **prompts**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image4.png)
@@ -70,22 +71,22 @@ incorrect.](./media/image9.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image10.png)
 
-6.  Search for and select +++Microsoft EntraID+++.
+7.  Search for and select +++Microsoft EntraID+++.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image11.png)
 
-7.  From the left pane, select **Manage** -\> **Groups**.
+8.  From the left pane, select **Manage** -\> **Groups**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image12.png)
 
-8.  Select **New group** to create a new security group.
+9.  Select **New group** to create a new security group.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image13.png)
 
-9.  Enter the below details
+10.  Enter the below details
 
     - Group type – Select **Security**
 
@@ -97,7 +98,7 @@ incorrect.](./media/image13.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
-10. Select **No owners selected**, select the **MOD Administrator** from
+11. Select **No owners selected**, select the **MOD Administrator** from
     the **Add owners** page and click on **Select**.
 
     ![A screenshot of a group AI-generated content may be
@@ -106,24 +107,24 @@ incorrect.](./media/image15.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image16.png)
 
-11. Similarly, select **No members selected**, and add the **MOD
+12. Similarly, select **No members selected**, and add the **MOD
     Administrator** from the list and click on **Select**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image17.png)
 
-12. Select **No roles selected**. If you **do not** see this **option**,
+13. Select **No roles selected**. If you **do not** see this **option**,
     ignore this and the next step.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image18.png)
 
-13. Search for and select +++**Global admin**+++ and select **Select**.
+14. Search for and select +++**Global admin**+++ and select **Select**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image19.png)
 
-14. Select **Create** once all the details are added and
+15. Select **Create** once all the details are added and
     select **Yes** in the confirmation dialog.
 
     ![A screenshot of a group AI-generated content may be
@@ -132,32 +133,32 @@ incorrect.](./media/image20.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image21.png)
 
-15. Ensure that you get a **success** message.
+16. Ensure that you get a **success** message.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image22.png)
 
-16. Select Contoso|Groups from the top left.
+17. Select Contoso|Groups from the top left.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image23.png)
 
-17. Select **Properties** under **Manage** from the left pane.
+18. Select **Properties** under **Manage** from the left pane.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image24.png)
 
-18. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
+19. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image75.png)
 
-19. Select **Enabled** under Security defaults option and click on **Save**.
+20. Select **Enabled** under Security defaults option and click on **Save**.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image77.png)
 
-20. Select **Save** in the Contoso|Properties page.
+21. Select **Save** in the Contoso|Properties page.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image78.png)
