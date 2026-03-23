@@ -242,24 +242,15 @@ incorrect.](./media/image38.png)
 In this exercise, you will create the agent in Copilot Studio using the
 Safe Travels agent template.
 
-1.  From a browser, login to
-    +++https://copilotstudio.microsoft.com+++.
-    The Start free trial page opens up. Select your country and
-    click **Start free trial**.
+1. Still from the Power Platform admin center, select **Manage** -> **Environments -> Dev One** and copy the value of the **Environment ID** and save it locally. 
+
+   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
+
+2.  From a newtab, login to +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++ (Replacing **< EnvironmentID >** with the Environment ID value fetched above and saved locally)
+    
+3.  This open up the **Start free trial** page. Select **United States** as the country and click **Start free trial**.
 
     ![](./media/image39.png)
-
-2.  Select the **Dev One** environment.
-
-    ![](./media/image40.png)
-
-    >[!Alert] **Important** If the Copilot Studio does not show up the option to select **Environment** as in the below >screenshot, then follow the below steps.
-    >
-    >![A screenshot of a computer AI-generated content may be incorrect.](./media/image41.png)
-    >
-    >Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** -\> **Environments -\> Dev One** and >select the value of the **Environment ID**. ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
-
-    >Navigate back to the Copilot Studio tab and open +++https://copilotstudio.microsoft.com/environments/**\< EnvironmentID \>**+++ (Replacing **\< EnvironmentID \>** with the value fetched above)
 
 3.  Select Skip in the Welcome screen.
 
