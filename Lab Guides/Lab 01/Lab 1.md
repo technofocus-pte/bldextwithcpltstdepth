@@ -44,7 +44,7 @@ incorrect.](./media/image18.png)
 incorrect.](./media/image20.png)
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image22.png)
+incorrect.](./media/image21.png)
 
 5.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
