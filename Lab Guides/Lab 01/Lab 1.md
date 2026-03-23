@@ -20,18 +20,44 @@ domain-specific assistant to life.
       
     -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
-1.  Select **New agent** from the **left** pane. If you are **not** able
+2. If you get a prompt to **Keep your account secure**, select **Next** in the window and follow the **prompts**. Else, ignore these steps and continue from **Step 5**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image16.png)
+
+3.  Download the Authenticator app in your phone if you do not have it
+    already.
+
+    ![A screenshot of a computer screen AI-generated content may be
+incorrect.](./media/image17.png)
+
+4.  Follow the prompts and complete the setup.
+
+    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image18.png)
+
+    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image19.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image20.png)
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image22.png)
+
+5.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
     again in few minutes. At times, it takes few minutes to get loaded
     completely.
 
     ![](./media/image2.png)
 
-2.  Select the **Describe** tab.
+6.  Select the **Describe** tab.
 
     ![](./media/image3.png)
 
-3.  You can start defining the custom agent. You can choose a template
+7.  You can start defining the custom agent. You can choose a template
     to start from, or you can simply *describe* the agent by providing a
     description in natural language. Let's provide the following initial
     description
@@ -40,7 +66,7 @@ domain-specific assistant to life.
 
     ![](./media/image4.png)
 
-4.  Once you have provided the instructions, the initial details are
+8.  Once you have provided the instructions, the initial details are
     populated.
 
 5.  You can rename the agent if needed. Provide the following prompt to
