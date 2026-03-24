@@ -132,7 +132,7 @@ Let's add our first child agent to your existing Hiring Agent.
 
 ### Task 1 - Solution setup
 
-1.  Login to the Copilot Studio at +++https://copilotstudio.microsoft.com+++ if not done already. Ensure that the environment **Dev One** is selected in the top right **Environment Picker**.
+1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 2 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
     
 2.  Inside Copilot Studio, select the ellipsis (...) below Tools in the left hand navigation.
 
