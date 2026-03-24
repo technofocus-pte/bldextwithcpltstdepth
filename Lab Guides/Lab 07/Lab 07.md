@@ -61,9 +61,7 @@ To automate portfolio lookups, the agent must be able to detect incoming
 email requests and initiate the appropriate automation flow based on
 subject line filtering.
 
-1.  Login to the Copilot Studio at
-    +++https://copilotstudio.microsoft.com+++ using your login
-    credentials.
+1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 2 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
 
 2.  Select the **Dev One** or **CUA** (if you have created it in the last Task) environment from the top right.
 
