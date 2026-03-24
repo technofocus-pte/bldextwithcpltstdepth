@@ -57,6 +57,12 @@ connectivity
     
     ![](./media/image6.png)
 
+6.  Select **+ Add knowledge** to add a knowledge source. Browse and choose **Account data.xlsx** from C:\LabFiles and seelct **Add to agent**.
+
+    ![](./media/image33.png)
+
+    ![](./media/image34.png)
+    
 6.  Scroll down and select **+ Add suggested prompts** in the Suggested
     prompts section.
 
@@ -78,9 +84,13 @@ connectivity
 
     ![](./media/image29.png)
 
-10. Select **Add and configure**.
+10. Create new connection if prompted and then select **Add and configure**.
 
-    ![](./media/image11.png)
+    ![](./media/image30.png)
+
+    ![](./media/image31.png)
+
+    ![](./media/image32.png)
 
     **Note:** The Dataverse MCP Server will allow you natural language
 access to your tables in Dataverse. We have sample data in the Accounts
@@ -88,37 +98,39 @@ and Contacts tables that we will use. The tools available are: list
 tables, describe table, read data, create record, update record, list
 prompts, execute prompt, list knowledge sources, and retrieve knowledge
 
-11. Review the tools available for the Dataverse MCP Server. You can
+12. Review the tools available for the Dataverse MCP Server. You can
     select and deselect which tools are available to the agent. When the
     tool is executed, the list is dynamically updated from the MCP
     Server. You cannot call an MCP Server from a Topic for this reason.
 
     ![](./media/image12.png)
 
-12. Enter +++List the accounts in the state of WA+++ in the **Test**
-    pane and click **Send**.
+13. Ensure that the **knowledge source** you had added earlier is in the **Ready** state. Open the **Test** pane and enter +++Upload data to Accounts table using the Account data tracker+++
 
-    ![](./media/image13.png)
+    ![](./media/image36.png)
 
-13. For the first run, you would get a Consent dialog as by default the
-    tool is
-
-    configured to use “End user credentials”. Please click **Allow** to
+14. For the first run, you would get a Consent dialog as by default the
+    tool is configured to use “End user credentials”. Please click **Allow** to
 continue.
 
     ![](./media/image14.png)
 
-14. See the series of actions that take place and the output from the
-    MCP server,
+15. If the knowledge source takes a very long time to get to the Ready state, copy few rows from the tracker and send it in the Test pane to be added to he Account table.
 
-    ![](./media/image15.png)
+    ![](./media/image37.png)
     
-    ![](./media/image16.png)
+13. Now, enter +++List the accounts in the state of WA+++ in the **Test**
+    pane and click **Send**.
 
-15. If you click on the tool that was used, you will see the Inputs and
-    Outputs of the tool.
+    ![](./media/image38.png)
 
-    ![](./media/image17.png)
+15. See the series of actions that take place and the output from the
+    MCP server.
+
+    ![](./media/image39.png)
+    
+    ![](./media/image40.png)
+
 
 ## Task 2: Structure Agent Responses with Custom Prompts
 
@@ -128,12 +140,11 @@ your agent that provide business-relevant information.
 1.  If you tried some different testing in the Copilot, you may have
     noticed you will get different attributes for accounts and contacts.
     If you want a more structured response, you can create a **prompt**
-    in the **Tools**. In the **Tools** tab, click **+ Add a tool** then
-    **+ New tool**.
+    in the **Tools**. In the **Tools** tab, click **+ Add a tool** then, select **Prompt**.
 
     ![](./media/image18.png)
     
-    ![](./media/image19.png)
+    ![](./media/image41.png)
 
 2.  Select Prompt.
 
@@ -177,7 +188,7 @@ your agent that provide business-relevant information.
     **Send**. You can see that the response is in the structured
     response with the custom prompt created.
 
-    ![](./media/image28.png)
+    ![](./media/image42.png)
 
 ## Summary
 
