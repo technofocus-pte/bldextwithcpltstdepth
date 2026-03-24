@@ -236,6 +236,26 @@ incorrect.](./media/image37.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image38.png)
 
+31.	Select **Manage** -> **Environments** -> **Dev One** environment.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image80.png)
+
+32.	Select **Settings** from the top menu bar.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image81.png)
+
+33.	Select **Product** -> **Features**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image82.png)
+
+34. Scroll down to the **Dataverse Model Context Protocol** section and select the checkbox against **Allow MCP clients to interact with Dataverse MCP Server (Preview version)** and select **Save**.
+
+    ![A screenshot of a computer AI-generated content may be
+incorrect.](./media/image83.png)
+
 ## Exercise 1: Create Safe Travels agent from template
 
 In this exercise, you will create the agent in Copilot Studio using the
