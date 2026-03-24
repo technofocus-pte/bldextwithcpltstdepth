@@ -186,17 +186,16 @@ your agent that provide business-relevant information.
 
 ## Summary
 
-In this lab, you build a Copilot Agent in Microsoft Copilot Studio that
+In this lab, you built a Copilot Agent in Microsoft Copilot Studio that
 integrates with the **Dataverse MCP Server** to securely access and
-manage business data using natural language. You configure the agent to
+manage business data using natural language. You configured the agent to
 read, create, and update records across Dataverse tables such as
 **Accounts, Contacts, and Opportunities**, without relying on external
 knowledge or custom APIs.
 
-You also learn how to **structure agent responses** using custom
+You also learnt how to **structure agent responses** using custom
 prompts, ensuring consistent, business-friendly outputs that surface the
-most relevant data fields for end users. By the end of the lab, you can
-design an agent that streamlines sales and account management workflows,
+most relevant data fields for end users. Now, you can design an agent that streamlines sales and account management workflows,
 delivers clear and structured insights, and demonstrates how MCP-powered
 agents can solve real-world business challenges with live enterprise
 data.
