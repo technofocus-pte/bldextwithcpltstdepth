@@ -137,18 +137,12 @@ continue.
 Create custom prompts to ensure consistent, structured responses from
 your agent that provide business-relevant information.
 
-1.  If you tried some different testing in the Copilot, you may have
-    noticed you will get different attributes for accounts and contacts.
-    If you want a more structured response, you can create a **prompt**
+1.  To have a more structured response, you can create a **prompt**
     in the **Tools**. In the **Tools** tab, click **+ Add a tool** then, select **Prompt**.
 
     ![](./media/image18.png)
     
     ![](./media/image41.png)
-
-2.  Select Prompt.
-
-    ![](./media/image20.png)
 
 3.  Rename the **prompt** **name** at the top to +++Show Account
     Details+++ .
@@ -184,7 +178,7 @@ your agent that provide business-relevant information.
 7.  Now we can test out our prompt. Let’s go back over to our agent and
     test again. Go to the test pane.
 
-8.  Enter +++Show account Details for Fourth Coffee+++ and click
+8.  Enter +++Show account Details for Northwind Traders+++ and click
     **Send**. You can see that the response is in the structured
     response with the custom prompt created.
 
