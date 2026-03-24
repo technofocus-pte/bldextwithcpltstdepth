@@ -76,7 +76,7 @@ connectivity
 
 9.  Select the **Model Context Protocol** tab, search for +++Microsoft Dataverse MCP Server (Preview)+++ and select **Microsoft Dataverse MCP Server (Preview)**.
 
-    ![](./media/image10.png)
+    ![](./media/image29.png)
 
 10. Select **Add and configure**.
 
