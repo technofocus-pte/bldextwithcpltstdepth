@@ -19,9 +19,7 @@ Copilot Studio, configure it with proper instructions and suggested
 prompts, and integrate the Dataverse MCP Server for live data
 connectivity
 
-1.  Login to Copilot Studio at +++https://copilotstudio.microsoft.com+++
-    using your login credentials if not done already and make sure that
-    you are in the **Dev One** environment.
+1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 2 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
 
     ![](./media/image1.png)
 
