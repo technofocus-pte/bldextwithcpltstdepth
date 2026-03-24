@@ -92,14 +92,14 @@ incorrect.](./media/image13.png)
 
 10.  Enter the below details
 
-    - Group type – Select **Security**
+     - Group type – Select **Security**
 
-    - Group name – Enter +++**copilotagentsecurity**+++
+     - Group name – Enter +++**copilotagentsecurity**+++
 
-    - Microsoft Entra roles can be assigned to the group –
+     - Microsoft Entra roles can be assigned to the group –
       Select **Yes** (If this option is not visible, ignore this step)
 
-    ![A screenshot of a computer AI-generated content may be
+     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image14.png)
 
 11. Select **No owners selected**, select the **MOD Administrator** from
