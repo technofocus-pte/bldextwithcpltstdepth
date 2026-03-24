@@ -74,11 +74,7 @@ connectivity
 
     ![](./media/image9.png)
 
-9.  Select the **Model Context Protocol** tab, search for +++Dataverse
-    MCP Server+++ and select **Microsoft** **Dataverse MCP Server**.
-
-    Note: Select the one that is not in Preview. Do not select the
-**Microsoft** **Dataverse MCP Server (Preview)**
+9.  Select the **Model Context Protocol** tab, search for +++Microsoft Dataverse MCP Server (Preview)+++ and select **Microsoft Dataverse MCP Server (Preview)**.
 
     ![](./media/image10.png)
 
