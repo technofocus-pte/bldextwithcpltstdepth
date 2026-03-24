@@ -34,7 +34,7 @@ connectivity
 
 4.  Enter the below details and select **Save**.
 
-    - Name - +++Contoso Agent+++
+    - Name - +++Zava Agent+++
     
     - Description - +++This agent will help Contoso sales reps update their accounts and contacts using the Dataverse MCP Server+++
 
