@@ -254,7 +254,7 @@ incorrect.](./media/image82.png)
 34. Scroll down to the **Dataverse Model Context Protocol** section and select the checkbox against **Allow MCP clients to interact with Dataverse MCP Server (Preview version)** and select **Save**.
 
     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image83.png)
+incorrect.](./media/image84.png)
 
 ## Exercise 1: Create Safe Travels agent from template
 
