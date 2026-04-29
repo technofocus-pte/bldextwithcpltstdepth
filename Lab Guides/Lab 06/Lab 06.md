@@ -206,7 +206,7 @@ extension format is .PDF.
 17. Now we'll configure the **True** path to extract the file from the
     email and upload it into the **Resume** Dataverse table.
 
-    Add a new action below in the **True** path and search for html to text. Search for and select the +++**Html to text**+++ action.
+    Add a new action below in the **True** path and search for +++html to text+++. Search for and select the **Html to text** action.
     
     >[!NOte] **Note:** The HTML to text action in Power Automate is used to convert HTML-formatted content into plain text. This is especially useful when you receive data (like emails, web content, or API responses) that contains HTML tags, and you want to extract just the readable text without any formatting or code.
 
@@ -237,7 +237,7 @@ extension format is .PDF.
 
 22. We'll add a new action by selecting the **+ icon** underneath
     the **Html to text** action which will load the panel to add
-    actions. Search for **Dataverse add**.Select the **Add a new
+    actions. Search for +++**Dataverse add**+++.Select the **Add a new
     row** action.
 
     ![](./media/image21.png)
