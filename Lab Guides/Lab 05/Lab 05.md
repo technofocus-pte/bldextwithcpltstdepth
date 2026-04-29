@@ -131,10 +131,8 @@ The Interview Prep Agent works better as a connected agent because:
 Let's add our first child agent to your existing Hiring Agent.
 
 ### Task 1 - Solution setup
-
-1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 2 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
     
-2.  Inside Copilot Studio, select the ellipsis (...) below Tools in the left hand navigation.
+1.  Select the **ellipsis** **(...)** below **Tools** (in +++https://copilotstudio.microsoft.com+++) in the left hand navigation.
 
 3.  Select **Solutions**.
 
@@ -294,6 +292,10 @@ existing) without depending on user interaction.
     ![](./media/image23.png)
 
     ![](./media/image24.png)
+
+10. Give the connection name as +++connection1+++ and select **Sign in**.
+
+    ![](./media/image99.png)
 
     >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
     add the action. Enter any **name** for the connection and click **Signin** and follow the prompts to
@@ -591,8 +593,7 @@ child agent and following our instructions.
     ![](./media/image63.png)
 
 6.  If the app is not open already, navigate to
-    +++make.powerapps.com+++. Ensure the Dev One environment is selected
-    in the top right Environment Picker. Select **Apps** → Hiring Hub →
+    +++make.powerapps.com+++. Ensure that the **User1 environment** is selected. Select **Apps** → Hiring Hub →
     ellipsis(...) menu → **Play**  
     ![](./media/image64.png)
 
