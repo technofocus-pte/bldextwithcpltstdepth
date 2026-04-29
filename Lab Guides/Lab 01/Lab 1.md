@@ -20,44 +20,18 @@ domain-specific assistant to life.
       
     -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
-2. If you get a prompt to **Keep your account secure**, select **Next** in the window and follow the **prompts**. Else, ignore these steps and continue from **Step 5**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
-
-3.  Download the Authenticator app in your phone if you do not have it
-    already.
-
-    ![A screenshot of a computer screen AI-generated content may be
-incorrect.](./media/image17.png)
-
-4.  Follow the prompts and complete the setup.
-
-    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image19.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image20.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
-
-5.  Select **New agent** from the **left** pane. If you are **not** able
+2.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
     again in few minutes. At times, it takes few minutes to get loaded
     completely.
 
     ![](./media/image2.png)
 
-6.  Select the **Describe** tab.
+3.  Select the **Describe** tab.
 
     ![](./media/image3.png)
 
-7.  You can start defining the custom agent. You can choose a template
+4.  You can start defining the custom agent. You can choose a template
     to start from, or you can simply *describe* the agent by providing a
     description in natural language. Let's provide the following initial
     description
@@ -66,22 +40,22 @@ incorrect.](./media/image21.png)
 
     ![](./media/image4.png)
 
-8.  Once you have provided the instructions, the initial details are
+5.  Once you have provided the instructions, the initial details are
     populated.
 
-5.  You can rename the agent if needed. Provide the following prompt to
+6.  You can rename the agent if needed. Provide the following prompt to
     do so +++Name it as “Gardening assistant”+++.
 
     ![](./media/image5.png)
 
-6.  If you are asked about refining instructions further, provide the
+7.  If you are asked about refining instructions further, provide the
     following sentence.
 
     +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
 
     ![](./media/image6.png)
 
-7.  Keep on interacting with the agent builder until it does have all
+8.  Keep on interacting with the agent builder until it does have all
     the information needed to create the agent. Provide the following
     sentence.
 
@@ -91,23 +65,23 @@ incorrect.](./media/image21.png)
 
     ![](./media/image8.png)
 
-8.  Then give an instruction of the agent tone as below.
+9.  Then give an instruction of the agent tone as below.
 
     +++Use a professional, yet friendly, tone.+++
 
     ![](./media/image9.png)
 
-11. Click on **Create** on the top right to create the agent.
+10. Click on **Create** on the top right to create the agent.
 
     ![](./media/image10.png)
 
     ![](./media/image11.png)
 
-12. Select **Go to agent** once the agent is created.
+11. Select **Go to agent** once the agent is created.
 
     ![](./media/image12.png)
 
-13. This opens the created agent.
+12. This opens the created agent.
 
     ![](./media/image13.png)
 
@@ -115,7 +89,7 @@ incorrect.](./media/image21.png)
     >
     >![](./media/image14.png)
 
-14. Provide prompt like below to converse with the agent.
+13. Provide prompt like below to converse with the agent.
 
     +++Give me tips to keep Rose plants fresh+++
 
