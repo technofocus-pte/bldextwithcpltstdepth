@@ -14,14 +14,21 @@ for all the other features you'll add in future missions.
 
 In this exercise, you will import a pre existing Solution.
 
-1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 2 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
+1.  Open a browser +++https://copilotstudio.microsoft.com ans login using the credentials.
 
-2.  Select the **...** in the left navigation and select **Solutions.**
+    -    Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
+    -    Password - +++@lab.CloudCredential(M365).AdministrativePassword+++
+
+2.	This open up the Trial activation page. Leave the country as **United States** and click **Get Started**.
+
+    ![](./media/image32.png)
+  	
+4.  Select the **...** in the left navigation and select **Solutions.**
 
     ![](./media/image1.png)
 
-3.  Select **Import solution**. Click on **Browse** and select the
-    **zip** file starting with **Operative** form **C:\LabFiles\LabFiles** and
+5.  Select **Import solution**. Click on **Browse** and select the
+    **zip** file starting with **Operative** form **C:\LabFiles** and
     select **Open**.
 
     ![](./media/image2.png)
@@ -30,7 +37,7 @@ In this exercise, you will import a pre existing Solution.
 
     ![](./media/image4.png)
 
-4.  Once selected, select **Next** and then select **Import**.
+6.  Once selected, select **Next** and then select **Import**.
 
    ![](./media/image5.png)
    
@@ -79,7 +86,7 @@ you imported in the previous exercise.
    ![](./media/image13.png)
 
 4.  Select the **Choose File** button, select the **job-roles.csv** file
-    from **C:\LabFiles\LabFiles** and then select **Open**.
+    from **C:\LabFiles** and then select **Open**.
 
    ![](./media/image14.png)
 
@@ -107,19 +114,19 @@ you imported in the previous exercise.
 
 10. Select **Import from CSV** like you did earlier. Select the **Choose
     File** button, select the **evaluation-criteria.csv** from
-    **C:\LabFiles\LabFiles**.
+    **C:\LabFiles**.
 
    ![](./media/image20.png)
 
 11. Select **Next**. Leave the next step as is and select **Review Mapping**
 
-   ![](./media/image21.png)
+    ![](./media/image21.png)
 
-   ![](./media/image22.png)
+    ![](./media/image22.png)
 
-   >**Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
-   >
-   >![](./media/image31.png)
+    >**Important:** If you do not see the mapping to be proper in the page, then select **Back** and select the **Data Delimiter** to be **None** and select **Review Mapping**
+    >
+    >![](./media/image31.png)
 
 12. Now we have to do a bit more work for the mapping. Select the
     **magnifying glass icon** next to the **Job Role** field.
@@ -146,25 +153,25 @@ you imported in the previous exercise.
 Now you are done with the setup of the prerequisites, it's time for the
 actual work! Let's add our Hiring Agent first!
 
-1.  From the Copilot Studio, select **Agents** from the left pane. Select
-    the drop down next to the **+ Create blank agent** and select **Advanced create**.
+1.  From the Copilot Studio, select **Agents** from the left pane. Select **+ Create blank agent**.
 
-    ![](./media/image27.png)
+    ![](./media/image33.png)
 
-2.  In the Agent settings, select the Solution as **Operative** and then
-    select **Confirm and create**.
+2.	Enter the Name as +++Hiring Agent+++ and select the **Agent settings** option.
 
-    ![](./media/image28.png)
+    ![](./media/image34.png)
 
+3.	Select the Solution as **Operative** and then select **create**.
+
+  	 ![](./media/image35.png)
+  	
 3.  Select **Edit** against the Details of the created agent.
 
-    ![](./media/image29.png)
+    ![](./media/image36.png)
 
-4.  Enter the name as +++**Hiring Agent**+++ and Description as
-    +++**Central orchestrator for all hiring activities**+++ and select
-    **Save**.
+4.  Enter **Description** as +++**Central orchestrator for all hiring activities**+++ and select **Save**.
 
-    ![](./media/image30.png)
+    ![](./media/image37.png)
 
 ## Summary
 
