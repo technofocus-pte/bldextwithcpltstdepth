@@ -31,8 +31,6 @@ integration using Copilot Studio’s conversational setup experience.
       
     -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
-3.  Select the **Dev One** environment.
-
 4.  From the Home page, select **Create agent**.
 
     ![](./media/image1.png)
