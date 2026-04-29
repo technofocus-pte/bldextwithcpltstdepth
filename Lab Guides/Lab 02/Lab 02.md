@@ -25,218 +25,13 @@ template** and enhance it in Lab 05.
 This is a prerequisite task in order to help us to publish and work
 seamlessly with the agents in Copilot Studio throughout this course.
 
-1.  Navigate to the Azure portal at
-    +++https://portal.azure.com/+++ and login with your tenant
-    credentials if prompted.
-
-    -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
-      
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
-
-    ![A screenshot of a computer login AI-generated content may be
-    incorrect.](./media/image1.jpeg)
-    
-    ![A screenshot of a computer login AI-generated content may be
-    incorrect.](./media/image2.jpeg)
-    
-    ![A screenshot of a computer AI-generated content may be
-    incorrect.](./media/image3.png)
-    
-2.  If the **Authenticator app** set up was done in Lab 1, then ignore the steps from this step till step 5 and continue from Step 6. Else complete these steps.
-
-    Select **Next** in the Keep your account secure window and follow the **prompts**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image4.png)
-
-3.  Download the Authenticator app in your phone if you do not have it
-    already.
-
-    ![A screenshot of a computer screen AI-generated content may be
-incorrect.](./media/image5.png)
-
-4.  Follow the prompts and complete the setup.
-
-    >[!Note] Note: From your Authenticator app, select **+** at the top right and then select **Work or school account**. Then select **Scan a QR code**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image6.png)
-
-    ![A screenshot of a computer AI-generated content may be incorrect.](./media/image7.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image8.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image9.png)
-
-5.  In the Azure welcome screen, select **Get Started**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image10.png)
-
-7.  Search for and select +++Microsoft EntraID+++.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image11.png)
-
-8.  From the left pane, select **Manage** -> **Groups**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image12.png)
-
-9.  Select **New group** to create a new security group.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image13.png)
-
-10.  Enter the below details
-
-     - Group type – Select **Security**
-
-     - Group name – Enter +++**copilotagentsecurity**+++
-
-     - Microsoft Entra roles can be assigned to the group –
-      Select **Yes** (If this option is not visible, ignore this step)
-
-     ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image14.png)
-
-11. Select **No owners selected**, select the **MOD Administrator** from
-    the **Add owners** page and click on **Select**.
-
-    ![A screenshot of a group AI-generated content may be
-incorrect.](./media/image15.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image16.png)
-
-12. Similarly, select **No members selected**, and add the **MOD
-    Administrator** from the list and click on **Select**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image17.png)
-
-13. Select **No roles selected**. If you **do not** see this **option**,
-    ignore this and the next step.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image18.png)
-
-14. Search for and select +++**Global admin**+++ and select **Select**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image19.png)
-
-15. Select **Create** once all the details are added and
-    select **Yes** in the confirmation dialog.
-
-    ![A screenshot of a group AI-generated content may be
-incorrect.](./media/image20.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image21.png)
-
-16. Ensure that you get a **success** message.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image22.png)
-
-17. Select Contoso|Groups from the top left.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image23.png)
-
-18. Select **Properties** under **Manage** from the left pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image24.png)
-
-19. Toggle **Yes** under **Access management for Azure resources** option and then select the **Manage security defaults** option.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image75.png)
-
-20. Select **Enabled** under Security defaults option and click on **Save**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image77.png)
-
-21. Select **Save** in the Contoso|Properties page.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image78.png)
-
-19. Now, select **Roles and administrators** under **Manage** from the
-    left pane.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image79.png)
-
-20. Search for +++privileged role admin+++ and click on the **Privileged
-    Role Administrator** role (**Do not select the checkbox**, click on
-    its name).
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image27.png)
-
-21. Select **+ Add assignments**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image28.png)
-
-22. Select **No members selected**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image29.png)
-
-23. Select the **MOD Administrator** id and select **Next**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image30.png)
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image31.png)
-
-24. Select **Assign**.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image32.png)
-
-25. Ensure that the role assignment is successful.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image33.png)
-
-26. From a new tab, navigate to
-    +++https://admin.powerplatform.microsoft.com/+++.
+1. From a browser, open +++https://admin.powerplatform.microsoft.com/+++.
     Select **Manage** from the left pane and then select the **Tenant Settings** option.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image34.png)
 
-27. Select **Copilot Studio Authors** from the list available.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image35.png)
-
-28. Click on the **Edit** icon to edit the settings.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image36.png)
-
-29. Search for and select the **+++copilotagentsecurity+++** group that
-    you created earlier.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image37.png)
-
-30. Select **Save** to save the settings.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image38.png)
-
-31.	Select **Manage** -> **Environments** -> **Dev One** environment.
+2.	Select **Manage** -> **Environments** -> **User** environment.
 
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image80.png)
@@ -261,15 +56,9 @@ incorrect.](./media/image84.png)
 In this exercise, you will create the agent in Copilot Studio using the
 Safe Travels agent template.
 
-1. Still from the Power Platform admin center, select **Manage** -> **Environments -> Dev One** and copy the value of the **Environment ID** and save it locally. 
+1.  From a newtab, login to +++https://copilotstudio.microsoft.com/+++ 
 
-   ![A screenshot of a computer AI-generated content may be incorrect.](./media/image42.png)
-
-2.  From a newtab, login to +++https://copilotstudio.microsoft.com/environments/**< EnvironmentID >**+++ (Replacing **< EnvironmentID >** with the Environment ID value fetched above and saved locally)
-
-    >[!Alert] **Important:** **Save** this **url** to access the Copilot Sutdio in all the upcoming labs.
-
-3.  This open up the **Start free trial** page. Leave the country as **United States** and click **Start free trial**.
+2.  This open up the **Start free trial** page. Leave the country as **United States** and click **Start free trial**.
 
     ![](./media/image74.png)
 
@@ -310,10 +99,10 @@ incorrect.](./media/image47.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image48.png)
 
-9.  In the Test pane, enter +++How to apply for passport?+++ and
+9.  In the **Test** pane, enter +++How to apply for passport?+++ and
     hit **Send**.
 
-    The Test pane is open by default. If not, click on the Test icon on top
+    The **Test** pane is open by default. If not, click on the **Test icon** on top
 right.
 
     ![A screenshot of a computer AI-generated content may be
