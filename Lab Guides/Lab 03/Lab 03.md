@@ -31,21 +31,23 @@ integration using Copilot Studio’s conversational setup experience.
       
     -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
-4.  From the Home page, select **Create agent**.
+4.  From the Home page, select **Agent**.
 
-    ![](./media/image1.png)
+    ![](./media/image48.png)
 
+5.	Enter the Name as +++Researcher agent+++ and select **Create**.
+
+    ![](./media/image49.png)
+  	
 5.  Once the agent is created, select **Edit** against **Details**.
 
-    ![](./media/image2.png)
+    ![](./media/image50.png)
 
-6.  Enter the below details and select **Save**.
+6.  Enter the below **Description** and select **Save**.
 
-    - Name - +++Researcher agent+++.
+    - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
 
-    - Description - +++Answers multi-part questions by combining historical facts, biographical data, and real-time information like weather. Ideal for deep research, exploration, and knowledge synthesis+++
-
-      ![](./media/image3.png)
+      ![](./media/image51.png)
 
 7.  Select **Edit** against **Instructions**, enter the below content and select **Save**.
 
@@ -71,16 +73,6 @@ integration using Copilot Studio’s conversational setup experience.
     ![](./media/image7.png)
     
     ![](./media/image8.png)
-
-12. Next, you will disable general knowledge to reduce hallucinations.
-    Select **Settings** from the top right.
-
-    ![](./media/image9.png)
-
-13. Toggle the **Use general knowledge** option under the Knowledge
-    section to **off** and then select **Save**. **Close** the **Settings** pane once this is done.
-
-    ![](./media/image10.png)
 
 14. Enter the below message in the Test pane and click **Send** and
     observe the output.
