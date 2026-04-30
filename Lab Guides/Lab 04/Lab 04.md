@@ -14,7 +14,7 @@ for all the other features you'll add in future missions.
 
 In this exercise, you will import a pre existing Solution.
 
-1.  Open a browser +++https://copilotstudio.microsoft.com ans login using the credentials.
+1.  Open a browser +++https://copilotstudio.microsoft.com+++ and login using the credentials.
 
     -    Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
     -    Password - +++@lab.CloudCredential(M365).AdministrativePassword+++
