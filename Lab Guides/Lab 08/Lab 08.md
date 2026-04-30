@@ -144,8 +144,7 @@ your agent that provide business-relevant information.
     
     ![](./media/image41.png)
 
-3.  Rename the **prompt** **name** at the top to +++Show Account
-    Details+++ .
+3.  Rename the **prompt** **name** at the top to +++Show Account Details+++ .
 
     Then in the **instructions** enter, +++Find account which contains+++
     and then click **+ Add content** to pass in the name of the account we
