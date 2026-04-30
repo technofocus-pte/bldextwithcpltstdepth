@@ -24,19 +24,25 @@ without requiring direct API access.
 
 In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default. You will use the newly created environment for this lab alone.
 
-1. Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the **Dev One** environment.
+1. From a browser, open the **Copilot Studio** portal - +++https://copilotstudio.microsoft.com+++ and select Get Started in the trial activation dialog.
 
-    ![](./media/image58.png)
+    ![](./media/image59.png)
+   
+2. Once the **Copilot Studio** opens, it will take a few minutes for the environment updates to reflect in the **Power Platform** admin center.
 
-2. Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
+3. After few mins, in a new tab, open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the environment that starts with **User1**.
+
+    ![](./media/image60.png)
+
+5. Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
 
     ![](./media/image56.png)
    
-3. From the **Environments** page, select **+ New**.
+6. From the **Environments** page, select **+ New**.
 
     ![](./media/image53.png)
 
-4.  Enter the below details and select **Next**.
+7.  Enter the below details and select **Next**.
 
     -    Name - +++CUA+++
 
@@ -46,7 +52,7 @@ In this task, you will check the region where your Dev One environment was creat
 
     ![](./media/image54.png)
 
-5.  Select **Save** in the next screen.
+8.  Select **Save** in the next screen.
 
     ![](./media/image55.png)
 
@@ -61,9 +67,7 @@ To automate portfolio lookups, the agent must be able to detect incoming
 email requests and initiate the appropriate automation flow based on
 subject line filtering.
 
-1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 2 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
-
-2.  Select the **Dev One** or **CUA** (if you have created it in the last Task) environment from the top right.
+2.  In the Copilot Studio page, Select the **User1** or **CUA** (if you have created it in the last Task) environment from the top right.
 
     ![](./media/image1.png)
 
@@ -238,8 +242,7 @@ In this task, you will set up the email capability.
 
     ![](./media/image35.png)
 
-8.  Customize the **Body** input and set its **Description** to +++Write
-    the email body using HTML and highlight the requested data+++.
+8.  Customize the **Body** input and set its **Description** to +++Write the email body using HTML and highlight the requested data+++.
 
     ![](./media/image36.png)
 
