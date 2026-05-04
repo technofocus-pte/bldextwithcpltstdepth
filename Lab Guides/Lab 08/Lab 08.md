@@ -1,4 +1,4 @@
-# Lab 8 - Create an agent in Copilot Studio with Dataverse MCP Server
+# Lab 7 - Create an agent in Copilot Studio with Dataverse MCP Server
 
 Create and configure a Copilot Agent in Copilot Studio with Dataverse
 MCP Server integration to streamline business workflows.
