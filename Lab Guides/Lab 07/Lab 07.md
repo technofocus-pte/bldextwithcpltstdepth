@@ -24,17 +24,11 @@ without requiring direct API access.
 
 In this task, you will check the region where your Dev One environment was created. If it is not in the United States, then you will create an environment in the United States region since the Computer-Using Agents is not available in all the regions by default. You will use the newly created environment for this lab alone.
 
-1. From a browser, open the **Copilot Studio** portal - +++https://copilotstudio.microsoft.com+++ and select Get Started in the trial activation dialog.
+3.  Open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the environment that starts with **Dev One**.
 
-    ![](./media/image59.png)
-   
-2. Once the **Copilot Studio** opens, it will take a few minutes for the environment updates to reflect in the **Power Platform** admin center.
+    ![](./media/image58.png)
 
-3. After few mins, in a new tab, open +++https://admin.powerplatform.microsoft.com/+++. Select **Manage** from the left pane and then select the environment that starts with **User1**.
-
-    ![](./media/image60.png)
-
-5. Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
+5.  Check the **Region** of the environment. If it is **United States**, please start with the **Task 1: Create and Configure an Autonomous Agent**. Else, please execute the remaining steps of this **Task 0**.
 
     ![](./media/image56.png)
    
@@ -67,44 +61,46 @@ To automate portfolio lookups, the agent must be able to detect incoming
 email requests and initiate the appropriate automation flow based on
 subject line filtering.
 
-2.  In the Copilot Studio page, Select the **User1** or **CUA** (if you have created it in the last Task) environment from the top right.
+1.  Open a browser and navigate to Copilot Studio using the url saved in Lab 1 (+++https://copilotstudio.microsoft.com/environments/< Environment ID >+++ and login using your credentials if not done already.
+   
+3.  In the Copilot Studio page, Select the **Dev One** or **CUA** (if you have created it in the last Task) environment from the top right.
 
     ![](./media/image1.png)
 
-3.  Select **Create an agent**.
+4.  Select **Create an agent**.
 
     ![](./media/image2.png)
 
-4.  Once the agent is created, select **Edit** against the **Details**.
+5.  Once the agent is created, select **Edit** against the **Details**.
 
     ![](./media/image3.png)
 
-5.  Enter the Name as +++Portfolio Lookup Agent+++ and select Save to
+6.  Enter the Name as +++Portfolio Lookup Agent+++ and select Save to
     rename the default name of the agent.
 
     ![](./media/image4.png)
 
-6.  Scroll down to the triggers section and click **+Add trigger**.
+7.  Scroll down to the triggers section and click **+Add trigger**.
 
     ![](./media/image5.png)
 
-7.  Search and select **When a new email arrives (V3) (Office 365
+8.  Search and select **When a new email arrives (V3) (Office 365
     Outlook** and click on **Next**. 
 
     ![](./media/image6.png)
 
-8.  Rename the trigger to +++When a portfolio lookup email arrives+++,
+9.  Rename the trigger to +++When a portfolio lookup email arrives+++,
     ensure that the connection is established for Copilot Studio and
     Outlook and then click on **Next**.
 
     ![](./media/image7.png)
 
-9.  In the **Subject Filter (Optional)** field, enter +++Portfolio+++ in
+10.  In the **Subject Filter (Optional)** field, enter +++Portfolio+++ in
     the subject line.
 
     ![](./media/image8.png)
 
-10. Once the trigger is created, you can **Close** the Time to test your
+11. Once the trigger is created, you can **Close** the Time to test your
     trigger dialog.
 
     ![](./media/image9.png)
