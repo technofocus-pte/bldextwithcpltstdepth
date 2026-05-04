@@ -1,4 +1,4 @@
-# Lab 2- Build and enhance a template based enterprise assistant
+# Lab 1- Build and enhance a template based enterprise assistant
 
 **Objective**
 
