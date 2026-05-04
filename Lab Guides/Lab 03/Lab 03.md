@@ -1,4 +1,4 @@
-# Lab 3 - Architecting intelligent agents with knowledge grounding and live connectors
+# Lab 2 - Architecting intelligent agents with knowledge grounding and live connectors
 
 **Introduction**
 
