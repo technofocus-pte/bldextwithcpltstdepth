@@ -1,4 +1,4 @@
-# Lab 5 - Transforming the hiring agent into a scalable multi-agent architecture
+# Lab 4 - Transforming the hiring agent into a scalable multi-agent architecture
 
 In the earlier lab, you built your main Hiring Agent giving you a solid
 foundation for managing recruitment workflows. But one agent can only do
