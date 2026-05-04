@@ -1,4 +1,4 @@
-# Lab 6 - Upgrading the hiring agent into an autonomous system
+# Lab 5 - Upgrading the hiring agent into an autonomous system
 
 In this lab, you will dive deeper into **event triggers** - elevating
 your agent system from reactive to **autonomous operation**. You'll
