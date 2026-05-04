@@ -1,4 +1,4 @@
-# Lab 4: Creating an intelligent hiring agent for talent acquisition
+# Lab 3: Creating an intelligent hiring agent for talent acquisition
 
 In this lab, you'll establish the foundation for your hiring automation
 system. You'll begin by importing a pre-configured solution that
