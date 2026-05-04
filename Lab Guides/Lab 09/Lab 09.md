@@ -1,4 +1,4 @@
-# Lab 9 - Test, measure, and improve AI agents
+# Lab 8 - Test, measure, and improve AI agents
 
 As AI agents take on critical roles in business processes, the need for
 reliable, repeatable testing becomes essential. Agent evaluation lets
