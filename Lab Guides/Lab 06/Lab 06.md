@@ -1125,12 +1125,14 @@ Intake Agent**.
 61. We now need to **Publish** the **Hiring Agent**.
     Select **Publish** on the upper right, and in the **Publish this
     agent modal** that appears select **Publish**.
-
+    
     ![](./media/image119.png)
 
     ![](./media/image120.png)
 
-62. Once published, a confirmation message will appear that the agent
+    [!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the exercises that follow. This will not be the case in the production.
+    
+63. Once published, a confirmation message will appear that the agent
     has been published.
 
     ![](./media/image121.png)
