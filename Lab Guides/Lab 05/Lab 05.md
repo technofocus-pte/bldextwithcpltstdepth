@@ -724,6 +724,8 @@ agent.
 
     ![](./media/image80.png)
 
+    [!Alert] **Important:** Since this is a test environment used for training purposes, there might be issues in getting the agent published, based on any recent changes to the product. If that happens, there will be issues in executing the exercises that follow. This will not be the case in the production.
+
 9.  Select **Publish** in the confirmation dialog and wait for the
     publishing to complete.
 
