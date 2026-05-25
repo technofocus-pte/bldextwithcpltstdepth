@@ -45,13 +45,6 @@ incorrect.](./media/image44.png)
     ![A screenshot of a computer AI-generated content may be
 incorrect.](./media/image45.png)
 
-6.  Browse through the set-up page. Under **Knowledge**, you can find
-    that **US Travel Website** is already added as a Knowledge source.
-    It can be edited if needed. Here, we are using the same website.
-
-    ![A screenshot of a computer AI-generated content may be
-incorrect.](./media/image46.png)
-
 7.  Select **Create** to create the Safe Travels agent. We are not
     changing anything here and using the template as such. At any point,
     the agent can be upgraded as per the user requirements.
