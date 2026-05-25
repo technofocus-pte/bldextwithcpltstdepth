@@ -17,9 +17,6 @@ However, the default website used by the agent currently only covers US
 travel destinations. You can replace the default website with your own
 knowledge source.
 
-In this lab, you will create an agent from the **Safe Travels
-template** and enhance it in Lab 05.
-
 ## Exercise 1: Create Safe Travels agent from template
 
 In this exercise, you will create the agent in Copilot Studio using the
