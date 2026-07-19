@@ -1,7 +1,7 @@
 # Lab 1 - Designing an AI assistant with Copilot Studio Agent Builder
 
 **Objective**
-
+TEST
 In this lab, you will learn how to create a custom conversational agent
 using the **Copilot Studio Agent Builder** by describing the agent’s
 purpose, behavior, and tone in natural language. You will design a
