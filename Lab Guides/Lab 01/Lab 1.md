@@ -19,7 +19,7 @@ domain-specific assistant to life.
     -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
       
     -   TAP -  +++@lab.CloudCredential(M365).AdministrativePassword+++
-
+   
 2.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
     again in few minutes. At times, it takes few minutes to get loaded
@@ -27,74 +27,78 @@ domain-specific assistant to life.
 
     ![](./media/image2.png)
 
-3.  Select the **Describe** tab.
+3.  Select **Skip to configure**.
 
-    ![](./media/image3.png)
+    ![](./media/image16.png)
+    
+4.  Select the **Describe** tab.
 
-4.  You can start defining the custom agent. You can choose a template
+    ![](./media/image17.png)
+
+5.  You can start defining the custom agent. You can choose a template
     to start from, or you can simply *describe* the agent by providing a
     description in natural language. Let's provide the following initial
     description
 
     +++You are an expert gardener, and you help users to maintain and improve their home garden providing detailed instructions and advice about the best practices for home gardening.+++
 
-    ![](./media/image4.png)
+    ![](./media/image18.png)
 
-5.  Once you have provided the instructions, the initial details are
+6.  Once you have provided the instructions, the initial details are
     populated.
 
-6.  You can rename the agent if needed. Provide the following prompt to
+7.  You can rename the agent if needed. Provide the following prompt to
     do so +++Name it as “Gardening assistant”+++.
 
-    ![](./media/image5.png)
+    ![](./media/image19.png)
 
-7.  If you are asked about refining instructions further, provide the
+8.  If you are asked about refining instructions further, provide the
     following sentence.
 
     +++Focus on suggesting ways to keep plants and flowers shining and gorgeous+++
 
-    ![](./media/image6.png)
+    ![](./media/image20.png)
 
-8.  Keep on interacting with the agent builder until it does have all
+9.  Keep on interacting with the agent builder until it does have all
     the information needed to create the agent. Provide the following
     sentence.
 
     +++Focus on highlighting the importance of nature and plants/flowers to be present in every house!+++
 
-    ![](./media/image7.png)
+    ![](./media/image21.png)
 
-    ![](./media/image8.png)
-
-9.  Then give an instruction of the agent tone as below.
+10. Then give an instruction of the agent tone as below.
 
     +++Use a professional, yet friendly, tone.+++
 
-    ![](./media/image9.png)
+    ![](./media/image22.png)
 
-10. Click on **Create** on the top right to create the agent.
+11. Click on **Create** on the top right to create the agent.
 
-    ![](./media/image10.png)
+    ![](./media/image23.png)
 
     ![](./media/image11.png)
 
-11. Select **Go to agent** once the agent is created.
+12. Select **Start chat** once the agent is created, to start the conversation.
 
-    ![](./media/image12.png)
+    ![](./media/image24.png)
 
-12. This opens the created agent.
+13. This opens the created agent.
 
-    ![](./media/image13.png)
+    ![](./media/image25.png)
 
     >[!Alert] **Alert:** If the agent does not open automatically, **refresh** the page and select the **created gardening agent** from the left pane.
     >
     >![](./media/image14.png)
 
-13. Provide prompt like below to converse with the agent.
+14. Provide prompt like below to converse with the agent.
 
     +++Give me tips to keep Rose plants fresh+++
 
-    ![](./media/image15.png)
+    ![](./media/image26.png)
 
+    ![](./media/image27.png)
+    
     ## Summary:
 
     In this lab, you created a **Gardening Assistant agent** using the
