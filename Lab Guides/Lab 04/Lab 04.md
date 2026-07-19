@@ -1,6 +1,6 @@
 # Lab 4: Creating an intelligent hiring agent for talent acquisition
 
-In this lab, you'll establish the foundation for your hiring automation
+TEST In this lab, you'll establish the foundation for your hiring automation
 system. You'll begin by importing a pre-configured solution that
 contains all the necessary Dataverse tables and data structure for
 managing candidates, job positions, and hiring workflows. Next, you'll
