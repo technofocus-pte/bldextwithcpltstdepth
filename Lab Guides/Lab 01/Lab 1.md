@@ -18,7 +18,7 @@ domain-specific assistant to life.
 
     -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
       
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+    -   TAP -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
 2.  Select **New agent** from the **left** pane. If you are **not** able
     to see the **New agent** option, **refresh** the **browser** and try
