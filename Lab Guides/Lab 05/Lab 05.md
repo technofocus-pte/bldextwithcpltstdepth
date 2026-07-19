@@ -295,7 +295,6 @@ existing) without depending on user interaction.
 
 10. Give the connection name as +++connection1+++ and select **Sign in**.
 
-    ![](./media/image99.png)
 
     >[!Note] **NOTE:** You may be prompted to create a new connection to Dataverse after you
     add the action. Enter any **name** for the connection and click **Signin** and follow the prompts to
