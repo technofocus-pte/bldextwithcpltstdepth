@@ -254,18 +254,10 @@ existing) without depending on user interaction.
 
     ![](./media/image18.png)
 
-3.  Select **+ New tool**.
-
-    ![](./media/image19.png)
-
 4.  Select **Agent flow**. The Agent Flow designer will open, this is
     where we will add the upload resume logic.  
 
-    ![](./media/image20.png)
-
-    >[!Alert] Important: If **+ New tool** option is not available and **Agent Flow** is directly available, then please select Agent flow.
-    >
-    >![](./media/image90.png)
+    ![](./media/image90.png)
 
 6.  Select the **When an agent calls the flow** node, and select **+ Add
     an input**
