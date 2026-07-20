@@ -28,7 +28,7 @@ integration using Copilot Studio’s conversational setup experience.
 
     -   Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
       
-    -   Password -  +++@lab.CloudCredential(M365).AdministrativePassword+++
+    -   TAP -  +++@lab.CloudCredential(M365).AdministrativePassword+++
 
 4.  From the Home page, select **Agent**.
 
