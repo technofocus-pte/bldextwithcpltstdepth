@@ -14,7 +14,24 @@ for all the other features you'll add in future missions.
 
 In this exercise, you will import a pre existing Solution.
 
-1.  Open a browser +++https://copilotstudio.microsoft.com+++ and login using the credentials.
+1. Open +++https://admin.powerplatform.com+++.
+
+
+2. Select **Manage** from the left pane. In the **Environments** pane that gets opened, select **+ New** to create a new developer environment.
+
+    ![](./media/image40.png)
+
+3. Select the **Type** as **Developer** and select **Next**. Select **Save** in the next **Add Dataverse** pane.
+
+    ![](./media/image41.png)
+
+    ![](./media/image42.png)
+
+4. This creates a new Deverloper nevironment for you to work on. You will be using this environment throughout the labs. Wait until the environment comes to the **Ready** state and then proceed to the next step.
+
+    ![](./media/image43.png)
+   
+1.  Open a browser +++https://copilotstudio.microsoft.com+++ and login using the credentials if prompted.
 
     -    Username - +++@lab.CloudCredential(M365).AdministrativeUsername+++
     -    Password - +++@lab.CloudCredential(M365).AdministrativePassword+++
@@ -22,12 +39,16 @@ In this exercise, you will import a pre existing Solution.
 2.	This open up the Trial activation page. Leave the country as **United States** and click **Get Started**.
 
     ![](./media/image32.png)
-  	
-4.  Select the **...** in the left navigation and select **Solutions.**
+
+3.  From the Environment picker in the top right, select the **Developer environment** you created earlier.
+
+    ![](./media/image44.png)
+    
+5.  Select the **...** in the left navigation and select **Solutions.**
 
     ![](./media/image1.png)
 
-5.  Select **Import solution**. Click on **Browse** and select the
+6.  Select **Import solution**. Click on **Browse** and select the
     **zip** file starting with **Operative** form **C:\LabFiles** and
     select **Open**.
 
@@ -37,7 +58,7 @@ In this exercise, you will import a pre existing Solution.
 
     ![](./media/image4.png)
 
-6.  Once selected, select **Next** and then select **Import**.
+7.  Once selected, select **Next** and then select **Import**.
 
    ![](./media/image5.png)
    
